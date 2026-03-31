@@ -36,6 +36,7 @@ export default function Onboarding() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
     name: '',
+    email: '',
     lastPeriodDate: '',
     cycleLength: 28,
     periodLength: 5,
@@ -57,7 +58,7 @@ export default function Onboarding() {
   };
 
   const canNext = () => {
-    if (step === 0) return form.name.trim().length > 0;
+    if (step === 0) return form.name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
     if (step === 1) return form.lastPeriodDate.length > 0;
     return true;
   };
@@ -71,6 +72,7 @@ export default function Onboarding() {
     try {
       await supabase.from('users').insert({
         name: form.name,
+        email: form.email,
         last_period_date: form.lastPeriodDate,
         cycle_length: form.cycleLength,
         period_length: form.periodLength,
@@ -136,9 +138,22 @@ export default function Onboarding() {
                 value={form.name}
                 onChange={(e) => updateForm('name', e.target.value)}
                 placeholder="Ton prénom"
-                className="w-full px-4 py-3 rounded-luna-sm bg-white border border-luna-rose/20 text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/40 transition-all"
+                className="w-full px-4 py-3 rounded-luna-sm bg-white border border-luna-rose/20 text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/40 transition-all mb-5"
                 autoFocus
               />
+              <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
+                Ton email
+              </label>
+              <input
+                type="email"
+                value={form.email}
+                onChange={(e) => updateForm('email', e.target.value)}
+                placeholder="ton.email@exemple.com"
+                className="w-full px-4 py-3 rounded-luna-sm bg-white border border-luna-rose/20 text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/40 transition-all"
+              />
+              {form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) && (
+                <p className="text-xs text-luna-rose-dark mt-1.5 font-body">Entre une adresse email valide</p>
+              )}
             </motion.div>
           )}
 

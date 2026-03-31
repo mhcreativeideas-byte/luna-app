@@ -134,6 +134,7 @@ export default function Admin() {
   const filteredUsers = users
     .filter((u) =>
       u.name?.toLowerCase().includes(search.toLowerCase()) ||
+      u.email?.toLowerCase().includes(search.toLowerCase()) ||
       u.current_phase?.toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {
@@ -516,6 +517,7 @@ export default function Admin() {
                         {sortField === 'name' && (sortDir === 'asc' ? <ChevronUp size={12} /> : <ChevronDown size={12} />)}
                       </button>
                     </th>
+                    <th className="text-left px-5 py-3 font-semibold hidden sm:table-cell">Email</th>
                     <th className="text-left px-5 py-3 font-semibold">Phase</th>
                     <th className="text-left px-5 py-3 font-semibold hidden md:table-cell">
                       <button onClick={() => toggleSort('cycle_length')} className="flex items-center gap-1 hover:text-gray-700">
@@ -560,6 +562,9 @@ export default function Admin() {
                                   className="mt-2 space-y-1"
                                 >
                                   <p className="text-xs text-gray-400">
+                                    📧 {user.email || 'Pas d\'email'}
+                                  </p>
+                                  <p className="text-xs text-gray-400">
                                     Règles : {user.period_length}j • Dernières : {user.last_period_date}
                                   </p>
                                   {user.diet_preferences?.length > 0 && (
@@ -576,6 +581,9 @@ export default function Admin() {
                               )}
                             </div>
                           </div>
+                        </td>
+                        <td className="px-5 py-3 hidden sm:table-cell">
+                          <span className="text-xs text-gray-500 font-body">{user.email || '—'}</span>
                         </td>
                         <td className="px-5 py-3">
                           <span
