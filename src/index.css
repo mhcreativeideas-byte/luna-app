@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
 @theme {
+  /* Palette principale — basée sur la charte graphique LUNA */
+  --color-luna-primary: #F4C2A1;
+  --color-luna-primary-dark: #D4956B;
+  --color-luna-secondary: #E8A0BF;
+  --color-luna-secondary-dark: #C76DA2;
+  --color-luna-tertiary: #B4A7D6;
+  --color-luna-tertiary-dark: #8E7CC3;
+  --color-luna-neutral: #FFF8F7;
+
+  /* Aliases pour rétrocompatibilité */
   --color-luna-rose: #E8A0BF;
   --color-luna-rose-dark: #C76DA2;
   --color-luna-lavender: #B4A7D6;
@@ -13,8 +23,8 @@
   --color-luna-mint-dark: #6BAF8D;
   --color-luna-mint-bg: #EEFAF2;
   --color-luna-cream: #FFF5EB;
-  --color-luna-cream-light: #FFFBF7;
-  --color-luna-bg: #FDF6F0;
+  --color-luna-cream-light: #FFF8F7;
+  --color-luna-bg: #FFF8F7;
   --color-luna-text: #3D3041;
   --color-luna-text-secondary: #6B5B73;
   --color-luna-rose-bg: #FFF0F5;

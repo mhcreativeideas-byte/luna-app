@@ -19,9 +19,7 @@ export default function Sidebar() {
     <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-white/80 backdrop-blur-md border-r border-luna-rose/10 px-4 py-6 fixed left-0 top-0 z-40">
       {/* Logo */}
       <div className="mb-8 px-2">
-        <h1 className="font-display text-2xl text-luna-text tracking-wide">
-          🌙 LUNA
-        </h1>
+        <img src="/logo-luna.png" alt="LUNA" className="w-28 mb-2" />
         {name && (
           <p className="text-sm text-luna-text-secondary mt-1 font-body">
             Salut, {name}

@@ -124,6 +124,7 @@ export default function Onboarding() {
               transition={{ duration: 0.3 }}
               className="bg-luna-cream-light rounded-luna p-8 shadow-sm"
             >
+              <img src="/logo-luna.png" alt="LUNA" className="w-32 mx-auto mb-4" />
               <h2 className="font-display text-3xl text-luna-text text-center mb-2">
                 Bienvenue 🌸
               </h2>

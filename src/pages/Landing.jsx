@@ -63,24 +63,11 @@ export default function Landing() {
         className="px-4 pt-16 pb-12 md:pt-24 md:pb-20 text-center max-w-3xl mx-auto"
       >
         <motion.div variants={item} className="mb-6">
-          {/* Cycle circle */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-            className="w-32 h-32 mx-auto mb-8 relative"
-          >
-            <div className="absolute inset-0 rounded-full overflow-hidden" style={{
-              background: `conic-gradient(
-                ${PHASES.menstrual.color} 0deg 90deg,
-                ${PHASES.follicular.color} 90deg 180deg,
-                ${PHASES.ovulatory.color} 180deg 250deg,
-                ${PHASES.luteal.color} 250deg 360deg
-              )`,
-            }} />
-            <div className="absolute inset-4 bg-luna-bg rounded-full flex items-center justify-center">
-              <span className="text-2xl">🌙</span>
-            </div>
-          </motion.div>
+          <img
+            src="/logo-luna.png"
+            alt="LUNA"
+            className="w-48 md:w-56 mx-auto mb-4"
+          />
         </motion.div>
 
         <motion.h1
@@ -100,7 +87,7 @@ export default function Landing() {
         <motion.div variants={item}>
           <Link
             to="/onboarding"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-luna-rose text-white rounded-luna-sm font-body font-bold text-base hover:bg-luna-rose-dark transition-all shadow-lg shadow-luna-rose/25"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-luna-primary text-luna-text rounded-luna-sm font-body font-bold text-base hover:bg-luna-primary-dark hover:text-white transition-all shadow-lg shadow-luna-primary/30"
           >
             Découvrir mon cycle
             <ArrowRight size={18} />
@@ -210,7 +197,7 @@ export default function Landing() {
         </p>
         <Link
           to="/onboarding"
-          className="inline-flex items-center gap-2 px-8 py-3 bg-luna-rose text-white rounded-luna-sm font-body font-bold hover:bg-luna-rose-dark transition-all shadow-lg shadow-luna-rose/25"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-luna-secondary text-white rounded-luna-sm font-body font-bold hover:bg-luna-secondary-dark transition-all shadow-lg shadow-luna-secondary/30"
         >
           Commencer gratuitement
           <ArrowRight size={18} />
@@ -219,6 +206,7 @@ export default function Landing() {
 
       {/* Footer */}
       <footer className="px-4 py-8 border-t border-luna-rose/10 text-center">
+        <img src="/logo-luna.png" alt="LUNA" className="w-16 mx-auto mb-3 opacity-60" />
         <p className="text-sm text-luna-text-secondary font-body">
           Fait avec <Heart size={14} className="inline text-luna-rose" /> pour les femmes
         </p>
