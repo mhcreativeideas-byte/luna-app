@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npx --version)",
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/*/bin:$PATH\")",
+      "Read(//Users/margauxhattab/.nvm/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/margauxhattab/**)",
+      "Bash(export PATH=\"/Users/margauxhattab/.nvm/versions/node/v24.14.1/bin:$PATH\")",
+      "Bash(npm --version)",
+      "Bash(npx --yes create-vite@latest luna-temp --template react)",
+      "Bash(npm install:*)",
+      "Bash(npx vite:*)",
+      "Bash(kill %1)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git -C /Users/margauxhattab/App-Luna status)",
+      "Bash(npm run:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"Initial commit: LUNA web app:*)"
+    ]
+  }
+}

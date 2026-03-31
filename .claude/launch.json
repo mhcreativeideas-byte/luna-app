@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "luna-dev",
+      "runtimeExecutable": "/Users/margauxhattab/.nvm/versions/node/v24.14.1/bin/node",
+      "runtimeArgs": ["/Users/margauxhattab/App-Luna/node_modules/.bin/vite", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}
