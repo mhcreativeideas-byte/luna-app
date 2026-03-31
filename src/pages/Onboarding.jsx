@@ -5,6 +5,7 @@ import { ChevronRight, ChevronLeft, Sparkles } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
+import { supabase } from '../lib/supabase';
 
 const goalOptions = [
   { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
@@ -61,9 +62,27 @@ export default function Onboarding() {
     return true;
   };
 
-  const finish = () => {
+  const finish = async () => {
     dispatch({ type: 'SET_PROFILE', payload: form });
     dispatch({ type: 'COMPLETE_ONBOARDING' });
+
+    // Sauvegarde dans Supabase
+    const info = getCycleInfo(form.lastPeriodDate, form.cycleLength, form.periodLength);
+    try {
+      await supabase.from('users').insert({
+        name: form.name,
+        last_period_date: form.lastPeriodDate,
+        cycle_length: form.cycleLength,
+        period_length: form.periodLength,
+        goals: form.goals,
+        fitness_level: form.fitnessLevel,
+        diet_preferences: form.dietPreferences,
+        health_issues: form.healthIssues,
+        current_phase: info?.phase || 'unknown',
+      });
+    } catch (e) {
+      console.log('Supabase save error:', e);
+    }
   };
 
   const info = form.lastPeriodDate

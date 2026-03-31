@@ -8,6 +8,7 @@ import Sport from './pages/Sport';
 import Food from './pages/Food';
 import Sleep from './pages/Sleep';
 import Journal from './pages/Journal';
+import Admin from './pages/Admin';
 
 function ProtectedRoute({ children }) {
   const { onboardingComplete } = useCycle();
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeRedirect />} />
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/admin" element={<Admin />} />
           <Route
             element={
               <ProtectedRoute>
