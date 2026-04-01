@@ -69,7 +69,7 @@ export default function CheckIn() {
             className="space-y-6"
           >
             <h2 className="font-display text-xl text-luna-text text-center">
-              Comment te sens-tu ?
+              Comment te sens-tu, côté énergie, en ce moment ?
             </h2>
 
             {/* Blob */}
@@ -105,8 +105,8 @@ export default function CheckIn() {
                 style={{ accentColor: phaseColor }}
               />
               <div className="flex justify-between text-xs text-luna-text-hint font-body mt-1">
-                <span>Epuisee</span>
-                <span>Au top</span>
+                <span>Vidée</span>
+                <span>En feu</span>
               </div>
             </div>
 
@@ -186,7 +186,7 @@ export default function CheckIn() {
                 type="text"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="Ajoute une remarque..."
+                placeholder="Un mot pour toi, un souvenir de la journée, ou juste comment tu te sens..."
                 className="w-full px-5 py-3.5 rounded-[18px] bg-white border border-gray-100 text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:border-transparent"
                 style={{ '--tw-ring-color': `${phaseColor}30` }}
               />
@@ -221,7 +221,7 @@ export default function CheckIn() {
         <div className="fixed bottom-20 left-0 right-0 px-4 lg:bottom-4 lg:left-64">
           <button onClick={save} className="btn-luna w-full justify-center text-base py-4">
             <Check size={18} />
-            Confirmer mon check-in
+            C'est noté
           </button>
         </div>
       )}

@@ -8,7 +8,14 @@ import { PHASES, PHASE_ORDER } from '../data/phases';
 const filterLabels = {
   alimentation: 'Alimentation',
   fitness: 'Fitness',
-  activites: 'Activites',
+  activites: 'Activités',
+};
+
+const PHASE_SUBTITLES = {
+  menstrual: 'Prends soin de toi. Ton corps fait un travail immense.',
+  follicular: 'L\'énergie monte. C\'est le moment d\'en profiter.',
+  ovulatory: 'Tu es au sommet. Fais-en quelque chose de grand.',
+  luteal: 'Ralentis. Écoute. Ton corps sait ce qu\'il fait.',
 };
 
 export default function Conseils() {
@@ -25,7 +32,7 @@ export default function Conseils() {
       {/* Header */}
       <div>
         <h1 className="font-display text-2xl text-luna-text">Conseils</h1>
-        <p className="text-xs font-body text-luna-text-hint mt-0.5">Adaptes a ta phase hormonale</p>
+        <p className="text-xs font-body text-luna-text-muted mt-1">{PHASE_SUBTITLES[activePhase]}</p>
       </div>
 
       {/* Phase tabs — pills */}

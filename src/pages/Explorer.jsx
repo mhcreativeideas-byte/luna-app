@@ -31,7 +31,7 @@ export default function Explorer() {
       {/* Header */}
       <motion.div variants={item}>
         <h1 className="font-display text-2xl text-luna-text">Explorer</h1>
-        <p className="text-xs font-body text-luna-text-hint mt-0.5">Decouvre du contenu adapte a ta phase</p>
+        <p className="text-xs font-body text-luna-text-hint mt-0.5">Des idées pour prendre soin de toi, chaque jour différemment.</p>
       </motion.div>
 
       {/* Phase tabs */}
@@ -60,7 +60,7 @@ export default function Explorer() {
 
       {/* Articles */}
       <motion.div variants={item}>
-        <h3 className="font-display text-lg text-luna-text mb-3">Articles</h3>
+        <h3 className="font-display text-lg text-luna-text mb-3">Ce que ton corps essaie de te dire</h3>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {articles.map((article, i) => (
             <div
@@ -91,7 +91,7 @@ export default function Explorer() {
           <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{ backgroundColor: phaseData.bgColor }}>
             <FoodIcon size={20} />
           </div>
-          <h3 className="font-display text-lg text-luna-text">Recettes du jour</h3>
+          <h3 className="font-display text-lg text-luna-text">Dans ton assiette aujourd'hui</h3>
         </div>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {recipeList.map((recipe, i) => (
@@ -140,7 +140,7 @@ export default function Explorer() {
           <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{ backgroundColor: phaseData.bgColor }}>
             <MindsetIcon size={20} />
           </div>
-          <h3 className="font-display text-lg text-luna-text">Meditations du jour</h3>
+          <h3 className="font-display text-lg text-luna-text">Un moment rien qu'à toi</h3>
         </div>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {meditations.map((med, i) => (

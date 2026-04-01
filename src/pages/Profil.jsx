@@ -102,10 +102,10 @@ export default function Profil() {
             <h3 className="font-display text-base text-luna-text">Ensemble</h3>
           </div>
           <p className="text-sm text-luna-text-muted font-body mb-3 leading-relaxed">
-            Invite ton partenaire a mieux comprendre ton cycle. Faites-en un effort d'equipe.
+            Ton cycle, c'est aussi l'affaire de ton partenaire. Invite-le à comprendre tes phases pour mieux vivre à deux.
           </p>
           <button className="btn-luna-outline text-sm py-2 px-5">
-            Configurer
+            L'inviter
           </button>
         </div>
       </motion.div>
@@ -142,7 +142,7 @@ export default function Profil() {
             ) : (
               <div>
                 <p className="text-sm font-body mb-2 opacity-90 leading-relaxed">
-                  Enregistre au moins 3 cycles pour debloquer tes insights personnalises.
+                  Continue à enregistrer tes symptômes. Plus LUNA te connaît, plus elle te comprend. Dans quelques cycles, tu auras une carte complète de toi-même.
                 </p>
                 <p className="text-xs font-body opacity-70">
                   {totalCheckIns}/15 check-ins

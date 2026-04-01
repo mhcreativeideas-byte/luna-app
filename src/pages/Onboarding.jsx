@@ -1,27 +1,27 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, ArrowRight } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
 
 const goalOptions = [
-  { id: 'sport', label: 'Adapter mon sport à mon cycle', icon: '🏃‍♀️' },
-  { id: 'food', label: 'Mieux nourrir mon corps', icon: '🥗' },
-  { id: 'sleep', label: 'Améliorer mon sommeil', icon: '😴' },
-  { id: 'emotions', label: 'Comprendre mes émotions', icon: '🧠' },
-  { id: 'discomfort', label: 'Réduire l\'inconfort menstruel', icon: '🌸' },
-  { id: 'energy', label: 'Augmenter mon énergie', icon: '⚡' },
-  { id: 'skin', label: 'Prendre soin de ma peau', icon: '✨' },
-  { id: 'strength', label: 'Me sentir plus forte', icon: '💪' },
+  { id: 'sport', label: 'Adapter mon sport à mon énergie', icon: '🏃‍♀️' },
+  { id: 'food', label: 'Nourrir mon corps intelligemment', icon: '🥗' },
+  { id: 'sleep', label: 'Dormir profondément, enfin', icon: '😴' },
+  { id: 'emotions', label: 'Comprendre mes émotions sans les subir', icon: '🧠' },
+  { id: 'discomfort', label: 'Réduire les douleurs et l\'inconfort', icon: '🌸' },
+  { id: 'energy', label: 'Retrouver une énergie stable', icon: '⚡' },
+  { id: 'skin', label: 'Prendre soin de ma peau naturellement', icon: '✨' },
+  { id: 'strength', label: 'Me sentir puissante dans mon corps', icon: '💪' },
 ];
 
 const fitnessLevels = [
-  { id: 'beginner', label: 'Débutante', desc: 'Je commence tout juste', icon: '🌱' },
-  { id: 'intermediate', label: 'Intermédiaire', desc: 'Je bouge régulièrement', icon: '🌿' },
-  { id: 'advanced', label: 'Confirmée', desc: 'Le sport, c\'est ma vie', icon: '🌳' },
+  { id: 'beginner', label: 'Je débute', desc: 'Et c\'est très bien comme ça', icon: '🌱' },
+  { id: 'intermediate', label: 'Je bouge régulièrement', desc: 'Quelques séances par semaine', icon: '🌿' },
+  { id: 'advanced', label: 'Je suis une athlète', desc: 'Le sport fait partie de ma vie', icon: '🌳' },
 ];
 
 const dietOptions = ['Omnivore', 'Végétarienne', 'Végane', 'Sans gluten', 'Sans lactose'];
@@ -64,7 +64,6 @@ export default function Onboarding() {
   const finish = async () => {
     setLoading(true);
 
-    // Simulate loading steps
     for (let i = 1; i <= 3; i++) {
       await new Promise((r) => setTimeout(r, 800));
       setLoadingStep(i);
@@ -75,7 +74,6 @@ export default function Onboarding() {
     dispatch({ type: 'SET_PROFILE', payload: form });
     dispatch({ type: 'COMPLETE_ONBOARDING' });
 
-    // Save to Supabase
     const info = getCycleInfo(form.lastPeriodDate, form.cycleLength, form.periodLength);
     try {
       await supabase.from('users').insert({
@@ -110,9 +108,9 @@ export default function Onboarding() {
   // Loading screen
   if (loading) {
     const loadingSteps = [
-      'Analyse de ton cycle',
-      'Création de ton profil',
-      'Préparation de tes recommandations',
+      'On analyse ton cycle...',
+      'On prépare ton profil...',
+      'On sélectionne tes recommandations...',
     ];
 
     return (
@@ -134,9 +132,9 @@ export default function Onboarding() {
               >
                 <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${
                   loadingStep > i
-                    ? 'bg-luna-orange text-white'
+                    ? 'bg-luna-rose text-white'
                     : loadingStep === i
-                      ? 'bg-luna-orange/20 border-2 border-luna-orange'
+                      ? 'bg-luna-rose/20 border-2 border-luna-rose'
                       : 'bg-luna-cream-card'
                 }`}>
                   {loadingStep > i && <Check size={14} />}
@@ -150,7 +148,7 @@ export default function Onboarding() {
                   <motion.span
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-luna-orange ml-auto"
+                    className="text-luna-rose ml-auto"
                   >
                     ✓
                   </motion.span>
@@ -170,7 +168,7 @@ export default function Onboarding() {
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
                   transition={{ duration: 0.5 }}
-                  className="h-full bg-luna-orange rounded-full"
+                  className="h-full bg-luna-rose rounded-full"
                 />
               </div>
             </motion.div>
@@ -186,7 +184,8 @@ export default function Onboarding() {
         {/* Progress bar */}
         <div className="h-1 bg-luna-cream-card rounded-full mb-8 overflow-hidden">
           <motion.div
-            className="h-full bg-luna-orange rounded-full"
+            className="h-full rounded-full"
+            style={{ background: 'linear-gradient(90deg, #C4727F, #D4846A)' }}
             initial={{ width: 0 }}
             animate={{ width: `${((step + 1) / 5) * 100}%` }}
             transition={{ duration: 0.4 }}
@@ -203,26 +202,27 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-luna-cream-light rounded-luna p-8 shadow-sm"
+              className="bg-white rounded-[24px] p-8"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <h2 className="font-display text-3xl text-luna-text text-center mb-2">
-                Bienvenue 🌿
+              <h2 className="font-display text-2xl text-luna-text text-center mb-2">
+                Comment veux-tu qu'on t'appelle ?
               </h2>
               <p className="text-luna-text-muted text-center mb-8 font-body text-sm">
-                On va apprendre à se connaître. Quelques questions pour personnaliser ton expérience.
+                Ici, c'est ton espace. On va apprendre à se connaître.
               </p>
-              <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
-                Comment veux-tu qu'on t'appelle ?
+              <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                Ton prénom
               </label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => updateForm('name', e.target.value)}
-                placeholder="Écris ton prénom ici"
-                className="w-full px-4 py-3 rounded-pill bg-white border border-luna-sage/30 text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-orange/30 transition-all mb-5"
+                placeholder="Ton prénom"
+                className="w-full px-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all mb-5"
                 autoFocus
               />
-              <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
+              <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
                 Ton email
               </label>
               <input
@@ -230,7 +230,7 @@ export default function Onboarding() {
                 value={form.email}
                 onChange={(e) => updateForm('email', e.target.value)}
                 placeholder="ton.email@exemple.com"
-                className="w-full px-4 py-3 rounded-pill bg-white border border-luna-sage/30 text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-orange/30 transition-all"
+                className="w-full px-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
               />
             </motion.div>
           )}
@@ -244,54 +244,60 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-luna-cream-light rounded-luna p-8 shadow-sm"
+              className="bg-white rounded-[24px] p-8"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
               <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Ton cycle 🌙
+                Parlons de ton cycle
               </h2>
               <p className="text-luna-text-muted text-center mb-6 text-sm font-body">
-                Ces infos nous aident à calculer ta phase actuelle.
+                Ces infos nous permettent de savoir exactement où tu en es aujourd'hui. Pas de jugement, juste de la précision.
               </p>
               <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
-                    Début de tes dernières règles
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Quand ont commencé tes dernières règles ?
                   </label>
                   <input
                     type="date"
                     value={form.lastPeriodDate}
                     onChange={(e) => updateForm('lastPeriodDate', e.target.value)}
-                    className="w-full px-4 py-3 rounded-pill bg-white border border-luna-sage/30 text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-orange/30"
+                    className="w-full px-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/30"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
-                    Durée de ton cycle : <span className="text-luna-orange font-accent text-lg">{form.cycleLength} jours</span>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Ton cycle dure environ <span className="text-luna-rose text-base">{form.cycleLength} jours</span>
                   </label>
                   <input
                     type="range" min={21} max={35}
                     value={form.cycleLength}
                     onChange={(e) => updateForm('cycleLength', Number(e.target.value))}
                     className="w-full"
+                    style={{ accentColor: '#C4727F' }}
                   />
-                  <div className="flex justify-between text-xs text-luna-text-hint font-accent">
+                  <div className="flex justify-between text-xs text-luna-text-hint font-body">
                     <span>21j</span><span>28j</span><span>35j</span>
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
-                    Durée de tes règles : <span className="text-luna-orange font-accent text-lg">{form.periodLength} jours</span>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Tes règles durent environ <span className="text-luna-rose text-base">{form.periodLength} jours</span>
                   </label>
                   <input
                     type="range" min={2} max={8}
                     value={form.periodLength}
                     onChange={(e) => updateForm('periodLength', Number(e.target.value))}
                     className="w-full"
+                    style={{ accentColor: '#C4727F' }}
                   />
-                  <div className="flex justify-between text-xs text-luna-text-hint font-accent">
+                  <div className="flex justify-between text-xs text-luna-text-hint font-body">
                     <span>2j</span><span>5j</span><span>8j</span>
                   </div>
                 </div>
+                <p className="text-xs text-luna-text-hint font-body text-center italic">
+                  Pas sûre ? Pas de souci, on affinera ensemble au fil du temps.
+                </p>
               </div>
             </motion.div>
           )}
@@ -305,13 +311,14 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-luna-cream-light rounded-luna p-8 shadow-sm"
+              className="bg-white rounded-[24px] p-8"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
               <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Tes objectifs ✨
+                Qu'est-ce qui t'amène ici ?
               </h2>
               <p className="text-luna-text-muted text-center mb-6 text-sm font-body">
-                Qu'est-ce qui t'intéresse le plus ?
+                Choisis tout ce qui te parle. Tu pourras toujours changer d'avis.
               </p>
               <div className="flex flex-wrap gap-2">
                 {goalOptions.map(({ id, label, icon }) => (
@@ -320,8 +327,8 @@ export default function Onboarding() {
                     onClick={() => toggleArray('goals', id)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
                       form.goals.includes(id)
-                        ? 'border-luna-orange bg-luna-orange/10 text-luna-orange-deep'
-                        : 'border-luna-sage/30 bg-white text-luna-text-muted hover:border-luna-orange/30'
+                        ? 'border-luna-rose bg-luna-rose/10 text-luna-rose-deep'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose/30'
                     }`}
                   >
                     <span>{icon}</span>
@@ -341,26 +348,29 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-luna-cream-light rounded-luna p-8 shadow-sm"
+              className="bg-white rounded-[24px] p-8"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
               <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Ton profil 💪
+                Encore quelques détails
               </h2>
               <p className="text-luna-text-muted text-center mb-6 text-sm font-body">
-                Pour affiner tes recommandations.
+                Pour que chaque conseil soit vraiment fait pour toi.
               </p>
               <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-luna-text mb-2 font-body">Niveau sportif</label>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Côté sport, tu te situes où ?
+                  </label>
                   <div className="space-y-2">
                     {fitnessLevels.map(({ id, label, desc, icon }) => (
                       <button
                         key={id}
                         onClick={() => updateForm('fitnessLevel', id)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-luna-sm text-left transition-all border-2 ${
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
                           form.fitnessLevel === id
-                            ? 'border-luna-orange bg-luna-orange/10'
-                            : 'border-luna-sage/20 bg-white hover:border-luna-orange/20'
+                            ? 'border-luna-rose bg-luna-rose/5'
+                            : 'border-gray-100 bg-white hover:border-luna-rose/20'
                         }`}
                       >
                         <span className="text-xl">{icon}</span>
@@ -373,7 +383,9 @@ export default function Onboarding() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-luna-text mb-2 font-body">Alimentation</label>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Comment tu manges au quotidien ?
+                  </label>
                   <div className="flex flex-wrap gap-2">
                     {dietOptions.map((opt) => (
                       <button
@@ -381,8 +393,8 @@ export default function Onboarding() {
                         onClick={() => toggleArray('dietPreferences', opt)}
                         className={`px-3 py-1.5 rounded-pill text-xs font-body font-semibold transition-all border ${
                           form.dietPreferences.includes(opt)
-                            ? 'border-luna-orange bg-luna-orange/10 text-luna-orange-deep'
-                            : 'border-luna-sage/30 bg-white text-luna-text-muted'
+                            ? 'border-luna-rose bg-luna-rose/10 text-luna-rose-deep'
+                            : 'border-gray-100 bg-white text-luna-text-muted'
                         }`}
                       >
                         {opt}
@@ -391,9 +403,12 @@ export default function Onboarding() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-luna-text mb-2 font-body">
-                    Problématiques <span className="font-normal text-luna-text-hint">(optionnel)</span>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Quelque chose qu'on devrait savoir ? <span className="font-normal lowercase">(optionnel)</span>
                   </label>
+                  <p className="text-xs text-luna-text-hint font-body mb-2">
+                    SPM, endométriose, SOPK, cycles irréguliers... Ça nous aide à mieux te guider.
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {healthOptions.map((opt) => (
                       <button
@@ -402,7 +417,7 @@ export default function Onboarding() {
                         className={`px-3 py-1.5 rounded-pill text-xs font-body font-semibold transition-all border ${
                           form.healthIssues.includes(opt)
                             ? 'border-luna-lavender bg-luna-lavender/20 text-luna-lavender-dark'
-                            : 'border-luna-sage/30 bg-white text-luna-text-muted'
+                            : 'border-gray-100 bg-white text-luna-text-muted'
                         }`}
                       >
                         {opt}
@@ -423,16 +438,18 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-luna-cream-light rounded-luna p-8 shadow-sm text-center"
+              className="bg-white rounded-[24px] p-8 text-center"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <h2 className="font-display text-3xl text-luna-text mb-6">
-                C'est prêt ✨
+              <h2 className="font-display text-2xl text-luna-text mb-2">
+                {form.name}, ton espace est prêt
               </h2>
+              <p className="text-luna-text-muted font-body text-sm mb-6">
+                Voici ce que ton corps nous dit aujourd'hui.
+              </p>
 
               {/* Profile recap card */}
-              <div className="rounded-luna p-5 mb-6 text-left" style={{ backgroundColor: PHASES[info.phase].bgColor }}>
-                <p className="text-xs font-accent font-semibold text-luna-text-muted uppercase tracking-wide mb-3">Ton profil</p>
-
+              <div className="rounded-[20px] p-5 mb-6 text-left" style={{ backgroundColor: PHASES[info.phase].bgColor }}>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-body text-luna-text-body">Phase actuelle</span>
@@ -443,8 +460,8 @@ export default function Onboarding() {
 
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-sm font-body text-luna-text-body">Niveau d'énergie estimé</span>
-                      <span className="text-sm font-semibold font-accent">{info.energyLevel}%</span>
+                      <span className="text-sm font-body text-luna-text-body">Énergie estimée</span>
+                      <span className="text-sm font-semibold font-body">{info.energyLevel}%</span>
                     </div>
                     <div className="h-2 bg-white/50 rounded-full overflow-hidden">
                       <motion.div
@@ -459,12 +476,12 @@ export default function Onboarding() {
 
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-body text-luna-text-body">Prochaines règles dans</span>
-                    <span className="text-sm font-semibold font-accent text-luna-orange">{info.daysUntilPeriod} jours</span>
+                    <span className="text-sm font-semibold font-body" style={{ color: PHASES[info.phase].colorDark }}>{info.daysUntilPeriod} jours</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm text-luna-text-muted font-body italic">
+              <p className="text-sm text-luna-text-muted font-body italic leading-relaxed">
                 {PHASES[info.phase].bodyToday}
               </p>
             </motion.div>
@@ -491,7 +508,7 @@ export default function Onboarding() {
               disabled={!canNext()}
               className="btn-luna"
             >
-              Continuer
+              {step === 0 ? 'Enchantée' : 'Continuer'}
               <ChevronRight size={16} />
             </button>
           ) : (
@@ -501,7 +518,8 @@ export default function Onboarding() {
               }}
               className="btn-luna"
             >
-              Découvrir ma journée →
+              Découvrir ma journée
+              <ArrowRight size={16} />
             </button>
           )}
         </div>

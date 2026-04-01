@@ -16,19 +16,19 @@ const item = {
 const whyCards = [
   {
     title: 'Comprends ton corps',
-    desc: 'Decouvre comment tes hormones influencent ton energie, ton humeur et tes performances chaque jour du mois.',
+    desc: 'Tes hormones influencent ton énergie, ton humeur et tes performances chaque jour. Comprendre leur rythme, c\'est reprendre le pouvoir sur ton quotidien.',
     Illustration: HormonesIcon,
     gradient: 'linear-gradient(135deg, #FDE8EB 0%, #F5D0D5 100%)',
   },
   {
-    title: 'Vis sans culpabilite',
-    desc: 'Tes envies de sucre, ta fatigue, tes sautes d\'humeur ont une explication. Et ce n\'est pas un manque de volonte.',
+    title: 'Vis sans culpabilité',
+    desc: 'Tes envies de sucre, ta fatigue, tes sautes d\'humeur ont une explication. Et ce n\'est pas un manque de volonté — c\'est de la biologie.',
     Illustration: SelfCareIcon,
     gradient: 'linear-gradient(135deg, #FFF3EB 0%, #F5DCC8 100%)',
   },
   {
     title: 'Deviens ta propre experte',
-    desc: 'Cycle apres cycle, apprends a anticiper, planifier et tirer le meilleur de chaque phase.',
+    desc: 'Cycle après cycle, apprends à anticiper ce que tu ressens, à planifier avec ton corps plutôt que contre lui.',
     Illustration: EnergyIcon,
     gradient: 'linear-gradient(135deg, #F3EEF8 0%, #E0D5EB 100%)',
   },
@@ -36,16 +36,16 @@ const whyCards = [
 
 const comparisons = [
   {
-    before: 'Je suis nulle, je n\'arrive pas a m\'entrainer cette semaine.',
-    after: 'Je suis en phase luteale, mon corps a besoin de douceur. Yoga aujourd\'hui, HIIT lundi !',
+    before: 'Je suis nulle, je n\'arrive pas à m\'entraîner cette semaine.',
+    after: 'Mon corps est en fin de cycle, il a besoin de douceur. Yoga aujourd\'hui, HIIT lundi.',
   },
   {
-    before: 'Pourquoi j\'ai autant faim ? Je craque, zero volonte.',
-    after: 'Mon metabolisme augmente de 10% en phase luteale. Manger plus est normal et necessaire.',
+    before: 'Pourquoi j\'ai autant faim ? Je craque, zéro volonté.',
+    after: 'Mon métabolisme augmente de 10% en fin de cycle. Manger plus est normal et nécessaire.',
   },
   {
-    before: 'Ma presentation etait catastrophique.',
-    after: 'Je planifie mes presentations en phase ovulatoire, quand ma communication est au top.',
+    before: 'Ma présentation était catastrophique.',
+    after: 'Je planifie mes présentations quand ma communication est au sommet. C\'est hormonal, et c\'est malin.',
   },
 ];
 
@@ -61,7 +61,6 @@ export default function Landing() {
         animate="show"
         className="relative overflow-hidden"
       >
-        {/* Gradient background */}
         <div
           className="absolute inset-0"
           style={{
@@ -78,21 +77,21 @@ export default function Landing() {
 
           <motion.h1
             variants={item}
-            className="font-display text-4xl md:text-5xl text-luna-text mb-5 leading-tight"
+            className="font-display text-3xl md:text-5xl text-luna-text mb-5 leading-tight"
           >
-            Vis en harmonie<br />avec ton cycle
+            Ton corps change chaque jour.<br />Et si tu apprenais à danser avec lui ?
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="text-luna-text-muted text-base md:text-lg font-body max-w-md mx-auto mb-8 leading-relaxed"
+            className="text-luna-text-muted text-base md:text-lg font-body max-w-lg mx-auto mb-8 leading-relaxed"
           >
-            LUNA t'accompagne chaque jour avec des conseils sport, alimentation, sommeil et bien-etre adaptes a ta phase hormonale.
+            LUNA t'accompagne à chaque phase de ton cycle avec des conseils personnalisés en alimentation, sport, sommeil et bien-être. Parce que comprendre ton corps, c'est reprendre le pouvoir sur ton quotidien.
           </motion.p>
 
-          <motion.div variants={item}>
+          <motion.div variants={item} className="space-y-3">
             <Link to="/onboarding" className="btn-luna text-base">
-              Decouvrir mon cycle
+              Commencer mon voyage
               <ArrowRight size={18} />
             </Link>
           </motion.div>
@@ -106,7 +105,7 @@ export default function Landing() {
             Pourquoi LUNA ?
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Ton cycle menstruel est ton super-pouvoir. Apprends a le connaitre.
+            Ton corps te parle chaque jour. LUNA t'aide à l'écouter.
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {whyCards.map((card, i) => (
@@ -140,7 +139,7 @@ export default function Landing() {
             Les 4 phases de ton cycle
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Chaque phase a ses forces. Decouvre les tiennes.
+            Chaque phase a ses forces. Découvre les tiennes.
           </p>
           <div className="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto pb-4 md:pb-0 snap-x hide-scrollbar">
             {phases.map((p, i) => (
@@ -180,7 +179,7 @@ export default function Landing() {
             Avant / Avec LUNA
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Change ta perspective. Change ta vie.
+            Change ta perspective. Transforme ton quotidien.
           </p>
           <div className="space-y-4">
             {comparisons.map((c, i) => (
@@ -216,13 +215,13 @@ export default function Landing() {
         />
         <div className="relative">
           <h2 className="font-display text-2xl md:text-3xl text-luna-text mb-4">
-            Prete a te reconnecter<br />a ton corps ?
+            Prête à te reconnecter<br />à ton corps ?
           </h2>
           <p className="text-luna-text-muted font-body mb-8 italic text-sm max-w-sm mx-auto">
-            "Ton cycle n'est pas un obstacle. C'est ta boussole interieure."
+            "Ton cycle n'est pas un obstacle. C'est ta boussole intérieure."
           </p>
           <Link to="/onboarding" className="btn-luna text-base">
-            Commencer gratuitement
+            Commencer mon voyage
             <ArrowRight size={18} />
           </Link>
           <Divider className="mx-auto mt-10" />
@@ -236,7 +235,7 @@ export default function Landing() {
           Fait avec <Heart size={14} className="inline" style={{ color: '#C4727F' }} /> pour les femmes
         </p>
         <p className="text-xs text-luna-text-hint font-body mt-1">
-          LUNA — Vis en harmonie avec ton cycle
+          LUNA — Ton corps te parle. Apprends à l'écouter.
         </p>
       </footer>
     </div>
