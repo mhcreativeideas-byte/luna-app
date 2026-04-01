@@ -1,22 +1,23 @@
 import { NavLink } from 'react-router-dom';
-import { Sun, Compass, BookOpen, User, LogOut, Settings } from 'lucide-react';
+import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
-  { to: '/dashboard', icon: Sun, label: 'Accueil' },
-  { to: '/conseils', icon: Compass, label: 'Conseils' },
-  { to: '/explorer', icon: BookOpen, label: 'Explorer' },
-  { to: '/profil', icon: User, label: 'Profil' },
+  { to: '/dashboard', icon: Home, label: 'Accueil' },
+  { to: '/sport', icon: Dumbbell, label: 'Sport' },
+  { to: '/alimentation', icon: UtensilsCrossed, label: 'Alimentation' },
+  { to: '/sommeil', icon: Moon, label: 'Sommeil' },
+  { to: '/journal', icon: BookOpen, label: 'Journal' },
 ];
 
 export default function Sidebar() {
   const { name, cycleInfo, dispatch } = useCycle();
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-luna-cream-light/80 backdrop-blur-md border-r border-luna-sage/20 px-4 py-6 fixed left-0 top-0 z-40">
+    <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-white/80 backdrop-blur-md border-r border-gray-100 px-4 py-6 fixed left-0 top-0 z-40">
       {/* Logo */}
       <div className="mb-8 px-2">
-        <img src="/logo-luna.png" alt="LUNA" className="w-28 mb-2" />
+        <h1 className="font-display text-2xl text-luna-text tracking-wide">LUNA</h1>
         {name && (
           <p className="text-sm text-luna-text-muted mt-1 font-body">
             Salut, {name}
@@ -27,16 +28,20 @@ export default function Sidebar() {
       {/* Phase indicator */}
       {cycleInfo && (
         <div
-          className="rounded-luna p-3 mb-6 text-center"
+          className="rounded-[20px] p-4 mb-6"
           style={{ backgroundColor: cycleInfo.phaseData.bgColor }}
         >
-          <span className="text-2xl">{cycleInfo.phaseData.icon}</span>
-          <p className="text-sm font-semibold mt-1" style={{ color: cycleInfo.phaseData.colorDark }}>
-            {cycleInfo.phaseData.shortName}
-          </p>
-          <p className="text-xs text-luna-text-muted">
-            Jour {cycleInfo.currentDay}/{cycleInfo.cycleLength}
-          </p>
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">{cycleInfo.phaseData.icon}</span>
+            <div>
+              <p className="text-sm font-semibold font-body" style={{ color: cycleInfo.phaseData.colorDark }}>
+                {cycleInfo.phaseData.shortName}
+              </p>
+              <p className="text-xs text-luna-text-muted font-body">
+                Jour {cycleInfo.currentDay}/{cycleInfo.cycleLength}
+              </p>
+            </div>
+          </div>
         </div>
       )}
 
@@ -47,10 +52,11 @@ export default function Sidebar() {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-luna-sm transition-all duration-300 text-sm font-body font-semibold ${
-                isActive ? 'bg-luna-orange/10 text-luna-orange' : 'text-luna-text-muted hover:bg-luna-cream-card/50'
+              `flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-all duration-300 text-sm font-body font-semibold ${
+                isActive ? 'text-[#C4727F]' : 'text-luna-text-muted hover:bg-gray-50'
               }`
             }
+            style={({ isActive }) => isActive ? { backgroundColor: '#FDE8EB' } : {}}
           >
             <Icon size={20} strokeWidth={1.8} />
             {label}
@@ -74,7 +80,7 @@ export default function Sidebar() {
             window.location.href = '/';
           }
         }}
-        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint hover:text-luna-orange transition-colors mt-1 font-body"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint hover:text-[#C4727F] transition-colors mt-1 font-body"
       >
         <LogOut size={16} />
         Réinitialiser
