@@ -4,6 +4,7 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { CHAT_SUGGESTIONS } from '../data/chatResponses';
 import { CONSEILS } from '../data/conseils';
+import { SportIcon, FoodIcon, SleepIcon, JournalIcon, BrandSymbol, Divider } from '../components/illustrations/LunaIllustrations';
 
 const container = {
   hidden: { opacity: 0 },
@@ -40,6 +41,7 @@ export default function Dashboard() {
     {
       tag: 'Alimentation',
       tagColor: '#E8733E',
+      illustration: FoodIcon,
       title: phase === 'menstrual' ? 'NOURRIS TON CORPS AVEC DOUCEUR'
         : phase === 'follicular' ? 'L\'ÉNERGIE MONTE, ALIMENTE-LA'
         : phase === 'ovulatory' ? 'MANGE COLORÉ, RAYONNE'
@@ -55,6 +57,7 @@ export default function Dashboard() {
     {
       tag: 'Fitness',
       tagColor: '#D94F1E',
+      illustration: SportIcon,
       title: phase === 'menstrual' ? 'ÉCOUTE, RALENTIS, RESPIRE'
         : phase === 'follicular' ? 'L\'ÉNERGIE MONTE, SURFE DESSUS'
         : phase === 'ovulatory' ? 'TU ES AU SOMMET, DONNE TOUT'
@@ -70,6 +73,7 @@ export default function Dashboard() {
     {
       tag: 'Activité',
       tagColor: '#F5A623',
+      illustration: JournalIcon,
       title: phase === 'menstrual' ? 'COCOONING MODE ON'
         : phase === 'follicular' ? 'LANCE CE QUI TE FAIT VIBRER'
         : phase === 'ovulatory' ? 'UNE PETITE IDÉE PEUT ILLUMINER TA JOURNÉE'
@@ -200,7 +204,13 @@ export default function Dashboard() {
               className="flex-shrink-0 w-[85%] md:w-[45%] rounded-luna overflow-hidden relative group"
               style={{ backgroundColor: sel.bg }}
             >
-              <div className="p-5 min-h-[180px] flex flex-col justify-between">
+              <div className="p-5 min-h-[180px] flex flex-col justify-between relative overflow-hidden">
+                {/* Line-art illustration */}
+                {sel.illustration && (
+                  <div className="absolute top-3 right-3 opacity-20">
+                    {<sel.illustration size={64} />}
+                  </div>
+                )}
                 <span
                   className="text-xs font-accent font-bold px-2.5 py-1 rounded-pill self-start text-white"
                   style={{ backgroundColor: sel.tagColor }}
@@ -208,7 +218,6 @@ export default function Dashboard() {
                   {sel.tag}
                 </span>
                 <div className="mt-auto">
-                  <span className="text-4xl block mb-2">{sel.emoji}</span>
                   <h4 className="font-display text-base text-luna-text leading-tight mb-1">
                     {sel.title}
                   </h4>
@@ -221,7 +230,9 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Signature message */}
-      <motion.div variants={item} className="text-center py-4">
+      <motion.div variants={item} className="text-center py-6">
+        <Divider className="mx-auto mb-4" />
+        <BrandSymbol size={36} className="mx-auto mb-3 opacity-30" />
         <p className="text-sm text-luna-text-hint font-display italic leading-relaxed px-4">
           "Laisse place à la curiosité, prends soin de toi. Rappelle-toi que ton cycle peut être un allié vers l'épanouissement."
         </p>

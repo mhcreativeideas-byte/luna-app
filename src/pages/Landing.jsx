@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Heart } from 'lucide-react';
 import { PHASES, PHASE_ORDER } from '../data/phases';
+import { BrandSymbol, HormonesIcon, SelfCareIcon, EnergyIcon, Divider } from '../components/illustrations/LunaIllustrations';
 
 const container = {
   hidden: { opacity: 0 },
@@ -16,17 +17,17 @@ const whyCards = [
   {
     title: 'Comprends ton corps',
     desc: 'Découvre comment tes hormones influencent ton énergie, ton humeur et tes performances chaque jour du mois.',
-    icon: '🔬',
+    Illustration: HormonesIcon,
   },
   {
     title: 'Vis sans culpabilité',
     desc: 'Tes envies de sucre, ta fatigue, tes sautes d\'humeur ont une explication. Et ce n\'est pas un manque de volonté.',
-    icon: '💜',
+    Illustration: SelfCareIcon,
   },
   {
     title: 'Deviens ta propre experte',
     desc: 'Cycle après cycle, apprends à anticiper, planifier et tirer le meilleur de chaque phase.',
-    icon: '✨',
+    Illustration: EnergyIcon,
   },
 ];
 
@@ -99,7 +100,7 @@ export default function Landing() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-luna-cream-card rounded-luna p-6"
               >
-                <span className="text-3xl mb-3 block">{card.icon}</span>
+                <card.Illustration size={48} className="mb-3" />
                 <h3 className="font-display text-lg text-luna-text mb-2">{card.title}</h3>
                 <p className="text-sm text-luna-text-muted font-body leading-relaxed">{card.desc}</p>
               </motion.div>
@@ -187,11 +188,12 @@ export default function Landing() {
           Commencer gratuitement
           <ArrowRight size={18} />
         </Link>
+        <Divider className="mx-auto mt-8" />
       </section>
 
       {/* Footer */}
       <footer className="px-4 py-8 border-t border-luna-sage/20 text-center">
-        <img src="/logo-luna.png" alt="LUNA" className="w-16 mx-auto mb-3 opacity-60" />
+        <BrandSymbol size={40} className="mx-auto mb-3 opacity-40" />
         <p className="text-sm text-luna-text-muted font-body">
           Fait avec <Heart size={14} className="inline text-luna-orange" /> pour les femmes
         </p>

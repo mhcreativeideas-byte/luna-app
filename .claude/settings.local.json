@@ -25,7 +25,22 @@
       "Bash(git push:*)",
       "Bash(git commit:*)",
       "Bash(find /Users/margauxhattab/Downloads /Users/margauxhattab/Desktop -maxdepth 2 -iname *luna* -o -iname *logo*)",
-      "Bash(python3 -c \"from PIL import Image; print\\(''OK''\\)\")"
+      "Bash(python3 -c \"from PIL import Image; print\\(''OK''\\)\")",
+      "Bash(ls \"/Users/margauxhattab/Downloads/stitch_refine_this_luna_logo_to_be_more_organic_and_editorial._the_typography_should_be_a_sophisticated_high_contrast_serif_like_noto_serif_or_playfair_display._integrate_the_celestial_element_crescent_moon_more_elegantly_perhaps_as_par \\(3\\).zip\")",
+      "Bash(mkdir -p /tmp/luna-logo)",
+      "Read(//tmp/**)",
+      "Bash(unzip -o \"/Users/margauxhattab/Downloads/stitch_refine_this_luna_logo_to_be_more_organic_and_editorial._the_typography_should_be_a_sophisticated_high_contrast_serif_like_noto_serif_or_playfair_display._integrate_the_celestial_element_crescent_moon_more_elegantly_perhaps_as_par \\(3\\).zip\")",
+      "Bash(mkdir -p \"/tmp/luna-style-0\")",
+      "Bash(unzip -o \"/Users/margauxhattab/Downloads/stitch_refine_this_luna_logo_to_be_more_organic_and_editorial._the_typography_should_be_a_sophisticated_high_contrast_serif_like_noto_serif_or_playfair_display._integrate_the_celestial_element_crescent_moon_more_elegantly_perhaps_as_part_of.zip\" -d \"/tmp/luna-style-0\")",
+      "Bash(mkdir -p \"/tmp/luna-style-4\")",
+      "Bash(unzip -o \"/Users/margauxhattab/Downloads/stitch_refine_this_luna_logo_to_be_more_organic_and_editorial._the_typography_should_be_a_sophisticated_high_contrast_serif_like_noto_serif_or_playfair_display._integrate_the_celestial_element_crescent_moon_more_elegantly_perhaps_as_par \\(4\\).zip\" -d \"/tmp/luna-style-4\")",
+      "Read(//private/tmp/**)",
+      "Bash(mkdir -p luna4)",
+      "Bash(python3 -c \":*)",
+      "Bash(cp \"/tmp/luna-style \\(1\\)/screen.png\" /Users/margauxhattab/App-Luna/public/icons/pictograms-nav.png)",
+      "Bash(cp \"/tmp/luna-style \\(2\\)/screen.png\" /Users/margauxhattab/App-Luna/public/icons/brand-symbol.png)",
+      "Bash(cp /tmp/luna4/file_4.png /Users/margauxhattab/App-Luna/public/icons/pictograms-wellness.png)",
+      "Bash(cp \"/tmp/luna-style \\(3\\)/screen.png\" /Users/margauxhattab/App-Luna/public/icons/logo-luna-new.png)"
     ]
   }
 }

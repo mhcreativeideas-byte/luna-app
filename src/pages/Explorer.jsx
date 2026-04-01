@@ -4,6 +4,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { ARTICLES, MEDITATIONS } from '../data/articles';
 import { RECIPES } from '../data/recipes';
 import { PHASES, PHASE_ORDER } from '../data/phases';
+import { FoodIcon, MindsetIcon } from '../components/illustrations/LunaIllustrations';
 
 const container = {
   hidden: { opacity: 0 },
@@ -74,7 +75,10 @@ export default function Explorer() {
 
       {/* Recipes */}
       <motion.div variants={item}>
-        <h3 className="section-title text-base mb-3">RECETTES D'AUJOURD'HUI</h3>
+        <div className="flex items-center gap-2 mb-3">
+          <FoodIcon size={28} />
+          <h3 className="section-title text-base">RECETTES D'AUJOURD'HUI</h3>
+        </div>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {recipeList.map((recipe, i) => (
             <div
@@ -107,7 +111,10 @@ export default function Explorer() {
 
       {/* Meditations */}
       <motion.div variants={item}>
-        <h3 className="section-title text-base mb-3">MÉDITATIONS DU JOUR</h3>
+        <div className="flex items-center gap-2 mb-3">
+          <MindsetIcon size={28} />
+          <h3 className="section-title text-base">MÉDITATIONS DU JOUR</h3>
+        </div>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {meditations.map((med, i) => (
             <div
