@@ -24,7 +24,8 @@
       "Bash(git remote:*)",
       "Bash(git push:*)",
       "Bash(git commit:*)",
-      "Bash(find /Users/margauxhattab/Downloads /Users/margauxhattab/Desktop -maxdepth 2 -iname *luna* -o -iname *logo*)"
+      "Bash(find /Users/margauxhattab/Downloads /Users/margauxhattab/Desktop -maxdepth 2 -iname *luna* -o -iname *logo*)",
+      "Bash(python3 -c \"from PIL import Image; print\\(''OK''\\)\")"
     ]
   }
 }

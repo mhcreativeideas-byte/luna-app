@@ -408,7 +408,7 @@ export default function Onboarding() {
             <button
               onClick={() => setStep((s) => s + 1)}
               disabled={!canNext()}
-              className="flex items-center gap-1 px-6 py-2.5 bg-luna-rose text-white rounded-luna-sm text-sm font-body font-bold hover:bg-luna-rose-dark transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex items-center gap-1 px-6 py-2.5 bg-luna-primary text-white rounded-luna-sm text-sm font-body font-bold hover:bg-luna-primary-dark transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
               C'est parti
               <ChevronRight size={16} />
@@ -419,7 +419,7 @@ export default function Onboarding() {
                 finish();
                 navigate('/dashboard');
               }}
-              className="px-6 py-2.5 bg-luna-rose text-white rounded-luna-sm text-sm font-body font-bold hover:bg-luna-rose-dark transition-all"
+              className="px-6 py-2.5 bg-luna-primary text-white rounded-luna-sm text-sm font-body font-bold hover:bg-luna-primary-dark transition-all"
             >
               Voir mon tableau de bord →
             </button>

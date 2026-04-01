@@ -1,34 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  /* Palette principale — basée sur la charte graphique LUNA */
-  --color-luna-primary: #F4C2A1;
-  --color-luna-primary-dark: #D4956B;
-  --color-luna-secondary: #E8A0BF;
-  --color-luna-secondary-dark: #C76DA2;
-  --color-luna-tertiary: #B4A7D6;
-  --color-luna-tertiary-dark: #8E7CC3;
-  --color-luna-neutral: #FFF8F7;
+  /* Palette principale — The Cycle brand */
+  --color-luna-primary: #D94F1E;
+  --color-luna-primary-dark: #C2441A;
+  --color-luna-primary-light: #E8733E;
+  --color-luna-amber: #F5A623;
+  --color-luna-secondary: #C9A0D3;
+  --color-luna-secondary-dark: #A67BB5;
+  --color-luna-sky: #A8D5E2;
+  --color-luna-sky-dark: #7BBDD0;
+  --color-luna-sage: #D6CDB8;
+  --color-luna-sage-dark: #B5A98E;
 
-  /* Aliases pour rétrocompatibilité */
-  --color-luna-rose: #E8A0BF;
-  --color-luna-rose-dark: #C76DA2;
-  --color-luna-lavender: #B4A7D6;
-  --color-luna-lavender-dark: #8E7CC3;
-  --color-luna-lavender-bg: #EEEDFE;
-  --color-luna-peach: #F4C2A1;
-  --color-luna-peach-dark: #D4956B;
-  --color-luna-peach-bg: #FFF5EB;
-  --color-luna-mint: #A8D5BA;
-  --color-luna-mint-dark: #6BAF8D;
-  --color-luna-mint-bg: #EEFAF2;
-  --color-luna-cream: #FFF5EB;
+  /* Aliases pour phases */
+  --color-luna-rose: #D94F1E;
+  --color-luna-rose-dark: #C2441A;
+  --color-luna-lavender: #C9A0D3;
+  --color-luna-lavender-dark: #A67BB5;
+  --color-luna-lavender-bg: #F3ECF6;
+  --color-luna-peach: #F5A623;
+  --color-luna-peach-dark: #D4910A;
+  --color-luna-peach-bg: #FFF8EB;
+  --color-luna-mint: #A8D5E2;
+  --color-luna-mint-dark: #7BBDD0;
+  --color-luna-mint-bg: #EDF7FA;
+  --color-luna-rose-bg: #FDF0EC;
+
+  /* Fonds & textes */
+  --color-luna-cream: #F7F4EF;
   --color-luna-cream-light: #FFF8F7;
-  --color-luna-bg: #FFF8F7;
-  --color-luna-text: #3D3041;
-  --color-luna-text-secondary: #6B5B73;
-  --color-luna-rose-bg: #FFF0F5;
+  --color-luna-bg: #F7F4EF;
+  --color-luna-text: #1A1A1A;
+  --color-luna-text-secondary: #5A5A5A;
+  --color-luna-card: #F0EDE4;
 
+  /* Typographies */
   --font-display: 'Playfair Display', serif;
   --font-body: 'Nunito', sans-serif;
   --font-accent: 'DM Sans', sans-serif;
@@ -58,10 +65,15 @@ h1, h2, h3, h4 {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-luna-rose);
+  background: var(--color-luna-primary);
   border-radius: 3px;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Slider accent color */
+input[type="range"] {
+  accent-color: #D94F1E;
 }

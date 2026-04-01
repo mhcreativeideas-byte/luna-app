@@ -87,7 +87,7 @@ export default function Landing() {
         <motion.div variants={item}>
           <Link
             to="/onboarding"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-luna-primary text-luna-text rounded-luna-sm font-body font-bold text-base hover:bg-luna-primary-dark hover:text-white transition-all shadow-lg shadow-luna-primary/30"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-luna-primary text-white rounded-luna-sm font-body font-bold text-base hover:bg-luna-primary-dark transition-all shadow-lg shadow-luna-primary/30"
           >
             Découvrir mon cycle
             <ArrowRight size={18} />
@@ -197,7 +197,7 @@ export default function Landing() {
         </p>
         <Link
           to="/onboarding"
-          className="inline-flex items-center gap-2 px-8 py-3 bg-luna-secondary text-white rounded-luna-sm font-body font-bold hover:bg-luna-secondary-dark transition-all shadow-lg shadow-luna-secondary/30"
+          className="inline-flex items-center gap-2 px-8 py-3 bg-luna-primary text-white rounded-luna-sm font-body font-bold hover:bg-luna-primary-dark transition-all shadow-lg shadow-luna-primary/30"
         >
           Commencer gratuitement
           <ArrowRight size={18} />

@@ -15,7 +15,7 @@ export default function BottomNav() {
   const activeColor = cycleInfo?.phaseData?.color || '#E8A0BF';
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-luna-rose/20 z-50 lg:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-luna-sage/40 z-50 lg:hidden">
       <div className="flex justify-around items-center h-16 px-2">
         {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
@@ -27,7 +27,7 @@ export default function BottomNav() {
               }`
             }
             style={({ isActive }) =>
-              isActive ? { color: activeColor } : { color: '#6B5B73' }
+              isActive ? { color: activeColor } : { color: '#5A5A5A' }
             }
           >
             <Icon size={22} strokeWidth={1.8} />
