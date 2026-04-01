@@ -22,62 +22,56 @@ const PHASE_GRADIENTS = {
 };
 
 const hormoneLabels = {
-  estrogen: { label: 'Œstrogène', levels: { high: 'au sommet', rising: 'en hausse', medium: 'stable', low: 'en baisse' } },
-  progesterone: { label: 'Progestérone', levels: { high: 'au sommet', low: 'en baisse' } },
-  lh: { label: 'LH', levels: { peak: 'au pic', low: 'stable' } },
+  estrogen: { label: 'Œstrogène', levels: { high: 'au max', rising: 'en hausse', medium: 'stable', low: 'basse' } },
+  progesterone: { label: 'Progestérone', levels: { high: 'élevée', low: 'basse' } },
+  lh: { label: 'LH', levels: { peak: 'pic', low: 'stable' } },
   fsh: { label: 'FSH', levels: { rising: 'en hausse', low: 'stable' } },
 };
 
 const BODY_TODAY = {
-  menstrual: 'Ton corps se renouvelle. L\'œstrogène et la progestérone sont au plus bas — c\'est pour ça que tu peux te sentir fatiguée, un peu à fleur de peau. Ce n\'est pas une faiblesse. C\'est ton corps qui se prépare à un nouveau départ. Offre-lui de la douceur, du fer, du repos. Tu n\'as rien à prouver cette semaine.',
-  follicular: 'Quelque chose se réveille en toi. L\'œstrogène remonte et avec elle, ton énergie, ta créativité, ta motivation. Tu te sens plus légère ? C\'est normal. Ton corps entre dans sa phase la plus productive. C\'est maintenant qu\'il faut oser : un nouveau sport, un projet audacieux, une conversation importante.',
-  ovulatory: 'Tu rayonnes — et ce n\'est pas qu\'une impression. Œstrogène au sommet, testostérone en soutien : ta confiance, ta communication et tes performances physiques sont à leur maximum. Les gens autour de toi le sentent aussi. Profite de cette énergie solaire.',
-  luteal: 'Ton corps se prépare, et il te demande d\'être douce avec lui. La progestérone prend les commandes — tu peux ressentir des envies de sucre, de la fatigue, des émotions plus intenses. Tout ça est normal. Ton métabolisme augmente de 10%, ton corps brûle plus : nourris-le. C\'est le moment de finir plutôt que de commencer, de cocooner plutôt que de performer.',
+  menstrual: 'Œstrogène et progestérone au plus bas. C\'est ce qui cause la fatigue, les crampes et la baisse d\'énergie. Ton corps élimine la muqueuse utérine — c\'est un processus qui demande de l\'énergie. Priorités : fer, anti-inflammatoires, repos. Ce n\'est pas un manque de volonté, c\'est de la physiologie.',
+  follicular: 'L\'œstrogène remonte progressivement. Concrètement : plus d\'énergie, meilleure récupération musculaire, humeur en hausse, créativité boostée. C\'est ta fenêtre pour te challenger — ton corps récupère plus vite et apprend mieux pendant cette phase.',
+  ovulatory: 'Pic d\'œstrogène + montée de testostérone. Résultat : confiance en hausse, capacités verbales au max, performances physiques à leur sommet. Tes ligaments sont plus lâches (attention aux blessures), mais ta force et ton endurance sont au top.',
+  luteal: 'La progestérone domine. Ton métabolisme augmente de 10 à 20% — tu as besoin de plus de calories, et c\'est normal. Les envies de sucre sont biologiques : ta sérotonine baisse. Côté énergie, ça descend progressivement. C\'est le moment de finir tes projets, pas d\'en commencer de nouveaux.',
 };
-
-const SIGNATURE_MESSAGES = [
-  'Ton cycle n\'est pas un obstacle. C\'est ta boussole intérieure.',
-  'Chaque jour de ton cycle mérite une attention différente.',
-  'Comprendre ton corps, c\'est reprendre le pouvoir sur ta vie.',
-  'Tu n\'as pas à fonctionner de la même façon 30 jours par mois. Et c\'est ta force.',
-];
 
 const DAILY_SELECTIONS = {
   menstrual: [
-    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Nourris ce qui te répare', subtitle: 'Des aliments riches en fer et en douceur pour traverser cette phase en force', bg: '#FFF3EB', to: '/conseils' },
-    { tag: 'Fitness', tagColor: '#C4727F', illustration: SportIcon, title: 'Moins c\'est plus', subtitle: 'Des mouvements doux qui respectent ton énergie du moment', bg: '#FDE8EB', to: '/conseils' },
-    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Autorise-toi à ralentir', subtitle: 'Des idées cocooning pour te retrouver', bg: '#F3EEF8', to: '/conseils' },
+    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Fer, magnésium, oméga-3', subtitle: 'Ce dont ton corps a besoin pour compenser les pertes', bg: '#FFF3EB', to: '/conseils' },
+    { tag: 'Mouvement', tagColor: '#C4727F', illustration: SportIcon, title: 'Yoga, stretching, marche', subtitle: 'Mouvements doux adaptés à ton niveau d\'énergie', bg: '#FDE8EB', to: '/conseils' },
+    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Repos actif', subtitle: 'Tu récupères mieux quand tu t\'écoutes', bg: '#F3EEF8', to: '/conseils' },
   ],
   follicular: [
-    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Ton énergie se construit dans l\'assiette', subtitle: 'Des aliments qui soutiennent ta montée en puissance', bg: '#FFF3EB', to: '/conseils' },
-    { tag: 'Fitness', tagColor: '#C4727F', illustration: SportIcon, title: 'L\'énergie monte, surfe dessus', subtitle: 'C\'est le moment de repousser tes limites', bg: '#FDE8EB', to: '/conseils' },
-    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Crée, lance, ose', subtitle: 'Ton cerveau est en mode conquête', bg: '#F3EEF8', to: '/conseils' },
+    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Protéines et énergie', subtitle: 'Ton corps construit — donne-lui le carburant', bg: '#FFF3EB', to: '/conseils' },
+    { tag: 'Mouvement', tagColor: '#C4727F', illustration: SportIcon, title: 'Cardio, muscu, défis', subtitle: 'Ton corps récupère vite — c\'est le moment de pousser', bg: '#FDE8EB', to: '/conseils' },
+    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Nouveaux projets', subtitle: 'Ta créativité et ta motivation sont en hausse', bg: '#F3EEF8', to: '/conseils' },
   ],
   ovulatory: [
-    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Léger, frais, vibrant', subtitle: 'Comme toi cette semaine', bg: '#FFF3EB', to: '/conseils' },
-    { tag: 'Fitness', tagColor: '#C4727F', illustration: SportIcon, title: 'Repousse tes limites', subtitle: 'Ton corps est prêt pour l\'excellence', bg: '#FDE8EB', to: '/conseils' },
-    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Brille en société', subtitle: 'Ta communication est au sommet', bg: '#F3EEF8', to: '/conseils' },
+    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Fibres et antioxydants', subtitle: 'Pour accompagner le pic hormonal', bg: '#FFF3EB', to: '/conseils' },
+    { tag: 'Mouvement', tagColor: '#C4727F', illustration: SportIcon, title: 'Haute intensité', subtitle: 'Force et endurance au max — pousse tes limites', bg: '#FDE8EB', to: '/conseils' },
+    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Communication et social', subtitle: 'Tes capacités verbales sont à leur pic', bg: '#F3EEF8', to: '/conseils' },
   ],
   luteal: [
-    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Laisse ton corps choisir', subtitle: 'Réconfort et nutriments pour traverser cette phase sereinement', bg: '#FFF3EB', to: '/conseils' },
-    { tag: 'Fitness', tagColor: '#C4727F', illustration: SportIcon, title: 'Bouge en douceur', subtitle: 'Des mouvements qui apaisent plutôt qu\'épuisent', bg: '#FDE8EB', to: '/conseils' },
-    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Prends soin de toi', subtitle: 'Des rituels pour te recentrer, c\'est non négociable', bg: '#F3EEF8', to: '/conseils' },
+    { tag: 'Alimentation', tagColor: '#D4846A', illustration: FoodIcon, title: 'Glucides complexes, magnésium', subtitle: '+200-300 cal/jour — ton métabolisme a augmenté', bg: '#FFF3EB', to: '/conseils' },
+    { tag: 'Mouvement', tagColor: '#C4727F', illustration: SportIcon, title: 'Intensité modérée → douce', subtitle: 'Pilates, natation, marche — baisse progressivement', bg: '#FDE8EB', to: '/conseils' },
+    { tag: 'Bien-être', tagColor: '#B09ACB', illustration: JournalIcon, title: 'Organisation et tri', subtitle: 'C\'est le moment de finaliser, pas de lancer', bg: '#F3EEF8', to: '/conseils' },
   ],
 };
 
 export default function Dashboard() {
-  const { greeting, cycleInfo, todayCheckIn } = useCycle();
+  const { greeting, cycleInfo, todayCheckIn, name } = useCycle();
 
   if (!cycleInfo) return null;
 
   const { phase, phaseData, currentDay, cycleLength, energyLevel, hormones, daysUntilPeriod } = cycleInfo;
 
   const hour = new Date().getHours();
+  const displayName = name || '';
   const timeGreeting = hour < 12
-    ? `Bonjour ${greeting?.split(' ').pop() || ''}. Voici ce que ton corps attend de toi aujourd'hui.`
+    ? `Bonjour ${displayName}`
     : hour < 18
-      ? `Cet après-midi, écoute ce que ton corps te dit.`
-      : `Bonne soirée ${greeting?.split(' ').pop() || ''}. Prends soin de toi ce soir.`;
+      ? `Bon après-midi ${displayName}`
+      : `Bonsoir ${displayName}`;
 
   const today = new Date().toLocaleDateString('fr-FR', {
     weekday: 'long',
@@ -86,11 +80,10 @@ export default function Dashboard() {
   });
 
   const dailySelections = DAILY_SELECTIONS[phase] || DAILY_SELECTIONS.follicular;
-  const signatureMessage = SIGNATURE_MESSAGES[currentDay % SIGNATURE_MESSAGES.length];
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-4">
-      {/* Hero Greeting with Gradient */}
+      {/* Hero Greeting */}
       <motion.div variants={item}>
         <div
           className="rounded-[28px] p-6 pb-8 relative overflow-hidden"
@@ -98,19 +91,21 @@ export default function Dashboard() {
         >
           <div className="relative z-10">
             <p className="text-sm font-body text-white/80 capitalize mb-1">{today}</p>
-            <h1 className="font-display text-xl md:text-2xl text-white leading-snug mb-1">
+            <h1 className="font-display text-2xl md:text-3xl text-white leading-snug mb-3">
               {timeGreeting}
             </h1>
+            <p className="text-sm text-white/90 font-body leading-relaxed">
+              <strong>{phaseData.name}</strong> · Jour {currentDay}/{cycleLength} · Énergie ~{energyLevel}%
+            </p>
           </div>
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/10" />
-          <div className="absolute -bottom-4 -right-12 w-24 h-24 rounded-full bg-white/8" />
         </div>
       </motion.div>
 
       {/* Cycle Circle */}
       <motion.div variants={item}>
         <div className="bg-white rounded-[24px] p-6 text-center" style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.06)' }}>
-          <div className="relative w-44 h-44 mx-auto mb-4">
+          <div className="relative w-40 h-40 mx-auto mb-4">
             <svg viewBox="0 0 120 120" className="w-full h-full">
               <circle cx="60" cy="60" r="52" fill="none" stroke="#F0EBE8" strokeWidth="6" />
               <circle
@@ -124,18 +119,18 @@ export default function Dashboard() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-4xl mb-1">{phaseData.icon}</span>
-              <p className="text-3xl font-display font-bold" style={{ color: phaseData.colorDark }}>
-                {String(currentDay).padStart(2, '0')}
+              <span className="text-3xl mb-1">{phaseData.icon}</span>
+              <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>
+                J{currentDay}
               </p>
               <p className="text-[10px] font-body text-luna-text-hint mt-0.5">
-                Jour {currentDay} sur {cycleLength}
+                sur {cycleLength}
               </p>
             </div>
           </div>
 
-          {/* Hormone badges */}
-          <p className="text-xs font-body font-semibold text-luna-text-hint uppercase tracking-wider mb-3">Tes hormones en ce moment</p>
+          {/* Hormones */}
+          <p className="text-[10px] font-body font-semibold text-luna-text-hint uppercase tracking-wider mb-3">Tes hormones aujourd'hui</p>
           <div className="flex justify-center gap-2 flex-wrap">
             {Object.entries(hormones).map(([key, level]) => (
               <span
@@ -149,37 +144,53 @@ export default function Dashboard() {
           </div>
 
           <p className="text-xs text-luna-text-hint font-body mt-4">
-            Prochaines règles dans <span className="font-semibold text-luna-text-muted">{daysUntilPeriod} jours</span>
+            Règles dans <strong className="text-luna-text-muted">{daysUntilPeriod} jours</strong>
           </p>
         </div>
       </motion.div>
 
-      {/* Mon corps aujourd'hui */}
+      {/* Energy */}
       <motion.div variants={item}>
-        <div className="rounded-[24px] p-5 relative overflow-hidden" style={{ backgroundColor: phaseData.bgColor }}>
-          <div className="flex items-start gap-3">
-            <span className="text-2xl mt-0.5">{phaseData.icon}</span>
-            <div className="flex-1">
-              <h3 className="font-display text-base text-luna-text mb-2">Mon corps aujourd'hui</h3>
-              <p className="text-sm text-luna-text-body font-body leading-relaxed">
-                {BODY_TODAY[phase]}
-              </p>
-              {!todayCheckIn && (
-                <Link
-                  to="/checkin"
-                  className="inline-flex items-center gap-1.5 mt-3 text-sm font-body font-semibold transition-colors"
-                  style={{ color: phaseData.colorDark }}
-                >
-                  Comment je me sens aujourd'hui <ArrowRight size={14} />
-                </Link>
-              )}
-              {todayCheckIn && (
-                <p className="mt-3 text-xs font-body text-luna-text-hint">
-                  ✓ Check-in enregistré — énergie {todayCheckIn.energy}/100
-                </p>
-              )}
-            </div>
+        <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.06)' }}>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-display text-base text-luna-text">Niveau d'énergie estimé</h3>
+            <span className="text-xl font-display font-bold" style={{ color: phaseData.colorDark }}>
+              {energyLevel}%
+            </span>
           </div>
+          <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ backgroundColor: phaseData.color }}
+              initial={{ width: 0 }}
+              animate={{ width: `${energyLevel}%` }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+            />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Ce qui se passe dans ton corps */}
+      <motion.div variants={item}>
+        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
+          <h3 className="font-display text-base text-luna-text mb-2">Ce qui se passe dans ton corps</h3>
+          <p className="text-sm text-luna-text-body font-body leading-relaxed">
+            {BODY_TODAY[phase]}
+          </p>
+          {!todayCheckIn && (
+            <Link
+              to="/checkin"
+              className="inline-flex items-center gap-1.5 mt-3 text-sm font-body font-semibold transition-colors"
+              style={{ color: phaseData.colorDark }}
+            >
+              Enregistrer mes symptômes <ArrowRight size={14} />
+            </Link>
+          )}
+          {todayCheckIn && (
+            <p className="mt-3 text-xs font-body text-luna-text-hint">
+              ✓ Check-in du jour enregistré · énergie {todayCheckIn.energy}/100
+            </p>
+          )}
         </div>
       </motion.div>
 
@@ -209,15 +220,15 @@ export default function Dashboard() {
             className="inline-flex items-center gap-2 text-sm font-body font-semibold text-white/90 hover:text-white transition-opacity mt-1"
           >
             <MessageCircle size={14} />
-            Pose-moi toutes tes questions
+            Poser une question
           </Link>
         </div>
       </motion.div>
 
-      {/* Daily Rituals */}
+      {/* Recommandations du jour */}
       <motion.div variants={item}>
-        <h3 className="font-display text-xl text-luna-text mb-1">Tes rituels du jour</h3>
-        <p className="text-xs font-body text-luna-text-hint mb-4 uppercase tracking-wider">Recommandés pour ta phase</p>
+        <h3 className="font-display text-lg text-luna-text mb-1">Adapté à ta phase</h3>
+        <p className="text-xs font-body text-luna-text-hint mb-4">Ce que LUNA te recommande aujourd'hui</p>
 
         <div className="space-y-3">
           {dailySelections.map((sel, i) => (
@@ -252,8 +263,8 @@ export default function Dashboard() {
       <motion.div variants={item} className="text-center py-6">
         <Divider className="mx-auto mb-4" />
         <BrandSymbol size={36} className="mx-auto mb-3 opacity-30" />
-        <p className="text-sm text-luna-text-hint font-display italic leading-relaxed px-4">
-          "{signatureMessage}"
+        <p className="text-xs text-luna-text-hint font-body px-4">
+          Informations basées sur la recherche en endocrinologie et physiologie féminine. LUNA ne remplace pas un avis médical.
         </p>
       </motion.div>
     </motion.div>

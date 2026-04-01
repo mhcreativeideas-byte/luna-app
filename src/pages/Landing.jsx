@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Heart } from 'lucide-react';
+import { ArrowRight, Heart, Shield, Brain, Zap } from 'lucide-react';
 import { PHASES, PHASE_ORDER } from '../data/phases';
 import { BrandSymbol, HormonesIcon, SelfCareIcon, EnergyIcon, Divider } from '../components/illustrations/LunaIllustrations';
 
@@ -15,20 +15,20 @@ const item = {
 
 const whyCards = [
   {
-    title: 'Comprends ton corps',
-    desc: 'Tes hormones influencent ton énergie, ton humeur et tes performances chaque jour. Comprendre leur rythme, c\'est reprendre le pouvoir sur ton quotidien.',
+    title: 'Tes hormones, décryptées',
+    desc: 'Œstrogène, progestérone, LH, FSH — elles dirigent ton énergie, ton humeur et tes performances. LUNA te montre ce qu\'elles font, jour après jour.',
     Illustration: HormonesIcon,
     gradient: 'linear-gradient(135deg, #FDE8EB 0%, #F5D0D5 100%)',
   },
   {
-    title: 'Vis sans culpabilité',
-    desc: 'Tes envies de sucre, ta fatigue, tes sautes d\'humeur ont une explication. Et ce n\'est pas un manque de volonté — c\'est de la biologie.',
+    title: 'Zéro culpabilité',
+    desc: 'Envie de sucre en fin de cycle ? Normal, ton métabolisme augmente de 10%. Fatiguée pendant tes règles ? Logique, tes hormones sont au plancher. Ici, on t\'explique pourquoi.',
     Illustration: SelfCareIcon,
     gradient: 'linear-gradient(135deg, #FFF3EB 0%, #F5DCC8 100%)',
   },
   {
-    title: 'Deviens ta propre experte',
-    desc: 'Cycle après cycle, apprends à anticiper ce que tu ressens, à planifier avec ton corps plutôt que contre lui.',
+    title: 'Des conseils qui changent chaque jour',
+    desc: 'Sport, alimentation, sommeil, bien-être — adaptés à ta phase hormonale. Pas de programme générique. Des recommandations qui correspondent à ce que ton corps vit aujourd\'hui.',
     Illustration: EnergyIcon,
     gradient: 'linear-gradient(135deg, #F3EEF8 0%, #E0D5EB 100%)',
   },
@@ -36,16 +36,16 @@ const whyCards = [
 
 const comparisons = [
   {
-    before: 'Je suis nulle, je n\'arrive pas à m\'entraîner cette semaine.',
-    after: 'Mon corps est en fin de cycle, il a besoin de douceur. Yoga aujourd\'hui, HIIT lundi.',
+    before: 'Je n\'arrive pas à m\'entraîner cette semaine. J\'ai zéro motivation.',
+    after: 'Je suis en fin de cycle. Mon énergie est basse, c\'est hormonal. Yoga cette semaine, cardio la semaine prochaine.',
   },
   {
-    before: 'Pourquoi j\'ai autant faim ? Je craque, zéro volonté.',
-    after: 'Mon métabolisme augmente de 10% en fin de cycle. Manger plus est normal et nécessaire.',
+    before: 'Pourquoi j\'ai autant faim ? Je craque tout le temps.',
+    after: 'Mon métabolisme augmente en phase lutéale. J\'ai besoin de 200-300 cal de plus par jour. C\'est mon corps qui parle, pas un manque de volonté.',
   },
   {
-    before: 'Ma présentation était catastrophique.',
-    after: 'Je planifie mes présentations quand ma communication est au sommet. C\'est hormonal, et c\'est malin.',
+    before: 'Ma présentation était nulle. J\'étais pas du tout à l\'aise.',
+    after: 'Je planifie mes présentations en phase ovulatoire. Mes capacités verbales et ma confiance sont à leur max — c\'est prouvé.',
   },
 ];
 
@@ -79,33 +79,45 @@ export default function Landing() {
             variants={item}
             className="font-display text-3xl md:text-5xl text-luna-text mb-5 leading-tight"
           >
-            Ton corps change chaque jour.<br />Et si tu apprenais à danser avec lui ?
+            Reprends le contrôle<br />de ton cycle
           </motion.h1>
 
           <motion.p
             variants={item}
             className="text-luna-text-muted text-base md:text-lg font-body max-w-lg mx-auto mb-8 leading-relaxed"
           >
-            LUNA t'accompagne à chaque phase de ton cycle avec des conseils personnalisés en alimentation, sport, sommeil et bien-être. Parce que comprendre ton corps, c'est reprendre le pouvoir sur ton quotidien.
+            Ton cycle influence ton énergie, ton humeur, tes performances — chaque jour différemment. LUNA t'aide à comprendre ce qui se passe dans ton corps et à adapter ton quotidien en conséquence.
           </motion.p>
 
           <motion.div variants={item} className="space-y-3">
             <Link to="/onboarding" className="btn-luna text-base">
-              Commencer mon voyage
+              Commencer — c'est gratuit
               <ArrowRight size={18} />
             </Link>
+            <p className="text-xs text-luna-text-hint font-body mt-3">
+              Basé sur la recherche en endocrinologie. Données privées et chiffrées.
+            </p>
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Problem statement */}
+      <section className="px-4 py-12 bg-white">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="text-luna-text-body font-body text-base md:text-lg leading-relaxed">
+            On suit nos pas, notre sommeil, nos calories — mais <strong className="text-luna-text">personne ne nous a appris à comprendre notre cycle</strong>. Pourtant, il impacte tout : énergie, humeur, digestion, peau, libido, performances cognitives. Chaque jour du mois est différent. Il est temps d'en tenir compte.
+          </p>
+        </div>
+      </section>
 
       {/* Why LUNA */}
       <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
-            Pourquoi LUNA ?
+            Ce que LUNA fait pour toi
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Ton corps te parle chaque jour. LUNA t'aide à l'écouter.
+            Des informations concrètes, personnalisées, mises à jour chaque jour.
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {whyCards.map((card, i) => (
@@ -136,10 +148,10 @@ export default function Landing() {
       <section className="px-4 py-16 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
-            Les 4 phases de ton cycle
+            4 phases. 4 réalités différentes.
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Chaque phase a ses forces. Découvre les tiennes.
+            Ton cycle dure ~28 jours. À chaque phase, tes hormones changent — et ton corps avec.
           </p>
           <div className="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto pb-4 md:pb-0 snap-x hide-scrollbar">
             {phases.map((p, i) => (
@@ -149,7 +161,7 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex-shrink-0 w-56 md:w-auto rounded-[24px] p-6 text-center snap-start relative overflow-hidden"
+                className="flex-shrink-0 w-56 md:w-auto rounded-[24px] p-6 text-center snap-start"
                 style={{ backgroundColor: p.bgColor }}
               >
                 <span className="text-4xl mb-3 block">{p.icon}</span>
@@ -176,10 +188,10 @@ export default function Landing() {
       <section className="px-4 py-16">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
-            Avant / Avec LUNA
+            Sans LUNA / Avec LUNA
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Change ta perspective. Transforme ton quotidien.
+            Même situation. Mais quand tu comprends ton corps, tout change.
           </p>
           <div className="space-y-4">
             {comparisons.map((c, i) => (
@@ -192,7 +204,7 @@ export default function Landing() {
                 className="grid md:grid-cols-2 gap-3"
               >
                 <div className="bg-gray-50 rounded-[20px] p-5 opacity-60">
-                  <p className="text-[10px] font-body font-bold text-luna-text-hint mb-2 uppercase tracking-wider">Avant</p>
+                  <p className="text-[10px] font-body font-bold text-luna-text-hint mb-2 uppercase tracking-wider">Sans LUNA</p>
                   <p className="text-sm text-luna-text-muted font-body leading-relaxed">{c.before}</p>
                 </div>
                 <div className="rounded-[20px] p-5" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
@@ -215,13 +227,13 @@ export default function Landing() {
         />
         <div className="relative">
           <h2 className="font-display text-2xl md:text-3xl text-luna-text mb-4">
-            Prête à te reconnecter<br />à ton corps ?
+            Ton corps fonctionne par cycles.<br />Ton quotidien devrait aussi.
           </h2>
-          <p className="text-luna-text-muted font-body mb-8 italic text-sm max-w-sm mx-auto">
-            "Ton cycle n'est pas un obstacle. C'est ta boussole intérieure."
+          <p className="text-luna-text-muted font-body mb-8 text-sm max-w-sm mx-auto">
+            Rejoins les femmes qui ont arrêté de subir leur cycle et qui ont commencé à s'en servir.
           </p>
           <Link to="/onboarding" className="btn-luna text-base">
-            Commencer mon voyage
+            Commencer — c'est gratuit
             <ArrowRight size={18} />
           </Link>
           <Divider className="mx-auto mt-10" />
@@ -232,10 +244,10 @@ export default function Landing() {
       <footer className="px-4 py-10 bg-white text-center">
         <BrandSymbol size={40} className="mx-auto mb-3 opacity-30" />
         <p className="text-sm text-luna-text-muted font-body">
-          Fait avec <Heart size={14} className="inline" style={{ color: '#C4727F' }} /> pour les femmes
+          Conçu par des femmes, pour des femmes.
         </p>
         <p className="text-xs text-luna-text-hint font-body mt-1">
-          LUNA — Ton corps te parle. Apprends à l'écouter.
+          LUNA — Comprends ton cycle. Adapte ta vie.
         </p>
       </footer>
     </div>

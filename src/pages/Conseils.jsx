@@ -12,10 +12,10 @@ const filterLabels = {
 };
 
 const PHASE_SUBTITLES = {
-  menstrual: 'Prends soin de toi. Ton corps fait un travail immense.',
-  follicular: 'L\'énergie monte. C\'est le moment d\'en profiter.',
-  ovulatory: 'Tu es au sommet. Fais-en quelque chose de grand.',
-  luteal: 'Ralentis. Écoute. Ton corps sait ce qu\'il fait.',
+  menstrual: 'Fer, repos, anti-inflammatoires. Ce dont ton corps a besoin maintenant.',
+  follicular: 'Énergie en hausse. C\'est le moment de pousser.',
+  ovulatory: 'Pic hormonal. Performances physiques et cognitives au max.',
+  luteal: 'Métabolisme en hausse, énergie en baisse. Adapte ton quotidien.',
 };
 
 export default function Conseils() {

@@ -75,7 +75,7 @@ export default function Chat() {
               <Sparkles size={24} className="text-white" />
             </div>
             <p className="text-sm text-luna-text-muted font-body mb-5 max-w-xs mx-auto leading-relaxed">
-              Pose-moi une question sur ton cycle, ton alimentation, ton sport ou ton bien-etre !
+              Alimentation, sport, sommeil, symptômes — pose ta question, LUNA te répond en fonction de ta phase.
             </p>
             <div className="space-y-2 max-w-sm mx-auto">
               {CHAT_SUGGESTIONS.map((s, i) => (

@@ -11,8 +11,8 @@ export const PHASES = {
     days: '1-5',
     energy: 30,
     encouragement: 'Ton corps travaille dur pour toi. Accorde-lui le repos qu\'il mérite. 💜',
-    bodyToday: 'Ton corps se régénère. L\'œstrogène et la progestérone sont au plus bas. C\'est normal de ressentir de la fatigue — ton corps travaille dur pour toi.',
-    summary: 'Phase de repos et d\'introspection. Tes hormones sont au plus bas, c\'est le moment de ralentir et de prendre soin de toi.',
+    bodyToday: 'Œstrogène et progestérone au plus bas. Fatigue, crampes, baisse d\'énergie — c\'est physiologique. Ton corps élimine la muqueuse utérine. Priorité : fer, magnésium, repos.',
+    summary: 'Hormones au plus bas. Énergie réduite, récupération en cours. Le corps élimine et se prépare au cycle suivant.',
     mindset: 'Journaling & introspection',
     nutrients: ['Fer', 'Omega-3', 'Magnésium', 'Vitamine C'],
     nutrientDetails: {
@@ -50,8 +50,8 @@ export const PHASES = {
     days: '6-13',
     energy: 75,
     encouragement: 'L\'énergie monte ! C\'est le moment de te challenger et de lancer de nouveaux projets. 🌿',
-    bodyToday: 'L\'œstrogène remonte doucement. Tu vas sentir ton énergie et ta motivation revenir. Profite de cette vague montante pour lancer ce qui te tient à cœur.',
-    summary: 'L\'œstrogène remonte progressivement. Ton énergie, ta motivation et ta créativité augmentent jour après jour.',
+    bodyToday: 'L\'œstrogène remonte. Énergie en hausse, meilleure récupération musculaire, créativité boostée. C\'est ta meilleure fenêtre pour te challenger.',
+    summary: 'L\'œstrogène remonte. Énergie, motivation et récupération musculaire en hausse progressive.',
     mindset: 'Planification & nouveaux défis',
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Probiotiques'],
     nutrientDetails: {
@@ -89,8 +89,8 @@ export const PHASES = {
     days: '14-16',
     energy: 95,
     encouragement: 'Tu rayonnes ! Communication, confiance, performance : tout est au max. ☀️',
-    bodyToday: 'Pic hormonal ! L\'œstrogène et la testostérone sont au max. Ta communication, ta confiance et tes performances sont à leur apogée.',
-    summary: 'Pic d\'œstrogène et de testostérone. Tu es au sommet de ton énergie, ta confiance et ton charisme.',
+    bodyToday: 'Pic d\'œstrogène + montée de testostérone. Performances physiques au max, capacités verbales boostées, confiance en hausse. Attention : ligaments plus lâches, bien s\'échauffer.',
+    summary: 'Pic hormonal. Performances physiques, cognitives et sociales à leur maximum.',
     mindset: 'Communication & leadership',
     nutrients: ['Fibres', 'Antioxydants', 'Zinc', 'Glutathion'],
     nutrientDetails: {
@@ -128,8 +128,8 @@ export const PHASES = {
     days: '17-28',
     energy: 45,
     encouragement: 'Ton corps se prépare. Écoute-le, nourris-le, et sois douce avec toi-même. 🍂',
-    bodyToday: 'La progestérone prend le relais. Ton énergie se tourne vers l\'intérieur. C\'est le moment de ralentir, finaliser tes projets et prendre soin de toi.',
-    summary: 'La progestérone domine. Ton corps ralentit, tes émotions peuvent être plus intenses. C\'est le temps de la douceur.',
+    bodyToday: 'La progestérone domine. Métabolisme +10-20% (besoin de plus de calories), énergie en baisse, sérotonine réduite (envies de sucre). Adapte l\'intensité progressivement.',
+    summary: 'La progestérone domine. Métabolisme en hausse, énergie en baisse. Envies de sucre normales (sérotonine réduite).',
     mindset: 'Organisation & cocooning',
     nutrients: ['Magnésium', 'Vitamine B6', 'Calcium', 'Glucides complexes'],
     nutrientDetails: {

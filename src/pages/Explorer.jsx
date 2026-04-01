@@ -31,7 +31,7 @@ export default function Explorer() {
       {/* Header */}
       <motion.div variants={item}>
         <h1 className="font-display text-2xl text-luna-text">Explorer</h1>
-        <p className="text-xs font-body text-luna-text-hint mt-0.5">Des idées pour prendre soin de toi, chaque jour différemment.</p>
+        <p className="text-xs font-body text-luna-text-hint mt-0.5">Contenu adapté à ta phase. Mis à jour chaque jour.</p>
       </motion.div>
 
       {/* Phase tabs */}

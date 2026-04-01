@@ -69,7 +69,7 @@ export default function CheckIn() {
             className="space-y-6"
           >
             <h2 className="font-display text-xl text-luna-text text-center">
-              Comment te sens-tu, côté énergie, en ce moment ?
+              Ton niveau d'énergie aujourd'hui ?
             </h2>
 
             {/* Blob */}
@@ -186,7 +186,7 @@ export default function CheckIn() {
                 type="text"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="Un mot pour toi, un souvenir de la journée, ou juste comment tu te sens..."
+                placeholder="Une note pour toi (optionnel)"
                 className="w-full px-5 py-3.5 rounded-[18px] bg-white border border-gray-100 text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:border-transparent"
                 style={{ '--tw-ring-color': `${phaseColor}30` }}
               />
