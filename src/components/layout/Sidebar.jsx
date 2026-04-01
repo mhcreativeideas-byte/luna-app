@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, Settings, LogOut } from 'lucide-react';
+import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, CalendarDays, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
@@ -7,6 +7,7 @@ const navItems = [
   { to: '/sport', icon: Dumbbell, label: 'Sport' },
   { to: '/alimentation', icon: UtensilsCrossed, label: 'Alimentation' },
   { to: '/sommeil', icon: Moon, label: 'Sommeil' },
+  { to: '/calendrier', icon: CalendarDays, label: 'Calendrier' },
   { to: '/journal', icon: BookOpen, label: 'Journal' },
 ];
 

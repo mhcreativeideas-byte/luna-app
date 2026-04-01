@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen } from 'lucide-react';
+import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, CalendarDays } from 'lucide-react';
 
 const navItems = [
   { to: '/dashboard', icon: Home, label: 'Accueil' },
   { to: '/sport', icon: Dumbbell, label: 'Sport' },
   { to: '/alimentation', icon: UtensilsCrossed, label: 'Food' },
   { to: '/sommeil', icon: Moon, label: 'Sommeil' },
+  { to: '/calendrier', icon: CalendarDays, label: 'Cycle' },
   { to: '/journal', icon: BookOpen, label: 'Journal' },
 ];
 

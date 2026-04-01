@@ -101,71 +101,56 @@ export default function Alimentation() {
         </div>
       </motion.div>
 
-      {/* Curated Plates */}
+      {/* Recettes d'aujourd'hui — Horizontal Carousel */}
       <motion.div variants={item}>
-        <h2 className="font-display text-xl text-luna-text mb-1">Idées repas</h2>
-        <p className="text-xs font-body text-luna-text-hint mb-4">Adaptées à ta phase.</p>
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="font-display text-xl text-luna-text">Recettes d'aujourd'hui</h2>
+          <span className="text-xs font-body text-luna-text-hint">Swipe →</span>
+        </div>
 
-        <div className="space-y-5">
+        <div className="flex gap-4 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2 snap-x snap-mandatory">
           {Object.entries(recipes).map(([key, recipe]) => (
-            <motion.div
+            <button
               key={key}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-[20px] overflow-hidden transition-all hover:shadow-md"
-              style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
+              onClick={() => setOpenRecipe(key)}
+              className="flex-shrink-0 w-[72%] md:w-[45%] snap-start text-left group"
             >
-              {/* Photo */}
-              {recipe.photo && (
-                <div className="relative h-48 overflow-hidden">
+              {/* Photo card */}
+              <div className="relative aspect-square rounded-[24px] overflow-hidden mb-3">
+                {recipe.photo ? (
                   <img
                     src={recipe.photo}
                     alt={recipe.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2.5 py-1 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
-                      {mealLabels[key].tag}
-                    </span>
+                ) : (
+                  <div
+                    className="w-full h-full flex items-center justify-center text-5xl"
+                    style={{ backgroundColor: phaseData.bgColor }}
+                  >
+                    🍽
                   </div>
-                </div>
-              )}
-              <div className="p-5">
-                {!recipe.photo && (
-                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                    {mealLabels[key].tag}
-                  </p>
                 )}
-                <h3 className="font-display text-lg text-luna-text">{recipe.name}</h3>
-                <p className="text-xs font-body text-luna-text-muted mt-1 leading-relaxed">
-                  {recipe.description}
-                </p>
-                <div className="flex items-center gap-3 mt-3">
-                  <span className="text-xs font-body text-luna-text-hint flex items-center gap-1">
-                    <Clock size={12} /> {recipe.prepTime}
+                {/* Subtle overlay at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="absolute top-3 left-3">
+                  <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2.5 py-1 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
+                    {mealLabels[key].tag}
                   </span>
-                  <div className="flex gap-1">
-                    {recipe.nutrients.map((n) => (
-                      <span
-                        key={n}
-                        className="text-[10px] font-body font-semibold px-2 py-0.5 rounded-pill"
-                        style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
-                      >
-                        {n}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-                <button
-                  onClick={() => setOpenRecipe(key)}
-                  className="flex items-center gap-1 mt-3 text-sm font-body font-semibold transition-colors"
-                  style={{ color: phaseData.colorDark }}
-                >
-                  Voir la recette <ArrowRight size={14} />
-                </button>
+                <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2">
+                  <span className="text-[10px] font-body text-white/90 flex items-center gap-1">
+                    <Clock size={10} /> {recipe.prepTime}
+                  </span>
+                </div>
               </div>
-            </motion.div>
+              {/* Title */}
+              <h3 className="font-display text-base text-luna-text leading-snug">{recipe.name}</h3>
+              <p className="text-xs font-body text-luna-text-muted mt-1 leading-relaxed line-clamp-2">
+                {recipe.description}
+              </p>
+            </button>
           ))}
         </div>
       </motion.div>
@@ -256,23 +241,52 @@ export default function Alimentation() {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
             >
-              {/* Header */}
-              <div className="sticky top-0 bg-white rounded-t-[28px] md:rounded-t-[24px] p-5 flex justify-between items-start border-b border-gray-50 z-10">
-                <div>
-                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                    {mealLabels[openRecipe].tag}
-                  </p>
-                  <h3 className="font-display text-lg text-luna-text">{recipes[openRecipe].name}</h3>
+              {/* Photo in modal */}
+              {recipes[openRecipe].photo && (
+                <div className="relative h-52 overflow-hidden rounded-t-[28px] md:rounded-t-[24px]">
+                  <img
+                    src={recipes[openRecipe].photo}
+                    alt={recipes[openRecipe].name}
+                    className="w-full h-full object-cover"
+                  />
+                  <button
+                    onClick={() => setOpenRecipe(null)}
+                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                  >
+                    <X size={16} className="text-luna-text-muted" />
+                  </button>
                 </div>
-                <button
-                  onClick={() => setOpenRecipe(null)}
-                  className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors flex-shrink-0"
-                >
-                  <X size={16} className="text-luna-text-muted" />
-                </button>
-              </div>
+              )}
+
+              {/* Header if no photo */}
+              {!recipes[openRecipe].photo && (
+                <div className="sticky top-0 bg-white rounded-t-[28px] md:rounded-t-[24px] p-5 flex justify-between items-start border-b border-gray-50 z-10">
+                  <div>
+                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
+                      {mealLabels[openRecipe].tag}
+                    </p>
+                    <h3 className="font-display text-lg text-luna-text">{recipes[openRecipe].name}</h3>
+                  </div>
+                  <button
+                    onClick={() => setOpenRecipe(null)}
+                    className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors flex-shrink-0"
+                  >
+                    <X size={16} className="text-luna-text-muted" />
+                  </button>
+                </div>
+              )}
 
               <div className="p-5 space-y-5">
+                {/* Title (when photo exists) */}
+                {recipes[openRecipe].photo && (
+                  <div>
+                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
+                      {mealLabels[openRecipe].tag}
+                    </p>
+                    <h3 className="font-display text-xl text-luna-text">{recipes[openRecipe].name}</h3>
+                  </div>
+                )}
+
                 {/* Time + Nutrients */}
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">

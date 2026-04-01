@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight as ChevRight, Info } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
@@ -22,7 +21,6 @@ const PHASE_LABELS = {
 };
 
 export default function Calendar() {
-  const navigate = useNavigate();
   const { cycleLength, periodLength, lastPeriodDate, cycleInfo } = useCycle();
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
@@ -133,16 +131,7 @@ export default function Calendar() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       {/* Header */}
       <motion.div variants={item} className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate(-1)}
-            className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-            style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
-          >
-            <ChevronLeft size={20} />
-          </button>
-          <h1 className="font-display text-2xl text-luna-text">Calendrier</h1>
-        </div>
+        <h1 className="font-display text-2xl text-luna-text">Calendrier</h1>
         {/* Month navigation */}
         <div className="flex gap-2">
           <button
