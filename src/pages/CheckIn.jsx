@@ -36,16 +36,26 @@ export default function CheckIn() {
   };
 
   const blobSize = 80 + (energy / 100) * 80;
-  const phaseColor = cycleInfo?.phaseData?.color || '#D94F1E';
+  const phaseColor = cycleInfo?.phaseData?.color || '#C4727F';
 
   return (
     <div className="space-y-5 pb-24">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <button onClick={() => navigate(-1)} className="text-luna-text-muted hover:text-luna-text">
-          <ChevronLeft size={24} />
+        <button
+          onClick={() => navigate(-1)}
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
+        >
+          <ChevronLeft size={20} />
         </button>
-        <h1 className="section-title text-xl">CHECK-IN</h1>
+        <h1 className="font-display text-xl text-luna-text">Check-in</h1>
+      </div>
+
+      {/* Step indicator */}
+      <div className="flex gap-2 px-4">
+        <div className="h-1 flex-1 rounded-full" style={{ backgroundColor: phaseColor }} />
+        <div className="h-1 flex-1 rounded-full" style={{ backgroundColor: step >= 1 ? phaseColor : '#F0EBE8' }} />
       </div>
 
       <AnimatePresence mode="wait">
@@ -59,7 +69,7 @@ export default function CheckIn() {
             className="space-y-6"
           >
             <h2 className="font-display text-xl text-luna-text text-center">
-              Comment te sens-tu, côté énergie ?
+              Comment te sens-tu ?
             </h2>
 
             {/* Blob */}
@@ -68,15 +78,15 @@ export default function CheckIn() {
                 animate={{ width: blobSize, height: blobSize }}
                 transition={{ type: 'spring', damping: 15 }}
                 className="rounded-full flex items-center justify-center"
-                style={{ backgroundColor: `${phaseColor}30` }}
+                style={{ backgroundColor: `${phaseColor}20` }}
               >
                 <motion.div
                   animate={{ width: blobSize * 0.7, height: blobSize * 0.7 }}
                   transition={{ type: 'spring', damping: 15 }}
                   className="rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: `${phaseColor}60` }}
+                  style={{ backgroundColor: `${phaseColor}40` }}
                 >
-                  <span className="text-3xl font-accent font-bold" style={{ color: phaseColor }}>
+                  <span className="text-3xl font-display font-bold" style={{ color: phaseColor }}>
                     {energy}
                   </span>
                 </motion.div>
@@ -92,10 +102,11 @@ export default function CheckIn() {
                 value={energy}
                 onChange={(e) => setEnergy(Number(e.target.value))}
                 className="w-full"
+                style={{ accentColor: phaseColor }}
               />
               <div className="flex justify-between text-xs text-luna-text-hint font-body mt-1">
-                <span>Épuisée 😴</span>
-                <span>Au top ⚡</span>
+                <span>Epuisee</span>
+                <span>Au top</span>
               </div>
             </div>
 
@@ -120,11 +131,15 @@ export default function CheckIn() {
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(i)}
-                  className={`flex-shrink-0 px-3 py-1.5 rounded-pill text-xs font-body font-semibold transition-all whitespace-nowrap ${
-                    activeCategory === i
-                      ? 'bg-luna-text text-white'
-                      : 'bg-luna-cream-card text-luna-text-muted'
-                  }`}
+                  className="flex-shrink-0 px-3.5 py-2 rounded-pill text-xs font-body font-semibold transition-all whitespace-nowrap"
+                  style={activeCategory === i ? {
+                    backgroundColor: '#2D2226',
+                    color: 'white',
+                  } : {
+                    backgroundColor: 'white',
+                    color: '#8A7B7F',
+                    boxShadow: '0 1px 4px rgba(45,34,38,0.06)',
+                  }}
                 >
                   {cat.icon} {cat.label}
                 </button>
@@ -149,12 +164,12 @@ export default function CheckIn() {
                         key={tag.label}
                         whileTap={{ scale: 1.05 }}
                         onClick={() => toggleSymptom(SYMPTOM_CATEGORIES[activeCategory].id, tag.label)}
-                        className="px-3 py-2 rounded-pill text-sm font-body font-semibold transition-all border"
+                        className="px-3.5 py-2 rounded-pill text-sm font-body font-semibold transition-all border"
                         style={{
-                          backgroundColor: isSelected ? colors.bg : '#FFFBF5',
-                          borderColor: isSelected ? colors.border : '#E5E0D8',
-                          color: isSelected ? colors.text : '#7A6B63',
-                          transform: isSelected ? 'scale(1.02)' : 'scale(1)',
+                          backgroundColor: isSelected ? colors.bg : 'white',
+                          borderColor: isSelected ? colors.border : '#F0EBE8',
+                          color: isSelected ? colors.text : '#8A7B7F',
+                          boxShadow: isSelected ? 'none' : '0 1px 4px rgba(45,34,38,0.04)',
                         }}
                       >
                         {tag.label}
@@ -171,18 +186,26 @@ export default function CheckIn() {
                 type="text"
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
-                placeholder="Ajoute une petite remarque ici pour toi..."
-                className="w-full px-4 py-3 rounded-pill bg-white border border-luna-sage/30 text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-orange/30"
+                placeholder="Ajoute une remarque..."
+                className="w-full px-5 py-3.5 rounded-[18px] bg-white border border-gray-100 text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:border-transparent"
+                style={{ '--tw-ring-color': `${phaseColor}30` }}
               />
             </div>
 
             {/* Summary */}
             {Object.values(symptoms).some((arr) => arr.length > 0) && (
-              <div className="bg-luna-cream-card rounded-luna p-3">
-                <p className="text-xs font-body text-luna-text-muted mb-1">Sélectionnés :</p>
-                <div className="flex flex-wrap gap-1">
+              <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+                <p className="text-xs font-body text-luna-text-hint mb-2">Selectionnes :</p>
+                <div className="flex flex-wrap gap-1.5">
                   {Object.values(symptoms).flat().map((s) => (
-                    <span key={s} className="text-xs font-body px-2 py-0.5 rounded-pill bg-luna-orange/10 text-luna-orange-deep">
+                    <span
+                      key={s}
+                      className="text-xs font-body px-2.5 py-1 rounded-pill"
+                      style={{
+                        backgroundColor: `${phaseColor}15`,
+                        color: cycleInfo?.phaseData?.colorDark || '#A85A66',
+                      }}
+                    >
                       {s}
                     </span>
                   ))}

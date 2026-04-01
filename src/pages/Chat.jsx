@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Send } from 'lucide-react';
+import { ChevronLeft, Send, Sparkles } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { getLunaResponse, CHAT_SUGGESTIONS } from '../data/chatResponses';
 
@@ -15,11 +15,9 @@ export default function Chat() {
   const phase = cycleInfo?.phase || 'follicular';
 
   useEffect(() => {
-    // Load history
     if (chatHistory && chatHistory.length > 0) {
       setMessages(chatHistory.slice(-20));
     }
-    // Auto-send if query param
     const q = searchParams.get('q');
     if (q) {
       handleSend(q);
@@ -45,12 +43,24 @@ export default function Chat() {
     <div className="flex flex-col h-[calc(100vh-5rem)] lg:h-[calc(100vh-2rem)]">
       {/* Header */}
       <div className="flex items-center gap-3 pb-4">
-        <button onClick={() => navigate(-1)} className="text-luna-text-muted hover:text-luna-text">
-          <ChevronLeft size={24} />
+        <button
+          onClick={() => navigate(-1)}
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
+        >
+          <ChevronLeft size={20} />
         </button>
-        <div>
-          <h1 className="font-display text-lg text-luna-text">LUNA</h1>
-          <p className="text-xs text-luna-text-hint font-body">Ton assistante bien-être</p>
+        <div className="flex items-center gap-2">
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center"
+            style={{ background: 'linear-gradient(135deg, #C4727F, #D4846A)' }}
+          >
+            <Sparkles size={14} className="text-white" />
+          </div>
+          <div>
+            <h1 className="font-display text-lg text-luna-text leading-none">LUNA</h1>
+            <p className="text-[10px] text-luna-text-hint font-body">Ton assistante bien-etre</p>
+          </div>
         </div>
       </div>
 
@@ -58,16 +68,22 @@ export default function Chat() {
       <div className="flex-1 overflow-y-auto space-y-3 pb-4">
         {messages.length === 0 && (
           <div className="text-center py-8">
-            <span className="text-5xl block mb-4">🌿</span>
-            <p className="text-sm text-luna-text-muted font-body mb-4">
-              Pose-moi une question sur ton cycle, ton alimentation, ton sport ou ton bien-être !
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              style={{ background: 'linear-gradient(135deg, #F5D0D5, #F2C0A8)' }}
+            >
+              <Sparkles size={24} className="text-white" />
+            </div>
+            <p className="text-sm text-luna-text-muted font-body mb-5 max-w-xs mx-auto leading-relaxed">
+              Pose-moi une question sur ton cycle, ton alimentation, ton sport ou ton bien-etre !
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2 max-w-sm mx-auto">
               {CHAT_SUGGESTIONS.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(s)}
-                  className="block w-full text-left px-4 py-2.5 rounded-luna-sm bg-luna-cream-card text-sm font-body text-luna-text-body hover:bg-luna-sage/20 transition-colors"
+                  className="block w-full text-left px-4 py-3 rounded-[16px] bg-white text-sm font-body text-luna-text-body hover:shadow-md transition-all"
+                  style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.04)' }}
                 >
                   {s}
                 </button>
@@ -84,11 +100,16 @@ export default function Chat() {
             className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm font-body leading-relaxed ${
+              className={`max-w-[85%] px-4 py-3 text-sm font-body leading-relaxed ${
                 msg.role === 'user'
-                  ? 'bg-luna-orange text-white rounded-br-sm'
-                  : 'bg-luna-cream-card text-luna-text-body rounded-bl-sm'
+                  ? 'rounded-[18px] rounded-br-[6px] text-white'
+                  : 'rounded-[18px] rounded-bl-[6px] bg-white text-luna-text-body'
               }`}
+              style={msg.role === 'user' ? {
+                background: 'linear-gradient(135deg, #C4727F, #D4846A)',
+              } : {
+                boxShadow: '0 2px 8px rgba(45, 34, 38, 0.04)',
+              }}
             >
               {msg.content}
             </div>
@@ -98,19 +119,24 @@ export default function Chat() {
       </div>
 
       {/* Input */}
-      <div className="flex gap-2 pt-2 border-t border-luna-sage/20">
+      <div className="flex gap-2 pt-3 pb-1">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && input.trim() && handleSend()}
-          placeholder="Écris ta question..."
-          className="flex-1 px-4 py-3 rounded-pill bg-luna-cream-card border border-luna-sage/20 text-sm font-body text-luna-text focus:outline-none focus:ring-2 focus:ring-luna-orange/30"
+          placeholder="Ecris ta question..."
+          className="flex-1 px-5 py-3.5 rounded-[18px] bg-white border border-gray-100 text-sm font-body text-luna-text focus:outline-none focus:ring-2 focus:ring-luna-rose/30 focus:border-transparent"
+          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.04)' }}
         />
         <button
           onClick={() => input.trim() && handleSend()}
           disabled={!input.trim()}
-          className="w-11 h-11 flex items-center justify-center rounded-full bg-luna-orange text-white hover:bg-luna-orange-deep transition-colors disabled:opacity-30"
+          className="w-12 h-12 flex items-center justify-center rounded-full text-white transition-all disabled:opacity-30"
+          style={{
+            background: 'linear-gradient(135deg, #C4727F, #D4846A)',
+            boxShadow: '0 2px 12px rgba(196, 114, 127, 0.25)',
+          }}
         >
           <Send size={18} />
         </button>
