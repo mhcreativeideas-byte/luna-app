@@ -8,9 +8,9 @@ function SettingRow({ label, value, onClick, danger }) {
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center justify-between px-4 py-3.5 text-sm font-body transition-colors ${
-        danger ? 'text-red-500' : 'text-luna-text-body'
-      } hover:bg-luna-cream-card/50`}
+      className={`w-full flex items-center justify-between px-5 py-4 text-sm font-body transition-colors ${
+        danger ? 'text-red-400' : 'text-luna-text-body'
+      } hover:bg-luna-cream/50`}
     >
       <span>{label}</span>
       <div className="flex items-center gap-2 text-luna-text-hint">
@@ -23,19 +23,17 @@ function SettingRow({ label, value, onClick, danger }) {
 
 function SettingToggle({ label, checked, onChange }) {
   return (
-    <div className="flex items-center justify-between px-4 py-3.5">
+    <div className="flex items-center justify-between px-5 py-4">
       <span className="text-sm font-body text-luna-text-body">{label}</span>
       <button
         onClick={() => onChange(!checked)}
-        className={`relative w-11 h-6 rounded-full transition-colors ${
-          checked ? 'bg-luna-orange' : 'bg-luna-sage/50'
+        className={`relative w-12 h-7 rounded-full transition-colors ${
+          checked ? 'bg-luna-rose' : 'bg-luna-sage/50'
         }`}
       >
         <span
-          className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
-            checked ? 'translate-x-5.5 left-0.5' : 'left-0.5'
-          }`}
-          style={{ transform: checked ? 'translateX(22px)' : 'translateX(0)' }}
+          className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform"
+          style={{ transform: checked ? 'translateX(22px)' : 'translateX(4px)' }}
         />
       </button>
     </div>
@@ -45,10 +43,10 @@ function SettingToggle({ label, checked, onChange }) {
 function Section({ title, children }) {
   return (
     <div className="mb-5">
-      <p className="text-xs font-accent font-bold text-luna-text-hint uppercase tracking-wider px-4 mb-1">
+      <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest px-5 mb-2">
         {title}
       </p>
-      <div className="bg-luna-cream-light rounded-luna divide-y divide-luna-sage/10">
+      <div className="bg-white rounded-[20px] divide-y divide-gray-50" style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.04)' }}>
         {children}
       </div>
     </div>
@@ -62,30 +60,34 @@ export default function Settings() {
   return (
     <div className="space-y-2 pb-8">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-4">
-        <button onClick={() => navigate(-1)} className="text-luna-text-muted hover:text-luna-text">
-          <ChevronLeft size={24} />
+      <div className="flex items-center gap-3 mb-6">
+        <button
+          onClick={() => navigate(-1)}
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
+        >
+          <ChevronLeft size={20} />
         </button>
-        <h1 className="section-title text-xl">PARAMÈTRES</h1>
+        <h1 className="font-display text-xl text-luna-text">Parametres</h1>
       </div>
 
       <Section title="Profil">
         <SettingRow label="Nom" value={name} />
-        <SettingRow label="Objectifs" value={`${goals?.length || 0} sélectionnés`} />
+        <SettingRow label="Objectifs" value={`${goals?.length || 0} selectionnes`} />
       </Section>
 
       <Section title="Cycle">
-        <SettingRow label="Durée du cycle" value={`${cycleLength} jours`} />
-        <SettingRow label="Durée des règles" value={`${periodLength} jours`} />
+        <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} />
+        <SettingRow label="Duree des regles" value={`${periodLength} jours`} />
         <SettingToggle
           label="Suivi intelligent"
           checked={false}
           onChange={() => {}}
         />
         <SettingRow
-          label="Réinitialiser le calendrier"
+          label="Reinitialiser le calendrier"
           onClick={() => {
-            if (window.confirm('Repartir de zéro ? Tes données seront perdues.')) {
+            if (window.confirm('Repartir de zero ? Tes donnees seront perdues.')) {
               dispatch({ type: 'RESET' });
               localStorage.removeItem('luna-profile');
               window.location.href = '/';
@@ -100,39 +102,39 @@ export default function Settings() {
           checked={notifications}
           onChange={(val) => dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } })}
         />
-        <SettingRow label="Langue" value="Français" />
+        <SettingRow label="Langue" value="Francais" />
       </Section>
 
-      <Section title="Communauté">
+      <Section title="Communaute">
         <SettingRow label="Partage tes commentaires" />
         <SettingRow label="Signaler un bug" />
-        <SettingRow label="Demander une fonctionnalité" />
+        <SettingRow label="Demander une fonctionnalite" />
         <SettingRow label="Contacte-nous" />
       </Section>
 
-      <Section title="Légal">
-        <SettingRow label="Conditions générales" />
-        <SettingRow label="Politique de confidentialité" />
+      <Section title="Legal">
+        <SettingRow label="Conditions generales" />
+        <SettingRow label="Politique de confidentialite" />
       </Section>
 
-      <div className="pt-4">
-        <button className="w-full text-center py-3 text-sm font-body text-luna-text-hint">
-          Déconnexion
+      <div className="pt-4 space-y-2">
+        <button className="w-full text-center py-3 text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors">
+          Deconnexion
         </button>
         <button
           onClick={() => {
-            if (window.confirm('Supprimer définitivement ton compte ? Cette action est irréversible.')) {
+            if (window.confirm('Supprimer definitivement ton compte ? Cette action est irreversible.')) {
               dispatch({ type: 'RESET' });
               localStorage.removeItem('luna-profile');
               window.location.href = '/';
             }
           }}
-          className="w-full text-center py-3 text-sm font-body text-red-400"
+          className="w-full text-center py-3 text-sm font-body text-red-300 hover:text-red-400 transition-colors"
         >
           Supprimer le compte
         </button>
-        <p className="text-center text-xs text-luna-text-hint font-accent mt-4">
-          LUNA v2.0.0
+        <p className="text-center text-xs text-luna-text-hint font-body mt-4">
+          LUNA v3.0.0
         </p>
       </div>
     </div>

@@ -16,33 +16,36 @@ const item = {
 const whyCards = [
   {
     title: 'Comprends ton corps',
-    desc: 'Découvre comment tes hormones influencent ton énergie, ton humeur et tes performances chaque jour du mois.',
+    desc: 'Decouvre comment tes hormones influencent ton energie, ton humeur et tes performances chaque jour du mois.',
     Illustration: HormonesIcon,
+    gradient: 'linear-gradient(135deg, #FDE8EB 0%, #F5D0D5 100%)',
   },
   {
-    title: 'Vis sans culpabilité',
-    desc: 'Tes envies de sucre, ta fatigue, tes sautes d\'humeur ont une explication. Et ce n\'est pas un manque de volonté.',
+    title: 'Vis sans culpabilite',
+    desc: 'Tes envies de sucre, ta fatigue, tes sautes d\'humeur ont une explication. Et ce n\'est pas un manque de volonte.',
     Illustration: SelfCareIcon,
+    gradient: 'linear-gradient(135deg, #FFF3EB 0%, #F5DCC8 100%)',
   },
   {
     title: 'Deviens ta propre experte',
-    desc: 'Cycle après cycle, apprends à anticiper, planifier et tirer le meilleur de chaque phase.',
+    desc: 'Cycle apres cycle, apprends a anticiper, planifier et tirer le meilleur de chaque phase.',
     Illustration: EnergyIcon,
+    gradient: 'linear-gradient(135deg, #F3EEF8 0%, #E0D5EB 100%)',
   },
 ];
 
 const comparisons = [
   {
-    before: 'Je suis nulle, je n\'arrive pas à m\'entraîner cette semaine.',
-    after: 'Je suis en phase lutéale, mon corps a besoin de douceur. Yoga aujourd\'hui, HIIT lundi !',
+    before: 'Je suis nulle, je n\'arrive pas a m\'entrainer cette semaine.',
+    after: 'Je suis en phase luteale, mon corps a besoin de douceur. Yoga aujourd\'hui, HIIT lundi !',
   },
   {
-    before: 'Pourquoi j\'ai autant faim ? Je craque, zéro volonté.',
-    after: 'Mon métabolisme augmente de 10% en phase lutéale. Manger plus est normal et nécessaire.',
+    before: 'Pourquoi j\'ai autant faim ? Je craque, zero volonte.',
+    after: 'Mon metabolisme augmente de 10% en phase luteale. Manger plus est normal et necessaire.',
   },
   {
-    before: 'Ma présentation était catastrophique.',
-    after: 'Je planifie mes présentations en phase ovulatoire, quand ma communication est au top.',
+    before: 'Ma presentation etait catastrophique.',
+    after: 'Je planifie mes presentations en phase ovulatoire, quand ma communication est au top.',
   },
 ];
 
@@ -56,40 +59,55 @@ export default function Landing() {
         variants={container}
         initial="hidden"
         animate="show"
-        className="px-4 pt-16 pb-12 md:pt-24 md:pb-20 text-center max-w-3xl mx-auto"
+        className="relative overflow-hidden"
       >
-        <motion.div variants={item} className="mb-6">
-          <img src="/logo-luna.png" alt="LUNA" className="w-48 md:w-56 mx-auto mb-4" />
-        </motion.div>
+        {/* Gradient background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, #F5D0D5 0%, #F2C0A8 30%, #FAF7F5 70%, #FAF7F5 100%)',
+          }}
+        />
+        <div className="absolute top-20 -right-20 w-64 h-64 rounded-full bg-white/20 blur-2xl" />
+        <div className="absolute top-40 -left-16 w-48 h-48 rounded-full bg-white/15 blur-2xl" />
 
-        <motion.h1
-          variants={item}
-          className="font-display text-4xl md:text-5xl text-luna-text mb-4 leading-tight"
-        >
-          Vis en harmonie avec ton cycle
-        </motion.h1>
+        <div className="relative px-4 pt-16 pb-16 md:pt-24 md:pb-24 text-center max-w-3xl mx-auto">
+          <motion.div variants={item} className="mb-6">
+            <img src="/logo-luna.png" alt="LUNA" className="w-44 md:w-52 mx-auto mb-4" />
+          </motion.div>
 
-        <motion.p
-          variants={item}
-          className="text-luna-text-muted text-base md:text-lg font-body max-w-xl mx-auto mb-8 leading-relaxed"
-        >
-          LUNA t'accompagne chaque jour avec des conseils sport, alimentation, sommeil et bien-être adaptés à ta phase hormonale.
-        </motion.p>
+          <motion.h1
+            variants={item}
+            className="font-display text-4xl md:text-5xl text-luna-text mb-5 leading-tight"
+          >
+            Vis en harmonie<br />avec ton cycle
+          </motion.h1>
 
-        <motion.div variants={item}>
-          <Link to="/onboarding" className="btn-luna text-base">
-            Découvrir mon cycle
-            <ArrowRight size={18} />
-          </Link>
-        </motion.div>
+          <motion.p
+            variants={item}
+            className="text-luna-text-muted text-base md:text-lg font-body max-w-md mx-auto mb-8 leading-relaxed"
+          >
+            LUNA t'accompagne chaque jour avec des conseils sport, alimentation, sommeil et bien-etre adaptes a ta phase hormonale.
+          </motion.p>
+
+          <motion.div variants={item}>
+            <Link to="/onboarding" className="btn-luna text-base">
+              Decouvrir mon cycle
+              <ArrowRight size={18} />
+            </Link>
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* Why LUNA */}
-      <section className="px-4 py-12 bg-luna-cream-light">
+      <section className="px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-2xl md:text-3xl text-center mb-8">
-            POURQUOI LUNA ?
+          <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
+            Pourquoi LUNA ?
           </h2>
+          <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
+            Ton cycle menstruel est ton super-pouvoir. Apprends a le connaitre.
+          </p>
           <div className="grid md:grid-cols-3 gap-4">
             {whyCards.map((card, i) => (
               <motion.div
@@ -98,11 +116,17 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-luna-cream-card rounded-luna p-6"
+                className="rounded-[24px] p-6 relative overflow-hidden"
+                style={{ background: card.gradient }}
               >
-                <card.Illustration size={48} className="mb-3" />
-                <h3 className="font-display text-lg text-luna-text mb-2">{card.title}</h3>
-                <p className="text-sm text-luna-text-muted font-body leading-relaxed">{card.desc}</p>
+                <div className="absolute top-4 right-4 opacity-15">
+                  <card.Illustration size={56} />
+                </div>
+                <div className="relative">
+                  <card.Illustration size={40} className="mb-4 opacity-70" />
+                  <h3 className="font-display text-lg text-luna-text mb-2">{card.title}</h3>
+                  <p className="text-sm text-luna-text-muted font-body leading-relaxed">{card.desc}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -110,11 +134,14 @@ export default function Landing() {
       </section>
 
       {/* 4 Phases */}
-      <section className="px-4 py-12">
+      <section className="px-4 py-16 bg-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="section-title text-2xl md:text-3xl text-center mb-8">
-            LES 4 PHASES DE TON CYCLE
+          <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
+            Les 4 phases de ton cycle
           </h2>
+          <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
+            Chaque phase a ses forces. Decouvre les tiennes.
+          </p>
           <div className="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto pb-4 md:pb-0 snap-x hide-scrollbar">
             {phases.map((p, i) => (
               <motion.div
@@ -123,19 +150,19 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex-shrink-0 w-56 md:w-auto rounded-luna p-5 text-center snap-start"
+                className="flex-shrink-0 w-56 md:w-auto rounded-[24px] p-6 text-center snap-start relative overflow-hidden"
                 style={{ backgroundColor: p.bgColor }}
               >
-                <span className="text-4xl mb-2 block">{p.icon}</span>
+                <span className="text-4xl mb-3 block">{p.icon}</span>
                 <h3 className="font-display text-base mb-1" style={{ color: p.colorDark }}>
                   {p.shortName}
                 </h3>
-                <p className="text-xs font-accent text-luna-text-muted mb-2">Jours {p.days}</p>
-                <p className="text-sm font-body" style={{ color: p.colorDark }}>
+                <p className="text-xs font-body text-luna-text-muted mb-3">Jours {p.days}</p>
+                <p className="text-sm font-body leading-relaxed" style={{ color: p.colorDark }}>
                   {p.summary.split('.')[0]}.
                 </p>
                 <span
-                  className="inline-block mt-3 px-3 py-1 rounded-pill text-xs font-body font-bold text-white"
+                  className="inline-block mt-4 px-4 py-1.5 rounded-pill text-xs font-body font-semibold text-white"
                   style={{ backgroundColor: p.color }}
                 >
                   {p.keyword}
@@ -147,11 +174,14 @@ export default function Landing() {
       </section>
 
       {/* Before/After */}
-      <section className="px-4 py-12 bg-luna-cream-light">
+      <section className="px-4 py-16">
         <div className="max-w-3xl mx-auto">
-          <h2 className="section-title text-2xl md:text-3xl text-center mb-8">
-            AVANT / AVEC LUNA
+          <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
+            Avant / Avec LUNA
           </h2>
+          <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
+            Change ta perspective. Change ta vie.
+          </p>
           <div className="space-y-4">
             {comparisons.map((c, i) => (
               <motion.div
@@ -162,13 +192,13 @@ export default function Landing() {
                 transition={{ delay: i * 0.1 }}
                 className="grid md:grid-cols-2 gap-3"
               >
-                <div className="bg-luna-sage/20 rounded-luna p-4 opacity-70">
-                  <p className="text-xs font-accent font-semibold text-luna-text-hint mb-1">Avant</p>
-                  <p className="text-sm text-luna-text-muted font-body">{c.before}</p>
+                <div className="bg-gray-50 rounded-[20px] p-5 opacity-60">
+                  <p className="text-[10px] font-body font-bold text-luna-text-hint mb-2 uppercase tracking-wider">Avant</p>
+                  <p className="text-sm text-luna-text-muted font-body leading-relaxed">{c.before}</p>
                 </div>
-                <div className="rounded-luna p-4 bg-luna-orange/10">
-                  <p className="text-xs font-accent font-semibold text-luna-orange mb-1">Avec LUNA</p>
-                  <p className="text-sm font-body text-luna-text-body">{c.after}</p>
+                <div className="rounded-[20px] p-5" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
+                  <p className="text-[10px] font-body font-bold uppercase tracking-wider mb-2" style={{ color: '#C4727F' }}>Avec LUNA</p>
+                  <p className="text-sm font-body text-luna-text-body leading-relaxed">{c.after}</p>
                 </div>
               </motion.div>
             ))}
@@ -177,25 +207,33 @@ export default function Landing() {
       </section>
 
       {/* CTA */}
-      <section className="px-4 py-16 text-center">
-        <h2 className="font-display text-2xl md:text-3xl text-luna-text mb-4">
-          Prête à te reconnecter à ton corps ?
-        </h2>
-        <p className="text-luna-text-muted font-body mb-6 italic">
-          "Ton cycle n'est pas un obstacle. C'est ta boussole intérieure."
-        </p>
-        <Link to="/onboarding" className="btn-luna text-base">
-          Commencer gratuitement
-          <ArrowRight size={18} />
-        </Link>
-        <Divider className="mx-auto mt-8" />
+      <section className="px-4 py-20 text-center relative overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, #FAF7F5 0%, #F5D0D5 50%, #F2C0A8 100%)',
+          }}
+        />
+        <div className="relative">
+          <h2 className="font-display text-2xl md:text-3xl text-luna-text mb-4">
+            Prete a te reconnecter<br />a ton corps ?
+          </h2>
+          <p className="text-luna-text-muted font-body mb-8 italic text-sm max-w-sm mx-auto">
+            "Ton cycle n'est pas un obstacle. C'est ta boussole interieure."
+          </p>
+          <Link to="/onboarding" className="btn-luna text-base">
+            Commencer gratuitement
+            <ArrowRight size={18} />
+          </Link>
+          <Divider className="mx-auto mt-10" />
+        </div>
       </section>
 
       {/* Footer */}
-      <footer className="px-4 py-8 border-t border-luna-sage/20 text-center">
-        <BrandSymbol size={40} className="mx-auto mb-3 opacity-40" />
+      <footer className="px-4 py-10 bg-white text-center">
+        <BrandSymbol size={40} className="mx-auto mb-3 opacity-30" />
         <p className="text-sm text-luna-text-muted font-body">
-          Fait avec <Heart size={14} className="inline text-luna-orange" /> pour les femmes
+          Fait avec <Heart size={14} className="inline" style={{ color: '#C4727F' }} /> pour les femmes
         </p>
         <p className="text-xs text-luna-text-hint font-body mt-1">
           LUNA — Vis en harmonie avec ton cycle

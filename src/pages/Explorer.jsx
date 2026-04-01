@@ -28,45 +28,57 @@ export default function Explorer() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-4">
+      {/* Header */}
       <motion.div variants={item}>
-        <h1 className="section-title text-2xl">EXPLORER</h1>
+        <h1 className="font-display text-2xl text-luna-text">Explorer</h1>
+        <p className="text-xs font-body text-luna-text-hint mt-0.5">Decouvre du contenu adapte a ta phase</p>
       </motion.div>
 
       {/* Phase tabs */}
-      <motion.div variants={item} className="flex gap-1 overflow-x-auto hide-scrollbar -mx-4 px-4">
-        {PHASE_ORDER.map((p) => (
-          <button
-            key={p}
-            onClick={() => setActivePhase(p)}
-            className={`flex-shrink-0 px-4 py-2 text-sm font-body font-semibold transition-all border-b-2 ${
-              activePhase === p
-                ? 'border-luna-orange text-luna-orange'
-                : 'border-transparent text-luna-text-muted hover:text-luna-text-body'
-            }`}
-          >
-            {PHASES[p].icon} {PHASES[p].shortName}
-          </button>
-        ))}
+      <motion.div variants={item} className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4">
+        {PHASE_ORDER.map((p) => {
+          const isActive = activePhase === p;
+          return (
+            <button
+              key={p}
+              onClick={() => setActivePhase(p)}
+              className="flex-shrink-0 px-5 py-2.5 text-sm font-body font-semibold transition-all rounded-pill"
+              style={isActive ? {
+                backgroundColor: PHASES[p].color,
+                color: 'white',
+                boxShadow: `0 4px 12px ${PHASES[p].color}30`,
+              } : {
+                backgroundColor: '#F0EBE8',
+                color: '#8A7B7F',
+              }}
+            >
+              {PHASES[p].icon} {PHASES[p].shortName}
+            </button>
+          );
+        })}
       </motion.div>
 
       {/* Articles */}
       <motion.div variants={item}>
-        <h3 className="section-title text-base mb-3">ARTICLES</h3>
+        <h3 className="font-display text-lg text-luna-text mb-3">Articles</h3>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {articles.map((article, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-64 rounded-luna overflow-hidden"
-              style={{ backgroundColor: phaseData.bgColor }}
+              className="flex-shrink-0 w-64 rounded-[20px] overflow-hidden bg-white"
+              style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="h-32 flex items-center justify-center text-5xl">
+              <div
+                className="h-32 flex items-center justify-center text-5xl"
+                style={{ backgroundColor: phaseData.bgColor }}
+              >
                 {article.emoji}
               </div>
               <div className="p-4">
                 <h4 className="text-sm font-body font-bold text-luna-text leading-tight mb-1">
                   {article.title}
                 </h4>
-                <p className="text-xs text-luna-text-muted font-body">{article.summary}</p>
+                <p className="text-xs text-luna-text-muted font-body leading-relaxed">{article.summary}</p>
               </div>
             </div>
           ))}
@@ -76,29 +88,42 @@ export default function Explorer() {
       {/* Recipes */}
       <motion.div variants={item}>
         <div className="flex items-center gap-2 mb-3">
-          <FoodIcon size={28} />
-          <h3 className="section-title text-base">RECETTES D'AUJOURD'HUI</h3>
+          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{ backgroundColor: phaseData.bgColor }}>
+            <FoodIcon size={20} />
+          </div>
+          <h3 className="font-display text-lg text-luna-text">Recettes du jour</h3>
         </div>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {recipeList.map((recipe, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-64 rounded-luna bg-luna-cream-card overflow-hidden"
+              className="flex-shrink-0 w-64 rounded-[20px] overflow-hidden bg-white"
+              style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="h-32 flex items-center justify-center text-5xl bg-luna-cream-light">
+              <div className="h-32 flex items-center justify-center text-5xl bg-luna-cream">
                 {i === 0 ? '🥣' : i === 1 ? '🥗' : '🍲'}
               </div>
               <div className="p-4">
-                <span className="text-[10px] font-accent font-bold text-luna-text-hint uppercase">
-                  {i === 0 ? 'Petit-déjeuner' : i === 1 ? 'Déjeuner' : 'Dîner'}
+                <span
+                  className="text-[10px] font-body font-bold uppercase tracking-wider"
+                  style={{ color: phaseData.colorDark }}
+                >
+                  {i === 0 ? 'Petit-dejeuner' : i === 1 ? 'Dejeuner' : 'Diner'}
                 </span>
                 <h4 className="text-sm font-body font-bold text-luna-text leading-tight mt-0.5 mb-1">
                   {recipe.name}
                 </h4>
-                <p className="text-xs text-luna-text-muted font-body">{recipe.description}</p>
-                <div className="flex gap-1 mt-2 flex-wrap">
+                <p className="text-xs text-luna-text-muted font-body leading-relaxed">{recipe.description}</p>
+                <div className="flex gap-1.5 mt-2.5 flex-wrap">
                   {recipe.nutrients.map((n) => (
-                    <span key={n} className="text-[10px] font-accent px-2 py-0.5 rounded-pill bg-luna-orange/10 text-luna-orange-deep">
+                    <span
+                      key={n}
+                      className="text-[10px] font-body px-2.5 py-0.5 rounded-pill"
+                      style={{
+                        backgroundColor: `${phaseData.color}15`,
+                        color: phaseData.colorDark,
+                      }}
+                    >
                       {n}
                     </span>
                   ))}
@@ -112,22 +137,36 @@ export default function Explorer() {
       {/* Meditations */}
       <motion.div variants={item}>
         <div className="flex items-center gap-2 mb-3">
-          <MindsetIcon size={28} />
-          <h3 className="section-title text-base">MÉDITATIONS DU JOUR</h3>
+          <div className="w-8 h-8 rounded-[10px] flex items-center justify-center" style={{ backgroundColor: phaseData.bgColor }}>
+            <MindsetIcon size={20} />
+          </div>
+          <h3 className="font-display text-lg text-luna-text">Meditations du jour</h3>
         </div>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
           {meditations.map((med, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-56 rounded-luna p-4"
-              style={{ backgroundColor: phaseData.bgColor }}
+              className="flex-shrink-0 w-56 rounded-[20px] p-5 bg-white relative overflow-hidden"
+              style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.06)' }}
             >
-              <span className="text-3xl block mb-2">{med.emoji}</span>
-              <h4 className="text-sm font-body font-bold text-luna-text mb-1">{med.title}</h4>
-              <p className="text-xs text-luna-text-muted font-body mb-2">{med.description}</p>
-              <span className="text-xs font-accent font-semibold" style={{ color: phaseData.colorDark }}>
-                {med.duration}
-              </span>
+              <div
+                className="absolute inset-0 opacity-30"
+                style={{ background: `linear-gradient(160deg, ${phaseData.bgColor}, transparent 60%)` }}
+              />
+              <div className="relative">
+                <span className="text-3xl block mb-2">{med.emoji}</span>
+                <h4 className="text-sm font-body font-bold text-luna-text mb-1">{med.title}</h4>
+                <p className="text-xs text-luna-text-muted font-body mb-3 leading-relaxed">{med.description}</p>
+                <span
+                  className="text-xs font-body font-semibold px-3 py-1 rounded-pill"
+                  style={{
+                    backgroundColor: `${phaseData.color}15`,
+                    color: phaseData.colorDark,
+                  }}
+                >
+                  {med.duration}
+                </span>
+              </div>
             </div>
           ))}
         </div>

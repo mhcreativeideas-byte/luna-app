@@ -23,7 +23,7 @@ export default function BottomNav() {
               }`
             }
             style={({ isActive }) =>
-              isActive ? { color: '#D94F1E' } : { color: '#B8A89E' }
+              isActive ? { color: '#C4727F' } : { color: '#B5A8AC' }
             }
           >
             <Icon size={22} strokeWidth={isActive => isActive ? 2 : 1.5} />

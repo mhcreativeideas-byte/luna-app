@@ -1,68 +1,93 @@
 @import "tailwindcss";
 
 @theme {
-  /* === LUNA V2 — Palette chaude The Cycle === */
+  /* === LUNA V3 — Modern Feminine Startup Palette === */
 
-  /* Primary */
-  --color-luna-orange: #D94F1E;
-  --color-luna-orange-deep: #C2441A;
-  --color-luna-coral: #E8733E;
-  --color-luna-amber: #F5A623;
+  /* Primary — Warm dusty rose as hero color */
+  --color-luna-rose: #C4727F;
+  --color-luna-rose-deep: #A85A66;
+  --color-luna-rose-light: #E8A5AE;
+  --color-luna-rose-bg: #FFF0F2;
 
-  /* Phase colors */
-  --color-phase-menstrual: #E25B33;
-  --color-phase-menstrual-bg: #FFF0EB;
-  --color-phase-follicular: #D6CDB8;
-  --color-phase-follicular-bg: #F7F4EF;
-  --color-phase-ovulatory: #F5A623;
-  --color-phase-ovulatory-bg: #FFF8EC;
-  --color-phase-luteal: #C9A0D3;
-  --color-phase-luteal-bg: #F8F0FF;
+  /* Secondary accent — warm terracotta/coral */
+  --color-luna-coral: #D4846A;
+  --color-luna-coral-deep: #B86B52;
+  --color-luna-amber: #E8A87C;
 
-  /* Accents */
-  --color-luna-lavender: #C9A0D3;
-  --color-luna-sage: #D6CDB8;
-  --color-luna-sky: #A8D5E2;
+  /* Legacy orange aliases (for gradual migration) */
+  --color-luna-orange: #C4727F;
+  --color-luna-orange-deep: #A85A66;
 
-  /* Backgrounds */
-  --color-luna-cream: #F7F4EF;
-  --color-luna-cream-light: #FFFBF5;
-  --color-luna-cream-card: #F5F0E8;
-  --color-luna-bg: #F7F4EF;
+  /* Phase colors — softer, more refined */
+  --color-phase-menstrual: #D4727F;
+  --color-phase-menstrual-light: #E8A5AE;
+  --color-phase-menstrual-bg: #FDE8EB;
+  --color-phase-menstrual-dark: #9E4F5A;
 
-  /* Texts */
-  --color-luna-text: #1A1A1A;
-  --color-luna-text-body: #3D3535;
-  --color-luna-text-muted: #7A6B63;
-  --color-luna-text-hint: #B8A89E;
+  --color-phase-follicular: #7BAE7F;
+  --color-phase-follicular-light: #A8CCA9;
+  --color-phase-follicular-bg: #EDF5ED;
+  --color-phase-follicular-dark: #4D7A50;
+
+  --color-phase-ovulatory: #E8A87C;
+  --color-phase-ovulatory-light: #F0C4A4;
+  --color-phase-ovulatory-bg: #FFF3EB;
+  --color-phase-ovulatory-dark: #C07A4A;
+
+  --color-phase-luteal: #B09ACB;
+  --color-phase-luteal-light: #CEBED9;
+  --color-phase-luteal-bg: #F3EEF8;
+  --color-phase-luteal-dark: #7D6A96;
+
+  /* Neutrals */
+  --color-luna-sage: #C8C0B4;
+  --color-luna-taupe: #A89B91;
+  --color-luna-sky: #A8C8D5;
+
+  /* Backgrounds — warm, clean, airy */
+  --color-luna-cream: #FAF7F5;
+  --color-luna-cream-light: #FFFFFF;
+  --color-luna-cream-card: #F5F1EE;
+  --color-luna-bg: #FAF7F5;
+  --color-luna-warm: #FDF5F0;
+
+  /* Texts — refined contrast */
+  --color-luna-text: #2D2226;
+  --color-luna-text-body: #4A3F43;
+  --color-luna-text-muted: #8A7B7F;
+  --color-luna-text-hint: #B5A8AC;
 
   /* Legacy aliases for compatibility */
-  --color-luna-primary: #D94F1E;
-  --color-luna-primary-dark: #C2441A;
-  --color-luna-secondary: #C9A0D3;
-  --color-luna-rose: #D94F1E;
-  --color-luna-rose-dark: #C2441A;
-  --color-luna-rose-bg: #FFF0EB;
-  --color-luna-lavender-dark: #A67BB5;
-  --color-luna-lavender-bg: #F8F0FF;
-  --color-luna-peach: #F5A623;
-  --color-luna-peach-dark: #D4910A;
-  --color-luna-peach-bg: #FFF8EC;
-  --color-luna-mint: #A8D5E2;
-  --color-luna-mint-dark: #7BBDD0;
-  --color-luna-mint-bg: #EDF7FA;
-  --color-luna-cream-light: #FFFBF5;
-  --color-luna-text-secondary: #7A6B63;
+  --color-luna-primary: #C4727F;
+  --color-luna-primary-dark: #A85A66;
+  --color-luna-secondary: #B09ACB;
+  --color-luna-lavender: #B09ACB;
+  --color-luna-lavender-dark: #7D6A96;
+  --color-luna-lavender-bg: #F3EEF8;
+  --color-luna-peach: #E8A87C;
+  --color-luna-peach-dark: #C07A4A;
+  --color-luna-peach-bg: #FFF3EB;
+  --color-luna-mint: #A8C8D5;
+  --color-luna-mint-dark: #7BAAB8;
+  --color-luna-mint-bg: #EDF5F8;
+  --color-luna-rose-bg: #FDE8EB;
+  --color-luna-text-secondary: #8A7B7F;
 
   /* Typography */
   --font-display: 'Playfair Display', serif;
-  --font-body: 'Nunito', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
   --font-accent: 'DM Sans', sans-serif;
 
-  /* Radii */
-  --radius-luna: 16px;
-  --radius-luna-sm: 12px;
+  /* Radii — slightly larger for modern feel */
+  --radius-luna: 20px;
+  --radius-luna-sm: 14px;
+  --radius-luna-lg: 28px;
   --radius-pill: 50px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 16px rgba(45, 34, 38, 0.06);
+  --shadow-card-hover: 0 8px 30px rgba(45, 34, 38, 0.1);
+  --shadow-soft: 0 1px 8px rgba(45, 34, 38, 0.04);
 }
 
 body {
@@ -72,24 +97,25 @@ body {
   background-color: var(--color-luna-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   color: var(--color-luna-text);
+  line-height: 1.2;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-luna-orange);
-  border-radius: 3px;
-  opacity: 0.5;
+  background: var(--color-luna-sage);
+  border-radius: 4px;
 }
 
 html {
@@ -97,29 +123,37 @@ html {
 }
 
 input[type="range"] {
-  accent-color: #D94F1E;
+  accent-color: #C4727F;
 }
 
-/* Pill button base */
+/* ==================== */
+/* BUTTONS              */
+/* ==================== */
+
 .btn-luna {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 2rem;
-  background: #D94F1E;
+  padding: 0.85rem 2.2rem;
+  background: linear-gradient(135deg, #C4727F 0%, #D4846A 100%);
   color: white;
   border-radius: 50px;
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.9rem;
+  letter-spacing: 0.01em;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 12px rgba(196, 114, 127, 0.25);
 }
 .btn-luna:hover {
-  background: #C2441A;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(217, 79, 30, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(196, 114, 127, 0.35);
+}
+.btn-luna:active {
+  transform: translateY(0);
 }
 .btn-luna:disabled {
   opacity: 0.4;
@@ -131,31 +165,74 @@ input[type="range"] {
 .btn-luna-outline {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 2rem;
   background: transparent;
-  color: #D94F1E;
-  border: 2px solid #D94F1E;
+  color: #C4727F;
+  border: 1.5px solid #C4727F;
   border-radius: 50px;
   font-family: var(--font-body);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-luna-outline:hover {
-  background: #D94F1E;
+  background: #C4727F;
   color: white;
+  box-shadow: 0 4px 16px rgba(196, 114, 127, 0.2);
 }
 
-/* Section titles */
+/* ==================== */
+/* SECTION TITLES       */
+/* ==================== */
+
 .section-title {
   font-family: var(--font-display);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: var(--color-luna-text);
 }
+
+/* ==================== */
+/* CARDS                */
+/* ==================== */
+
+.luna-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.3s ease;
+}
+.luna-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Gradient hero card */
+.luna-gradient-card {
+  background: linear-gradient(160deg, #F5D0D5 0%, #F2C0A8 40%, #E8A87C 100%);
+  border-radius: 24px;
+  color: white;
+}
+
+/* Phase gradient backgrounds */
+.gradient-menstrual {
+  background: linear-gradient(160deg, #FDE8EB 0%, #F8D4D8 50%, #F0BDC3 100%);
+}
+.gradient-follicular {
+  background: linear-gradient(160deg, #EDF5ED 0%, #DFF0E0 50%, #C8E4C9 100%);
+}
+.gradient-ovulatory {
+  background: linear-gradient(160deg, #FFF3EB 0%, #FDE4D0 50%, #F5CEB0 100%);
+}
+.gradient-luteal {
+  background: linear-gradient(160deg, #F3EEF8 0%, #E8DFF0 50%, #D9CCE6 100%);
+}
+
+/* ==================== */
+/* UTILITIES            */
+/* ==================== */
 
 /* Hide scrollbar for carousels */
 .hide-scrollbar::-webkit-scrollbar {
@@ -164,4 +241,19 @@ input[type="range"] {
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Glass effect */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Smooth gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #C4727F, #D4846A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
