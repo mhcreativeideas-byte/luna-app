@@ -1,27 +1,24 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Dumbbell, UtensilsCrossed, Moon, BookHeart, LogOut } from 'lucide-react';
+import { Sun, Compass, BookOpen, User, LogOut, Settings } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
-  { to: '/dashboard', icon: LayoutDashboard, label: 'Tableau de bord' },
-  { to: '/sport', icon: Dumbbell, label: 'Sport & Mouvement' },
-  { to: '/food', icon: UtensilsCrossed, label: 'Alimentation' },
-  { to: '/sleep', icon: Moon, label: 'Sommeil & Énergie' },
-  { to: '/journal', icon: BookHeart, label: 'Mon Journal' },
+  { to: '/dashboard', icon: Sun, label: 'Accueil' },
+  { to: '/conseils', icon: Compass, label: 'Conseils' },
+  { to: '/explorer', icon: BookOpen, label: 'Explorer' },
+  { to: '/profil', icon: User, label: 'Profil' },
 ];
 
 export default function Sidebar() {
   const { name, cycleInfo, dispatch } = useCycle();
-  const activeColor = cycleInfo?.phaseData?.color || '#E8A0BF';
-  const activeBg = cycleInfo?.phaseData?.bgColor || '#FFF0F5';
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-white/80 backdrop-blur-md border-r border-luna-sage/30 px-4 py-6 fixed left-0 top-0 z-40">
+    <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-luna-cream-light/80 backdrop-blur-md border-r border-luna-sage/20 px-4 py-6 fixed left-0 top-0 z-40">
       {/* Logo */}
       <div className="mb-8 px-2">
         <img src="/logo-luna.png" alt="LUNA" className="w-28 mb-2" />
         {name && (
-          <p className="text-sm text-luna-text-secondary mt-1 font-body">
+          <p className="text-sm text-luna-text-muted mt-1 font-body">
             Salut, {name}
           </p>
         )}
@@ -31,13 +28,13 @@ export default function Sidebar() {
       {cycleInfo && (
         <div
           className="rounded-luna p-3 mb-6 text-center"
-          style={{ backgroundColor: activeBg }}
+          style={{ backgroundColor: cycleInfo.phaseData.bgColor }}
         >
           <span className="text-2xl">{cycleInfo.phaseData.icon}</span>
           <p className="text-sm font-semibold mt-1" style={{ color: cycleInfo.phaseData.colorDark }}>
             {cycleInfo.phaseData.shortName}
           </p>
-          <p className="text-xs text-luna-text-secondary">
+          <p className="text-xs text-luna-text-muted">
             Jour {cycleInfo.currentDay}/{cycleInfo.cycleLength}
           </p>
         </div>
@@ -51,13 +48,8 @@ export default function Sidebar() {
             to={to}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-luna-sm transition-all duration-300 text-sm font-body font-semibold ${
-                isActive ? '' : 'text-luna-text-secondary hover:bg-luna-cream/50'
+                isActive ? 'bg-luna-orange/10 text-luna-orange' : 'text-luna-text-muted hover:bg-luna-cream-card/50'
               }`
-            }
-            style={({ isActive }) =>
-              isActive
-                ? { backgroundColor: activeBg, color: cycleInfo?.phaseData?.colorDark || '#C76DA2' }
-                : {}
             }
           >
             <Icon size={20} strokeWidth={1.8} />
@@ -66,7 +58,14 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      {/* Reset */}
+      {/* Settings & Reset */}
+      <NavLink
+        to="/parametres"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body"
+      >
+        <Settings size={16} />
+        Paramètres
+      </NavLink>
       <button
         onClick={() => {
           if (window.confirm('Réinitialiser ton profil LUNA ?')) {
@@ -75,7 +74,7 @@ export default function Sidebar() {
             window.location.href = '/';
           }
         }}
-        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-secondary hover:text-luna-rose-dark transition-colors mt-4 font-body"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint hover:text-luna-orange transition-colors mt-1 font-body"
       >
         <LogOut size={16} />
         Réinitialiser

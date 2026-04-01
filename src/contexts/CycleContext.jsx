@@ -5,6 +5,7 @@ const CycleContext = createContext();
 
 const initialState = {
   name: '',
+  email: '',
   lastPeriodDate: '',
   cycleLength: 28,
   periodLength: 5,
@@ -14,6 +15,13 @@ const initialState = {
   healthIssues: [],
   onboardingComplete: false,
   journalEntries: [],
+  checkIns: [],
+  chatHistory: [],
+  notifications: true,
+  language: 'fr',
+  smartTracking: false,
+  calendarStartDay: 'monday',
+  partnerCode: null,
 };
 
 function cycleReducer(state, action) {
@@ -34,6 +42,22 @@ function cycleReducer(state, action) {
       }
       return { ...state, journalEntries: entries };
     }
+    case 'ADD_CHECKIN': {
+      const existing = state.checkIns.findIndex(
+        (c) => c.date === action.payload.date
+      );
+      const checkIns = [...state.checkIns];
+      if (existing >= 0) {
+        checkIns[existing] = action.payload;
+      } else {
+        checkIns.push(action.payload);
+      }
+      return { ...state, checkIns };
+    }
+    case 'ADD_CHAT_MESSAGE':
+      return { ...state, chatHistory: [...state.chatHistory, action.payload] };
+    case 'UPDATE_SETTINGS':
+      return { ...state, ...action.payload };
     case 'RESET':
       return initialState;
     default:
@@ -74,7 +98,18 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
     phaseDuration = cycleLength - ovulatoryEnd;
   }
 
-  const nextPeriodIn = cycleLength - currentDay;
+  const daysUntilPeriod = cycleLength - currentDay;
+  const energyLevel = phase === 'menstrual' ? 30
+    : phase === 'follicular' ? 75
+    : phase === 'ovulatory' ? 95
+    : currentDay <= ovulatoryEnd + 5 ? 60 : 35;
+
+  const hormones = {
+    estrogen: phase === 'ovulatory' ? 'high' : phase === 'follicular' ? 'rising' : phase === 'luteal' ? 'medium' : 'low',
+    progesterone: phase === 'luteal' ? 'high' : 'low',
+    lh: phase === 'ovulatory' ? 'peak' : 'low',
+    fsh: phase === 'follicular' ? 'rising' : 'low',
+  };
 
   return {
     currentDay,
@@ -83,7 +118,10 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
     phaseDay,
     phaseDuration,
     phaseData: PHASES[phase],
-    nextPeriodIn,
+    daysUntilPeriod,
+    energyLevel,
+    hormones,
+    ovulationDay,
   };
 }
 
@@ -107,15 +145,22 @@ export function CycleProvider({ children }) {
     state.periodLength
   );
 
-  const isEvening = new Date().getHours() >= 18;
+  const hour = new Date().getHours();
+  const isEvening = hour >= 18;
+  const isMorning = hour < 12;
 
   const greeting = state.name
     ? isEvening
       ? `Bonne soirée ${state.name} 🌙`
-      : `Bonjour ${state.name} 🌸`
+      : isMorning
+        ? `Bonjour ${state.name} ☀️`
+        : `Hello ${state.name} 🌿`
     : isEvening
       ? 'Bonne soirée 🌙'
-      : 'Bonjour 🌸';
+      : 'Bonjour ☀️';
+
+  const todayStr = new Date().toISOString().split('T')[0];
+  const todayCheckIn = state.checkIns.find((c) => c.date === todayStr);
 
   return (
     <CycleContext.Provider
@@ -125,6 +170,7 @@ export function CycleProvider({ children }) {
         cycleInfo,
         greeting,
         isEvening,
+        todayCheckIn,
       }}
     >
       {children}

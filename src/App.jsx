@@ -4,10 +4,13 @@ import AppLayout from './components/layout/AppLayout';
 import Landing from './pages/Landing';
 import Onboarding from './pages/Onboarding';
 import Dashboard from './pages/Dashboard';
-import Sport from './pages/Sport';
-import Food from './pages/Food';
-import Sleep from './pages/Sleep';
-import Journal from './pages/Journal';
+import Conseils from './pages/Conseils';
+import Explorer from './pages/Explorer';
+import Profil from './pages/Profil';
+import CheckIn from './pages/CheckIn';
+import Chat from './pages/Chat';
+import Calendar from './pages/Calendar';
+import Settings from './pages/Settings';
 import Admin from './pages/Admin';
 
 function ProtectedRoute({ children }) {
@@ -38,11 +41,19 @@ function App() {
             }
           >
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/sport" element={<Sport />} />
-            <Route path="/food" element={<Food />} />
-            <Route path="/sleep" element={<Sleep />} />
-            <Route path="/journal" element={<Journal />} />
+            <Route path="/conseils" element={<Conseils />} />
+            <Route path="/explorer" element={<Explorer />} />
+            <Route path="/profil" element={<Profil />} />
+            <Route path="/checkin" element={<CheckIn />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/calendrier" element={<Calendar />} />
+            <Route path="/parametres" element={<Settings />} />
           </Route>
+          {/* Legacy routes redirect */}
+          <Route path="/sport" element={<Navigate to="/conseils" replace />} />
+          <Route path="/food" element={<Navigate to="/conseils" replace />} />
+          <Route path="/sleep" element={<Navigate to="/explorer" replace />} />
+          <Route path="/journal" element={<Navigate to="/profil" replace />} />
         </Routes>
       </CycleProvider>
     </BrowserRouter>
