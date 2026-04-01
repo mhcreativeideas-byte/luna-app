@@ -5,6 +5,7 @@ export const RECIPES = {
       description: 'Porridge réconfortant aux fruits rouges, graines de lin et chocolat noir',
       prepTime: '10 min',
       nutrients: ['Fer', 'Magnésium', 'Omega-3'],
+      photo: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&h=400&fit=crop',
       ingredients: [
         '50g de flocons d\'avoine',
         '200ml de lait d\'amande',
@@ -25,6 +26,7 @@ export const RECIPES = {
       description: 'Bowl riche en fer avec lentilles, épinards, saumon et avocat, sauce curcuma',
       prepTime: '25 min',
       nutrients: ['Fer', 'Omega-3', 'Vitamine C'],
+      photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
       ingredients: [
         '150g de lentilles vertes cuites',
         '1 pavé de saumon',
@@ -47,6 +49,7 @@ export const RECIPES = {
       description: 'Soupe de légumes racines au gingembre avec pain complet',
       prepTime: '30 min',
       nutrients: ['Magnésium', 'Vitamine C', 'Fer'],
+      photo: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&h=400&fit=crop',
       ingredients: [
         '2 carottes',
         '1 patate douce',
@@ -73,6 +76,7 @@ export const RECIPES = {
       description: 'Smoothie bowl énergisant banane, beurre de cacahuète et granola',
       prepTime: '10 min',
       nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
+      photo: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop',
       ingredients: [
         '1 banane congelée',
         '1 c.à.s de beurre de cacahuète',
@@ -92,6 +96,7 @@ export const RECIPES = {
       description: 'Assiette complète poulet grillé, quinoa, brocoli et patate douce',
       prepTime: '30 min',
       nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+      photo: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&h=400&fit=crop',
       ingredients: [
         '1 filet de poulet',
         '80g de quinoa',
@@ -113,6 +118,7 @@ export const RECIPES = {
       description: 'Sauté de tofu avec légumes fermentés et riz complet pour les probiotiques',
       prepTime: '20 min',
       nutrients: ['Protéines', 'Probiotiques', 'Vitamines B'],
+      photo: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&h=400&fit=crop',
       ingredients: [
         '200g de tofu ferme',
         '100g de kimchi ou choucroute',
@@ -137,6 +143,7 @@ export const RECIPES = {
       description: 'Açaí bowl coloré avec fruits frais et graines de courge',
       prepTime: '10 min',
       nutrients: ['Antioxydants', 'Zinc', 'Fibres'],
+      photo: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop',
       ingredients: [
         '1 sachet d\'açaí surgelé',
         '1/2 banane',
@@ -156,6 +163,7 @@ export const RECIPES = {
       description: 'Poke bowl frais avec saumon, edamame, concombre et mangue',
       prepTime: '15 min',
       nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
+      photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
       ingredients: [
         '150g de saumon frais (qualité sashimi)',
         '100g d\'edamame',
@@ -177,6 +185,7 @@ export const RECIPES = {
       description: 'Grande salade composée avec ceviche de poisson au citron vert',
       prepTime: '20 min',
       nutrients: ['Glutathion', 'Antioxydants', 'Fibres'],
+      photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
       ingredients: [
         '200g de poisson blanc frais',
         '3 citrons verts',
@@ -202,6 +211,7 @@ export const RECIPES = {
       description: 'Pancakes moelleux à l\'avoine et banane avec beurre d\'amande et miel',
       prepTime: '15 min',
       nutrients: ['Glucides complexes', 'Magnésium', 'Vitamine B6'],
+      photo: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=400&fit=crop',
       ingredients: [
         '1 banane mûre',
         '80g de flocons d\'avoine',
@@ -223,6 +233,7 @@ export const RECIPES = {
       description: 'Curry réconfortant de pois chiches avec riz basmati et yaourt',
       prepTime: '25 min',
       nutrients: ['Calcium', 'Magnésium', 'Glucides complexes'],
+      photo: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=400&fit=crop',
       ingredients: [
         '1 boîte de pois chiches',
         '1 boîte de tomates concassées',
@@ -245,6 +256,7 @@ export const RECIPES = {
       description: 'Gratin réconfortant de légumes de saison avec fromage gratiné',
       prepTime: '35 min',
       nutrients: ['Calcium', 'Vitamine B6', 'Magnésium'],
+      photo: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=600&h=400&fit=crop',
       ingredients: [
         '2 courgettes',
         '1 aubergine',

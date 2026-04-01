@@ -106,7 +106,7 @@ export default function Alimentation() {
         <h2 className="font-display text-xl text-luna-text mb-1">Idées repas</h2>
         <p className="text-xs font-body text-luna-text-hint mb-4">Adaptées à ta phase.</p>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {Object.entries(recipes).map(([key, recipe]) => (
             <motion.div
               key={key}
@@ -115,10 +115,28 @@ export default function Alimentation() {
               className="bg-white rounded-[20px] overflow-hidden transition-all hover:shadow-md"
               style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
             >
+              {/* Photo */}
+              {recipe.photo && (
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={recipe.photo}
+                    alt={recipe.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2.5 py-1 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
+                      {mealLabels[key].tag}
+                    </span>
+                  </div>
+                </div>
+              )}
               <div className="p-5">
-                <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                  {mealLabels[key].tag}
-                </p>
+                {!recipe.photo && (
+                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
+                    {mealLabels[key].tag}
+                  </p>
+                )}
                 <h3 className="font-display text-lg text-luna-text">{recipe.name}</h3>
                 <p className="text-xs font-body text-luna-text-muted mt-1 leading-relaxed">
                   {recipe.description}
