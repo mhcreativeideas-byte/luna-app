@@ -108,127 +108,101 @@ export default function Dashboard() {
         </span>
       </motion.div>
 
-      {/* Cycle Circle — LUNA Moon Design */}
+      {/* Cycle Circle — LUNA Moon IS the circle */}
       <motion.div variants={item} className="flex flex-col items-center py-6">
-        <div className="relative w-60 h-60">
-          {/* Soft outer glow */}
-          <motion.div
-            className="absolute -inset-4 rounded-full"
-            style={{ background: `radial-gradient(circle, ${phaseData.color}12 0%, transparent 70%)` }}
-            animate={{ scale: [1, 1.03, 1] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
-          <svg viewBox="0 0 200 200" className="w-full h-full relative z-10">
+        <div className="relative w-56 h-56">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
             <defs>
               <linearGradient id="progressArc" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.3" />
-                <stop offset="50%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.85" />
-                <stop offset="100%" stopColor={phaseData.color} stopOpacity="0.4" />
+                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.4" />
+                <stop offset="100%" stopColor={phaseData.colorDark || phaseData.color} />
               </linearGradient>
-              <filter id="lunaGlow">
-                <feGaussianBlur stdDeviation="2" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
             </defs>
 
-            {/* ===== LUNA LOGO — faithful to screen.png ===== */}
-            {/* Circle center ~(100, 96), radius ~55 */}
-            <g opacity="0.13">
-              {/* 1. Outer circle — nearly complete arc (~300°)
-                   Gap at top: from tip (10:30) clockwise to dot (1:00) */}
-              <path
-                d="M 68 54 A 55 55 0 1 1 133 50"
-                fill="none"
-                stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
+            {/* ===== LUNA LOGO = THE CYCLE CIRCLE ===== */}
+            {/* Center (100, 100), radius 82 — the logo IS the main element */}
 
-              {/* 2. Small dot at end (1 o'clock) */}
-              <circle cx="133" cy="50" r="2.2" fill={phaseData.colorDark || '#7B6B7B'} />
+            {/* 1. Outer circle arc — background track (light) */}
+            <path
+              d="M 30 58 A 82 82 0 1 1 148 28"
+              fill="none"
+              stroke="#DDD5CE"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
 
-              {/* 3. Crescent inner edge → flows into wave 1 (one continuous stroke)
-                   Slim crescent: stays close to circle edge on left side
-                   Then smooth S-curve wave across the bottom */}
-              <path
-                d="M 68 54
-                   C 72 66, 66 84, 60 100
-                   C 54 118, 56 132, 72 136
-                   C 90 140, 108 126, 122 130
-                   C 136 134, 148 126, 155 118"
-                fill="none"
-                stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
-
-              {/* 4. Second wave — thinner, runs below wave 1, converges at right */}
-              <path
-                d="M 66 144
-                   C 82 136, 100 150, 120 140
-                   C 136 132, 148 136, 156 126"
-                fill="none"
-                stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="1.3"
-                strokeLinecap="round"
-              />
-            </g>
-
-            {/* ===== PROGRESS RING ===== */}
-            {/* Background track */}
-            <circle cx="100" cy="100" r="90" fill="none" stroke="#EDE5DF" strokeWidth="2" />
-
-            {/* Progress arc */}
+            {/* 2. Outer circle arc — progress overlay (phase color) */}
             <motion.circle
-              cx="100" cy="100" r="90"
+              cx="100" cy="100" r="82"
               fill="none"
               stroke="url(#progressArc)"
-              strokeWidth="3"
+              strokeWidth="2.8"
               strokeLinecap="round"
-              initial={{ strokeDasharray: '0 565.5' }}
-              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 565.5} 565.5` }}
+              initial={{ strokeDasharray: '0 515.2' }}
+              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 515.2} 515.2` }}
               transition={{ duration: 1.8, ease: 'easeOut' }}
               transform="rotate(-90 100 100)"
             />
 
-            {/* Progress dot */}
-            <circle
-              cx="100" cy="10" r="5.5"
-              fill={phaseData.colorDark || phaseData.color}
-              opacity="0.2"
-              transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
-              filter="url(#lunaGlow)"
+            {/* 3. Small dot at end of outer circle (~1:30) */}
+            <circle cx="148" cy="28" r="3" fill={phaseData.colorDark || '#8B7B7F'} opacity="0.6" />
+
+            {/* 4. Crescent inner edge → flows into wave 1
+                 Starts at same tip as outer circle gap (top-left)
+                 Slim crescent hugging the left side of the circle
+                 Smooth transition into S-wave across the bottom */}
+            <path
+              d="M 30 58
+                 C 42 72, 40 92, 36 110
+                 C 30 134, 42 152, 68 150
+                 C 94 148, 116 132, 134 136
+                 C 152 140, 166 132, 176 120"
+              fill="none"
+              stroke={phaseData.colorDark || '#8B7B7F'}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              opacity="0.25"
             />
+
+            {/* 5. Second wave — thinner, parallel, gives leaf/depth effect */}
+            <path
+              d="M 48 160
+                 C 72 150, 100 168, 128 154
+                 C 150 144, 164 148, 176 136"
+              fill="none"
+              stroke={phaseData.colorDark || '#8B7B7F'}
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              opacity="0.2"
+            />
+
+            {/* 6. Progress dot on the ring */}
             <circle
-              cx="100" cy="10" r="4"
+              cx="100" cy="18" r="4"
               fill={phaseData.colorDark || phaseData.color}
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
             >
               <animate attributeName="r" values="4;5;4" dur="2.5s" repeatCount="indefinite" />
             </circle>
             <circle
-              cx="100" cy="10" r="1.8"
+              cx="100" cy="18" r="1.8"
               fill="#FFFFFF"
-              opacity="0.9"
+              opacity="0.85"
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
             />
           </svg>
 
           {/* Center text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
             <p
-              className="text-[9px] font-body uppercase tracking-[0.2em] mb-1.5"
+              className="text-[9px] font-body uppercase tracking-[0.2em] mb-1"
               style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.5 }}
             >
               Jour du cycle
             </p>
             <motion.p
               className="font-display font-bold leading-none"
-              style={{ color: phaseData.colorDark || '#2D2226', fontSize: '3.2rem' }}
+              style={{ color: phaseData.colorDark || '#2D2226', fontSize: '3rem' }}
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
