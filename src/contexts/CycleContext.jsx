@@ -22,6 +22,8 @@ const initialState = {
   customSymptoms: [],
   temperatureLogs: {},
   chatHistory: [],
+  conversations: [],
+  activeConversationId: null,
   notifications: true,
   language: 'fr',
   smartTracking: false,
@@ -152,6 +154,53 @@ function cycleReducer(state, action) {
     }
     case 'ADD_CHAT_MESSAGE':
       return { ...state, chatHistory: [...state.chatHistory, action.payload] };
+    case 'CREATE_CONVERSATION': {
+      // payload: { id, title? }
+      const newConv = {
+        id: action.payload.id,
+        title: action.payload.title || 'Nouvelle conversation',
+        messages: [],
+        createdAt: new Date().toISOString(),
+        archived: false,
+      };
+      return {
+        ...state,
+        conversations: [newConv, ...state.conversations],
+        activeConversationId: newConv.id,
+      };
+    }
+    case 'ADD_CONVERSATION_MESSAGE': {
+      // payload: { conversationId, message }
+      const convs = state.conversations.map((c) => {
+        if (c.id !== action.payload.conversationId) return c;
+        const msgs = [...c.messages, action.payload.message];
+        // Auto-titre basé sur le premier message user
+        let title = c.title;
+        if (title === 'Nouvelle conversation' && action.payload.message.role === 'user') {
+          title = action.payload.message.content.slice(0, 40) + (action.payload.message.content.length > 40 ? '...' : '');
+        }
+        return { ...c, messages: msgs, title };
+      });
+      return { ...state, conversations: convs };
+    }
+    case 'SET_ACTIVE_CONVERSATION':
+      return { ...state, activeConversationId: action.payload.id };
+    case 'DELETE_CONVERSATION': {
+      const filtered = state.conversations.filter((c) => c.id !== action.payload.id);
+      const newActiveId = state.activeConversationId === action.payload.id
+        ? (filtered.find((c) => !c.archived)?.id || null)
+        : state.activeConversationId;
+      return { ...state, conversations: filtered, activeConversationId: newActiveId };
+    }
+    case 'ARCHIVE_CONVERSATION': {
+      const convs = state.conversations.map((c) =>
+        c.id === action.payload.id ? { ...c, archived: !c.archived } : c
+      );
+      const newActiveId = state.activeConversationId === action.payload.id
+        ? (convs.find((c) => !c.archived && c.id !== action.payload.id)?.id || null)
+        : state.activeConversationId;
+      return { ...state, conversations: convs, activeConversationId: newActiveId };
+    }
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };
     case 'LOAD_DEMO_DATA':

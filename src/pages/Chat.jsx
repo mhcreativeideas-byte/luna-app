@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Send, Sparkles, ChevronDown } from 'lucide-react';
+import { ChevronLeft, Send, Sparkles, ChevronDown, Plus, Clock, Trash2, Archive, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { getLunaResponse, SUGGESTION_CATEGORIES, QUICK_SUGGESTIONS } from '../data/chatResponses';
 import { PHASES } from '../data/phases';
@@ -9,14 +9,16 @@ import { PHASES } from '../data/phases';
 export default function Chat() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { cycleInfo, dispatch, chatHistory, name, cycleLength, periodLength, todayCheckIn, goals } = useCycle();
+  const { cycleInfo, dispatch, conversations, activeConversationId, name, cycleLength, periodLength, todayCheckIn, goals } = useCycle();
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([]);
   const [typing, setTyping] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [showHistory, setShowHistory] = useState(false);
+  const [swipedId, setSwipedId] = useState(null);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+  const touchStartX = useRef(0);
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
 
@@ -32,13 +34,30 @@ export default function Chat() {
     goals: goals || [],
   };
 
+  // Conversation active
+  const activeConversation = (conversations || []).find((c) => c.id === activeConversationId);
+  const messages = activeConversation?.messages || [];
+  const visibleConversations = (conversations || []).filter((c) => !c.archived);
+  const archivedConversations = (conversations || []).filter((c) => c.archived);
+
+  // Au chargement : crée ou reprend une conversation
   useEffect(() => {
-    if (chatHistory && chatHistory.length > 0) {
-      setMessages(chatHistory.slice(-30));
+    if (!conversations || conversations.length === 0) {
+      // Première visite : créer une conversation
+      createNewConversation();
+    } else if (!activeConversationId) {
+      // Pas de conversation active : prendre la plus récente non archivée
+      const latest = visibleConversations[0];
+      if (latest) {
+        dispatch({ type: 'SET_ACTIVE_CONVERSATION', payload: { id: latest.id } });
+      } else {
+        createNewConversation();
+      }
     }
+    // Gérer le paramètre ?q=
     const q = searchParams.get('q');
     if (q) {
-      handleSend(q);
+      setTimeout(() => handleSend(q), 300);
     }
   }, []);
 
@@ -46,13 +65,36 @@ export default function Chat() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, typing]);
 
+  const createNewConversation = useCallback(() => {
+    const id = `conv_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    dispatch({ type: 'CREATE_CONVERSATION', payload: { id } });
+    setShowHistory(false);
+    setShowCategories(false);
+    setActiveCategory(null);
+  }, [dispatch]);
+
+  const switchConversation = useCallback((id) => {
+    dispatch({ type: 'SET_ACTIVE_CONVERSATION', payload: { id } });
+    setShowHistory(false);
+    setSwipedId(null);
+  }, [dispatch]);
+
+  const deleteConversation = useCallback((id) => {
+    dispatch({ type: 'DELETE_CONVERSATION', payload: { id } });
+    setSwipedId(null);
+  }, [dispatch]);
+
+  const archiveConversation = useCallback((id) => {
+    dispatch({ type: 'ARCHIVE_CONVERSATION', payload: { id } });
+    setSwipedId(null);
+  }, [dispatch]);
+
   const handleSend = (text) => {
     const content = text || input;
-    if (!content.trim()) return;
+    if (!content.trim() || !activeConversationId) return;
 
     const userMsg = { role: 'user', content, date: new Date().toISOString() };
-    setMessages((prev) => [...prev, userMsg]);
-    dispatch({ type: 'ADD_CHAT_MESSAGE', payload: userMsg });
+    dispatch({ type: 'ADD_CONVERSATION_MESSAGE', payload: { conversationId: activeConversationId, message: userMsg } });
     setInput('');
     setShowCategories(false);
     setActiveCategory(null);
@@ -62,10 +104,33 @@ export default function Chat() {
     setTimeout(() => {
       const response = getLunaResponse(content, phase, userContext);
       const lunaMsg = { role: 'luna', content: response, date: new Date().toISOString() };
-      setMessages((prev) => [...prev, lunaMsg]);
-      dispatch({ type: 'ADD_CHAT_MESSAGE', payload: lunaMsg });
+      dispatch({ type: 'ADD_CONVERSATION_MESSAGE', payload: { conversationId: activeConversationId, message: lunaMsg } });
       setTyping(false);
     }, 600 + Math.random() * 800);
+  };
+
+  // Swipe handlers pour l'historique
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e, id) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 60) {
+      setSwipedId(swipedId === id ? null : id);
+    } else if (diff < -60) {
+      setSwipedId(null);
+    }
+  };
+
+  // Format date relative
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr);
+    const now = new Date();
+    const diff = Math.floor((now - d) / (1000 * 60 * 60 * 24));
+    if (diff === 0) return "Aujourd'hui";
+    if (diff === 1) return 'Hier';
+    if (diff < 7) return `Il y a ${diff} jours`;
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
   };
 
   // Rendu d'un message LUNA avec formatage
@@ -80,7 +145,7 @@ export default function Chat() {
           </p>
         );
       }
-      if (line.match(/^[🥗🍽️💡⚡✅❌🔍🔔🧠🧘🏋️🏆🌙📋💧✨💪💛💜🌱🌸🌿🚀👑💆‍♀️😴🍫🐟🍎]/u)) {
+      if (line.match(/^[🥗🍽️💡⚡✅❌🔍🔔🧠🧘🏋️🏆🌙📋💧✨💪💛💜🌱🌸🌿🚀👑💆‍♀️😴🍫🐟🍎👩‍🍳⏱️📝👉📊🧬☀️🍵]/u)) {
         return <p key={i} className="text-sm font-body text-luna-text-body leading-relaxed mt-1">{line}</p>;
       }
       if (line.match(/^[A-ZÀ-Ü].*:$/)) {
@@ -95,7 +160,7 @@ export default function Chat() {
       {/* Header */}
       <div className="flex items-center gap-3 pb-3">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/dashboard')}
           className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
         >
@@ -115,7 +180,171 @@ export default function Chat() {
             </p>
           </div>
         </div>
+        <div className="flex items-center gap-1.5">
+          {/* Historique */}
+          <button
+            onClick={() => setShowHistory(!showHistory)}
+            className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
+            style={{
+              backgroundColor: showHistory ? `${phaseData.color}20` : 'white',
+              boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)',
+              color: showHistory ? phaseData.colorDark : '#8A7B7F',
+            }}
+          >
+            <Clock size={17} />
+          </button>
+          {/* Nouvelle conversation */}
+          <button
+            onClick={createNewConversation}
+            className="w-9 h-9 rounded-full flex items-center justify-center text-white transition-all"
+            style={{
+              background: `linear-gradient(135deg, ${phaseData.color}, ${phaseData.colorDark})`,
+              boxShadow: `0 2px 8px ${phaseData.color}40`,
+            }}
+          >
+            <Plus size={18} />
+          </button>
+        </div>
       </div>
+
+      {/* Panneau historique */}
+      <AnimatePresence>
+        {showHistory && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden mb-3"
+          >
+            <div
+              className="rounded-[20px] p-3 max-h-[45vh] overflow-y-auto"
+              style={{ backgroundColor: 'white', boxShadow: '0 4px 20px rgba(45, 34, 38, 0.08)' }}
+            >
+              <div className="flex items-center justify-between mb-2 px-1">
+                <p className="text-xs font-body font-semibold text-luna-text-muted uppercase tracking-wider">
+                  Conversations
+                </p>
+                <button onClick={() => setShowHistory(false)} className="text-luna-text-hint">
+                  <X size={14} />
+                </button>
+              </div>
+
+              {visibleConversations.length === 0 ? (
+                <p className="text-xs text-luna-text-hint font-body text-center py-4">Aucune conversation</p>
+              ) : (
+                <div className="space-y-1">
+                  {visibleConversations.map((conv) => (
+                    <div
+                      key={conv.id}
+                      className="relative overflow-hidden rounded-[14px]"
+                      onTouchStart={handleTouchStart}
+                      onTouchEnd={(e) => handleTouchEnd(e, conv.id)}
+                    >
+                      {/* Actions swipe */}
+                      <AnimatePresence>
+                        {swipedId === conv.id && (
+                          <motion.div
+                            initial={{ opacity: 0, width: 0 }}
+                            animate={{ opacity: 1, width: 'auto' }}
+                            exit={{ opacity: 0, width: 0 }}
+                            className="absolute right-0 top-0 bottom-0 flex items-center gap-1 pr-2 z-10"
+                          >
+                            <button
+                              onClick={() => archiveConversation(conv.id)}
+                              className="w-8 h-8 rounded-full bg-amber-50 flex items-center justify-center text-amber-500"
+                            >
+                              <Archive size={14} />
+                            </button>
+                            <button
+                              onClick={() => deleteConversation(conv.id)}
+                              className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-400"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <button
+                        onClick={() => switchConversation(conv.id)}
+                        className="w-full text-left px-3 py-2.5 rounded-[14px] transition-all"
+                        style={conv.id === activeConversationId ? {
+                          backgroundColor: `${phaseData.color}12`,
+                          borderLeft: `3px solid ${phaseData.color}`,
+                        } : {
+                          backgroundColor: 'transparent',
+                          borderLeft: '3px solid transparent',
+                        }}
+                      >
+                        <p className={`text-sm font-body truncate ${conv.id === activeConversationId ? 'font-semibold text-luna-text' : 'text-luna-text-body'}`}>
+                          {conv.title}
+                        </p>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <p className="text-[10px] font-body text-luna-text-hint">
+                            {formatDate(conv.createdAt)}
+                          </p>
+                          <p className="text-[10px] font-body text-luna-text-hint">
+                            · {conv.messages.length} messages
+                          </p>
+                        </div>
+                      </button>
+
+                      {/* Desktop: boutons toujours visibles au hover */}
+                      <div className="hidden lg:flex absolute right-2 top-1/2 -translate-y-1/2 items-center gap-1 opacity-0 hover:opacity-100 group-hover:opacity-100"
+                        style={{ opacity: swipedId === conv.id ? 1 : undefined }}
+                      >
+                        <button
+                          onClick={(e) => { e.stopPropagation(); archiveConversation(conv.id); }}
+                          className="w-7 h-7 rounded-full hover:bg-amber-50 flex items-center justify-center text-luna-text-hint hover:text-amber-500 transition-colors"
+                        >
+                          <Archive size={13} />
+                        </button>
+                        <button
+                          onClick={(e) => { e.stopPropagation(); deleteConversation(conv.id); }}
+                          className="w-7 h-7 rounded-full hover:bg-red-50 flex items-center justify-center text-luna-text-hint hover:text-red-400 transition-colors"
+                        >
+                          <Trash2 size={13} />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Archivées */}
+              {archivedConversations.length > 0 && (
+                <details className="mt-3">
+                  <summary className="text-[10px] font-body font-semibold text-luna-text-hint uppercase tracking-wider cursor-pointer px-1">
+                    Archivées ({archivedConversations.length})
+                  </summary>
+                  <div className="space-y-1 mt-1">
+                    {archivedConversations.map((conv) => (
+                      <div key={conv.id} className="flex items-center gap-2">
+                        <button
+                          onClick={() => {
+                            archiveConversation(conv.id); // un-archive
+                            switchConversation(conv.id);
+                          }}
+                          className="flex-1 text-left px-3 py-2 rounded-[12px] hover:bg-gray-50 transition-colors"
+                        >
+                          <p className="text-xs font-body text-luna-text-hint truncate">{conv.title}</p>
+                          <p className="text-[10px] font-body text-luna-text-hint">{formatDate(conv.createdAt)}</p>
+                        </button>
+                        <button
+                          onClick={() => deleteConversation(conv.id)}
+                          className="w-7 h-7 rounded-full hover:bg-red-50 flex items-center justify-center text-luna-text-hint hover:text-red-400"
+                        >
+                          <Trash2 size={12} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto space-y-3 pb-4">
