@@ -1,3 +1,21 @@
+export const FOOD_EMOJIS = {
+  // Fruits
+  'Citron': '🍋', 'Clémentine': '🍊', 'Kiwi': '🥝', 'Mandarine': '🍊', 'Orange': '🍊',
+  'Pamplemousse': '🍊', 'Pomme': '🍎', 'Poire': '🍐', 'Fraise': '🍓', 'Rhubarbe': '🌿',
+  'Cerise': '🍒', 'Abricot': '🍑', 'Framboise': '🫐', 'Melon': '🍈', 'Nectarine': '🍑',
+  'Pêche': '🍑', 'Figue': '🟤', 'Cassis': '🫐', 'Groseille': '🔴', 'Myrtille': '🫐',
+  'Pastèque': '🍉', 'Prune': '🟣', 'Mirabelle': '🟡', 'Mûre': '🫐', 'Raisin': '🍇',
+  'Châtaigne': '🌰', 'Coing': '🍐', 'Noix': '🥜',
+  // Légumes
+  'Betterave': '🟣', 'Carotte': '🥕', 'Céleri': '🌿', 'Chou': '🥬', 'Chou-fleur': '🥦',
+  'Endive': '🥬', 'Épinard': '🥬', 'Mâche': '🥬', 'Navet': '🤍', 'Panais': '🤍',
+  'Poireau': '🥬', 'Potiron': '🎃', 'Topinambour': '🥔', 'Asperge': '🌿', 'Radis': '🔴',
+  'Artichaut': '🌿', 'Chou de Bruxelles': '🥬', 'Aubergine': '🍆', 'Concombre': '🥒',
+  'Courgette': '🥒', 'Laitue': '🥬', 'Petit pois': '🟢', 'Cresson': '🌿',
+  'Blette': '🥬', 'Fenouil': '🌿', 'Haricot vert': '🫘', 'Poivron': '🫑',
+  'Tomate': '🍅', 'Maïs': '🌽', 'Brocoli': '🥦', 'Courge': '🎃',
+};
+
 export const SEASONAL_FOODS = {
   1: { // Janvier
     fruits: ['Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Pomme', 'Poire'],

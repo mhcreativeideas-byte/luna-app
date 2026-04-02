@@ -4,7 +4,7 @@ import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldChe
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
-import { SEASONAL_FOODS } from '../data/seasonal';
+import { SEASONAL_FOODS, FOOD_EMOJIS } from '../data/seasonal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -539,74 +539,63 @@ export default function Alimentation() {
         const monthNames = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         if (!seasonal) return null;
 
+        const FoodCard = ({ name, delay }) => (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: delay * 0.04, duration: 0.3 }}
+            className="flex flex-col items-center"
+          >
+            <span className="text-4xl mb-1.5 drop-shadow-sm">{FOOD_EMOJIS[name] || '🍽️'}</span>
+            <span className="text-[11px] font-body font-medium text-luna-text-body text-center leading-tight">{name}</span>
+          </motion.div>
+        );
+
         return (
           <motion.div variants={item}>
             <div
               className="rounded-[24px] overflow-hidden"
-              style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
+              style={{ background: 'linear-gradient(180deg, #FDFBF8 0%, #FAF7F5 100%)', boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
             >
               {/* Header */}
-              <div
-                className="px-6 pt-6 pb-4 text-center"
-                style={{ background: 'linear-gradient(180deg, #F0EBE4 0%, #FAF7F5 100%)' }}
-              >
-                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-[0.2em] mb-1">
+              <div className="px-6 pt-6 pb-2 text-center">
+                <p className="text-[10px] font-body font-bold uppercase tracking-[0.25em] mb-1" style={{ color: '#B09ACB' }}>
                   De saison
                 </p>
-                <h3 className="font-display text-2xl text-luna-text">
+                <h3 className="font-display text-3xl text-luna-text">
                   {monthNames[currentMonth]}
                 </h3>
-                <p className="text-xs font-body text-luna-text-muted mt-1">
-                  Fruits & légumes à privilégier ce mois-ci
-                </p>
               </div>
 
-              <div className="bg-white px-5 pb-5">
-                {/* Fruits */}
-                <div className="pt-4 pb-3">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-lg">🍓</span>
-                    <h4 className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest">Fruits</h4>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {seasonal.fruits.map((fruit, i) => (
-                      <motion.span
-                        key={fruit}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.03 }}
-                        className="text-xs font-body font-medium px-3 py-1.5 rounded-full"
-                        style={{ backgroundColor: '#FFF3EB', color: '#D4846A', border: '1px solid #F5DFD0' }}
-                      >
-                        {fruit}
-                      </motion.span>
-                    ))}
-                  </div>
+              {/* Fruits */}
+              <div className="px-5 pt-4 pb-3">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="flex-1 h-px" style={{ backgroundColor: '#F5DFD0' }} />
+                  <h4 className="text-[10px] font-body font-bold uppercase tracking-[0.2em] px-3" style={{ color: '#D4846A' }}>
+                    Fruits du mois
+                  </h4>
+                  <div className="flex-1 h-px" style={{ backgroundColor: '#F5DFD0' }} />
                 </div>
+                <div className="grid grid-cols-3 gap-y-4 gap-x-2">
+                  {seasonal.fruits.map((fruit, i) => (
+                    <FoodCard key={fruit} name={fruit} delay={i} />
+                  ))}
+                </div>
+              </div>
 
-                {/* Divider */}
-                <div className="h-px bg-gray-100 my-1" />
-
-                {/* Légumes */}
-                <div className="pt-3 pb-1">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-lg">🥬</span>
-                    <h4 className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest">Légumes</h4>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {seasonal.legumes.map((legume, i) => (
-                      <motion.span
-                        key={legume}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.03 }}
-                        className="text-xs font-body font-medium px-3 py-1.5 rounded-full"
-                        style={{ backgroundColor: '#EDF5ED', color: '#5A8A5E', border: '1px solid #D4E8D4' }}
-                      >
-                        {legume}
-                      </motion.span>
-                    ))}
-                  </div>
+              {/* Légumes */}
+              <div className="px-5 pt-3 pb-5">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
+                  <h4 className="text-[10px] font-body font-bold uppercase tracking-[0.2em] px-3" style={{ color: '#5A8A5E' }}>
+                    Légumes du mois
+                  </h4>
+                  <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
+                </div>
+                <div className="grid grid-cols-3 gap-y-4 gap-x-2">
+                  {seasonal.legumes.map((legume, i) => (
+                    <FoodCard key={legume} name={legume} delay={i} />
+                  ))}
                 </div>
               </div>
             </div>
