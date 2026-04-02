@@ -51,17 +51,18 @@ function SettingToggle({ label, checked, onChange }) {
   return (
     <div className="flex items-center justify-between px-5 py-4">
       <span className="text-sm font-body text-luna-text-body">{label}</span>
-      <button
+      <div
         onClick={() => onChange(!checked)}
-        className={`relative w-12 h-7 rounded-full transition-colors ${
-          checked ? 'bg-luna-rose' : 'bg-luna-sage/50'
+        className={`relative w-11 h-6 rounded-full transition-colors cursor-pointer flex-shrink-0 ${
+          checked ? 'bg-luna-rose' : 'bg-gray-300'
         }`}
       >
         <span
-          className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform"
-          style={{ transform: checked ? 'translateX(22px)' : 'translateX(4px)' }}
+          className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 ${
+            checked ? 'translate-x-5' : 'translate-x-0'
+          }`}
         />
-      </button>
+      </div>
     </div>
   );
 }
