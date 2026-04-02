@@ -284,6 +284,65 @@ const SPORT_ADVICE = {
   },
 };
 
+// Alternatives intelligentes par catégorie d'envie
+const SMART_FOOD_ALTERNATIVES = {
+  // Envie de sucré
+  sucre: ['chocolat noir 70%+', 'dattes', 'banane', 'miel', 'fruits secs', 'compote maison sans sucre ajouté'],
+  'sucre raffiné': ['chocolat noir 70%+', 'dattes', 'banane écrasée', 'miel', 'sirop d\'érable', 'fruits secs'],
+  chocolat: ['chocolat noir 70%+ (riche en magnésium !)', 'cacao cru en smoothie', 'mousse au chocolat noir maison'],
+  bonbon: ['fruits secs (abricots, figues)', 'dattes fourrées aux amandes', 'billes d\'énergie maison'],
+  gâteau: ['banana bread maison', 'energy balls avoine-cacao', 'pancakes à la banane', 'muffins aux myrtilles sans sucre raffiné'],
+  glace: ['nice cream (banane congelée mixée)', 'yaourt glacé aux fruits', 'sorbet maison'],
+  pâtisserie: ['energy balls', 'banana bread', 'crumble aux fruits avec flocons d\'avoine'],
+  biscuit: ['galettes de riz + beurre de cacahuète', 'crackers maison aux graines', 'biscuits avoine-banane'],
+  confiture: ['compote maison', 'purée de fruits', 'tranches de banane + miel'],
+  nutella: ['purée de noisettes + cacao', 'beurre de cacahuète + cacao', 'pâte à tartiner maison'],
+  sirop: ['miel', 'sirop d\'érable pur (en petite quantité)', 'purée de dattes'],
+  soda: ['eau pétillante + citron', 'kombucha', 'eau infusée (concombre, menthe, fruits)', 'jus frais maison dilué'],
+
+  // Envie de caféine
+  café: ['thé vert matcha', 'chicorée', 'décaféiné', 'golden latte (lait + curcuma)', 'thé chai'],
+  thé: ['tisane (camomille, verveine)', 'rooibos', 'infusion gingembre-citron'],
+
+  // Envie d'alcool
+  alcool: ['kombucha', 'mocktail aux fruits', 'eau pétillante + sirop naturel', 'jus de cranberry pétillant'],
+  vin: ['kombucha', 'jus de raisin pétillant', 'mocktail rosé (eau de rose + pamplemousse)'],
+  bière: ['bière sans alcool', 'kombucha', 'ginger beer artisanale'],
+  'alcool en excès': ['mocktails', 'kombucha', 'eau pétillante aromatisée'],
+
+  // Envie de gras/salé
+  frites: ['patates douces rôties au four', 'frites de légumes (carottes, courgettes)', 'chips de chou kale'],
+  fritures: ['version au four', 'air fryer', 'légumes rôtis croustillants', 'falafels au four'],
+  pizza: ['pizza maison sur pâte complète', 'galette de sarrasin garnie', 'pizza sur base de chou-fleur'],
+  burger: ['burger maison avec pain complet', 'burger de lentilles', 'wrap de laitue garni'],
+  'fast food': ['version maison (burger, wraps, bowls)', 'pokeball maison', 'wrap poulet-avocat'],
+  kebab: ['wrap maison poulet grillé + crudités + sauce yaourt', 'bowl méditerranéen'],
+  tacos: ['tacos maison avec tortilla de maïs + garniture fraîche', 'bowl mexicain'],
+  charcuterie: ['saumon fumé', 'poulet grillé émincé', 'houmous + crudités'],
+  'sel en excès': ['herbes aromatiques', 'épices', 'citron', 'graines de sésame'],
+
+  // Plats lourds
+  'plats très lourds': ['bowls équilibrés', 'plats complets mais légers', 'wok de légumes + protéine'],
+  'plats très épicés': ['épices douces (curcuma, cannelle, cumin)', 'herbes fraîches', 'gingembre frais'],
+  'aliments ultra-transformés': ['version maison du même plat', 'snacks faits maison', 'crackers + houmous'],
+  'café après 14h': ['décaféiné', 'tisane relaxante', 'golden latte', 'rooibos', 'eau citronnée tiède'],
+  'sucre raffiné en excès': ['chocolat noir', 'dattes', 'fruits frais', 'smoothie maison'],
+};
+
+// Alternatives intelligentes par catégorie de sport
+const SMART_SPORT_ALTERNATIVES = {
+  hiit: ['circuit training modéré', 'HIIT adapté (intervalles plus longs, repos plus longs)', 'vélo à intervalles doux'],
+  crossfit: ['circuit training modéré', 'musculation contrôlée', 'pilates dynamique'],
+  sprint: ['marche rapide', 'course modérée', 'vélo à rythme confortable'],
+  'cardio intense': ['cardio modéré (vélo, elliptique)', 'marche rapide', 'natation tranquille'],
+  'musculation lourde': ['musculation modérée (charges réduites)', 'pilates avec résistance', 'yoga power'],
+  boxe: ['shadow boxing léger', 'arts martiaux doux (tai chi)', 'cours de self-defense débutant'],
+  'running intense': ['jogging léger', 'marche rapide', 'marche nordique'],
+  'course intensive': ['jogging tranquille', 'marche rapide en nature', 'vélo doux'],
+  marathon: ['course courte et modérée', 'marche longue', 'vélo sur distance'],
+  muscu: ['pilates', 'yoga dynamique', 'musculation légère avec plus de répétitions'],
+};
+
 // Détecte si c'est une question "puis-je / est-ce que je peux"
 function isCanIQuestion(q) {
   return q.match(/puis.?je|peux.?je|est.?ce que je (peux|devrais|dois)|je (peux|devrais|dois)|c'?est (bien|bon|ok|okay) (de|si|que)|c'?est une bonne idée|ça va si|possible de|recommand/i);
@@ -360,6 +419,15 @@ function generateFoodResponse(food, phase, ctx) {
   }
 
   if (isLimit) {
+    // Cherche des alternatives intelligentes dans la même catégorie d'envie
+    const limitItem = advice.limit.find((f) => qFood.includes(f) || f.includes(qFood));
+    const smartAlts = SMART_FOOD_ALTERNATIVES[limitItem] || SMART_FOOD_ALTERNATIVES[qFood] || null;
+
+    if (smartAlts) {
+      const altList = smartAlts.slice(0, 4).map((a) => `• ${a}`).join('\n');
+      return `Alors, ${food} en phase ${phaseName}... c'est pas interdit, mais c'est pas l'idéal non plus.\n\n⚠️ ${advice.why_limit}\n\nMais si t'as cette envie, j'ai mieux pour toi :\n${altList}\n\nC'est dans le même esprit, mais ton corps va beaucoup mieux réagir. 😊\n\nEt si tu craques quand même, zéro culpabilité — juste une petite quantité et savoure. 💛`;
+    }
+
     return `Alors, ${food} en phase ${phaseName}... c'est pas interdit, mais c'est pas l'idéal non plus.\n\n⚠️ ${advice.why_limit}\n\nSi tu en as vraiment envie, fais-toi plaisir — mais en petite quantité. Ton corps te dira merci si tu privilégies plutôt : ${advice.good.slice(0, 4).join(', ')}.\n\nL'idée c'est pas de te priver, c'est de comprendre l'impact. 💛`;
   }
 
@@ -386,6 +454,15 @@ function generateSportResponse(sport, phase, ctx) {
   }
 
   if (isCaution) {
+    // Cherche des alternatives intelligentes similaires au sport demandé
+    const cautionItem = advice.caution.find((s) => qSport.includes(s) || s.includes(qSport));
+    const smartAlts = SMART_SPORT_ALTERNATIVES[cautionItem] || SMART_SPORT_ALTERNATIVES[qSport] || null;
+
+    if (smartAlts) {
+      const altList = smartAlts.slice(0, 3).map((a) => `• ${a}`).join('\n');
+      return `${sport.charAt(0).toUpperCase() + sport.slice(1)} en phase ${phaseName}... c'est pas le meilleur timing pour aller à fond.\n\n🧠 ${advice.why}\n\nMais si t'as envie de bouger dans cet esprit, essaie plutôt :\n${altList}\n\nC'est le même type d'effort, adapté à ton corps en ce moment. Tu sentiras la différence ! 💪\n\nEt si ton corps te dit "go", écoute-le — adapte juste l'intensité. Tu pourras ${phase === 'menstrual' || phase === 'luteal' ? 'tout donner en phase folliculaire' : 'monter en puissance bientôt'}. 🔥`;
+    }
+
     const alternatives = advice.great.slice(0, 4).join(', ');
     return `${sport.charAt(0).toUpperCase() + sport.slice(1)} en phase ${phaseName}... je te recommande d'y aller doucement ou de choisir une alternative.\n\n🧠 ${advice.why}\n\nSi tu te sens vraiment bien et que ton corps dit oui — écoute-le. Mais si tu hésites, essaie plutôt : ${alternatives}.\n\nL'objectif c'est pas de t'empêcher, c'est que tu tires le meilleur de ton entraînement au bon moment. Tu pourras ${phase === 'menstrual' || phase === 'luteal' ? 'y revenir à fond en phase folliculaire' : 'adapter l\'intensité'}. 💪`;
   }

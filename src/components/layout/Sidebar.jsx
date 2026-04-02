@@ -4,11 +4,11 @@ import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
   { to: '/dashboard', icon: Home, label: 'Accueil' },
-  { to: '/sport', icon: Dumbbell, label: 'Sport' },
-  { to: '/alimentation', icon: UtensilsCrossed, label: 'Alimentation' },
-  { to: '/sommeil', icon: Moon, label: 'Sommeil' },
   { to: '/calendrier', icon: CalendarDays, label: 'Calendrier' },
   { to: '/journal', icon: BookOpen, label: 'Journal' },
+  { to: '/alimentation', icon: UtensilsCrossed, label: 'Alimentation' },
+  { to: '/sport', icon: Dumbbell, label: 'Sport' },
+  { to: '/sommeil', icon: Moon, label: 'Sommeil' },
   { to: '/chat', icon: MessageCircle, label: 'LUNA' },
 ];
 
@@ -76,16 +76,14 @@ export default function Sidebar() {
       </NavLink>
       <button
         onClick={() => {
-          if (window.confirm('Réinitialiser ton profil LUNA ?')) {
-            dispatch({ type: 'RESET' });
-            localStorage.removeItem('luna-profile');
+          if (window.confirm('Te déconnecter de LUNA ?')) {
             window.location.href = '/';
           }
         }}
         className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint hover:text-[#C4727F] transition-colors mt-1 font-body"
       >
         <LogOut size={16} />
-        Réinitialiser
+        Déconnexion
       </button>
     </aside>
   );

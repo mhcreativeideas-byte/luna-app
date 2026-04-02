@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ArrowRight } from 'lucide-react';
+import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
@@ -23,7 +23,7 @@ const PHASE_FOOD_TITLES = {
 
 const PHASE_FOOD_INTROS = {
   menstrual: 'Pendant tes règles, concentre-toi sur les aliments riches en fer et anti-inflammatoires pour compenser les pertes.',
-  follicular: 'L\'œstrogène remonte — ton corps est en mode construction. Protéines, zinc et probiotiques sont tes alliés.',
+  follicular: 'L\'œstrogène remonte. Ton corps est en mode construction. Protéines, zinc et probiotiques sont tes alliés.',
   ovulatory: 'Pic hormonal : privilégie les fibres pour éliminer l\'excès d\'œstrogène et les antioxydants pour protéger tes cellules.',
   luteal: 'Ton métabolisme augmente de 10-20%. Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
 };
@@ -37,11 +37,13 @@ const mealLabels = {
 export default function Alimentation() {
   const { cycleInfo } = useCycle();
   const [openRecipe, setOpenRecipe] = useState(null);
+  const [openNutrient, setOpenNutrient] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
   const recipes = RECIPES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
+  const nutrientsFull = phaseData.nutrientsFull || {};
 
   if (!recipes) return null;
 
@@ -61,47 +63,156 @@ export default function Alimentation() {
         </p>
       </motion.div>
 
-      {/* Priority Nutrients */}
+      {/* Priority Nutrients — Interactive */}
       <motion.div variants={item}>
         <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-          <h2 className="font-display text-lg text-luna-text mb-1">Nutriments prioritaires</h2>
-          <p className="text-xs font-body text-luna-text-hint mb-4">Ce dont ton corps a besoin maintenant.</p>
+          <div className="flex items-center gap-2 mb-1">
+            <Sparkles size={16} style={{ color: phaseData.color }} />
+            <h2 className="font-display text-lg text-luna-text">Nutriments prioritaires</h2>
+          </div>
+          <p className="text-xs font-body text-luna-text-hint mb-4">Clique sur un nutriment pour découvrir les aliments à privilégier.</p>
 
           <div className="flex flex-wrap gap-2">
             {phaseData.nutrients.map((n) => (
-              <div
+              <button
                 key={n}
-                className="px-4 py-2.5 rounded-[14px] text-sm font-body font-semibold"
-                style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
+                onClick={() => setOpenNutrient(openNutrient === n ? null : n)}
+                className="px-4 py-2.5 rounded-[14px] text-sm font-body font-semibold transition-all duration-300"
+                style={openNutrient === n ? {
+                  backgroundColor: phaseData.color,
+                  color: 'white',
+                  boxShadow: `0 4px 12px ${phaseData.color}40`,
+                } : {
+                  backgroundColor: phaseData.bgColor,
+                  color: phaseData.colorDark,
+                }}
               >
                 {n}
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </motion.div>
 
-      {/* Nutrient Details */}
-      <motion.div variants={item}>
-        <div className="space-y-2">
-          {phaseData.nutrients.map((n) => (
-            phaseData.nutrientDetails[n] && (
+      {/* Expanded Nutrient Detail */}
+      <AnimatePresence mode="wait">
+        {openNutrient && nutrientsFull[openNutrient] && (
+          <motion.div
+            key={openNutrient}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div
+              className="rounded-[24px] overflow-hidden"
+              style={{ boxShadow: '0 4px 20px rgba(45,34,38,0.08)' }}
+            >
+              {/* Header band */}
               <div
-                key={n}
-                className="rounded-[16px] p-4 bg-white"
-                style={{ boxShadow: '0 1px 8px rgba(45,34,38,0.03)' }}
+                className="px-5 pt-5 pb-4"
+                style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}15)` }}
               >
-                <h4 className="text-sm font-display text-luna-text mb-1">{n}</h4>
-                <p className="text-xs font-body text-luna-text-muted leading-relaxed">
-                  {phaseData.nutrientDetails[n]}
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-display text-xl text-luna-text">{openNutrient}</h3>
+                  <button
+                    onClick={() => setOpenNutrient(null)}
+                    className="w-7 h-7 rounded-full bg-white/60 flex items-center justify-center"
+                  >
+                    <X size={14} className="text-luna-text-muted" />
+                  </button>
+                </div>
+                <p className="text-sm font-body text-luna-text-body leading-relaxed">
+                  {nutrientsFull[openNutrient].why}
                 </p>
               </div>
-            )
-          ))}
-        </div>
-      </motion.div>
 
-      {/* Recettes d'aujourd'hui — Horizontal Carousel */}
+              {/* Foods grid */}
+              <div className="bg-white px-5 py-5">
+                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
+                  Aliments riches en {openNutrient.toLowerCase()}
+                </p>
+                <div className="grid grid-cols-4 gap-3">
+                  {nutrientsFull[openNutrient].foods.map((food, i) => (
+                    <motion.div
+                      key={food.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.05 }}
+                      className="flex flex-col items-center gap-1.5"
+                    >
+                      <div
+                        className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl"
+                        style={{ backgroundColor: phaseData.bgColor }}
+                      >
+                        {food.emoji}
+                      </div>
+                      <span className="text-[11px] font-body text-luna-text text-center leading-tight font-medium">
+                        {food.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Tip */}
+                {nutrientsFull[openNutrient].tip && (
+                  <div
+                    className="mt-4 flex items-start gap-2.5 rounded-[14px] px-4 py-3"
+                    style={{ backgroundColor: `${phaseData.color}10` }}
+                  >
+                    <Lightbulb size={14} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
+                    <p className="text-xs font-body text-luna-text-body leading-relaxed italic">
+                      {nutrientsFull[openNutrient].tip}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Collapsed Nutrient summaries (when none selected) */}
+      {!openNutrient && (
+        <motion.div variants={item}>
+          <div className="space-y-2">
+            {phaseData.nutrients.map((n) => {
+              const full = nutrientsFull[n];
+              const detail = phaseData.nutrientDetails[n];
+              if (!full && !detail) return null;
+              return (
+                <button
+                  key={n}
+                  onClick={() => setOpenNutrient(n)}
+                  className="w-full text-left rounded-[16px] p-4 bg-white transition-all hover:shadow-md group"
+                  style={{ boxShadow: '0 1px 8px rgba(45,34,38,0.03)' }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-display text-luna-text mb-1">{n}</h4>
+                      <p className="text-xs font-body text-luna-text-muted leading-relaxed">
+                        {detail}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-1.5 ml-3 flex-shrink-0">
+                      {full && full.foods.slice(0, 3).map((f, i) => (
+                        <span key={i} className="text-base">{f.emoji}</span>
+                      ))}
+                      <ChevronDown
+                        size={14}
+                        className="text-luna-text-hint group-hover:translate-y-0.5 transition-transform ml-1"
+                      />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Recettes d'aujourd'hui */}
       <motion.div variants={item}>
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="font-display text-xl text-luna-text">Recettes d'aujourd'hui</h2>

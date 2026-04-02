@@ -16,7 +16,7 @@ const item = {
 const whyCards = [
   {
     title: 'Tes hormones, décryptées',
-    desc: 'Œstrogène, progestérone, LH, FSH — elles dirigent ton énergie, ton humeur et tes performances. LUNA te montre ce qu\'elles font, jour après jour.',
+    desc: 'Œstrogène, progestérone, LH, FSH. Elles dirigent ton énergie, ton humeur et tes performances. LUNA te montre ce qu\'elles font, jour après jour.',
     Illustration: HormonesIcon,
     gradient: 'linear-gradient(135deg, #FDE8EB 0%, #F5D0D5 100%)',
   },
@@ -28,7 +28,7 @@ const whyCards = [
   },
   {
     title: 'Des conseils qui changent chaque jour',
-    desc: 'Sport, alimentation, sommeil, bien-être — adaptés à ta phase hormonale. Pas de programme générique. Des recommandations qui correspondent à ce que ton corps vit aujourd\'hui.',
+    desc: 'Sport, alimentation, sommeil, bien-être. Le tout adapté à ta phase hormonale. Pas de programme générique. Des recommandations qui correspondent à ce que ton corps vit aujourd\'hui.',
     Illustration: EnergyIcon,
     gradient: 'linear-gradient(135deg, #F3EEF8 0%, #E0D5EB 100%)',
   },
@@ -98,7 +98,7 @@ export default function Landing() {
             variants={item}
             className="text-luna-text-muted text-base md:text-lg font-body max-w-lg mx-auto mb-8 leading-relaxed"
           >
-            Ton cycle influence ton énergie, ton humeur, tes performances — chaque jour différemment. LUNA t'aide à comprendre ce qui se passe dans ton corps et à adapter ton quotidien en conséquence.
+            Ton cycle influence ton énergie, ton humeur, tes performances. Chaque jour différemment. LUNA t'aide à comprendre ce qui se passe dans ton corps et à adapter ton quotidien en conséquence.
           </motion.p>
 
           <motion.div variants={item} className="space-y-3">
@@ -117,7 +117,7 @@ export default function Landing() {
       <section className="px-4 py-12 bg-white">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-luna-text-body font-body text-base md:text-lg leading-relaxed">
-            On suit nos pas, notre sommeil, nos calories — mais <strong className="text-luna-text">personne ne nous a appris à comprendre notre cycle</strong>. Pourtant, il impacte tout : énergie, humeur, digestion, peau, libido, performances cognitives. Chaque jour du mois est différent. Il est temps d'en tenir compte.
+            On suit nos pas, notre sommeil, nos calories. Mais <strong className="text-luna-text">personne ne nous a appris à comprendre notre cycle</strong>. Pourtant, il impacte tout : énergie, humeur, digestion, peau, libido, performances cognitives. Chaque jour du mois est différent. Il est temps d'en tenir compte.
           </p>
         </div>
       </section>
@@ -163,7 +163,7 @@ export default function Landing() {
             4 phases. 4 réalités différentes.
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Ton cycle dure ~28 jours. À chaque phase, tes hormones changent — et ton corps avec.
+            Ton cycle dure ~28 jours. À chaque phase, tes hormones changent. Et ton corps avec.
           </p>
           <div className="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto pb-4 md:pb-0 snap-x hide-scrollbar">
             {phases.map((p, i) => (

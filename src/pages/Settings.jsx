@@ -117,21 +117,41 @@ export default function Settings() {
         <SettingRow label="Politique de confidentialite" />
       </Section>
 
-      <div className="pt-4 space-y-2">
-        <button className="w-full text-center py-3 text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors">
-          Deconnexion
-        </button>
-        <button
+      <Section title="Zone sensible">
+        <SettingRow
+          label="Réinitialiser le profil"
+          danger
           onClick={() => {
-            if (window.confirm('Supprimer definitivement ton compte ? Cette action est irreversible.')) {
+            if (window.confirm('Réinitialiser ton profil LUNA ? Toutes tes données seront perdues.')) {
               dispatch({ type: 'RESET' });
               localStorage.removeItem('luna-profile');
               window.location.href = '/';
             }
           }}
-          className="w-full text-center py-3 text-sm font-body text-red-300 hover:text-red-400 transition-colors"
+        />
+        <SettingRow
+          label="Supprimer le compte"
+          danger
+          onClick={() => {
+            if (window.confirm('Supprimer définitivement ton compte ? Cette action est irréversible.')) {
+              dispatch({ type: 'RESET' });
+              localStorage.removeItem('luna-profile');
+              window.location.href = '/';
+            }
+          }}
+        />
+      </Section>
+
+      <div className="pt-2 space-y-2">
+        <button
+          onClick={() => {
+            if (window.confirm('Te déconnecter de LUNA ?')) {
+              window.location.href = '/';
+            }
+          }}
+          className="w-full text-center py-3 text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors"
         >
-          Supprimer le compte
+          Déconnexion
         </button>
         <p className="text-center text-xs text-luna-text-hint font-body mt-4">
           LUNA v3.0.0
