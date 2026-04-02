@@ -47,27 +47,56 @@ const routineSteps = {
 function BreathingExercise({ phaseData, breathing }) {
   const [active, setActive] = useState(false);
   const [breathPhase, setBreathPhase] = useState('inspire');
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(0);
+  const [cycleNum, setCycleNum] = useState(1);
   const intervalRef = useRef(null);
+
+  // Parse durations from breathing description
+  const pattern = breathing?.description || '';
+  const nums = pattern.match(/(\d+)\s*secondes/g)?.map((m) => parseInt(m)) || [4, 7, 8];
+  const inspireTime = nums[0] || 4;
+  const pauseTime = nums.length >= 3 ? (nums[1] || 0) : 0;
+  const expireTime = nums.length >= 3 ? (nums[2] || 8) : (nums[1] || 4);
+  const totalCyclesMatch = pattern.match(/(\d+)\s*cycles/);
+  const totalCycles = totalCyclesMatch ? parseInt(totalCyclesMatch[1]) : 4;
+  const ratio = pauseTime > 0 ? `${inspireTime}:${pauseTime}:${expireTime}` : `${inspireTime}:${expireTime}`;
 
   useEffect(() => {
     if (!active) return;
 
-    const phases = [
-      { name: 'inspire', duration: 4 },
-      { name: 'retiens', duration: 7 },
-      { name: 'expire', duration: 8 },
-    ];
+    const phases = pauseTime > 0
+      ? [
+          { name: 'inspire', duration: inspireTime },
+          { name: 'pause', duration: pauseTime },
+          { name: 'expire', duration: expireTime },
+        ]
+      : [
+          { name: 'inspire', duration: inspireTime },
+          { name: 'expire', duration: expireTime },
+        ];
+
     let phaseIdx = 0;
     let remaining = phases[0].duration;
+    let currentCycle = 1;
 
     setBreathPhase(phases[0].name);
     setCount(phases[0].duration);
+    setCycleNum(1);
 
     intervalRef.current = setInterval(() => {
       remaining--;
       if (remaining <= 0) {
-        phaseIdx = (phaseIdx + 1) % phases.length;
+        phaseIdx++;
+        if (phaseIdx >= phases.length) {
+          phaseIdx = 0;
+          currentCycle++;
+          if (currentCycle > totalCycles) {
+            clearInterval(intervalRef.current);
+            setActive(false);
+            return;
+          }
+          setCycleNum(currentCycle);
+        }
         remaining = phases[phaseIdx].duration;
         setBreathPhase(phases[phaseIdx].name);
       }
@@ -75,7 +104,7 @@ function BreathingExercise({ phaseData, breathing }) {
     }, 1000);
 
     return () => clearInterval(intervalRef.current);
-  }, [active]);
+  }, [active, inspireTime, pauseTime, expireTime, totalCycles]);
 
   const stop = () => {
     setActive(false);
@@ -83,6 +112,7 @@ function BreathingExercise({ phaseData, breathing }) {
   };
 
   const scale = breathPhase === 'inspire' ? 1.3 : breathPhase === 'expire' ? 0.8 : 1.1;
+  const phaseLabel = breathPhase === 'inspire' ? 'Inspire' : breathPhase === 'pause' ? 'Pause' : 'Expire';
 
   return (
     <div className="rounded-[24px] p-6 text-center" style={{ backgroundColor: phaseData.bgColor }}>
@@ -97,7 +127,7 @@ function BreathingExercise({ phaseData, breathing }) {
             className="w-24 h-24 rounded-full mx-auto flex items-center justify-center mb-4"
             style={{ backgroundColor: `${phaseData.color}15` }}
           >
-            <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>4:7:8</p>
+            <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>{ratio}</p>
           </div>
           <button
             onClick={() => setActive(true)}
@@ -119,11 +149,14 @@ function BreathingExercise({ phaseData, breathing }) {
               <p className="text-3xl font-display font-bold" style={{ color: phaseData.colorDark }}>
                 {count}
               </p>
-              <p className="text-xs font-body capitalize" style={{ color: phaseData.colorDark }}>
-                {breathPhase === 'inspire' ? 'Inspire' : breathPhase === 'retiens' ? 'Retiens' : 'Expire'}
+              <p className="text-xs font-body font-semibold capitalize" style={{ color: phaseData.colorDark }}>
+                {phaseLabel}
               </p>
             </div>
           </motion.div>
+          <p className="text-[10px] font-body text-luna-text-hint">
+            Cycle {cycleNum}/{totalCycles}
+          </p>
           <button
             onClick={stop}
             className="text-sm text-luna-text-muted font-body hover:text-luna-text transition-colors"

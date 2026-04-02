@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, BarChart3, TrendingUp, TrendingDown, Minus, Dumbbell, Footprints, Moon as MoonIcon, Smile } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
@@ -90,6 +90,131 @@ function CustomTagInput({ onAdd, phaseColor }) {
       >
         ×
       </button>
+    </div>
+  );
+}
+
+function MiniBreathingExercise({ breathing, phaseData }) {
+  const [active, setActive] = useState(false);
+  const [breathPhase, setBreathPhase] = useState('inspire');
+  const [count, setCount] = useState(0);
+  const [cycleNum, setCycleNum] = useState(1);
+  const intervalRef = useRef(null);
+
+  // Parse durations from breathing description
+  const pattern = breathing?.description || '';
+  const nums = pattern.match(/(\d+)\s*secondes/g)?.map((m) => parseInt(m)) || [4, 2, 6];
+  const inspireTime = nums[0] || 4;
+  const pauseTime = nums[1] || 0;
+  const expireTime = nums[2] || 4;
+  const totalCyclesMatch = pattern.match(/(\d+)\s*cycles/);
+  const totalCycles = totalCyclesMatch ? parseInt(totalCyclesMatch[1]) : 4;
+
+  useEffect(() => {
+    if (!active) return;
+
+    const phases = pauseTime > 0
+      ? [
+          { name: 'inspire', duration: inspireTime },
+          { name: 'pause', duration: pauseTime },
+          { name: 'expire', duration: expireTime },
+        ]
+      : [
+          { name: 'inspire', duration: inspireTime },
+          { name: 'expire', duration: expireTime },
+        ];
+
+    let phaseIdx = 0;
+    let remaining = phases[0].duration;
+    let currentCycle = 1;
+
+    setBreathPhase(phases[0].name);
+    setCount(phases[0].duration);
+    setCycleNum(1);
+
+    intervalRef.current = setInterval(() => {
+      remaining--;
+      if (remaining <= 0) {
+        phaseIdx++;
+        if (phaseIdx >= phases.length) {
+          phaseIdx = 0;
+          currentCycle++;
+          if (currentCycle > totalCycles) {
+            clearInterval(intervalRef.current);
+            setActive(false);
+            return;
+          }
+          setCycleNum(currentCycle);
+        }
+        remaining = phases[phaseIdx].duration;
+        setBreathPhase(phases[phaseIdx].name);
+      }
+      setCount(remaining);
+    }, 1000);
+
+    return () => clearInterval(intervalRef.current);
+  }, [active, inspireTime, pauseTime, expireTime, totalCycles]);
+
+  const stop = () => {
+    setActive(false);
+    clearInterval(intervalRef.current);
+  };
+
+  const scale = breathPhase === 'inspire' ? 1.25 : breathPhase === 'expire' ? 0.8 : 1.05;
+  const phaseLabel = breathPhase === 'inspire' ? 'Inspire' : breathPhase === 'pause' ? 'Pause' : 'Expire';
+  const ratio = pauseTime > 0 ? `${inspireTime}:${pauseTime}:${expireTime}` : `${inspireTime}:${expireTime}`;
+
+  return (
+    <div className="bg-white/60 rounded-[16px] p-4">
+      <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
+        <Wind size={10} className="inline mr-1" />
+        {breathing?.name || 'Respiration'} · {breathing?.duration || '1 min'}
+      </p>
+
+      {!active ? (
+        <div className="text-center">
+          <div
+            className="w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-3"
+            style={{ backgroundColor: `${phaseData.color}15` }}
+          >
+            <p className="text-lg font-display font-bold" style={{ color: phaseData.colorDark }}>{ratio}</p>
+          </div>
+          <button
+            onClick={() => setActive(true)}
+            className="px-5 py-2.5 rounded-[12px] text-white text-xs font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
+            style={{ backgroundColor: phaseData.colorDark }}
+          >
+            Commencer
+          </button>
+        </div>
+      ) : (
+        <div className="text-center space-y-3">
+          <motion.div
+            animate={{ scale }}
+            transition={{ duration: 1, ease: 'easeInOut' }}
+            className="w-20 h-20 rounded-full mx-auto flex items-center justify-center"
+            style={{ backgroundColor: `${phaseData.color}25` }}
+          >
+            <div className="text-center">
+              <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>
+                {count}
+              </p>
+              <p className="text-[10px] font-body font-semibold capitalize" style={{ color: phaseData.colorDark }}>
+                {phaseLabel}
+              </p>
+            </div>
+          </motion.div>
+          <p className="text-[10px] font-body text-luna-text-hint">
+            Cycle {cycleNum}/{totalCycles}
+          </p>
+          <button
+            onClick={stop}
+            className="text-xs text-luna-text-muted font-body hover:text-luna-text transition-colors"
+          >
+            Arrêter
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -429,12 +554,8 @@ export default function Journal() {
                   "{affirmations[affirmationIdx]}"
                 </p>
               </div>
-              <div className="bg-white/60 rounded-[16px] p-4 mb-3">
-                <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">
-                  <Wind size={10} className="inline mr-1" />
-                  Respiration · {ritual.breathing.duration}
-                </p>
-                <p className="text-xs font-body text-luna-text-muted leading-relaxed">{ritual.breathing.description}</p>
+              <div className="mb-3">
+                <MiniBreathingExercise breathing={ritual.breathing} phaseData={phaseData} />
               </div>
               <div className="bg-white/60 rounded-[16px] p-4">
                 <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">Intention</p>
