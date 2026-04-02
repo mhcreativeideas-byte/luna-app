@@ -402,6 +402,42 @@ export default function Calendar() {
                   const phaseColor = PHASES[selectedDay.phase]?.color;
                   const phaseDark = PHASES[selectedDay.phase]?.colorDark;
 
+                  /* ── CONFIRMATION (prioritaire) ── */
+                  if (tempConfirming && tempToConfirm !== null) {
+                    return (
+                      <div className="rounded-[14px] px-4 py-4" style={{ backgroundColor: `${phaseColor}10`, border: `1.5px solid ${phaseColor}30` }}>
+                        <div className="text-center mb-3">
+                          <p className="text-2xl font-display font-bold" style={{ color: phaseDark }}>{tempToConfirm}°C</p>
+                          <p className="text-xs font-body text-luna-text-muted mt-1">C'est bien ta température ?</p>
+                        </div>
+                        <div className="flex items-center justify-center gap-2">
+                          <button
+                            onClick={() => {
+                              dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempToConfirm) } });
+                              setEditingTemp(false);
+                              setTempInput('');
+                              setTempDirty(false);
+                              setTempConfirming(false);
+                              setTempToConfirm(null);
+                            }}
+                            className="flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
+                            style={{ backgroundColor: phaseColor }}
+                          >
+                            <Check size={13} />
+                            Valider
+                          </button>
+                          <button
+                            onClick={() => { setTempConfirming(false); setTempToConfirm(null); setEditingTemp(true); }}
+                            className="px-4 py-2 rounded-full text-xs font-body font-semibold transition-all"
+                            style={{ backgroundColor: '#E8E4E0', color: '#8A7B7F' }}
+                          >
+                            Modifier
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  }
+
                   /* ── ÉTAT 2 : temp sauvegardée, affichage seul (cliquable) ── */
                   if (hasSaved && !editingTemp) {
                     return (
@@ -494,42 +530,6 @@ export default function Calendar() {
                             className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
                           >
                             Annuler
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  }
-
-                  /* ── ÉTAT 1a : confirmation demandée ── */
-                  if (tempConfirming && tempToConfirm !== null) {
-                    return (
-                      <div className="rounded-[14px] px-4 py-4" style={{ backgroundColor: `${phaseColor}10`, border: `1.5px solid ${phaseColor}30` }}>
-                        <div className="text-center mb-3">
-                          <p className="text-2xl font-display font-bold" style={{ color: phaseDark }}>{tempToConfirm}°C</p>
-                          <p className="text-xs font-body text-luna-text-muted mt-1">C'est bien ta température ?</p>
-                        </div>
-                        <div className="flex items-center justify-center gap-2">
-                          <button
-                            onClick={() => {
-                              dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempToConfirm) } });
-                              setEditingTemp(false);
-                              setTempInput('');
-                              setTempDirty(false);
-                              setTempConfirming(false);
-                              setTempToConfirm(null);
-                            }}
-                            className="flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
-                            style={{ backgroundColor: phaseColor }}
-                          >
-                            <Check size={13} />
-                            Valider
-                          </button>
-                          <button
-                            onClick={() => { setTempConfirming(false); setTempToConfirm(null); }}
-                            className="px-4 py-2 rounded-full text-xs font-body font-semibold transition-all"
-                            style={{ backgroundColor: '#E8E4E0', color: '#8A7B7F' }}
-                          >
-                            Modifier
                           </button>
                         </div>
                       </div>
