@@ -103,7 +103,7 @@ export default function Landing() {
 
           <motion.div variants={item} className="space-y-3">
             <Link to="/onboarding" className="btn-luna text-base">
-              Commencer — c'est gratuit
+              Comprendre mon cycle
               <ArrowRight size={18} />
             </Link>
             <p className="text-xs text-luna-text-hint font-body mt-3">
@@ -266,7 +266,7 @@ export default function Landing() {
             Rejoins les femmes qui ont arrêté de subir leur cycle et qui ont commencé à s'en servir.
           </p>
           <Link to="/onboarding" className="btn-luna text-base">
-            Commencer — c'est gratuit
+            Comprendre mon cycle
             <ArrowRight size={18} />
           </Link>
           <Divider className="mx-auto mt-10" />
