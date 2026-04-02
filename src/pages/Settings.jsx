@@ -128,6 +128,15 @@ export default function Settings() {
     setShowHealth(false);
   };
 
+  const [showCycle, setShowCycle] = useState(false);
+  const [editedCycleLength, setEditedCycleLength] = useState(cycleLength || 28);
+  const [editedPeriodLength, setEditedPeriodLength] = useState(periodLength || 5);
+
+  const saveCycle = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { cycleLength: editedCycleLength, periodLength: editedPeriodLength } });
+    setShowCycle(false);
+  };
+
   const dietLabel = (dietPreferences || ['Omnivore']).join(', ');
   const healthLabel = (healthIssues || []).length > 0 ? `${healthIssues.length} selectionne${healthIssues.length > 1 ? 's' : ''}` : 'Aucun';
 
@@ -153,8 +162,8 @@ export default function Settings() {
       </Section>
 
       <Section title="Cycle">
-        <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} />
-        <SettingRow label="Duree des regles" value={`${periodLength} jours`} />
+        <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setEditedPeriodLength(periodLength || 5); setShowCycle(true); }} />
+        <SettingRow label="Duree des regles" value={`${periodLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setEditedPeriodLength(periodLength || 5); setShowCycle(true); }} />
         <SettingToggle
           label="Suivi intelligent"
           checked={false}
@@ -423,6 +432,111 @@ export default function Settings() {
 
               <button
                 onClick={saveHealth}
+                className="btn-luna w-full justify-center text-base py-3.5"
+              >
+                Enregistrer
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Cycle Modal */}
+      <AnimatePresence>
+        {showCycle && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowCycle(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">Mon cycle</h3>
+                <button
+                  onClick={() => setShowCycle(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              {/* Cycle length */}
+              <div className="mb-6">
+                <label className="block text-sm font-body font-semibold text-luna-text-body mb-3">
+                  Duree du cycle
+                </label>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setEditedCycleLength(prev => Math.max(20, prev - 1))}
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                  >
+                    −
+                  </button>
+                  <div className="flex-1 text-center">
+                    <span className="text-3xl font-display text-luna-text">{editedCycleLength}</span>
+                    <span className="text-sm text-luna-text-muted font-body ml-1">jours</span>
+                  </div>
+                  <button
+                    onClick={() => setEditedCycleLength(prev => Math.min(45, prev + 1))}
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+                <input
+                  type="range"
+                  min={20}
+                  max={45}
+                  value={editedCycleLength}
+                  onChange={(e) => setEditedCycleLength(Number(e.target.value))}
+                  className="w-full mt-3 accent-luna-rose"
+                />
+              </div>
+
+              {/* Period length */}
+              <div className="mb-6">
+                <label className="block text-sm font-body font-semibold text-luna-text-body mb-3">
+                  Duree des regles
+                </label>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setEditedPeriodLength(prev => Math.max(2, prev - 1))}
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                  >
+                    −
+                  </button>
+                  <div className="flex-1 text-center">
+                    <span className="text-3xl font-display text-luna-text">{editedPeriodLength}</span>
+                    <span className="text-sm text-luna-text-muted font-body ml-1">jours</span>
+                  </div>
+                  <button
+                    onClick={() => setEditedPeriodLength(prev => Math.min(10, prev + 1))}
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+                <input
+                  type="range"
+                  min={2}
+                  max={10}
+                  value={editedPeriodLength}
+                  onChange={(e) => setEditedPeriodLength(Number(e.target.value))}
+                  className="w-full mt-3 accent-luna-rose"
+                />
+              </div>
+
+              <button
+                onClick={saveCycle}
                 className="btn-luna w-full justify-center text-base py-3.5"
               >
                 Enregistrer
