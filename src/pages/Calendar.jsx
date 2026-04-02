@@ -41,7 +41,7 @@ export default function Calendar() {
 
   const getDayInfo = (year, month, dayNum) => {
     const date = new Date(year, month, dayNum);
-    const dateStr = date.toISOString().split('T')[0];
+    const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
     const diffDays = Math.floor((date - lastPeriod) / (1000 * 60 * 60 * 24));
     const cycleDay = ((diffDays % cycleLength) + cycleLength) % cycleLength + 1;
     const dayPhase = getPhaseForDay(cycleDay, cycleLength, periodLength);

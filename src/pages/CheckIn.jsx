@@ -85,7 +85,8 @@ export default function CheckIn() {
   };
 
   const save = () => {
-    const today = new Date().toISOString().split('T')[0];
+    const _n = new Date();
+    const today = `${_n.getFullYear()}-${String(_n.getMonth() + 1).padStart(2, '0')}-${String(_n.getDate()).padStart(2, '0')}`;
     dispatch({
       type: 'ADD_CHECKIN',
       payload: { date: today, energy, symptoms, note, phase: cycleInfo?.phase },

@@ -31,7 +31,8 @@ export default function Sport() {
   const [stepsSaved, setStepsSaved] = useState(false);
 
   const phase = cycleInfo?.phase || 'follicular';
-  const today = new Date().toISOString().split('T')[0];
+  const _now = new Date();
+  const today = `${_now.getFullYear()}-${String(_now.getMonth() + 1).padStart(2, '0')}-${String(_now.getDate()).padStart(2, '0')}`;
   const sessionValidated = sportSessions?.some((s) => s.date === today) || false;
   const todayLog = (sportLogs || []).find((l) => l.date === today) || { date: today, steps: 0, activities: [] };
 
