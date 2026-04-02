@@ -17,6 +17,7 @@ export default function Auth() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [resetMode, setResetMode] = useState(false);
 
   // Redirect if already logged in
   useEffect(() => {
@@ -74,6 +75,28 @@ export default function Auth() {
     }
   };
 
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccessMessage('');
+    if (!email.trim()) {
+      setError('Entre ton email pour recevoir le lien.');
+      return;
+    }
+    setLoading(true);
+    try {
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/auth?mode=login`,
+      });
+      if (resetError) throw resetError;
+      setSuccessMessage('Un email de reinitialisation t\'a ete envoye. Verifie ta boite mail.');
+    } catch (err) {
+      setError(err.message || 'Une erreur est survenue.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleOAuth = async (provider) => {
     setError('');
     setLoading(true);
@@ -117,12 +140,14 @@ export default function Auth() {
             <div className="text-center mb-8">
               <img src="/logo-luna.png" alt="LUNA" className="w-28 mx-auto mb-4" />
               <h1 className="font-display text-2xl text-luna-text">
-                {mode === 'signup' ? 'Cree ton espace LUNA' : 'Bon retour'}
+                {resetMode ? 'Mot de passe oublie ?' : mode === 'signup' ? 'Cree ton espace LUNA' : 'Bon retour'}
               </h1>
               <p className="text-luna-text-muted font-body text-sm mt-1">
-                {mode === 'signup'
-                  ? 'En quelques secondes, ton cycle n\'aura plus de secrets.'
-                  : 'Ton cycle t\'attendait.'}
+                {resetMode
+                  ? 'Entre ton email, on t\'envoie un lien pour le reinitialiser.'
+                  : mode === 'signup'
+                    ? 'En quelques secondes, ton cycle n\'aura plus de secrets.'
+                    : 'Ton cycle t\'attendait.'}
               </p>
             </div>
 
@@ -167,80 +192,126 @@ export default function Auth() {
               </div>
 
               {/* Email/Password form */}
-              <form onSubmit={handleEmailAuth} className="space-y-4">
-                <div className="relative">
-                  <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); setError(''); }}
-                    placeholder="ton.email@exemple.com"
-                    className="w-full pl-11 pr-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
-                    autoComplete="email"
-                    autoFocus
-                  />
-                </div>
+              {resetMode ? (
+                <form onSubmit={handleResetPassword} className="space-y-4">
+                  <div className="relative">
+                    <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); setError(''); }}
+                      placeholder="ton.email@exemple.com"
+                      className="w-full pl-11 pr-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
+                      autoComplete="email"
+                      autoFocus
+                    />
+                  </div>
 
-                <div className="relative">
-                  <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" />
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={(e) => { setPassword(e.target.value); setError(''); }}
-                    placeholder="Mot de passe (6 caracteres min.)"
-                    className="w-full pl-11 pr-12 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
-                    autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
-                  />
+                  {error && (
+                    <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-body text-red-500 text-center px-2">
+                      {error}
+                    </motion.p>
+                  )}
+                  {successMessage && (
+                    <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-body text-green-600 text-center px-2 py-3 rounded-[12px] bg-green-50">
+                      {successMessage}
+                    </motion.div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={!email.trim() || loading}
+                    className="btn-luna w-full justify-center text-base py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    {loading ? (
+                      <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+                    ) : (
+                      <>Envoyer le lien<ArrowRight size={16} /></>
+                    )}
+                  </button>
+
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-luna-text-hint hover:text-luna-text transition-colors"
+                    onClick={() => { setResetMode(false); setError(''); setSuccessMessage(''); }}
+                    className="w-full text-center text-sm font-body text-luna-text-muted hover:text-luna-text transition-colors"
                   >
-                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    Retour a la connexion
                   </button>
-                </div>
-
-                {/* Error */}
-                {error && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-sm font-body text-red-500 text-center px-2"
-                  >
-                    {error}
-                  </motion.p>
-                )}
-
-                {/* Success */}
-                {successMessage && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-sm font-body text-green-600 text-center px-2 py-3 rounded-[12px] bg-green-50"
-                  >
-                    {successMessage}
-                  </motion.div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={!canSubmit || loading}
-                  className="btn-luna w-full justify-center text-base py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  {loading ? (
-                    <motion.span
-                      animate={{ rotate: 360 }}
-                      transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-                      className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                </form>
+              ) : (
+                <form onSubmit={handleEmailAuth} className="space-y-4">
+                  <div className="relative">
+                    <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); setError(''); }}
+                      placeholder="ton.email@exemple.com"
+                      className="w-full pl-11 pr-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
+                      autoComplete="email"
+                      autoFocus
                     />
-                  ) : (
-                    <>
-                      {mode === 'signup' ? 'Creer mon compte' : 'Me connecter'}
-                      <ArrowRight size={16} />
-                    </>
+                  </div>
+
+                  <div className="relative">
+                    <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" />
+                    <input
+                      type={showPassword ? 'text' : 'password'}
+                      value={password}
+                      onChange={(e) => { setPassword(e.target.value); setError(''); }}
+                      placeholder="Mot de passe (6 caracteres min.)"
+                      className="w-full pl-11 pr-12 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
+                      autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-luna-text-hint hover:text-luna-text transition-colors"
+                    >
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+
+                  {/* Mot de passe oublie - only in login mode */}
+                  {mode === 'login' && (
+                    <div className="text-right">
+                      <button
+                        type="button"
+                        onClick={() => { setResetMode(true); setError(''); setSuccessMessage(''); }}
+                        className="text-xs font-body text-luna-rose hover:underline"
+                      >
+                        Mot de passe oublie ?
+                      </button>
+                    </div>
                   )}
-                </button>
-              </form>
+
+                  {error && (
+                    <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-body text-red-500 text-center px-2">
+                      {error}
+                    </motion.p>
+                  )}
+                  {successMessage && (
+                    <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-sm font-body text-green-600 text-center px-2 py-3 rounded-[12px] bg-green-50">
+                      {successMessage}
+                    </motion.div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={!canSubmit || loading}
+                    className="btn-luna w-full justify-center text-base py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    {loading ? (
+                      <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+                    ) : (
+                      <>
+                        {mode === 'signup' ? 'Creer mon compte' : 'Me connecter'}
+                        <ArrowRight size={16} />
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
 
             {/* Toggle mode */}
