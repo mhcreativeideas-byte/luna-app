@@ -39,6 +39,7 @@ export default function Alimentation() {
   const [openRecipe, setOpenRecipe] = useState(null);
   const [openNutrient, setOpenNutrient] = useState(null);
   const [expandedDrink, setExpandedDrink] = useState(null);
+  const [selectedFood, setSelectedFood] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -77,7 +78,7 @@ export default function Alimentation() {
             {phaseData.nutrients.map((n) => (
               <button
                 key={n}
-                onClick={() => setOpenNutrient(openNutrient === n ? null : n)}
+                onClick={() => { setOpenNutrient(openNutrient === n ? null : n); setSelectedFood(null); }}
                 className="px-4 py-2.5 rounded-[14px] text-sm font-body font-semibold transition-all duration-300"
                 style={openNutrient === n ? {
                   backgroundColor: phaseData.color,
@@ -135,39 +136,64 @@ export default function Alimentation() {
                   Aliments riches en {openNutrient.toLowerCase()}
                 </p>
                 <div className="grid grid-cols-4 gap-3">
-                  {nutrientsFull[openNutrient].foods.map((food, i) => (
-                    <motion.div
-                      key={food.name}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="flex flex-col items-center gap-1.5"
-                    >
-                      <div
-                        className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl"
-                        style={{ backgroundColor: phaseData.bgColor }}
+                  {nutrientsFull[openNutrient].foods.map((food, i) => {
+                    const isActive = selectedFood === food.name;
+                    return (
+                      <motion.button
+                        key={food.name}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        onClick={() => setSelectedFood(isActive ? null : food.name)}
+                        className="flex flex-col items-center gap-1.5 transition-all"
                       >
-                        {food.emoji}
-                      </div>
-                      <span className="text-[11px] font-body text-luna-text text-center leading-tight font-medium">
-                        {food.name}
-                      </span>
-                    </motion.div>
-                  ))}
+                        <div
+                          className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl transition-all"
+                          style={{
+                            backgroundColor: isActive ? `${phaseData.color}25` : phaseData.bgColor,
+                            border: isActive ? `2px solid ${phaseData.color}` : '2px solid transparent',
+                            transform: isActive ? 'scale(1.08)' : 'scale(1)',
+                          }}
+                        >
+                          {food.emoji}
+                        </div>
+                        <span
+                          className="text-[11px] font-body text-center leading-tight transition-colors"
+                          style={{
+                            color: isActive ? phaseData.colorDark : '#4A3F43',
+                            fontWeight: isActive ? 700 : 500,
+                          }}
+                        >
+                          {food.name}
+                        </span>
+                      </motion.button>
+                    );
+                  })}
                 </div>
 
-                {/* Tip */}
-                {nutrientsFull[openNutrient].tip && (
-                  <div
-                    className="mt-4 flex items-start gap-2.5 rounded-[14px] px-4 py-3"
-                    style={{ backgroundColor: `${phaseData.color}10` }}
-                  >
-                    <Lightbulb size={14} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
-                    <p className="text-xs font-body text-luna-text-body leading-relaxed italic">
-                      {nutrientsFull[openNutrient].tip}
-                    </p>
-                  </div>
-                )}
+                {/* Food detail or general tip */}
+                {(() => {
+                  const activeFoodData = selectedFood
+                    ? nutrientsFull[openNutrient].foods.find((f) => f.name === selectedFood)
+                    : null;
+                  const displayText = activeFoodData?.why || nutrientsFull[openNutrient].tip;
+                  if (!displayText) return null;
+                  return (
+                    <motion.div
+                      key={selectedFood || 'tip'}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="mt-4 flex items-start gap-2.5 rounded-[14px] px-4 py-3"
+                      style={{ backgroundColor: `${phaseData.color}10` }}
+                    >
+                      <Lightbulb size={14} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
+                      <p className="text-xs font-body text-luna-text-body leading-relaxed italic">
+                        {displayText}
+                      </p>
+                    </motion.div>
+                  );
+                })()}
               </div>
             </div>
           </motion.div>
