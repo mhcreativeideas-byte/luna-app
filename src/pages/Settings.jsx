@@ -1,8 +1,19 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+
+const goalOptions = [
+  { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
+  { id: 'food', label: 'Mieux manger', icon: '🥗' },
+  { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
+  { id: 'emotions', label: 'Gerer mes emotions', icon: '🧠' },
+  { id: 'discomfort', label: 'Moins de douleurs', icon: '🌸' },
+  { id: 'energy', label: 'Plus d\'energie', icon: '⚡' },
+  { id: 'skin', label: 'Soigner ma peau', icon: '✨' },
+  { id: 'strength', label: 'Me sentir forte', icon: '💪' },
+];
 
 function SettingRow({ label, value, onClick, danger }) {
   return (
@@ -56,6 +67,19 @@ function Section({ title, children }) {
 export default function Settings() {
   const navigate = useNavigate();
   const { name, cycleLength, periodLength, notifications, goals, dispatch, signOut, user } = useCycle();
+  const [showGoals, setShowGoals] = useState(false);
+  const [editedGoals, setEditedGoals] = useState(goals || []);
+
+  const toggleGoal = (id) => {
+    setEditedGoals(prev =>
+      prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]
+    );
+  };
+
+  const saveGoals = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { goals: editedGoals } });
+    setShowGoals(false);
+  };
 
   return (
     <div className="space-y-2 pb-8">
@@ -73,7 +97,7 @@ export default function Settings() {
 
       <Section title="Profil">
         <SettingRow label="Nom" value={name} />
-        <SettingRow label="Objectifs" value={`${goals?.length || 0} selectionnes`} />
+        <SettingRow label="Objectifs" value={`${goals?.length || 0} selectionnes`} onClick={() => { setEditedGoals(goals || []); setShowGoals(true); }} />
       </Section>
 
       <Section title="Cycle">
@@ -163,6 +187,71 @@ export default function Settings() {
           LUNA v3.0.0
         </p>
       </div>
+
+      {/* Goals Modal */}
+      <AnimatePresence>
+        {showGoals && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowGoals(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">Mes objectifs</h3>
+                <button
+                  onClick={() => setShowGoals(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <p className="text-sm text-luna-text-muted font-body mb-4">
+                Selectionne ou retire des objectifs selon tes besoins.
+              </p>
+
+              {/* Goal chips */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {goalOptions.map(({ id, label, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleGoal(id)}
+                    className={`flex items-center gap-2 px-3.5 py-2.5 rounded-full text-sm font-body font-semibold transition-all border-2 ${
+                      editedGoals.includes(id)
+                        ? 'border-orange-300 bg-orange-50 text-orange-700'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-orange-200'
+                    }`}
+                  >
+                    <span>{icon}</span>
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* Save button */}
+              <button
+                onClick={saveGoals}
+                disabled={editedGoals.length === 0}
+                className="btn-luna w-full justify-center text-base py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                Enregistrer ({editedGoals.length} objectif{editedGoals.length > 1 ? 's' : ''})
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
