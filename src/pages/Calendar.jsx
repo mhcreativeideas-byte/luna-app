@@ -446,10 +446,9 @@ export default function Calendar() {
                                 if (e.key === 'Enter') {
                                   const val = parseFloat(tempInput.replace(',', '.'));
                                   if (!isNaN(val) && val > 0) {
-                                    dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
+                                    setTempToConfirm(val);
+                                    setTempConfirming(true);
                                     setEditingTemp(false);
-                                    setTempInput('');
-                                    setTempDirty(false);
                                   }
                                 }
                               }}
@@ -466,17 +465,16 @@ export default function Calendar() {
                             onClick={() => {
                               const val = parseFloat(tempInput.replace(',', '.'));
                               if (!isNaN(val) && val > 0) {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
+                                setTempToConfirm(val);
+                                setTempConfirming(true);
                                 setEditingTemp(false);
-                                setTempInput('');
-                                setTempDirty(false);
                               }
                             }}
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"
                             style={{ backgroundColor: phaseColor }}
                           >
                             <Check size={13} />
-                            Valider
+                            Confirmer
                           </button>
                           <button
                             onClick={() => {
@@ -558,8 +556,10 @@ export default function Calendar() {
                             onChange={(e) => { setTempInput(e.target.value); setTempDirty(true); }}
                             onKeyDown={(e) => {
                               if (e.key === 'Enter' && isTempValid) {
-                                setTempToConfirm(tempVal);
-                                setTempConfirming(true);
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
+                                setEditingTemp(false);
+                                setTempInput('');
+                                setTempDirty(false);
                               }
                             }}
                             className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
@@ -571,13 +571,15 @@ export default function Calendar() {
                         {isTempValid && (
                           <button
                             onClick={() => {
-                              setTempToConfirm(tempVal);
-                              setTempConfirming(true);
+                              dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
+                              setEditingTemp(false);
+                              setTempInput('');
+                              setTempDirty(false);
                             }}
                             className="flex-shrink-0 px-4 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
                             style={{ backgroundColor: phaseColor }}
                           >
-                            Confirmer
+                            Valider
                           </button>
                         )}
                       </div>
