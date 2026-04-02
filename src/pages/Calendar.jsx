@@ -490,6 +490,9 @@ export default function Calendar() {
                   }
 
                   /* ── ÉTAT 1 : pas de temp sauvée, champ libre ── */
+                  const tempVal = parseFloat((tempInput || '').replace(',', '.'));
+                  const isTempValid = !isNaN(tempVal) && tempVal >= 35 && tempVal <= 39;
+
                   return (
                     <div className="rounded-[14px] px-4 py-3" style={{ backgroundColor: '#F8F6F4' }}>
                       <div className="flex items-center gap-3">
@@ -504,6 +507,14 @@ export default function Calendar() {
                             placeholder="36.5"
                             value={tempInput}
                             onChange={(e) => { setTempInput(e.target.value); setTempDirty(true); }}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' && isTempValid) {
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
+                                setEditingTemp(false);
+                                setTempInput('');
+                                setTempDirty(false);
+                              }
+                            }}
                             className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
                           />
                           <p className="text-[10px] font-body text-luna-text-muted mt-0.5">
@@ -513,21 +524,30 @@ export default function Calendar() {
                       </div>
                       {tempDirty && tempInput !== '' && (
                         <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
-                          <button
-                            onClick={() => {
-                              const val = parseFloat(tempInput.replace(',', '.'));
-                              if (!isNaN(val) && val >= 35 && val <= 39) {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
+                          {isTempValid ? (
+                            <button
+                              onClick={() => {
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
                                 setEditingTemp(false);
                                 setTempInput('');
                                 setTempDirty(false);
-                              }
-                            }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"
-                            style={{ backgroundColor: phaseColor }}
+                              }}
+                              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
+                              style={{ backgroundColor: phaseColor }}
+                            >
+                              <Check size={13} />
+                              Valider {tempVal}°C
+                            </button>
+                          ) : (
+                            <p className="text-[11px] font-body text-red-400">
+                              Entre une température entre 35°C et 39°C
+                            </p>
+                          )}
+                          <button
+                            onClick={() => { setTempInput(''); setTempDirty(false); }}
+                            className="px-3 py-2 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
                           >
-                            <Check size={13} />
-                            Valider
+                            Annuler
                           </button>
                         </div>
                       )}
