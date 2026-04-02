@@ -16,6 +16,7 @@ const initialState = {
   healthIssues: [],
   onboardingComplete: false,
   journalEntries: [],
+  sportSessions: [],
   checkIns: [],
   chatHistory: [],
   notifications: true,
@@ -43,6 +44,14 @@ function cycleReducer(state, action) {
       }
       return { ...state, journalEntries: entries };
     }
+    case 'TOGGLE_SPORT_SESSION': {
+      const date = action.payload.date;
+      const exists = state.sportSessions.find((s) => s.date === date);
+      if (exists) {
+        return { ...state, sportSessions: state.sportSessions.filter((s) => s.date !== date) };
+      }
+      return { ...state, sportSessions: [...state.sportSessions, action.payload] };
+    }
     case 'ADD_CHECKIN': {
       const existing = state.checkIns.findIndex(
         (c) => c.date === action.payload.date
@@ -60,7 +69,7 @@ function cycleReducer(state, action) {
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };
     case 'LOAD_DEMO_DATA':
-      return { ...state, journalEntries: action.payload };
+      return { ...state, journalEntries: action.payload.entries, sportSessions: action.payload.sportSessions || [] };
     case 'RESET':
       return initialState;
     default:
@@ -138,11 +147,17 @@ export function CycleProvider({ children }) {
     }
   });
 
-  // DEMO: Auto-load demo data if no journal entries exist
+  // DEMO: Auto-load demo data if no journal entries or sport sessions exist
   useEffect(() => {
-    if (state.journalEntries.length === 0) {
-      const demoEntries = generateDemoEntries();
-      dispatch({ type: 'LOAD_DEMO_DATA', payload: demoEntries });
+    if (state.journalEntries.length === 0 || state.sportSessions.length === 0) {
+      const demo = generateDemoEntries();
+      dispatch({
+        type: 'LOAD_DEMO_DATA',
+        payload: {
+          entries: state.journalEntries.length === 0 ? demo.entries : state.journalEntries,
+          sportSessions: demo.sportSessions,
+        },
+      });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
