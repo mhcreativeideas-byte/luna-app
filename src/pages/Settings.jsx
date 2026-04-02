@@ -128,13 +128,19 @@ export default function Settings() {
     setShowHealth(false);
   };
 
-  const [showCycle, setShowCycle] = useState(false);
+  const [showCycleLength, setShowCycleLength] = useState(false);
+  const [showPeriodLength, setShowPeriodLength] = useState(false);
   const [editedCycleLength, setEditedCycleLength] = useState(cycleLength || 28);
   const [editedPeriodLength, setEditedPeriodLength] = useState(periodLength || 5);
 
-  const saveCycle = () => {
-    dispatch({ type: 'UPDATE_SETTINGS', payload: { cycleLength: editedCycleLength, periodLength: editedPeriodLength } });
-    setShowCycle(false);
+  const saveCycleLength = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { cycleLength: editedCycleLength } });
+    setShowCycleLength(false);
+  };
+
+  const savePeriodLength = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { periodLength: editedPeriodLength } });
+    setShowPeriodLength(false);
   };
 
   const dietLabel = (dietPreferences || ['Omnivore']).join(', ');
@@ -162,8 +168,8 @@ export default function Settings() {
       </Section>
 
       <Section title="Cycle">
-        <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setEditedPeriodLength(periodLength || 5); setShowCycle(true); }} />
-        <SettingRow label="Duree des regles" value={`${periodLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setEditedPeriodLength(periodLength || 5); setShowCycle(true); }} />
+        <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setShowCycleLength(true); }} />
+        <SettingRow label="Duree des regles" value={`${periodLength} jours`} onClick={() => { setEditedPeriodLength(periodLength || 5); setShowPeriodLength(true); }} />
         <SettingRow
           label="Reinitialiser le calendrier"
           onClick={() => {
@@ -436,15 +442,15 @@ export default function Settings() {
         )}
       </AnimatePresence>
 
-      {/* Cycle Modal */}
+      {/* Cycle Length Modal */}
       <AnimatePresence>
-        {showCycle && (
+        {showCycleLength && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowCycle(false); }}
+            onClick={(e) => { if (e.target === e.currentTarget) setShowCycleLength(false); }}
           >
             <motion.div
               initial={{ y: 100, opacity: 0 }}
@@ -455,20 +461,16 @@ export default function Settings() {
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Mon cycle</h3>
+                <h3 className="font-display text-lg text-luna-text">Duree du cycle</h3>
                 <button
-                  onClick={() => setShowCycle(false)}
+                  onClick={() => setShowCycleLength(false)}
                   className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
                 >
                   <X size={16} />
                 </button>
               </div>
 
-              {/* Cycle length */}
               <div className="mb-6">
-                <label className="block text-sm font-body font-semibold text-luna-text-body mb-3">
-                  Duree du cycle
-                </label>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setEditedCycleLength(prev => Math.max(20, prev - 1))}
@@ -497,11 +499,46 @@ export default function Settings() {
                 />
               </div>
 
-              {/* Period length */}
+              <button
+                onClick={saveCycleLength}
+                className="btn-luna w-full justify-center text-base py-3.5"
+              >
+                Enregistrer
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Period Length Modal */}
+      <AnimatePresence>
+        {showPeriodLength && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowPeriodLength(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">Duree des regles</h3>
+                <button
+                  onClick={() => setShowPeriodLength(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
               <div className="mb-6">
-                <label className="block text-sm font-body font-semibold text-luna-text-body mb-3">
-                  Duree des regles
-                </label>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setEditedPeriodLength(prev => Math.max(2, prev - 1))}
@@ -531,7 +568,7 @@ export default function Settings() {
               </div>
 
               <button
-                onClick={saveCycle}
+                onClick={savePeriodLength}
                 className="btn-luna w-full justify-center text-base py-3.5"
               >
                 Enregistrer
