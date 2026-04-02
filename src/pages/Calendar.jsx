@@ -454,7 +454,7 @@ export default function Calendar() {
                           <button
                             onClick={() => {
                               const val = parseFloat(tempInput.replace(',', '.'));
-                              if (!isNaN(val) && val >= 35 && val <= 39) {
+                              if (!isNaN(val) && val > 0) {
                                 dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
                                 setEditingTemp(false);
                                 setTempInput('');
@@ -529,7 +529,7 @@ export default function Calendar() {
 
                   /* ── ÉTAT 1b : pas de temp sauvée, champ libre ── */
                   const tempVal = parseFloat((tempInput || '').replace(',', '.'));
-                  const isTempValid = !isNaN(tempVal) && tempVal >= 35 && tempVal <= 39;
+                  const isTempValid = !isNaN(tempVal) && tempVal > 0;
 
                   return (
                     <div className="rounded-[14px] px-4 py-3" style={{ backgroundColor: '#F8F6F4' }}>
@@ -570,11 +570,6 @@ export default function Calendar() {
                           </button>
                         )}
                       </div>
-                      {tempDirty && tempInput !== '' && !isTempValid && (
-                        <p className="text-[11px] font-body text-red-400 mt-2 pl-11">
-                          Entre une température entre 35°C et 39°C
-                        </p>
-                      )}
                     </div>
                   );
                 })()}
