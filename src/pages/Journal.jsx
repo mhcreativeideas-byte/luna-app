@@ -172,47 +172,52 @@ function MiniBreathingExercise({ breathing, phaseData }) {
       </p>
 
       {!active ? (
-        <div className="text-center">
+        <div className="flex items-center gap-4">
           <div
-            className="w-20 h-20 rounded-full mx-auto flex items-center justify-center mb-3"
+            className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ backgroundColor: `${phaseData.color}15` }}
           >
-            <p className="text-lg font-display font-bold" style={{ color: phaseData.colorDark }}>{ratio}</p>
+            <p className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>{ratio}</p>
           </div>
-          <button
-            onClick={() => setActive(true)}
-            className="px-5 py-2.5 rounded-[12px] text-white text-xs font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
-            style={{ backgroundColor: phaseData.colorDark }}
-          >
-            Commencer
-          </button>
+          <div className="flex-1">
+            <p className="text-xs font-body text-luna-text-muted leading-relaxed mb-2">{breathing?.description}</p>
+            <button
+              onClick={() => setActive(true)}
+              className="px-4 py-2 rounded-[10px] text-white text-[11px] font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
+              style={{ backgroundColor: phaseData.colorDark }}
+            >
+              Commencer
+            </button>
+          </div>
         </div>
       ) : (
-        <div className="text-center space-y-3">
+        <div className="flex items-center gap-4">
           <motion.div
             animate={{ scale }}
             transition={{ duration: 1, ease: 'easeInOut' }}
-            className="w-20 h-20 rounded-full mx-auto flex items-center justify-center"
+            className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ backgroundColor: `${phaseData.color}25` }}
           >
             <div className="text-center">
-              <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>
+              <p className="text-xl font-display font-bold" style={{ color: phaseData.colorDark }}>
                 {count}
               </p>
-              <p className="text-[10px] font-body font-semibold capitalize" style={{ color: phaseData.colorDark }}>
+              <p className="text-[8px] font-body font-semibold capitalize leading-none" style={{ color: phaseData.colorDark }}>
                 {phaseLabel}
               </p>
             </div>
           </motion.div>
-          <p className="text-[10px] font-body text-luna-text-hint">
-            Cycle {cycleNum}/{totalCycles}
-          </p>
-          <button
-            onClick={stop}
-            className="text-xs text-luna-text-muted font-body hover:text-luna-text transition-colors"
-          >
-            Arrêter
-          </button>
+          <div className="flex-1">
+            <p className="text-xs font-body font-semibold" style={{ color: phaseData.colorDark }}>
+              Cycle {cycleNum}/{totalCycles}
+            </p>
+            <button
+              onClick={stop}
+              className="text-[11px] text-luna-text-muted font-body hover:text-luna-text transition-colors mt-1"
+            >
+              Arrêter
+            </button>
+          </div>
         </div>
       )}
     </div>
