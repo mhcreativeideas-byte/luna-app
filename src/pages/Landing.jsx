@@ -205,7 +205,7 @@ export default function Landing() {
           <p className="text-center text-luna-text-muted font-body text-sm mb-12 max-w-md mx-auto">
             Quand tu comprends ton cycle, tu arrêtes de te battre contre ton corps.
           </p>
-          <div className="space-y-5">
+          <div className="grid md:grid-cols-2 gap-4">
             {comparisons.map((c, i) => (
               <motion.div
                 key={i}
@@ -213,31 +213,36 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="rounded-[24px] overflow-hidden"
-                style={{ boxShadow: '0 2px 20px rgba(45,34,38,0.05)' }}
+                className="rounded-[24px] overflow-hidden bg-white"
+                style={{ boxShadow: '0 2px 20px rgba(45,34,38,0.06)' }}
               >
                 {/* Theme header */}
-                <div className="flex items-center gap-2 px-5 pt-4 pb-2 bg-white">
-                  <span className="text-lg">{c.emoji}</span>
-                  <span className="text-[10px] font-body font-bold text-luna-text uppercase tracking-widest">{c.theme}</span>
+                <div className="flex items-center gap-2.5 px-5 pt-5 pb-3">
+                  <span className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
+                    {c.emoji}
+                  </span>
+                  <span className="text-[11px] font-body font-bold text-luna-text uppercase tracking-widest">{c.theme}</span>
                 </div>
-                <div className="grid md:grid-cols-2">
-                  {/* Sans LUNA */}
-                  <div className="bg-white px-5 pb-5 pt-2">
-                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
-                      Sans LUNA
-                    </p>
-                    <p className="text-sm text-luna-text-muted font-body leading-relaxed italic">{c.before}</p>
-                  </div>
-                  {/* Avec LUNA */}
-                  <div className="px-5 pb-5 pt-2 md:pt-2" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
-                    <p className="text-[9px] font-body font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5" style={{ color: '#C4727F' }}>
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#C4727F' }} />
-                      Avec LUNA
-                    </p>
-                    <p className="text-sm font-body text-luna-text font-medium leading-relaxed">{c.after}</p>
-                  </div>
+
+                {/* Sans LUNA */}
+                <div className="px-5 pb-4">
+                  <p className="text-sm text-luna-text-muted font-body leading-relaxed italic">
+                    {c.before}
+                  </p>
+                </div>
+
+                {/* Divider */}
+                <div className="mx-5 flex items-center gap-3">
+                  <div className="flex-1 h-px bg-gray-100" />
+                  <span className="text-[9px] font-body font-bold uppercase tracking-widest" style={{ color: '#C4727F' }}>avec luna</span>
+                  <div className="flex-1 h-px bg-gray-100" />
+                </div>
+
+                {/* Avec LUNA */}
+                <div className="px-5 pt-4 pb-5">
+                  <p className="text-sm font-body text-luna-text font-medium leading-relaxed">
+                    {c.after}
+                  </p>
                 </div>
               </motion.div>
             ))}
