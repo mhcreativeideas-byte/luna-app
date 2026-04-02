@@ -207,6 +207,197 @@ const KEYWORD_MAP = [
   { keys: ['yoga'], response: 'sport' },
 ];
 
+// ===== SYSTÈME DE RÉPONSE DYNAMIQUE =====
+// Gère les questions "puis-je...?", "est-ce que je peux...?" sur des sujets spécifiques
+
+const PHASE_LABELS = {
+  menstrual: 'menstruelle',
+  follicular: 'folliculaire',
+  ovulatory: 'ovulatoire',
+  luteal: 'lutéale',
+};
+
+const PHASE_ENERGY = {
+  menstrual: 'basse',
+  follicular: 'en hausse',
+  ovulatory: 'au max',
+  luteal: 'en baisse',
+};
+
+// Aliments et conseils par phase
+const FOOD_ADVICE = {
+  menstrual: {
+    good: ['lentilles', 'épinards', 'viande rouge', 'saumon', 'sardines', 'chocolat noir', 'gingembre', 'curcuma', 'amandes', 'banane', 'avocat', 'patate douce', 'riz complet', 'tofu', 'œufs', 'poulet', 'quinoa', 'fruits rouges', 'brocoli', 'noix', 'graines de lin', 'kiwi', 'orange', 'poivron', 'yaourt', 'kéfir', 'soupe', 'bouillon', 'thé vert', 'tisane'],
+    ok: ['pâtes', 'pain', 'riz', 'fromage', 'pomme de terre', 'concombre', 'tomate', 'carotte', 'courgette', 'haricots', 'maïs', 'mangue', 'ananas', 'pastèque', 'melon', 'raisin', 'pomme', 'poire', 'miel', 'crème', 'beurre'],
+    limit: ['café', 'alcool', 'sodas', 'fritures', 'charcuterie', 'sucre raffiné', 'sel en excès', 'plats très épicés'],
+    why_good: 'Ton corps perd du fer et a besoin d\'anti-inflammatoires.',
+    why_limit: 'Ça peut amplifier l\'inflammation, les crampes et la rétention d\'eau.',
+  },
+  follicular: {
+    good: ['poulet', 'œufs', 'quinoa', 'légumineuses', 'graines de courge', 'pois chiches', 'yaourt', 'kéfir', 'kimchi', 'avocat', 'brocoli', 'épinards', 'saumon', 'légumes colorés', 'graines germées', 'noix', 'amandes', 'fruits frais', 'tofu', 'lentilles', 'patate douce', 'riz complet', 'haricots', 'crevettes', 'thon'],
+    ok: ['viande rouge', 'pâtes', 'pain', 'fromage', 'chocolat', 'riz', 'pomme de terre', 'crème', 'beurre', 'miel', 'café', 'concombre', 'tomate', 'carotte', 'mangue', 'ananas', 'banane'],
+    limit: ['alcool en excès', 'sodas', 'fast food', 'sucre raffiné en excès'],
+    why_good: 'L\'œstrogène remonte — ton corps est en mode construction et récupération.',
+    why_limit: 'Ton corps est efficace, pas la peine de le charger inutilement.',
+  },
+  ovulatory: {
+    good: ['légumes verts', 'brocoli', 'chou-fleur', 'chou', 'fruits rouges', 'quinoa', 'graines', 'saumon', 'avocat', 'concombre', 'tomate', 'radis', 'céréales complètes', 'légumineuses', 'kéfir', 'kombucha', 'edamame', 'spiruline'],
+    ok: ['poulet', 'œufs', 'viande rouge', 'pâtes', 'riz', 'pain', 'fromage', 'pomme de terre', 'chocolat', 'café', 'fruits', 'noix', 'amandes', 'tofu', 'poisson', 'patate douce', 'banane'],
+    limit: ['alcool', 'sodas', 'fritures', 'sucre raffiné', 'plats très lourds'],
+    why_good: 'Ton œstrogène est au max — les fibres et crucifères aident ton foie à éliminer l\'excès.',
+    why_limit: 'Ton corps est au top, pas besoin de le ralentir.',
+  },
+  luteal: {
+    good: ['patate douce', 'avoine', 'riz complet', 'chocolat noir', 'amandes', 'noix', 'banane', 'avocat', 'dinde', 'poulet', 'œufs', 'graines de courge', 'saumon', 'épinards', 'lentilles', 'quinoa', 'yaourt', 'dattes', 'cannelle', 'gingembre', 'camomille'],
+    ok: ['viande rouge', 'pâtes', 'pain', 'riz', 'fromage', 'pomme de terre', 'tofu', 'fruits', 'légumes', 'beurre de cacahuète', 'miel', 'crème', 'concombre', 'tomate'],
+    limit: ['café après 14h', 'alcool', 'sucre raffiné', 'sel en excès', 'sodas', 'fritures', 'aliments ultra-transformés'],
+    why_good: 'Ton métabolisme augmente de 10-20% et ta sérotonine baisse — les glucides complexes et le magnésium sont tes meilleurs alliés.',
+    why_limit: 'Ça peut aggraver les ballonnements, l\'irritabilité et les troubles du sommeil.',
+  },
+};
+
+// Sports et conseils par phase
+const SPORT_ADVICE = {
+  menstrual: {
+    great: ['yoga', 'yoga restauratif', 'yin yoga', 'stretching', 'marche', 'marche douce', 'natation douce', 'pilates doux', 'tai chi', 'méditation'],
+    ok: ['natation', 'pilates', 'vélo léger', 'danse douce', 'aquagym'],
+    caution: ['hiit', 'crossfit', 'sprint', 'musculation lourde', 'boxe', 'running intense', 'cardio intense', 'muscu', 'course intensive', 'marathon'],
+    why: 'Tes hormones sont au plus bas — ton corps récupère. L\'objectif c\'est de bouger en douceur.',
+  },
+  follicular: {
+    great: ['hiit', 'musculation', 'muscu', 'cardio', 'course', 'running', 'sprint', 'danse', 'boxe', 'escalade', 'crossfit', 'natation', 'vélo', 'tennis', 'football', 'basketball', 'handball'],
+    ok: ['yoga', 'pilates', 'marche', 'stretching', 'natation douce', 'randonnée', 'ski', 'surf', 'badminton', 'volleyball'],
+    caution: [],
+    why: 'L\'œstrogène remonte = meilleure récupération musculaire. C\'est ta MEILLEURE phase pour te dépasser !',
+  },
+  ovulatory: {
+    great: ['hiit', 'sprint', 'musculation lourde', 'boxe', 'crossfit', 'course', 'danse', 'sports d\'équipe', 'tennis', 'escalade', 'cardio intense', 'muscu'],
+    ok: ['natation', 'vélo', 'yoga', 'pilates', 'marche', 'randonnée', 'surf', 'tout sport'],
+    caution: [],
+    why: 'Pic hormonal = pic de performance ! Tout est au max. Attention juste à bien t\'échauffer (ligaments plus lâches).',
+  },
+  luteal: {
+    great: ['yoga', 'pilates', 'marche', 'natation', 'stretching', 'foam rolling', 'yin yoga', 'tai chi', 'vélo doux'],
+    ok: ['musculation modérée', 'muscu légère', 'natation', 'vélo', 'danse', 'randonnée calme', 'aquagym'],
+    caution: ['hiit', 'crossfit', 'sprint', 'cardio intense', 'musculation lourde', 'boxe', 'running intense', 'marathon'],
+    why: 'La progestérone augmente, le cortisol aussi — ton corps récupère moins bien. Baisse l\'intensité progressivement.',
+  },
+};
+
+// Détecte si c'est une question "puis-je / est-ce que je peux"
+function isCanIQuestion(q) {
+  return q.match(/puis.?je|peux.?je|est.?ce que je (peux|devrais|dois)|je (peux|devrais|dois)|c'?est (bien|bon|ok|okay) (de|si|que)|c'?est une bonne idée|ça va si|possible de|recommand/i);
+}
+
+// Cherche un aliment dans la question
+function findFood(q) {
+  const foods = [
+    'viande', 'viande rouge', 'bœuf', 'boeuf', 'poulet', 'dinde', 'porc', 'agneau', 'veau',
+    'poisson', 'saumon', 'thon', 'sardine', 'crevette', 'fruits de mer',
+    'œuf', 'oeuf', 'œufs', 'oeufs',
+    'lait', 'fromage', 'yaourt', 'crème', 'beurre', 'produits laitiers',
+    'pâtes', 'riz', 'pain', 'céréales', 'avoine', 'quinoa', 'blé',
+    'chocolat', 'chocolat noir', 'sucre', 'gâteau', 'bonbon', 'glace', 'pâtisserie', 'biscuit',
+    'café', 'thé', 'alcool', 'vin', 'bière',
+    'salade', 'soupe', 'légumes', 'fruits', 'concombre', 'tomate', 'carotte', 'brocoli', 'épinard', 'chou',
+    'avocat', 'banane', 'pomme', 'orange', 'mangue', 'ananas', 'fraise', 'myrtille',
+    'noix', 'amande', 'noisette', 'cacahuète', 'graines',
+    'tofu', 'soja', 'lentilles', 'pois chiches', 'haricots',
+    'patate douce', 'pomme de terre', 'frites',
+    'pizza', 'burger', 'fast food', 'sushi', 'kebab', 'tacos',
+    'miel', 'confiture', 'nutella', 'sirop',
+    'huile d\'olive', 'huile de coco',
+    'protéines', 'glucides', 'lipides', 'fibres',
+    'soda', 'jus de fruit', 'smoothie', 'eau',
+    'épices', 'curcuma', 'gingembre', 'cannelle',
+  ];
+  for (const food of foods) {
+    if (q.includes(food)) return food;
+  }
+  return null;
+}
+
+// Cherche un sport dans la question
+function findSport(q) {
+  const sports = [
+    'hiit', 'cardio', 'cardio intense', 'musculation', 'muscu', 'musculation lourde',
+    'yoga', 'yin yoga', 'yoga restauratif', 'pilates',
+    'course', 'courir', 'running', 'sprint', 'jogging', 'footing',
+    'marche', 'marcher', 'randonnée',
+    'natation', 'nager', 'piscine', 'aquagym',
+    'vélo', 'cyclisme', 'spinning',
+    'danse', 'danser', 'zumba',
+    'boxe', 'kickboxing', 'arts martiaux', 'judo', 'karaté',
+    'crossfit', 'circuit training',
+    'stretching', 'étirement', 'foam rolling',
+    'escalade', 'grimpe',
+    'tennis', 'badminton', 'squash', 'ping pong',
+    'football', 'basket', 'volleyball', 'handball', 'rugby',
+    'ski', 'snowboard', 'surf', 'paddle',
+    'abdos', 'pompes', 'squats', 'gainage', 'planche',
+    'corde à sauter', 'trampoline',
+    'tai chi', 'méditation',
+  ];
+  for (const sport of sports) {
+    if (q.includes(sport)) return sport;
+  }
+  return null;
+}
+
+// Génère une réponse dynamique pour "puis-je manger X ?"
+function generateFoodResponse(food, phase, ctx) {
+  const advice = FOOD_ADVICE[phase];
+  const phaseName = PHASE_LABELS[phase];
+  const qFood = food.toLowerCase();
+
+  // Cherche dans quelle catégorie est l'aliment
+  const isGood = advice.good.some((f) => qFood.includes(f) || f.includes(qFood));
+  const isOk = advice.ok.some((f) => qFood.includes(f) || f.includes(qFood));
+  const isLimit = advice.limit.some((f) => qFood.includes(f) || f.includes(qFood));
+
+  if (isGood) {
+    return `Carrément ! ${food.charAt(0).toUpperCase() + food.slice(1)}, c'est un super choix en phase ${phaseName} (J${ctx.currentDay}). 👌\n\n${advice.why_good}\n\n${food.charAt(0).toUpperCase() + food.slice(1)} t'apporte exactement ce dont ton corps a besoin en ce moment. Fonce ! 🌿`;
+  }
+
+  if (isLimit) {
+    return `Alors, ${food} en phase ${phaseName}... c'est pas interdit, mais c'est pas l'idéal non plus.\n\n⚠️ ${advice.why_limit}\n\nSi tu en as vraiment envie, fais-toi plaisir — mais en petite quantité. Ton corps te dira merci si tu privilégies plutôt : ${advice.good.slice(0, 4).join(', ')}.\n\nL'idée c'est pas de te priver, c'est de comprendre l'impact. 💛`;
+  }
+
+  if (isOk) {
+    return `Oui, tu peux manger ${food} sans souci ! C'est pas l'aliment le plus stratégique en phase ${phaseName}, mais y'a aucun problème.\n\nPour optimiser, combine-le avec des aliments riches en ${phase === 'menstrual' ? 'fer et magnésium' : phase === 'luteal' ? 'magnésium et vitamine B6' : phase === 'ovulatory' ? 'fibres et antioxydants' : 'protéines et zinc'}.\n\n${advice.why_good} 🌱`;
+  }
+
+  // Aliment non trouvé dans les listes → réponse neutre et encourageante
+  return `Bien sûr que tu peux manger ${food} ! Aucun aliment n'est "interdit" — l'important c'est l'équilibre.\n\nEn phase ${phaseName} (J${ctx.currentDay}), ton corps a surtout besoin de :\n• ${advice.good.slice(0, 3).join('\n• ')}\n\n${advice.why_good}\n\nMange ce qui te fait du bien, et essaie d'intégrer ces aliments quand tu peux. Zéro culpabilité. 💛`;
+}
+
+// Génère une réponse dynamique pour "puis-je faire X sport ?"
+function generateSportResponse(sport, phase, ctx) {
+  const advice = SPORT_ADVICE[phase];
+  const phaseName = PHASE_LABELS[phase];
+  const qSport = sport.toLowerCase();
+
+  const isGreat = advice.great.some((s) => qSport.includes(s) || s.includes(qSport));
+  const isOk = advice.ok.some((s) => qSport.includes(s) || s.includes(qSport));
+  const isCaution = advice.caution.some((s) => qSport.includes(s) || s.includes(qSport));
+
+  if (isGreat) {
+    return `Oh oui, ${sport} c'est parfait en phase ${phaseName} ! Tu es à J${ctx.currentDay}, ton énergie est ${PHASE_ENERGY[phase]}. 💪\n\n${advice.why}\n\nFonce, c'est exactement ce qu'il faut pour ton corps en ce moment ! 🔥`;
+  }
+
+  if (isCaution) {
+    const alternatives = advice.great.slice(0, 4).join(', ');
+    return `${sport.charAt(0).toUpperCase() + sport.slice(1)} en phase ${phaseName}... je te recommande d'y aller doucement ou de choisir une alternative.\n\n🧠 ${advice.why}\n\nSi tu te sens vraiment bien et que ton corps dit oui — écoute-le. Mais si tu hésites, essaie plutôt : ${alternatives}.\n\nL'objectif c'est pas de t'empêcher, c'est que tu tires le meilleur de ton entraînement au bon moment. Tu pourras ${phase === 'menstrual' || phase === 'luteal' ? 'y revenir à fond en phase folliculaire' : 'adapter l\'intensité'}. 💪`;
+  }
+
+  if (isOk) {
+    return `Oui, ${sport} c'est tout à fait faisable en phase ${phaseName} (J${ctx.currentDay}) ! 👍\n\n${advice.why}\n\nÉcoute ton corps et adapte l'intensité si besoin. L'important c'est de bouger de façon qui te fait du bien. 🌟`;
+  }
+
+  // Sport non trouvé → réponse adaptative
+  return `${sport.charAt(0).toUpperCase() + sport.slice(1)} en phase ${phaseName} ? Ça dépend de l'intensité !\n\nTon énergie est ${PHASE_ENERGY[phase]} à J${ctx.currentDay}.\n\n${advice.why}\n\n✅ Ce qui est top en ce moment : ${advice.great.slice(0, 4).join(', ')}\n\nÉcoute ton corps — si tu te sens capable, vas-y. Si tu sens que c'est trop, adapte. Le meilleur sport, c'est celui que tu fais avec plaisir. 💛`;
+}
+
 // Compteur global pour varier les intros
 let _introCounter = 0;
 
@@ -246,7 +437,37 @@ export function getLunaResponse(question, phase, userContext = {}) {
   const qOriginal = question.toLowerCase();
   const responses = RESPONSES[phase] || RESPONSES.follicular;
 
-  // Trouver la meilleure réponse par mot-clé
+  const name = userContext.name || 'ma belle';
+  const ctx = {
+    name,
+    phase,
+    currentDay: userContext.currentDay || 1,
+    cycleLength: userContext.cycleLength || 28,
+    periodLength: userContext.periodLength || 5,
+    daysUntilPeriod: userContext.daysUntilPeriod || 0,
+    energy: userContext.energy || null,
+    symptoms: userContext.symptoms || [],
+    goals: userContext.goals || [],
+  };
+
+  // 1. D'abord, vérifie si c'est une question spécifique "puis-je manger/faire X ?"
+  const canI = isCanIQuestion(qOriginal);
+  const detectedFood = findFood(qOriginal);
+  const detectedSport = findSport(qOriginal);
+
+  // Question sur un aliment spécifique
+  if (detectedFood && (canI || qOriginal.match(/manger|boire|prendre|consommer|cuisiner|préparer/))) {
+    const raw = generateFoodResponse(detectedFood, phase, ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  // Question sur un sport spécifique
+  if (detectedSport && (canI || qOriginal.match(/faire|pratiquer|aller|commencer|continuer|essayer/))) {
+    const raw = generateSportResponse(detectedSport, phase, ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  // 2. Ensuite, cherche dans les réponses prédéfinies par mot-clé
   let bestMatch = null;
   let bestScore = 0;
 
@@ -264,22 +485,68 @@ export function getLunaResponse(question, phase, userContext = {}) {
     }
   }
 
-  const responseKey = bestMatch || 'default';
-  const responseFn = responses[responseKey] || responses['default'];
+  // Si on a un bon match dans les réponses prédéfinies
+  if (bestMatch && bestScore > 0) {
+    const responseFn = responses[bestMatch] || responses['default'];
+    const raw = responseFn(ctx);
+    return naturalizeResponse(raw, name);
+  }
 
-  const name = userContext.name || 'ma belle';
-  const ctx = {
-    name,
-    phase,
-    currentDay: userContext.currentDay || 1,
-    cycleLength: userContext.cycleLength || 28,
-    periodLength: userContext.periodLength || 5,
-    daysUntilPeriod: userContext.daysUntilPeriod || 0,
-    energy: userContext.energy || null,
-    symptoms: userContext.symptoms || [],
-    goals: userContext.goals || [],
-  };
+  // 3. Si rien ne matche, génère une réponse contextuelle intelligente
+  const phaseName = PHASE_LABELS[phase];
+  const energyLevel = PHASE_ENERGY[phase];
+  const foodAdvice = FOOD_ADVICE[phase];
+  const sportAdvice = SPORT_ADVICE[phase];
 
-  const raw = responseFn(ctx);
+  // Détecte le sujet général pour orienter la réponse
+  if (qOriginal.match(/manger|aliment|nourri|repas|cuisine|recette|plat|petit.?déj|déjeuner|dîner|goûter|snack|grigno/)) {
+    const raw = responses['manger'](ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  if (qOriginal.match(/sport|exerc|entraîn|fitness|bouger|activ|course|muscu|nage|vélo|danse|yoga/)) {
+    const raw = responses['sport'](ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  if (qOriginal.match(/dormir|sommeil|nuit|coucher|réveill|insomni|sieste|repos/)) {
+    const raw = responses['dormir'](ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  if (qOriginal.match(/humeur|émotion|pleure|triste|colère|irrit|anxiét|stress|paniqu|peur|angois/)) {
+    const raw = (responses['irritabilite'] || responses['stress'] || responses['default'])(ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  if (qOriginal.match(/peau|bouton|acné|cheveu|ongle|teint|ride|cerne/)) {
+    const raw = (responses['acne'] || responses['default'])(ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  if (qOriginal.match(/libido|sexe|sexuel|désir|intimité|couple|relation/)) {
+    const libidoResponse = phase === 'ovulatory'
+      ? `C'est ta phase ovulatoire — ta libido est naturellement au plus haut ! L'œstrogène + la testostérone boostent le désir.\n\nC'est complètement normal et sain. Profite de cette énergie. ✨`
+      : phase === 'menstrual'
+      ? `En phase menstruelle, la libido est souvent plus basse. C'est hormonal — œstrogène et progestérone sont au plancher.\n\nCertaines femmes ont quand même du désir pendant les règles (les orgasmes peuvent même soulager les crampes !). Écoute ton corps. 💜`
+      : phase === 'follicular'
+      ? `En phase folliculaire, ta libido remonte progressivement avec l'œstrogène. Tu vas sentir le désir augmenter jusqu'à l'ovulation.\n\nTout est normal — ton corps se prépare ! 🌸`
+      : `En phase lutéale, la libido peut baisser à cause de la progestérone. C'est physiologique.\n\nSi tu ressens moins de désir, c'est pas un problème — ça reviendra en phase folliculaire/ovulatoire. Sois patiente avec toi. 💛`;
+    return naturalizeResponse(`${ctx.name}, ${libidoResponse}`, name);
+  }
+
+  if (qOriginal.match(/travail|boulot|productiv|concentr|mémoire|cerveau|créativ|réunion|présentation|examen/)) {
+    const workResponse = phase === 'ovulatory'
+      ? `Tu es en phase ovulatoire — c'est ton PIC de productivité ! Tes capacités verbales, ta mémoire et ta confiance sont au sommet.\n\n🚀 C'est LE moment pour :\n• Présentations importantes\n• Brainstorming, créativité\n• Négociations\n• Networking\n\nProfite de cette fenêtre de 2-3 jours ! 👑`
+      : phase === 'follicular'
+      ? `Phase folliculaire = ta créativité et ta motivation remontent ! C'est parfait pour :\n\n• Lancer de nouveaux projets\n• Apprendre de nouvelles choses\n• Planifier et organiser\n• Résoudre des problèmes\n\nTon cerveau est en mode "construction" — utilise cette énergie ! 🧠✨`
+      : phase === 'menstrual'
+      ? `En phase menstruelle, ta concentration peut être réduite — c'est normal.\n\n💡 Adapte :\n• Tâches simples et routinières\n• Pas de décisions majeures si possible\n• Sessions de travail courtes (25 min + pause)\n• Introspection, bilan, réflexion\n\nC'est le moment de réfléchir plutôt que d'agir. La productivité revient bientôt. 🌱`
+      : `En phase lutéale, la concentration peut fluctuer avec la progestérone.\n\n💡 Conseils :\n• Travaille sur tes forces (tâches connues)\n• Sessions courtes avec pauses\n• Finis ce que tu as commencé plutôt que de commencer du neuf\n• Priorise l'essentiel\n\nGarde les gros projets pour la phase folliculaire. 📋`;
+    return naturalizeResponse(`${ctx.name}, ${workResponse}`, name);
+  }
+
+  // 4. Réponse par défaut contextuelle et utile
+  const raw = responses['default'](ctx);
   return naturalizeResponse(raw, name);
 }
