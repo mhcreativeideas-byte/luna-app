@@ -36,16 +36,28 @@ const whyCards = [
 
 const comparisons = [
   {
-    before: 'Je n\'arrive pas à m\'entraîner cette semaine. J\'ai zéro motivation.',
-    after: 'Je suis en fin de cycle. Mon énergie est basse, c\'est hormonal. Yoga cette semaine, cardio la semaine prochaine.',
+    emoji: '🏋️‍♀️',
+    theme: 'Sport',
+    before: '"Zéro motivation pour le sport cette semaine. Je culpabilise."',
+    after: 'Phase lutéale = énergie basse. C\'est hormonal, pas un manque de volonté. Yoga aujourd\'hui, HIIT dans 5 jours.',
   },
   {
-    before: 'Pourquoi j\'ai autant faim ? Je craque tout le temps.',
-    after: 'Mon métabolisme augmente en phase lutéale. J\'ai besoin de 200-300 cal de plus par jour. C\'est mon corps qui parle, pas un manque de volonté.',
+    emoji: '🍫',
+    theme: 'Alimentation',
+    before: '"Je craque sur le sucre H24. J\'ai aucune discipline."',
+    after: 'Ton métabolisme brûle 200-300 cal/jour de plus en phase lutéale. Ton corps réclame du carburant. Nourris-le.',
   },
   {
-    before: 'Ma présentation était nulle. J\'étais pas du tout à l\'aise.',
-    after: 'Je planifie mes présentations en phase ovulatoire. Mes capacités verbales et ma confiance sont à leur max — c\'est prouvé.',
+    emoji: '💼',
+    theme: 'Vie pro',
+    before: '"Ma présentation était nulle. Je me sentais pas légitime."',
+    after: 'En phase ovulatoire, ta confiance et tes capacités verbales sont au max. Planifie tes moments clés.',
+  },
+  {
+    emoji: '😴',
+    theme: 'Sommeil',
+    before: '"Impossible de dormir, je tourne dans mon lit depuis 2h."',
+    after: 'La progestérone chute avant tes règles et perturbe le sommeil. Magnésium + pas d\'écran = game changer.',
   },
 ];
 
@@ -187,29 +199,45 @@ export default function Landing() {
       {/* Before/After */}
       <section className="px-4 py-16">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-3">
-            Sans LUNA / Avec LUNA
+          <h2 className="font-display text-2xl md:text-3xl text-center text-luna-text mb-2">
+            Même situation.<br /><em className="text-luna-primary">Deux réalités.</em>
           </h2>
-          <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Même situation. Mais quand tu comprends ton corps, tout change.
+          <p className="text-center text-luna-text-muted font-body text-sm mb-12 max-w-md mx-auto">
+            Quand tu comprends ton cycle, tu arrêtes de te battre contre ton corps.
           </p>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {comparisons.map((c, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="grid md:grid-cols-2 gap-3"
+                transition={{ delay: i * 0.08 }}
+                className="rounded-[24px] overflow-hidden"
+                style={{ boxShadow: '0 2px 20px rgba(45,34,38,0.05)' }}
               >
-                <div className="bg-gray-50 rounded-[20px] p-5 opacity-60">
-                  <p className="text-[10px] font-body font-bold text-luna-text-hint mb-2 uppercase tracking-wider">Sans LUNA</p>
-                  <p className="text-sm text-luna-text-muted font-body leading-relaxed">{c.before}</p>
+                {/* Theme header */}
+                <div className="flex items-center gap-2 px-5 pt-4 pb-2 bg-white">
+                  <span className="text-lg">{c.emoji}</span>
+                  <span className="text-[10px] font-body font-bold text-luna-text uppercase tracking-widest">{c.theme}</span>
                 </div>
-                <div className="rounded-[20px] p-5" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
-                  <p className="text-[10px] font-body font-bold uppercase tracking-wider mb-2" style={{ color: '#C4727F' }}>Avec LUNA</p>
-                  <p className="text-sm font-body text-luna-text-body leading-relaxed">{c.after}</p>
+                <div className="grid md:grid-cols-2">
+                  {/* Sans LUNA */}
+                  <div className="bg-white px-5 pb-5 pt-2">
+                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                      Sans LUNA
+                    </p>
+                    <p className="text-sm text-luna-text-muted font-body leading-relaxed italic">{c.before}</p>
+                  </div>
+                  {/* Avec LUNA */}
+                  <div className="px-5 pb-5 pt-2 md:pt-2" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
+                    <p className="text-[9px] font-body font-bold uppercase tracking-widest mb-2 flex items-center gap-1.5" style={{ color: '#C4727F' }}>
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#C4727F' }} />
+                      Avec LUNA
+                    </p>
+                    <p className="text-sm font-body text-luna-text font-medium leading-relaxed">{c.after}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
