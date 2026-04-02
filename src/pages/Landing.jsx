@@ -205,7 +205,7 @@ export default function Landing() {
           <p className="text-center text-luna-text-muted font-body text-sm mb-12 max-w-md mx-auto">
             Quand tu comprends ton cycle, tu arrêtes de te battre contre ton corps.
           </p>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-5">
             {comparisons.map((c, i) => (
               <motion.div
                 key={i}
@@ -213,36 +213,41 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="rounded-[24px] overflow-hidden bg-white"
-                style={{ boxShadow: '0 2px 20px rgba(45,34,38,0.06)' }}
+                className="rounded-[24px] overflow-hidden"
+                style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}
               >
-                {/* Theme header */}
-                <div className="flex items-center gap-2.5 px-5 pt-5 pb-3">
-                  <span className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
-                    {c.emoji}
-                  </span>
-                  <span className="text-[11px] font-body font-bold text-luna-text uppercase tracking-widest">{c.theme}</span>
-                </div>
-
-                {/* Sans LUNA */}
-                <div className="px-5 pb-4">
+                {/* SANS LUNA — partie grise/terne */}
+                <div className="bg-gray-50 px-5 pt-5 pb-5">
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <span className="w-9 h-9 rounded-full flex items-center justify-center text-base bg-gray-100 grayscale opacity-60">
+                      {c.emoji}
+                    </span>
+                    <span className="text-[11px] font-body font-bold text-luna-text-hint uppercase tracking-widest">{c.theme}</span>
+                  </div>
                   <p className="text-sm text-luna-text-muted font-body leading-relaxed italic">
                     {c.before}
                   </p>
                 </div>
 
-                {/* Divider */}
-                <div className="mx-5 flex items-center gap-3">
-                  <div className="flex-1 h-px bg-gray-100" />
-                  <span className="text-[9px] font-body font-bold uppercase tracking-widest" style={{ color: '#C4727F' }}>avec luna</span>
-                  <div className="flex-1 h-px bg-gray-100" />
-                </div>
-
-                {/* Avec LUNA */}
-                <div className="px-5 pt-4 pb-5">
-                  <p className="text-sm font-body text-luna-text font-medium leading-relaxed">
+                {/* AVEC LUNA — partie colorée et impactante */}
+                <div className="bg-white px-5 pt-4 pb-5 relative">
+                  {/* Badge AVEC LUNA */}
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ background: 'linear-gradient(135deg, #FDE8EB 0%, #FFF3EB 100%)' }}>
+                      {c.emoji}
+                    </span>
+                    <span
+                      className="text-[10px] font-body font-bold uppercase tracking-widest px-3 py-1 rounded-pill text-white"
+                      style={{ background: 'linear-gradient(135deg, #C4727F 0%, #D4918A 100%)' }}
+                    >
+                      avec luna
+                    </span>
+                  </div>
+                  <p className="text-sm font-body text-luna-text font-semibold leading-relaxed">
                     {c.after}
                   </p>
+                  {/* Accent bar */}
+                  <div className="absolute top-0 left-5 right-5 h-[2px] rounded-full" style={{ background: 'linear-gradient(90deg, #C4727F 0%, #F2C0A8 100%)' }} />
                 </div>
               </motion.div>
             ))}
