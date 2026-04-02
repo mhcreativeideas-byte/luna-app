@@ -1,6 +1,31 @@
 // Catégories de questions suggérées avec icônes
 export const SUGGESTION_CATEGORIES = [
   {
+    id: 'food',
+    label: '🍽️ Nutrition',
+    questions: [
+      'Qu\'est-ce que je mange ce soir ?',
+      'Une recette adaptée à ma phase ?',
+      'Un petit-déj équilibré pour aujourd\'hui ?',
+      'Un goûter adapté à mon cycle ?',
+      'Pourquoi j\'ai des envies de sucre ?',
+      'Je suis végétarienne, quoi manger ?',
+      'Quels aliments pour mes hormones ?',
+    ],
+  },
+  {
+    id: 'recipes',
+    label: '👩‍🍳 Recettes',
+    questions: [
+      'Une recette anti-inflammatoire ?',
+      'Un smoothie adapté à ma phase ?',
+      'Idée de déjeuner rapide ?',
+      'Un snack sain pour le bureau ?',
+      'Une recette riche en fer ?',
+      'Un dîner léger et nourrissant ?',
+    ],
+  },
+  {
     id: 'cycle',
     label: '🔄 Mon cycle',
     questions: [
@@ -12,17 +37,6 @@ export const SUGGESTION_CATEGORIES = [
     ],
   },
   {
-    id: 'food',
-    label: '🍽️ Alimentation',
-    questions: [
-      'Quoi manger aujourd\'hui ?',
-      'Pourquoi j\'ai des envies de sucre ?',
-      'Quoi manger pour réduire les ballonnements ?',
-      'Une recette adaptée à ma phase ?',
-      'Comment réduire la rétention d\'eau ?',
-    ],
-  },
-  {
     id: 'sport',
     label: '🏋️ Sport',
     questions: [
@@ -30,17 +44,6 @@ export const SUGGESTION_CATEGORIES = [
       'Je peux faire du HIIT en ce moment ?',
       'Pourquoi j\'ai moins de force ?',
       'Quel yoga est adapté à ma phase ?',
-      'Combien de sport par semaine ?',
-    ],
-  },
-  {
-    id: 'sleep',
-    label: '😴 Sommeil',
-    questions: [
-      'Comment mieux dormir ce soir ?',
-      'Pourquoi je dors mal en ce moment ?',
-      'Quelle routine du soir adopter ?',
-      'Combien d\'heures dormir ?',
     ],
   },
   {
@@ -48,8 +51,7 @@ export const SUGGESTION_CATEGORIES = [
     label: '💭 Bien-être',
     questions: [
       'Comment gérer mon irritabilité ?',
-      'Des astuces pour mon acné hormonale ?',
-      'Pourquoi j\'ai envie de pleurer ?',
+      'Comment mieux dormir ce soir ?',
       'Comment gérer le stress hormonal ?',
       'Comment booster ma confiance ?',
     ],
@@ -58,10 +60,10 @@ export const SUGGESTION_CATEGORIES = [
 
 // Questions rapides affichées au début (les plus fréquentes)
 export const QUICK_SUGGESTIONS = [
+  'Qu\'est-ce que je mange ce soir ?',
+  'Un goûter adapté à mon cycle ?',
   'Pourquoi je suis fatiguée ?',
-  'Quoi manger aujourd\'hui ?',
-  'Quel sport faire ?',
-  'Comment mieux dormir ?',
+  'Une recette pour ma phase ?',
 ];
 
 // Réponses complètes par phase — chaque réponse est une fonction qui reçoit le contexte utilisatrice
@@ -343,6 +345,556 @@ const SMART_SPORT_ALTERNATIVES = {
   muscu: ['pilates', 'yoga dynamique', 'musculation légère avec plus de répétitions'],
 };
 
+// ===== BASE DE DONNÉES RECETTES PAR PHASE × REPAS =====
+const RECIPES = {
+  menstrual: {
+    petit_dej: [
+      {
+        name: 'Porridge réconfort anti-crampes',
+        ingredients: ['flocons d\'avoine', 'lait végétal', 'banane', 'chocolat noir', 'cannelle', 'graines de lin'],
+        instructions: 'Fais cuire les flocons dans le lait 5 min. Ajoute la banane écrasée, le chocolat noir en copeaux, la cannelle et les graines de lin.',
+        why: 'L\'avoine apporte des glucides lents, la banane du magnésium (anti-crampes), le chocolat noir booste la sérotonine.',
+        tags: ['vegetarien', 'vegan_possible', 'sans_gluten_possible', 'anti-inflammatoire'],
+        time: '10 min',
+      },
+      {
+        name: 'Smoothie fer & vitalité',
+        ingredients: ['épinards', 'banane', 'beurre de cacahuète', 'cacao cru', 'lait d\'amande', 'miel'],
+        instructions: 'Mixe tout ensemble jusqu\'à consistance lisse. Ajoute des glaçons si tu veux.',
+        why: 'Les épinards apportent du fer, le cacao du magnésium, la banane du potassium — tout ce que ton corps perd pendant les règles.',
+        tags: ['vegetarien', 'vegan_possible', 'sans_gluten', 'rapide'],
+        time: '5 min',
+      },
+      {
+        name: 'Tartines avocat-œuf mollet',
+        ingredients: ['pain complet', 'avocat', 'œuf', 'citron', 'sel', 'poivre', 'graines de sésame'],
+        instructions: 'Fais cuire l\'œuf 6 min dans l\'eau bouillante. Écrase l\'avocat avec le citron. Tartine et dépose l\'œuf.',
+        why: 'L\'avocat apporte du bon gras et du potassium, l\'œuf des protéines et du fer héminique facile à absorber.',
+        tags: ['vegetarien', 'rapide'],
+        time: '10 min',
+      },
+    ],
+    dejeuner: [
+      {
+        name: 'Bowl lentilles-patate douce-épinards',
+        ingredients: ['lentilles corail', 'patate douce', 'épinards', 'curcuma', 'ail', 'huile d\'olive', 'citron'],
+        instructions: 'Rôtis la patate douce en cubes 25 min au four. Cuis les lentilles 15 min avec le curcuma. Assemble avec les épinards frais, l\'ail et un filet de citron.',
+        why: 'Les lentilles = fer + protéines végétales. Le curcuma est anti-inflammatoire. La patate douce apporte des glucides complexes réconfortants.',
+        tags: ['vegan', 'sans_gluten', 'anti-inflammatoire', 'riche_fer'],
+        time: '30 min',
+      },
+      {
+        name: 'Saumon teriyaki & riz complet',
+        ingredients: ['pavé de saumon', 'sauce soja', 'miel', 'gingembre', 'riz complet', 'brocoli', 'graines de sésame'],
+        instructions: 'Marine le saumon dans soja+miel+gingembre 15 min. Poêle 4 min chaque côté. Sers avec le riz et le brocoli vapeur.',
+        why: 'Le saumon = oméga-3 anti-inflammatoires (réduit les crampes). Le gingembre apaise les nausées. Le brocoli apporte du fer végétal.',
+        tags: ['sans_gluten_possible', 'omega3', 'anti-inflammatoire'],
+        time: '25 min',
+      },
+      {
+        name: 'Soupe veloutée réconfort',
+        ingredients: ['carottes', 'patate douce', 'gingembre frais', 'lait de coco', 'curcuma', 'bouillon de légumes'],
+        instructions: 'Fais cuire carottes et patate douce dans le bouillon 20 min. Ajoute gingembre, curcuma, lait de coco. Mixe.',
+        why: 'Chaleur + gingembre anti-nausée + curcuma anti-inflammatoire = le combo parfait pour les jours de règles.',
+        tags: ['vegan', 'sans_gluten', 'anti-inflammatoire', 'réconfortant'],
+        time: '25 min',
+      },
+    ],
+    diner: [
+      {
+        name: 'Wok doux poulet-gingembre',
+        ingredients: ['poulet émincé', 'gingembre frais', 'brocoli', 'carottes', 'sauce soja', 'huile de sésame', 'riz basmati'],
+        instructions: 'Fais sauter le poulet avec le gingembre râpé. Ajoute les légumes et la sauce soja. Sers sur le riz.',
+        why: 'Le gingembre soulage crampes et nausées. Le poulet apporte des protéines légères. Les légumes fournissent fer et vitamines.',
+        tags: ['léger', 'anti-inflammatoire'],
+        time: '20 min',
+      },
+      {
+        name: 'Dahl de lentilles corail',
+        ingredients: ['lentilles corail', 'tomates concassées', 'lait de coco', 'curcuma', 'cumin', 'gingembre', 'ail', 'riz'],
+        instructions: 'Fais revenir ail, gingembre, épices. Ajoute lentilles + tomates + lait de coco. Cuis 20 min. Sers avec du riz.',
+        why: 'Ultra réconfortant, riche en fer, anti-inflammatoire avec le curcuma. Le repas doudou parfait pour les règles.',
+        tags: ['vegan', 'sans_gluten', 'réconfortant', 'riche_fer'],
+        time: '25 min',
+      },
+    ],
+    gouter: [
+      {
+        name: 'Chocolat chaud au lait d\'amande',
+        ingredients: ['lait d\'amande', 'cacao cru', 'miel', 'cannelle', 'une pincée de sel'],
+        instructions: 'Chauffe le lait, fouette avec le cacao, le miel et la cannelle.',
+        why: 'Le cacao = magnésium pur (anti-crampes + boost sérotonine). La cannelle régule la glycémie.',
+        tags: ['vegan_possible', 'sans_gluten', 'réconfortant'],
+        time: '5 min',
+      },
+      {
+        name: 'Energy balls cacao-dattes',
+        ingredients: ['dattes Medjool', 'amandes', 'cacao cru', 'noix de coco râpée', 'beurre de cacahuète'],
+        instructions: 'Mixe tout au blender. Forme des boules. 30 min au frigo.',
+        why: 'Les dattes = fer + énergie rapide. Les amandes = magnésium. Le cacao = sérotonine. Le goûter anti-règles parfait.',
+        tags: ['vegan', 'sans_gluten', 'batch_cooking'],
+        time: '10 min + 30 min frigo',
+      },
+    ],
+    snack: [
+      { name: 'Banane + chocolat noir 70%', why: 'Magnésium + potassium + sérotonine', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Amandes + dattes', why: 'Magnésium + fer + énergie douce', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Yaourt + miel + graines de lin', why: 'Protéines + oméga-3 + douceur', tags: ['vegetarien', 'sans_gluten'] },
+      { name: 'Tartine beurre de cacahuète + banane', why: 'Protéines + magnésium + réconfort', tags: ['vegan_possible'] },
+    ],
+  },
+  follicular: {
+    petit_dej: [
+      {
+        name: 'Omelette protéinée aux herbes',
+        ingredients: ['3 œufs', 'épinards', 'feta', 'herbes fraîches', 'pain complet grillé'],
+        instructions: 'Bats les œufs, ajoute épinards et herbes. Cuis en omelette, ajoute la feta. Sers avec le pain grillé.',
+        why: 'L\'œstrogène remonte = ton corps construit du muscle. Les protéines du matin maximisent cette fenêtre anabolique.',
+        tags: ['vegetarien', 'riche_protéines'],
+        time: '10 min',
+      },
+      {
+        name: 'Bowl protéiné açaï-granola',
+        ingredients: ['purée d\'açaï', 'banane', 'granola', 'graines de courge', 'fruits frais', 'yaourt grec'],
+        instructions: 'Mixe l\'açaï congelé avec la banane. Verse dans un bowl. Ajoute granola, graines et fruits.',
+        why: 'L\'açaï = antioxydants puissants. Le yaourt grec = protéines. Les graines de courge = zinc pour la croissance folliculaire.',
+        tags: ['vegetarien', 'sans_gluten_possible'],
+        time: '5 min',
+      },
+      {
+        name: 'Smoothie vert protéiné',
+        ingredients: ['épinards', 'banane', 'yaourt grec', 'graines de chanvre', 'mangue', 'lait d\'amande'],
+        instructions: 'Mixe tout. Ajoute des glaçons si tu veux.',
+        why: 'Protéines + zinc + fer + antioxydants. Ton corps absorbe mieux les nutriments en phase folliculaire.',
+        tags: ['vegetarien', 'sans_gluten', 'rapide'],
+        time: '5 min',
+      },
+    ],
+    dejeuner: [
+      {
+        name: 'Pokeball saumon-avocat-quinoa',
+        ingredients: ['quinoa', 'saumon frais ou fumé', 'avocat', 'edamame', 'concombre', 'mangue', 'sauce soja', 'graines de sésame'],
+        instructions: 'Cuis le quinoa. Dispose tous les ingrédients en bowl. Arrose de sauce soja et graines de sésame.',
+        why: 'Protéines complètes du quinoa + oméga-3 du saumon + zinc des edamame = combo parfait pour la construction hormonale.',
+        tags: ['sans_gluten', 'riche_protéines'],
+        time: '20 min',
+      },
+      {
+        name: 'Salade poulet grillé-grenade-feta',
+        ingredients: ['poulet grillé', 'mesclun', 'grenade', 'feta', 'noix', 'vinaigrette citron-huile d\'olive'],
+        instructions: 'Grille le poulet. Assemble la salade. Ajoute grenade, feta, noix et vinaigrette.',
+        why: 'Protéines + antioxydants de la grenade + bon gras des noix. Léger mais nourrissant pour ton énergie montante.',
+        tags: ['sans_gluten'],
+        time: '15 min',
+      },
+      {
+        name: 'Wrap pois chiches-légumes grillés',
+        ingredients: ['pois chiches', 'courgette', 'poivron', 'houmous', 'tortilla complète', 'épinards', 'citron'],
+        instructions: 'Grille les légumes et les pois chiches au four. Tartine la tortilla de houmous, garnis et roule.',
+        why: 'Pois chiches = protéines + zinc + fer. Parfait pour soutenir la production d\'œstrogène.',
+        tags: ['vegan', 'riche_fer'],
+        time: '20 min',
+      },
+    ],
+    diner: [
+      {
+        name: 'Sauté de crevettes à l\'ail et brocoli',
+        ingredients: ['crevettes', 'brocoli', 'ail', 'gingembre', 'sauce soja', 'riz complet', 'huile de sésame'],
+        instructions: 'Fais sauter l\'ail et gingembre, ajoute les crevettes 3 min, puis le brocoli. Sauce soja + sésame. Sers sur le riz.',
+        why: 'Les crevettes = iode + zinc + protéines légères. Le brocoli aide le foie à métaboliser l\'œstrogène qui monte.',
+        tags: ['sans_gluten', 'léger'],
+        time: '15 min',
+      },
+      {
+        name: 'Buddha bowl quinoa-légumes rôtis',
+        ingredients: ['quinoa', 'patate douce', 'pois chiches', 'kale', 'avocat', 'tahini', 'citron'],
+        instructions: 'Rôtis patate douce et pois chiches 25 min. Assemble avec quinoa, kale massé, avocat et sauce tahini-citron.',
+        why: 'Protéines complètes + fer + zinc + fibres. Nourrissant et parfait pour la construction hormonale.',
+        tags: ['vegan', 'sans_gluten', 'riche_fer'],
+        time: '30 min',
+      },
+    ],
+    gouter: [
+      {
+        name: 'Toast avocat-graines de courge',
+        ingredients: ['pain complet', 'avocat', 'graines de courge', 'citron', 'piment d\'Espelette'],
+        instructions: 'Écrase l\'avocat avec le citron. Tartine. Parsème de graines de courge et piment.',
+        why: 'L\'avocat apporte du bon gras, les graines de courge du zinc essentiel pour la croissance folliculaire.',
+        tags: ['vegan', 'rapide'],
+        time: '5 min',
+      },
+      {
+        name: 'Yaourt grec, miel, noix & graines',
+        ingredients: ['yaourt grec', 'miel', 'noix', 'graines de courge', 'quelques myrtilles'],
+        instructions: 'Assemble dans un bol. C\'est tout !',
+        why: 'Protéines du yaourt + zinc des graines + antioxydants des myrtilles. Le goûter construction musculaire.',
+        tags: ['vegetarien', 'sans_gluten', 'rapide'],
+        time: '2 min',
+      },
+    ],
+    snack: [
+      { name: 'Pomme + beurre d\'amande', why: 'Fibres + protéines + bon gras', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Graines de courge + quelques noix de cajou', why: 'Zinc + magnésium pour la production hormonale', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Edamame salés', why: 'Protéines végétales + phytoœstrogènes', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Houmous + bâtonnets de carottes', why: 'Fer + zinc + fibres', tags: ['vegan', 'sans_gluten'] },
+    ],
+  },
+  ovulatory: {
+    petit_dej: [
+      {
+        name: 'Smoothie bowl antioxydant',
+        ingredients: ['fruits rouges congelés', 'banane', 'épinards', 'graines de chia', 'granola', 'noix de coco'],
+        instructions: 'Mixe les fruits, banane et épinards épais. Verse en bowl. Décore avec chia, granola et coco.',
+        why: 'Les antioxydants des fruits rouges + fibres des graines aident ton foie à éliminer l\'excès d\'œstrogène au pic.',
+        tags: ['vegan_possible', 'sans_gluten_possible'],
+        time: '5 min',
+      },
+      {
+        name: 'Tartines complètes saumon-concombre',
+        ingredients: ['pain de seigle', 'saumon fumé', 'fromage frais', 'concombre', 'aneth', 'citron'],
+        instructions: 'Tartine de fromage frais. Dépose le saumon, concombre et aneth. Filet de citron.',
+        why: 'Protéines + oméga-3 + légèreté. Ton métabolisme est rapide, pas besoin de te charger.',
+        tags: ['léger'],
+        time: '5 min',
+      },
+    ],
+    dejeuner: [
+      {
+        name: 'Salade croquante quinoa-avocat-grenade',
+        ingredients: ['quinoa', 'avocat', 'grenade', 'roquette', 'concombre', 'radis', 'vinaigrette citron-tahini'],
+        instructions: 'Assemble tous les ingrédients frais sur le quinoa cuit et froid. Arrose de vinaigrette.',
+        why: 'Fibres du quinoa + crucifères (roquette) aident le foie à métaboliser l\'excès d\'œstrogène. Frais et léger pour ton pic d\'énergie.',
+        tags: ['vegan', 'sans_gluten', 'léger'],
+        time: '15 min',
+      },
+      {
+        name: 'Wok de légumes croquants-tofu',
+        ingredients: ['tofu ferme', 'brocoli', 'poivron', 'edamame', 'sauce soja', 'gingembre', 'huile de sésame'],
+        instructions: 'Presse et coupe le tofu en cubes. Fais sauter avec les légumes et la sauce.',
+        why: 'Crucifères (brocoli) = DIM, un composé qui aide le métabolisme de l\'œstrogène. Le tofu apporte des phytoœstrogènes doux.',
+        tags: ['vegan', 'sans_gluten', 'léger'],
+        time: '15 min',
+      },
+    ],
+    diner: [
+      {
+        name: 'Saumon en papillote citron-herbes',
+        ingredients: ['pavé de saumon', 'courgette', 'tomates cerises', 'citron', 'herbes de Provence', 'quinoa'],
+        instructions: 'Emballe saumon + légumes dans du papier sulfurisé. Four 180°C, 18 min. Sers avec quinoa.',
+        why: 'Oméga-3 du saumon + fibres du quinoa. Léger le soir pour un sommeil optimal malgré ton énergie débordante.',
+        tags: ['sans_gluten', 'léger', 'omega3'],
+        time: '25 min',
+      },
+      {
+        name: 'Taboulé de chou-fleur frais',
+        ingredients: ['chou-fleur', 'concombre', 'tomates', 'persil', 'menthe', 'citron', 'huile d\'olive', 'grenade'],
+        instructions: 'Mixe le chou-fleur cru en semoule. Mélange avec les légumes coupés fin, herbes et vinaigrette.',
+        why: 'Le chou-fleur = crucifère top pour aider le foie à détoxifier l\'excès d\'œstrogène. Ultra frais et léger.',
+        tags: ['vegan', 'sans_gluten', 'léger'],
+        time: '15 min',
+      },
+    ],
+    gouter: [
+      {
+        name: 'Smoothie vert détox',
+        ingredients: ['concombre', 'épinards', 'pomme verte', 'gingembre', 'citron', 'eau de coco'],
+        instructions: 'Mixe tout avec des glaçons.',
+        why: 'Hydratant + détoxifiant. Aide ton foie à gérer le pic d\'œstrogène.',
+        tags: ['vegan', 'sans_gluten', 'détox'],
+        time: '5 min',
+      },
+    ],
+    snack: [
+      { name: 'Crudités + houmous', why: 'Fibres + protéines végétales, léger et frais', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Fruits rouges + quelques amandes', why: 'Antioxydants + bon gras', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Kombucha + crackers de graines', why: 'Probiotiques + fibres', tags: ['vegan'] },
+      { name: 'Edamame + graines de tournesol', why: 'Protéines + sélénium pour la détox', tags: ['vegan', 'sans_gluten'] },
+    ],
+  },
+  luteal: {
+    petit_dej: [
+      {
+        name: 'Porridge banane-cannelle-noix',
+        ingredients: ['flocons d\'avoine', 'lait végétal', 'banane', 'cannelle', 'noix', 'miel', 'beurre de cacahuète'],
+        instructions: 'Cuis les flocons 5 min. Ajoute banane écrasée, cannelle, noix et un filet de beurre de cacahuète.',
+        why: 'Glucides complexes + tryptophane de la banane et de l\'avoine boostent ta sérotonine qui chute. La cannelle stabilise ta glycémie.',
+        tags: ['vegan_possible', 'réconfortant', 'sans_gluten_possible'],
+        time: '10 min',
+      },
+      {
+        name: 'Pancakes protéinés banane-avoine',
+        ingredients: ['banane', 'flocons d\'avoine', '2 œufs', 'cannelle', 'myrtilles', 'miel'],
+        instructions: 'Mixe banane+avoine+œufs. Poêle comme des pancakes. Garnis de myrtilles et miel.',
+        why: 'Glucides complexes qui boostent la sérotonine + protéines pour la satiété. Le petit-déj anti-PMS.',
+        tags: ['vegetarien', 'sans_gluten'],
+        time: '15 min',
+      },
+      {
+        name: 'Tartines complètes avocat-dinde',
+        ingredients: ['pain complet', 'avocat', 'tranches de dinde', 'tomate', 'graines de sésame'],
+        instructions: 'Tartine l\'avocat écrasé, dépose la dinde et la tomate. Parsème de graines.',
+        why: 'La dinde = tryptophane (précurseur de sérotonine). L\'avocat = magnésium + B6. Le duo anti-irritabilité.',
+        tags: ['riche_protéines'],
+        time: '5 min',
+      },
+    ],
+    dejeuner: [
+      {
+        name: 'Curry doux patate douce-pois chiches',
+        ingredients: ['patate douce', 'pois chiches', 'lait de coco', 'curry doux', 'épinards', 'riz complet'],
+        instructions: 'Fais revenir la patate douce en cubes. Ajoute curry, lait de coco, pois chiches. Cuis 20 min. Ajoute les épinards en fin.',
+        why: 'Patate douce = glucides complexes + vitamine B6. Pois chiches = magnésium. Lait de coco = satiété. Le repas anti-PMS par excellence.',
+        tags: ['vegan', 'sans_gluten', 'réconfortant'],
+        time: '25 min',
+      },
+      {
+        name: 'Bowl automnal quinoa-poulet-avocat',
+        ingredients: ['quinoa', 'poulet grillé', 'avocat', 'patate douce rôtie', 'graines de courge', 'sauce tahini'],
+        instructions: 'Assemble tous les ingrédients en bowl. Nape de sauce tahini.',
+        why: 'Protéines + glucides complexes + magnésium des graines. Nourrissant et stabilisant pour tes humeurs.',
+        tags: ['sans_gluten'],
+        time: '25 min',
+      },
+    ],
+    diner: [
+      {
+        name: 'Risotto champignons-épinards',
+        ingredients: ['riz arborio', 'champignons', 'épinards', 'parmesan', 'bouillon', 'ail', 'oignon'],
+        instructions: 'Fais revenir oignon et champignons. Ajoute le riz, mouille au bouillon petit à petit. Incorpore épinards et parmesan en fin.',
+        why: 'Les champignons = vitamine D + tryptophane. Les épinards = magnésium. Le réconfort en version nutritionnellement top.',
+        tags: ['vegetarien', 'réconfortant'],
+        time: '30 min',
+      },
+      {
+        name: 'Saumon rôti, patate douce & brocoli',
+        ingredients: ['pavé de saumon', 'patate douce', 'brocoli', 'huile d\'olive', 'ail', 'citron'],
+        instructions: 'Rôtis patate douce 20 min. Ajoute saumon et brocoli, 15 min de plus au four.',
+        why: 'Oméga-3 anti-inflammatoires + B6 de la patate douce + magnésium du brocoli. Le dîner anti-PMS complet.',
+        tags: ['sans_gluten', 'omega3', 'anti-inflammatoire'],
+        time: '35 min',
+      },
+    ],
+    gouter: [
+      {
+        name: 'Nice cream chocolat-banane',
+        ingredients: ['2 bananes congelées', 'cacao cru', 'beurre de cacahuète', 'éclats de cacao'],
+        instructions: 'Mixe les bananes congelées avec le cacao. Ajoute une cuillère de beurre de cacahuète. Décore.',
+        why: 'Satisfait l\'envie de glace/chocolat sans sucre raffiné. La banane congelée = crémeux naturel + tryptophane + magnésium.',
+        tags: ['vegan', 'sans_gluten', 'réconfortant'],
+        time: '5 min',
+      },
+      {
+        name: 'Mug cake avoine-chocolat',
+        ingredients: ['flocons d\'avoine', 'cacao', 'banane', 'œuf', 'chocolat noir'],
+        instructions: 'Mixe avoine+banane+cacao+œuf. Verse dans un mug. Micro-ondes 2 min. Ajoute le chocolat noir.',
+        why: 'Le goûter réconfort express. Glucides complexes + magnésium + sérotonine. Quand t\'as une envie de gâteau.',
+        tags: ['vegetarien', 'sans_gluten', 'rapide'],
+        time: '5 min',
+      },
+    ],
+    snack: [
+      { name: 'Chocolat noir 70% + amandes', why: 'Magnésium × 2 = anti-crampes + anti-irritabilité', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Dattes fourrées beurre de cacahuète', why: 'Énergie naturelle + magnésium + goût caramel', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Banane + carrés de chocolat noir', why: 'Tryptophane + magnésium = boost sérotonine', tags: ['vegan', 'sans_gluten'] },
+      { name: 'Porridge overnight chocolat', why: 'Prépare la veille : avoine + cacao + lait végétal + chia', tags: ['vegan_possible', 'batch_cooking'] },
+    ],
+  },
+};
+
+// ===== NUTRIMENTS CLÉS PAR PHASE =====
+const PHASE_NUTRIENTS = {
+  menstrual: {
+    priority: ['fer', 'magnésium', 'vitamine C', 'oméga-3', 'vitamine B12'],
+    why: 'Tu perds du fer via le sang menstruel. Le magnésium réduit les crampes. La vitamine C aide à absorber le fer. Les oméga-3 sont anti-inflammatoires.',
+    hormones: 'Œstrogène et progestérone au plus bas → fatigue, crampes, sensibilité.',
+    metabolism: 'Ton métabolisme ralentit légèrement. Privilégie les repas chauds et réconfortants.',
+  },
+  follicular: {
+    priority: ['zinc', 'protéines', 'vitamine E', 'probiotiques', 'fer'],
+    why: 'L\'œstrogène remonte = ton corps construit des tissus. Le zinc soutient la maturation du follicule. Les protéines aident la récupération musculaire.',
+    hormones: 'Œstrogène en hausse → énergie montante, meilleure humeur, peau plus belle.',
+    metabolism: 'Ton métabolisme est efficient. C\'est la meilleure phase pour les repas variés et protéinés.',
+  },
+  ovulatory: {
+    priority: ['fibres', 'antioxydants', 'crucifères (DIM)', 'eau', 'sélénium'],
+    why: 'Pic d\'œstrogène = ton foie doit métaboliser l\'excès. Les fibres et crucifères (brocoli, chou) aident la détoxification hormonale.',
+    hormones: 'Œstrogène au MAX + pic de LH + légère hausse de testostérone → énergie et libido au sommet.',
+    metabolism: 'Ton métabolisme est rapide. Mange léger, frais, riche en fibres.',
+  },
+  luteal: {
+    priority: ['magnésium', 'vitamine B6', 'tryptophane', 'glucides complexes', 'calcium'],
+    why: 'La progestérone monte + sérotonine baisse. Le magnésium et B6 régulent l\'humeur. Le tryptophane booste la sérotonine. Les glucides complexes évitent les fringales.',
+    hormones: 'Progestérone dominante → somnolence, envies de sucre, irritabilité, rétention d\'eau.',
+    metabolism: 'Ton métabolisme augmente de 10-20%. Tu as BESOIN de 200-300 cal de plus par jour. Ne te restreins pas.',
+  },
+};
+
+// ===== DÉTECTION DU TYPE DE REPAS =====
+function detectMealType(q) {
+  if (q.match(/petit[- ]?d[eé]j|breakfast|matin|r[eé]veil|au lever/i)) return 'petit_dej';
+  if (q.match(/d[eé]jeuner|midi|lunch|repas de midi/i)) return 'dejeuner';
+  if (q.match(/d[iî]ner|soir|souper|ce soir|repas du soir/i)) return 'diner';
+  if (q.match(/go[uû]ter|16h|quatre.?heure|apr[eè]s.?midi|en.?cas|quatre heure/i)) return 'gouter';
+  if (q.match(/snack|grigno|faim|petit creux|collation/i)) return 'snack';
+  if (q.match(/smoothie|jus|boisson|boire/i)) return 'smoothie';
+  return null;
+}
+
+// ===== DÉTECTION DES PRÉFÉRENCES ALIMENTAIRES =====
+function detectDietPreference(q) {
+  if (q.match(/v[eé]g[eé]talien|vegan/i)) return 'vegan';
+  if (q.match(/v[eé]g[eé]tarien/i)) return 'vegetarien';
+  if (q.match(/sans gluten|gluten.?free|c[oœ]liaque/i)) return 'sans_gluten';
+  if (q.match(/sans lactose|intol[eé]ran.*lait|sans lait/i)) return 'sans_lactose';
+  if (q.match(/sans sucre|diab[eé]t|glyc[eé]mi/i)) return 'sans_sucre';
+  return null;
+}
+
+// ===== FILTRER LES RECETTES PAR PRÉFÉRENCE =====
+function filterRecipesByDiet(recipes, diet) {
+  if (!diet) return recipes;
+  return recipes.filter((r) => {
+    if (!r.tags) return true;
+    if (diet === 'vegan') return r.tags.some((t) => t === 'vegan' || t === 'vegan_possible');
+    if (diet === 'vegetarien') return r.tags.some((t) => t === 'vegan' || t === 'vegan_possible' || t === 'vegetarien');
+    if (diet === 'sans_gluten') return r.tags.some((t) => t === 'sans_gluten' || t === 'sans_gluten_possible');
+    return true;
+  });
+}
+
+// ===== GÉNÉRER UNE SUGGESTION DE RECETTE =====
+function generateRecipeResponse(phase, mealType, diet, ctx) {
+  const phaseName = PHASE_LABELS[phase];
+  const nutrients = PHASE_NUTRIENTS[phase];
+  const phaseRecipes = RECIPES[phase];
+
+  // Si type de repas détecté
+  if (mealType && phaseRecipes[mealType]) {
+    let recipes = phaseRecipes[mealType];
+    if (diet) recipes = filterRecipesByDiet(recipes, diet);
+    if (recipes.length === 0) recipes = phaseRecipes[mealType]; // fallback
+
+    const recipe = recipes[Math.floor(Math.random() * recipes.length)];
+    if (!recipe) return null;
+
+    // Recette complète vs snack simple
+    if (recipe.instructions) {
+      const dietLabel = diet === 'vegan' ? ' 🌱 (vegan)' : diet === 'vegetarien' ? ' 🥚 (végé)' : diet === 'sans_gluten' ? ' (sans gluten)' : '';
+      return `Voilà une idée pour toi en phase ${phaseName} (J${ctx.currentDay})${dietLabel} :\n\n👩‍🍳 ${recipe.name}\n⏱️ ${recipe.time}\n\n📝 Ingrédients :\n${recipe.ingredients.map((i) => `• ${i}`).join('\n')}\n\n👉 Préparation :\n${recipe.instructions}\n\n🧠 Pourquoi c'est top pour toi :\n${recipe.why}\n\n💡 En phase ${phaseName}, ton corps a surtout besoin de : ${nutrients.priority.slice(0, 3).join(', ')}. ${nutrients.why.split('.')[0]}.`;
+    }
+    // Snack simple
+    return `Un snack parfait pour ta phase ${phaseName} (J${ctx.currentDay}) :\n\n✨ ${recipe.name}\n\n🧠 ${recipe.why}\n\n${nutrients.hormones}\n\nAutres idées :\n${phaseRecipes.snack.filter((s) => s.name !== recipe.name).slice(0, 2).map((s) => `• ${s.name} — ${s.why}`).join('\n')}`;
+  }
+
+  // Pas de type de repas → suggestion générale avec un repas complet
+  const mealTypes = ['petit_dej', 'dejeuner', 'diner'];
+  const randomMeal = mealTypes[Math.floor(Math.random() * mealTypes.length)];
+  let recipes = phaseRecipes[randomMeal];
+  if (diet) recipes = filterRecipesByDiet(recipes, diet);
+  if (!recipes || recipes.length === 0) recipes = phaseRecipes[randomMeal];
+  const recipe = recipes[Math.floor(Math.random() * recipes.length)];
+
+  if (!recipe || !recipe.instructions) return null;
+
+  const mealLabels = { petit_dej: 'Petit-déjeuner', dejeuner: 'Déjeuner', diner: 'Dîner' };
+  return `Voilà ce que je te propose pour ${(mealLabels[randomMeal] || 'aujourd\'hui').toLowerCase()} en phase ${phaseName} :\n\n👩‍🍳 ${recipe.name}\n⏱️ ${recipe.time}\n\n📝 Ingrédients :\n${recipe.ingredients.map((i) => `• ${i}`).join('\n')}\n\n👉 ${recipe.instructions}\n\n🧠 Pourquoi c'est parfait :\n${recipe.why}\n\n💡 ${nutrients.metabolism}`;
+}
+
+// ===== GÉNÉRER UNE JOURNÉE COMPLÈTE =====
+function generateFullDayMenu(phase, diet, ctx) {
+  const phaseName = PHASE_LABELS[phase];
+  const nutrients = PHASE_NUTRIENTS[phase];
+  const phaseRecipes = RECIPES[phase];
+
+  const pick = (type) => {
+    let pool = phaseRecipes[type] || [];
+    if (diet) {
+      const filtered = filterRecipesByDiet(pool, diet);
+      if (filtered.length > 0) pool = filtered;
+    }
+    return pool[Math.floor(Math.random() * pool.length)];
+  };
+
+  const petitDej = pick('petit_dej');
+  const dejeuner = pick('dejeuner');
+  const gouter = pick('gouter') || pick('snack');
+  const diner = pick('diner');
+
+  let response = `Voilà ta journée nutrition optimisée pour la phase ${phaseName} (J${ctx.currentDay}) :\n\n`;
+  response += `☀️ PETIT-DÉJ :\n${petitDej ? `👩‍🍳 ${petitDej.name}${petitDej.time ? ` (${petitDej.time})` : ''}\n${petitDej.why ? `💡 ${petitDej.why.split('.')[0]}.` : ''}` : 'Porridge + fruits + graines'}\n\n`;
+  response += `🍽️ DÉJEUNER :\n${dejeuner ? `👩‍🍳 ${dejeuner.name}${dejeuner.time ? ` (${dejeuner.time})` : ''}\n${dejeuner.why ? `💡 ${dejeuner.why.split('.')[0]}.` : ''}` : 'Bowl complet protéines + légumes + céréales'}\n\n`;
+  response += `🍵 GOÛTER :\n${gouter ? `✨ ${gouter.name}\n${gouter.why ? `💡 ${gouter.why.split('.')[0]}.` : ''}` : 'Fruits + oléagineux'}\n\n`;
+  response += `🌙 DÎNER :\n${diner ? `👩‍🍳 ${diner.name}${diner.time ? ` (${diner.time})` : ''}\n${diner.why ? `💡 ${diner.why.split('.')[0]}.` : ''}` : 'Protéine légère + légumes + féculents complets'}\n\n`;
+  response += `🧬 Tes hormones :\n${nutrients.hormones}\n\n📊 Nutriments prioritaires : ${nutrients.priority.join(', ')}\n${nutrients.metabolism}`;
+
+  return response;
+}
+
+// ===== RÉPONSE NUTRITION SPÉCIFIQUE (anti-inflammatoire, riche en fer, etc.) =====
+function generateNutrientResponse(nutrient, phase, ctx) {
+  const phaseName = PHASE_LABELS[phase];
+  const nutrients = PHASE_NUTRIENTS[phase];
+
+  const NUTRIENT_FOODS = {
+    fer: {
+      foods: ['lentilles', 'épinards', 'viande rouge', 'tofu', 'pois chiches', 'graines de courge', 'quinoa', 'sardines', 'haricots rouges'],
+      tip: 'Combine toujours avec de la vitamine C (citron, poivron, kiwi) pour doubler l\'absorption du fer.',
+      why: 'Le fer transporte l\'oxygène. En phase menstruelle tu en perds beaucoup — à reconstituer absolument.',
+    },
+    magnesium: {
+      foods: ['chocolat noir 70%+', 'amandes', 'noix de cajou', 'banane', 'avocat', 'épinards', 'graines de courge', 'edamame'],
+      tip: 'Le magnésium au coucher aide aussi le sommeil et réduit les crampes nocturnes.',
+      why: 'Le magnésium régule 300+ réactions dans ton corps : humeur, muscles, sommeil, crampes.',
+    },
+    omega3: {
+      foods: ['saumon', 'sardines', 'maquereau', 'graines de lin', 'graines de chia', 'noix', 'huile de colza'],
+      tip: 'Vise 2-3 portions de poisson gras par semaine, ou une cuillère de graines de lin moulues chaque jour.',
+      why: 'Les oméga-3 réduisent l\'inflammation, les crampes, améliorent l\'humeur et protègent le cœur.',
+    },
+    zinc: {
+      foods: ['graines de courge', 'pois chiches', 'noix de cajou', 'lentilles', 'crevettes', 'huîtres', 'fromage', 'œufs'],
+      tip: 'Le zinc est essentiel en phase folliculaire pour la maturation du follicule et la qualité de l\'ovulation.',
+      why: 'Le zinc booste l\'immunité, aide à la production hormonale et à la beauté de la peau.',
+    },
+    vitamineb6: {
+      foods: ['banane', 'avocat', 'dinde', 'poulet', 'saumon', 'patate douce', 'graines de tournesol', 'pistaches'],
+      tip: 'La B6 est surtout cruciale en phase lutéale — elle aide à convertir le tryptophane en sérotonine.',
+      why: 'La vitamine B6 réduit l\'irritabilité, la rétention d\'eau et les sautes d\'humeur du PMS.',
+    },
+    antioxydants: {
+      foods: ['fruits rouges', 'grenade', 'cacao cru', 'curcuma', 'thé vert matcha', 'légumes colorés', 'noix', 'graines de chia'],
+      tip: 'Plus c\'est coloré, plus c\'est riche en antioxydants. Mange l\'arc-en-ciel !',
+      why: 'Les antioxydants protègent tes cellules, réduisent l\'inflammation et améliorent ta peau.',
+    },
+    proteines: {
+      foods: ['œufs', 'poulet', 'saumon', 'yaourt grec', 'lentilles', 'quinoa', 'tofu', 'pois chiches', 'graines de chanvre'],
+      tip: 'Vise 1.2-1.6g de protéines par kg de poids corporel. Répartis-les sur tes 3 repas.',
+      why: 'Les protéines soutiennent la production hormonale, la récupération musculaire et la satiété.',
+    },
+    tryptophane: {
+      foods: ['dinde', 'banane', 'avoine', 'graines de courge', 'œufs', 'chocolat noir', 'noix de cajou', 'tofu'],
+      tip: 'Combine avec des glucides complexes pour aider le tryptophane à atteindre le cerveau et produire de la sérotonine.',
+      why: 'Le tryptophane est le précurseur de la sérotonine (hormone du bonheur) et de la mélatonine (sommeil).',
+    },
+  };
+
+  // Détecte quel nutriment est demandé
+  let key = null;
+  if (nutrient.match(/fer\b|iron|an[eé]mi/i)) key = 'fer';
+  else if (nutrient.match(/magn[eé]sium|crampe|muscle/i)) key = 'magnesium';
+  else if (nutrient.match(/om[eé]ga|poisson|anti.?inflamm/i)) key = 'omega3';
+  else if (nutrient.match(/zinc|peau|immunit/i)) key = 'zinc';
+  else if (nutrient.match(/b6|pms|irrit|humeur/i)) key = 'vitamineb6';
+  else if (nutrient.match(/antioxyd|d[eé]tox|radicaux/i)) key = 'antioxydants';
+  else if (nutrient.match(/prot[eé]in|muscle|muscu/i)) key = 'proteines';
+  else if (nutrient.match(/tryptoph|s[eé]rotonin|bonheur/i)) key = 'tryptophane';
+
+  if (!key) return null;
+
+  const data = NUTRIENT_FOODS[key];
+  return `En phase ${phaseName} (J${ctx.currentDay}), voici les meilleurs aliments riches en ${key === 'vitamineb6' ? 'vitamine B6' : key === 'omega3' ? 'oméga-3' : key} :\n\n🥗 Top aliments :\n${data.foods.map((f) => `• ${f}`).join('\n')}\n\n💡 Astuce : ${data.tip}\n\n🧠 Pourquoi c'est important :\n${data.why}\n\n🧬 ${nutrients.hormones}\n\n📊 En phase ${phaseName}, tes nutriments prioritaires sont : ${nutrients.priority.join(', ')}.`;
+}
+
 // Détecte si c'est une question "puis-je / est-ce que je peux"
 function isCanIQuestion(q) {
   return q.match(/puis.?je|peux.?je|est.?ce que je (peux|devrais|dois)|je (peux|devrais|dois)|c'?est (bien|bon|ok|okay) (de|si|que)|c'?est une bonne idée|ça va si|possible de|recommand/i);
@@ -527,7 +1079,58 @@ export function getLunaResponse(question, phase, userContext = {}) {
     goals: userContext.goals || [],
   };
 
-  // 1. D'abord, vérifie si c'est une question spécifique "puis-je manger/faire X ?"
+  // 0. Détection prioritaire : NUTRITION & RECETTES
+  const mealType = detectMealType(qOriginal);
+  const diet = detectDietPreference(qOriginal);
+  const isRecipeRequest = qOriginal.match(/recette|recipe|cuisiner|pr[eé]par|id[eé]e.*(repas|plat|menu)|qu'?est.?ce (que |qu'?)?(je|on) (mange|cuisine|pr[eé]pare)|quoi manger|que manger|menu|meal prep/i);
+  const isMealQuestion = qOriginal.match(/manger.*(soir|midi|matin|ce)|petit[- ]?d[eé]j|d[eé]jeuner|d[iî]ner|go[uû]ter|snack|collation|repas (du|de|ce)/i);
+  const isFullDayRequest = qOriginal.match(/journ[eé]e.*(compl[eè]te|enti[eè]re|type)|menu.*(jour|complet|semaine)|quoi manger (toute la journ|aujourd)|plan.*(alimentaire|nutritionnel|repas)/i);
+  const isNutrientQuestion = qOriginal.match(/riche en|source de|aliment.*(fer|magn|prot|zinc|vitamine|om[eé]ga|fibre|antioxyd|calcium|tryptoph)|anti.?inflamm|d[eé]tox|boost|hormones?.*(aliment|nourri|manger)/i);
+  const isDietQuestion = qOriginal.match(/v[eé]g[eé]t(arien|alien)|vegan|sans (gluten|lactose|sucre)|r[eé]gime|intol[eé]ran/i);
+
+  // Journée complète
+  if (isFullDayRequest) {
+    const raw = generateFullDayMenu(phase, diet, ctx);
+    return naturalizeResponse(raw, name);
+  }
+
+  // Recette ou question "qu'est-ce que je mange ce soir ?"
+  if (isRecipeRequest || isMealQuestion || (mealType && !findFood(qOriginal))) {
+    const raw = generateRecipeResponse(phase, mealType, diet, ctx);
+    if (raw) return naturalizeResponse(raw, name);
+  }
+
+  // Question nutriment spécifique ("aliments riches en fer", "anti-inflammatoire")
+  if (isNutrientQuestion) {
+    const raw = generateNutrientResponse(qOriginal, phase, ctx);
+    if (raw) return naturalizeResponse(raw, name);
+  }
+
+  // Question régime alimentaire avec phase
+  if (isDietQuestion) {
+    const detectedDiet = detectDietPreference(qOriginal);
+    const phaseName = PHASE_LABELS[phase];
+    const nutrients = PHASE_NUTRIENTS[phase];
+    const phaseRecipes = RECIPES[phase];
+
+    // Trouver des recettes adaptées au régime
+    const allRecipes = [...(phaseRecipes.petit_dej || []), ...(phaseRecipes.dejeuner || []), ...(phaseRecipes.diner || []), ...(phaseRecipes.gouter || [])];
+    const filtered = detectedDiet ? filterRecipesByDiet(allRecipes, detectedDiet) : allRecipes;
+    const dietLabel = detectedDiet === 'vegan' ? 'vegan 🌱' : detectedDiet === 'vegetarien' ? 'végétarienne 🥚' : detectedDiet === 'sans_gluten' ? 'sans gluten' : '';
+
+    const picks = filtered.sort(() => Math.random() - 0.5).slice(0, 3);
+    let raw = `En phase ${phaseName} (J${ctx.currentDay})${dietLabel ? ` avec une alimentation ${dietLabel}` : ''}, voilà ce que je te recommande :\n\n`;
+    raw += `🧬 ${nutrients.hormones}\n\n`;
+    raw += `📊 Nutriments prioritaires : ${nutrients.priority.join(', ')}\n\n`;
+    raw += `👩‍🍳 Idées de recettes adaptées :\n`;
+    picks.forEach((r) => {
+      raw += `\n• ${r.name}${r.time ? ` (${r.time})` : ''}\n  ${r.why ? `💡 ${r.why.split('.')[0]}.` : ''}`;
+    });
+    raw += `\n\n${nutrients.metabolism}\n\nDis-moi si tu veux la recette détaillée d'une de ces idées ! 💛`;
+    return naturalizeResponse(raw, name);
+  }
+
+  // 1. Question spécifique "puis-je manger/faire X ?"
   const canI = isCanIQuestion(qOriginal);
   const detectedFood = findFood(qOriginal);
   const detectedSport = findSport(qOriginal);
@@ -575,33 +1178,36 @@ export function getLunaResponse(question, phase, userContext = {}) {
   const foodAdvice = FOOD_ADVICE[phase];
   const sportAdvice = SPORT_ADVICE[phase];
 
-  // Détecte le sujet général pour orienter la réponse
-  if (qOriginal.match(/manger|aliment|nourri|repas|cuisine|recette|plat|petit.?déj|déjeuner|dîner|goûter|snack|grigno/)) {
+  // Détecte le sujet général pour orienter la réponse — NUTRITION en priorité
+  if (qOriginal.match(/manger|aliment|nourri|repas|cuisine|recette|plat|petit.?d[eé]j|d[eé]jeuner|d[iî]ner|go[uû]ter|snack|grigno|faim|nutrition|food/)) {
+    // Essaye d'abord de donner une recette
+    const recipeResponse = generateRecipeResponse(phase, mealType, diet, ctx);
+    if (recipeResponse) return naturalizeResponse(recipeResponse, name);
     const raw = responses['manger'](ctx);
     return naturalizeResponse(raw, name);
   }
 
-  if (qOriginal.match(/sport|exerc|entraîn|fitness|bouger|activ|course|muscu|nage|vélo|danse|yoga/)) {
+  if (qOriginal.match(/sport|exerc|entra[iî]n|fitness|bouger|activ|course|muscu|nage|vélo|danse|yoga/)) {
     const raw = responses['sport'](ctx);
     return naturalizeResponse(raw, name);
   }
 
-  if (qOriginal.match(/dormir|sommeil|nuit|coucher|réveill|insomni|sieste|repos/)) {
+  if (qOriginal.match(/dormir|sommeil|nuit|coucher|r[eé]veill|insomni|sieste|repos/)) {
     const raw = responses['dormir'](ctx);
     return naturalizeResponse(raw, name);
   }
 
-  if (qOriginal.match(/humeur|émotion|pleure|triste|colère|irrit|anxiét|stress|paniqu|peur|angois/)) {
+  if (qOriginal.match(/humeur|[eé]motion|pleure|triste|col[eè]re|irrit|anxi[eé]t|stress|paniqu|peur|angois/)) {
     const raw = (responses['irritabilite'] || responses['stress'] || responses['default'])(ctx);
     return naturalizeResponse(raw, name);
   }
 
-  if (qOriginal.match(/peau|bouton|acné|cheveu|ongle|teint|ride|cerne/)) {
+  if (qOriginal.match(/peau|bouton|acn[eé]|cheveu|ongle|teint|ride|cerne/)) {
     const raw = (responses['acne'] || responses['default'])(ctx);
     return naturalizeResponse(raw, name);
   }
 
-  if (qOriginal.match(/libido|sexe|sexuel|désir|intimité|couple|relation/)) {
+  if (qOriginal.match(/libido|sexe|sexuel|d[eé]sir|intimit[eé]|couple|relation/)) {
     const libidoResponse = phase === 'ovulatory'
       ? `C'est ta phase ovulatoire — ta libido est naturellement au plus haut ! L'œstrogène + la testostérone boostent le désir.\n\nC'est complètement normal et sain. Profite de cette énergie. ✨`
       : phase === 'menstrual'
@@ -612,7 +1218,7 @@ export function getLunaResponse(question, phase, userContext = {}) {
     return naturalizeResponse(`${ctx.name}, ${libidoResponse}`, name);
   }
 
-  if (qOriginal.match(/travail|boulot|productiv|concentr|mémoire|cerveau|créativ|réunion|présentation|examen/)) {
+  if (qOriginal.match(/travail|boulot|productiv|concentr|m[eé]moire|cerveau|cr[eé]ativ|r[eé]union|pr[eé]sentation|examen/)) {
     const workResponse = phase === 'ovulatory'
       ? `Tu es en phase ovulatoire — c'est ton PIC de productivité ! Tes capacités verbales, ta mémoire et ta confiance sont au sommet.\n\n🚀 C'est LE moment pour :\n• Présentations importantes\n• Brainstorming, créativité\n• Négociations\n• Networking\n\nProfite de cette fenêtre de 2-3 jours ! 👑`
       : phase === 'follicular'
