@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, BarChart3, TrendingUp, TrendingDown, Minus, Dumbbell, Moon as MoonIcon, Smile } from 'lucide-react';
+import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, BarChart3, TrendingUp, TrendingDown, Minus, Dumbbell, Footprints, Moon as MoonIcon, Smile } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { AFFIRMATIONS, MORNING_RITUALS } from '../data/affirmations';
 import { PHASES } from '../data/phases';
@@ -51,8 +51,15 @@ function getMonthSportSessions(sessions, year, month) {
   });
 }
 
-function computeMonthStats(entries, sportSessions = []) {
-  if (!entries.length && !sportSessions.length) return null;
+function getMonthSportLogs(logs, year, month) {
+  return (logs || []).filter((l) => {
+    const d = new Date(l.date);
+    return d.getFullYear() === year && d.getMonth() === month;
+  });
+}
+
+function computeMonthStats(entries, sportSessions = [], sportLogs = []) {
+  if (!entries.length && !sportSessions.length && !sportLogs.length) return null;
 
   const energies = entries.filter((e) => e.energy).map((e) => e.energy);
   const moodValues = entries.filter((e) => e.mood).map((e) => {
@@ -90,6 +97,20 @@ function computeMonthStats(entries, sportSessions = []) {
   });
   const topSportType = Object.entries(sportTypes).sort((a, b) => b[1] - a[1])[0] || null;
 
+  // Sport logs stats (steps + custom activities)
+  const stepsData = sportLogs.filter((l) => l.steps > 0).map((l) => l.steps);
+  const avgSteps = stepsData.length ? Math.round(stepsData.reduce((a, b) => a + b, 0) / stepsData.length) : 0;
+  const totalStepsDays = stepsData.length;
+
+  const allCustomActivities = sportLogs.flatMap((l) => l.activities || []);
+  const totalCustomSessions = allCustomActivities.length;
+  const totalCustomDuration = allCustomActivities.reduce((sum, a) => sum + (a.duration || 0), 0);
+  const customActivityCounts = {};
+  allCustomActivities.forEach((a) => {
+    if (a.name) customActivityCounts[a.name] = (customActivityCounts[a.name] || 0) + 1;
+  });
+  const topCustomActivities = Object.entries(customActivityCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+
   return {
     totalEntries: entries.length,
     avgEnergy: energies.length ? Math.round(energies.reduce((a, b) => a + b, 0) / energies.length * 10) / 10 : null,
@@ -99,6 +120,11 @@ function computeMonthStats(entries, sportSessions = []) {
     totalSportSessions,
     sportByPhase,
     topSportType,
+    avgSteps,
+    totalStepsDays,
+    totalCustomSessions,
+    totalCustomDuration,
+    topCustomActivities,
   };
 }
 
@@ -120,7 +146,7 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 export default function Journal() {
-  const { cycleInfo, journalEntries, sportSessions, checkIns, cycleLength, periodLength, dispatch } = useCycle();
+  const { cycleInfo, journalEntries, sportSessions, sportLogs, checkIns, cycleLength, periodLength, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
   const [expandedDay, setExpandedDay] = useState(null);
   const [activeTab, setActiveTab] = useState('journal'); // 'journal' | 'rapport'
@@ -158,13 +184,15 @@ export default function Journal() {
   // Report data
   const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
   const currentMonthSport = useMemo(() => getMonthSportSessions(sportSessions, reportYear, reportMonth), [sportSessions, reportYear, reportMonth]);
+  const currentMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, reportYear, reportMonth), [sportLogs, reportYear, reportMonth]);
   const prevMonth = reportMonth === 0 ? 11 : reportMonth - 1;
   const prevYear = reportMonth === 0 ? reportYear - 1 : reportYear;
   const prevMonthEntries = useMemo(() => getMonthEntries(journalEntries, prevYear, prevMonth), [journalEntries, prevYear, prevMonth]);
   const prevMonthSport = useMemo(() => getMonthSportSessions(sportSessions, prevYear, prevMonth), [sportSessions, prevYear, prevMonth]);
+  const prevMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, prevYear, prevMonth), [sportLogs, prevYear, prevMonth]);
 
-  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries, currentMonthSport), [currentMonthEntries, currentMonthSport]);
-  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries, prevMonthSport), [prevMonthEntries, prevMonthSport]);
+  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries, currentMonthSport, currentMonthLogs), [currentMonthEntries, currentMonthSport, currentMonthLogs]);
+  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries, prevMonthSport, prevMonthLogs), [prevMonthEntries, prevMonthSport, prevMonthLogs]);
 
   const toggleSymptom = (s) => {
     setSelectedSymptoms((prev) =>
@@ -268,6 +296,22 @@ export default function Journal() {
       if (currentStats.sportByPhase.follicular > 0 && currentStats.sportByPhase.menstrual > 0) {
         msgs.push('Tu adaptes ton activité à tes phases — c\'est la clé pour progresser sans s\'épuiser.');
       }
+    }
+
+    // Steps insights
+    if (currentStats.avgSteps > 0) {
+      if (currentStats.avgSteps >= 10000) {
+        msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne — objectif atteint ! 🎯`);
+      } else if (currentStats.avgSteps >= 7000) {
+        msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne, presque à 10k ! Continue.`);
+      } else {
+        msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne. Chaque pas compte !`);
+      }
+    }
+
+    // Custom activities insights
+    if (currentStats.totalCustomSessions > 0) {
+      msgs.push(`${currentStats.totalCustomSessions} activité${currentStats.totalCustomSessions > 1 ? 's' : ''} enregistrée${currentStats.totalCustomSessions > 1 ? 's' : ''} pour un total de ${currentStats.totalCustomDuration} min ce mois.`);
     }
 
     return msgs;
@@ -781,6 +825,71 @@ export default function Journal() {
                         <p className="text-xs font-body text-luna-text-muted text-center leading-relaxed">
                           🏅 Ton activité préférée ce mois : <strong className="text-luna-text">{currentStats.topSportType[0]}</strong> ({currentStats.topSportType[1]} séances)
                         </p>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Pas & Activités manuelles */}
+              {(currentStats.avgSteps > 0 || currentStats.totalCustomSessions > 0) && (
+                <motion.div variants={item}>
+                  <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+                    <div className="flex items-center gap-2 mb-4">
+                      <Footprints size={16} style={{ color: phaseData.colorDark }} />
+                      <h3 className="font-display text-base text-luna-text">Pas & Activités</h3>
+                    </div>
+
+                    {/* Steps KPI */}
+                    {currentStats.avgSteps > 0 && (
+                      <div className="mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-xs font-body font-semibold text-luna-text">Pas quotidiens (moyenne)</span>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-lg font-display font-bold" style={{ color: phaseData.colorDark }}>
+                              {(currentStats.avgSteps / 1000).toFixed(1)}k
+                            </span>
+                            {prevStats?.avgSteps > 0 && <TrendIcon current={currentStats.avgSteps} previous={prevStats.avgSteps} />}
+                          </div>
+                        </div>
+                        <ProgressBar value={currentStats.avgSteps} max={10000} color={phaseData.color} />
+                        <p className="text-[10px] font-body text-luna-text-hint mt-1">
+                          {currentStats.totalStepsDays} jour{currentStats.totalStepsDays > 1 ? 's' : ''} renseigné{currentStats.totalStepsDays > 1 ? 's' : ''} · objectif 10k/jour
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Custom activities summary */}
+                    {currentStats.totalCustomSessions > 0 && (
+                      <div>
+                        {currentStats.avgSteps > 0 && <div className="h-px bg-gray-100 mb-4" />}
+                        <div className="grid grid-cols-2 gap-3 mb-3">
+                          <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
+                            <p className="text-xl font-display font-bold text-luna-text">{currentStats.totalCustomSessions}</p>
+                            <p className="text-[9px] font-body text-luna-text-hint uppercase mt-0.5">Activités</p>
+                          </div>
+                          <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
+                            <p className="text-xl font-display font-bold text-luna-text">{currentStats.totalCustomDuration}</p>
+                            <p className="text-[9px] font-body text-luna-text-hint uppercase mt-0.5">Minutes total</p>
+                          </div>
+                        </div>
+
+                        {/* Top activities */}
+                        {currentStats.topCustomActivities.length > 0 && (
+                          <div className="space-y-2">
+                            {currentStats.topCustomActivities.map(([name, count]) => (
+                              <div key={name} className="flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                  <span className="text-sm">🏃</span>
+                                  <span className="text-sm font-body text-luna-text">{name}</span>
+                                </div>
+                                <span className="text-xs font-body font-semibold px-2.5 py-0.5 rounded-pill" style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}>
+                                  {count}x
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
