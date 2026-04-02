@@ -101,19 +101,19 @@ export default function Landing() {
             Ton cycle influence ton énergie, ton humeur, tes performances. Chaque jour différemment. LUNA t'aide à comprendre ce qui se passe dans ton corps et à adapter ton quotidien en conséquence.
           </motion.p>
 
-          <motion.div variants={item} className="space-y-3">
+          <motion.div variants={item} className="flex flex-col items-center gap-4">
             <Link to="/auth?mode=signup" className="btn-luna text-base">
-              Creer mon compte
+              Créer mon compte
               <ArrowRight size={18} />
             </Link>
             <Link
               to="/auth?mode=login"
               className="inline-flex items-center gap-2 text-sm font-body font-semibold text-luna-text-muted hover:text-luna-text transition-colors"
             >
-              J'ai deja un compte
+              J'ai déjà un compte
             </Link>
-            <p className="text-xs text-luna-text-hint font-body mt-3">
-              Base sur la recherche en endocrinologie. Donnees privees et chiffrees.
+            <p className="text-xs text-luna-text-hint font-body mt-1">
+              Basé sur la recherche en endocrinologie. Données privées et chiffrées.
             </p>
           </motion.div>
         </div>

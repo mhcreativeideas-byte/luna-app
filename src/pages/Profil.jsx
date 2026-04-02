@@ -67,7 +67,7 @@ export default function Profil() {
         </div>
         <div className="bg-white rounded-[20px] p-5 text-center" style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}>
           <p className="text-3xl font-display font-bold text-luna-text">{periodLength}</p>
-          <p className="text-xs text-luna-text-hint font-body mt-1">jours de regles</p>
+          <p className="text-xs text-luna-text-hint font-body mt-1">jours de règles</p>
         </div>
       </motion.div>
 

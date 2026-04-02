@@ -45,10 +45,10 @@ export default function Auth() {
         if (signUpError) throw signUpError;
 
         if (data?.user?.identities?.length === 0) {
-          setError('Un compte existe deja avec cet email. Connecte-toi.');
+          setError('Un compte existe déjà avec cet email. Connecte-toi.');
           setMode('login');
         } else {
-          setSuccessMessage('Verifie tes emails pour confirmer ton compte, puis connecte-toi.');
+          setSuccessMessage('Vérifie tes emails pour confirmer ton compte, puis connecte-toi.');
         }
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -63,9 +63,9 @@ export default function Auth() {
       if (msg.includes('Invalid login credentials')) {
         setError('Email ou mot de passe incorrect.');
       } else if (msg.includes('Password should be')) {
-        setError('Le mot de passe doit contenir au moins 6 caracteres.');
+        setError('Le mot de passe doit contenir au moins 6 caractères.');
       } else if (msg.includes('already registered')) {
-        setError('Ce compte existe deja. Connecte-toi.');
+        setError('Ce compte existe déjà. Connecte-toi.');
         setMode('login');
       } else {
         setError(msg);
@@ -89,7 +89,7 @@ export default function Auth() {
         redirectTo: `${window.location.origin}/auth?mode=login`,
       });
       if (resetError) throw resetError;
-      setSuccessMessage('Un email de reinitialisation t\'a ete envoye. Verifie ta boite mail.');
+      setSuccessMessage('Un email de réinitialisation t\'a été envoyé. Vérifie ta boîte mail.');
     } catch (err) {
       setError(err.message || 'Une erreur est survenue.');
     } finally {
@@ -140,11 +140,11 @@ export default function Auth() {
             <div className="text-center mb-8">
               <img src="/logo-luna.png" alt="LUNA" className="w-28 mx-auto mb-4" />
               <h1 className="font-display text-2xl text-luna-text">
-                {resetMode ? 'Mot de passe oublie ?' : mode === 'signup' ? 'Cree ton espace LUNA' : 'Bon retour'}
+                {resetMode ? 'Mot de passe oublié ?' : mode === 'signup' ? 'Crée ton espace LUNA' : 'Bon retour'}
               </h1>
               <p className="text-luna-text-muted font-body text-sm mt-1">
                 {resetMode
-                  ? 'Entre ton email, on t\'envoie un lien pour le reinitialiser.'
+                  ? 'Entre ton email, on t\'envoie un lien pour le réinitialiser.'
                   : mode === 'signup'
                     ? 'En quelques secondes, ton cycle n\'aura plus de secrets.'
                     : 'Ton cycle t\'attendait.'}
@@ -225,7 +225,7 @@ export default function Auth() {
                     onClick={() => { setResetMode(false); setError(''); setSuccessMessage(''); }}
                     className="w-full text-center text-sm font-body text-luna-text-muted hover:text-luna-text transition-colors"
                   >
-                    Retour a la connexion
+                    Retour à la connexion
                   </button>
                 </form>
               ) : (
@@ -249,7 +249,7 @@ export default function Auth() {
                       type={showPassword ? 'text' : 'password'}
                       value={password}
                       onChange={(e) => { setPassword(e.target.value); setError(''); }}
-                      placeholder="Mot de passe (6 caracteres min.)"
+                      placeholder="Mot de passe (6 caractères min.)"
                       className="w-full pl-11 pr-12 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-sm focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
                       autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
                     />
@@ -262,7 +262,7 @@ export default function Auth() {
                     </button>
                   </div>
 
-                  {/* Mot de passe oublie - only in login mode */}
+                  {/* Mot de passe oublié - only in login mode */}
                   {mode === 'login' && (
                     <div className="text-right">
                       <button
@@ -270,7 +270,7 @@ export default function Auth() {
                         onClick={() => { setResetMode(true); setError(''); setSuccessMessage(''); }}
                         className="text-xs font-body text-luna-rose hover:underline"
                       >
-                        Mot de passe oublie ?
+                        Mot de passe oublié ?
                       </button>
                     </div>
                   )}
@@ -295,7 +295,7 @@ export default function Auth() {
                       <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }} className="inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
                     ) : (
                       <>
-                        {mode === 'signup' ? 'Creer mon compte' : 'Me connecter'}
+                        {mode === 'signup' ? 'Créer mon compte' : 'Me connecter'}
                         <ArrowRight size={16} />
                       </>
                     )}
@@ -308,7 +308,7 @@ export default function Auth() {
             <p className="text-center text-sm font-body text-luna-text-muted mt-6">
               {mode === 'signup' ? (
                 <>
-                  Deja un compte ?{' '}
+                  Déjà un compte ?{' '}
                   <button
                     onClick={() => { setMode('login'); setError(''); setSuccessMessage(''); }}
                     className="text-luna-rose font-semibold hover:underline"
@@ -323,7 +323,7 @@ export default function Auth() {
                     onClick={() => { setMode('signup'); setError(''); setSuccessMessage(''); }}
                     className="text-luna-rose font-semibold hover:underline"
                   >
-                    Creer mon espace
+                    Créer mon espace
                   </button>
                 </>
               )}

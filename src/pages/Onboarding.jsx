@@ -12,32 +12,32 @@ const goalOptions = [
   { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
   { id: 'food', label: 'Mieux manger', icon: '🥗' },
   { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
-  { id: 'emotions', label: 'Gerer mes emotions', icon: '🧠' },
+  { id: 'emotions', label: 'Gérer mes émotions', icon: '🧠' },
   { id: 'discomfort', label: 'Moins de douleurs', icon: '🌸' },
-  { id: 'energy', label: 'Plus d\'energie', icon: '⚡' },
+  { id: 'energy', label: 'Plus d\'énergie', icon: '⚡' },
   { id: 'skin', label: 'Soigner ma peau', icon: '✨' },
   { id: 'strength', label: 'Me sentir forte', icon: '💪' },
 ];
 
 const fitnessLevels = [
-  { id: 'beginner', label: 'Je debute', desc: 'Et c\'est tres bien comme ca', icon: '🌱' },
-  { id: 'intermediate', label: 'Je bouge regulierement', desc: 'Quelques seances par semaine', icon: '🌿' },
-  { id: 'advanced', label: 'Je suis une athlete', desc: 'Le sport fait partie de ma vie', icon: '🌳' },
+  { id: 'beginner', label: 'Je débute', desc: 'Et c\'est très bien comme ça', icon: '🌱' },
+  { id: 'intermediate', label: 'Je bouge régulièrement', desc: 'Quelques séances par semaine', icon: '🌿' },
+  { id: 'advanced', label: 'Je suis une athlète', desc: 'Le sport fait partie de ma vie', icon: '🌳' },
 ];
 
 const dietOptions = [
   { id: 'Omnivore', icon: '🍽️' },
-  { id: 'Vegetarienne', icon: '🥬' },
-  { id: 'Vegane', icon: '🌱' },
+  { id: 'Végétarienne', icon: '🥬' },
+  { id: 'Végane', icon: '🌱' },
   { id: 'Sans gluten', icon: '🌾' },
   { id: 'Sans lactose', icon: '🥛' },
 ];
 
 const healthOptions = [
-  { id: 'SPM severe', icon: '😣', desc: 'Douleurs, fatigue, irritabilite avant les regles' },
-  { id: 'Endometriose', icon: '🩺', desc: 'Diagnostiquee ou suspectee' },
+  { id: 'SPM sévère', icon: '😣', desc: 'Douleurs, fatigue, irritabilité avant les règles' },
+  { id: 'Endométriose', icon: '🩺', desc: 'Diagnostiquée ou suspectée' },
   { id: 'SOPK', icon: '🔬', desc: 'Syndrome des ovaires polykystiques' },
-  { id: 'Cycles irreguliers', icon: '📅', desc: 'Cycles de duree variable' },
+  { id: 'Cycles irréguliers', icon: '📅', desc: 'Cycles de durée variable' },
 ];
 
 // Step backgrounds
@@ -53,25 +53,25 @@ const STEP_COLORS = [
 function getPersonalizedTip(form, phase) {
   const tips = [];
   if (form.healthIssues.includes('SOPK')) {
-    tips.push('Tes recommandations sont adaptees au SOPK : index glycemique bas, anti-inflammatoires naturels.');
+    tips.push('Tes recommandations sont adaptées au SOPK : index glycémique bas, anti-inflammatoires naturels.');
   }
-  if (form.healthIssues.includes('Endometriose')) {
-    tips.push('On privilegie les aliments anti-inflammatoires et riches en omega-3 pour toi.');
+  if (form.healthIssues.includes('Endométriose')) {
+    tips.push('On privilégie les aliments anti-inflammatoires et riches en oméga-3 pour toi.');
   }
-  if (form.healthIssues.includes('SPM severe')) {
-    tips.push('Magnesium, B6 et calcium seront tes allies. On les met en avant pour toi.');
+  if (form.healthIssues.includes('SPM sévère')) {
+    tips.push('Magnésium, B6 et calcium seront tes alliés. On les met en avant pour toi.');
   }
-  if (form.dietPreferences.includes('Vegane') || form.dietPreferences.includes('Vegetarienne')) {
-    tips.push('Toutes les recettes et aliments sont adaptes a ton regime alimentaire.');
+  if (form.dietPreferences.includes('Végane') || form.dietPreferences.includes('Végétarienne')) {
+    tips.push('Toutes les recettes et aliments sont adaptés à ton régime alimentaire.');
   }
   if (!tips.length) {
     const phaseMsg = {
-      menstrual: 'C\'est le moment de prendre soin de toi. On te guide pas a pas.',
-      follicular: 'Ton energie remonte ! On va en profiter ensemble.',
-      ovulatory: 'Tu es au sommet de ton cycle. Profite de cette energie.',
-      luteal: 'Ton corps se prepare. On adapte tout pour toi.',
+      menstrual: 'C\'est le moment de prendre soin de toi. On te guide pas à pas.',
+      follicular: 'Ton énergie remonte ! On va en profiter ensemble.',
+      ovulatory: 'Tu es au sommet de ton cycle. Profite de cette énergie.',
+      luteal: 'Ton corps se prépare. On adapte tout pour toi.',
     };
-    tips.push(phaseMsg[phase] || 'On est la pour t\'accompagner chaque jour.');
+    tips.push(phaseMsg[phase] || 'On est là pour t\'accompagner chaque jour.');
   }
   return tips[0];
 }
@@ -151,8 +151,8 @@ export default function Onboarding() {
   if (loading) {
     const loadingSteps = [
       'On analyse ton cycle...',
-      'On prepare ton profil...',
-      'On selectionne tes recommandations...',
+      'On prépare ton profil...',
+      'On sélectionne tes recommandations...',
     ];
 
     return (
@@ -276,7 +276,7 @@ export default function Onboarding() {
                 type="text"
                 value={form.name}
                 onChange={(e) => updateForm('name', e.target.value)}
-                placeholder="Ton prenom"
+                placeholder="Ton prénom"
                 className="w-full px-5 py-4 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-center text-lg focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
                 autoFocus
               />
@@ -308,13 +308,13 @@ export default function Onboarding() {
                   Parlons de ton cycle
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Pour savoir ou tu en es aujourd'hui.
+                  Pour savoir où tu en es aujourd'hui.
                 </p>
               </div>
               <div className="space-y-5">
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Dernieres regles
+                    Dernières règles
                   </label>
                   <input
                     type="date"
@@ -325,7 +325,7 @@ export default function Onboarding() {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Duree du cycle <span className="text-luna-rose text-base font-display">{form.cycleLength}j</span>
+                    Durée du cycle <span className="text-luna-rose text-base font-display">{form.cycleLength}j</span>
                   </label>
                   <input
                     type="range" min={21} max={35}
@@ -340,7 +340,7 @@ export default function Onboarding() {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Duree des regles <span className="text-luna-rose text-base font-display">{form.periodLength}j</span>
+                    Durée des règles <span className="text-luna-rose text-base font-display">{form.periodLength}j</span>
                   </label>
                   <input
                     type="range" min={2} max={8}
@@ -354,7 +354,7 @@ export default function Onboarding() {
                   </div>
                 </div>
                 <p className="text-xs text-luna-text-hint font-body text-center italic">
-                  Pas sure ? On affinera ensemble.
+                  Pas sûre ? On affinera ensemble.
                 </p>
               </div>
             </motion.div>
@@ -382,10 +382,10 @@ export default function Onboarding() {
                   🥑
                 </motion.span>
                 <h2 className="font-display text-2xl text-luna-text mb-2">
-                  Ton alimentation & ta sante
+                  Ton alimentation & ta santé
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Pour adapter chaque conseil a toi.
+                  Pour adapter chaque conseil à toi.
                 </p>
               </div>
 
@@ -417,7 +417,7 @@ export default function Onboarding() {
                 {/* Health */}
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Une condition a connaitre ? <span className="font-normal lowercase">(optionnel)</span>
+                    Une condition à connaître ? <span className="font-normal lowercase">(optionnel)</span>
                   </label>
                   <div className="space-y-2">
                     {healthOptions.map(({ id, icon, desc }) => (
@@ -478,7 +478,7 @@ export default function Onboarding() {
                   Tes objectifs
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Qu'est-ce qui t'amene ici ?
+                  Qu'est-ce qui t'amène ici ?
                 </p>
               </div>
 
@@ -553,7 +553,7 @@ export default function Onboarding() {
                 ✨
               </motion.span>
               <h2 className="font-display text-2xl text-luna-text mb-2">
-                {form.name}, tout est pret
+                {form.name}, tout est prêt
               </h2>
               <p className="text-luna-text-muted font-body text-sm mb-6">
                 Voici ce que ton corps nous dit aujourd'hui.
@@ -572,7 +572,7 @@ export default function Onboarding() {
                       </div>
                       <div>
                         <div className="flex justify-between items-center mb-1">
-                          <span className="text-sm font-body text-luna-text-body">Energie estimee</span>
+                          <span className="text-sm font-body text-luna-text-body">Énergie estimée</span>
                           <span className="text-sm font-semibold font-body">{info.energyLevel}%</span>
                         </div>
                         <div className="h-2 bg-white/50 rounded-full overflow-hidden">
@@ -586,7 +586,7 @@ export default function Onboarding() {
                         </div>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-body text-luna-text-body">Prochaines regles</span>
+                        <span className="text-sm font-body text-luna-text-body">Prochaines règles</span>
                         <span className="text-sm font-semibold font-body" style={{ color: PHASES[info.phase].colorDark }}>dans {info.daysUntilPeriod} jours</span>
                       </div>
                     </div>
@@ -618,7 +618,7 @@ export default function Onboarding() {
                 </>
               ) : (
                 <p className="text-sm text-luna-text-muted font-body italic">
-                  Renseigne la date de tes dernieres regles pour voir ton recap.
+                  Renseigne la date de tes dernières règles pour voir ton récap.
                 </p>
               )}
             </motion.div>
@@ -646,7 +646,7 @@ export default function Onboarding() {
               disabled={!canNext()}
               className="btn-luna disabled:opacity-40"
             >
-              {step === 0 ? `Enchantee ${form.name ? form.name : ''} !` : 'Continuer'}
+              {step === 0 ? `Enchantée ${form.name ? form.name : ''} !` : 'Continuer'}
               <ChevronRight size={16} />
             </motion.button>
           ) : (
@@ -657,7 +657,7 @@ export default function Onboarding() {
               }}
               className="btn-luna"
             >
-              Decouvrir ma journee
+              Découvrir ma journée
               <ArrowRight size={16} />
             </motion.button>
           )}

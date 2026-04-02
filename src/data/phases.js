@@ -14,10 +14,10 @@ export const PHASES = {
     bodyToday: 'Œstrogène et progestérone au plus bas. Fatigue, crampes, baisse d\'énergie — c\'est physiologique. Ton corps élimine la muqueuse utérine. Priorité : fer, magnésium, repos.',
     summary: 'Hormones au plus bas. Énergie réduite, récupération en cours. Le corps élimine et se prépare au cycle suivant.',
     mindset: 'Journaling & introspection',
-    nutrients: ['Fer', 'Omega-3', 'Magnésium', 'Vitamine C'],
+    nutrients: ['Fer', 'Oméga-3', 'Magnésium', 'Vitamine C'],
     nutrientDetails: {
       'Fer': 'Tu perds du fer pendant tes règles. Compense avec des lentilles, épinards, viande rouge, tofu.',
-      'Omega-3': 'Anti-inflammatoires naturels qui aident contre les crampes. Saumon, sardines, graines de lin.',
+      'Oméga-3': 'Anti-inflammatoires naturels qui aident contre les crampes. Saumon, sardines, graines de lin.',
       'Magnésium': 'Réduit les crampes et la fatigue. Chocolat noir, amandes, bananes.',
       'Vitamine C': 'Aide à absorber le fer. Agrumes, poivrons, kiwi.',
     },
@@ -36,7 +36,7 @@ export const PHASES = {
         ],
         tip: 'Associe toujours une source de vitamine C (citron, poivron) à tes aliments riches en fer pour mieux l\'absorber.',
       },
-      'Omega-3': {
+      'Oméga-3': {
         why: 'Les oméga-3 sont de puissants anti-inflammatoires naturels. Ils aident à réduire les crampes menstruelles, les douleurs lombaires et les ballonnements en limitant la production de prostaglandines inflammatoires.',
         foods: [
           { name: 'Saumon', emoji: '🐟', why: '100g de saumon = 2,2g d\'oméga-3 EPA/DHA. Ces acides gras réduisent les prostaglandines responsables des crampes menstruelles.', tags: ['sans_gluten','sans_lactose','sopk_friendly'] },

@@ -37,8 +37,8 @@ const mealLabels = {
 
 // ——— Mapping santé : nutriments & superaliments par condition ———
 const HEALTH_NUTRIENT_MAP = {
-  'SPM sévère': ['Magnésium', 'Vitamine B6', 'Calcium', 'Omega-3'],
-  'Endométriose': ['Omega-3', 'Antioxydants', 'Glutathion', 'Fer', 'Fibres'],
+  'SPM sévère': ['Magnésium', 'Vitamine B6', 'Calcium', 'Oméga-3'],
+  'Endométriose': ['Oméga-3', 'Antioxydants', 'Glutathion', 'Fer', 'Fibres'],
   'SOPK': ['Fibres', 'Zinc', 'Glucides complexes', 'Magnésium', 'Probiotiques'],
   'Cycles irréguliers': ['Zinc', 'Vitamines B', 'Vitamine B6', 'Protéines'],
 };

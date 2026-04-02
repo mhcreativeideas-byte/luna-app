@@ -8,26 +8,26 @@ const goalOptions = [
   { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
   { id: 'food', label: 'Mieux manger', icon: '🥗' },
   { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
-  { id: 'emotions', label: 'Gerer mes emotions', icon: '🧠' },
+  { id: 'emotions', label: 'Gérer mes émotions', icon: '🧠' },
   { id: 'discomfort', label: 'Moins de douleurs', icon: '🌸' },
-  { id: 'energy', label: 'Plus d\'energie', icon: '⚡' },
+  { id: 'energy', label: 'Plus d\'énergie', icon: '⚡' },
   { id: 'skin', label: 'Soigner ma peau', icon: '✨' },
   { id: 'strength', label: 'Me sentir forte', icon: '💪' },
 ];
 
 const dietOptions = [
   { id: 'Omnivore', icon: '🍽️' },
-  { id: 'Vegetarienne', icon: '🥬' },
-  { id: 'Vegane', icon: '🌱' },
+  { id: 'Végétarienne', icon: '🥬' },
+  { id: 'Végane', icon: '🌱' },
   { id: 'Sans gluten', icon: '🌾' },
   { id: 'Sans lactose', icon: '🥛' },
 ];
 
 const healthOptions = [
-  { id: 'SPM severe', icon: '😣', desc: 'Douleurs, fatigue, irritabilite avant les regles' },
-  { id: 'Endometriose', icon: '🩺', desc: 'Diagnostiquee ou suspectee' },
+  { id: 'SPM sévère', icon: '😣', desc: 'Douleurs, fatigue, irritabilité avant les règles' },
+  { id: 'Endométriose', icon: '🩺', desc: 'Diagnostiquée ou suspectée' },
   { id: 'SOPK', icon: '🔬', desc: 'Syndrome des ovaires polykystiques' },
-  { id: 'Cycles irreguliers', icon: '📅', desc: 'Cycles de duree variable' },
+  { id: 'Cycles irréguliers', icon: '📅', desc: 'Cycles de durée variable' },
 ];
 
 function SettingRow({ label, value, onClick, danger }) {
@@ -145,7 +145,7 @@ export default function Settings() {
   };
 
   const dietLabel = (dietPreferences || ['Omnivore']).join(', ');
-  const healthLabel = (healthIssues || []).length > 0 ? `${healthIssues.length} selectionne${healthIssues.length > 1 ? 's' : ''}` : 'Aucun';
+  const healthLabel = (healthIssues || []).length > 0 ? `${healthIssues.length} sélectionné${healthIssues.length > 1 ? 's' : ''}` : 'Aucun';
 
   return (
     <div className="space-y-2 pb-8">
@@ -158,23 +158,23 @@ export default function Settings() {
         >
           <ChevronLeft size={20} />
         </button>
-        <h1 className="font-display text-xl text-luna-text">Parametres</h1>
+        <h1 className="font-display text-xl text-luna-text">Paramètres</h1>
       </div>
 
       <Section title="Profil">
         <SettingRow label="Nom" value={name} />
-        <SettingRow label="Objectifs" value={`${goals?.length || 0} selectionnes`} onClick={() => { setEditedGoals(goals || []); setShowGoals(true); }} />
+        <SettingRow label="Objectifs" value={`${goals?.length || 0} sélectionnés`} onClick={() => { setEditedGoals(goals || []); setShowGoals(true); }} />
         <SettingRow label="Alimentation" value={dietLabel} onClick={() => { setEditedDiet(dietPreferences || ['Omnivore']); setShowDiet(true); }} />
-        <SettingRow label="Sante hormonale" value={healthLabel} onClick={() => { setEditedHealth(healthIssues || []); setShowHealth(true); }} />
+        <SettingRow label="Santé hormonale" value={healthLabel} onClick={() => { setEditedHealth(healthIssues || []); setShowHealth(true); }} />
       </Section>
 
       <Section title="Cycle">
-        <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setShowCycleLength(true); }} />
-        <SettingRow label="Duree des regles" value={`${periodLength} jours`} onClick={() => { setEditedPeriodLength(periodLength || 5); setShowPeriodLength(true); }} />
+        <SettingRow label="Durée du cycle" value={`${cycleLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setShowCycleLength(true); }} />
+        <SettingRow label="Durée des règles" value={`${periodLength} jours`} onClick={() => { setEditedPeriodLength(periodLength || 5); setShowPeriodLength(true); }} />
         <SettingRow
-          label="Reinitialiser le calendrier"
+          label="Réinitialiser le calendrier"
           onClick={() => {
-            if (window.confirm('Repartir de zero ? Tes donnees seront perdues.')) {
+            if (window.confirm('Repartir de zéro ? Tes données seront perdues.')) {
               dispatch({ type: 'RESET' });
               localStorage.removeItem('luna-profile');
               window.location.href = '/';
@@ -189,23 +189,23 @@ export default function Settings() {
           checked={notifications}
           onChange={(val) => dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } })}
         />
-        <SettingRow label="Langue" value="Francais" />
+        <SettingRow label="Langue" value="Français" />
       </Section>
 
-      <Section title="Reseaux sociaux">
+      <Section title="Réseaux sociaux">
         <SettingRow label="Instagram" value="@luna.wellness" onClick={() => window.open('https://www.instagram.com/luna.wellness', '_blank')} />
       </Section>
 
-      <Section title="Communaute">
+      <Section title="Communauté">
         <SettingRow label="Partage tes commentaires" />
         <SettingRow label="Signaler un bug" />
-        <SettingRow label="Demander une fonctionnalite" />
+        <SettingRow label="Demander une fonctionnalité" />
         <SettingRow label="Contacte-nous" />
       </Section>
 
-      <Section title="Legal">
-        <SettingRow label="Conditions generales" />
-        <SettingRow label="Politique de confidentialite" />
+      <Section title="Légal">
+        <SettingRow label="Conditions générales" />
+        <SettingRow label="Politique de confidentialité" />
       </Section>
 
       <Section title="Zone sensible">
@@ -236,19 +236,19 @@ export default function Settings() {
       <div className="pt-2 space-y-2">
         {user && (
           <p className="text-center text-xs text-luna-text-hint font-body mb-2">
-            Connectee en tant que {user.email}
+            Connectée en tant que {user.email}
           </p>
         )}
         <button
           onClick={async () => {
-            if (window.confirm('Te deconnecter de LUNA ?')) {
+            if (window.confirm('Te déconnecter de LUNA ?')) {
               await signOut();
               navigate('/');
             }
           }}
           className="w-full text-center py-3 text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors"
         >
-          Deconnexion
+          Déconnexion
         </button>
         <p className="text-center text-xs text-luna-text-hint font-body mt-4">
           LUNA v3.0.0
@@ -285,7 +285,7 @@ export default function Settings() {
               </div>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
-                Selectionne ou retire des objectifs selon tes besoins.
+                Sélectionne ou retire des objectifs selon tes besoins.
               </p>
 
               {/* Goal chips */}
@@ -349,7 +349,7 @@ export default function Settings() {
               </div>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
-                Modifie tes preferences alimentaires. Tes recommandations s'adapteront automatiquement.
+                Modifie tes préférences alimentaires. Tes recommandations s'adapteront automatiquement.
               </p>
 
               <div className="flex flex-wrap gap-2 mb-6">
@@ -400,7 +400,7 @@ export default function Settings() {
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Sante hormonale</h3>
+                <h3 className="font-display text-lg text-luna-text">Santé hormonale</h3>
                 <button
                   onClick={() => setShowHealth(false)}
                   className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
@@ -410,7 +410,7 @@ export default function Settings() {
               </div>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
-                Indique tes soucis hormonaux pour des conseils personnalises. Tu peux tout deselectionner si aucun ne te concerne.
+                Indique tes soucis hormonaux pour des conseils personnalisés. Tu peux tout désélectionner si aucun ne te concerne.
               </p>
 
               <div className="space-y-2 mb-6">
@@ -466,7 +466,7 @@ export default function Settings() {
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Duree du cycle</h3>
+                <h3 className="font-display text-lg text-luna-text">Durée du cycle</h3>
                 <button
                   onClick={() => setShowCycleLength(false)}
                   className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
@@ -534,7 +534,7 @@ export default function Settings() {
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Duree des regles</h3>
+                <h3 className="font-display text-lg text-luna-text">Durée des règles</h3>
                 <button
                   onClick={() => setShowPeriodLength(false)}
                   className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"

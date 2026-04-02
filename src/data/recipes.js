@@ -6,7 +6,7 @@ export const RECIPES = {
         description: 'Porridge réconfortant aux fruits rouges, graines de lin et chocolat noir',
         prepTime: '10 min',
         calories: 380,
-        nutrients: ['Fer', 'Magnésium', 'Omega-3'],
+        nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
         tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
         photo: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&h=400&fit=crop',
         ingredients: [
@@ -29,7 +29,7 @@ export const RECIPES = {
         description: 'Bowl riche en fer avec lentilles, épinards, tofu mariné et avocat',
         prepTime: '25 min',
         calories: 490,
-        nutrients: ['Fer', 'Omega-3', 'Vitamine C'],
+        nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
         tags: ['vegan', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
         ingredients: [
@@ -53,7 +53,7 @@ export const RECIPES = {
         description: 'Bowl riche en fer avec lentilles, épinards, saumon et avocat, sauce curcuma',
         prepTime: '25 min',
         calories: 520,
-        nutrients: ['Fer', 'Omega-3', 'Vitamine C'],
+        nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
         ingredients: [
