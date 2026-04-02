@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon, Check, CircleDot } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon, Check, CircleDot, Thermometer } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
 
@@ -24,7 +24,7 @@ const PHASE_ICONS = {
 };
 
 export default function Calendar() {
-  const { cycleLength, periodLength, lastPeriodDate, periodLogs, cycleInfo, dispatch } = useCycle();
+  const { cycleLength, periodLength, lastPeriodDate, periodLogs, temperatureLogs, cycleInfo, dispatch } = useCycle();
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
   const [confirmStart, setConfirmStart] = useState(false);
@@ -364,6 +364,41 @@ export default function Calendar() {
                     <p className="text-xs font-body font-semibold mt-0.5" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>{h.level}</p>
                   </div>
                 ))}
+              </div>
+
+              {/* Basal Temperature */}
+              <div className="pt-2">
+                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">Température basale</p>
+                <div
+                  className="flex items-center gap-3 rounded-[14px] px-4 py-3"
+                  style={{ backgroundColor: '#F8F6F4' }}
+                >
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#E8E4E0' }}>
+                    <Thermometer size={14} className="text-luna-text-muted" />
+                  </div>
+                  <div className="flex-1">
+                    <input
+                      type="number"
+                      step="0.1"
+                      min="35"
+                      max="39"
+                      placeholder="36.5"
+                      value={(temperatureLogs || {})[selectedDay.dateStr] ?? ''}
+                      onChange={(e) => {
+                        dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: e.target.value } });
+                      }}
+                      className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
+                    />
+                    <p className="text-[10px] font-body text-luna-text-muted mt-0.5">
+                      En °C, au réveil avant de te lever
+                    </p>
+                  </div>
+                  {(temperatureLogs || {})[selectedDay.dateStr] && (
+                    <span className="text-sm font-body font-bold" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>
+                      {(temperatureLogs || {})[selectedDay.dateStr]}°C
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* Period logging actions */}

@@ -20,6 +20,7 @@ const initialState = {
   periodLogs: [],
   checkIns: [],
   customSymptoms: [],
+  temperatureLogs: {},
   chatHistory: [],
   notifications: true,
   language: 'fr',
@@ -95,6 +96,17 @@ function cycleReducer(state, action) {
         ? state.periodLogs.filter((d) => d !== date)
         : [...state.periodLogs, date].sort();
       return { ...state, periodLogs: newLogs };
+    }
+    case 'SET_TEMPERATURE': {
+      // payload: { date, temperature } — save basal temperature for a day
+      const { date: tempDate, temperature } = action.payload;
+      const newTempLogs = { ...state.temperatureLogs };
+      if (temperature === null || temperature === '') {
+        delete newTempLogs[tempDate];
+      } else {
+        newTempLogs[tempDate] = parseFloat(temperature);
+      }
+      return { ...state, temperatureLogs: newTempLogs };
     }
     case 'SET_PERIOD_START': {
       // payload: { date } — mark as period start and update lastPeriodDate
