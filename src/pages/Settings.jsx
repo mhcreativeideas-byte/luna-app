@@ -55,7 +55,7 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, goals, dispatch } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dispatch, signOut, user } = useCycle();
 
   return (
     <div className="space-y-2 pb-8">
@@ -143,15 +143,21 @@ export default function Settings() {
       </Section>
 
       <div className="pt-2 space-y-2">
+        {user && (
+          <p className="text-center text-xs text-luna-text-hint font-body mb-2">
+            Connectee en tant que {user.email}
+          </p>
+        )}
         <button
-          onClick={() => {
-            if (window.confirm('Te déconnecter de LUNA ?')) {
-              window.location.href = '/';
+          onClick={async () => {
+            if (window.confirm('Te deconnecter de LUNA ?')) {
+              await signOut();
+              navigate('/');
             }
           }}
           className="w-full text-center py-3 text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors"
         >
-          Déconnexion
+          Deconnexion
         </button>
         <p className="text-center text-xs text-luna-text-hint font-body mt-4">
           LUNA v3.0.0

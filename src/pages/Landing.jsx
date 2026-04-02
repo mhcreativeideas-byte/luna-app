@@ -102,12 +102,18 @@ export default function Landing() {
           </motion.p>
 
           <motion.div variants={item} className="space-y-3">
-            <Link to="/onboarding" className="btn-luna text-base">
-              Comprendre mon cycle
+            <Link to="/auth?mode=signup" className="btn-luna text-base">
+              Creer mon compte
               <ArrowRight size={18} />
             </Link>
+            <Link
+              to="/auth?mode=login"
+              className="inline-flex items-center gap-2 text-sm font-body font-semibold text-luna-text-muted hover:text-luna-text transition-colors"
+            >
+              J'ai deja un compte
+            </Link>
             <p className="text-xs text-luna-text-hint font-body mt-3">
-              Basé sur la recherche en endocrinologie. Données privées et chiffrées.
+              Base sur la recherche en endocrinologie. Donnees privees et chiffrees.
             </p>
           </motion.div>
         </div>
@@ -270,8 +276,8 @@ export default function Landing() {
           <p className="text-luna-text-muted font-body mb-8 text-sm max-w-sm mx-auto">
             Rejoins les femmes qui ont arrêté de subir leur cycle et qui ont commencé à s'en servir.
           </p>
-          <Link to="/onboarding" className="btn-luna text-base">
-            Comprendre mon cycle
+          <Link to="/auth?mode=signup" className="btn-luna text-base">
+            Commencer gratuitement
             <ArrowRight size={18} />
           </Link>
           <Divider className="mx-auto mt-10" />

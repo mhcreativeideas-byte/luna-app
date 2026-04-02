@@ -1,35 +1,84 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Check, ArrowRight } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
-import { supabase } from '../lib/supabase';
+
+const TOTAL_STEPS = 5;
 
 const goalOptions = [
-  { id: 'sport', label: 'Adapter mon sport à mon énergie', icon: '🏃‍♀️' },
-  { id: 'food', label: 'Nourrir mon corps intelligemment', icon: '🥗' },
-  { id: 'sleep', label: 'Dormir profondément, enfin', icon: '😴' },
-  { id: 'emotions', label: 'Comprendre mes émotions sans les subir', icon: '🧠' },
-  { id: 'discomfort', label: 'Réduire les douleurs et l\'inconfort', icon: '🌸' },
-  { id: 'energy', label: 'Retrouver une énergie stable', icon: '⚡' },
-  { id: 'skin', label: 'Prendre soin de ma peau naturellement', icon: '✨' },
-  { id: 'strength', label: 'Me sentir puissante dans mon corps', icon: '💪' },
+  { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
+  { id: 'food', label: 'Mieux manger', icon: '🥗' },
+  { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
+  { id: 'emotions', label: 'Gerer mes emotions', icon: '🧠' },
+  { id: 'discomfort', label: 'Moins de douleurs', icon: '🌸' },
+  { id: 'energy', label: 'Plus d\'energie', icon: '⚡' },
+  { id: 'skin', label: 'Soigner ma peau', icon: '✨' },
+  { id: 'strength', label: 'Me sentir forte', icon: '💪' },
 ];
 
 const fitnessLevels = [
-  { id: 'beginner', label: 'Je débute', desc: 'Et c\'est très bien comme ça', icon: '🌱' },
-  { id: 'intermediate', label: 'Je bouge régulièrement', desc: 'Quelques séances par semaine', icon: '🌿' },
-  { id: 'advanced', label: 'Je suis une athlète', desc: 'Le sport fait partie de ma vie', icon: '🌳' },
+  { id: 'beginner', label: 'Je debute', desc: 'Et c\'est tres bien comme ca', icon: '🌱' },
+  { id: 'intermediate', label: 'Je bouge regulierement', desc: 'Quelques seances par semaine', icon: '🌿' },
+  { id: 'advanced', label: 'Je suis une athlete', desc: 'Le sport fait partie de ma vie', icon: '🌳' },
 ];
 
-const dietOptions = ['Omnivore', 'Végétarienne', 'Végane', 'Sans gluten', 'Sans lactose'];
-const healthOptions = ['SPM sévère', 'Endométriose', 'SOPK', 'Cycles irréguliers'];
+const dietOptions = [
+  { id: 'Omnivore', icon: '🍽️' },
+  { id: 'Vegetarienne', icon: '🥬' },
+  { id: 'Vegane', icon: '🌱' },
+  { id: 'Sans gluten', icon: '🌾' },
+  { id: 'Sans lactose', icon: '🥛' },
+];
+
+const healthOptions = [
+  { id: 'SPM severe', icon: '😣', desc: 'Douleurs, fatigue, irritabilite avant les regles' },
+  { id: 'Endometriose', icon: '🩺', desc: 'Diagnostiquee ou suspectee' },
+  { id: 'SOPK', icon: '🔬', desc: 'Syndrome des ovaires polykystiques' },
+  { id: 'Cycles irreguliers', icon: '📅', desc: 'Cycles de duree variable' },
+];
+
+// Step backgrounds
+const STEP_COLORS = [
+  { bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)', accent: '#C4727F' },
+  { bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)', accent: '#9B7FB8' },
+  { bg: 'linear-gradient(180deg, #E8F5E9 0%, #FAF7F5 100%)', accent: '#6B9E76' },
+  { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#D4846A' },
+  null, // dynamic based on phase
+];
+
+// Personalized message based on health/diet
+function getPersonalizedTip(form, phase) {
+  const tips = [];
+  if (form.healthIssues.includes('SOPK')) {
+    tips.push('Tes recommandations sont adaptees au SOPK : index glycemique bas, anti-inflammatoires naturels.');
+  }
+  if (form.healthIssues.includes('Endometriose')) {
+    tips.push('On privilegie les aliments anti-inflammatoires et riches en omega-3 pour toi.');
+  }
+  if (form.healthIssues.includes('SPM severe')) {
+    tips.push('Magnesium, B6 et calcium seront tes allies. On les met en avant pour toi.');
+  }
+  if (form.dietPreferences.includes('Vegane') || form.dietPreferences.includes('Vegetarienne')) {
+    tips.push('Toutes les recettes et aliments sont adaptes a ton regime alimentaire.');
+  }
+  if (!tips.length) {
+    const phaseMsg = {
+      menstrual: 'C\'est le moment de prendre soin de toi. On te guide pas a pas.',
+      follicular: 'Ton energie remonte ! On va en profiter ensemble.',
+      ovulatory: 'Tu es au sommet de ton cycle. Profite de cette energie.',
+      luteal: 'Ton corps se prepare. On adapte tout pour toi.',
+    };
+    tips.push(phaseMsg[phase] || 'On est la pour t\'accompagner chaque jour.');
+  }
+  return tips[0];
+}
 
 export default function Onboarding() {
   const navigate = useNavigate();
-  const { dispatch } = useCycle();
+  const { dispatch, user, saveProfileToSupabase } = useCycle();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
@@ -71,26 +120,19 @@ export default function Onboarding() {
 
     await new Promise((r) => setTimeout(r, 500));
 
-    dispatch({ type: 'SET_PROFILE', payload: form });
+    // Set email from auth if available
+    const finalForm = {
+      ...form,
+      email: form.email || user?.email || '',
+    };
+
+    dispatch({ type: 'SET_PROFILE', payload: finalForm });
     dispatch({ type: 'COMPLETE_ONBOARDING' });
 
-    const info = getCycleInfo(form.lastPeriodDate, form.cycleLength, form.periodLength);
-    try {
-      await supabase.from('users').insert({
-        name: form.name,
-        email: form.email,
-        last_period_date: form.lastPeriodDate,
-        cycle_length: form.cycleLength,
-        period_length: form.periodLength,
-        goals: form.goals,
-        fitness_level: form.fitnessLevel,
-        diet_preferences: form.dietPreferences,
-        health_issues: form.healthIssues,
-        current_phase: info?.phase || 'unknown',
-      });
-    } catch (e) {
-      console.log('Supabase save error:', e);
-    }
+    // Save to Supabase (via context method, deferred)
+    setTimeout(() => {
+      saveProfileToSupabase?.();
+    }, 500);
 
     setLoading(false);
   };
@@ -109,8 +151,8 @@ export default function Onboarding() {
   if (loading) {
     const loadingSteps = [
       'On analyse ton cycle...',
-      'On prépare ton profil...',
-      'On sélectionne tes recommandations...',
+      'On prepare ton profil...',
+      'On selectionne tes recommandations...',
     ];
 
     return (
@@ -178,22 +220,31 @@ export default function Onboarding() {
     );
   }
 
+  const stepColor = STEP_COLORS[step];
+
   return (
-    <div className="min-h-screen bg-luna-bg flex items-center justify-center px-4 py-8">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-8 transition-all duration-500"
+      style={{ background: step < 4 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5') }}
+    >
       <div className="w-full max-w-md">
-        {/* Progress bar */}
-        <div className="h-1 bg-luna-cream-card rounded-full mb-8 overflow-hidden">
-          <motion.div
-            className="h-full rounded-full"
-            style={{ background: 'linear-gradient(90deg, #C4727F, #D4846A)' }}
-            initial={{ width: 0 }}
-            animate={{ width: `${((step + 1) / 5) * 100}%` }}
-            transition={{ duration: 0.4 }}
-          />
+        {/* Progress dots */}
+        <div className="flex justify-center gap-2 mb-8">
+          {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
+            <motion.div
+              key={i}
+              animate={{
+                width: i === step ? 24 : 8,
+                backgroundColor: i <= step ? (step < 4 ? stepColor?.accent : (info ? PHASES[info.phase].color : '#C4727F')) : '#E0D5D8',
+              }}
+              className="h-2 rounded-full"
+              transition={{ duration: 0.3 }}
+            />
+          ))}
         </div>
 
         <AnimatePresence mode="wait">
-          {/* Step 0: Welcome */}
+          {/* Step 0: Prenom */}
           {step === 0 && (
             <motion.div
               key="step0"
@@ -205,32 +256,29 @@ export default function Onboarding() {
               className="bg-white rounded-[24px] p-8"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Quel est ton prénom ?
-              </h2>
-              <p className="text-luna-text-muted text-center mb-8 font-body text-sm">
-                Pour personnaliser ton expérience et t'accompagner au mieux.
-              </p>
-              <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                Ton prénom
-              </label>
+              <div className="text-center mb-8">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-5xl block mb-4"
+                >
+                  👋
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Comment tu t'appelles ?
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Pour qu'on puisse te parler comme une amie.
+                </p>
+              </div>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => updateForm('name', e.target.value)}
-                placeholder="Ton prénom"
-                className="w-full px-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all mb-5"
+                placeholder="Ton prenom"
+                className="w-full px-5 py-4 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body text-center text-lg focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
                 autoFocus
-              />
-              <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                Ton email
-              </label>
-              <input
-                type="email"
-                value={form.email}
-                onChange={(e) => updateForm('email', e.target.value)}
-                placeholder="ton.email@exemple.com"
-                className="w-full px-5 py-3.5 rounded-[16px] bg-luna-cream border border-transparent text-luna-text font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/30 transition-all"
               />
             </motion.div>
           )}
@@ -247,16 +295,26 @@ export default function Onboarding() {
               className="bg-white rounded-[24px] p-8"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Parlons de ton cycle
-              </h2>
-              <p className="text-luna-text-muted text-center mb-6 text-sm font-body">
-                Ces infos nous permettent de savoir exactement où tu en es aujourd'hui. Pas de jugement, juste de la précision.
-              </p>
+              <div className="text-center mb-6">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-5xl block mb-4"
+                >
+                  🌙
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Parlons de ton cycle
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Pour savoir ou tu en es aujourd'hui.
+                </p>
+              </div>
               <div className="space-y-5">
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Quand ont commencé tes dernières règles ?
+                    Dernieres regles
                   </label>
                   <input
                     type="date"
@@ -267,14 +325,14 @@ export default function Onboarding() {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Ton cycle dure environ <span className="text-luna-rose text-base">{form.cycleLength} jours</span>
+                    Duree du cycle <span className="text-luna-rose text-base font-display">{form.cycleLength}j</span>
                   </label>
                   <input
                     type="range" min={21} max={35}
                     value={form.cycleLength}
                     onChange={(e) => updateForm('cycleLength', Number(e.target.value))}
                     className="w-full"
-                    style={{ accentColor: '#C4727F' }}
+                    style={{ accentColor: '#9B7FB8' }}
                   />
                   <div className="flex justify-between text-xs text-luna-text-hint font-body">
                     <span>21j</span><span>28j</span><span>35j</span>
@@ -282,27 +340,27 @@ export default function Onboarding() {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Tes règles durent environ <span className="text-luna-rose text-base">{form.periodLength} jours</span>
+                    Duree des regles <span className="text-luna-rose text-base font-display">{form.periodLength}j</span>
                   </label>
                   <input
                     type="range" min={2} max={8}
                     value={form.periodLength}
                     onChange={(e) => updateForm('periodLength', Number(e.target.value))}
                     className="w-full"
-                    style={{ accentColor: '#C4727F' }}
+                    style={{ accentColor: '#9B7FB8' }}
                   />
                   <div className="flex justify-between text-xs text-luna-text-hint font-body">
                     <span>2j</span><span>5j</span><span>8j</span>
                   </div>
                 </div>
                 <p className="text-xs text-luna-text-hint font-body text-center italic">
-                  Pas sûre ? Pas de souci, on affinera ensemble au fil du temps.
+                  Pas sure ? On affinera ensemble.
                 </p>
               </div>
             </motion.div>
           )}
 
-          {/* Step 2: Goals */}
+          {/* Step 2: Alimentation + Sante */}
           {step === 2 && (
             <motion.div
               key="step2"
@@ -314,32 +372,88 @@ export default function Onboarding() {
               className="bg-white rounded-[24px] p-8"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Qu'est-ce qui t'amène ici ?
-              </h2>
-              <p className="text-luna-text-muted text-center mb-6 text-sm font-body">
-                Choisis tout ce qui te parle. Tu pourras toujours changer d'avis.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {goalOptions.map(({ id, label, icon }) => (
-                  <button
-                    key={id}
-                    onClick={() => toggleArray('goals', id)}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
-                      form.goals.includes(id)
-                        ? 'border-luna-rose bg-luna-rose/10 text-luna-rose-deep'
-                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose/30'
-                    }`}
-                  >
-                    <span>{icon}</span>
-                    {label}
-                  </button>
-                ))}
+              <div className="text-center mb-6">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-5xl block mb-4"
+                >
+                  🥑
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Ton alimentation & ta sante
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Pour adapter chaque conseil a toi.
+                </p>
+              </div>
+
+              <div className="space-y-5">
+                {/* Diet */}
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-3 font-body uppercase tracking-wider">
+                    Comment tu manges ?
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {dietOptions.map(({ id, icon }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => toggleArray('dietPreferences', id)}
+                        className={`flex items-center gap-2 px-3.5 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
+                          form.dietPreferences.includes(id)
+                            ? 'border-green-400 bg-green-50 text-green-700'
+                            : 'border-gray-100 bg-white text-luna-text-muted hover:border-green-200'
+                        }`}
+                      >
+                        <span className="text-base">{icon}</span>
+                        {id}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Health */}
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Une condition a connaitre ? <span className="font-normal lowercase">(optionnel)</span>
+                  </label>
+                  <div className="space-y-2">
+                    {healthOptions.map(({ id, icon, desc }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => toggleArray('healthIssues', id)}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                          form.healthIssues.includes(id)
+                            ? 'border-luna-lavender bg-luna-lavender/10'
+                            : 'border-gray-100 bg-white hover:border-luna-lavender/30'
+                        }`}
+                      >
+                        <span className="text-2xl flex-shrink-0">{icon}</span>
+                        <div className="min-w-0">
+                          <p className={`text-sm font-semibold font-body ${form.healthIssues.includes(id) ? 'text-luna-lavender-dark' : 'text-luna-text'}`}>{id}</p>
+                          <p className="text-xs text-luna-text-muted font-body truncate">{desc}</p>
+                        </div>
+                        {form.healthIssues.includes(id) && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="ml-auto flex-shrink-0 w-5 h-5 rounded-full bg-luna-lavender flex items-center justify-center"
+                          >
+                            <Check size={12} className="text-white" />
+                          </motion.div>
+                        )}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
           )}
 
-          {/* Step 3: Profile */}
+          {/* Step 3: Objectifs + Sport */}
           {step === 3 && (
             <motion.div
               key="step3"
@@ -351,77 +465,66 @@ export default function Onboarding() {
               className="bg-white rounded-[24px] p-8"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Encore quelques détails
-              </h2>
-              <p className="text-luna-text-muted text-center mb-6 text-sm font-body">
-                Pour que chaque conseil soit vraiment fait pour toi.
-              </p>
+              <div className="text-center mb-6">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-5xl block mb-4"
+                >
+                  🎯
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Tes objectifs
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Qu'est-ce qui t'amene ici ?
+                </p>
+              </div>
+
               <div className="space-y-5">
+                {/* Goals */}
+                <div className="flex flex-wrap gap-2">
+                  {goalOptions.map(({ id, label, icon }) => (
+                    <motion.button
+                      key={id}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => toggleArray('goals', id)}
+                      className={`flex items-center gap-2 px-3.5 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
+                        form.goals.includes(id)
+                          ? 'border-orange-300 bg-orange-50 text-orange-700'
+                          : 'border-gray-100 bg-white text-luna-text-muted hover:border-orange-200'
+                      }`}
+                    >
+                      <span>{icon}</span>
+                      {label}
+                    </motion.button>
+                  ))}
+                </div>
+
+                {/* Fitness level */}
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Côté sport, tu te situes où ?
+                    Ton niveau sportif
                   </label>
                   <div className="space-y-2">
                     {fitnessLevels.map(({ id, label, desc, icon }) => (
-                      <button
+                      <motion.button
                         key={id}
+                        whileTap={{ scale: 0.98 }}
                         onClick={() => updateForm('fitnessLevel', id)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
                           form.fitnessLevel === id
-                            ? 'border-luna-rose bg-luna-rose/5'
-                            : 'border-gray-100 bg-white hover:border-luna-rose/20'
+                            ? 'border-orange-300 bg-orange-50'
+                            : 'border-gray-100 bg-white hover:border-orange-200'
                         }`}
                       >
-                        <span className="text-xl">{icon}</span>
+                        <span className="text-2xl">{icon}</span>
                         <div>
                           <p className="text-sm font-semibold text-luna-text font-body">{label}</p>
                           <p className="text-xs text-luna-text-muted font-body">{desc}</p>
                         </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Comment tu manges au quotidien ?
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {dietOptions.map((opt) => (
-                      <button
-                        key={opt}
-                        onClick={() => toggleArray('dietPreferences', opt)}
-                        className={`px-3 py-1.5 rounded-pill text-xs font-body font-semibold transition-all border ${
-                          form.dietPreferences.includes(opt)
-                            ? 'border-luna-rose bg-luna-rose/10 text-luna-rose-deep'
-                            : 'border-gray-100 bg-white text-luna-text-muted'
-                        }`}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Quelque chose qu'on devrait savoir ? <span className="font-normal lowercase">(optionnel)</span>
-                  </label>
-                  <p className="text-xs text-luna-text-hint font-body mb-2">
-                    SPM, endométriose, SOPK, cycles irréguliers... Ça nous aide à mieux te guider.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {healthOptions.map((opt) => (
-                      <button
-                        key={opt}
-                        onClick={() => toggleArray('healthIssues', opt)}
-                        className={`px-3 py-1.5 rounded-pill text-xs font-body font-semibold transition-all border ${
-                          form.healthIssues.includes(opt)
-                            ? 'border-luna-lavender bg-luna-lavender/20 text-luna-lavender-dark'
-                            : 'border-gray-100 bg-white text-luna-text-muted'
-                        }`}
-                      >
-                        {opt}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </div>
@@ -429,8 +532,8 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 4: Ready */}
-          {step === 4 && info && (
+          {/* Step 4: Recap personnalise */}
+          {step === 4 && (
             <motion.div
               key="step4"
               variants={slideVariants}
@@ -441,49 +544,83 @@ export default function Onboarding() {
               className="bg-white rounded-[24px] p-8 text-center"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
+              <motion.span
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', delay: 0.2 }}
+                className="text-5xl block mb-4"
+              >
+                ✨
+              </motion.span>
               <h2 className="font-display text-2xl text-luna-text mb-2">
-                {form.name}, ton espace est prêt
+                {form.name}, tout est pret
               </h2>
               <p className="text-luna-text-muted font-body text-sm mb-6">
                 Voici ce que ton corps nous dit aujourd'hui.
               </p>
 
-              {/* Profile recap card */}
-              <div className="rounded-[20px] p-5 mb-6 text-left" style={{ backgroundColor: PHASES[info.phase].bgColor }}>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-body text-luna-text-body">Phase actuelle</span>
-                    <span className="text-sm font-semibold font-body flex items-center gap-1" style={{ color: PHASES[info.phase].colorDark }}>
-                      {PHASES[info.phase].icon} {PHASES[info.phase].shortName} — Jour {info.currentDay}
-                    </span>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-sm font-body text-luna-text-body">Énergie estimée</span>
-                      <span className="text-sm font-semibold font-body">{info.energyLevel}%</span>
+              {info ? (
+                <>
+                  {/* Phase card */}
+                  <div className="rounded-[20px] p-5 mb-4 text-left" style={{ backgroundColor: PHASES[info.phase].bgColor }}>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-body text-luna-text-body">Phase actuelle</span>
+                        <span className="text-sm font-semibold font-body flex items-center gap-1" style={{ color: PHASES[info.phase].colorDark }}>
+                          {PHASES[info.phase].icon} {PHASES[info.phase].shortName} — Jour {info.currentDay}
+                        </span>
+                      </div>
+                      <div>
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="text-sm font-body text-luna-text-body">Energie estimee</span>
+                          <span className="text-sm font-semibold font-body">{info.energyLevel}%</span>
+                        </div>
+                        <div className="h-2 bg-white/50 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${info.energyLevel}%` }}
+                            transition={{ delay: 0.3, duration: 0.6 }}
+                            className="h-full rounded-full"
+                            style={{ backgroundColor: PHASES[info.phase].color }}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-body text-luna-text-body">Prochaines regles</span>
+                        <span className="text-sm font-semibold font-body" style={{ color: PHASES[info.phase].colorDark }}>dans {info.daysUntilPeriod} jours</span>
+                      </div>
                     </div>
-                    <div className="h-2 bg-white/50 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${info.energyLevel}%` }}
-                        transition={{ delay: 0.3, duration: 0.6 }}
-                        className="h-full rounded-full"
-                        style={{ backgroundColor: PHASES[info.phase].color }}
-                      />
-                    </div>
                   </div>
 
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm font-body text-luna-text-body">Prochaines règles dans</span>
-                    <span className="text-sm font-semibold font-body" style={{ color: PHASES[info.phase].colorDark }}>{info.daysUntilPeriod} jours</span>
+                  {/* Personalized badges */}
+                  <div className="flex flex-wrap justify-center gap-2 mb-4">
+                    {form.dietPreferences.filter(d => d !== 'Omnivore').map((d) => (
+                      <span key={d} className="text-xs font-body font-semibold px-3 py-1 rounded-pill bg-green-50 text-green-700 border border-green-200">
+                        🌱 {d}
+                      </span>
+                    ))}
+                    {form.healthIssues.map((h) => (
+                      <span key={h} className="text-xs font-body font-semibold px-3 py-1 rounded-pill bg-purple-50 text-purple-700 border border-purple-200">
+                        💜 {h}
+                      </span>
+                    ))}
                   </div>
-                </div>
-              </div>
 
-              <p className="text-sm text-luna-text-muted font-body italic leading-relaxed">
-                {PHASES[info.phase].bodyToday}
-              </p>
+                  {/* Personalized tip */}
+                  <div
+                    className="rounded-[16px] p-4 text-left"
+                    style={{ backgroundColor: `${PHASES[info.phase].color}10` }}
+                  >
+                    <p className="text-sm font-body leading-relaxed" style={{ color: PHASES[info.phase].colorDark }}>
+                      {getPersonalizedTip(form, info.phase)}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <p className="text-sm text-luna-text-muted font-body italic">
+                  Renseigne la date de tes dernieres regles pour voir ton recap.
+                </p>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
@@ -503,24 +640,26 @@ export default function Onboarding() {
           )}
 
           {step < 4 ? (
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               onClick={() => setStep((s) => s + 1)}
               disabled={!canNext()}
-              className="btn-luna"
+              className="btn-luna disabled:opacity-40"
             >
-              {step === 0 ? 'Enchantée' : 'Continuer'}
+              {step === 0 ? `Enchantee ${form.name ? form.name : ''} !` : 'Continuer'}
               <ChevronRight size={16} />
-            </button>
+            </motion.button>
           ) : (
-            <button
+            <motion.button
+              whileTap={{ scale: 0.95 }}
               onClick={() => {
                 finish().then(() => navigate('/dashboard'));
               }}
               className="btn-luna"
             >
-              Découvrir ma journée
+              Decouvrir ma journee
               <ArrowRight size={16} />
-            </button>
+            </motion.button>
           )}
         </div>
       </div>

@@ -34,8 +34,23 @@ const mealLabels = {
   dinner: { label: 'Dîner', tag: 'DINNER' },
 };
 
+// ——— Mapping santé : nutriments & superaliments par condition ———
+const HEALTH_NUTRIENT_MAP = {
+  'SPM sévère': ['Magnésium', 'Vitamine B6', 'Calcium', 'Omega-3'],
+  'Endométriose': ['Omega-3', 'Antioxydants', 'Glutathion', 'Fer', 'Fibres'],
+  'SOPK': ['Fibres', 'Zinc', 'Glucides complexes', 'Magnésium', 'Probiotiques'],
+  'Cycles irréguliers': ['Zinc', 'Vitamines B', 'Vitamine B6', 'Protéines'],
+};
+
+const HEALTH_SUPERFOODS = {
+  'SPM sévère': ['Chocolat noir', 'Chocolat noir 70%', 'Graines de courge', 'Bananes', 'Amandes', 'Épinards', 'Noix de cajou', 'Sardines'],
+  'Endométriose': ['Saumon', 'Graines de lin', 'Brocoli', 'Épinards', 'Graines de chia', 'Avocat', 'Noix', 'Maquereau', 'Huile d\'olive'],
+  'SOPK': ['Lentilles', 'Graines de lin', 'Brocoli', 'Graines de chia', 'Avoine', 'Cannelle', 'Quinoa', 'Patate douce', 'Sarrasin', 'Amandes'],
+  'Cycles irréguliers': ['Graines de lin', 'Graines de courge', 'Avocat', 'Noix', 'Saumon', 'Œufs', 'Graines de sésame', 'Zinc'],
+};
+
 export default function Alimentation() {
-  const { cycleInfo } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues } = useCycle();
   const [openRecipe, setOpenRecipe] = useState(null);
   const [openNutrient, setOpenNutrient] = useState(null);
   const [expandedDrink, setExpandedDrink] = useState(null);
@@ -47,7 +62,67 @@ export default function Alimentation() {
   const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = phaseData.nutrientsFull || {};
 
-  if (!recipes) return null;
+  // ——— Filtrage alimentaire selon le profil ———
+  const requiredTags = (() => {
+    const tags = [];
+    const prefs = dietPreferences || ['omnivore'];
+    const issues = healthIssues || [];
+    if (prefs.includes('Végane')) tags.push('vegan');
+    else if (prefs.includes('Végétarienne')) tags.push('vegetarien');
+    if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
+    if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
+    if (issues.includes('SOPK')) tags.push('sopk_friendly');
+    return tags;
+  })();
+
+  const filterFoods = (foods) => {
+    if (!requiredTags.length) return foods;
+    const filtered = foods.filter(f => requiredTags.every(tag => (f.tags || []).includes(tag)));
+    return filtered; // si rien ne matche, on n'affiche rien
+  };
+
+  const isFiltering = requiredTags.length > 0;
+
+  // ——— Badges santé ———
+  const userIssues = healthIssues || [];
+  const beneficialNutrients = new Set(
+    userIssues.flatMap(issue => HEALTH_NUTRIENT_MAP[issue] || [])
+  );
+  const superfoodSet = new Set(
+    userIssues.flatMap(issue => HEALTH_SUPERFOODS[issue] || [])
+  );
+  const hasHealthBadges = userIssues.length > 0;
+
+  const dietLabel = (() => {
+    const labels = [];
+    const prefs = dietPreferences || [];
+    if (prefs.includes('Végane')) labels.push('Végane');
+    else if (prefs.includes('Végétarienne')) labels.push('Végétarienne');
+    if (prefs.includes('Sans gluten')) labels.push('Sans gluten');
+    if (prefs.includes('Sans lactose')) labels.push('Sans lactose');
+    if ((healthIssues || []).includes('SOPK')) labels.push('SOPK');
+    return labels.join(' · ');
+  })();
+
+  // ——— Sélection de la recette compatible ———
+  const selectRecipe = (variants) => {
+    if (!Array.isArray(variants)) return variants; // compat ancien format
+    if (variants.length === 1) return variants[0]; // une seule recette
+    // Sans filtre → recette originale (dernière dans le tableau)
+    if (!requiredTags.length) return variants[variants.length - 1];
+    // Avec filtre → première recette compatible, sinon originale
+    const match = variants.find(r => requiredTags.every(tag => (r.tags || []).includes(tag)));
+    return match || variants[variants.length - 1];
+  };
+
+  // Construire les recettes filtrées pour cette phase
+  const filteredRecipes = recipes
+    ? Object.fromEntries(
+        Object.entries(recipes).map(([key, variants]) => [key, selectRecipe(variants)])
+      )
+    : null;
+
+  if (!filteredRecipes) return null;
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
@@ -75,24 +150,42 @@ export default function Alimentation() {
           <p className="text-xs font-body text-luna-text-hint mb-4">Clique sur un nutriment pour découvrir les aliments à privilégier.</p>
 
           <div className="flex flex-wrap gap-2">
-            {phaseData.nutrients.map((n) => (
-              <button
-                key={n}
-                onClick={() => { setOpenNutrient(openNutrient === n ? null : n); setSelectedFood(null); }}
-                className="px-4 py-2.5 rounded-[14px] text-sm font-body font-semibold transition-all duration-300"
-                style={openNutrient === n ? {
-                  backgroundColor: phaseData.color,
-                  color: 'white',
-                  boxShadow: `0 4px 12px ${phaseData.color}40`,
-                } : {
-                  backgroundColor: phaseData.bgColor,
-                  color: phaseData.colorDark,
-                }}
-              >
-                {n}
-              </button>
-            ))}
+            {phaseData.nutrients.map((n) => {
+              const isBeneficial = hasHealthBadges && beneficialNutrients.has(n);
+              return (
+                <button
+                  key={n}
+                  onClick={() => { setOpenNutrient(openNutrient === n ? null : n); setSelectedFood(null); }}
+                  className="px-4 py-2.5 rounded-[14px] text-sm font-body font-semibold transition-all duration-300 inline-flex items-center gap-1.5"
+                  style={openNutrient === n ? {
+                    backgroundColor: phaseData.color,
+                    color: 'white',
+                    boxShadow: `0 4px 12px ${phaseData.color}40`,
+                  } : {
+                    backgroundColor: phaseData.bgColor,
+                    color: phaseData.colorDark,
+                  }}
+                >
+                  {n}
+                  {isBeneficial && (
+                    <span className="text-[10px]" title="Recommandé pour ta santé">💚</span>
+                  )}
+                </button>
+              );
+            })}
           </div>
+          {hasHealthBadges && (
+            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-50">
+              <span className="text-[10px]">💚</span>
+              <p className="text-[10px] font-body text-luna-text-hint">
+                = Nutriment clé pour {userIssues.join(' & ')}
+              </p>
+              <span className="text-[10px] ml-2">⭐</span>
+              <p className="text-[10px] font-body text-luna-text-hint">
+                = Superaliment pour toi
+              </p>
+            </div>
+          )}
         </div>
       </motion.div>
 
@@ -132,12 +225,23 @@ export default function Alimentation() {
 
               {/* Foods grid */}
               <div className="bg-white px-5 py-5">
-                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
-                  Aliments riches en {openNutrient.toLowerCase()}
-                </p>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">
+                    Aliments riches en {openNutrient.toLowerCase()}
+                  </p>
+                  {isFiltering && (
+                    <span
+                      className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-pill"
+                      style={{ backgroundColor: `${phaseData.color}15`, color: phaseData.colorDark }}
+                    >
+                      🌱 {dietLabel}
+                    </span>
+                  )}
+                </div>
                 <div className="grid grid-cols-4 gap-3">
-                  {nutrientsFull[openNutrient].foods.map((food, i) => {
+                  {filterFoods(nutrientsFull[openNutrient].foods).map((food, i) => {
                     const isActive = selectedFood === food.name;
+                    const isSuperfood = hasHealthBadges && superfoodSet.has(food.name);
                     return (
                       <motion.button
                         key={food.name}
@@ -147,15 +251,26 @@ export default function Alimentation() {
                         onClick={() => setSelectedFood(isActive ? null : food.name)}
                         className="flex flex-col items-center gap-1.5 transition-all"
                       >
-                        <div
-                          className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl transition-all"
-                          style={{
-                            backgroundColor: isActive ? `${phaseData.color}25` : phaseData.bgColor,
-                            border: isActive ? `2px solid ${phaseData.color}` : '2px solid transparent',
-                            transform: isActive ? 'scale(1.08)' : 'scale(1)',
-                          }}
-                        >
-                          {food.emoji}
+                        <div className="relative">
+                          <div
+                            className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl transition-all"
+                            style={{
+                              backgroundColor: isActive ? `${phaseData.color}25` : phaseData.bgColor,
+                              border: isActive ? `2px solid ${phaseData.color}` : '2px solid transparent',
+                              transform: isActive ? 'scale(1.08)' : 'scale(1)',
+                            }}
+                          >
+                            {food.emoji}
+                          </div>
+                          {isSuperfood && (
+                            <div
+                              className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px]"
+                              style={{ backgroundColor: 'white', boxShadow: '0 1px 4px rgba(45,34,38,0.12)' }}
+                              title="Particulièrement bénéfique pour toi"
+                            >
+                              ⭐
+                            </div>
+                          )}
                         </div>
                         <span
                           className="text-[11px] font-body text-center leading-tight transition-colors"
@@ -174,7 +289,7 @@ export default function Alimentation() {
                 {/* Food detail or general tip */}
                 {(() => {
                   const activeFoodData = selectedFood
-                    ? nutrientsFull[openNutrient].foods.find((f) => f.name === selectedFood)
+                    ? filterFoods(nutrientsFull[openNutrient].foods).find((f) => f.name === selectedFood)
                     : null;
                   const displayText = activeFoodData?.why || nutrientsFull[openNutrient].tip;
                   if (!displayText) return null;
@@ -209,7 +324,7 @@ export default function Alimentation() {
         </div>
 
         <div className="flex gap-4 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2 snap-x snap-mandatory">
-          {Object.entries(recipes).map(([key, recipe]) => (
+          {Object.entries(filteredRecipes).map(([key, recipe]) => (
             <button
               key={key}
               onClick={() => setOpenRecipe(key)}
@@ -273,56 +388,68 @@ export default function Alimentation() {
           </div>
 
           {/* Good drinks */}
-          <div className="rounded-[16px] bg-white/70 p-4 mb-3" style={{ boxShadow: '0 1px 6px rgba(45,34,38,0.03)' }}>
-            <div className="flex items-center gap-2 mb-3">
-              <ShieldCheck size={14} style={{ color: '#7BAE7F' }} />
-              <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: '#7BAE7F' }}>
-                À privilégier
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {phaseData.drinks.good.map((d, i) => {
-                const key = `good-${i}`;
-                const isOpen = expandedDrink === key;
-                return (
-                  <button
-                    key={i}
-                    onClick={() => setExpandedDrink(isOpen ? null : key)}
-                    className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
-                    style={{
-                      backgroundColor: isOpen ? '#7BAE7F25' : '#7BAE7F12',
-                      color: '#4D7A50',
-                      border: isOpen ? '1.5px solid #7BAE7F' : '1px solid #7BAE7F25',
-                      boxShadow: isOpen ? '0 2px 8px rgba(123,174,127,0.2)' : 'none',
-                    }}
-                  >
-                    🍵 {d.name}
-                  </button>
-                );
-              })}
-            </div>
-            {/* Shared explanation zone */}
-            <AnimatePresence>
-              {expandedDrink?.startsWith('good-') && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-3 pl-3 pr-2 py-2.5 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#7BAE7F0A]"
-                    style={{ borderLeft: '3px solid #7BAE7F' }}
-                  >
-                    <span className="font-semibold" style={{ color: '#4D7A50' }}>
-                      {phaseData.drinks.good[Number(expandedDrink.split('-')[1])]?.name} →
-                    </span>{' '}
-                    {phaseData.drinks.good[Number(expandedDrink.split('-')[1])]?.why}
+          {(() => {
+            const filteredGood = filterFoods(phaseData.drinks.good);
+            return (
+              <div className="rounded-[16px] bg-white/70 p-4 mb-3" style={{ boxShadow: '0 1px 6px rgba(45,34,38,0.03)' }}>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck size={14} style={{ color: '#7BAE7F' }} />
+                    <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: '#7BAE7F' }}>
+                      À privilégier
+                    </p>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                  {isFiltering && (
+                    <span className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-pill" style={{ backgroundColor: '#7BAE7F15', color: '#4D7A50' }}>
+                      🌱 {dietLabel}
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {filteredGood.map((d, i) => {
+                    const key = `good-${i}`;
+                    const isOpen = expandedDrink === key;
+                    return (
+                      <button
+                        key={i}
+                        onClick={() => setExpandedDrink(isOpen ? null : key)}
+                        className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
+                        style={{
+                          backgroundColor: isOpen ? '#7BAE7F25' : '#7BAE7F12',
+                          color: '#4D7A50',
+                          border: isOpen ? '1.5px solid #7BAE7F' : '1px solid #7BAE7F25',
+                          boxShadow: isOpen ? '0 2px 8px rgba(123,174,127,0.2)' : 'none',
+                        }}
+                      >
+                        🍵 {d.name}
+                      </button>
+                    );
+                  })}
+                </div>
+                {/* Shared explanation zone */}
+                <AnimatePresence>
+                  {expandedDrink?.startsWith('good-') && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 pl-3 pr-2 py-2.5 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#7BAE7F0A]"
+                        style={{ borderLeft: '3px solid #7BAE7F' }}
+                      >
+                        <span className="font-semibold" style={{ color: '#4D7A50' }}>
+                          {filteredGood[Number(expandedDrink.split('-')[1])]?.name} →
+                        </span>{' '}
+                        {filteredGood[Number(expandedDrink.split('-')[1])]?.why}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })()}
 
           {/* Bad drinks */}
           <div className="rounded-[16px] bg-white/50 p-4">
@@ -413,7 +540,7 @@ export default function Alimentation() {
 
       {/* Recipe Modal */}
       <AnimatePresence>
-        {openRecipe && recipes[openRecipe] && (
+        {openRecipe && filteredRecipes[openRecipe] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -430,11 +557,11 @@ export default function Alimentation() {
               className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
             >
               {/* Photo in modal */}
-              {recipes[openRecipe].photo && (
+              {filteredRecipes[openRecipe].photo && (
                 <div className="relative h-52 overflow-hidden rounded-t-[28px] md:rounded-t-[24px]">
                   <img
-                    src={recipes[openRecipe].photo}
-                    alt={recipes[openRecipe].name}
+                    src={filteredRecipes[openRecipe].photo}
+                    alt={filteredRecipes[openRecipe].name}
                     className="w-full h-full object-cover"
                   />
                   <button
@@ -447,13 +574,13 @@ export default function Alimentation() {
               )}
 
               {/* Header if no photo */}
-              {!recipes[openRecipe].photo && (
+              {!filteredRecipes[openRecipe].photo && (
                 <div className="sticky top-0 bg-white rounded-t-[28px] md:rounded-t-[24px] p-5 flex justify-between items-start border-b border-gray-50 z-10">
                   <div>
                     <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
                       {mealLabels[openRecipe].tag}
                     </p>
-                    <h3 className="font-display text-lg text-luna-text">{recipes[openRecipe].name}</h3>
+                    <h3 className="font-display text-lg text-luna-text">{filteredRecipes[openRecipe].name}</h3>
                   </div>
                   <button
                     onClick={() => setOpenRecipe(null)}
@@ -466,24 +593,24 @@ export default function Alimentation() {
 
               <div className="p-5 space-y-5">
                 {/* Title (when photo exists) */}
-                {recipes[openRecipe].photo && (
+                {filteredRecipes[openRecipe].photo && (
                   <div>
                     <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
                       {mealLabels[openRecipe].tag}
                     </p>
-                    <h3 className="font-display text-xl text-luna-text">{recipes[openRecipe].name}</h3>
+                    <h3 className="font-display text-xl text-luna-text">{filteredRecipes[openRecipe].name}</h3>
                   </div>
                 )}
 
                 {/* Time + Calories + Nutrients */}
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
-                    <Clock size={12} /> {recipes[openRecipe].prepTime}
+                    <Clock size={12} /> {filteredRecipes[openRecipe].prepTime}
                   </span>
                   <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-pill bg-luna-cream text-luna-text">
-                    {recipes[openRecipe].calories} kcal
+                    {filteredRecipes[openRecipe].calories} kcal
                   </span>
-                  {recipes[openRecipe].nutrients.map((n) => (
+                  {filteredRecipes[openRecipe].nutrients.map((n) => (
                     <span
                       key={n}
                       className="text-[10px] font-body font-semibold px-2.5 py-1 rounded-pill"
@@ -498,7 +625,7 @@ export default function Alimentation() {
                 <div>
                   <h4 className="text-sm font-body font-bold text-luna-text mb-2">Ingrédients</h4>
                   <ul className="space-y-1.5">
-                    {recipes[openRecipe].ingredients.map((ing, i) => (
+                    {filteredRecipes[openRecipe].ingredients.map((ing, i) => (
                       <li key={i} className="flex items-start gap-2.5 text-sm text-luna-text-body font-body">
                         <span
                           className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
@@ -516,7 +643,7 @@ export default function Alimentation() {
                 <div>
                   <h4 className="text-sm font-body font-bold text-luna-text mb-2">Préparation</h4>
                   <ol className="space-y-3">
-                    {recipes[openRecipe].steps.map((step, i) => (
+                    {filteredRecipes[openRecipe].steps.map((step, i) => (
                       <li key={i} className="flex gap-3 text-sm text-luna-text-body font-body leading-relaxed">
                         <span
                           className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5"

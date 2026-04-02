@@ -9,7 +9,7 @@ import { PHASES } from '../data/phases';
 export default function Chat() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { cycleInfo, dispatch, conversations, activeConversationId, name, cycleLength, periodLength, todayCheckIn, goals } = useCycle();
+  const { cycleInfo, dispatch, conversations, activeConversationId, name, cycleLength, periodLength, todayCheckIn, goals, dietPreferences, healthIssues } = useCycle();
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
@@ -32,6 +32,8 @@ export default function Chat() {
     energy: todayCheckIn?.energy || null,
     symptoms: todayCheckIn?.symptoms ? Object.values(todayCheckIn.symptoms).flat() : [],
     goals: goals || [],
+    dietPreferences: dietPreferences || ['omnivore'],
+    healthIssues: healthIssues || [],
   };
 
   // Conversation active

@@ -1,5 +1,6 @@
-import { createContext, useContext, useReducer, useEffect } from 'react';
+import { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import { PHASES } from '../data/phases';
+import { supabase } from '../lib/supabase';
 
 const CycleContext = createContext();
 
@@ -286,6 +287,9 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
 }
 
 export function CycleProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+
   const [state, dispatch] = useReducer(cycleReducer, initialState, (init) => {
     try {
       const saved = localStorage.getItem('luna-profile');
@@ -295,6 +299,61 @@ export function CycleProvider({ children }) {
     }
   });
 
+  // Listen to Supabase auth changes
+  useEffect(() => {
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        loadProfileFromSupabase(session.user.id);
+      }
+      setAuthLoading(false);
+    });
+
+    // Listen for changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        loadProfileFromSupabase(session.user.id);
+      }
+      setAuthLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Load profile from Supabase if exists
+  const loadProfileFromSupabase = async (userId) => {
+    try {
+      const { data, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('auth_id', userId)
+        .single();
+
+      if (data && !error) {
+        dispatch({
+          type: 'SET_PROFILE',
+          payload: {
+            name: data.name || '',
+            email: data.email || '',
+            lastPeriodDate: data.last_period_date || '',
+            cycleLength: data.cycle_length || 28,
+            periodLength: data.period_length || 5,
+            goals: data.goals || [],
+            fitnessLevel: data.fitness_level || 'intermediate',
+            dietPreferences: data.diet_preferences || ['omnivore'],
+            healthIssues: data.health_issues || [],
+          },
+        });
+        if (data.onboarding_complete) {
+          dispatch({ type: 'COMPLETE_ONBOARDING' });
+        }
+      }
+    } catch (e) {
+      console.log('Load profile error:', e);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem('luna-profile', JSON.stringify(state));
@@ -305,6 +364,29 @@ export function CycleProvider({ children }) {
     state.cycleLength,
     state.periodLength
   );
+
+  // Save profile to Supabase when state changes (if logged in)
+  const saveProfileToSupabase = async () => {
+    if (!user || !state.onboardingComplete) return;
+    try {
+      await supabase.from('users').upsert({
+        auth_id: user.id,
+        name: state.name,
+        email: state.email || user.email,
+        last_period_date: state.lastPeriodDate,
+        cycle_length: state.cycleLength,
+        period_length: state.periodLength,
+        goals: state.goals,
+        fitness_level: state.fitnessLevel,
+        diet_preferences: state.dietPreferences,
+        health_issues: state.healthIssues,
+        onboarding_complete: state.onboardingComplete,
+        current_phase: cycleInfo?.phase || 'unknown',
+      }, { onConflict: 'auth_id' });
+    } catch (e) {
+      console.log('Save profile error:', e);
+    }
+  };
 
   const hour = new Date().getHours();
   const isEvening = hour >= 18;
@@ -324,6 +406,13 @@ export function CycleProvider({ children }) {
   const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   const todayCheckIn = state.checkIns.find((c) => c.date === todayStr);
 
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    setUser(null);
+    localStorage.removeItem('luna-profile');
+    dispatch({ type: 'RESET' });
+  };
+
   return (
     <CycleContext.Provider
       value={{
@@ -333,6 +422,10 @@ export function CycleProvider({ children }) {
         greeting,
         isEvening,
         todayCheckIn,
+        user,
+        authLoading,
+        saveProfileToSupabase,
+        signOut,
       }}
     >
       {children}

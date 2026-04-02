@@ -71,7 +71,7 @@ export const QUICK_SUGGESTIONS = [
 
 const RESPONSES = {
   menstrual: {
-    fatigue: (ctx) => `${ctx.name}, c'est complètement normal que tu sois fatiguée. Tu es à J${ctx.currentDay} — tes hormones (œstrogène et progestérone) sont au plus bas.\n\n💡 Ce que tu peux faire :\n• Magnésium : chocolat noir, amandes, bananes\n• Fer : lentilles, épinards, viande rouge\n• Dormir 8-9h (c'est pas du luxe, c'est un besoin)\n• Hydrate-toi bien (1,5-2L/jour)\n\nTa fatigue n'est pas un échec — c'est ton corps qui se régénère. Ça remonte dans 2-3 jours avec l'œstrogène. 🌱`,
+    fatigue: (ctx) => adaptFoodText(`${ctx.name}, c'est complètement normal que tu sois fatiguée. Tu es à J${ctx.currentDay} — tes hormones (œstrogène et progestérone) sont au plus bas.\n\n💡 Ce que tu peux faire :\n• Magnésium : chocolat noir, amandes, bananes\n• Fer : lentilles, épinards, viande rouge\n• Dormir 8-9h (c'est pas du luxe, c'est un besoin)\n• Hydrate-toi bien (1,5-2L/jour)\n\nTa fatigue n'est pas un échec — c'est ton corps qui se régénère. Ça remonte dans 2-3 jours avec l'œstrogène. 🌱`, ctx),
 
     normal: (ctx) => `Oui ${ctx.name}, tout ce que tu ressens est normal pour J${ctx.currentDay}. Tes hormones sont au plancher, ce qui peut provoquer :\n\n• Fatigue, manque de motivation\n• Crampes, douleurs dans le bas-ventre\n• Envie de t'isoler, sensibilité émotionnelle\n• Ballonnements, troubles digestifs\n\nTon corps élimine la muqueuse utérine — c'est un vrai travail interne. Sois douce avec toi, c'est pas le moment de te pousser. 💜`,
 
@@ -79,19 +79,19 @@ const RESPONSES = {
 
     regles: (ctx) => `${ctx.name}, encore environ ${ctx.daysUntilPeriod} jours avant tes prochaines règles (ton cycle fait ${ctx.cycleLength} jours). Mais là tu es en plein dedans ! J${ctx.currentDay}, phase menstruelle.\n\nSi tes douleurs sont fortes :\n• Bouillotte sur le ventre\n• Anti-inflammatoires naturels : curcuma, gingembre\n• Magnésium (aide les crampes)\n• Position fœtale pour dormir`,
 
-    manger: (ctx) => `${ctx.name}, pendant tes règles ton corps perd du fer — c'est LA priorité.\n\n🥗 À privilégier :\n• Fer : lentilles, épinards, viande rouge, tofu\n• Vitamine C (pour absorber le fer) : agrumes, poivrons, kiwi\n• Anti-inflammatoires : curcuma, gingembre, saumon, sardines\n• Magnésium : chocolat noir 70%+, amandes\n\n🚫 À limiter :\n• Café (réduit l'absorption du fer)\n• Alcool (amplifie l'inflammation)\n• Trop de sel (aggrave la rétention d'eau)\n\nEnvie de chocolat ? C'est normal — ton corps réclame du magnésium. Fonce sur le chocolat noir. 🍫`,
+    manger: (ctx) => adaptFoodText(`${ctx.name}, pendant tes règles ton corps perd du fer — c'est LA priorité.\n\n🥗 À privilégier :\n• Fer : lentilles, épinards, viande rouge, tofu\n• Vitamine C (pour absorber le fer) : agrumes, poivrons, kiwi\n• Anti-inflammatoires : curcuma, gingembre, saumon, sardines\n• Magnésium : chocolat noir 70%+, amandes\n\n🚫 À limiter :\n• Café (réduit l'absorption du fer)\n• Alcool (amplifie l'inflammation)\n• Trop de sel (aggrave la rétention d'eau)\n\nEnvie de chocolat ? C'est normal — ton corps réclame du magnésium. Fonce sur le chocolat noir. 🍫`, ctx),
 
     sport: (ctx) => `${ctx.name}, à J${ctx.currentDay} ton énergie est au plus bas. Pas de pression !\n\n✅ Aujourd'hui :\n• Yoga restauratif ou yin yoga\n• Marche douce (20-30 min)\n• Stretching léger\n• Natation douce\n\n❌ Évite :\n• HIIT, crossfit, sprint\n• Muscu lourde\n• Tout ce qui te met K.O.\n\nMême 10 minutes de marche comptent. L'objectif c'est de bouger sans te vider. Tu reprendras l'intensité en phase folliculaire. 💪`,
 
     dormir: (ctx) => `${ctx.name}, le sommeil en phase menstruelle peut être perturbé par les douleurs.\n\n🌙 Mes conseils :\n• Bouillotte sur le ventre au coucher\n• Tisane camomille ou gingembre\n• Magnésium si tu en as (au coucher)\n• Chambre à 18-19°C\n• Dernier repas léger, 2h avant\n• Position fœtale si douleurs abdominales\n\nVise 8-9h de sommeil — ton corps en a vraiment besoin en ce moment.`,
 
-    sucre: (ctx) => `${ctx.name}, les envies de sucre pendant les règles c'est 100% hormonal. Ta sérotonine (hormone du bonheur) est basse → ton cerveau cherche du sucre rapide pour la remonter.\n\n🧠 Alternative maligne :\n• Chocolat noir 70%+ (magnésium + plaisir)\n• Banane + beurre de cacahuète\n• Porridge avoine-miel-cannelle\n• Dattes + amandes\n\nCes options nourrissent le besoin sans le pic glycémique. Zéro culpabilité — c'est de la biochimie, pas un manque de volonté. 💛`,
+    sucre: (ctx) => adaptFoodText(`${ctx.name}, les envies de sucre pendant les règles c'est 100% hormonal. Ta sérotonine (hormone du bonheur) est basse → ton cerveau cherche du sucre rapide pour la remonter.\n\n🧠 Alternative maligne :\n• Chocolat noir 70%+ (magnésium + plaisir)\n• Banane + beurre de cacahuète\n• Porridge avoine-miel-cannelle\n• Dattes + amandes\n\nCes options nourrissent le besoin sans le pic glycémique. Zéro culpabilité — c'est de la biochimie, pas un manque de volonté. 💛`, ctx),
 
-    ballonnements: (ctx) => `${ctx.name}, les ballonnements pendant les règles sont causés par les prostaglandines (qui provoquent aussi les crampes).\n\n💡 Solutions :\n• Gingembre (en tisane ou râpé dans les plats)\n• Fenouil (tisane ou cru en salade)\n• Évite les boissons gazeuses et chewing-gums\n• Mange lentement, en petites portions\n• Probiotiques : yaourt nature, kéfir\n• Marche douce après les repas\n\nÇa s'améliore après tes règles, promis. 🌿`,
+    ballonnements: (ctx) => adaptFoodText(`${ctx.name}, les ballonnements pendant les règles sont causés par les prostaglandines (qui provoquent aussi les crampes).\n\n💡 Solutions :\n• Gingembre (en tisane ou râpé dans les plats)\n• Fenouil (tisane ou cru en salade)\n• Évite les boissons gazeuses et chewing-gums\n• Mange lentement, en petites portions\n• Probiotiques : yaourt nature, kéfir\n• Marche douce après les repas\n\nÇa s'améliore après tes règles, promis. 🌿`, ctx),
 
     irritabilite: (ctx) => `${ctx.name}, l'irritabilité pendant les règles c'est hormonal — tes œstrogènes sont au plancher et ta sérotonine aussi.\n\n🧘‍♀️ Ce qui aide :\n• Respiration 4-7-8 (calme le système nerveux)\n• Magnésium (régule l'humeur)\n• Évite le café (amplifie l'anxiété)\n• Marche en extérieur (sérotonine naturelle)\n• Donne-toi la permission de dire non\n\nCe n'est pas toi le problème — ce sont tes hormones. Et ça passe. 💜`,
 
-    acne: (ctx) => `${ctx.name}, l'acné hormonale autour des règles est liée à la chute d'œstrogène (qui protège ta peau).\n\n✨ Ce qui aide :\n• Zinc : graines de courge, pois chiches\n• Oméga-3 : saumon, noix, graines de lin\n• Hydratation ++ (eau + aliments riches en eau)\n• Évite les produits laitiers si tu y es sensible\n• Nettoyage doux (pas de décapage !)\n\nTa peau va s'améliorer en phase folliculaire quand l'œstrogène remonte. Patience. 🌸`,
+    acne: (ctx) => adaptFoodText(`${ctx.name}, l'acné hormonale autour des règles est liée à la chute d'œstrogène (qui protège ta peau).\n\n✨ Ce qui aide :\n• Zinc : graines de courge, pois chiches\n• Oméga-3 : saumon, noix, graines de lin\n• Hydratation ++ (eau + aliments riches en eau)\n• Évite les produits laitiers si tu y es sensible\n• Nettoyage doux (pas de décapage !)\n\nTa peau va s'améliorer en phase folliculaire quand l'œstrogène remonte. Patience. 🌸`, ctx),
 
     pleurer: (ctx) => `${ctx.name}, avoir envie de pleurer pendant les règles c'est complètement normal. Tes hormones sont au plancher — œstrogène ET progestérone.\n\nCe n'est pas de la faiblesse, c'est de la chimie.\n\n💛 Ce qui peut t'aider :\n• Pleure si tu en as besoin (ça libère du cortisol)\n• Cocooning : couverture, tisane, série réconfortante\n• Parle à quelqu'un qui te comprend\n• Écris dans ton journal ce que tu ressens\n\nDans 2-3 jours l'œstrogène remonte et tu te sentiras déjà mieux. 🌱`,
 
@@ -101,7 +101,7 @@ const RESPONSES = {
 
     retention: (ctx) => `${ctx.name}, la rétention d'eau pendant les règles est liée aux fluctuations hormonales.\n\n💧 Solutions :\n• Bois plus d'eau (paradoxalement, ça aide)\n• Réduis le sel\n• Potassium : banane, avocat, patate douce\n• Marche légère (active la circulation)\n• Tisane de pissenlit (drainante naturelle)\n\nTu peux prendre 1-2 kg d'eau — c'est pas du gras, c'est hormonal. Ça part après les règles.`,
 
-    default: (ctx) => `${ctx.name}, tu es à J${ctx.currentDay} — phase menstruelle. Tes hormones sont au plus bas.\n\n📋 Les priorités :\n• Fer (lentilles, épinards) + vitamine C\n• Magnésium (chocolat noir, amandes)\n• Sport doux (yoga, marche)\n• Sommeil 8-9h\n• Hydratation\n\nTon corps se régénère — c'est le moment de ralentir sans culpabiliser. Tout va remonter en phase folliculaire. 🌱`,
+    default: (ctx) => adaptFoodText(`${ctx.name}, tu es à J${ctx.currentDay} — phase menstruelle. Tes hormones sont au plus bas.\n\n📋 Les priorités :\n• Fer (lentilles, épinards) + vitamine C\n• Magnésium (chocolat noir, amandes)\n• Sport doux (yoga, marche)\n• Sommeil 8-9h\n• Hydratation\n\nTon corps se régénère — c'est le moment de ralentir sans culpabiliser. Tout va remonter en phase folliculaire. 🌱`, ctx),
   },
 
   follicular: {
@@ -111,21 +111,21 @@ const RESPONSES = {
 
     ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${ctx.cycleLength - 14}, soit dans environ ${Math.max(0, ctx.cycleLength - 14 - ctx.currentDay)} jours.\n\n🔔 Signes à observer :\n• Glaire cervicale type "blanc d'œuf"\n• Légère douleur d'un côté du ventre\n• Pic d'énergie et de libido\n• Confiance en hausse\n\nC'est ton moment le plus fertile du cycle. ✨`,
 
-    manger: (ctx) => `${ctx.name}, l'œstrogène remonte — ton corps est en mode construction !\n\n🥗 À privilégier :\n• Protéines : poulet, œufs, quinoa, légumineuses\n• Zinc : graines de courge, pois chiches\n• Probiotiques : yaourt, kéfir, kimchi\n• Légumes variés et colorés\n• Graines germées, alfalfa\n\nC'est le moment des repas riches et variés — ton métabolisme est efficace et ta digestion au top. 🌿`,
+    manger: (ctx) => adaptFoodText(`${ctx.name}, l'œstrogène remonte — ton corps est en mode construction !\n\n🥗 À privilégier :\n• Protéines : poulet, œufs, quinoa, légumineuses\n• Zinc : graines de courge, pois chiches\n• Probiotiques : yaourt, kéfir, kimchi\n• Légumes variés et colorés\n• Graines germées, alfalfa\n\nC'est le moment des repas riches et variés — ton métabolisme est efficace et ta digestion au top. 🌿`, ctx),
 
     sport: (ctx) => `${ctx.name}, c'est TA meilleure phase pour le sport ! L'œstrogène booste ta récupération musculaire.\n\n🏋️ Go pour :\n• HIIT, crossfit, cardio intense\n• Musculation (augmente les charges)\n• Course à pied, sprint\n• Danse, escalade, boxe\n• Essaye un nouveau sport !\n\nTon corps récupère plus vite qu'à n'importe quel autre moment du cycle. C'est maintenant que tu progresses le plus. 💪🔥`,
 
     dormir: (ctx) => `${ctx.name}, bonne nouvelle — ton sommeil s'améliore naturellement avec la montée d'œstrogène !\n\n🌙 Profite pour recaler ton rythme :\n• Coucher à heure fixe\n• Lever tôt, lumière naturelle dès le réveil\n• 7-8h suffisent en phase folliculaire\n• Sport le matin ou en journée (pas le soir)\n\nC'est le moment idéal pour poser de bonnes habitudes de sommeil. 😴`,
 
-    sucre: (ctx) => `${ctx.name}, en phase folliculaire les envies de sucre devraient diminuer car ton œstrogène remonte (et ta sérotonine avec).\n\nSi tu en as encore :\n• C'est peut-être un manque de sommeil\n• Ou un petit-déj pas assez protéiné\n• Essaie : œufs + avocat + pain complet le matin\n• Snack : pomme + beurre de cacahuète\n\nTon corps gère mieux le sucre en ce moment — c'est la meilleure phase pour réduire les envies. 🍎`,
+    sucre: (ctx) => adaptFoodText(`${ctx.name}, en phase folliculaire les envies de sucre devraient diminuer car ton œstrogène remonte (et ta sérotonine avec).\n\nSi tu en as encore :\n• C'est peut-être un manque de sommeil\n• Ou un petit-déj pas assez protéiné\n• Essaie : œufs + avocat + pain complet le matin\n• Snack : pomme + beurre de cacahuète\n\nTon corps gère mieux le sucre en ce moment — c'est la meilleure phase pour réduire les envies. 🍎`, ctx),
 
     irritabilite: (ctx) => `${ctx.name}, si tu es irritable en phase folliculaire c'est moins courant — ça peut venir d'autres facteurs :\n\n🔍 Vérifie :\n• Sommeil suffisant ? (7-8h)\n• Stress externe (boulot, relations) ?\n• Alimentation équilibrée ?\n• Hydratation ?\n\n💡 Solutions rapides :\n• 5 min de respiration profonde\n• Marche en extérieur\n• Parle à quelqu'un\n\nTon œstrogène devrait naturellement améliorer ton humeur dans les prochains jours. 🌸`,
 
-    acne: (ctx) => `${ctx.name}, ta peau devrait s'améliorer en phase folliculaire ! L'œstrogène qui remonte protège ta peau.\n\n✨ Pour accélérer :\n• Zinc : graines de courge, fruits de mer\n• Vitamine A : patate douce, carottes\n• Hydratation +++ \n• Probiotiques (lien intestin-peau)\n• Nettoyage doux matin et soir\n\nSi l'acné persiste, c'est peut-être lié au stress ou à l'alimentation plus qu'aux hormones. 🌿`,
+    acne: (ctx) => adaptFoodText(`${ctx.name}, ta peau devrait s'améliorer en phase folliculaire ! L'œstrogène qui remonte protège ta peau.\n\n✨ Pour accélérer :\n• Zinc : graines de courge, fruits de mer\n• Vitamine A : patate douce, carottes\n• Hydratation +++ \n• Probiotiques (lien intestin-peau)\n• Nettoyage doux matin et soir\n\nSi l'acné persiste, c'est peut-être lié au stress ou à l'alimentation plus qu'aux hormones. 🌿`, ctx),
 
     confiance: (ctx) => `${ctx.name}, ta confiance remonte naturellement avec l'œstrogène ! C'est le moment d'en profiter.\n\n🚀 Profite de cette phase pour :\n• Planifier tes meetings importants\n• Prendre la parole en public\n• Lancer un projet qui te tient à cœur\n• Sortir de ta zone de confort\n\nTa communication et ta créativité sont en hausse — utilise cette fenêtre ! ✨`,
 
-    default: (ctx) => `${ctx.name}, tu es à J${ctx.currentDay} — phase folliculaire. Ton œstrogène remonte et c'est que du bon !\n\n📋 Profite pour :\n• Sport intense (meilleure récupération)\n• Nouveaux projets (créativité en hausse)\n• Alimentation variée et protéinée\n• Social (ta communication est au top)\n\nC'est ta phase de renouveau — tu montes en puissance chaque jour. 🚀`,
+    default: (ctx) => adaptFoodText(`${ctx.name}, tu es à J${ctx.currentDay} — phase folliculaire. Ton œstrogène remonte et c'est que du bon !\n\n📋 Profite pour :\n• Sport intense (meilleure récupération)\n• Nouveaux projets (créativité en hausse)\n• Alimentation variée et protéinée\n• Social (ta communication est au top)\n\nC'est ta phase de renouveau — tu montes en puissance chaque jour. 🚀`, ctx),
   },
 
   ovulatory: {
@@ -135,7 +135,7 @@ const RESPONSES = {
 
     ovulation: (ctx) => `${ctx.name}, tu es en plein dedans ! J${ctx.currentDay}, c'est ta fenêtre ovulatoire.\n\n🔔 Signes typiques :\n• Glaire cervicale transparente et élastique\n• Légère douleur d'un côté (mittelschmerz)\n• Température basale qui monte légèrement\n• Pic de libido\n\nC'est ta période la plus fertile. Cette fenêtre dure environ 24-48h. 🌟`,
 
-    manger: (ctx) => `${ctx.name}, ton œstrogène est au max — ton corps a besoin de fibres pour éliminer l'excès.\n\n🥗 À privilégier :\n• Fibres : légumes verts, céréales complètes, graines\n• Antioxydants : fruits rouges, légumes colorés\n• Crucifères : brocoli, chou-fleur (aident le foie)\n• Hydratation ++\n\n🍽️ Idée repas :\nPoke bowl saumon-avocat-edamame-quinoa. Frais, léger, riche en fibres. Parfait ! 🐟`,
+    manger: (ctx) => adaptFoodText(`${ctx.name}, ton œstrogène est au max — ton corps a besoin de fibres pour éliminer l'excès.\n\n🥗 À privilégier :\n• Fibres : légumes verts, céréales complètes, graines\n• Antioxydants : fruits rouges, légumes colorés\n• Crucifères : brocoli, chou-fleur (aident le foie)\n• Hydratation ++\n\n🍽️ Idée repas :\nPoke bowl saumon-avocat-edamame-quinoa. Frais, léger, riche en fibres. Parfait ! 🐟`, ctx),
 
     sport: (ctx) => `${ctx.name}, c'est ton PEAK ! Ton corps est à son maximum de performance.\n\n🏆 Fonce sur :\n• HIIT, sprint, boxe\n• Musculation lourde (bats tes records !)\n• Sports d'équipe (coordination au top)\n• Cours collectifs intenses\n\n⚠️ Attention : tes ligaments sont plus lâches (œstrogène). Échauffe-toi bien pour éviter les blessures. 💪🔥`,
 
@@ -155,7 +155,7 @@ const RESPONSES = {
 
     regles: (ctx) => `${ctx.name}, tes prochaines règles sont estimées dans environ ${ctx.daysUntilPeriod} jours.\n\n📋 Prépare-toi :\n• Stock de magnésium (chocolat noir, amandes)\n• Tisanes (camomille, gingembre)\n• Bouillotte prête\n• Repas anti-inflammatoires\n• Planifie des journées plus calmes\n\nSi tes règles sont irrégulières, note bien quand elles arrivent dans le calendrier — ça aide LUNA à mieux estimer. 📅`,
 
-    manger: (ctx) => `${ctx.name}, ton métabolisme augmente de 10-20% en phase lutéale — tu as VRAIMENT besoin de 200 à 300 cal de plus par jour.\n\n🥗 À privilégier :\n• Glucides complexes : patate douce, avoine, riz complet\n• Magnésium : chocolat noir, amandes, noix\n• Vitamine B6 : banane, avocat, volaille\n• Tryptophane (précurseur de sérotonine) : dinde, œufs, graines de courge\n\n🍫 Envies de sucre ? C'est ta sérotonine qui baisse. Les glucides complexes la remontent sans le crash. Zéro culpabilité. 💛`,
+    manger: (ctx) => adaptFoodText(`${ctx.name}, ton métabolisme augmente de 10-20% en phase lutéale — tu as VRAIMENT besoin de 200 à 300 cal de plus par jour.\n\n🥗 À privilégier :\n• Glucides complexes : patate douce, avoine, riz complet\n• Magnésium : chocolat noir, amandes, noix\n• Vitamine B6 : banane, avocat, volaille\n• Tryptophane (précurseur de sérotonine) : dinde, œufs, graines de courge\n\n🍫 Envies de sucre ? C'est ta sérotonine qui baisse. Les glucides complexes la remontent sans le crash. Zéro culpabilité. 💛`, ctx),
 
     sport: (ctx) => `${ctx.name}, à J${ctx.currentDay} adapte l'intensité !\n\n${ctx.currentDay <= ctx.cycleLength - 7
       ? '📋 Première moitié lutéale :\n• Musculation modérée\n• Natation, vélo\n• Cardio moyen\n• Pilates'
@@ -163,13 +163,13 @@ const RESPONSES = {
 
     dormir: (ctx) => `${ctx.name}, la progestérone te rend somnolente MAIS peut fragmenter ton sommeil — c'est le paradoxe lutéal.\n\n🌙 Solutions :\n• Magnésium au coucher\n• Tisane camomille 45 min avant\n• Pas d'écran après 21h\n• Chambre à 18-19°C (ta temp corporelle monte)\n• Pas de café après 14h (la progestérone rend plus sensible)\n• Routine STRICTE : même heure chaque soir\n\nVise 8-9h en phase lutéale. 😴`,
 
-    sucre: (ctx) => `${ctx.name}, les envies de sucre en phase lutéale sont 100% biologiques !\n\n🧠 Pourquoi :\n• Ta sérotonine baisse\n• Ton métabolisme augmente (+10-20%)\n• Ton corps demande du carburant\n\n✅ Solutions malignes :\n• Chocolat noir 70%+ (magnésium + plaisir)\n• Porridge avoine-banane-cannelle\n• Dattes + beurre de cacahuète\n• Patate douce rôtie au miel\n• Smoothie banane-cacao\n\nMange. Nourris. Ton. Corps. C'est pas de la faiblesse, c'est de la biologie. 💛`,
+    sucre: (ctx) => adaptFoodText(`${ctx.name}, les envies de sucre en phase lutéale sont 100% biologiques !\n\n🧠 Pourquoi :\n• Ta sérotonine baisse\n• Ton métabolisme augmente (+10-20%)\n• Ton corps demande du carburant\n\n✅ Solutions malignes :\n• Chocolat noir 70%+ (magnésium + plaisir)\n• Porridge avoine-banane-cannelle\n• Dattes + beurre de cacahuète\n• Patate douce rôtie au miel\n• Smoothie banane-cacao\n\nMange. Nourris. Ton. Corps. C'est pas de la faiblesse, c'est de la biologie. 💛`, ctx),
 
-    ballonnements: (ctx) => `${ctx.name}, les ballonnements en phase lutéale sont liés à la progestérone qui ralentit la digestion.\n\n💡 Solutions :\n• Mange lentement, portions plus petites\n• Gingembre (tisane ou dans les plats)\n• Fenouil (tisane miracle anti-ballonnements)\n• Évite : sodas, chewing-gums, crucifères crus\n• Marche 15 min après les repas\n• Probiotiques : yaourt, kéfir\n\nC'est temporaire — ça s'améliore après les règles. 🌿`,
+    ballonnements: (ctx) => adaptFoodText(`${ctx.name}, les ballonnements en phase lutéale sont liés à la progestérone qui ralentit la digestion.\n\n💡 Solutions :\n• Mange lentement, portions plus petites\n• Gingembre (tisane ou dans les plats)\n• Fenouil (tisane miracle anti-ballonnements)\n• Évite : sodas, chewing-gums, crucifères crus\n• Marche 15 min après les repas\n• Probiotiques : yaourt, kéfir\n\nC'est temporaire — ça s'améliore après les règles. 🌿`, ctx),
 
-    irritabilite: (ctx) => `${ctx.name}, l'irritabilité en phase lutéale est ultra fréquente. La chute d'œstrogène + la montée de progestérone impactent directement la sérotonine.\n\n🧘‍♀️ Plan d'action :\n• Magnésium (régule le système nerveux)\n• Oméga-3 (saumon, noix)\n• Respiration 4-7-8 quand ça monte\n• Limite le café et le sucre raffiné\n• Mouvement doux (marche, yoga)\n• Communique tes besoins à ton entourage\n\nCe n'est PAS toi — ce sont tes hormones. Et c'est valide. 💜`,
+    irritabilite: (ctx) => adaptFoodText(`${ctx.name}, l'irritabilité en phase lutéale est ultra fréquente. La chute d'œstrogène + la montée de progestérone impactent directement la sérotonine.\n\n🧘‍♀️ Plan d'action :\n• Magnésium (régule le système nerveux)\n• Oméga-3 (saumon, noix)\n• Respiration 4-7-8 quand ça monte\n• Limite le café et le sucre raffiné\n• Mouvement doux (marche, yoga)\n• Communique tes besoins à ton entourage\n\nCe n'est PAS toi — ce sont tes hormones. Et c'est valide. 💜`, ctx),
 
-    acne: (ctx) => `${ctx.name}, l'acné pré-menstruelle est liée à la chute d'œstrogène et la montée relative de testostérone.\n\n✨ Plan peau :\n• Zinc : graines de courge, pois chiches, fruits de mer\n• Oméga-3 : saumon, graines de lin\n• Évite les produits laitiers (si sensible)\n• Nettoyage doux (pas de décapage !)   \n• Hydrate bien ta peau\n• Évite de toucher ton visage\n\nZone T et mâchoire = typiquement hormonal. Ça s'améliore après les règles. 🌸`,
+    acne: (ctx) => adaptFoodText(`${ctx.name}, l'acné pré-menstruelle est liée à la chute d'œstrogène et la montée relative de testostérone.\n\n✨ Plan peau :\n• Zinc : graines de courge, pois chiches, fruits de mer\n• Oméga-3 : saumon, graines de lin\n• Évite les produits laitiers (si sensible)\n• Nettoyage doux (pas de décapage !)   \n• Hydrate bien ta peau\n• Évite de toucher ton visage\n\nZone T et mâchoire = typiquement hormonal. Ça s'améliore après les règles. 🌸`, ctx),
 
     pleurer: (ctx) => `${ctx.name}, l'envie de pleurer en phase lutéale c'est la chute de sérotonine + les fluctuations de progestérone.\n\nC'est valide. C'est hormonal. C'est PAS de la faiblesse.\n\n💛 Ce qui aide :\n• Pleure si tu en as besoin (ça libère le stress)\n• Magnésium + B6 (régulent l'humeur)\n• Mouvement doux (endorphines)\n• Journal intime (écris ce que tu ressens)\n• Contact physique (câlin, massage)\n\nDans quelques jours ça passe — tes hormones se stabilisent. 🌱`,
 
@@ -183,7 +183,7 @@ const RESPONSES = {
       ? 'Tu es en début de phase lutéale — tu peux encore faire du cardio modéré, de la muscu légère. Mais écoute ton corps.'
       : 'Tu es en fin de phase lutéale — privilégie yoga, marche, Pilates. Ton corps récupère moins bien.'}\n\n🧠 Pourquoi :\n• Cortisol déjà élevé (le HIIT en rajoute)\n• Récupération musculaire réduite\n• Risque de blessure augmenté\n\nGarde le HIIT pour la phase folliculaire — c'est là que tu en tires le max. 💪`,
 
-    default: (ctx) => `${ctx.name}, tu es à J${ctx.currentDay} — phase lutéale. La progestérone domine.\n\n📋 Tes priorités :\n• Mange plus (+200-300 cal/jour, glucides complexes)\n• Sport modéré → doux\n• Sommeil 8-9h (routine stricte)\n• Magnésium +++\n• Bienveillance envers toi-même\n\nEncore ${ctx.daysUntilPeriod} jours avant tes règles. Les envies, la fatigue, les émotions — c'est hormonal, pas personnel. 💜`,
+    default: (ctx) => adaptFoodText(`${ctx.name}, tu es à J${ctx.currentDay} — phase lutéale. La progestérone domine.\n\n📋 Tes priorités :\n• Mange plus (+200-300 cal/jour, glucides complexes)\n• Sport modéré → doux\n• Sommeil 8-9h (routine stricte)\n• Magnésium +++\n• Bienveillance envers toi-même\n\nEncore ${ctx.daysUntilPeriod} jours avant tes règles. Les envies, la fatigue, les émotions — c'est hormonal, pas personnel. 💜`, ctx),
   },
 };
 
@@ -750,6 +750,86 @@ function detectDietPreference(q) {
   return null;
 }
 
+// ——— Filtrage alimentaire selon le profil ———
+function getDietLabel(ctx) {
+  const prefs = ctx.dietPreferences || ['omnivore'];
+  const labels = [];
+  if (prefs.includes('Végane')) labels.push('végane 🌱');
+  else if (prefs.includes('Végétarienne')) labels.push('végétarienne 🥚');
+  if (prefs.includes('Sans gluten')) labels.push('sans gluten');
+  if (prefs.includes('Sans lactose')) labels.push('sans lactose');
+  return labels.length > 0 ? labels.join(', ') : '';
+}
+
+function filterFoodList(foods, ctx) {
+  const prefs = ctx.dietPreferences || ['omnivore'];
+  const issues = ctx.healthIssues || [];
+
+  // Define what to exclude
+  const meatFish = ['viande rouge', 'bœuf', 'poulet', 'dinde', 'porc', 'saumon', 'sardines', 'maquereau', 'thon', 'crevettes', 'poisson', 'fruits de mer', 'huîtres', 'poisson blanc', 'saumon fumé', 'charcuterie', 'jambon'];
+  const animalProducts = ['œufs', 'miel', 'yaourt', 'yaourt grec', 'kéfir', 'fromage', 'lait', 'crème', 'beurre', 'crème fraîche'];
+  const dairy = ['yaourt', 'yaourt grec', 'kéfir', 'fromage', 'lait', 'crème', 'beurre', 'crème fraîche', 'lait entier'];
+  const glutenFoods = ['pain', 'pain complet', 'pâtes', 'pâtes complètes', 'avoine', 'flocons d\'avoine', 'semoule', 'blé', 'orge', 'seigle', 'gâteau', 'biscuit', 'croissant'];
+
+  let excluded = [];
+  if (prefs.includes('Végane')) excluded = [...meatFish, ...animalProducts];
+  else if (prefs.includes('Végétarienne')) excluded = [...meatFish];
+  if (prefs.includes('Sans gluten')) excluded = [...excluded, ...glutenFoods];
+  if (prefs.includes('Sans lactose')) excluded = [...excluded, ...dairy];
+
+  if (excluded.length === 0) return foods;
+  return foods.filter(f => !excluded.some(ex => f.toLowerCase().includes(ex.toLowerCase())));
+}
+
+// Replacements for filtered-out foods
+function getDietReplacements(ctx) {
+  const prefs = ctx.dietPreferences || ['omnivore'];
+  const replacements = {};
+
+  if (prefs.includes('Végane') || prefs.includes('Végétarienne')) {
+    replacements['viande rouge'] = 'lentilles';
+    replacements['poulet'] = 'tofu';
+    replacements['dinde'] = 'tempeh';
+    replacements['saumon'] = 'graines de lin + graines de chia';
+    replacements['sardines'] = 'noix + graines de chanvre';
+    replacements['poisson'] = 'tofu ou tempeh';
+    replacements['crevettes'] = 'edamame';
+  }
+  if (prefs.includes('Végane')) {
+    replacements['œufs'] = 'tofu brouillé';
+    replacements['yaourt'] = 'yaourt de soja';
+    replacements['yaourt grec'] = 'yaourt de coco';
+    replacements['kéfir'] = 'kombucha';
+    replacements['fromage'] = 'levure nutritionnelle';
+    replacements['miel'] = 'sirop d\'érable';
+    replacements['lait'] = 'lait d\'amande';
+  }
+  if (prefs.includes('Sans lactose')) {
+    replacements['yaourt'] = 'yaourt sans lactose';
+    replacements['kéfir'] = 'kéfir d\'eau';
+    replacements['fromage'] = 'fromage sans lactose';
+    replacements['lait'] = 'lait d\'amande';
+    replacements['crème'] = 'crème de coco';
+  }
+  if (prefs.includes('Sans gluten')) {
+    replacements['avoine'] = 'avoine certifiée sans gluten';
+    replacements['pain complet'] = 'pain sans gluten';
+    replacements['pain'] = 'pain sans gluten';
+    replacements['pâtes'] = 'pâtes de riz ou sarrasin';
+  }
+
+  return replacements;
+}
+
+function adaptFoodText(text, ctx) {
+  const replacements = getDietReplacements(ctx);
+  let adapted = text;
+  for (const [original, replacement] of Object.entries(replacements)) {
+    adapted = adapted.replace(new RegExp(original, 'gi'), replacement);
+  }
+  return adapted;
+}
+
 // ===== FILTRER LES RECETTES PAR PRÉFÉRENCE =====
 function filterRecipesByDiet(recipes, diet) {
   if (!diet) return recipes;
@@ -958,12 +1038,14 @@ function findSport(q) {
 // Génère une réponse dynamique pour "puis-je manger X ?"
 function generateFoodResponse(food, phase, ctx) {
   const advice = FOOD_ADVICE[phase];
+  const filteredGood = filterFoodList(advice.good, ctx);
+  const filteredOk = filterFoodList(advice.ok, ctx);
   const phaseName = PHASE_LABELS[phase];
   const qFood = food.toLowerCase();
 
   // Cherche dans quelle catégorie est l'aliment
-  const isGood = advice.good.some((f) => qFood.includes(f) || f.includes(qFood));
-  const isOk = advice.ok.some((f) => qFood.includes(f) || f.includes(qFood));
+  const isGood = filteredGood.some((f) => qFood.includes(f) || f.includes(qFood));
+  const isOk = filteredOk.some((f) => qFood.includes(f) || f.includes(qFood));
   const isLimit = advice.limit.some((f) => qFood.includes(f) || f.includes(qFood));
 
   if (isGood) {
@@ -980,7 +1062,7 @@ function generateFoodResponse(food, phase, ctx) {
       return `Alors, ${food} en phase ${phaseName}... c'est pas interdit, mais c'est pas l'idéal non plus.\n\n⚠️ ${advice.why_limit}\n\nMais si t'as cette envie, j'ai mieux pour toi :\n${altList}\n\nC'est dans le même esprit, mais ton corps va beaucoup mieux réagir. 😊\n\nEt si tu craques quand même, zéro culpabilité — juste une petite quantité et savoure. 💛`;
     }
 
-    return `Alors, ${food} en phase ${phaseName}... c'est pas interdit, mais c'est pas l'idéal non plus.\n\n⚠️ ${advice.why_limit}\n\nSi tu en as vraiment envie, fais-toi plaisir — mais en petite quantité. Ton corps te dira merci si tu privilégies plutôt : ${advice.good.slice(0, 4).join(', ')}.\n\nL'idée c'est pas de te priver, c'est de comprendre l'impact. 💛`;
+    return `Alors, ${food} en phase ${phaseName}... c'est pas interdit, mais c'est pas l'idéal non plus.\n\n⚠️ ${advice.why_limit}\n\nSi tu en as vraiment envie, fais-toi plaisir — mais en petite quantité. Ton corps te dira merci si tu privilégies plutôt : ${filteredGood.slice(0, 4).join(', ')}.\n\nL'idée c'est pas de te priver, c'est de comprendre l'impact. 💛`;
   }
 
   if (isOk) {
@@ -988,7 +1070,7 @@ function generateFoodResponse(food, phase, ctx) {
   }
 
   // Aliment non trouvé dans les listes → réponse neutre et encourageante
-  return `Bien sûr que tu peux manger ${food} ! Aucun aliment n'est "interdit" — l'important c'est l'équilibre.\n\nEn phase ${phaseName} (J${ctx.currentDay}), ton corps a surtout besoin de :\n• ${advice.good.slice(0, 3).join('\n• ')}\n\n${advice.why_good}\n\nMange ce qui te fait du bien, et essaie d'intégrer ces aliments quand tu peux. Zéro culpabilité. 💛`;
+  return `Bien sûr que tu peux manger ${food} ! Aucun aliment n'est "interdit" — l'important c'est l'équilibre.\n\nEn phase ${phaseName} (J${ctx.currentDay}), ton corps a surtout besoin de :\n• ${filteredGood.slice(0, 3).join('\n• ')}\n\n${advice.why_good}\n\nMange ce qui te fait du bien, et essaie d'intégrer ces aliments quand tu peux. Zéro culpabilité. 💛`;
 }
 
 // Génère une réponse dynamique pour "puis-je faire X sport ?"
@@ -1077,11 +1159,25 @@ export function getLunaResponse(question, phase, userContext = {}) {
     energy: userContext.energy || null,
     symptoms: userContext.symptoms || [],
     goals: userContext.goals || [],
+    dietPreferences: userContext.dietPreferences || ['omnivore'],
+    healthIssues: userContext.healthIssues || [],
   };
 
   // 0. Détection prioritaire : NUTRITION & RECETTES
   const mealType = detectMealType(qOriginal);
   const diet = detectDietPreference(qOriginal);
+
+  // Use profile diet if not explicitly mentioned in question
+  const profileDiet = (() => {
+    const prefs = userContext.dietPreferences || [];
+    if (prefs.includes('Végane')) return 'vegan';
+    if (prefs.includes('Végétarienne')) return 'vegetarien';
+    if (prefs.includes('Sans gluten')) return 'sans_gluten';
+    if (prefs.includes('Sans lactose')) return 'sans_lactose';
+    return null;
+  })();
+  const effectiveDiet = diet || profileDiet;
+  const dietIntro = getDietLabel(ctx) ? `\n(Adapté à ton alimentation ${getDietLabel(ctx)})\n` : '';
   const isRecipeRequest = qOriginal.match(/recette|recipe|cuisiner|pr[eé]par|id[eé]e.*(repas|plat|menu)|qu'?est.?ce (que |qu'?)?(je|on) (mange|cuisine|pr[eé]pare)|quoi manger|que manger|menu|meal prep/i);
   const isMealQuestion = qOriginal.match(/manger.*(soir|midi|matin|ce)|petit[- ]?d[eé]j|d[eé]jeuner|d[iî]ner|go[uû]ter|snack|collation|repas (du|de|ce)/i);
   const isFullDayRequest = qOriginal.match(/journ[eé]e.*(compl[eè]te|enti[eè]re|type)|menu.*(jour|complet|semaine)|quoi manger (toute la journ|aujourd)|plan.*(alimentaire|nutritionnel|repas)/i);
@@ -1090,25 +1186,25 @@ export function getLunaResponse(question, phase, userContext = {}) {
 
   // Journée complète
   if (isFullDayRequest) {
-    const raw = generateFullDayMenu(phase, diet, ctx);
-    return naturalizeResponse(raw, name);
+    const raw = generateFullDayMenu(phase, effectiveDiet, ctx);
+    return naturalizeResponse(raw + dietIntro, name);
   }
 
   // Recette ou question "qu'est-ce que je mange ce soir ?"
   if (isRecipeRequest || isMealQuestion || (mealType && !findFood(qOriginal))) {
-    const raw = generateRecipeResponse(phase, mealType, diet, ctx);
-    if (raw) return naturalizeResponse(raw, name);
+    const raw = generateRecipeResponse(phase, mealType, effectiveDiet, ctx);
+    if (raw) return naturalizeResponse(raw + dietIntro, name);
   }
 
   // Question nutriment spécifique ("aliments riches en fer", "anti-inflammatoire")
   if (isNutrientQuestion) {
     const raw = generateNutrientResponse(qOriginal, phase, ctx);
-    if (raw) return naturalizeResponse(raw, name);
+    if (raw) return naturalizeResponse(raw + dietIntro, name);
   }
 
   // Question régime alimentaire avec phase
   if (isDietQuestion) {
-    const detectedDiet = detectDietPreference(qOriginal);
+    const detectedDiet = detectDietPreference(qOriginal) || profileDiet;
     const phaseName = PHASE_LABELS[phase];
     const nutrients = PHASE_NUTRIENTS[phase];
     const phaseRecipes = RECIPES[phase];
@@ -1116,7 +1212,7 @@ export function getLunaResponse(question, phase, userContext = {}) {
     // Trouver des recettes adaptées au régime
     const allRecipes = [...(phaseRecipes.petit_dej || []), ...(phaseRecipes.dejeuner || []), ...(phaseRecipes.diner || []), ...(phaseRecipes.gouter || [])];
     const filtered = detectedDiet ? filterRecipesByDiet(allRecipes, detectedDiet) : allRecipes;
-    const dietLabel = detectedDiet === 'vegan' ? 'vegan 🌱' : detectedDiet === 'vegetarien' ? 'végétarienne 🥚' : detectedDiet === 'sans_gluten' ? 'sans gluten' : '';
+    const dietLabel = detectedDiet === 'vegan' ? 'vegan 🌱' : detectedDiet === 'vegetarien' ? 'végétarienne 🥚' : detectedDiet === 'sans_gluten' ? 'sans gluten' : detectedDiet === 'sans_lactose' ? 'sans lactose' : '';
 
     const picks = filtered.sort(() => Math.random() - 0.5).slice(0, 3);
     let raw = `En phase ${phaseName} (J${ctx.currentDay})${dietLabel ? ` avec une alimentation ${dietLabel}` : ''}, voilà ce que je te recommande :\n\n`;
@@ -1181,10 +1277,10 @@ export function getLunaResponse(question, phase, userContext = {}) {
   // Détecte le sujet général pour orienter la réponse — NUTRITION en priorité
   if (qOriginal.match(/manger|aliment|nourri|repas|cuisine|recette|plat|petit.?d[eé]j|d[eé]jeuner|d[iî]ner|go[uû]ter|snack|grigno|faim|nutrition|food/)) {
     // Essaye d'abord de donner une recette
-    const recipeResponse = generateRecipeResponse(phase, mealType, diet, ctx);
-    if (recipeResponse) return naturalizeResponse(recipeResponse, name);
+    const recipeResponse = generateRecipeResponse(phase, mealType, effectiveDiet, ctx);
+    if (recipeResponse) return naturalizeResponse(recipeResponse + dietIntro, name);
     const raw = responses['manger'](ctx);
-    return naturalizeResponse(raw, name);
+    return naturalizeResponse(raw + dietIntro, name);
   }
 
   if (qOriginal.match(/sport|exerc|entra[iî]n|fitness|bouger|activ|course|muscu|nage|vélo|danse|yoga/)) {
