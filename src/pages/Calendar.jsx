@@ -200,7 +200,7 @@ export default function Calendar() {
               Lutéale
             </span>
             <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
-              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#E8A87C' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#C4727F', opacity: 0.6 }} />
               Spotting
             </span>
           </div>
@@ -288,7 +288,7 @@ export default function Calendar() {
                   {(spottingLogs || []).includes(info.dateStr) && (
                     <span
                       className="absolute top-0.5 left-0.5 w-2 h-2 rounded-full"
-                      style={{ backgroundColor: '#E8A87C' }}
+                      style={{ backgroundColor: '#C4727F' }}
                     />
                   )}
 
@@ -602,41 +602,6 @@ export default function Calendar() {
                   </button>
                 )}
 
-                {/* Spotting toggle */}
-                {(() => {
-                  const hasSpotting = (spottingLogs || []).includes(selectedDay.dateStr);
-                  return (
-                    <button
-                      onClick={() => {
-                        dispatch({ type: 'TOGGLE_SPOTTING', payload: { date: selectedDay.dateStr } });
-                      }}
-                      className="w-full flex items-center gap-3 px-4 py-3 rounded-[14px] transition-all"
-                      style={{
-                        backgroundColor: hasSpotting ? '#FDF0EC' : '#F8F6F4',
-                        border: hasSpotting ? '1.5px solid #E8A87C' : '1.5px solid transparent',
-                      }}
-                    >
-                      <div
-                        className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: hasSpotting ? '#E8A87C' : '#E8E4E0' }}
-                      >
-                        {hasSpotting
-                          ? <Check size={14} className="text-white" />
-                          : <span className="text-xs">💧</span>
-                        }
-                      </div>
-                      <div className="text-left">
-                        <p className="text-sm font-body font-semibold text-luna-text">
-                          {hasSpotting ? 'Spotting noté ✓' : 'Spotting'}
-                        </p>
-                        <p className="text-[10px] font-body text-luna-text-muted">
-                          {hasSpotting ? 'Appuie pour retirer' : 'Légères pertes de sang en dehors des règles'}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })()}
-
                 {/* Set as period START (recalculates cycle) — with confirmation */}
                 {!confirmCycleReset ? (
                   <button
@@ -681,6 +646,41 @@ export default function Calendar() {
                     </div>
                   </div>
                 )}
+
+                {/* Spotting toggle */}
+                {(() => {
+                  const hasSpotting = (spottingLogs || []).includes(selectedDay.dateStr);
+                  return (
+                    <button
+                      onClick={() => {
+                        dispatch({ type: 'TOGGLE_SPOTTING', payload: { date: selectedDay.dateStr } });
+                      }}
+                      className="w-full flex items-center gap-3 px-4 py-3 rounded-[14px] transition-all"
+                      style={{
+                        backgroundColor: hasSpotting ? '#FDE8EB' : '#F8F6F4',
+                        border: hasSpotting ? '1.5px solid #C4727F' : '1.5px solid transparent',
+                      }}
+                    >
+                      <div
+                        className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: hasSpotting ? '#C4727F' : '#E8E4E0' }}
+                      >
+                        {hasSpotting
+                          ? <Check size={14} className="text-white" />
+                          : <Droplets size={14} style={{ color: '#C4727F' }} />
+                        }
+                      </div>
+                      <div className="text-left">
+                        <p className="text-sm font-body font-semibold text-luna-text">
+                          {hasSpotting ? 'Spotting noté ✓' : 'Spotting'}
+                        </p>
+                        <p className="text-[10px] font-body text-luna-text-muted">
+                          {hasSpotting ? 'Appuie pour retirer' : 'Légères pertes de sang en dehors des règles'}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })()}
               </div>
             </div>
           </div>
