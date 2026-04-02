@@ -4,6 +4,7 @@ import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldChe
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
+import { SEASONAL_FOODS } from '../data/seasonal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -530,6 +531,88 @@ export default function Alimentation() {
           </div>
         </motion.div>
       )}
+
+      {/* Fruits & Légumes de saison */}
+      {(() => {
+        const currentMonth = new Date().getMonth() + 1;
+        const seasonal = SEASONAL_FOODS[currentMonth];
+        const monthNames = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+        if (!seasonal) return null;
+
+        return (
+          <motion.div variants={item}>
+            <div
+              className="rounded-[24px] overflow-hidden"
+              style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
+            >
+              {/* Header */}
+              <div
+                className="px-6 pt-6 pb-4 text-center"
+                style={{ background: 'linear-gradient(180deg, #F0EBE4 0%, #FAF7F5 100%)' }}
+              >
+                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-[0.2em] mb-1">
+                  De saison
+                </p>
+                <h3 className="font-display text-2xl text-luna-text">
+                  {monthNames[currentMonth]}
+                </h3>
+                <p className="text-xs font-body text-luna-text-muted mt-1">
+                  Fruits & légumes à privilégier ce mois-ci
+                </p>
+              </div>
+
+              <div className="bg-white px-5 pb-5">
+                {/* Fruits */}
+                <div className="pt-4 pb-3">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-lg">🍓</span>
+                    <h4 className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest">Fruits</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {seasonal.fruits.map((fruit, i) => (
+                      <motion.span
+                        key={fruit}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.03 }}
+                        className="text-xs font-body font-medium px-3 py-1.5 rounded-full"
+                        style={{ backgroundColor: '#FFF3EB', color: '#D4846A', border: '1px solid #F5DFD0' }}
+                      >
+                        {fruit}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-gray-100 my-1" />
+
+                {/* Légumes */}
+                <div className="pt-3 pb-1">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-lg">🥬</span>
+                    <h4 className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest">Légumes</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {seasonal.legumes.map((legume, i) => (
+                      <motion.span
+                        key={legume}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.03 }}
+                        className="text-xs font-body font-medium px-3 py-1.5 rounded-full"
+                        style={{ backgroundColor: '#EDF5ED', color: '#5A8A5E', border: '1px solid #D4E8D4' }}
+                      >
+                        {legume}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        );
+      })()}
 
       {/* Quote */}
       <motion.div variants={item} className="text-center py-4">
