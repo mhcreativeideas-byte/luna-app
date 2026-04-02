@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Clock, X, ChevronRight, Flame, Zap, Heart } from 'lucide-react';
+import { Clock, X, ChevronRight, Flame, Zap, Heart, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { EXERCISES } from '../data/exercises';
 import { PHASES } from '../data/phases';
@@ -24,6 +24,7 @@ const PHASE_SPORT_TITLES = {
 export default function Sport() {
   const { cycleInfo } = useCycle();
   const [selectedExercise, setSelectedExercise] = useState(null);
+  const [sessionValidated, setSessionValidated] = useState(false);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -31,7 +32,6 @@ export default function Sport() {
 
   if (!exerciseData) return null;
 
-  const mainWorkout = exerciseData.exercises[0];
   const titles = PHASE_SPORT_TITLES[phase];
   const intensityDots = Array.from({ length: 4 }, (_, i) => i < exerciseData.intensity);
 
@@ -51,26 +51,26 @@ export default function Sport() {
         </p>
       </motion.div>
 
-      {/* Hero Workout Card with Photo */}
+      {/* Hero Card with Photo — recommandation du jour */}
       <motion.div variants={item}>
         <div className="rounded-[24px] overflow-hidden relative" style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}>
           {/* Hero photo */}
           <div className="relative h-52 overflow-hidden">
             <img
               src={exerciseData.heroPhoto}
-              alt="Workout"
+              alt="Recommandation sport"
               className="w-full h-full object-cover"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             <div className="absolute top-3 left-3">
               <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2.5 py-1 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
-                ✦ Séance du jour
+                ✦ Recommandation du jour
               </span>
             </div>
             <div className="absolute bottom-4 left-4 right-4">
-              <h2 className="font-display text-xl text-white mb-1">{mainWorkout.name}</h2>
-              <p className="text-xs font-body text-white/80">{mainWorkout.description.slice(0, 80)}…</p>
+              <h2 className="font-display text-xl text-white mb-1">{exerciseData.type}</h2>
+              <p className="text-xs font-body text-white/80">Durée recommandée : {exerciseData.duration}</p>
             </div>
           </div>
 
@@ -97,7 +97,7 @@ export default function Sport() {
               </span>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 mb-4">
+            <div className="grid grid-cols-3 gap-3">
               <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
                 <Flame size={16} className="mx-auto mb-1" style={{ color: phaseData.colorDark }} />
                 <p className="text-lg font-display font-bold text-luna-text">{exerciseData.intensity * 25}%</p>
@@ -111,29 +111,50 @@ export default function Sport() {
               <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
                 <Heart size={16} className="mx-auto mb-1" style={{ color: phaseData.colorDark }} />
                 <p className="text-lg font-display font-bold text-luna-text">{exerciseData.exercises.length}</p>
-                <p className="text-[9px] font-body text-luna-text-hint uppercase">Exercices</p>
+                <p className="text-[9px] font-body text-luna-text-hint uppercase">Idées</p>
               </div>
             </div>
-
-            <button
-              onClick={() => setSelectedExercise(mainWorkout)}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-[14px] text-white text-sm font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
-              style={{ backgroundColor: phaseData.colorDark }}
-            >
-              <Play size={16} fill="white" />
-              Commencer la séance
-            </button>
           </div>
         </div>
       </motion.div>
 
-      {/* La Séquence — avec photos */}
+      {/* Séance validée */}
+      <motion.div variants={item}>
+        <button
+          onClick={() => setSessionValidated(!sessionValidated)}
+          className="w-full rounded-[20px] p-5 flex items-center justify-between transition-all"
+          style={{
+            backgroundColor: sessionValidated ? phaseData.bgColor : 'white',
+            boxShadow: '0 2px 12px rgba(45,34,38,0.04)',
+            border: sessionValidated ? `2px solid ${phaseData.color}` : '2px solid transparent',
+          }}
+        >
+          <div className="text-left">
+            <h3 className="font-display text-base text-luna-text">
+              {sessionValidated ? 'Séance validée !' : 'Tu as bougé aujourd\'hui ?'}
+            </h3>
+            <p className="text-xs font-body text-luna-text-muted mt-0.5">
+              {sessionValidated ? 'Bravo, ton corps te remercie 💪' : 'Marque ta séance quand c\'est fait.'}
+            </p>
+          </div>
+          <div
+            className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all"
+            style={{
+              backgroundColor: sessionValidated ? phaseData.color : phaseData.bgColor,
+            }}
+          >
+            <Check size={20} style={{ color: sessionValidated ? 'white' : phaseData.colorDark }} />
+          </div>
+        </button>
+      </motion.div>
+
+      {/* Nos recommandations — avec photos */}
       <motion.div variants={item}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="font-display text-xl text-luna-text">La séquence</h2>
+            <h2 className="font-display text-xl text-luna-text">Nos recommandations</h2>
             <p className="text-xs font-body text-luna-text-hint mt-0.5">
-              {exerciseData.exercises.length} exercices · {exerciseData.duration}
+              Activités adaptées à ta phase {phaseData.shortName.toLowerCase()}.
             </p>
           </div>
         </div>
@@ -159,13 +180,6 @@ export default function Sport() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/10" />
-                  <div className="absolute bottom-2 left-2">
-                    <span
-                      className="text-[10px] font-body font-bold text-white bg-black/40 backdrop-blur-sm px-1.5 py-0.5 rounded-md"
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </div>
                 </div>
 
                 {/* Info */}
@@ -215,7 +229,7 @@ export default function Sport() {
         <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
           <div className="flex items-center gap-2 mb-2">
             <Zap size={16} style={{ color: phaseData.colorDark }} />
-            <h3 className="font-display text-base text-luna-text">Pourquoi ce type d'entraînement ?</h3>
+            <h3 className="font-display text-base text-luna-text">Pourquoi ces recommandations ?</h3>
           </div>
           <p className="text-sm font-body text-luna-text-body leading-relaxed">
             {exerciseData.whyThisSport}
@@ -284,14 +298,12 @@ export default function Sport() {
                   {selectedExercise.description}
                 </p>
 
-                {/* Start button */}
-                <button
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-[14px] text-white text-sm font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
-                  style={{ backgroundColor: phaseData.colorDark }}
-                >
-                  <Play size={16} fill="white" />
-                  C'est parti
-                </button>
+                {/* Info disclaimer */}
+                <div className="rounded-[14px] p-3" style={{ backgroundColor: phaseData.bgColor }}>
+                  <p className="text-xs font-body text-luna-text-muted leading-relaxed text-center">
+                    💡 Adapte l'intensité à ton ressenti. L'important, c'est de bouger à ton rythme.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </motion.div>
