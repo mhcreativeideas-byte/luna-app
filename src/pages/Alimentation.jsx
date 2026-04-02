@@ -139,9 +139,12 @@ export default function Alimentation() {
                     {mealLabels[key].tag}
                   </span>
                 </div>
-                <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2">
+                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
                   <span className="text-[10px] font-body text-white/90 flex items-center gap-1">
                     <Clock size={10} /> {recipe.prepTime}
+                  </span>
+                  <span className="text-[10px] font-body font-semibold text-white/90 px-2 py-0.5 rounded-pill bg-black/30 backdrop-blur-sm">
+                    {recipe.calories} kcal
                   </span>
                 </div>
               </div>
@@ -287,10 +290,13 @@ export default function Alimentation() {
                   </div>
                 )}
 
-                {/* Time + Nutrients */}
+                {/* Time + Calories + Nutrients */}
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
                     <Clock size={12} /> {recipes[openRecipe].prepTime}
+                  </span>
+                  <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-pill bg-luna-cream text-luna-text">
+                    {recipes[openRecipe].calories} kcal
                   </span>
                   {recipes[openRecipe].nutrients.map((n) => (
                     <span
