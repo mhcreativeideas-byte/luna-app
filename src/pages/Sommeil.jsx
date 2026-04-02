@@ -166,9 +166,9 @@ export default function Sommeil() {
             <p className="text-[10px] font-body text-white/50 uppercase tracking-widest mb-2">
               {phaseData.shortName} · Sommeil
             </p>
-            <h1 className="font-display text-[28px] text-white font-bold leading-tight" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.3)' }}>
+            <h1 className="font-display text-[28px] font-bold leading-tight" style={{ color: '#EDE0F5', textShadow: '0 1px 8px rgba(0,0,0,0.3)' }}>
               {titles.main}{' '}
-              <em className="text-white">{titles.italic}</em>
+              <em style={{ color: '#D4B8E8' }}>{titles.italic}</em>
             </h1>
             <p className="text-sm font-body text-white/60 mt-3 leading-relaxed max-w-xs mx-auto">
               {phaseData.sleepQuality}
