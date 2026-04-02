@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon, Check, CircleDot } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
 
@@ -24,25 +24,30 @@ const PHASE_ICONS = {
 };
 
 export default function Calendar() {
-  const { cycleLength, periodLength, lastPeriodDate, cycleInfo } = useCycle();
+  const { cycleLength, periodLength, lastPeriodDate, periodLogs, cycleInfo, dispatch } = useCycle();
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
+  const [confirmStart, setConfirmStart] = useState(false);
 
   const today = new Date();
   const lastPeriod = new Date(lastPeriodDate);
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
+  const logs = periodLogs || [];
 
   const getDayInfo = (year, month, dayNum) => {
     const date = new Date(year, month, dayNum);
+    const dateStr = date.toISOString().split('T')[0];
     const diffDays = Math.floor((date - lastPeriod) / (1000 * 60 * 60 * 24));
     const cycleDay = ((diffDays % cycleLength) + cycleLength) % cycleLength + 1;
     const dayPhase = getPhaseForDay(cycleDay, cycleLength, periodLength);
     const isToday = date.toDateString() === today.toDateString();
-    const isPeriod = cycleDay <= periodLength;
+    const isPeriodEstimated = cycleDay <= periodLength;
+    const isManualPeriod = logs.includes(dateStr);
+    const isPeriod = isPeriodEstimated || isManualPeriod;
     const isOvulation = cycleDay === cycleLength - 14;
     const isFertileWindow = cycleDay >= cycleLength - 17 && cycleDay <= cycleLength - 12;
-    return { cycleDay, phase: dayPhase, isToday, isPeriod, isOvulation, isFertileWindow, date };
+    return { cycleDay, phase: dayPhase, isToday, isPeriod, isPeriodEstimated, isManualPeriod, isOvulation, isFertileWindow, date, dateStr };
   };
 
   const year = viewDate.getFullYear();
@@ -173,7 +178,11 @@ export default function Calendar() {
           <div className="flex items-center gap-2 mb-4 overflow-x-auto hide-scrollbar pb-1">
             <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
               <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.menstrual.color }} />
-              Règles
+              Confirmé
+            </span>
+            <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.menstrual.color, opacity: 0.45 }} />
+              Estimé
             </span>
             <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
               <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.follicular.color }} />
@@ -217,11 +226,13 @@ export default function Calendar() {
                   onClick={() => setSelectedDay(isSelected ? null : info)}
                   className="aspect-square rounded-[14px] flex flex-col items-center justify-center relative transition-all"
                   style={{
-                    backgroundColor: info.isPeriod
-                      ? dp.color
-                      : info.isOvulation
-                        ? PHASES.ovulatory.color
-                        : `${dp.color}15`,
+                    backgroundColor: info.isManualPeriod
+                      ? PHASES.menstrual.color
+                      : info.isPeriodEstimated
+                        ? `${PHASES.menstrual.color}60`
+                        : info.isOvulation
+                          ? PHASES.ovulatory.color
+                          : `${dp.color}15`,
                     border: isSelected
                       ? `2px solid ${dp.color}`
                       : info.isFertileWindow && !info.isOvulation
@@ -239,6 +250,25 @@ export default function Calendar() {
                   >
                     {dayNum}
                   </span>
+
+                  {/* Manual period confirmed check */}
+                  {info.isManualPeriod && (
+                    <Check
+                      size={8}
+                      className="absolute top-0.5 right-0.5"
+                      style={{ color: 'white' }}
+                      strokeWidth={3}
+                    />
+                  )}
+
+                  {/* Estimated period indicator */}
+                  {info.isPeriodEstimated && !info.isManualPeriod && (
+                    <CircleDot
+                      size={7}
+                      className="absolute top-0.5 right-0.5"
+                      style={{ color: 'white', opacity: 0.7 }}
+                    />
+                  )}
 
                   {/* Today dot */}
                   {info.isToday && (
@@ -305,6 +335,16 @@ export default function Calendar() {
                     🔸 Fenêtre fertile
                   </span>
                 )}
+                {selectedDay.isManualPeriod && (
+                  <span className="text-xs font-body font-semibold px-3 py-1.5 rounded-pill" style={{ backgroundColor: PHASES.menstrual.bgColor, color: PHASES.menstrual.colorDark }}>
+                    ✓ Règles confirmées
+                  </span>
+                )}
+                {selectedDay.isPeriodEstimated && !selectedDay.isManualPeriod && (
+                  <span className="text-xs font-body font-semibold px-3 py-1.5 rounded-pill" style={{ backgroundColor: '#F5F2F0', color: '#9A8A8E' }}>
+                    ~ Règles estimées
+                  </span>
+                )}
               </div>
 
               {/* Phase summary */}
@@ -323,6 +363,87 @@ export default function Calendar() {
                     <p className="text-xs font-body font-semibold mt-0.5" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>{h.level}</p>
                   </div>
                 ))}
+              </div>
+
+              {/* Period logging actions */}
+              <div className="pt-2 space-y-2">
+                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Suivi des règles</p>
+
+                {/* Toggle period day */}
+                <button
+                  onClick={() => {
+                    dispatch({ type: 'TOGGLE_PERIOD_DAY', payload: { date: selectedDay.dateStr } });
+                    setSelectedDay((prev) => prev ? { ...prev, isManualPeriod: !prev.isManualPeriod, isPeriod: !prev.isManualPeriod || prev.isPeriodEstimated } : null);
+                  }}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-[14px] transition-all"
+                  style={{
+                    backgroundColor: selectedDay.isManualPeriod ? PHASES.menstrual.bgColor : '#F8F6F4',
+                    border: selectedDay.isManualPeriod ? `1.5px solid ${PHASES.menstrual.color}` : '1.5px solid transparent',
+                  }}
+                >
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: selectedDay.isManualPeriod ? PHASES.menstrual.color : '#E8E4E0' }}
+                  >
+                    {selectedDay.isManualPeriod
+                      ? <Check size={14} className="text-white" />
+                      : <Droplets size={14} className="text-luna-text-muted" />
+                    }
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-body font-semibold text-luna-text">
+                      {selectedDay.isManualPeriod ? 'Règles ce jour ✓' : 'Marquer comme jour de règles'}
+                    </p>
+                    <p className="text-[10px] font-body text-luna-text-muted">
+                      {selectedDay.isManualPeriod ? 'Appuie pour retirer' : 'Confirme ou corrige l\'estimation'}
+                    </p>
+                  </div>
+                </button>
+
+                {/* Set as period start */}
+                {!confirmStart ? (
+                  <button
+                    onClick={() => setConfirmStart(true)}
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-[14px] transition-all"
+                    style={{ backgroundColor: '#FFF8F0', border: '1.5px solid #F2C0A830' }}
+                  >
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F2C0A830' }}>
+                      <CircleDot size={14} style={{ color: '#C4727F' }} />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-sm font-body font-semibold text-luna-text">Début de mes règles</p>
+                      <p className="text-[10px] font-body text-luna-text-muted">Recalcule tout le cycle à partir de ce jour</p>
+                    </div>
+                  </button>
+                ) : (
+                  <div className="rounded-[14px] p-4" style={{ backgroundColor: PHASES.menstrual.bgColor, border: `1.5px solid ${PHASES.menstrual.color}40` }}>
+                    <p className="text-sm font-body text-luna-text font-semibold mb-1">
+                      Confirmer le début de tes règles ?
+                    </p>
+                    <p className="text-xs font-body text-luna-text-muted mb-3">
+                      Le {selectedDay.date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })} — ton cycle sera recalculé.
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          dispatch({ type: 'SET_PERIOD_START', payload: { date: selectedDay.dateStr } });
+                          setConfirmStart(false);
+                          setSelectedDay(null);
+                        }}
+                        className="flex-1 py-2.5 rounded-pill text-sm font-body font-semibold text-white transition-colors"
+                        style={{ backgroundColor: PHASES.menstrual.color }}
+                      >
+                        Oui, confirmer
+                      </button>
+                      <button
+                        onClick={() => setConfirmStart(false)}
+                        className="flex-1 py-2.5 rounded-pill text-sm font-body font-semibold text-luna-text-muted bg-white transition-colors"
+                      >
+                        Annuler
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
