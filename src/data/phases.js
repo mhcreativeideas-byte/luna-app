@@ -80,8 +80,18 @@ export const PHASES = {
       },
     },
     drinks: {
-      good: ['Tisanes anti-inflammatoires', 'Golden latte (curcuma)', 'Eau citron chaud', 'Infusion gingembre'],
-      bad: ['Café fort', 'Alcool', 'Boissons glacées', 'Sodas'],
+      good: [
+        { name: 'Tisanes anti-inflammatoires', why: 'La camomille et l\'ortie réduisent les prostaglandines responsables des crampes. Effet antispasmodique naturel.' },
+        { name: 'Golden latte (curcuma)', why: 'La curcumine est un puissant anti-inflammatoire qui soulage les douleurs menstruelles. Le poivre noir booste son absorption x20.' },
+        { name: 'Eau citron chaud', why: 'Stimule la digestion souvent ralentie pendant les règles et aide à compenser la perte de vitamine C.' },
+        { name: 'Infusion gingembre', why: 'Le gingérol réduit les nausées et les crampes aussi efficacement que l\'ibuprofène selon certaines études.' },
+      ],
+      bad: [
+        { name: 'Café fort', why: 'La caféine contracte les vaisseaux sanguins et peut aggraver les crampes. Elle augmente aussi le cortisol déjà élevé.' },
+        { name: 'Alcool', why: 'L\'alcool déshydrate, augmente l\'inflammation et perturbe le sommeil dont ton corps a particulièrement besoin.' },
+        { name: 'Boissons glacées', why: 'Le froid contracte les muscles utérins et peut intensifier les crampes. Privilégie les boissons tièdes ou chaudes.' },
+        { name: 'Sodas', why: 'Le sucre raffiné augmente l\'inflammation et les ballonnements. Le gaz accentue l\'inconfort digestif.' },
+      ],
     },
     avoid: ['HIIT intense', 'Café après 14h', 'Restrictions caloriques', 'Planifier trop de social'],
     sleepHours: '8-9h',
@@ -177,8 +187,16 @@ export const PHASES = {
       },
     },
     drinks: {
-      good: ['Matcha', 'Eau de coco', 'Smoothies protéinés', 'Jus de betterave'],
-      bad: ['Excès de caféine', 'Boissons très sucrées'],
+      good: [
+        { name: 'Matcha', why: 'La L-théanine du matcha donne une énergie stable sans pic de cortisol. Riche en antioxydants qui soutiennent la montée d\'œstrogène.' },
+        { name: 'Eau de coco', why: 'Riche en électrolytes naturels (potassium, magnésium) qui accompagnent parfaitement ta montée d\'énergie folliculaire.' },
+        { name: 'Smoothies protéinés', why: 'Les protéines soutiennent la reconstruction de l\'endomètre. Ajoute des baies pour les antioxydants.' },
+        { name: 'Jus de betterave', why: 'Booste la production d\'oxyde nitrique qui améliore la circulation sanguine et tes performances sportives.' },
+      ],
+      bad: [
+        { name: 'Excès de caféine', why: 'Ton énergie remonte naturellement grâce à l\'œstrogène. Trop de caféine peut créer de l\'anxiété inutile.' },
+        { name: 'Boissons très sucrées', why: 'Le sucre raffiné crée des pics d\'insuline qui perturbent l\'équilibre œstrogène en reconstruction.' },
+      ],
     },
     avoid: ['Rester sédentaire', 'Sous-manger (ton corps a besoin de carburant)', 'Reporter tes projets'],
     sleepHours: '7-8h',
@@ -274,8 +292,16 @@ export const PHASES = {
       },
     },
     drinks: {
-      good: ['Eau détox concombre-menthe', 'Thé vert', 'Kombucha', 'Jus de légumes frais'],
-      bad: ['Excès de caféine (énergie déjà naturelle)', 'Alcool en excès'],
+      good: [
+        { name: 'Eau détox concombre-menthe', why: 'Ultra-hydratante et rafraîchissante. Ta température corporelle est plus élevée à l\'ovulation, cette boisson aide à réguler.' },
+        { name: 'Thé vert', why: 'Les catéchines soutiennent le métabolisme des œstrogènes au pic. Antioxydant puissant sans trop de caféine.' },
+        { name: 'Kombucha', why: 'Les probiotiques naturels aident ton estrobolome (bactéries intestinales) à métaboliser l\'excès d\'œstrogène.' },
+        { name: 'Jus de légumes frais', why: 'Apporte des micronutriments concentrés (zinc, B6) qui soutiennent la production de progestérone à venir.' },
+      ],
+      bad: [
+        { name: 'Excès de caféine', why: 'Ton énergie est à son max naturellement grâce au pic d\'œstrogène + LH. La caféine en excès peut provoquer palpitations et anxiété.' },
+        { name: 'Alcool en excès', why: 'L\'alcool surcharge le foie qui doit déjà métaboliser le pic hormonal. Il perturbe aussi la qualité du sommeil.' },
+      ],
     },
     avoid: ['Ignorer ton besoin de connexion sociale', 'Ne pas profiter de cette énergie', 'Négliger l\'échauffement (laxité ligamentaire accrue)'],
     sleepHours: '7-8h',
@@ -371,8 +397,18 @@ export const PHASES = {
       },
     },
     drinks: {
-      good: ['Infusions magnésium', 'Lait d\'or (golden milk)', 'Tisanes digestives', 'Eau tiède citronnée'],
-      bad: ['Café après 14h', 'Alcool', 'Boissons très sucrées', 'Excès de sel (rétention d\'eau)'],
+      good: [
+        { name: 'Infusions magnésium', why: 'Le magnésium baisse en phase lutéale alors que ton corps en a plus besoin. Il réduit irritabilité, crampes et troubles du sommeil.' },
+        { name: 'Lait d\'or (golden milk)', why: 'Le curcuma combat l\'inflammation pré-menstruelle. La cannelle aide à stabiliser la glycémie qui fluctue en lutéale.' },
+        { name: 'Tisanes digestives', why: 'La progestérone ralentit le transit intestinal. Menthe poivrée et fenouil aident à réduire ballonnements et inconfort.' },
+        { name: 'Eau tiède citronnée', why: 'Soutient le foie dans l\'élimination des hormones en excès. La vitamine C aide à maintenir le taux de progestérone.' },
+      ],
+      bad: [
+        { name: 'Café après 14h', why: 'La progestérone te rend déjà somnolente. La caféine tardive perturbe ton sommeil et amplifie l\'anxiété prémenstruelle.' },
+        { name: 'Alcool', why: 'Ton foie travaille dur pour éliminer la progestérone. L\'alcool le surcharge et aggrave sautes d\'humeur et rétention d\'eau.' },
+        { name: 'Boissons très sucrées', why: 'Ta sensibilité à l\'insuline diminue en lutéale. Le sucre crée des pics glycémiques plus intenses → fringales en boucle.' },
+        { name: 'Excès de sel', why: 'La progestérone favorise déjà la rétention d\'eau. Le sel en excès amplifie les gonflements et ballonnements.' },
+      ],
     },
     avoid: ['Se culpabiliser pour ses envies de sucre', 'S\'imposer un régime strict', 'Prévoir trop d\'engagements sociaux', 'HIIT intense en fin de phase'],
     sleepHours: '8-9h',

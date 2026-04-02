@@ -38,6 +38,7 @@ export default function Alimentation() {
   const { cycleInfo } = useCycle();
   const [openRecipe, setOpenRecipe] = useState(null);
   const [openNutrient, setOpenNutrient] = useState(null);
+  const [expandedDrink, setExpandedDrink] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -279,7 +280,7 @@ export default function Alimentation() {
             </div>
             <div>
               <h3 className="font-display text-base text-luna-text">Boissons</h3>
-              <p className="text-[10px] font-body text-luna-text-muted">Hydratation adaptée à ta phase</p>
+              <p className="text-[10px] font-body text-luna-text-muted">Clique pour savoir pourquoi</p>
             </div>
           </div>
 
@@ -291,17 +292,49 @@ export default function Alimentation() {
                 À privilégier
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {phaseData.drinks.good.map((d, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full"
-                  style={{ backgroundColor: '#7BAE7F12', color: '#4D7A50', border: '1px solid #7BAE7F25' }}
-                >
-                  <span className="text-sm">🍵</span>
-                  {d}
-                </span>
-              ))}
+            <div className="space-y-2">
+              {phaseData.drinks.good.map((d, i) => {
+                const key = `good-${i}`;
+                const isOpen = expandedDrink === key;
+                return (
+                  <div key={i}>
+                    <button
+                      onClick={() => setExpandedDrink(isOpen ? null : key)}
+                      className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
+                      style={{
+                        backgroundColor: isOpen ? '#7BAE7F20' : '#7BAE7F12',
+                        color: '#4D7A50',
+                        border: isOpen ? '1px solid #7BAE7F50' : '1px solid #7BAE7F25',
+                      }}
+                    >
+                      <span className="text-sm">🍵</span>
+                      {d.name}
+                      <ChevronDown
+                        size={12}
+                        className="transition-transform duration-200"
+                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-2 ml-1 pl-3 py-2 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#7BAE7F08]"
+                            style={{ borderLeft: '3px solid #7BAE7F' }}
+                          >
+                            {d.why}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -313,17 +346,49 @@ export default function Alimentation() {
                 À limiter
               </p>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {phaseData.drinks.bad.map((d, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full"
-                  style={{ backgroundColor: '#D4727F10', color: '#A3555F', border: '1px solid #D4727F20' }}
-                >
-                  <span className="text-sm">⚠️</span>
-                  {d}
-                </span>
-              ))}
+            <div className="space-y-2">
+              {phaseData.drinks.bad.map((d, i) => {
+                const key = `bad-${i}`;
+                const isOpen = expandedDrink === key;
+                return (
+                  <div key={i}>
+                    <button
+                      onClick={() => setExpandedDrink(isOpen ? null : key)}
+                      className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
+                      style={{
+                        backgroundColor: isOpen ? '#D4727F18' : '#D4727F10',
+                        color: '#A3555F',
+                        border: isOpen ? '1px solid #D4727F40' : '1px solid #D4727F20',
+                      }}
+                    >
+                      <span className="text-sm">⚠️</span>
+                      {d.name}
+                      <ChevronDown
+                        size={12}
+                        className="transition-transform duration-200"
+                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      />
+                    </button>
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-2 ml-1 pl-3 py-2 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#D4727F08]"
+                            style={{ borderLeft: '3px solid #D4727F' }}
+                          >
+                            {d.why}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
