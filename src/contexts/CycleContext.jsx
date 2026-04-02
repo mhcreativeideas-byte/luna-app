@@ -388,6 +388,24 @@ export function CycleProvider({ children }) {
     }
   };
 
+  // Auto-sync to Supabase when key profile settings change
+  useEffect(() => {
+    if (user && state.onboardingComplete) {
+      const timer = setTimeout(() => {
+        saveProfileToSupabase();
+      }, 500); // debounce 500ms
+      return () => clearTimeout(timer);
+    }
+  }, [
+    state.cycleLength,
+    state.periodLength,
+    state.dietPreferences,
+    state.healthIssues,
+    state.goals,
+    state.fitnessLevel,
+    state.name,
+  ]);
+
   const hour = new Date().getHours();
   const isEvening = hour >= 18;
   const isMorning = hour < 12;
