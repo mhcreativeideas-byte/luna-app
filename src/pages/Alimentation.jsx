@@ -4,7 +4,7 @@ import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldChe
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
-import { SEASONAL_FOODS, FOOD_EMOJIS } from '../data/seasonal';
+import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -539,17 +539,32 @@ export default function Alimentation() {
         const monthNames = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
         if (!seasonal) return null;
 
-        const FoodCard = ({ name, delay }) => (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: delay * 0.04, duration: 0.3 }}
-            className="flex flex-col items-center"
-          >
-            <span className="text-4xl mb-1.5 drop-shadow-sm">{FOOD_EMOJIS[name] || '🍽️'}</span>
-            <span className="text-[11px] font-body font-medium text-luna-text-body text-center leading-tight">{name}</span>
-          </motion.div>
-        );
+        const FoodCard = ({ name, delay }) => {
+          const imgSrc = FOOD_IMAGES[name];
+          const emoji = FOOD_EMOJIS[name] || '🍽️';
+          return (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: delay * 0.05, duration: 0.4, ease: 'easeOut' }}
+              className="flex flex-col items-center gap-2"
+            >
+              <div className="w-20 h-20 rounded-2xl flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FAF5F0' }}>
+                {imgSrc ? (
+                  <img
+                    src={imgSrc}
+                    alt={name}
+                    loading="lazy"
+                    className="w-16 h-16 object-contain drop-shadow-sm"
+                    onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
+                  />
+                ) : null}
+                <span className="text-3xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
+              </div>
+              <span className="text-[11px] font-body font-semibold text-luna-text-body text-center leading-tight">{name}</span>
+            </motion.div>
+          );
+        };
 
         return (
           <motion.div variants={item}>
@@ -568,15 +583,15 @@ export default function Alimentation() {
               </div>
 
               {/* Fruits */}
-              <div className="px-5 pt-4 pb-3">
-                <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="px-5 pt-5 pb-4">
+                <div className="flex items-center justify-center gap-2 mb-5">
                   <div className="flex-1 h-px" style={{ backgroundColor: '#F5DFD0' }} />
                   <h4 className="text-[10px] font-body font-bold uppercase tracking-[0.2em] px-3" style={{ color: '#D4846A' }}>
                     Fruits du mois
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#F5DFD0' }} />
                 </div>
-                <div className="grid grid-cols-3 gap-y-4 gap-x-2">
+                <div className="grid grid-cols-3 gap-y-5 gap-x-3 justify-items-center">
                   {seasonal.fruits.map((fruit, i) => (
                     <FoodCard key={fruit} name={fruit} delay={i} />
                   ))}
@@ -584,17 +599,17 @@ export default function Alimentation() {
               </div>
 
               {/* Légumes */}
-              <div className="px-5 pt-3 pb-5">
-                <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="px-5 pt-4 pb-6">
+                <div className="flex items-center justify-center gap-2 mb-5">
                   <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
                   <h4 className="text-[10px] font-body font-bold uppercase tracking-[0.2em] px-3" style={{ color: '#5A8A5E' }}>
                     Légumes du mois
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
                 </div>
-                <div className="grid grid-cols-3 gap-y-4 gap-x-2">
+                <div className="grid grid-cols-3 gap-y-5 gap-x-3 justify-items-center">
                   {seasonal.legumes.map((legume, i) => (
-                    <FoodCard key={legume} name={legume} delay={i} />
+                    <FoodCard key={legume} name={legume} delay={seasonal.fruits.length + i} />
                   ))}
                 </div>
               </div>
