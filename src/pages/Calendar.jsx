@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon, Check, CircleDot, Thermometer } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon, Check, CircleDot, Thermometer, Trash2 } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
 
@@ -29,6 +29,7 @@ export default function Calendar() {
   const [selectedDay, setSelectedDay] = useState(null);
   const [confirmStart, setConfirmStart] = useState(false);
   const [confirmCycleReset, setConfirmCycleReset] = useState(false);
+  const [tempInput, setTempInput] = useState('');
 
   const today = new Date();
   const lastPeriod = new Date(lastPeriodDate);
@@ -224,7 +225,13 @@ export default function Calendar() {
               return (
                 <button
                   key={dayNum}
-                  onClick={() => { setSelectedDay(isSelected ? null : info); setConfirmStart(false); setConfirmCycleReset(false); }}
+                  onClick={() => {
+                    const next = isSelected ? null : info;
+                    setSelectedDay(next);
+                    setConfirmStart(false);
+                    setConfirmCycleReset(false);
+                    setTempInput(next ? ((temperatureLogs || {})[next.dateStr] ?? '') : '');
+                  }}
                   className="aspect-square rounded-[14px] flex flex-col items-center justify-center relative transition-all"
                   style={{
                     backgroundColor: info.isManualPeriod
@@ -369,36 +376,92 @@ export default function Calendar() {
               {/* Basal Temperature */}
               <div className="pt-2">
                 <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">Température basale</p>
-                <div
-                  className="flex items-center gap-3 rounded-[14px] px-4 py-3"
-                  style={{ backgroundColor: '#F8F6F4' }}
-                >
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#E8E4E0' }}>
-                    <Thermometer size={14} className="text-luna-text-muted" />
-                  </div>
-                  <div className="flex-1">
-                    <input
-                      type="number"
-                      step="0.1"
-                      min="35"
-                      max="39"
-                      placeholder="36.5"
-                      value={(temperatureLogs || {})[selectedDay.dateStr] ?? ''}
-                      onChange={(e) => {
-                        dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: e.target.value } });
-                      }}
-                      className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
-                    />
-                    <p className="text-[10px] font-body text-luna-text-muted mt-0.5">
-                      En °C, au réveil avant de te lever
-                    </p>
-                  </div>
-                  {(temperatureLogs || {})[selectedDay.dateStr] && (
-                    <span className="text-sm font-body font-bold" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>
-                      {(temperatureLogs || {})[selectedDay.dateStr]}°C
-                    </span>
-                  )}
-                </div>
+                {(() => {
+                  const savedTemp = (temperatureLogs || {})[selectedDay.dateStr];
+                  const hasSaved = savedTemp !== undefined && savedTemp !== '';
+                  const hasInput = tempInput !== '' && tempInput !== undefined;
+                  const isDirty = hasInput && String(tempInput) !== String(savedTemp);
+
+                  return (
+                    <div
+                      className="rounded-[14px] px-4 py-3"
+                      style={{ backgroundColor: '#F8F6F4' }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: hasSaved ? `${PHASES[selectedDay.phase]?.color}20` : '#E8E4E0' }}>
+                          <Thermometer size={14} style={{ color: hasSaved ? PHASES[selectedDay.phase]?.colorDark : '#8A7B7F' }} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <input
+                            type="number"
+                            step="0.1"
+                            min="35"
+                            max="39"
+                            placeholder="36.5"
+                            value={tempInput}
+                            onChange={(e) => setTempInput(e.target.value)}
+                            className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
+                          />
+                          <p className="text-[10px] font-body text-luna-text-muted mt-0.5">
+                            En °C, au réveil avant de te lever
+                          </p>
+                        </div>
+                        {hasSaved && !isDirty && (
+                          <span className="text-sm font-body font-bold flex-shrink-0" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>
+                            {savedTemp}°C
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Action buttons */}
+                      {(isDirty || (hasSaved && !isDirty)) && (
+                        <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
+                          {/* Save / Update button */}
+                          {isDirty && (
+                            <button
+                              onClick={() => {
+                                const val = parseFloat(tempInput);
+                                if (!isNaN(val) && val >= 35 && val <= 39) {
+                                  dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: tempInput } });
+                                }
+                              }}
+                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"
+                              style={{ backgroundColor: PHASES[selectedDay.phase]?.color }}
+                            >
+                              <Check size={13} />
+                              {hasSaved ? 'Modifier' : 'Valider'}
+                            </button>
+                          )}
+
+                          {/* Delete button */}
+                          {hasSaved && (
+                            <button
+                              onClick={() => {
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: '' } });
+                                setTempInput('');
+                              }}
+                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold transition-all"
+                              style={{ backgroundColor: '#D4727F15', color: '#D4727F' }}
+                            >
+                              <Trash2 size={13} />
+                              Supprimer
+                            </button>
+                          )}
+
+                          {/* Cancel edit */}
+                          {isDirty && hasSaved && (
+                            <button
+                              onClick={() => setTempInput(savedTemp)}
+                              className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
+                            >
+                              Annuler
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
 
               {/* Period logging actions */}
