@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, CalendarDays } from 'lucide-react';
+import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, CalendarDays, MessageCircle } from 'lucide-react';
 
 const navItems = [
   { to: '/dashboard', icon: Home, label: 'Accueil' },
@@ -8,6 +8,7 @@ const navItems = [
   { to: '/sommeil', icon: Moon, label: 'Sommeil' },
   { to: '/calendrier', icon: CalendarDays, label: 'Cycle' },
   { to: '/journal', icon: BookOpen, label: 'Journal' },
+  { to: '/chat', icon: MessageCircle, label: 'LUNA' },
 ];
 
 export default function BottomNav() {
