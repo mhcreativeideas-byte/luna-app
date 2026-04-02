@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { PHASES } from '../data/phases';
-import { generateDemoEntries } from '../data/demoData';
 
 const CycleContext = createContext();
 
@@ -147,19 +146,6 @@ export function CycleProvider({ children }) {
     }
   });
 
-  // DEMO: Auto-load demo data if no journal entries or sport sessions exist
-  useEffect(() => {
-    if (state.journalEntries.length === 0 || state.sportSessions.length === 0) {
-      const demo = generateDemoEntries();
-      dispatch({
-        type: 'LOAD_DEMO_DATA',
-        payload: {
-          entries: state.journalEntries.length === 0 ? demo.entries : state.journalEntries,
-          sportSessions: demo.sportSessions,
-        },
-      });
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     localStorage.setItem('luna-profile', JSON.stringify(state));
