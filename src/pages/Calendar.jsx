@@ -32,6 +32,8 @@ export default function Calendar() {
   const [tempInput, setTempInput] = useState('');
   const [tempDirty, setTempDirty] = useState(false);
   const [editingTemp, setEditingTemp] = useState(false);
+  const [tempConfirming, setTempConfirming] = useState(false);
+  const [tempToConfirm, setTempToConfirm] = useState(null);
 
   const today = new Date();
   const lastPeriod = new Date(lastPeriodDate);
@@ -489,7 +491,43 @@ export default function Calendar() {
                     );
                   }
 
-                  /* ── ÉTAT 1 : pas de temp sauvée, champ libre ── */
+                  /* ── ÉTAT 1a : confirmation demandée ── */
+                  if (tempConfirming && tempToConfirm !== null) {
+                    return (
+                      <div className="rounded-[14px] px-4 py-4" style={{ backgroundColor: `${phaseColor}10`, border: `1.5px solid ${phaseColor}30` }}>
+                        <div className="text-center mb-3">
+                          <p className="text-2xl font-display font-bold" style={{ color: phaseDark }}>{tempToConfirm}°C</p>
+                          <p className="text-xs font-body text-luna-text-muted mt-1">C'est bien ta température ?</p>
+                        </div>
+                        <div className="flex items-center justify-center gap-2">
+                          <button
+                            onClick={() => {
+                              dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempToConfirm) } });
+                              setEditingTemp(false);
+                              setTempInput('');
+                              setTempDirty(false);
+                              setTempConfirming(false);
+                              setTempToConfirm(null);
+                            }}
+                            className="flex items-center gap-1.5 px-5 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
+                            style={{ backgroundColor: phaseColor }}
+                          >
+                            <Check size={13} />
+                            Valider
+                          </button>
+                          <button
+                            onClick={() => { setTempConfirming(false); setTempToConfirm(null); }}
+                            className="px-4 py-2 rounded-full text-xs font-body font-semibold transition-all"
+                            style={{ backgroundColor: '#E8E4E0', color: '#8A7B7F' }}
+                          >
+                            Modifier
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  /* ── ÉTAT 1b : pas de temp sauvée, champ libre ── */
                   const tempVal = parseFloat((tempInput || '').replace(',', '.'));
                   const isTempValid = !isNaN(tempVal) && tempVal >= 35 && tempVal <= 39;
 
@@ -509,10 +547,8 @@ export default function Calendar() {
                             onChange={(e) => { setTempInput(e.target.value); setTempDirty(true); }}
                             onKeyDown={(e) => {
                               if (e.key === 'Enter' && isTempValid) {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
-                                setEditingTemp(false);
-                                setTempInput('');
-                                setTempDirty(false);
+                                setTempToConfirm(tempVal);
+                                setTempConfirming(true);
                               }
                             }}
                             className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
@@ -521,35 +557,23 @@ export default function Calendar() {
                             En °C, au réveil avant de te lever
                           </p>
                         </div>
-                      </div>
-                      {tempDirty && tempInput !== '' && (
-                        <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
-                          {isTempValid ? (
-                            <button
-                              onClick={() => {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
-                                setEditingTemp(false);
-                                setTempInput('');
-                                setTempDirty(false);
-                              }}
-                              className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
-                              style={{ backgroundColor: phaseColor }}
-                            >
-                              <Check size={13} />
-                              Valider {tempVal}°C
-                            </button>
-                          ) : (
-                            <p className="text-[11px] font-body text-red-400">
-                              Entre une température entre 35°C et 39°C
-                            </p>
-                          )}
+                        {isTempValid && (
                           <button
-                            onClick={() => { setTempInput(''); setTempDirty(false); }}
-                            className="px-3 py-2 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
+                            onClick={() => {
+                              setTempToConfirm(tempVal);
+                              setTempConfirming(true);
+                            }}
+                            className="flex-shrink-0 px-4 py-2 rounded-full text-xs font-body font-semibold text-white transition-all"
+                            style={{ backgroundColor: phaseColor }}
                           >
-                            Annuler
+                            Confirmer
                           </button>
-                        </div>
+                        )}
+                      </div>
+                      {tempDirty && tempInput !== '' && !isTempValid && (
+                        <p className="text-[11px] font-body text-red-400 mt-2 pl-11">
+                          Entre une température entre 35°C et 39°C
+                        </p>
                       )}
                     </div>
                   );
