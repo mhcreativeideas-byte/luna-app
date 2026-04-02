@@ -21,6 +21,7 @@ const initialState = {
   checkIns: [],
   customSymptoms: [],
   temperatureLogs: {},
+  spottingLogs: [],
   chatHistory: [],
   conversations: [],
   activeConversationId: null,
@@ -98,6 +99,14 @@ function cycleReducer(state, action) {
         ? state.periodLogs.filter((d) => d !== date)
         : [...state.periodLogs, date].sort();
       return { ...state, periodLogs: newLogs };
+    }
+    case 'TOGGLE_SPOTTING': {
+      const spotDate = action.payload.date;
+      const spotExists = (state.spottingLogs || []).includes(spotDate);
+      const newSpotLogs = spotExists
+        ? state.spottingLogs.filter((d) => d !== spotDate)
+        : [...(state.spottingLogs || []), spotDate].sort();
+      return { ...state, spottingLogs: newSpotLogs };
     }
     case 'SET_TEMPERATURE': {
       // payload: { date, temperature } — save basal temperature for a day
