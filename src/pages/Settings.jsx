@@ -192,6 +192,10 @@ export default function Settings() {
         <SettingRow label="Langue" value="Francais" />
       </Section>
 
+      <Section title="Reseaux sociaux">
+        <SettingRow label="Instagram" value="@luna.wellness" onClick={() => window.open('https://www.instagram.com/luna.wellness', '_blank')} />
+      </Section>
+
       <Section title="Communaute">
         <SettingRow label="Partage tes commentaires" />
         <SettingRow label="Signaler un bug" />
