@@ -30,6 +30,7 @@ export default function Calendar() {
   const [confirmStart, setConfirmStart] = useState(false);
   const [confirmCycleReset, setConfirmCycleReset] = useState(false);
   const [tempInput, setTempInput] = useState('');
+  const [editingTemp, setEditingTemp] = useState(false);
 
   const today = new Date();
   const lastPeriod = new Date(lastPeriodDate);
@@ -235,6 +236,7 @@ export default function Calendar() {
                     setConfirmStart(false);
                     setConfirmCycleReset(false);
                     setTempInput(next ? ((temperatureLogs || {})[next.dateStr] ?? '') : '');
+                    setEditingTemp(false);
                   }}
                   className="aspect-square rounded-[14px] flex flex-col items-center justify-center relative transition-all"
                   style={{
@@ -391,17 +393,41 @@ export default function Calendar() {
                 {(() => {
                   const savedTemp = (temperatureLogs || {})[selectedDay.dateStr];
                   const hasSaved = savedTemp !== undefined && savedTemp !== '';
+                  const phaseColor = PHASES[selectedDay.phase]?.color;
+                  const phaseDark = PHASES[selectedDay.phase]?.colorDark;
+
+                  /* ── État 2 : valeur sauvegardée, pas en édition ── */
+                  if (hasSaved && !editingTemp) {
+                    return (
+                      <button
+                        onClick={() => { setEditingTemp(true); setTempInput(savedTemp); }}
+                        className="w-full flex items-center gap-3 rounded-[14px] px-4 py-3 transition-all hover:shadow-sm active:scale-[0.98]"
+                        style={{ backgroundColor: `${phaseColor}10`, border: `1.5px solid ${phaseColor}30` }}
+                      >
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${phaseColor}20` }}>
+                          <Thermometer size={14} style={{ color: phaseDark }} />
+                        </div>
+                        <div className="flex-1 text-left">
+                          <p className="text-lg font-display font-bold" style={{ color: phaseDark }}>
+                            {savedTemp}°C
+                          </p>
+                          <p className="text-[10px] font-body text-luna-text-muted">
+                            Appuie pour modifier ou supprimer
+                          </p>
+                        </div>
+                        <Check size={16} style={{ color: phaseColor }} />
+                      </button>
+                    );
+                  }
+
+                  /* ── État 1 & 3 : saisie (nouveau) ou édition ── */
                   const hasInput = tempInput !== '' && tempInput !== undefined;
-                  const isDirty = hasInput && String(tempInput) !== String(savedTemp);
 
                   return (
-                    <div
-                      className="rounded-[14px] px-4 py-3"
-                      style={{ backgroundColor: '#F8F6F4' }}
-                    >
+                    <div className="rounded-[14px] px-4 py-3" style={{ backgroundColor: '#F8F6F4' }}>
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: hasSaved ? `${PHASES[selectedDay.phase]?.color}20` : '#E8E4E0' }}>
-                          <Thermometer size={14} style={{ color: hasSaved ? PHASES[selectedDay.phase]?.colorDark : '#8A7B7F' }} />
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#E8E4E0' }}>
+                          <Thermometer size={14} className="text-luna-text-muted" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <input
@@ -413,61 +439,53 @@ export default function Calendar() {
                             value={tempInput}
                             onChange={(e) => setTempInput(e.target.value)}
                             className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
+                            autoFocus={editingTemp}
                           />
                           <p className="text-[10px] font-body text-luna-text-muted mt-0.5">
                             En °C, au réveil avant de te lever
                           </p>
                         </div>
-                        {hasSaved && !isDirty && (
-                          <span className="text-sm font-body font-bold flex-shrink-0" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>
-                            {savedTemp}°C
-                          </span>
-                        )}
                       </div>
 
-                      {/* Action buttons */}
-                      {(isDirty || (hasSaved && !isDirty)) && (
+                      {/* Boutons — seulement si l'utilisatrice a tapé qqch */}
+                      {hasInput && (
                         <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
-                          {/* Save / Update button */}
-                          {isDirty && (
-                            <button
-                              onClick={() => {
-                                const val = parseFloat(tempInput);
-                                if (!isNaN(val) && val >= 35 && val <= 39) {
-                                  dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: tempInput } });
-                                }
-                              }}
-                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"
-                              style={{ backgroundColor: PHASES[selectedDay.phase]?.color }}
-                            >
-                              <Check size={13} />
-                              {hasSaved ? 'Modifier' : 'Valider'}
-                            </button>
-                          )}
+                          <button
+                            onClick={() => {
+                              const val = parseFloat(tempInput);
+                              if (!isNaN(val) && val >= 35 && val <= 39) {
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: tempInput } });
+                                setEditingTemp(false);
+                              }
+                            }}
+                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"
+                            style={{ backgroundColor: phaseColor }}
+                          >
+                            <Check size={13} />
+                            {editingTemp ? 'Modifier' : 'Valider'}
+                          </button>
 
-                          {/* Delete button */}
-                          {hasSaved && (
-                            <button
-                              onClick={() => {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: '' } });
-                                setTempInput('');
-                              }}
-                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold transition-all"
-                              style={{ backgroundColor: '#D4727F15', color: '#D4727F' }}
-                            >
-                              <Trash2 size={13} />
-                              Supprimer
-                            </button>
-                          )}
-
-                          {/* Cancel edit */}
-                          {isDirty && hasSaved && (
-                            <button
-                              onClick={() => setTempInput(savedTemp)}
-                              className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
-                            >
-                              Annuler
-                            </button>
+                          {editingTemp && (
+                            <>
+                              <button
+                                onClick={() => {
+                                  dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: '' } });
+                                  setTempInput('');
+                                  setEditingTemp(false);
+                                }}
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold transition-all"
+                                style={{ backgroundColor: '#D4727F15', color: '#D4727F' }}
+                              >
+                                <Trash2 size={13} />
+                                Supprimer
+                              </button>
+                              <button
+                                onClick={() => { setEditingTemp(false); setTempInput(savedTemp || ''); }}
+                                className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
+                              >
+                                Annuler
+                              </button>
+                            </>
                           )}
                         </div>
                       )}
