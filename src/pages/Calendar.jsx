@@ -463,7 +463,7 @@ export default function Calendar() {
                             style={{ backgroundColor: phaseColor }}
                           >
                             <Check size={13} />
-                            Modifier
+                            Valider
                           </button>
                           <button
                             onClick={() => {
