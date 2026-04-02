@@ -180,24 +180,18 @@ export default function Alimentation() {
           <div className="space-y-2">
             {phaseData.nutrients.map((n) => {
               const full = nutrientsFull[n];
-              const detail = phaseData.nutrientDetails[n];
-              if (!full && !detail) return null;
+              if (!full) return null;
               return (
                 <button
                   key={n}
                   onClick={() => setOpenNutrient(n)}
-                  className="w-full text-left rounded-[16px] p-4 bg-white transition-all hover:shadow-md group"
+                  className="w-full text-left rounded-[16px] px-4 py-3.5 bg-white transition-all hover:shadow-md group"
                   style={{ boxShadow: '0 1px 8px rgba(45,34,38,0.03)' }}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-display text-luna-text mb-1">{n}</h4>
-                      <p className="text-xs font-body text-luna-text-muted leading-relaxed">
-                        {detail}
-                      </p>
-                    </div>
+                    <h4 className="text-sm font-display text-luna-text">{n}</h4>
                     <div className="flex items-center gap-1.5 ml-3 flex-shrink-0">
-                      {full && full.foods.slice(0, 3).map((f, i) => (
+                      {full.foods.slice(0, 3).map((f, i) => (
                         <span key={i} className="text-base">{f.emoji}</span>
                       ))}
                       <ChevronDown
