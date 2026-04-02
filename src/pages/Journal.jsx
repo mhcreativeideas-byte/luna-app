@@ -120,7 +120,7 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 export default function Journal() {
-  const { cycleInfo, journalEntries, sportSessions, checkIns, dispatch } = useCycle();
+  const { cycleInfo, journalEntries, sportSessions, checkIns, cycleLength, periodLength, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
   const [expandedDay, setExpandedDay] = useState(null);
   const [activeTab, setActiveTab] = useState('journal'); // 'journal' | 'rapport'
@@ -625,6 +625,26 @@ export default function Journal() {
               <motion.div variants={item}>
                 <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
                   <h3 className="font-display text-base text-luna-text mb-4">Vue d'ensemble</h3>
+
+                  {/* Cycle info reminder */}
+                  <div className="flex items-center gap-3 mb-4 p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
+                    <div className="flex-1 flex items-center gap-2">
+                      <span className="text-base">🩸</span>
+                      <div>
+                        <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Durée des règles</p>
+                        <p className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>{periodLength} jours</p>
+                      </div>
+                    </div>
+                    <div className="w-px h-8 bg-white/50" />
+                    <div className="flex-1 flex items-center gap-2">
+                      <span className="text-base">🔄</span>
+                      <div>
+                        <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Durée du cycle</p>
+                        <p className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>{cycleLength} jours</p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-2 gap-3">
                     {/* Entries */}
                     <div className="text-center p-3 rounded-[14px] bg-gray-50">
