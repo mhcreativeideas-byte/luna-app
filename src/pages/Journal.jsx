@@ -122,11 +122,14 @@ function ProgressBar({ value, max = 10, color }) {
 export default function Journal() {
   const { cycleInfo, journalEntries, sportSessions, checkIns, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
+  const [expandedDay, setExpandedDay] = useState(null);
   const [activeTab, setActiveTab] = useState('journal'); // 'journal' | 'rapport'
 
   const now = new Date();
   const [reportMonth, setReportMonth] = useState(now.getMonth());
   const [reportYear, setReportYear] = useState(now.getFullYear());
+  const [historyMonth, setHistoryMonth] = useState(now.getMonth());
+  const [historyYear, setHistoryYear] = useState(now.getFullYear());
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -185,10 +188,35 @@ export default function Journal() {
     setTimeout(() => setSaved(false), 2000);
   };
 
-  const pastEntries = [...journalEntries]
-    .filter((e) => e.date !== today)
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 10);
+  // History entries for selected month
+  const historyEntries = useMemo(() => {
+    return [...journalEntries]
+      .filter((e) => {
+        const d = new Date(e.date);
+        return d.getFullYear() === historyYear && d.getMonth() === historyMonth;
+      })
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  }, [journalEntries, historyYear, historyMonth]);
+
+  const historySportSessions = useMemo(() => {
+    return (sportSessions || []).filter((s) => {
+      const d = new Date(s.date);
+      return d.getFullYear() === historyYear && d.getMonth() === historyMonth;
+    });
+  }, [sportSessions, historyYear, historyMonth]);
+
+  const navHistoryPrev = () => {
+    if (historyMonth === 0) { setHistoryMonth(11); setHistoryYear(historyYear - 1); }
+    else setHistoryMonth(historyMonth - 1);
+    setExpandedDay(null);
+  };
+  const navHistoryNext = () => {
+    const isCurrent = historyMonth === now.getMonth() && historyYear === now.getFullYear();
+    if (isCurrent) return;
+    if (historyMonth === 11) { setHistoryMonth(0); setHistoryYear(historyYear + 1); }
+    else setHistoryMonth(historyMonth + 1);
+    setExpandedDay(null);
+  };
 
   const navPrevMonth = () => {
     if (reportMonth === 0) { setReportMonth(11); setReportYear(reportYear - 1); }
@@ -385,50 +413,173 @@ export default function Journal() {
             </div>
           </motion.div>
 
-          {/* History */}
-          {pastEntries.length > 0 && (
-            <motion.div variants={item}>
-              <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-                <button onClick={() => setShowHistory(!showHistory)} className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-2">
-                    <History size={16} style={{ color: phaseData.color }} />
-                    <h3 className="font-display text-base text-luna-text">Mon historique</h3>
+          {/* History with month navigation */}
+          <motion.div variants={item}>
+            <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+              <button onClick={() => setShowHistory(!showHistory)} className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-2">
+                  <History size={16} style={{ color: phaseData.color }} />
+                  <h3 className="font-display text-base text-luna-text">Mon historique</h3>
+                </div>
+                {showHistory ? <ChevronUp size={18} className="text-luna-text-hint" /> : <ChevronDown size={18} className="text-luna-text-hint" />}
+              </button>
+
+              {showHistory && (
+                <div className="mt-4">
+                  {/* Month navigation */}
+                  <div className="flex items-center justify-between mb-4">
+                    <button onClick={navHistoryPrev} className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+                      <ChevronLeft size={16} />
+                    </button>
+                    <span className="text-sm font-display font-semibold text-luna-text">
+                      {MONTH_NAMES[historyMonth]} {historyYear}
+                    </span>
+                    <button
+                      onClick={navHistoryNext}
+                      className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center transition-colors"
+                      style={{ opacity: (historyMonth === now.getMonth() && historyYear === now.getFullYear()) ? 0.3 : 1 }}
+                      disabled={historyMonth === now.getMonth() && historyYear === now.getFullYear()}
+                    >
+                      <ChevronRight size={16} className="text-luna-text-muted" />
+                    </button>
                   </div>
-                  {showHistory ? <ChevronUp size={18} className="text-luna-text-hint" /> : <ChevronDown size={18} className="text-luna-text-hint" />}
-                </button>
-                {showHistory && (
-                  <div className="mt-4 space-y-3">
-                    {pastEntries.map((entry, i) => {
+
+                  {/* Summary bar */}
+                  <div className="flex items-center gap-3 mb-4 px-1">
+                    <span className="text-[10px] font-body text-luna-text-hint uppercase tracking-wide">
+                      {historyEntries.length} jour{historyEntries.length > 1 ? 's' : ''} renseigné{historyEntries.length > 1 ? 's' : ''}
+                    </span>
+                    {historySportSessions.length > 0 && (
+                      <>
+                        <span className="text-luna-text-hint">·</span>
+                        <span className="text-[10px] font-body text-luna-text-hint uppercase tracking-wide flex items-center gap-1">
+                          <Dumbbell size={10} /> {historySportSessions.length} séance{historySportSessions.length > 1 ? 's' : ''}
+                        </span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Empty state */}
+                  {historyEntries.length === 0 && (
+                    <div className="text-center py-6">
+                      <p className="text-sm font-body text-luna-text-hint">Aucune entrée ce mois.</p>
+                    </div>
+                  )}
+
+                  {/* Day entries */}
+                  <div className="space-y-2">
+                    {historyEntries.map((entry) => {
                       const entryPhase = entry.phase ? PHASES[entry.phase] : null;
                       const moodObj = moods.find((m) => m.label === entry.mood);
+                      const isExpanded = expandedDay === entry.date;
+                      const daySport = historySportSessions.find((s) => s.date === entry.date);
+                      const entryDate = new Date(entry.date);
+                      const dayName = entryDate.toLocaleDateString('fr-FR', { weekday: 'short' });
+                      const dayNum = entryDate.getDate();
+
                       return (
-                        <div key={i} className="rounded-[14px] p-3 bg-gray-50">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-xs font-body text-luna-text-hint">
-                              {new Date(entry.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
-                              {entryPhase && <span className="ml-2">{entryPhase.icon} {entryPhase.shortName}</span>}
-                            </span>
-                            <div className="flex items-center gap-1">
-                              {moodObj && <span>{moodObj.emoji}</span>}
+                        <button
+                          key={entry.date}
+                          onClick={() => setExpandedDay(isExpanded ? null : entry.date)}
+                          className="w-full text-left rounded-[14px] transition-all"
+                          style={{
+                            backgroundColor: isExpanded ? (entryPhase?.bgColor || '#F5F2F0') : '#F9F7F5',
+                            border: isExpanded ? `1.5px solid ${entryPhase?.color || '#ddd'}20` : '1.5px solid transparent',
+                          }}
+                        >
+                          {/* Collapsed row */}
+                          <div className="flex items-center gap-3 p-3">
+                            {/* Date circle */}
+                            <div
+                              className="w-11 h-11 rounded-full flex flex-col items-center justify-center flex-shrink-0"
+                              style={{ backgroundColor: entryPhase ? `${entryPhase.color}15` : '#F0EDE8' }}
+                            >
+                              <span className="text-[9px] font-body text-luna-text-hint uppercase leading-none">{dayName}</span>
+                              <span className="text-sm font-display font-bold text-luna-text leading-none">{dayNum}</span>
+                            </div>
+
+                            {/* Phase + mood preview */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5">
+                                {entryPhase && <span className="text-xs">{entryPhase.icon}</span>}
+                                <span className="text-xs font-body font-semibold text-luna-text">{entryPhase?.shortName || '—'}</span>
+                                {daySport && <span className="text-[9px] px-1.5 py-0.5 rounded-pill font-body font-semibold" style={{ backgroundColor: `${entryPhase?.color || '#C4727F'}20`, color: entryPhase?.colorDark || '#8A4550' }}>🏃 {daySport.type}</span>}
+                              </div>
+                              {!isExpanded && entry.text && (
+                                <p className="text-[11px] text-luna-text-muted font-body truncate mt-0.5">{entry.text}</p>
+                              )}
+                            </div>
+
+                            {/* Right side: mood + energy */}
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              {moodObj && <span className="text-base">{moodObj.emoji}</span>}
                               <span className="text-xs font-body text-luna-text-hint">⚡{entry.energy}/10</span>
+                              {isExpanded ? <ChevronUp size={14} className="text-luna-text-hint" /> : <ChevronDown size={14} className="text-luna-text-hint" />}
                             </div>
                           </div>
-                          {entry.symptoms?.length > 0 && (
-                            <div className="flex flex-wrap gap-1 mb-1">
-                              {entry.symptoms.map((s) => (
-                                <span key={s} className="text-[10px] px-1.5 py-0.5 bg-white rounded-pill text-luna-text-muted font-body">{s}</span>
-                              ))}
+
+                          {/* Expanded detail */}
+                          {isExpanded && (
+                            <div className="px-3 pb-4 pt-1 space-y-3">
+                              {/* Mood + Energy detail */}
+                              <div className="flex items-center gap-3">
+                                {moodObj && (
+                                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-pill bg-white/70">
+                                    <span className="text-sm">{moodObj.emoji}</span>
+                                    <span className="text-xs font-body font-semibold text-luna-text">{moodObj.label}</span>
+                                  </div>
+                                )}
+                                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-pill bg-white/70">
+                                  <span className="text-xs">⚡</span>
+                                  <span className="text-xs font-body font-semibold text-luna-text">Énergie {entry.energy}/10</span>
+                                </div>
+                              </div>
+
+                              {/* Energy bar */}
+                              <div>
+                                <ProgressBar value={entry.energy} max={10} color={entryPhase?.color || '#C4727F'} />
+                              </div>
+
+                              {/* Symptoms */}
+                              {entry.symptoms?.length > 0 && (
+                                <div>
+                                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1.5">Ressentis</p>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {entry.symptoms.map((s) => (
+                                      <span key={s} className="text-[11px] px-2.5 py-1 rounded-pill font-body font-medium" style={{ backgroundColor: 'white', color: entryPhase?.colorDark || '#5A4A4E' }}>
+                                        {s}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Sport */}
+                              {daySport && (
+                                <div className="flex items-center gap-2 px-3 py-2 rounded-[10px] bg-white/70">
+                                  <Dumbbell size={13} style={{ color: entryPhase?.colorDark || '#8A4550' }} />
+                                  <span className="text-xs font-body font-semibold text-luna-text">{daySport.type}</span>
+                                  <span className="text-[10px] font-body text-luna-text-hint">· Séance validée ✓</span>
+                                </div>
+                              )}
+
+                              {/* Journal text */}
+                              {entry.text && (
+                                <div>
+                                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1.5">Journal</p>
+                                  <p className="text-sm font-body text-luna-text-body leading-relaxed italic">"{entry.text}"</p>
+                                </div>
+                              )}
                             </div>
                           )}
-                          {entry.text && <p className="text-xs text-luna-text-muted font-body line-clamp-2">{entry.text}</p>}
-                        </div>
+                        </button>
                       );
                     })}
                   </div>
-                )}
-              </div>
-            </motion.div>
-          )}
+                </div>
+              )}
+            </div>
+          </motion.div>
         </>
       )}
 
