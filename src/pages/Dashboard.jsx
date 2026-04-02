@@ -136,42 +136,44 @@ export default function Dashboard() {
             </defs>
 
             {/* ===== LUNA LOGO — faithful to screen.png ===== */}
-            <g opacity="0.12">
-              {/* 1. Outer circle — nearly complete, open at top-left
-                   From tip (~10:30) clockwise all the way to dot (~1:00) */}
+            {/* Circle center ~(100, 96), radius ~55 */}
+            <g opacity="0.13">
+              {/* 1. Outer circle — nearly complete arc (~300°)
+                   Gap at top: from tip (10:30) clockwise to dot (1:00) */}
               <path
-                d="M 58 42 A 60 60 0 1 1 142 40"
+                d="M 68 54 A 55 55 0 1 1 133 50"
                 fill="none"
                 stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="2.5"
+                strokeWidth="2.2"
                 strokeLinecap="round"
               />
 
-              {/* 2. Small dot at end of outer circle (1 o'clock) */}
-              <circle cx="142" cy="40" r="2.8" fill={phaseData.colorDark || '#7B6B7B'} />
+              {/* 2. Small dot at end (1 o'clock) */}
+              <circle cx="133" cy="50" r="2.2" fill={phaseData.colorDark || '#7B6B7B'} />
 
-              {/* 3. Crescent inner edge flowing into first wave — ONE continuous stroke
-                   Starts at same tip point, curves INSIDE the circle on the left,
-                   then transitions smoothly into the wave at the bottom-right */}
+              {/* 3. Crescent inner edge → flows into wave 1 (one continuous stroke)
+                   Slim crescent: stays close to circle edge on left side
+                   Then smooth S-curve wave across the bottom */}
               <path
-                d="M 58 42
-                   C 80 58, 86 90, 76 118
-                   C 66 142, 78 154, 100 142
-                   C 120 132, 140 154, 162 136"
+                d="M 68 54
+                   C 72 66, 66 84, 60 100
+                   C 54 118, 56 132, 72 136
+                   C 90 140, 108 126, 122 130
+                   C 136 134, 148 126, 155 118"
                 fill="none"
                 stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="2.5"
+                strokeWidth="2.2"
                 strokeLinecap="round"
               />
 
-              {/* 4. Second wave — thinner, parallel below, gives depth */}
+              {/* 4. Second wave — thinner, runs below wave 1, converges at right */}
               <path
-                d="M 70 152
-                   C 88 138, 108 160, 130 146
-                   C 146 136, 156 142, 164 132"
+                d="M 66 144
+                   C 82 136, 100 150, 120 140
+                   C 136 132, 148 136, 156 126"
                 fill="none"
                 stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="1.5"
+                strokeWidth="1.3"
                 strokeLinecap="round"
               />
             </g>
