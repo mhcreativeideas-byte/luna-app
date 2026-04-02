@@ -164,11 +164,6 @@ export default function Settings() {
       <Section title="Cycle">
         <SettingRow label="Duree du cycle" value={`${cycleLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setEditedPeriodLength(periodLength || 5); setShowCycle(true); }} />
         <SettingRow label="Duree des regles" value={`${periodLength} jours`} onClick={() => { setEditedCycleLength(cycleLength || 28); setEditedPeriodLength(periodLength || 5); setShowCycle(true); }} />
-        <SettingToggle
-          label="Suivi intelligent"
-          checked={false}
-          onChange={() => {}}
-        />
         <SettingRow
           label="Reinitialiser le calendrier"
           onClick={() => {
