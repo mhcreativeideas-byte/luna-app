@@ -187,8 +187,8 @@ export default function Dashboard() {
           {/* Center text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
             <p
-              className="text-[9px] font-body uppercase tracking-[0.2em] mb-1"
-              style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.5 }}
+              className="text-[10px] font-body font-semibold uppercase tracking-[0.2em] mb-1"
+              style={{ color: phaseData.colorDark || '#2D2226', opacity: 0.7 }}
             >
               Jour du cycle
             </p>
@@ -201,7 +201,7 @@ export default function Dashboard() {
             >
               {String(currentDay).padStart(2, '0')}
             </motion.p>
-            <p className="text-[11px] font-body mt-1" style={{ color: '#B5A8A0' }}>
+            <p className="text-[11px] font-body font-medium mt-1" style={{ color: '#8A7B7F' }}>
               sur {cycleLength} jours
             </p>
           </div>
