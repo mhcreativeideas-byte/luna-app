@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from 'react';
 import { PHASES } from '../data/phases';
+import { generateDemoEntries } from '../data/demoData';
 
 const CycleContext = createContext();
 
@@ -58,6 +59,8 @@ function cycleReducer(state, action) {
       return { ...state, chatHistory: [...state.chatHistory, action.payload] };
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };
+    case 'LOAD_DEMO_DATA':
+      return { ...state, journalEntries: action.payload };
     case 'RESET':
       return initialState;
     default:
@@ -134,6 +137,14 @@ export function CycleProvider({ children }) {
       return init;
     }
   });
+
+  // DEMO: Auto-load demo data if no journal entries exist
+  useEffect(() => {
+    if (state.journalEntries.length === 0) {
+      const demoEntries = generateDemoEntries();
+      dispatch({ type: 'LOAD_DEMO_DATA', payload: demoEntries });
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     localStorage.setItem('luna-profile', JSON.stringify(state));
