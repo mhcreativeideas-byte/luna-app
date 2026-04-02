@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Sport from './pages/Sport';
 import Alimentation from './pages/Alimentation';
 import Sommeil from './pages/Sommeil';
+import Extras from './pages/Extras';
 import Journal from './pages/Journal';
 import CheckIn from './pages/CheckIn';
 import Chat from './pages/Chat';
@@ -51,13 +52,14 @@ function App() {
             <Route path="/checkin" element={<CheckIn />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/calendrier" element={<Calendar />} />
+            <Route path="/plus" element={<Extras />} />
             <Route path="/parametres" element={<Settings />} />
           </Route>
           {/* Legacy routes redirect */}
           <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
           <Route path="/explorer" element={<Navigate to="/dashboard" replace />} />
           <Route path="/food" element={<Navigate to="/alimentation" replace />} />
-          <Route path="/sleep" element={<Navigate to="/sommeil" replace />} />
+          <Route path="/sleep" element={<Navigate to="/plus" replace />} />
         </Routes>
       </CycleProvider>
     </BrowserRouter>

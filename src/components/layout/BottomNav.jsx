@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Dumbbell, UtensilsCrossed, Moon, BookOpen, CalendarDays, MessageCircle } from 'lucide-react';
+import { Home, UtensilsCrossed, BookOpen, CalendarDays, MessageCircle, LayoutGrid } from 'lucide-react';
 
 const leftItems = [
   { to: '/calendrier', icon: CalendarDays, label: 'Cycle' },
@@ -8,9 +8,8 @@ const leftItems = [
 ];
 
 const rightItems = [
-  { to: '/sport', icon: Dumbbell, label: 'Sport' },
-  { to: '/sommeil', icon: Moon, label: 'Sommeil' },
   { to: '/chat', icon: MessageCircle, label: 'LUNA' },
+  { to: '/plus', icon: LayoutGrid, label: 'Plus' },
 ];
 
 const centerItem = { to: '/dashboard', icon: Home, label: 'Accueil' };
