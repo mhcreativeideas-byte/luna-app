@@ -110,46 +110,24 @@ export default function Dashboard() {
 
       {/* Cycle Circle — LUNA Moon Design */}
       <motion.div variants={item} className="flex flex-col items-center py-6">
-        <div className="relative w-56 h-56">
-          {/* Outer glow ring */}
+        <div className="relative w-60 h-60">
+          {/* Soft outer glow */}
           <motion.div
-            className="absolute inset-0 rounded-full"
-            style={{
-              background: `radial-gradient(circle, ${phaseData.color}18 0%, transparent 70%)`,
-            }}
-            animate={{ scale: [1, 1.04, 1] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute -inset-4 rounded-full"
+            style={{ background: `radial-gradient(circle, ${phaseData.color}12 0%, transparent 70%)` }}
+            animate={{ scale: [1, 1.03, 1] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           />
 
           <svg viewBox="0 0 200 200" className="w-full h-full relative z-10">
             <defs>
-              <linearGradient id="moonFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.08" />
-                <stop offset="50%" stopColor={phaseData.bgColor || '#FFF8F5'} stopOpacity="0.4" />
-                <stop offset="100%" stopColor={phaseData.color} stopOpacity="0.12" />
+              <linearGradient id="progressArc" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.3" />
+                <stop offset="50%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.85" />
+                <stop offset="100%" stopColor={phaseData.color} stopOpacity="0.4" />
               </linearGradient>
-              <linearGradient id="arcStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.25" />
-                <stop offset="60%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.9" />
-                <stop offset="100%" stopColor={phaseData.color} stopOpacity="0.5" />
-              </linearGradient>
-              <radialGradient id="innerGlow" cx="50%" cy="45%" r="50%">
-                <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
-              </radialGradient>
-              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-                <feOffset dx="0" dy="2" />
-                <feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" />
-                <feFlood floodColor={phaseData.colorDark || phaseData.color} floodOpacity="0.15" />
-                <feComposite in2="SourceGraphic" />
-                <feMerge>
-                  <feMergeNode />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <filter id="glowDot">
-                <feGaussianBlur stdDeviation="3" result="blur" />
+              <filter id="lunaGlow">
+                <feGaussianBlur stdDeviation="2" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
@@ -157,98 +135,84 @@ export default function Dashboard() {
               </filter>
             </defs>
 
-            {/* Main circle fill */}
-            <circle cx="100" cy="100" r="88" fill="url(#moonFill)" />
-            <circle cx="100" cy="100" r="88" fill="url(#innerGlow)" />
+            {/* ===== LUNA LOGO MOTIF (faithful reproduction) ===== */}
+            <g opacity="0.1">
+              {/* Outer circle — open at top, from sharp tip (10 o'clock) clockwise to dot (1 o'clock) */}
+              <path
+                d="M 62 38 A 65 65 0 1 1 140 36"
+                fill="none"
+                stroke={phaseData.colorDark || '#7B6B7B'}
+                strokeWidth="2.8"
+                strokeLinecap="round"
+              />
 
-            {/* Background track — double ring */}
-            <circle cx="100" cy="100" r="88" fill="none" stroke="#EDE5DF" strokeWidth="1.5" />
-            <circle cx="100" cy="100" r="83" fill="none" stroke="#F5EDE8" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.5" />
+              {/* Small dot at end of outer circle (1 o'clock) */}
+              <circle cx="140" cy="36" r="3" fill={phaseData.colorDark || '#7B6B7B'} />
 
-            {/* Progress arc — main */}
+              {/* Crescent inner arc — from sharp tip curving down left side */}
+              <path
+                d="M 62 38 C 78 52, 86 78, 82 105 C 78 128, 66 142, 55 150"
+                fill="none"
+                stroke={phaseData.colorDark || '#7B6B7B'}
+                strokeWidth="2.8"
+                strokeLinecap="round"
+              />
+
+              {/* Main wave — thick, flowing from bottom-left to right */}
+              <path
+                d="M 50 142 C 68 120, 90 152, 115 130 C 134 114, 150 122, 162 110"
+                fill="none"
+                stroke={phaseData.colorDark || '#7B6B7B'}
+                strokeWidth="2.8"
+                strokeLinecap="round"
+              />
+
+              {/* Second wave — thinner, slightly below for depth */}
+              <path
+                d="M 62 154 C 78 138, 98 162, 122 144 C 140 130, 152 136, 160 126"
+                fill="none"
+                stroke={phaseData.colorDark || '#7B6B7B'}
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              />
+            </g>
+
+            {/* ===== PROGRESS RING ===== */}
+            {/* Background track */}
+            <circle cx="100" cy="100" r="90" fill="none" stroke="#EDE5DF" strokeWidth="2" />
+
+            {/* Progress arc */}
             <motion.circle
-              cx="100" cy="100" r="88"
+              cx="100" cy="100" r="90"
               fill="none"
-              stroke="url(#arcStroke)"
-              strokeWidth="3.5"
+              stroke="url(#progressArc)"
+              strokeWidth="3"
               strokeLinecap="round"
-              initial={{ strokeDasharray: '0 553' }}
-              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 553} 553` }}
+              initial={{ strokeDasharray: '0 565.5' }}
+              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 565.5} 565.5` }}
               transition={{ duration: 1.8, ease: 'easeOut' }}
               transform="rotate(-90 100 100)"
             />
 
-            {/* Phase segment markers — subtle ticks */}
-            {[0.18, 0.40, 0.55].map((ratio, i) => {
-              const angle = ratio * 360 - 90;
-              const rad = (angle * Math.PI) / 180;
-              const x1 = 100 + 84 * Math.cos(rad);
-              const y1 = 100 + 84 * Math.sin(rad);
-              const x2 = 100 + 92 * Math.cos(rad);
-              const y2 = 100 + 92 * Math.sin(rad);
-              return (
-                <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#D5CBC3" strokeWidth="1" opacity="0.4" />
-              );
-            })}
-
-            {/* Crescent moon — refined */}
-            <g transform="translate(100, 100)" opacity="0.1" filter="url(#softShadow)">
-              <path
-                d="M -8 -48 A 48 48 0 1 1 -8 48 A 38 38 0 1 0 -8 -48 Z"
-                fill={phaseData.colorDark || '#7B6B7B'}
-                stroke="none"
-              />
-              {/* Elegant wave */}
-              <path
-                d="M -38 18 C -25 6 -12 28 0 16 C 12 4 25 26 38 14"
-                fill="none"
-                stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                opacity="0.8"
-              />
-              {/* Second wave for depth */}
-              <path
-                d="M -32 26 C -20 16 -8 32 4 22 C 16 12 28 28 36 20"
-                fill="none"
-                stroke={phaseData.colorDark || '#7B6B7B'}
-                strokeWidth="1"
-                strokeLinecap="round"
-                opacity="0.4"
-              />
-            </g>
-
-            {/* Decorative small stars/dots */}
-            {[
-              { cx: 38, cy: 42, r: 1.5, o: 0.15 },
-              { cx: 155, cy: 55, r: 1, o: 0.1 },
-              { cx: 50, cy: 150, r: 1.2, o: 0.12 },
-              { cx: 160, cy: 145, r: 1, o: 0.08 },
-            ].map((dot, i) => (
-              <circle key={i} cx={dot.cx} cy={dot.cy} r={dot.r} fill={phaseData.colorDark || '#7B6B7B'} opacity={dot.o}>
-                <animate attributeName="opacity" values={`${dot.o};${dot.o * 2.5};${dot.o}`} dur={`${3 + i}s`} repeatCount="indefinite" />
-              </circle>
-            ))}
-
-            {/* Progress dot with glow */}
+            {/* Progress dot */}
             <circle
-              cx="100" cy="12" r="7"
+              cx="100" cy="10" r="5.5"
               fill={phaseData.colorDark || phaseData.color}
-              opacity="0.25"
+              opacity="0.2"
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
-              filter="url(#glowDot)"
+              filter="url(#lunaGlow)"
             />
             <circle
-              cx="100" cy="12" r="4.5"
+              cx="100" cy="10" r="4"
               fill={phaseData.colorDark || phaseData.color}
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
             >
-              <animate attributeName="r" values="4.5;5.5;4.5" dur="2.5s" repeatCount="indefinite" />
+              <animate attributeName="r" values="4;5;4" dur="2.5s" repeatCount="indefinite" />
             </circle>
             <circle
-              cx="100" cy="12" r="2"
+              cx="100" cy="10" r="1.8"
               fill="#FFFFFF"
-              opacity="0.8"
+              opacity="0.9"
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
             />
           </svg>
@@ -257,14 +221,14 @@ export default function Dashboard() {
           <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
             <p
               className="text-[9px] font-body uppercase tracking-[0.2em] mb-1.5"
-              style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.55 }}
+              style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.5 }}
             >
               Jour du cycle
             </p>
             <motion.p
               className="font-display font-bold leading-none"
               style={{ color: phaseData.colorDark || '#2D2226', fontSize: '3.2rem' }}
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             >
@@ -282,7 +246,6 @@ export default function Dashboard() {
           style={{
             backgroundColor: `${phaseData.color}10`,
             border: `1px solid ${phaseData.color}20`,
-            backdropFilter: 'blur(8px)',
           }}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
