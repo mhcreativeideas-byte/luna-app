@@ -1,13 +1,71 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { SYMPTOM_CATEGORIES, TAG_COLORS } from '../data/symptoms';
 
+function CustomTagPill({ onAdd, color }) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const inputRef = useRef(null);
+
+  const submit = () => {
+    const trimmed = value.trim();
+    if (trimmed) {
+      onAdd(trimmed);
+      setValue('');
+      setOpen(false);
+    }
+  };
+
+  if (!open) {
+    return (
+      <motion.button
+        whileTap={{ scale: 1.05 }}
+        onClick={() => { setOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }}
+        className="px-3.5 py-2 rounded-pill text-sm font-body font-semibold border border-dashed transition-all"
+        style={{ borderColor: '#D0C8C4', color: '#8A7B7F' }}
+      >
+        + Ajouter
+      </motion.button>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <input
+        ref={inputRef}
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => { if (e.key === 'Enter') submit(); if (e.key === 'Escape') { setOpen(false); setValue(''); } }}
+        placeholder="Ton ressenti…"
+        className="px-3.5 py-2 rounded-pill text-sm font-body bg-white border focus:outline-none"
+        style={{ borderColor: color, width: '150px' }}
+        maxLength={30}
+      />
+      <button
+        onClick={submit}
+        className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm flex-shrink-0"
+        style={{ backgroundColor: color }}
+      >
+        ✓
+      </button>
+      <button
+        onClick={() => { setOpen(false); setValue(''); }}
+        className="w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0"
+        style={{ backgroundColor: '#F0EBE8', color: '#8A7B7F' }}
+      >
+        ×
+      </button>
+    </div>
+  );
+}
+
 export default function CheckIn() {
   const navigate = useNavigate();
-  const { dispatch, cycleInfo } = useCycle();
+  const { dispatch, cycleInfo, customSymptoms } = useCycle();
   const [step, setStep] = useState(0);
   const [energy, setEnergy] = useState(50);
   const [activeCategory, setActiveCategory] = useState(0);
@@ -176,6 +234,44 @@ export default function CheckIn() {
                       </motion.button>
                     );
                   })}
+
+                  {/* Custom symptoms in this category */}
+                  {(customSymptoms || []).map((label) => {
+                    const catId = SYMPTOM_CATEGORIES[activeCategory].id;
+                    const isSelected = (symptoms[catId] || []).includes(label);
+                    const colors = TAG_COLORS.violet;
+                    return (
+                      <motion.button
+                        key={`custom-${label}`}
+                        whileTap={{ scale: 1.05 }}
+                        onClick={() => toggleSymptom(catId, label)}
+                        className="px-3.5 py-2 rounded-pill text-sm font-body font-semibold transition-all border"
+                        style={{
+                          backgroundColor: isSelected ? colors.bg : 'white',
+                          borderColor: isSelected ? colors.border : '#F0EBE8',
+                          color: isSelected ? colors.text : '#8A7B7F',
+                          boxShadow: isSelected ? 'none' : '0 1px 4px rgba(45,34,38,0.04)',
+                        }}
+                      >
+                        {label}
+                        <span
+                          className="ml-1 opacity-40 hover:opacity-100"
+                          onClick={(e) => { e.stopPropagation(); dispatch({ type: 'REMOVE_CUSTOM_SYMPTOM', payload: { label } }); }}
+                        >
+                          ×
+                        </span>
+                      </motion.button>
+                    );
+                  })}
+
+                  {/* Add custom tag */}
+                  <CustomTagPill
+                    color={phaseColor}
+                    onAdd={(label) => {
+                      dispatch({ type: 'ADD_CUSTOM_SYMPTOM', payload: { label } });
+                      toggleSymptom(SYMPTOM_CATEGORIES[activeCategory].id, label);
+                    }}
+                  />
                 </motion.div>
               </AnimatePresence>
             </div>

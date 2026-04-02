@@ -17,7 +17,9 @@ const initialState = {
   journalEntries: [],
   sportSessions: [],
   sportLogs: [],
+  periodLogs: [],
   checkIns: [],
+  customSymptoms: [],
   chatHistory: [],
   notifications: true,
   language: 'fr',
@@ -85,6 +87,37 @@ function cycleReducer(state, action) {
       updated[li] = { ...updated[li], activities: acts };
       return { ...state, sportLogs: updated };
     }
+    case 'TOGGLE_PERIOD_DAY': {
+      // payload: { date } — toggle a single day as period day
+      const date = action.payload.date;
+      const exists = state.periodLogs.includes(date);
+      const newLogs = exists
+        ? state.periodLogs.filter((d) => d !== date)
+        : [...state.periodLogs, date].sort();
+      return { ...state, periodLogs: newLogs };
+    }
+    case 'SET_PERIOD_START': {
+      // payload: { date } — mark as period start and update lastPeriodDate
+      const date = action.payload.date;
+      const newLogs = state.periodLogs.includes(date)
+        ? state.periodLogs
+        : [...state.periodLogs, date].sort();
+      // Recalculate cycle length if we have a previous period start
+      const prevStart = state.lastPeriodDate;
+      let newCycleLength = state.cycleLength;
+      if (prevStart && prevStart !== date) {
+        const diff = Math.abs(Math.floor((new Date(date) - new Date(prevStart)) / (1000 * 60 * 60 * 24)));
+        if (diff > 15 && diff < 50) {
+          newCycleLength = diff;
+        }
+      }
+      return {
+        ...state,
+        lastPeriodDate: date,
+        cycleLength: newCycleLength,
+        periodLogs: newLogs,
+      };
+    }
     case 'ADD_CHECKIN': {
       const existing = state.checkIns.findIndex(
         (c) => c.date === action.payload.date
@@ -96,6 +129,14 @@ function cycleReducer(state, action) {
         checkIns.push(action.payload);
       }
       return { ...state, checkIns };
+    }
+    case 'ADD_CUSTOM_SYMPTOM': {
+      const label = action.payload.label?.trim();
+      if (!label || state.customSymptoms.includes(label)) return state;
+      return { ...state, customSymptoms: [...state.customSymptoms, label] };
+    }
+    case 'REMOVE_CUSTOM_SYMPTOM': {
+      return { ...state, customSymptoms: state.customSymptoms.filter((s) => s !== action.payload.label) };
     }
     case 'ADD_CHAT_MESSAGE':
       return { ...state, chatHistory: [...state.chatHistory, action.payload] };

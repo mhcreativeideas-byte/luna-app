@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, BarChart3, TrendingUp, TrendingDown, Minus, Dumbbell, Footprints, Moon as MoonIcon, Smile } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
@@ -36,6 +36,63 @@ const PHASE_JOURNAL_TITLES = {
 };
 
 const MONTH_NAMES = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+function CustomTagInput({ onAdd, phaseColor }) {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState('');
+  const inputRef = useRef(null);
+
+  const submit = () => {
+    const trimmed = value.trim();
+    if (trimmed) {
+      onAdd(trimmed);
+      setValue('');
+      setOpen(false);
+    }
+  };
+
+  if (!open) {
+    return (
+      <button
+        onClick={() => { setOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }}
+        className="px-3 py-1.5 rounded-pill text-xs font-body transition-all border border-dashed"
+        style={{ borderColor: '#D0C8C4', color: '#8A7B7F' }}
+      >
+        + Ajouter
+      </button>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <input
+        ref={inputRef}
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => { if (e.key === 'Enter') submit(); if (e.key === 'Escape') { setOpen(false); setValue(''); } }}
+        placeholder="Ton symptôme…"
+        className="px-3 py-1.5 rounded-pill text-xs font-body bg-white border focus:outline-none"
+        style={{ borderColor: phaseColor, width: '140px' }}
+        maxLength={30}
+      />
+      <button
+        onClick={submit}
+        className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs flex-shrink-0"
+        style={{ backgroundColor: phaseColor }}
+      >
+        ✓
+      </button>
+      <button
+        onClick={() => { setOpen(false); setValue(''); }}
+        className="w-7 h-7 rounded-full flex items-center justify-center text-xs flex-shrink-0"
+        style={{ backgroundColor: '#F5F2F0', color: '#8A7B7F' }}
+      >
+        ×
+      </button>
+    </div>
+  );
+}
 
 function getMonthEntries(entries, year, month) {
   return entries.filter((e) => {
@@ -146,7 +203,7 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 export default function Journal() {
-  const { cycleInfo, journalEntries, sportSessions, sportLogs, checkIns, cycleLength, periodLength, dispatch } = useCycle();
+  const { cycleInfo, journalEntries, sportSessions, sportLogs, checkIns, cycleLength, periodLength, customSymptoms, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
   const [expandedDay, setExpandedDay] = useState(null);
   const [activeTab, setActiveTab] = useState('journal'); // 'journal' | 'rapport'
@@ -415,7 +472,7 @@ export default function Journal() {
               <div>
                 <p className="text-sm font-body text-luna-text mb-2">Symptômes & ressentis</p>
                 <div className="flex flex-wrap gap-2">
-                  {symptoms.map((s) => (
+                  {[...symptoms, ...(customSymptoms || [])].map((s) => (
                     <button
                       key={s}
                       onClick={() => toggleSymptom(s)}
@@ -423,8 +480,24 @@ export default function Journal() {
                       style={selectedSymptoms.includes(s) ? { backgroundColor: phaseData.bgColor, color: phaseData.colorDark, fontWeight: 600 } : { backgroundColor: '#F5F2F0', color: '#8A7B7F' }}
                     >
                       {s}
+                      {(customSymptoms || []).includes(s) && (
+                        <span
+                          className="ml-1 inline-block opacity-40 hover:opacity-100"
+                          onClick={(e) => { e.stopPropagation(); dispatch({ type: 'REMOVE_CUSTOM_SYMPTOM', payload: { label: s } }); setSelectedSymptoms((prev) => prev.filter((x) => x !== s)); }}
+                        >
+                          ×
+                        </span>
+                      )}
                     </button>
                   ))}
+                  {/* Add custom tag */}
+                  <CustomTagInput
+                    onAdd={(label) => {
+                      dispatch({ type: 'ADD_CUSTOM_SYMPTOM', payload: { label } });
+                      setSelectedSymptoms((prev) => [...prev, label]);
+                    }}
+                    phaseColor={phaseData.color}
+                  />
                 </div>
               </div>
             </div>
