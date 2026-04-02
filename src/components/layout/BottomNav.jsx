@@ -1,9 +1,8 @@
 import { NavLink } from 'react-router-dom';
-import { Home, UtensilsCrossed, BookOpen, CalendarDays, MessageCircle, LayoutGrid } from 'lucide-react';
+import { Home, UtensilsCrossed, CalendarDays, MessageCircle, LayoutGrid } from 'lucide-react';
 
 const leftItems = [
   { to: '/calendrier', icon: CalendarDays, label: 'Cycle' },
-  { to: '/journal', icon: BookOpen, label: 'Journal' },
   { to: '/alimentation', icon: UtensilsCrossed, label: 'Food' },
 ];
 

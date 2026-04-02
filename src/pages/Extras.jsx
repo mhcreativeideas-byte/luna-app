@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Dumbbell, Moon, ChevronRight, ChevronLeft, Sparkles, BarChart3, TrendingUp, TrendingDown, Minus, Footprints } from 'lucide-react';
+import { Dumbbell, Moon, ChevronRight, ChevronLeft, Sparkles, BarChart3, TrendingUp, TrendingDown, Minus, Footprints, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
@@ -521,6 +521,30 @@ export default function Extras() {
             )}
           </div>
         </div>
+      </motion.div>
+
+      {/* Journal Card */}
+      <motion.div variants={item}>
+        <Link
+          to="/journal"
+          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          style={{ backgroundColor: phaseData.bgColor }}
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-[16px] flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
+              <BookOpen size={22} style={{ color: phaseData.color }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between">
+                <h2 className="font-display text-lg text-luna-text">Mon journal</h2>
+                <ChevronRight size={18} className="text-luna-text-hint group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm font-body text-luna-text-muted mt-1 leading-relaxed">
+                Humeur, énergie, symptômes et pensées du jour.
+              </p>
+            </div>
+          </div>
+        </Link>
       </motion.div>
 
       {/* Sport Card */}
