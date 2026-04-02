@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles, MessageCircle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-import { CHAT_SUGGESTIONS } from '../data/chatResponses';
+import { QUICK_SUGGESTIONS as CHAT_SUGGESTIONS } from '../data/chatResponses';
 
 const container = {
   hidden: { opacity: 0 },
