@@ -108,33 +108,69 @@ export default function Dashboard() {
         </span>
       </motion.div>
 
-      {/* Cycle Circle */}
-      <motion.div variants={item} className="flex justify-center py-4">
-        <div className="relative w-48 h-48">
-          <svg viewBox="0 0 120 120" className="w-full h-full">
-            {/* Background circle */}
-            <circle cx="60" cy="60" r="52" fill="none" stroke="#F0EBE8" strokeWidth="3" />
+      {/* Cycle Circle — LUNA Moon Design */}
+      <motion.div variants={item} className="flex flex-col items-center py-4">
+        <div className="relative w-52 h-52">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <defs>
+              <linearGradient id="moonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.15" />
+                <stop offset="100%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.05" />
+              </linearGradient>
+              <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.3" />
+                <stop offset="100%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.8" />
+              </linearGradient>
+            </defs>
+
+            {/* Subtle fill circle */}
+            <circle cx="100" cy="100" r="88" fill="url(#moonGradient)" />
+
+            {/* Background track */}
+            <circle cx="100" cy="100" r="88" fill="none" stroke="#F0EBE8" strokeWidth="2.5" />
+
             {/* Progress arc */}
             <circle
-              cx="60" cy="60" r="52"
+              cx="100" cy="100" r="88"
               fill="none"
-              stroke={phaseData.color}
+              stroke="url(#arcGradient)"
               strokeWidth="3"
               strokeLinecap="round"
-              strokeDasharray={`${(currentDay / cycleLength) * 327} 327`}
-              transform="rotate(-90 60 60)"
-              style={{ opacity: 0.6 }}
+              strokeDasharray={`${(currentDay / cycleLength) * 553} 553`}
+              transform="rotate(-90 100 100)"
             />
-            {/* Dot at the end */}
+
+            {/* Crescent moon shape */}
+            <g transform="translate(100, 100)" opacity="0.12">
+              {/* Outer circle of crescent */}
+              <circle cx="0" cy="0" r="50" fill="none" stroke={phaseData.colorDark || '#7B6B7B'} strokeWidth="2" />
+              {/* Inner circle to create crescent effect */}
+              <circle cx="12" cy="-8" r="42" fill="url(#moonGradient)" stroke="none" />
+              {/* Wave at bottom */}
+              <path
+                d={`M -35 20 Q -18 8 0 20 Q 18 32 35 20`}
+                fill="none"
+                stroke={phaseData.colorDark || '#7B6B7B'}
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </g>
+
+            {/* Progress dot */}
             <circle
-              cx="60" cy="8" r="4"
-              fill={phaseData.color}
-              transform={`rotate(${(currentDay / cycleLength) * 360} 60 60)`}
-            />
+              cx="100" cy="12" r="5"
+              fill={phaseData.colorDark || phaseData.color}
+              transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
+            >
+              <animate attributeName="r" values="5;6.5;5" dur="2s" repeatCount="indefinite" />
+            </circle>
           </svg>
+
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-widest mb-1">Cycle Day</p>
-            <p className="text-5xl font-display font-bold text-luna-text leading-none">
+            <p className="text-[10px] font-body uppercase tracking-widest mb-1" style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.6 }}>
+              Jour du cycle
+            </p>
+            <p className="text-5xl font-display font-bold leading-none" style={{ color: phaseData.colorDark || '#2D2226' }}>
               {String(currentDay).padStart(2, '0')}
             </p>
             <p className="text-xs font-body text-luna-text-hint mt-1">
@@ -142,6 +178,25 @@ export default function Dashboard() {
             </p>
           </div>
         </div>
+
+        {/* Next period indicator */}
+        <motion.div
+          className="mt-3 px-5 py-2 rounded-full flex items-center gap-2"
+          style={{ backgroundColor: `${phaseData.color}15` }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <span className="text-sm" role="img" aria-label="goutte">🩸</span>
+          <p className="text-sm font-body" style={{ color: phaseData.colorDark || '#2D2226' }}>
+            {daysUntilPeriod <= 0
+              ? 'Tes règles sont prévues aujourd\'hui'
+              : daysUntilPeriod === 1
+                ? 'Prochaines règles demain'
+                : `Prochaines règles dans ${daysUntilPeriod} jours`
+            }
+          </p>
+        </motion.div>
       </motion.div>
 
       {/* Today's Sanctuary */}
