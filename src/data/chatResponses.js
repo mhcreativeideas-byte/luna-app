@@ -207,6 +207,40 @@ const KEYWORD_MAP = [
   { keys: ['yoga'], response: 'sport' },
 ];
 
+// Compteur global pour varier les intros
+let _introCounter = 0;
+
+// Intros variées — certaines avec prénom, d'autres sans, pour un ton naturel
+function naturalizeResponse(text, name) {
+  if (!name || name === 'ma belle') return text;
+
+  _introCounter++;
+  const idx = _introCounter % 8;
+
+  // Patterns de remplacement : on ne met le prénom qu'1 fois sur 3-4 environ
+  // et on varie la formulation
+  const namePattern = new RegExp(`^${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')},\\s*`, 'i');
+
+  if (!namePattern.test(text)) return text;
+
+  // Retirer le "Prénom, " du début
+  const rest = text.replace(namePattern, '');
+  // Mettre la première lettre en majuscule
+  const capitalized = rest.charAt(0).toUpperCase() + rest.slice(1);
+
+  switch (idx) {
+    case 0: return `${name}, ${rest}`; // Prénom classique
+    case 1: return `Alors, ${rest}`; // Décontracté
+    case 2: return `Hey ! ${capitalized}`; // Pep's
+    case 3: return `${name} — ${rest}`; // Prénom avec tiret
+    case 4: return capitalized; // Pas de prénom, direct
+    case 5: return `Écoute, ${rest}`; // Intime
+    case 6: return capitalized; // Direct aussi
+    case 7: return `OK ${name}, ${rest}`; // Décontracté + prénom
+    default: return capitalized;
+  }
+}
+
 export function getLunaResponse(question, phase, userContext = {}) {
   const q = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const qOriginal = question.toLowerCase();
@@ -233,8 +267,9 @@ export function getLunaResponse(question, phase, userContext = {}) {
   const responseKey = bestMatch || 'default';
   const responseFn = responses[responseKey] || responses['default'];
 
+  const name = userContext.name || 'ma belle';
   const ctx = {
-    name: userContext.name || 'ma belle',
+    name,
     phase,
     currentDay: userContext.currentDay || 1,
     cycleLength: userContext.cycleLength || 28,
@@ -245,5 +280,6 @@ export function getLunaResponse(question, phase, userContext = {}) {
     goals: userContext.goals || [],
   };
 
-  return responseFn(ctx);
+  const raw = responseFn(ctx);
+  return naturalizeResponse(raw, name);
 }
