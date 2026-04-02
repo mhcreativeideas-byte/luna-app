@@ -15,6 +15,21 @@ const goalOptions = [
   { id: 'strength', label: 'Me sentir forte', icon: '💪' },
 ];
 
+const dietOptions = [
+  { id: 'Omnivore', icon: '🍽️' },
+  { id: 'Vegetarienne', icon: '🥬' },
+  { id: 'Vegane', icon: '🌱' },
+  { id: 'Sans gluten', icon: '🌾' },
+  { id: 'Sans lactose', icon: '🥛' },
+];
+
+const healthOptions = [
+  { id: 'SPM severe', icon: '😣', desc: 'Douleurs, fatigue, irritabilite avant les regles' },
+  { id: 'Endometriose', icon: '🩺', desc: 'Diagnostiquee ou suspectee' },
+  { id: 'SOPK', icon: '🔬', desc: 'Syndrome des ovaires polykystiques' },
+  { id: 'Cycles irreguliers', icon: '📅', desc: 'Cycles de duree variable' },
+];
+
 function SettingRow({ label, value, onClick, danger }) {
   return (
     <button
@@ -66,9 +81,13 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, goals, dispatch, signOut, user } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, dispatch, signOut, user } = useCycle();
   const [showGoals, setShowGoals] = useState(false);
   const [editedGoals, setEditedGoals] = useState(goals || []);
+  const [showDiet, setShowDiet] = useState(false);
+  const [editedDiet, setEditedDiet] = useState(dietPreferences || ['Omnivore']);
+  const [showHealth, setShowHealth] = useState(false);
+  const [editedHealth, setEditedHealth] = useState(healthIssues || []);
 
   const toggleGoal = (id) => {
     setEditedGoals(prev =>
@@ -76,10 +95,41 @@ export default function Settings() {
     );
   };
 
+  const toggleDiet = (id) => {
+    setEditedDiet(prev => {
+      if (id === 'Omnivore') return ['Omnivore'];
+      const without = prev.filter(d => d !== 'Omnivore');
+      if (without.includes(id)) {
+        const result = without.filter(d => d !== id);
+        return result.length === 0 ? ['Omnivore'] : result;
+      }
+      return [...without, id];
+    });
+  };
+
+  const toggleHealth = (id) => {
+    setEditedHealth(prev =>
+      prev.includes(id) ? prev.filter(h => h !== id) : [...prev, id]
+    );
+  };
+
   const saveGoals = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { goals: editedGoals } });
     setShowGoals(false);
   };
+
+  const saveDiet = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { dietPreferences: editedDiet } });
+    setShowDiet(false);
+  };
+
+  const saveHealth = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { healthIssues: editedHealth } });
+    setShowHealth(false);
+  };
+
+  const dietLabel = (dietPreferences || ['Omnivore']).join(', ');
+  const healthLabel = (healthIssues || []).length > 0 ? `${healthIssues.length} selectionne${healthIssues.length > 1 ? 's' : ''}` : 'Aucun';
 
   return (
     <div className="space-y-2 pb-8">
@@ -98,6 +148,8 @@ export default function Settings() {
       <Section title="Profil">
         <SettingRow label="Nom" value={name} />
         <SettingRow label="Objectifs" value={`${goals?.length || 0} selectionnes`} onClick={() => { setEditedGoals(goals || []); setShowGoals(true); }} />
+        <SettingRow label="Alimentation" value={dietLabel} onClick={() => { setEditedDiet(dietPreferences || ['Omnivore']); setShowDiet(true); }} />
+        <SettingRow label="Sante hormonale" value={healthLabel} onClick={() => { setEditedHealth(healthIssues || []); setShowHealth(true); }} />
       </Section>
 
       <Section title="Cycle">
@@ -247,6 +299,133 @@ export default function Settings() {
                 className="btn-luna w-full justify-center text-base py-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Enregistrer ({editedGoals.length} objectif{editedGoals.length > 1 ? 's' : ''})
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Diet Modal */}
+      <AnimatePresence>
+        {showDiet && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowDiet(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">Mon alimentation</h3>
+                <button
+                  onClick={() => setShowDiet(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <p className="text-sm text-luna-text-muted font-body mb-4">
+                Modifie tes preferences alimentaires. Tes recommandations s'adapteront automatiquement.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {dietOptions.map(({ id, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleDiet(id)}
+                    className={`flex items-center gap-2 px-3.5 py-2.5 rounded-full text-sm font-body font-semibold transition-all border-2 ${
+                      editedDiet.includes(id)
+                        ? 'border-green-300 bg-green-50 text-green-700'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-green-200'
+                    }`}
+                  >
+                    <span>{icon}</span>
+                    {id}
+                  </motion.button>
+                ))}
+              </div>
+
+              <button
+                onClick={saveDiet}
+                className="btn-luna w-full justify-center text-base py-3.5"
+              >
+                Enregistrer
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Health Modal */}
+      <AnimatePresence>
+        {showHealth && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowHealth(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">Sante hormonale</h3>
+                <button
+                  onClick={() => setShowHealth(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <p className="text-sm text-luna-text-muted font-body mb-4">
+                Indique tes soucis hormonaux pour des conseils personnalises. Tu peux tout deselectionner si aucun ne te concerne.
+              </p>
+
+              <div className="space-y-2 mb-6">
+                {healthOptions.map(({ id, icon, desc }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => toggleHealth(id)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                      editedHealth.includes(id)
+                        ? 'border-purple-300 bg-purple-50'
+                        : 'border-gray-100 bg-white hover:border-purple-200'
+                    }`}
+                  >
+                    <span className="text-2xl">{icon}</span>
+                    <div>
+                      <p className={`text-sm font-body font-semibold ${editedHealth.includes(id) ? 'text-purple-700' : 'text-luna-text-body'}`}>
+                        {id}
+                      </p>
+                      <p className="text-xs font-body text-luna-text-muted">{desc}</p>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+
+              <button
+                onClick={saveHealth}
+                className="btn-luna w-full justify-center text-base py-3.5"
+              >
+                Enregistrer
               </button>
             </motion.div>
           </motion.div>
