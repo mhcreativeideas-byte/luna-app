@@ -44,8 +44,16 @@ function getMonthEntries(entries, year, month) {
   });
 }
 
-function computeMonthStats(entries) {
-  if (!entries.length) return null;
+function getMonthSportSessions(sessions, year, month) {
+  return (sessions || []).filter((s) => {
+    const d = new Date(s.date);
+    return d.getFullYear() === year && d.getMonth() === month;
+  });
+}
+
+function computeMonthStats(entries, sportSessions = []) {
+  if (!entries.length && !sportSessions.length) return null;
+
   const energies = entries.filter((e) => e.energy).map((e) => e.energy);
   const moodValues = entries.filter((e) => e.mood).map((e) => {
     const m = moods.find((mo) => mo.label === e.mood);
@@ -72,8 +80,15 @@ function computeMonthStats(entries) {
     avgEnergyByPhase[p] = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length * 10) / 10;
   });
 
-  // Sport sessions (entries with mood or energy = they checked in)
-  const sportDays = entries.filter((e) => e.sportValidated).length;
+  // Sport sessions stats
+  const totalSportSessions = sportSessions.length;
+  const sportByPhase = {};
+  const sportTypes = {};
+  sportSessions.forEach((s) => {
+    if (s.phase) sportByPhase[s.phase] = (sportByPhase[s.phase] || 0) + 1;
+    if (s.type) sportTypes[s.type] = (sportTypes[s.type] || 0) + 1;
+  });
+  const topSportType = Object.entries(sportTypes).sort((a, b) => b[1] - a[1])[0] || null;
 
   return {
     totalEntries: entries.length,
@@ -81,7 +96,9 @@ function computeMonthStats(entries) {
     avgMood: moodValues.length ? Math.round(moodValues.reduce((a, b) => a + b, 0) / moodValues.length * 10) / 10 : null,
     topSymptoms,
     avgEnergyByPhase,
-    sportDays,
+    totalSportSessions,
+    sportByPhase,
+    topSportType,
   };
 }
 
@@ -103,7 +120,7 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 export default function Journal() {
-  const { cycleInfo, journalEntries, checkIns, dispatch } = useCycle();
+  const { cycleInfo, journalEntries, sportSessions, checkIns, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
   const [activeTab, setActiveTab] = useState('journal'); // 'journal' | 'rapport'
 
@@ -137,12 +154,14 @@ export default function Journal() {
 
   // Report data
   const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
+  const currentMonthSport = useMemo(() => getMonthSportSessions(sportSessions, reportYear, reportMonth), [sportSessions, reportYear, reportMonth]);
   const prevMonth = reportMonth === 0 ? 11 : reportMonth - 1;
   const prevYear = reportMonth === 0 ? reportYear - 1 : reportYear;
   const prevMonthEntries = useMemo(() => getMonthEntries(journalEntries, prevYear, prevMonth), [journalEntries, prevYear, prevMonth]);
+  const prevMonthSport = useMemo(() => getMonthSportSessions(sportSessions, prevYear, prevMonth), [sportSessions, prevYear, prevMonth]);
 
-  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries), [currentMonthEntries]);
-  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries), [prevMonthEntries]);
+  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries, currentMonthSport), [currentMonthEntries, currentMonthSport]);
+  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries, prevMonthSport), [prevMonthEntries, prevMonthSport]);
 
   const toggleSymptom = (s) => {
     setSelectedSymptoms((prev) =>
@@ -205,6 +224,22 @@ export default function Journal() {
     if (currentStats.topSymptoms.length > 0) {
       const top = currentStats.topSymptoms[0];
       msgs.push(`"${top[0]}" est ton ressenti le plus fréquent ce mois (${top[1]}x).`);
+    }
+
+    // Sport insights
+    if (currentStats.totalSportSessions > 0) {
+      if (prevStats?.totalSportSessions) {
+        const diff = currentStats.totalSportSessions - prevStats.totalSportSessions;
+        if (diff > 0) msgs.push(`Tu as fait ${diff} séance${diff > 1 ? 's' : ''} de plus que le mois dernier. Continue comme ça ! 💪`);
+        else if (diff < 0) msgs.push(`Un peu moins de sport ce mois (${currentStats.totalSportSessions} vs ${prevStats.totalSportSessions}). Écoute ton corps, chaque mouvement compte.`);
+        else msgs.push(`${currentStats.totalSportSessions} séances ce mois, comme le mois dernier. Belle régularité !`);
+      } else {
+        msgs.push(`Tu as bougé ${currentStats.totalSportSessions} fois ce mois. Ton corps te remercie !`);
+      }
+
+      if (currentStats.sportByPhase.follicular > 0 && currentStats.sportByPhase.menstrual > 0) {
+        msgs.push('Tu adaptes ton activité à tes phases — c\'est la clé pour progresser sans s\'épuiser.');
+      }
     }
 
     return msgs;
@@ -439,11 +474,19 @@ export default function Journal() {
               <motion.div variants={item}>
                 <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
                   <h3 className="font-display text-base text-luna-text mb-4">Vue d'ensemble</h3>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     {/* Entries */}
                     <div className="text-center p-3 rounded-[14px] bg-gray-50">
                       <p className="text-2xl font-display font-bold text-luna-text">{currentStats.totalEntries}</p>
                       <p className="text-[9px] font-body text-luna-text-hint uppercase mt-1">Jours suivis</p>
+                    </div>
+                    {/* Sport sessions */}
+                    <div className="text-center p-3 rounded-[14px] bg-gray-50">
+                      <div className="flex items-center justify-center gap-1">
+                        <p className="text-2xl font-display font-bold text-luna-text">{currentStats.totalSportSessions}</p>
+                        {prevStats && <TrendIcon current={currentStats.totalSportSessions} previous={prevStats.totalSportSessions} />}
+                      </div>
+                      <p className="text-[9px] font-body text-luna-text-hint uppercase mt-1">Séances sport</p>
                     </div>
                     {/* Avg Energy */}
                     <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
@@ -454,7 +497,7 @@ export default function Journal() {
                       <p className="text-[9px] font-body text-luna-text-hint uppercase mt-1">Énergie moy.</p>
                     </div>
                     {/* Avg Mood */}
-                    <div className="text-center p-3 rounded-[14px] bg-gray-50">
+                    <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
                       <div className="flex items-center justify-center gap-1">
                         <p className="text-2xl font-display font-bold text-luna-text">{currentStats.avgMood || '—'}</p>
                         <TrendIcon current={currentStats.avgMood} previous={prevStats?.avgMood} />
@@ -469,17 +512,23 @@ export default function Journal() {
                       <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">
                         vs {MONTH_NAMES[prevMonth]} {prevYear}
                       </p>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="flex items-center gap-2">
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="flex items-center gap-1.5">
                           <TrendIcon current={currentStats.avgEnergy} previous={prevStats.avgEnergy} />
                           <span className="text-xs font-body text-luna-text-muted">
                             Énergie {currentStats.avgEnergy > prevStats.avgEnergy ? '+' : ''}{currentStats.avgEnergy && prevStats.avgEnergy ? Math.round((currentStats.avgEnergy - prevStats.avgEnergy) * 10) / 10 : '—'}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <TrendIcon current={currentStats.avgMood} previous={prevStats.avgMood} />
                           <span className="text-xs font-body text-luna-text-muted">
                             Humeur {currentStats.avgMood > prevStats.avgMood ? '+' : ''}{currentStats.avgMood && prevStats.avgMood ? Math.round((currentStats.avgMood - prevStats.avgMood) * 10) / 10 : '—'}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <TrendIcon current={currentStats.totalSportSessions} previous={prevStats.totalSportSessions} />
+                          <span className="text-xs font-body text-luna-text-muted">
+                            Sport {currentStats.totalSportSessions > prevStats.totalSportSessions ? '+' : ''}{currentStats.totalSportSessions - prevStats.totalSportSessions}
                           </span>
                         </div>
                       </div>
@@ -516,6 +565,53 @@ export default function Journal() {
                         );
                       })}
                     </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Sport par phase */}
+              {currentStats.totalSportSessions > 0 && (
+                <motion.div variants={item}>
+                  <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+                    <div className="flex items-center gap-2 mb-4">
+                      <Dumbbell size={16} style={{ color: phaseData.colorDark }} />
+                      <h3 className="font-display text-base text-luna-text">Activité sportive</h3>
+                    </div>
+
+                    {/* Sport by phase bars */}
+                    <div className="space-y-3 mb-4">
+                      {['menstrual', 'follicular', 'ovulatory', 'luteal'].map((p) => {
+                        const count = currentStats.sportByPhase[p] || 0;
+                        const prevCount = prevStats?.sportByPhase?.[p] || 0;
+                        const pd = PHASES[p];
+                        if (!count && !prevCount) return null;
+                        return (
+                          <div key={p}>
+                            <div className="flex items-center justify-between mb-1.5">
+                              <div className="flex items-center gap-2">
+                                <span className="text-sm">{pd.icon}</span>
+                                <span className="text-xs font-body font-semibold text-luna-text">{pd.shortName}</span>
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-sm font-display font-bold" style={{ color: pd.colorDark }}>{count}</span>
+                                <span className="text-[10px] font-body text-luna-text-hint">séances</span>
+                                {prevStats && <TrendIcon current={count} previous={prevCount} />}
+                              </div>
+                            </div>
+                            <ProgressBar value={count} max={Math.max(currentStats.totalSportSessions, 8)} color={pd.color} />
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Favourite sport type */}
+                    {currentStats.topSportType && (
+                      <div className="rounded-[14px] p-3" style={{ backgroundColor: phaseData.bgColor }}>
+                        <p className="text-xs font-body text-luna-text-muted text-center leading-relaxed">
+                          🏅 Ton activité préférée ce mois : <strong className="text-luna-text">{currentStats.topSportType[0]}</strong> ({currentStats.topSportType[1]} séances)
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               )}

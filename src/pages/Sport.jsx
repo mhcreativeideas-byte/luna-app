@@ -22,11 +22,19 @@ const PHASE_SPORT_TITLES = {
 };
 
 export default function Sport() {
-  const { cycleInfo } = useCycle();
+  const { cycleInfo, sportSessions, dispatch } = useCycle();
   const [selectedExercise, setSelectedExercise] = useState(null);
-  const [sessionValidated, setSessionValidated] = useState(false);
 
   const phase = cycleInfo?.phase || 'follicular';
+  const today = new Date().toISOString().split('T')[0];
+  const sessionValidated = sportSessions?.some((s) => s.date === today) || false;
+
+  const toggleSession = () => {
+    dispatch({
+      type: 'TOGGLE_SPORT_SESSION',
+      payload: { date: today, phase, type: exerciseData?.type || 'Sport' },
+    });
+  };
   const phaseData = PHASES[phase];
   const exerciseData = EXERCISES[phase];
 
@@ -121,7 +129,7 @@ export default function Sport() {
       {/* Séance validée */}
       <motion.div variants={item}>
         <button
-          onClick={() => setSessionValidated(!sessionValidated)}
+          onClick={toggleSession}
           className="w-full rounded-[20px] p-5 flex items-center justify-between transition-all"
           style={{
             backgroundColor: sessionValidated ? phaseData.bgColor : 'white',
