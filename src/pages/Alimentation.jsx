@@ -292,50 +292,48 @@ export default function Alimentation() {
                 À privilégier
               </p>
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-wrap gap-2">
               {phaseData.drinks.good.map((d, i) => {
                 const key = `good-${i}`;
                 const isOpen = expandedDrink === key;
                 return (
-                  <div key={i}>
-                    <button
-                      onClick={() => setExpandedDrink(isOpen ? null : key)}
-                      className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
-                      style={{
-                        backgroundColor: isOpen ? '#7BAE7F20' : '#7BAE7F12',
-                        color: '#4D7A50',
-                        border: isOpen ? '1px solid #7BAE7F50' : '1px solid #7BAE7F25',
-                      }}
-                    >
-                      <span className="text-sm">🍵</span>
-                      {d.name}
-                      <ChevronDown
-                        size={12}
-                        className="transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="mt-2 ml-1 pl-3 py-2 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#7BAE7F08]"
-                            style={{ borderLeft: '3px solid #7BAE7F' }}
-                          >
-                            {d.why}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  <button
+                    key={i}
+                    onClick={() => setExpandedDrink(isOpen ? null : key)}
+                    className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
+                    style={{
+                      backgroundColor: isOpen ? '#7BAE7F25' : '#7BAE7F12',
+                      color: '#4D7A50',
+                      border: isOpen ? '1.5px solid #7BAE7F' : '1px solid #7BAE7F25',
+                      boxShadow: isOpen ? '0 2px 8px rgba(123,174,127,0.2)' : 'none',
+                    }}
+                  >
+                    🍵 {d.name}
+                  </button>
                 );
               })}
             </div>
+            {/* Shared explanation zone */}
+            <AnimatePresence>
+              {expandedDrink?.startsWith('good-') && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-3 pl-3 pr-2 py-2.5 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#7BAE7F0A]"
+                    style={{ borderLeft: '3px solid #7BAE7F' }}
+                  >
+                    <span className="font-semibold" style={{ color: '#4D7A50' }}>
+                      {phaseData.drinks.good[Number(expandedDrink.split('-')[1])]?.name} →
+                    </span>{' '}
+                    {phaseData.drinks.good[Number(expandedDrink.split('-')[1])]?.why}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Bad drinks */}
@@ -346,50 +344,48 @@ export default function Alimentation() {
                 À limiter
               </p>
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-wrap gap-2">
               {phaseData.drinks.bad.map((d, i) => {
                 const key = `bad-${i}`;
                 const isOpen = expandedDrink === key;
                 return (
-                  <div key={i}>
-                    <button
-                      onClick={() => setExpandedDrink(isOpen ? null : key)}
-                      className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
-                      style={{
-                        backgroundColor: isOpen ? '#D4727F18' : '#D4727F10',
-                        color: '#A3555F',
-                        border: isOpen ? '1px solid #D4727F40' : '1px solid #D4727F20',
-                      }}
-                    >
-                      <span className="text-sm">⚠️</span>
-                      {d.name}
-                      <ChevronDown
-                        size={12}
-                        className="transition-transform duration-200"
-                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="mt-2 ml-1 pl-3 py-2 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#D4727F08]"
-                            style={{ borderLeft: '3px solid #D4727F' }}
-                          >
-                            {d.why}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  <button
+                    key={i}
+                    onClick={() => setExpandedDrink(isOpen ? null : key)}
+                    className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
+                    style={{
+                      backgroundColor: isOpen ? '#D4727F20' : '#D4727F10',
+                      color: '#A3555F',
+                      border: isOpen ? '1.5px solid #D4727F' : '1px solid #D4727F20',
+                      boxShadow: isOpen ? '0 2px 8px rgba(212,114,127,0.2)' : 'none',
+                    }}
+                  >
+                    ⚠️ {d.name}
+                  </button>
                 );
               })}
             </div>
+            {/* Shared explanation zone */}
+            <AnimatePresence>
+              {expandedDrink?.startsWith('bad-') && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-3 pl-3 pr-2 py-2.5 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#D4727F08]"
+                    style={{ borderLeft: '3px solid #D4727F' }}
+                  >
+                    <span className="font-semibold" style={{ color: '#A3555F' }}>
+                      {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.name} →
+                    </span>{' '}
+                    {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.why}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </motion.div>
