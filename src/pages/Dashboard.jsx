@@ -108,84 +108,52 @@ export default function Dashboard() {
         </span>
       </motion.div>
 
-      {/* Cycle Circle — LUNA Moon IS the circle */}
+      {/* Cycle Circle — LUNA Moon Logo */}
       <motion.div variants={item} className="flex flex-col items-center py-6">
         <div className="relative w-56 h-56">
-          <svg viewBox="0 0 200 200" className="w-full h-full">
+          {/* LUNA logo image as the cycle circle */}
+          <img
+            src="/luna-moon.png"
+            alt=""
+            className="absolute inset-0 w-full h-full object-contain"
+            style={{ opacity: 0.2, filter: `sepia(1) saturate(0.5) hue-rotate(${phase === 'menstrual' ? '320' : phase === 'follicular' ? '90' : phase === 'ovulatory' ? '15' : '230'}deg)` }}
+          />
+
+          {/* Progress ring overlay */}
+          <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full">
             <defs>
               <linearGradient id="progressArc" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.4" />
-                <stop offset="100%" stopColor={phaseData.colorDark || phaseData.color} />
+                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.3" />
+                <stop offset="100%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.9" />
               </linearGradient>
             </defs>
 
-            {/* ===== LUNA LOGO = THE CYCLE CIRCLE ===== */}
-            {/* Center (100, 100), radius 82 — the logo IS the main element */}
+            {/* Background track */}
+            <circle cx="100" cy="100" r="88" fill="none" stroke="#EDE5DF" strokeWidth="2" />
 
-            {/* 1. Outer circle arc — background track (light) */}
-            <path
-              d="M 30 58 A 82 82 0 1 1 148 28"
-              fill="none"
-              stroke="#DDD5CE"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-
-            {/* 2. Outer circle arc — progress overlay (phase color) */}
+            {/* Progress arc */}
             <motion.circle
-              cx="100" cy="100" r="82"
+              cx="100" cy="100" r="88"
               fill="none"
               stroke="url(#progressArc)"
-              strokeWidth="2.8"
+              strokeWidth="2.5"
               strokeLinecap="round"
-              initial={{ strokeDasharray: '0 515.2' }}
-              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 515.2} 515.2` }}
+              initial={{ strokeDasharray: '0 553' }}
+              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 553} 553` }}
               transition={{ duration: 1.8, ease: 'easeOut' }}
               transform="rotate(-90 100 100)"
             />
 
-            {/* 3. Small dot at end of outer circle (~1:30) */}
-            <circle cx="148" cy="28" r="3" fill={phaseData.colorDark || '#8B7B7F'} opacity="0.6" />
-
-            {/* 4. Crescent inner edge → flows into wave 1
-                 Starts at same tip as outer circle gap (top-left)
-                 Slim crescent hugging the left side of the circle
-                 Smooth transition into S-wave across the bottom */}
-            <path
-              d="M 30 58
-                 C 42 72, 40 92, 36 110
-                 C 30 134, 42 152, 68 150
-                 C 94 148, 116 132, 134 136
-                 C 152 140, 166 132, 176 120"
-              fill="none"
-              stroke={phaseData.colorDark || '#8B7B7F'}
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              opacity="0.25"
-            />
-
-            {/* 5. Second wave — thinner, parallel, gives leaf/depth effect */}
-            <path
-              d="M 48 160
-                 C 72 150, 100 168, 128 154
-                 C 150 144, 164 148, 176 136"
-              fill="none"
-              stroke={phaseData.colorDark || '#8B7B7F'}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              opacity="0.2"
-            />
-
-            {/* 6. Progress dot on the ring */}
+            {/* Progress dot */}
             <circle
-              cx="100" cy="18" r="4"
+              cx="100" cy="12" r="4"
               fill={phaseData.colorDark || phaseData.color}
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
             >
               <animate attributeName="r" values="4;5;4" dur="2.5s" repeatCount="indefinite" />
             </circle>
             <circle
-              cx="100" cy="18" r="1.8"
+              cx="100" cy="12" r="1.8"
               fill="#FFFFFF"
               opacity="0.85"
               transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
@@ -193,7 +161,7 @@ export default function Dashboard() {
           </svg>
 
           {/* Center text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
             <p
               className="text-[9px] font-body uppercase tracking-[0.2em] mb-1"
               style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.5 }}
