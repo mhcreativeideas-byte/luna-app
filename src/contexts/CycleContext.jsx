@@ -200,6 +200,7 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
   return {
     currentDay,
     cycleLength,
+    periodLength,
     phase,
     phaseDay,
     phaseDuration,

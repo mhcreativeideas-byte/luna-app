@@ -67,7 +67,7 @@ export default function Dashboard() {
 
   if (!cycleInfo) return null;
 
-  const { phase, phaseData, currentDay, cycleLength, energyLevel, daysUntilPeriod } = cycleInfo;
+  const { phase, phaseData, currentDay, cycleLength, periodLength, energyLevel, daysUntilPeriod } = cycleInfo;
 
   const hour = new Date().getHours();
   const displayName = name || '';
@@ -108,60 +108,84 @@ export default function Dashboard() {
         </span>
       </motion.div>
 
-      {/* Cycle Circle — LUNA Moon Logo */}
+      {/* Cycle Circle — Phase-colored ring with LUNA logo */}
       <motion.div variants={item} className="flex flex-col items-center py-6">
         <div className="relative w-56 h-56">
-          {/* LUNA logo image as the cycle circle */}
+          {/* LUNA logo watermark */}
           <img
             src="/luna-moon.png"
             alt=""
-            className="absolute inset-0 w-full h-full object-contain"
-            style={{ opacity: 0.2, filter: `sepia(1) saturate(0.5) hue-rotate(${phase === 'menstrual' ? '320' : phase === 'follicular' ? '90' : phase === 'ovulatory' ? '15' : '230'}deg)` }}
+            className="absolute inset-0 w-full h-full object-contain z-0"
+            style={{ opacity: 0.12 }}
           />
 
-          {/* Progress ring overlay */}
-          <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full">
-            <defs>
-              <linearGradient id="progressArc" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor={phaseData.color} stopOpacity="0.3" />
-                <stop offset="100%" stopColor={phaseData.colorDark || phaseData.color} stopOpacity="0.9" />
-              </linearGradient>
-            </defs>
+          {/* Phase-colored ring + progress dot */}
+          <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full z-10">
+            {(() => {
+              const R = 88;
+              const C = 2 * Math.PI * R; // ~553
+              const cx = 100, cy = 100;
+              const ovulationDay = cycleLength - 14;
+              const ovulatoryStart = ovulationDay - 1;
+              const ovulatoryEnd = ovulationDay + 1;
 
-            {/* Background track */}
-            <circle cx="100" cy="100" r="88" fill="none" stroke="#EDE5DF" strokeWidth="2" />
+              // Phase boundaries as fractions of cycle
+              const phases = [
+                { name: 'menstrual', start: 0, end: periodLength / cycleLength, color: '#D4727F' },
+                { name: 'follicular', start: periodLength / cycleLength, end: ovulatoryStart / cycleLength, color: '#7BAE7F' },
+                { name: 'ovulatory', start: ovulatoryStart / cycleLength, end: ovulatoryEnd / cycleLength, color: '#E8A87C' },
+                { name: 'luteal', start: ovulatoryEnd / cycleLength, end: 1, color: '#B09ACB' },
+              ];
 
-            {/* Progress arc */}
-            <motion.circle
-              cx="100" cy="100" r="88"
-              fill="none"
-              stroke="url(#progressArc)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              initial={{ strokeDasharray: '0 553' }}
-              animate={{ strokeDasharray: `${(currentDay / cycleLength) * 553} 553` }}
-              transition={{ duration: 1.8, ease: 'easeOut' }}
-              transform="rotate(-90 100 100)"
-            />
+              const gap = 0.008; // small gap between segments
+              const progressAngle = (currentDay / cycleLength) * 360;
 
-            {/* Progress dot */}
-            <circle
-              cx="100" cy="12" r="4"
-              fill={phaseData.colorDark || phaseData.color}
-              transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
-            >
-              <animate attributeName="r" values="4;5;4" dur="2.5s" repeatCount="indefinite" />
-            </circle>
-            <circle
-              cx="100" cy="12" r="1.8"
-              fill="#FFFFFF"
-              opacity="0.85"
-              transform={`rotate(${(currentDay / cycleLength) * 360} 100 100)`}
-            />
+              return (
+                <>
+                  {/* Phase segments */}
+                  {phases.map((p, i) => {
+                    const startAngle = p.start + (i === 0 ? 0 : gap / 2);
+                    const endAngle = p.end - (i === phases.length - 1 ? 0 : gap / 2);
+                    const dashLen = (endAngle - startAngle) * C;
+                    const dashOffset = -(startAngle * C);
+                    const isCurrentPhase = p.name === phase;
+                    return (
+                      <circle
+                        key={p.name}
+                        cx={cx} cy={cy} r={R}
+                        fill="none"
+                        stroke={p.color}
+                        strokeWidth={isCurrentPhase ? 8 : 5}
+                        strokeLinecap="round"
+                        strokeDasharray={`${dashLen} ${C - dashLen}`}
+                        strokeDashoffset={dashOffset}
+                        transform={`rotate(-90 ${cx} ${cy})`}
+                        opacity={isCurrentPhase ? 1 : 0.35}
+                      />
+                    );
+                  })}
+
+                  {/* Progress dot — positioned along the ring */}
+                  <circle
+                    cx={cx} cy={cy - R} r="6"
+                    fill="#FFFFFF"
+                    stroke={phaseData.color}
+                    strokeWidth="3"
+                    transform={`rotate(${progressAngle} ${cx} ${cy})`}
+                    style={{ filter: `drop-shadow(0 0 4px ${phaseData.color}80)` }}
+                  />
+                  <circle
+                    cx={cx} cy={cy - R} r="2.5"
+                    fill={phaseData.colorDark || phaseData.color}
+                    transform={`rotate(${progressAngle} ${cx} ${cy})`}
+                  />
+                </>
+              );
+            })()}
           </svg>
 
           {/* Center text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
             <p
               className="text-[9px] font-body uppercase tracking-[0.2em] mb-1"
               style={{ color: phaseData.colorDark || phaseData.color, opacity: 0.5 }}
