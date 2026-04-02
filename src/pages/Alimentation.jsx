@@ -549,13 +549,14 @@ export default function Alimentation() {
               transition={{ delay: delay * 0.05, duration: 0.4, ease: 'easeOut' }}
               className="flex flex-col items-center gap-2"
             >
-              <div className="w-20 h-20 rounded-2xl flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FAF5F0' }}>
+              <div className="w-20 h-20 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FAF5F0' }}>
                 {imgSrc ? (
                   <img
                     src={imgSrc}
                     alt={name}
                     loading="lazy"
-                    className="w-16 h-16 object-contain drop-shadow-sm"
+                    className="w-[4.5rem] h-[4.5rem] object-contain"
+                    style={{ mixBlendMode: 'multiply' }}
                     onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
                   />
                 ) : null}
