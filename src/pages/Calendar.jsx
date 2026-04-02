@@ -30,6 +30,7 @@ export default function Calendar() {
   const [confirmStart, setConfirmStart] = useState(false);
   const [confirmCycleReset, setConfirmCycleReset] = useState(false);
   const [tempInput, setTempInput] = useState('');
+  const [tempDirty, setTempDirty] = useState(false);
   const [editingTemp, setEditingTemp] = useState(false);
 
   const today = new Date();
@@ -236,6 +237,7 @@ export default function Calendar() {
                     setConfirmStart(false);
                     setConfirmCycleReset(false);
                     setTempInput('');
+                    setTempDirty(false);
                     setEditingTemp(false);
                   }}
                   className="aspect-square rounded-[14px] flex flex-col items-center justify-center relative transition-all"
@@ -391,17 +393,18 @@ export default function Calendar() {
               <div className="pt-2">
                 <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">Température basale</p>
                 {(() => {
-                  const raw = (temperatureLogs || {})[selectedDay.dateStr];
-                  const savedTemp = (raw !== undefined && raw !== '' && !isNaN(raw)) ? Number(raw) : null;
+                  const logs = temperatureLogs || {};
+                  const raw = logs[selectedDay.dateStr];
+                  const savedTemp = (raw !== undefined && raw !== null && raw !== '' && !isNaN(Number(raw))) ? Number(raw) : null;
                   const hasSaved = savedTemp !== null;
                   const phaseColor = PHASES[selectedDay.phase]?.color;
                   const phaseDark = PHASES[selectedDay.phase]?.colorDark;
 
-                  /* ── ÉTAT 2 : temp sauvegardée, affichage seul ── */
+                  /* ── ÉTAT 2 : temp sauvegardée, affichage seul (cliquable) ── */
                   if (hasSaved && !editingTemp) {
                     return (
                       <button
-                        onClick={() => { setEditingTemp(true); setTempInput(String(savedTemp)); }}
+                        onClick={() => { setEditingTemp(true); setTempInput(String(savedTemp)); setTempDirty(false); }}
                         className="w-full flex items-center gap-3 rounded-[14px] px-4 py-3 transition-all hover:shadow-sm active:scale-[0.98]"
                         style={{ backgroundColor: `${phaseColor}10`, border: `1.5px solid ${phaseColor}30` }}
                       >
@@ -431,13 +434,12 @@ export default function Calendar() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <input
-                              type="number"
-                              step="0.1"
-                              min="35"
-                              max="39"
+                              type="text"
+                              inputMode="decimal"
+                              pattern="[0-9]*[.,]?[0-9]*"
                               placeholder="36.5"
                               value={tempInput}
-                              onChange={(e) => setTempInput(e.target.value)}
+                              onChange={(e) => { setTempInput(e.target.value); }}
                               className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
                               autoFocus
                             />
@@ -449,10 +451,12 @@ export default function Calendar() {
                         <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
                           <button
                             onClick={() => {
-                              const val = parseFloat(tempInput);
+                              const val = parseFloat(tempInput.replace(',', '.'));
                               if (!isNaN(val) && val >= 35 && val <= 39) {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: tempInput } });
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
                                 setEditingTemp(false);
+                                setTempInput('');
+                                setTempDirty(false);
                               }
                             }}
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"
@@ -463,8 +467,9 @@ export default function Calendar() {
                           </button>
                           <button
                             onClick={() => {
-                              dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: '' } });
+                              dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: null } });
                               setTempInput('');
+                              setTempDirty(false);
                               setEditingTemp(false);
                             }}
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold transition-all"
@@ -474,7 +479,7 @@ export default function Calendar() {
                             Supprimer
                           </button>
                           <button
-                            onClick={() => { setEditingTemp(false); setTempInput(''); }}
+                            onClick={() => { setEditingTemp(false); setTempInput(''); setTempDirty(false); }}
                             className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
                           >
                             Annuler
@@ -484,7 +489,7 @@ export default function Calendar() {
                     );
                   }
 
-                  /* ── ÉTAT 1 : pas de temp sauvée, champ vide ── */
+                  /* ── ÉTAT 1 : pas de temp sauvée, champ libre ── */
                   return (
                     <div className="rounded-[14px] px-4 py-3" style={{ backgroundColor: '#F8F6F4' }}>
                       <div className="flex items-center gap-3">
@@ -493,13 +498,12 @@ export default function Calendar() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <input
-                            type="number"
-                            step="0.1"
-                            min="35"
-                            max="39"
+                            type="text"
+                            inputMode="decimal"
+                            pattern="[0-9]*[.,]?[0-9]*"
                             placeholder="36.5"
                             value={tempInput}
-                            onChange={(e) => setTempInput(e.target.value)}
+                            onChange={(e) => { setTempInput(e.target.value); setTempDirty(true); }}
                             className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
                           />
                           <p className="text-[10px] font-body text-luna-text-muted mt-0.5">
@@ -507,15 +511,16 @@ export default function Calendar() {
                           </p>
                         </div>
                       </div>
-                      {tempInput !== '' && (
+                      {tempDirty && tempInput !== '' && (
                         <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
                           <button
                             onClick={() => {
-                              const val = parseFloat(tempInput);
+                              const val = parseFloat(tempInput.replace(',', '.'));
                               if (!isNaN(val) && val >= 35 && val <= 39) {
-                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: tempInput } });
+                                dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
                                 setEditingTemp(false);
                                 setTempInput('');
+                                setTempDirty(false);
                               }
                             }}
                             className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-body font-semibold text-white transition-all"

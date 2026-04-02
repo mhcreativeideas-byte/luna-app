@@ -111,11 +111,14 @@ function cycleReducer(state, action) {
     case 'SET_TEMPERATURE': {
       // payload: { date, temperature } — save basal temperature for a day
       const { date: tempDate, temperature } = action.payload;
-      const newTempLogs = { ...state.temperatureLogs };
-      if (temperature === null || temperature === '') {
+      const newTempLogs = { ...(state.temperatureLogs || {}) };
+      if (temperature === null || temperature === '' || temperature === undefined) {
         delete newTempLogs[tempDate];
       } else {
-        newTempLogs[tempDate] = parseFloat(temperature);
+        const parsed = parseFloat(String(temperature).replace(',', '.'));
+        if (!isNaN(parsed)) {
+          newTempLogs[tempDate] = parsed;
+        }
       }
       return { ...state, temperatureLogs: newTempLogs };
     }
