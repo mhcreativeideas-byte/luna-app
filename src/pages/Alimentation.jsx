@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb } from 'lucide-react';
+import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
@@ -272,33 +272,58 @@ export default function Alimentation() {
       {/* Drinks */}
       <motion.div variants={item}>
         <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
-          <h3 className="font-display text-base text-luna-text mb-3">Boissons</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-[9px] font-body font-bold uppercase tracking-widest mb-2" style={{ color: '#7BAE7F' }}>
-                À privilégier
-              </p>
-              <ul className="space-y-1.5">
-                {phaseData.drinks.good.map((d, i) => (
-                  <li key={i} className="text-xs font-body text-luna-text-body flex items-start gap-1.5">
-                    <span className="text-[#7BAE7F] mt-0.5">✓</span>
-                    {d}
-                  </li>
-                ))}
-              </ul>
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
+              <Droplets size={20} style={{ color: phaseData.colorDark }} />
             </div>
             <div>
-              <p className="text-[9px] font-body font-bold uppercase tracking-widest mb-2" style={{ color: '#D4727F' }}>
+              <h3 className="font-display text-base text-luna-text">Boissons</h3>
+              <p className="text-[10px] font-body text-luna-text-muted">Hydratation adaptée à ta phase</p>
+            </div>
+          </div>
+
+          {/* Good drinks */}
+          <div className="rounded-[16px] bg-white/70 p-4 mb-3" style={{ boxShadow: '0 1px 6px rgba(45,34,38,0.03)' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <ShieldCheck size={14} style={{ color: '#7BAE7F' }} />
+              <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: '#7BAE7F' }}>
+                À privilégier
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {phaseData.drinks.good.map((d, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full"
+                  style={{ backgroundColor: '#7BAE7F12', color: '#4D7A50', border: '1px solid #7BAE7F25' }}
+                >
+                  <span className="text-sm">🍵</span>
+                  {d}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Bad drinks */}
+          <div className="rounded-[16px] bg-white/50 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <ShieldAlert size={14} style={{ color: '#D4727F' }} />
+              <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: '#D4727F' }}>
                 À limiter
               </p>
-              <ul className="space-y-1.5">
-                {phaseData.drinks.bad.map((d, i) => (
-                  <li key={i} className="text-xs font-body text-luna-text-body flex items-start gap-1.5">
-                    <span className="text-[#D4727F] mt-0.5">✕</span>
-                    {d}
-                  </li>
-                ))}
-              </ul>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {phaseData.drinks.bad.map((d, i) => (
+                <span
+                  key={i}
+                  className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full"
+                  style={{ backgroundColor: '#D4727F10', color: '#A3555F', border: '1px solid #D4727F20' }}
+                >
+                  <span className="text-sm">⚠️</span>
+                  {d}
+                </span>
+              ))}
             </div>
           </div>
         </div>
