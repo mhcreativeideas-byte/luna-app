@@ -28,6 +28,7 @@ export default function Calendar() {
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
   const [confirmStart, setConfirmStart] = useState(false);
+  const [confirmCycleReset, setConfirmCycleReset] = useState(false);
 
   const today = new Date();
   const lastPeriod = new Date(lastPeriodDate);
@@ -223,7 +224,7 @@ export default function Calendar() {
               return (
                 <button
                   key={dayNum}
-                  onClick={() => setSelectedDay(isSelected ? null : info)}
+                  onClick={() => { setSelectedDay(isSelected ? null : info); setConfirmStart(false); setConfirmCycleReset(false); }}
                   className="aspect-square rounded-[14px] flex flex-col items-center justify-center relative transition-all"
                   style={{
                     backgroundColor: info.isManualPeriod
@@ -473,23 +474,50 @@ export default function Calendar() {
                   </button>
                 )}
 
-                {/* Set as period START (recalculates cycle) — always available */}
-                <button
-                  onClick={() => {
-                    dispatch({ type: 'SET_PERIOD_START', payload: { date: selectedDay.dateStr } });
-                    setSelectedDay(null);
-                  }}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 rounded-[14px] transition-all"
-                  style={{ backgroundColor: '#FFF8F0', border: '1.5px solid #F2C0A830' }}
-                >
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F2C0A830' }}>
-                    <CircleDot size={14} style={{ color: '#C4727F' }} />
+                {/* Set as period START (recalculates cycle) — with confirmation */}
+                {!confirmCycleReset ? (
+                  <button
+                    onClick={() => setConfirmCycleReset(true)}
+                    className="w-full flex items-center gap-3 px-4 py-2.5 rounded-[14px] transition-all"
+                    style={{ backgroundColor: '#FFF8F0', border: '1.5px solid #F2C0A830' }}
+                  >
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#F2C0A830' }}>
+                      <CircleDot size={14} style={{ color: '#C4727F' }} />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-sm font-body font-semibold text-luna-text">Début de mes règles</p>
+                      <p className="text-[10px] font-body text-luna-text-muted">Recalcule tout le cycle à partir de ce jour</p>
+                    </div>
+                  </button>
+                ) : (
+                  <div className="rounded-[14px] p-4" style={{ backgroundColor: PHASES.menstrual.bgColor, border: `1.5px solid ${PHASES.menstrual.color}40` }}>
+                    <p className="text-sm font-body text-luna-text font-semibold mb-1">
+                      Confirmer le début de tes règles ?
+                    </p>
+                    <p className="text-xs font-body text-luna-text-muted mb-3">
+                      Le {selectedDay.date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })} sera ton nouveau jour 1. Toutes les estimations de ton cycle seront recalculées.
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          dispatch({ type: 'SET_PERIOD_START', payload: { date: selectedDay.dateStr } });
+                          setConfirmCycleReset(false);
+                          setSelectedDay(null);
+                        }}
+                        className="flex-1 py-2.5 rounded-pill text-sm font-body font-semibold text-white transition-colors"
+                        style={{ backgroundColor: PHASES.menstrual.color }}
+                      >
+                        Oui, recalculer
+                      </button>
+                      <button
+                        onClick={() => setConfirmCycleReset(false)}
+                        className="flex-1 py-2.5 rounded-pill text-sm font-body font-semibold text-luna-text-muted bg-white transition-colors"
+                      >
+                        Annuler
+                      </button>
+                    </div>
                   </div>
-                  <div className="text-left">
-                    <p className="text-sm font-body font-semibold text-luna-text">Début de mes règles</p>
-                    <p className="text-[10px] font-body text-luna-text-muted">Recalcule tout le cycle à partir de ce jour</p>
-                  </div>
-                </button>
+                )}
               </div>
             </div>
           </div>
