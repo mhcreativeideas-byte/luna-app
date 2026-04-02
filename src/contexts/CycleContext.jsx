@@ -16,6 +16,7 @@ const initialState = {
   onboardingComplete: false,
   journalEntries: [],
   sportSessions: [],
+  sportLogs: [],
   checkIns: [],
   chatHistory: [],
   notifications: true,
@@ -50,6 +51,39 @@ function cycleReducer(state, action) {
         return { ...state, sportSessions: state.sportSessions.filter((s) => s.date !== date) };
       }
       return { ...state, sportSessions: [...state.sportSessions, action.payload] };
+    }
+    case 'UPDATE_SPORT_LOG': {
+      // payload: { date, steps?, activities?: [{ name, duration }] }
+      const idx = state.sportLogs.findIndex((l) => l.date === action.payload.date);
+      const logs = [...state.sportLogs];
+      if (idx >= 0) {
+        logs[idx] = { ...logs[idx], ...action.payload };
+      } else {
+        logs.push(action.payload);
+      }
+      return { ...state, sportLogs: logs };
+    }
+    case 'ADD_CUSTOM_ACTIVITY': {
+      // payload: { date, activity: { name, duration } }
+      const logIdx = state.sportLogs.findIndex((l) => l.date === action.payload.date);
+      const allLogs = [...state.sportLogs];
+      if (logIdx >= 0) {
+        const existing = allLogs[logIdx];
+        allLogs[logIdx] = { ...existing, activities: [...(existing.activities || []), action.payload.activity] };
+      } else {
+        allLogs.push({ date: action.payload.date, activities: [action.payload.activity] });
+      }
+      return { ...state, sportLogs: allLogs };
+    }
+    case 'REMOVE_CUSTOM_ACTIVITY': {
+      // payload: { date, index }
+      const li = state.sportLogs.findIndex((l) => l.date === action.payload.date);
+      if (li < 0) return state;
+      const updated = [...state.sportLogs];
+      const acts = [...(updated[li].activities || [])];
+      acts.splice(action.payload.index, 1);
+      updated[li] = { ...updated[li], activities: acts };
+      return { ...state, sportLogs: updated };
     }
     case 'ADD_CHECKIN': {
       const existing = state.checkIns.findIndex(
