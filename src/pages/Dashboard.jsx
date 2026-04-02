@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles } from 'lucide-react';
+import { Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 
@@ -232,34 +231,36 @@ export default function Dashboard() {
         </motion.div>
       </motion.div>
 
-      {/* Today's Sanctuary */}
+      {/* Today's Mood Board */}
       <motion.div variants={item}>
         <h2 className="font-display text-xl text-luna-text mb-1">Aujourd'hui</h2>
         <p className="text-xs font-body text-luna-text-hint mb-4">{phaseData.name}</p>
 
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           {cards.map((card, i) => (
-            <Link
+            <motion.div
               key={i}
-              to={card.link}
-              className="block rounded-[20px] p-4 transition-all hover:shadow-md group"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 * i, duration: 0.4 }}
+              className="rounded-[20px] p-4 flex flex-col items-center text-center"
               style={{ backgroundColor: card.bg }}
             >
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-10 h-10 rounded-[12px] flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: `${card.color}20` }}
-                >
-                  <card.icon size={18} style={{ color: card.color }} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <span className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest">{card.tag}</span>
-                  <h3 className="font-display text-base text-luna-text mt-0.5">{card.title}</h3>
-                  <p className="text-xs font-body text-luna-text-muted mt-0.5 leading-relaxed">{card.subtitle}</p>
-                </div>
-                <ArrowRight size={16} className="flex-shrink-0 text-luna-text-hint mt-3 group-hover:translate-x-1 transition-transform" />
+              <div
+                className="w-11 h-11 rounded-full flex items-center justify-center mb-2.5"
+                style={{ backgroundColor: `${card.color}18` }}
+              >
+                <card.icon size={18} style={{ color: card.color }} />
               </div>
-            </Link>
+              <span
+                className="text-[9px] font-body font-bold uppercase tracking-widest mb-1"
+                style={{ color: card.color }}
+              >
+                {card.tag}
+              </span>
+              <h3 className="font-display text-sm text-luna-text leading-snug">{card.title}</h3>
+              <p className="text-[11px] font-body text-luna-text-muted mt-1 leading-relaxed">{card.subtitle}</p>
+            </motion.div>
           ))}
         </div>
       </motion.div>
