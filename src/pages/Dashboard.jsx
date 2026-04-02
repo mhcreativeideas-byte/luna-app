@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles, MessageCircle } from 'lucide-react';
+import { ArrowRight, Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-import { QUICK_SUGGESTIONS as CHAT_SUGGESTIONS } from '../data/chatResponses';
 
 const container = {
   hidden: { opacity: 0 },
@@ -280,27 +279,6 @@ export default function Dashboard() {
           <p className="text-sm font-body text-luna-text-body leading-relaxed italic">
             "{PHASE_INSIGHTS[phase]}"
           </p>
-        </div>
-      </motion.div>
-
-      {/* Ask LUNA */}
-      <motion.div variants={item}>
-        <div className="rounded-[20px] p-5 bg-white" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-          <div className="flex items-center gap-2 mb-3">
-            <MessageCircle size={16} style={{ color: '#C4727F' }} />
-            <h3 className="font-display text-base text-luna-text">Demande à LUNA</h3>
-          </div>
-          <div className="space-y-2">
-            {CHAT_SUGGESTIONS.slice(0, 3).map((s, i) => (
-              <Link
-                key={i}
-                to={`/chat?q=${encodeURIComponent(s)}`}
-                className="block text-sm font-body text-luna-text-body px-3 py-2 rounded-[12px] bg-gray-50 hover:bg-gray-100 transition-colors"
-              >
-                {s}
-              </Link>
-            ))}
-          </div>
         </div>
       </motion.div>
 
