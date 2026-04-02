@@ -174,38 +174,6 @@ export default function Alimentation() {
         )}
       </AnimatePresence>
 
-      {/* Collapsed Nutrient summaries (when none selected) */}
-      {!openNutrient && (
-        <motion.div variants={item}>
-          <div className="space-y-2">
-            {phaseData.nutrients.map((n) => {
-              const full = nutrientsFull[n];
-              if (!full) return null;
-              return (
-                <button
-                  key={n}
-                  onClick={() => setOpenNutrient(n)}
-                  className="w-full text-left rounded-[16px] px-4 py-3.5 bg-white transition-all hover:shadow-md group"
-                  style={{ boxShadow: '0 1px 8px rgba(45,34,38,0.03)' }}
-                >
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-display text-luna-text">{n}</h4>
-                    <div className="flex items-center gap-1.5 ml-3 flex-shrink-0">
-                      {full.foods.slice(0, 3).map((f, i) => (
-                        <span key={i} className="text-base">{f.emoji}</span>
-                      ))}
-                      <ChevronDown
-                        size={14}
-                        className="text-luna-text-hint group-hover:translate-y-0.5 transition-transform ml-1"
-                      />
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
-      )}
 
       {/* Recettes d'aujourd'hui */}
       <motion.div variants={item}>
