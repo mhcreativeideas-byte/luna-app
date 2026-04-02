@@ -442,6 +442,17 @@ export default function Calendar() {
                               placeholder="36.5"
                               value={tempInput}
                               onChange={(e) => { setTempInput(e.target.value); }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  const val = parseFloat(tempInput.replace(',', '.'));
+                                  if (!isNaN(val) && val > 0) {
+                                    dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(val) } });
+                                    setEditingTemp(false);
+                                    setTempInput('');
+                                    setTempDirty(false);
+                                  }
+                                }
+                              }}
                               className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
                               autoFocus
                             />
