@@ -283,38 +283,25 @@ export default function Dashboard() {
         </div>
       </motion.div>
 
-      {/* Quick Check-in or Ask LUNA */}
+      {/* Ask LUNA */}
       <motion.div variants={item}>
-        {!todayCheckIn ? (
-          <Link
-            to="/checkin"
-            className="block rounded-[20px] p-5 text-center transition-all hover:shadow-md"
-            style={{
-              background: 'linear-gradient(145deg, #C4727F 0%, #D4846A 50%, #E8A87C 100%)',
-            }}
-          >
-            <p className="text-white font-display text-lg mb-1">Comment tu te sens ?</p>
-            <p className="text-white/80 text-xs font-body">Enregistre ton check-in quotidien</p>
-          </Link>
-        ) : (
-          <div className="rounded-[20px] p-5 bg-white" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-            <div className="flex items-center gap-2 mb-3">
-              <MessageCircle size={16} style={{ color: '#C4727F' }} />
-              <h3 className="font-display text-base text-luna-text">Demande à LUNA</h3>
-            </div>
-            <div className="space-y-2">
-              {CHAT_SUGGESTIONS.slice(0, 3).map((s, i) => (
-                <Link
-                  key={i}
-                  to={`/chat?q=${encodeURIComponent(s)}`}
-                  className="block text-sm font-body text-luna-text-body px-3 py-2 rounded-[12px] bg-gray-50 hover:bg-gray-100 transition-colors"
-                >
-                  {s}
-                </Link>
-              ))}
-            </div>
+        <div className="rounded-[20px] p-5 bg-white" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+          <div className="flex items-center gap-2 mb-3">
+            <MessageCircle size={16} style={{ color: '#C4727F' }} />
+            <h3 className="font-display text-base text-luna-text">Demande à LUNA</h3>
           </div>
-        )}
+          <div className="space-y-2">
+            {CHAT_SUGGESTIONS.slice(0, 3).map((s, i) => (
+              <Link
+                key={i}
+                to={`/chat?q=${encodeURIComponent(s)}`}
+                className="block text-sm font-body text-luna-text-body px-3 py-2 rounded-[12px] bg-gray-50 hover:bg-gray-100 transition-colors"
+              >
+                {s}
+              </Link>
+            ))}
+          </div>
+        </div>
       </motion.div>
 
       {/* Disclaimer */}

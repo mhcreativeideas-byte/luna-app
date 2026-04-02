@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, ChevronLeft, ChevronRight, BarChart3, TrendingUp, TrendingDown, Minus, Dumbbell, Footprints, Moon as MoonIcon, Smile } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
@@ -519,6 +520,22 @@ export default function Journal() {
           Un espace rien qu'à toi pour te reconnecter à ton corps et suivre ton évolution.
         </p>
       </motion.div>
+
+      {/* Check-in quotidien */}
+      {!checkIns.find((c) => c.date === today) && (
+        <motion.div variants={item}>
+          <Link
+            to="/checkin"
+            className="block rounded-[20px] p-5 text-center transition-all hover:shadow-md"
+            style={{
+              background: `linear-gradient(145deg, ${phaseData.color} 0%, ${phaseData.colorDark} 100%)`,
+            }}
+          >
+            <p className="text-white font-display text-lg mb-1">Comment tu te sens ?</p>
+            <p className="text-white/80 text-xs font-body">Enregistre ton check-in quotidien</p>
+          </Link>
+        </motion.div>
+      )}
 
       {/* ============ JOURNAL ============ */}
       <>
