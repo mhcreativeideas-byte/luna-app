@@ -206,10 +206,10 @@ export default function Onboarding() {
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
               <h2 className="font-display text-2xl text-luna-text text-center mb-2">
-                Comment veux-tu qu'on t'appelle ?
+                Quel est ton prénom ?
               </h2>
               <p className="text-luna-text-muted text-center mb-8 font-body text-sm">
-                Ici, c'est ton espace. On va apprendre à se connaître.
+                Pour personnaliser ton expérience et t'accompagner au mieux.
               </p>
               <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
                 Ton prénom
