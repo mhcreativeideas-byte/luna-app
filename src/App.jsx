@@ -15,6 +15,8 @@ import Chat from './pages/Chat';
 import Calendar from './pages/Calendar';
 import Settings from './pages/Settings';
 import Profil from './pages/Profil';
+import Recettes from './pages/Recettes';
+import MonFrigo from './pages/MonFrigo';
 import Admin from './pages/Admin';
 
 function ProtectedRoute({ children }) {
@@ -58,6 +60,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/sport" element={<Sport />} />
             <Route path="/alimentation" element={<Alimentation />} />
+            <Route path="/recettes" element={<Recettes />} />
+            <Route path="/mon-frigo" element={<MonFrigo />} />
             <Route path="/sommeil" element={<Sommeil />} />
             <Route path="/journal" element={<Journal />} />
             <Route path="/profil" element={<Profil />} />

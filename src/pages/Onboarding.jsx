@@ -6,7 +6,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
 
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 const goalOptions = [
   { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
@@ -40,12 +40,41 @@ const healthOptions = [
   { id: 'Cycles irréguliers', icon: '📅', desc: 'Cycles de durée variable' },
 ];
 
+const allergyOptions = [
+  { id: 'Fruits à coque', icon: '🥜' },
+  { id: 'Arachides', icon: '🫘' },
+  { id: 'Soja', icon: '🫛' },
+  { id: 'Œufs', icon: '🥚' },
+  { id: 'Poisson', icon: '🐟' },
+  { id: 'Crustacés', icon: '🦐' },
+  { id: 'Lait', icon: '🥛' },
+  { id: 'Blé', icon: '🌾' },
+  { id: 'Sésame', icon: '🌿' },
+  { id: 'Céleri', icon: '🥬' },
+  { id: 'Moutarde', icon: '🟡' },
+  { id: 'Sulfites', icon: '🍷' },
+];
+
+const cookingLevelOptions = [
+  { id: 'debutant', label: 'Débutant(e)', desc: 'Recettes simples et rapides', icon: '🌱' },
+  { id: 'intermediaire', label: 'Intermédiaire', desc: 'À l\'aise en cuisine', icon: '🌿' },
+  { id: 'avance', label: 'Avancé(e)', desc: 'J\'adore cuisiner !', icon: '👩‍🍳' },
+];
+
+const cookingTimeOptions = [
+  { id: '15min', label: '15 min', desc: 'Express', icon: '⚡' },
+  { id: '30min', label: '30 min', desc: 'Rapide', icon: '🕐' },
+  { id: '45min', label: '45 min', desc: 'Tranquille', icon: '🍳' },
+  { id: '60min+', label: '1h+', desc: 'J\'ai le temps', icon: '👩‍🍳' },
+];
+
 // Step backgrounds
 const STEP_COLORS = [
   { bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)', accent: '#C4727F' },
   { bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)', accent: '#9B7FB8' },
   { bg: 'linear-gradient(180deg, #E8F5E9 0%, #FAF7F5 100%)', accent: '#6B9E76' },
   { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#D4846A' },
+  { bg: 'linear-gradient(180deg, #FDE8D8 0%, #FAF7F5 100%)', accent: '#E8946A' },
   null, // dynamic based on phase
 ];
 
@@ -92,6 +121,9 @@ export default function Onboarding() {
     fitnessLevel: 'intermediate',
     dietPreferences: [],
     healthIssues: [],
+    allergies: [],
+    cookingLevel: '',
+    cookingTime: '',
   });
 
   const updateForm = (key, value) => setForm((prev) => ({ ...prev, [key]: value }));
@@ -225,7 +257,7 @@ export default function Onboarding() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4 py-8 transition-all duration-500"
-      style={{ background: step < 4 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5') }}
+      style={{ background: step < 5 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5') }}
     >
       <div className="w-full max-w-md">
         {/* Progress dots */}
@@ -235,7 +267,7 @@ export default function Onboarding() {
               key={i}
               animate={{
                 width: i === step ? 24 : 8,
-                backgroundColor: i <= step ? (step < 4 ? stepColor?.accent : (info ? PHASES[info.phase].color : '#C4727F')) : '#E0D5D8',
+                backgroundColor: i <= step ? (step < 5 ? stepColor?.accent : (info ? PHASES[info.phase].color : '#C4727F')) : '#E0D5D8',
               }}
               className="h-2 rounded-full"
               transition={{ duration: 0.3 }}
@@ -453,10 +485,119 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 3: Objectifs + Sport */}
+          {/* Step 3: Cuisine & Allergies */}
           {step === 3 && (
             <motion.div
               key="step3"
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-[24px] p-8"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
+            >
+              <div className="text-center mb-6">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-5xl block mb-4"
+                >
+                  👩‍🍳
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  En cuisine
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Pour te proposer des recettes qui te correspondent.
+                </p>
+              </div>
+
+              <div className="space-y-5">
+                {/* Cooking level */}
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Ton niveau en cuisine
+                  </label>
+                  <div className="space-y-2">
+                    {cookingLevelOptions.map(({ id, label, desc, icon }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => updateForm('cookingLevel', id)}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                          form.cookingLevel === id
+                            ? 'border-orange-300 bg-orange-50'
+                            : 'border-gray-100 bg-white hover:border-orange-200'
+                        }`}
+                      >
+                        <span className="text-2xl">{icon}</span>
+                        <div>
+                          <p className="text-sm font-semibold text-luna-text font-body">{label}</p>
+                          <p className="text-xs text-luna-text-muted font-body">{desc}</p>
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Cooking time */}
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Temps de cuisine idéal
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {cookingTimeOptions.map(({ id, label, desc, icon }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => updateForm('cookingTime', id)}
+                        className={`flex flex-col items-center gap-1 px-3 py-3.5 rounded-[16px] text-center transition-all border-2 ${
+                          form.cookingTime === id
+                            ? 'border-orange-300 bg-orange-50'
+                            : 'border-gray-100 bg-white hover:border-orange-200'
+                        }`}
+                      >
+                        <span className="text-xl">{icon}</span>
+                        <p className="text-sm font-semibold text-luna-text font-body">{label}</p>
+                        <p className="text-[10px] text-luna-text-muted font-body">{desc}</p>
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Allergies */}
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Allergies alimentaires <span className="font-normal lowercase">(optionnel)</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {allergyOptions.map(({ id, icon }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => toggleArray('allergies', id)}
+                        className={`flex items-center gap-1.5 px-3 py-2 rounded-pill text-xs font-body font-semibold transition-all border-2 ${
+                          form.allergies.includes(id)
+                            ? 'border-red-300 bg-red-50 text-red-700'
+                            : 'border-gray-100 bg-white text-luna-text-muted hover:border-red-200'
+                        }`}
+                      >
+                        <span className="text-sm">{icon}</span>
+                        {id}
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Step 4: Objectifs + Sport */}
+          {step === 4 && (
+            <motion.div
+              key="step4"
               variants={slideVariants}
               initial="enter"
               animate="center"
@@ -532,10 +673,10 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 4: Recap personnalise */}
-          {step === 4 && (
+          {/* Step 5: Recap personnalisé */}
+          {step === 5 && (
             <motion.div
-              key="step4"
+              key="step5"
               variants={slideVariants}
               initial="enter"
               animate="center"
@@ -604,6 +745,21 @@ export default function Onboarding() {
                         💜 {h}
                       </span>
                     ))}
+                    {form.allergies.map((a) => (
+                      <span key={a} className="text-xs font-body font-semibold px-3 py-1 rounded-pill bg-red-50 text-red-700 border border-red-200">
+                        ⚠️ {a}
+                      </span>
+                    ))}
+                    {form.cookingLevel && (
+                      <span className="text-xs font-body font-semibold px-3 py-1 rounded-pill bg-orange-50 text-orange-700 border border-orange-200">
+                        👩‍🍳 {cookingLevelOptions.find(o => o.id === form.cookingLevel)?.label || form.cookingLevel}
+                      </span>
+                    )}
+                    {form.cookingTime && (
+                      <span className="text-xs font-body font-semibold px-3 py-1 rounded-pill bg-orange-50 text-orange-700 border border-orange-200">
+                        🕐 {cookingTimeOptions.find(o => o.id === form.cookingTime)?.label || form.cookingTime}
+                      </span>
+                    )}
                   </div>
 
                   {/* Personalized tip */}
@@ -639,7 +795,7 @@ export default function Onboarding() {
             <div />
           )}
 
-          {step < 4 ? (
+          {step < 5 ? (
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setStep((s) => s + 1)}

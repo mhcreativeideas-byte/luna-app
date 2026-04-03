@@ -30,6 +30,34 @@ const healthOptions = [
   { id: 'Cycles irréguliers', icon: '📅', desc: 'Cycles de durée variable' },
 ];
 
+const allergyOptions = [
+  { id: 'Fruits à coque', icon: '🥜' },
+  { id: 'Arachides', icon: '🫘' },
+  { id: 'Soja', icon: '🫛' },
+  { id: 'Œufs', icon: '🥚' },
+  { id: 'Poisson', icon: '🐟' },
+  { id: 'Crustacés', icon: '🦐' },
+  { id: 'Lait', icon: '🥛' },
+  { id: 'Blé', icon: '🌾' },
+  { id: 'Sésame', icon: '🌿' },
+  { id: 'Céleri', icon: '🥬' },
+  { id: 'Moutarde', icon: '🟡' },
+  { id: 'Sulfites', icon: '🍷' },
+];
+
+const cookingLevelOptions = [
+  { id: 'debutant', label: 'Débutant(e)', desc: 'Recettes simples et rapides', icon: '🌱' },
+  { id: 'intermediaire', label: 'Intermédiaire', desc: 'À l\'aise en cuisine', icon: '🌿' },
+  { id: 'avance', label: 'Avancé(e)', desc: 'J\'adore cuisiner !', icon: '👩‍🍳' },
+];
+
+const cookingTimeOptions = [
+  { id: '15min', label: '15 min', desc: 'Express', icon: '⚡' },
+  { id: '30min', label: '30 min', desc: 'Rapide', icon: '🕐' },
+  { id: '45min', label: '45 min', desc: 'Tranquille', icon: '🍳' },
+  { id: '60min+', label: '1h+', desc: 'J\'ai le temps', icon: '👩‍🍳' },
+];
+
 function SettingRow({ label, value, onClick, danger }) {
   return (
     <button
@@ -82,13 +110,18 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, dispatch, signOut, user } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user } = useCycle();
   const [showGoals, setShowGoals] = useState(false);
   const [editedGoals, setEditedGoals] = useState(goals || []);
   const [showDiet, setShowDiet] = useState(false);
   const [editedDiet, setEditedDiet] = useState(dietPreferences || ['Omnivore']);
   const [showHealth, setShowHealth] = useState(false);
   const [editedHealth, setEditedHealth] = useState(healthIssues || []);
+  const [showAllergies, setShowAllergies] = useState(false);
+  const [editedAllergies, setEditedAllergies] = useState(allergies || []);
+  const [showCooking, setShowCooking] = useState(false);
+  const [editedCookingLevel, setEditedCookingLevel] = useState(cookingLevel || '');
+  const [editedCookingTime, setEditedCookingTime] = useState(cookingTime || '');
 
   const toggleGoal = (id) => {
     setEditedGoals(prev =>
@@ -129,6 +162,22 @@ export default function Settings() {
     setShowHealth(false);
   };
 
+  const toggleAllergy = (id) => {
+    setEditedAllergies(prev =>
+      prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id]
+    );
+  };
+
+  const saveAllergies = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { allergies: editedAllergies } });
+    setShowAllergies(false);
+  };
+
+  const saveCooking = () => {
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { cookingLevel: editedCookingLevel, cookingTime: editedCookingTime } });
+    setShowCooking(false);
+  };
+
   const [showCycleLength, setShowCycleLength] = useState(false);
   const [showPeriodLength, setShowPeriodLength] = useState(false);
   const [editedCycleLength, setEditedCycleLength] = useState(cycleLength || 28);
@@ -166,6 +215,8 @@ export default function Settings() {
         <SettingRow label="Objectifs" value={`${goals?.length || 0} sélectionnés`} onClick={() => { setEditedGoals(goals || []); setShowGoals(true); }} />
         <SettingRow label="Alimentation" value={dietLabel} onClick={() => { setEditedDiet(dietPreferences || ['Omnivore']); setShowDiet(true); }} />
         <SettingRow label="Santé hormonale" value={healthLabel} onClick={() => { setEditedHealth(healthIssues || []); setShowHealth(true); }} />
+        <SettingRow label="Allergies" value={(allergies || []).length > 0 ? `${allergies.length} allergie${allergies.length > 1 ? 's' : ''}` : 'Aucune'} onClick={() => { setEditedAllergies(allergies || []); setShowAllergies(true); }} />
+        <SettingRow label="Cuisine" value={[cookingLevelOptions.find(o => o.id === cookingLevel)?.label, cookingTimeOptions.find(o => o.id === cookingTime)?.label].filter(Boolean).join(' · ') || 'Non défini'} onClick={() => { setEditedCookingLevel(cookingLevel || ''); setEditedCookingTime(cookingTime || ''); setShowCooking(true); }} />
       </Section>
 
       <Section title="Cycle">
@@ -438,6 +489,158 @@ export default function Settings() {
 
               <button
                 onClick={saveHealth}
+                className="btn-luna w-full justify-center text-base py-3.5"
+              >
+                Enregistrer
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Allergies Modal */}
+      <AnimatePresence>
+        {showAllergies && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowAllergies(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">Mes allergies</h3>
+                <button
+                  onClick={() => setShowAllergies(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <p className="text-sm text-luna-text-muted font-body mb-4">
+                Sélectionne tes allergies pour filtrer les recettes automatiquement.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {allergyOptions.map(({ id, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleAllergy(id)}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-body font-semibold transition-all border-2 ${
+                      editedAllergies.includes(id)
+                        ? 'border-red-300 bg-red-50 text-red-700'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-red-200'
+                    }`}
+                  >
+                    <span className="text-sm">{icon}</span>
+                    {id}
+                  </motion.button>
+                ))}
+              </div>
+
+              <button
+                onClick={saveAllergies}
+                className="btn-luna w-full justify-center text-base py-3.5"
+              >
+                Enregistrer
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Cooking Modal */}
+      <AnimatePresence>
+        {showCooking && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            onClick={(e) => { if (e.target === e.currentTarget) setShowCooking(false); }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="font-display text-lg text-luna-text">En cuisine</h3>
+                <button
+                  onClick={() => setShowCooking(false)}
+                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+
+              <div className="space-y-5 mb-6">
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Niveau en cuisine
+                  </label>
+                  <div className="space-y-2">
+                    {cookingLevelOptions.map(({ id, label, desc, icon }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => setEditedCookingLevel(id)}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                          editedCookingLevel === id
+                            ? 'border-orange-300 bg-orange-50'
+                            : 'border-gray-100 bg-white hover:border-orange-200'
+                        }`}
+                      >
+                        <span className="text-2xl">{icon}</span>
+                        <div>
+                          <p className="text-sm font-body font-semibold text-luna-text">{label}</p>
+                          <p className="text-xs font-body text-luna-text-muted">{desc}</p>
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
+                    Temps de cuisine idéal
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {cookingTimeOptions.map(({ id, label, desc, icon }) => (
+                      <motion.button
+                        key={id}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setEditedCookingTime(id)}
+                        className={`flex flex-col items-center gap-1 px-3 py-3 rounded-[16px] text-center transition-all border-2 ${
+                          editedCookingTime === id
+                            ? 'border-orange-300 bg-orange-50'
+                            : 'border-gray-100 bg-white hover:border-orange-200'
+                        }`}
+                      >
+                        <span className="text-xl">{icon}</span>
+                        <p className="text-sm font-semibold text-luna-text font-body">{label}</p>
+                        <p className="text-[10px] text-luna-text-muted font-body">{desc}</p>
+                      </motion.button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={saveCooking}
                 className="btn-luna w-full justify-center text-base py-3.5"
               >
                 Enregistrer

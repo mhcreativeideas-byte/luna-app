@@ -23,6 +23,8 @@ export const SUGGESTION_CATEGORIES = [
       'Un snack sain pour le bureau ?',
       'Une recette riche en fer ?',
       'Un dîner léger et nourrissant ?',
+      'Quelle boisson pour aujourd\'hui ?',
+      'Quoi faire avec ce que j\'ai dans mon frigo ?',
     ],
   },
   {
@@ -61,9 +63,11 @@ export const SUGGESTION_CATEGORIES = [
 // Questions rapides affichées au début (les plus fréquentes)
 export const QUICK_SUGGESTIONS = [
   'Qu\'est-ce que je mange ce soir ?',
-  'Un goûter adapté à mon cycle ?',
+  'Un snack adapté à ma phase ?',
+  'Quelle boisson pour aujourd\'hui ?',
   'Pourquoi je suis fatiguée ?',
-  'Une recette pour ma phase ?',
+  'Quels aliments privilégier ?',
+  'Une recette rapide pour ma phase ?',
 ];
 
 // Réponses complètes par phase — chaque réponse est une fonction qui reçoit le contexte utilisatrice
@@ -101,6 +105,12 @@ const RESPONSES = {
 
     retention: (ctx) => `${ctx.name}, la rétention d'eau pendant les règles est liée aux fluctuations hormonales.\n\n💧 Solutions :\n• Bois plus d'eau (paradoxalement, ça aide)\n• Réduis le sel\n• Potassium : banane, avocat, patate douce\n• Marche légère (active la circulation)\n• Tisane de pissenlit (drainante naturelle)\n\nTu peux prendre 1-2 kg d'eau — c'est pas du gras, c'est hormonal. Ça part après les règles.`,
 
+    snack: (ctx) => adaptFoodText(`${ctx.name}, voici des snacks parfaits pour ta phase menstruelle :\n\n🍫 Idées snack :\n• Energy balls chocolat-dattes (magnésium + fer)\n• Banana bread protéiné (réconfort + énergie)\n• Tartine d'avocat + graines de courge\n• Chocolat noir 70% + amandes\n• Banane + beurre de cacahuète\n• Dattes fourrées aux noix\n\n💡 Ton corps a besoin de fer et de magnésium — ces snacks sont parfaits pour ça.\n\n👉 Va voir la section Recettes > Snacks pour les recettes complètes ! 🍪`, ctx),
+
+    boisson: (ctx) => adaptFoodText(`${ctx.name}, voici les boissons idéales pour ta phase menstruelle :\n\n🍵 À privilégier :\n• Golden milk au curcuma (anti-inflammatoire)\n• Infusion gingembre-citron (apaise les crampes)\n• Smoothie anti-inflammatoire (épinards, banane, curcuma)\n• Tisane de camomille (relaxante)\n• Eau chaude citronnée\n\n🚫 À limiter :\n• Café (réduit l'absorption du fer)\n• Alcool (amplifie l'inflammation)\n\n💡 Le curcuma + gingembre = combo anti-douleur naturel. 🌿`, ctx),
+
+    frigo: (ctx) => `${ctx.name}, tu veux savoir quoi faire avec ce que tu as ? Va sur "Mon Frigo" dans la section Alimentation ! 🧊\n\nTu y entres tes ingrédients et LUNA te propose les recettes adaptées à ta phase menstruelle.\n\n💡 En phase menstruelle, priorise les ingrédients riches en :\n• Fer : lentilles, épinards, tofu\n• Magnésium : amandes, chocolat noir\n• Anti-inflammatoires : gingembre, curcuma`,
+
     default: (ctx) => adaptFoodText(`${ctx.name}, tu es à J${ctx.currentDay} — phase menstruelle. Tes hormones sont au plus bas.\n\n📋 Les priorités :\n• Fer (lentilles, épinards) + vitamine C\n• Magnésium (chocolat noir, amandes)\n• Sport doux (yoga, marche)\n• Sommeil 8-9h\n• Hydratation\n\nTon corps se régénère — c'est le moment de ralentir sans culpabiliser. Tout va remonter en phase folliculaire. 🌱`, ctx),
   },
 
@@ -125,6 +135,12 @@ const RESPONSES = {
 
     confiance: (ctx) => `${ctx.name}, ta confiance remonte naturellement avec l'œstrogène ! C'est le moment d'en profiter.\n\n🚀 Profite de cette phase pour :\n• Planifier tes meetings importants\n• Prendre la parole en public\n• Lancer un projet qui te tient à cœur\n• Sortir de ta zone de confort\n\nTa communication et ta créativité sont en hausse — utilise cette fenêtre ! ✨`,
 
+    snack: (ctx) => adaptFoodText(`${ctx.name}, voici des snacks énergisants pour ta phase folliculaire :\n\n⚡ Idées snack :\n• Granola maison protéiné (avoine, noix, miel)\n• Crackers + houmous + crudités (protéines + zinc)\n• Œuf dur + graines de courge\n• Yaourt grec + fruits + granola\n• Pomme + beurre d'amande\n\n💡 L'œstrogène remonte — ton corps est en mode construction. Les protéines et le zinc sont tes alliés !\n\n👉 Va voir Recettes > Snacks pour les recettes complètes ! 🍪`, ctx),
+
+    boisson: (ctx) => adaptFoodText(`${ctx.name}, voici les boissons idéales pour ta phase folliculaire :\n\n🍵 À privilégier :\n• Smoothie vert énergie (épinards, banane, spiruline)\n• Matcha latte (énergie longue durée)\n• Eau de coco citronnée (hydratation + minéraux)\n• Thé vert (antioxydants)\n• Jus de légumes frais\n\n💡 C'est la phase idéale pour le matcha — la L-théanine donne une énergie calme et concentrée. ☕`, ctx),
+
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! 🧊\n\nEntre tes ingrédients et LUNA te propose les meilleures recettes pour ta phase folliculaire.\n\n💡 En phase folliculaire, priorise :\n• Protéines : poulet, œufs, quinoa\n• Zinc : graines de courge, pois chiches\n• Probiotiques : yaourt, kéfir\n\nTon corps est en mode construction — nourris-le bien ! 🌿`,
+
     default: (ctx) => adaptFoodText(`${ctx.name}, tu es à J${ctx.currentDay} — phase folliculaire. Ton œstrogène remonte et c'est que du bon !\n\n📋 Profite pour :\n• Sport intense (meilleure récupération)\n• Nouveaux projets (créativité en hausse)\n• Alimentation variée et protéinée\n• Social (ta communication est au top)\n\nC'est ta phase de renouveau — tu montes en puissance chaque jour. 🚀`, ctx),
   },
 
@@ -142,6 +158,12 @@ const RESPONSES = {
     dormir: (ctx) => `${ctx.name}, tu as beaucoup d'énergie mais ne néglige pas le sommeil !\n\n🌙 Conseils :\n• 7-8h restent nécessaires\n• Méditation courte pour redescendre (10 min)\n• Eau détox concombre-menthe le soir\n• Pas d'écran 30 min avant de dormir\n\nLa descente d'énergie arrive bientôt (phase lutéale) — protège ton sommeil maintenant. 😴`,
 
     confiance: (ctx) => `${ctx.name}, ta confiance est naturellement au MAX en ce moment ! L'œstrogène + la testostérone = combo gagnant.\n\n🚀 C'est LE moment pour :\n• Négociations, présentations\n• Entretiens d'embauche\n• First dates\n• Conversations difficiles\n• Proposer tes idées\n\nTes capacités verbales et ton charisme sont à leur sommet. Profite de ces 2-3 jours ! 👑`,
+
+    snack: (ctx) => adaptFoodText(`${ctx.name}, voici des snacks légers et antioxydants pour ton pic ovulatoire :\n\n🍓 Idées snack :\n• Salade de fruits antioxydante (baies, kiwi, grenade)\n• Edamame épicés\n• Bâtonnets de concombre au tzatziki\n• Tartine de pain complet + avocat\n• Mix de noix et baies séchées\n\n💡 Ton œstrogène est au max — les fibres et antioxydants aident ton corps à tout gérer. 🌟`, ctx),
+
+    boisson: (ctx) => adaptFoodText(`${ctx.name}, voici les boissons parfaites pour ta phase ovulatoire :\n\n🍵 À privilégier :\n• Eau infusée détox (concombre, citron, menthe)\n• Jus betterave-pomme-gingembre (antioxydants)\n• Thé vert glacé à la pêche\n• Kombucha (probiotiques)\n• Smoothie aux fruits rouges\n\n💡 Ton corps est au top — les antioxydants et les fibres sont tes meilleurs alliés pour éliminer l'excès d'œstrogène. ✨`, ctx),
+
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! 🧊\n\nEntre tes ingrédients et LUNA te propose les meilleures recettes pour ta phase ovulatoire.\n\n💡 En phase ovulatoire, priorise :\n• Fibres : légumes verts, céréales complètes\n• Antioxydants : fruits rouges, baies\n• Crucifères : brocoli, chou-fleur\n\nTon corps est à son peak — nourris-le de bonnes choses ! 🌟`,
 
     default: (ctx) => `${ctx.name}, J${ctx.currentDay} — tu es à ton pic ovulatoire ! Tes hormones sont au sommet.\n\n🔥 Ce que ça veut dire :\n• Performances physiques au max\n• Communication et confiance boostées\n• Énergie au top\n• Peau lumineuse, libido haute\n\nC'est ta fenêtre de 2-3 jours pour briller — profite-en à fond ! 🌟`,
   },
@@ -183,6 +205,12 @@ const RESPONSES = {
       ? 'Tu es en début de phase lutéale — tu peux encore faire du cardio modéré, de la muscu légère. Mais écoute ton corps.'
       : 'Tu es en fin de phase lutéale — privilégie yoga, marche, Pilates. Ton corps récupère moins bien.'}\n\n🧠 Pourquoi :\n• Cortisol déjà élevé (le HIIT en rajoute)\n• Récupération musculaire réduite\n• Risque de blessure augmenté\n\nGarde le HIIT pour la phase folliculaire — c'est là que tu en tires le max. 💪`,
 
+    snack: (ctx) => adaptFoodText(`${ctx.name}, voici des snacks réconfortants pour ta phase lutéale :\n\n🍫 Idées snack :\n• Pudding de chia au chocolat (magnésium + oméga-3)\n• Muffins banane-noix (tryptophane + glucides complexes)\n• Tartine beurre de cacahuète + banane\n• Chocolat noir 70% + amandes\n• Dattes + noix de cajou\n• Porridge froid overnight oats\n\n💡 Ton métabolisme augmente de 10-20% — ces snacks nourrissent le besoin sans le crash. Zéro culpabilité ! 💛\n\n👉 Va voir Recettes > Snacks pour les recettes complètes ! 🍪`, ctx),
+
+    boisson: (ctx) => adaptFoodText(`${ctx.name}, voici les boissons idéales pour ta phase lutéale :\n\n🍵 À privilégier :\n• Chocolat chaud au lait d'amande (magnésium + réconfort)\n• Tisane camomille-lavande (apaisante)\n• Moon milk à l'ashwagandha (relaxant)\n• Tisane de gingembre (anti-ballonnements)\n• Rooibos (sans caféine + antioxydants)\n\n🚫 À limiter :\n• Café après 14h (progestérone = plus sensible à la caféine)\n\n💡 La camomille + le magnésium = combo anti-SPM. 🌙`, ctx),
+
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! 🧊\n\nEntre tes ingrédients et LUNA te propose les meilleures recettes pour ta phase lutéale.\n\n💡 En phase lutéale, priorise :\n• Glucides complexes : patate douce, avoine\n• Magnésium : chocolat noir, amandes\n• Tryptophane : dinde, banane, graines de courge\n\nTon métabolisme augmente — nourris-le bien ! 💛`,
+
     default: (ctx) => adaptFoodText(`${ctx.name}, tu es à J${ctx.currentDay} — phase lutéale. La progestérone domine.\n\n📋 Tes priorités :\n• Mange plus (+200-300 cal/jour, glucides complexes)\n• Sport modéré → doux\n• Sommeil 8-9h (routine stricte)\n• Magnésium +++\n• Bienveillance envers toi-même\n\nEncore ${ctx.daysUntilPeriod} jours avant tes règles. Les envies, la fatigue, les émotions — c'est hormonal, pas personnel. 💜`, ctx),
   },
 };
@@ -205,6 +233,9 @@ const KEYWORD_MAP = [
   { keys: ['confiance', 'estime', 'légitime', 'nulle', 'imposteur', 'doute'], response: 'confiance' },
   { keys: ['rétention', 'eau', 'gonflée', 'poids', 'kilo'], response: 'retention' },
   { keys: ['recette', 'plat', 'repas', 'menu', 'réconfort', 'cuisiner'], response: 'manger' },
+  { keys: ['snack', 'goûter', 'grignoter', 'encas', 'collation', '4 heures'], response: 'snack' },
+  { keys: ['boisson', 'boire', 'thé', 'tisane', 'smoothie', 'infusion', 'latte', 'jus'], response: 'boisson' },
+  { keys: ['frigo', 'ingrédient', 'restes', 'quoi faire avec', 'j\'ai dans mon'], response: 'frigo' },
   { keys: ['hiit', 'intense', 'cardio', 'crossfit', 'sprint'], response: 'hiit' },
   { keys: ['yoga'], response: 'sport' },
 ];

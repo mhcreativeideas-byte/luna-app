@@ -14,6 +14,9 @@ const initialState = {
   fitnessLevel: 'intermediate',
   dietPreferences: ['omnivore'],
   healthIssues: [],
+  allergies: [],
+  cookingLevel: '',
+  cookingTime: '',
   onboardingComplete: false,
   journalEntries: [],
   sportSessions: [],
@@ -344,6 +347,9 @@ export function CycleProvider({ children }) {
             fitnessLevel: data.fitness_level || 'intermediate',
             dietPreferences: data.diet_preferences || ['omnivore'],
             healthIssues: data.health_issues || [],
+            allergies: data.allergies || [],
+            cookingLevel: data.cooking_level || '',
+            cookingTime: data.cooking_time || '',
           },
         });
         if (data.onboarding_complete) {
@@ -380,6 +386,9 @@ export function CycleProvider({ children }) {
         fitness_level: state.fitnessLevel,
         diet_preferences: state.dietPreferences,
         health_issues: state.healthIssues,
+        allergies: state.allergies,
+        cooking_level: state.cookingLevel,
+        cooking_time: state.cookingTime,
         onboarding_complete: state.onboardingComplete,
         current_phase: cycleInfo?.phase || 'unknown',
       }, { onConflict: 'auth_id' });
@@ -404,6 +413,9 @@ export function CycleProvider({ children }) {
     state.goals,
     state.fitnessLevel,
     state.name,
+    state.allergies,
+    state.cookingLevel,
+    state.cookingTime,
   ]);
 
   const hour = new Date().getHours();

@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert, ChefHat, ArrowRight, Refrigerator } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
-import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
 
@@ -29,12 +29,6 @@ const PHASE_FOOD_INTROS = {
   luteal: 'Ton métabolisme augmente de 10-20%. Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
 };
 
-const mealLabels = {
-  breakfast: { label: 'Petit-déjeuner', tag: 'MORNING RITUAL' },
-  lunch: { label: 'Déjeuner', tag: 'LUNCH' },
-  dinner: { label: 'Dîner', tag: 'DINNER' },
-};
-
 // ——— Mapping santé : nutriments & superaliments par condition ———
 const HEALTH_NUTRIENT_MAP = {
   'SPM sévère': ['Magnésium', 'Vitamine B6', 'Calcium', 'Oméga-3'],
@@ -52,14 +46,12 @@ const HEALTH_SUPERFOODS = {
 
 export default function Alimentation() {
   const { cycleInfo, dietPreferences, healthIssues } = useCycle();
-  const [openRecipe, setOpenRecipe] = useState(null);
   const [openNutrient, setOpenNutrient] = useState(null);
   const [expandedDrink, setExpandedDrink] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
-  const recipes = RECIPES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = phaseData.nutrientsFull || {};
 
@@ -104,26 +96,6 @@ export default function Alimentation() {
     if ((healthIssues || []).includes('SOPK')) labels.push('SOPK');
     return labels.join(' · ');
   })();
-
-  // ——— Sélection de la recette compatible ———
-  const selectRecipe = (variants) => {
-    if (!Array.isArray(variants)) return variants; // compat ancien format
-    if (variants.length === 1) return variants[0]; // une seule recette
-    // Sans filtre → recette originale (dernière dans le tableau)
-    if (!requiredTags.length) return variants[variants.length - 1];
-    // Avec filtre → première recette compatible, sinon originale
-    const match = variants.find(r => requiredTags.every(tag => (r.tags || []).includes(tag)));
-    return match || variants[variants.length - 1];
-  };
-
-  // Construire les recettes filtrées pour cette phase
-  const filteredRecipes = recipes
-    ? Object.fromEntries(
-        Object.entries(recipes).map(([key, variants]) => [key, selectRecipe(variants)])
-      )
-    : null;
-
-  if (!filteredRecipes) return null;
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
@@ -317,61 +289,60 @@ export default function Alimentation() {
       </AnimatePresence>
 
 
-      {/* Recettes d'aujourd'hui */}
+      {/* CTA Recettes & Boissons */}
       <motion.div variants={item}>
-        <div className="flex items-baseline justify-between mb-4">
-          <h2 className="font-display text-xl text-luna-text">Recettes d'aujourd'hui</h2>
-          <span className="text-xs font-body text-luna-text-hint">Swipe →</span>
-        </div>
-
-        <div className="flex gap-4 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2 snap-x snap-mandatory">
-          {Object.entries(filteredRecipes).map(([key, recipe]) => (
-            <button
-              key={key}
-              onClick={() => setOpenRecipe(key)}
-              className="flex-shrink-0 w-[72%] md:w-[45%] snap-start text-left group"
+        <Link
+          to="/recettes"
+          className="block rounded-[24px] overflow-hidden group"
+          style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
+        >
+          <div
+            className="p-6 flex items-center gap-4"
+            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}15)` }}
+          >
+            <div
+              className="w-14 h-14 rounded-[18px] flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: `${phaseData.color}20` }}
             >
-              {/* Photo card */}
-              <div className="relative aspect-square rounded-[24px] overflow-hidden mb-3">
-                {recipe.photo ? (
-                  <img
-                    src={recipe.photo}
-                    alt={recipe.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div
-                    className="w-full h-full flex items-center justify-center text-5xl"
-                    style={{ backgroundColor: phaseData.bgColor }}
-                  >
-                    🍽
-                  </div>
-                )}
-                {/* Subtle overlay at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/20 to-transparent" />
-                <div className="absolute top-3 left-3">
-                  <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2.5 py-1 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
-                    {mealLabels[key].tag}
-                  </span>
-                </div>
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                  <span className="text-[10px] font-body text-white/90 flex items-center gap-1">
-                    <Clock size={10} /> {recipe.prepTime}
-                  </span>
-                  <span className="text-[10px] font-body font-semibold text-white/90 px-2 py-0.5 rounded-pill bg-black/30 backdrop-blur-sm">
-                    {recipe.calories} kcal
-                  </span>
-                </div>
-              </div>
-              {/* Title */}
-              <h3 className="font-display text-base text-luna-text leading-snug">{recipe.name}</h3>
-              <p className="text-xs font-body text-luna-text-muted mt-1 leading-relaxed line-clamp-2">
-                {recipe.description}
+              <ChefHat size={24} style={{ color: phaseData.colorDark }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-display text-lg text-luna-text mb-1">Recettes & Boissons</h3>
+              <p className="text-xs font-body text-luna-text-muted leading-relaxed">
+                Découvre des recettes adaptées à ta phase {phaseData.shortName.toLowerCase()}, filtrées selon ton profil.
               </p>
-            </button>
-          ))}
-        </div>
+            </div>
+            <ArrowRight size={20} style={{ color: phaseData.color }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </Link>
+      </motion.div>
+
+      {/* CTA Mon Frigo */}
+      <motion.div variants={item}>
+        <Link
+          to="/mon-frigo"
+          className="block rounded-[24px] overflow-hidden group"
+          style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
+        >
+          <div
+            className="p-6 flex items-center gap-4"
+            style={{ background: 'linear-gradient(135deg, #E8F5E9, #C8E6C9)' }}
+          >
+            <div
+              className="w-14 h-14 rounded-[18px] flex items-center justify-center flex-shrink-0"
+              style={{ backgroundColor: 'rgba(91, 158, 97, 0.15)' }}
+            >
+              <Refrigerator size={24} style={{ color: '#4D7A50' }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-display text-lg text-luna-text mb-1">Mon Frigo</h3>
+              <p className="text-xs font-body text-luna-text-muted leading-relaxed">
+                Dis-nous ce que tu as, on te propose des recettes adaptées à ta phase.
+              </p>
+            </div>
+            <ArrowRight size={20} style={{ color: '#4D7A50' }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </Link>
       </motion.div>
 
       {/* Drinks */}
@@ -625,130 +596,6 @@ export default function Alimentation() {
           "Mange pour la femme que tu es aujourd'hui."
         </p>
       </motion.div>
-
-      {/* Recipe Modal */}
-      <AnimatePresence>
-        {openRecipe && filteredRecipes[openRecipe] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-4"
-            onClick={() => setOpenRecipe(null)}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
-            >
-              {/* Photo in modal */}
-              {filteredRecipes[openRecipe].photo && (
-                <div className="relative h-52 overflow-hidden rounded-t-[28px] md:rounded-t-[24px]">
-                  <img
-                    src={filteredRecipes[openRecipe].photo}
-                    alt={filteredRecipes[openRecipe].name}
-                    className="w-full h-full object-cover"
-                  />
-                  <button
-                    onClick={() => setOpenRecipe(null)}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
-                  >
-                    <X size={16} className="text-luna-text-muted" />
-                  </button>
-                </div>
-              )}
-
-              {/* Header if no photo */}
-              {!filteredRecipes[openRecipe].photo && (
-                <div className="sticky top-0 bg-white rounded-t-[28px] md:rounded-t-[24px] p-5 flex justify-between items-start border-b border-gray-50 z-10">
-                  <div>
-                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                      {mealLabels[openRecipe].tag}
-                    </p>
-                    <h3 className="font-display text-lg text-luna-text">{filteredRecipes[openRecipe].name}</h3>
-                  </div>
-                  <button
-                    onClick={() => setOpenRecipe(null)}
-                    className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors flex-shrink-0"
-                  >
-                    <X size={16} className="text-luna-text-muted" />
-                  </button>
-                </div>
-              )}
-
-              <div className="p-5 space-y-5">
-                {/* Title (when photo exists) */}
-                {filteredRecipes[openRecipe].photo && (
-                  <div>
-                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                      {mealLabels[openRecipe].tag}
-                    </p>
-                    <h3 className="font-display text-xl text-luna-text">{filteredRecipes[openRecipe].name}</h3>
-                  </div>
-                )}
-
-                {/* Time + Calories + Nutrients */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
-                    <Clock size={12} /> {filteredRecipes[openRecipe].prepTime}
-                  </span>
-                  <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-pill bg-luna-cream text-luna-text">
-                    {filteredRecipes[openRecipe].calories} kcal
-                  </span>
-                  {filteredRecipes[openRecipe].nutrients.map((n) => (
-                    <span
-                      key={n}
-                      className="text-[10px] font-body font-semibold px-2.5 py-1 rounded-pill"
-                      style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
-                    >
-                      {n}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Ingredients */}
-                <div>
-                  <h4 className="text-sm font-body font-bold text-luna-text mb-2">Ingrédients</h4>
-                  <ul className="space-y-1.5">
-                    {filteredRecipes[openRecipe].ingredients.map((ing, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-luna-text-body font-body">
-                        <span
-                          className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
-                          style={{ backgroundColor: phaseData.color }}
-                        />
-                        {ing}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <hr className="border-gray-50" />
-
-                {/* Steps */}
-                <div>
-                  <h4 className="text-sm font-body font-bold text-luna-text mb-2">Préparation</h4>
-                  <ol className="space-y-3">
-                    {filteredRecipes[openRecipe].steps.map((step, i) => (
-                      <li key={i} className="flex gap-3 text-sm text-luna-text-body font-body leading-relaxed">
-                        <span
-                          className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5"
-                          style={{ backgroundColor: phaseData.color }}
-                        >
-                          {i + 1}
-                        </span>
-                        {step}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.div>
   );
 }
