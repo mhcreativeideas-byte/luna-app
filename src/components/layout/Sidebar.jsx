@@ -11,7 +11,7 @@ const navItems = [
 ];
 
 export default function Sidebar() {
-  const { name, cycleInfo, dispatch } = useCycle();
+  const { name, cycleInfo, signOut } = useCycle();
 
   return (
     <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-white/80 backdrop-blur-md border-r border-gray-100 px-4 py-6 fixed left-0 top-0 z-40">
@@ -73,9 +73,9 @@ export default function Sidebar() {
         Paramètres
       </NavLink>
       <button
-        onClick={() => {
+        onClick={async () => {
           if (window.confirm('Te déconnecter de LUNA ?')) {
-            window.location.href = '/';
+            await signOut();
           }
         }}
         className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint hover:text-[#C4727F] transition-colors mt-1 font-body"

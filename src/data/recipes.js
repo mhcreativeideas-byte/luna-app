@@ -8,7 +8,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
         tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&h=400&fit=crop',
+        emoji: '🫐',
         ingredients: [
           '50g de flocons d\'avoine',
           '200ml de lait d\'amande',
@@ -30,7 +30,7 @@ export const RECIPES = {
         calories: 340,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop',
+        emoji: '🫐',
         ingredients: [
           '100g de myrtilles surgelées',
           '1 banane mûre',
@@ -53,7 +53,7 @@ export const RECIPES = {
         calories: 410,
         nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
         tags: ['vegetarien', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&h=400&fit=crop',
+        emoji: '🥑',
         ingredients: [
           '1 tranche épaisse de pain complet',
           '1/2 avocat mûr',
@@ -77,7 +77,7 @@ export const RECIPES = {
         calories: 360,
         nutrients: ['Magnésium', 'Fer', 'Oméga-3'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1543339308-d595c3a8e6e1?w=600&h=400&fit=crop',
+        emoji: '🍫',
         ingredients: [
           '50g de flocons d\'avoine',
           '200ml de lait d\'amande',
@@ -100,7 +100,7 @@ export const RECIPES = {
         calories: 320,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=400&fit=crop',
+        emoji: '🫐',
         ingredients: [
           '80g de farine de sarrasin',
           '200ml de lait d\'avoine',
@@ -124,7 +124,7 @@ export const RECIPES = {
         calories: 390,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
         tags: ['vegetarien', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=600&h=400&fit=crop',
+        emoji: '🍓',
         ingredients: [
           '150g de yaourt nature',
           '40g de granola (flocons d\'avoine, amandes, noisettes)',
@@ -148,7 +148,7 @@ export const RECIPES = {
         calories: 490,
         nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
+        emoji: '🥗',
         ingredients: [
           '150g de lentilles vertes cuites',
           '150g de tofu ferme mariné (tamari, curcuma)',
@@ -173,7 +173,7 @@ export const RECIPES = {
         calories: 520,
         nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '150g de lentilles vertes cuites',
           '1 pavé de saumon',
@@ -198,7 +198,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&h=400&fit=crop',
+        emoji: '🍲',
         ingredients: [
           '150g de lentilles corail',
           '400ml de bouillon de légumes',
@@ -223,7 +223,7 @@ export const RECIPES = {
         calories: 450,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=600&h=400&fit=crop',
+        emoji: '🥗',
         ingredients: [
           '100g de quinoa',
           '1 betterave cuite',
@@ -248,7 +248,7 @@ export const RECIPES = {
         calories: 480,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&h=400&fit=crop',
+        emoji: '🌯',
         ingredients: [
           '1 grande tortilla complète',
           '3 c.à.s de houmous',
@@ -273,7 +273,7 @@ export const RECIPES = {
         calories: 460,
         nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '200g de pois chiches cuits',
           '200g d\'épinards frais',
@@ -300,7 +300,7 @@ export const RECIPES = {
         calories: 310,
         nutrients: ['Magnésium', 'Vitamine C', 'Fer'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&h=400&fit=crop',
+        emoji: '🍜',
         ingredients: [
           '2 carottes',
           '1 patate douce',
@@ -325,7 +325,7 @@ export const RECIPES = {
         calories: 530,
         nutrients: ['Oméga-3', 'Fer', 'Magnésium'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '1 pavé de saumon (150g)',
           '2 c.à.s de sauce tamari (sans gluten)',
@@ -349,7 +349,7 @@ export const RECIPES = {
         calories: 420,
         nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '150g de lentilles rouges',
           '200ml de lait de coco',
@@ -374,7 +374,7 @@ export const RECIPES = {
         calories: 470,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
         tags: ['vegetarien'],
-        photo: 'https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&h=400&fit=crop',
+        emoji: '🍄',
         ingredients: [
           '150g de riz arborio',
           '200g de champignons de Paris',
@@ -399,7 +399,7 @@ export const RECIPES = {
         calories: 350,
         nutrients: ['Oméga-3', 'Magnésium', 'Vitamine C'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '1 filet de cabillaud (150g)',
           '1 carotte',
@@ -423,7 +423,7 @@ export const RECIPES = {
         calories: 440,
         nutrients: ['Fer', 'Vitamine C', 'Magnésium'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&h=400&fit=crop',
+        emoji: '🍝',
         ingredients: [
           '100g de pâtes complètes',
           '200g de tomates concassées',
@@ -450,7 +450,7 @@ export const RECIPES = {
         calories: 180,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1604514628550-37477afdf4e3?w=600&h=400&fit=crop',
+        emoji: '🍫',
         ingredients: [
           '100g de dattes Medjool dénoyautées',
           '50g de flocons d\'avoine',
@@ -473,7 +473,7 @@ export const RECIPES = {
         calories: 220,
         nutrients: ['Fer', 'Magnésium', 'Fibres'],
         tags: ['vegetarien', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1583338917451-face2751d8d5?w=600&h=400&fit=crop',
+        emoji: '🍌',
         ingredients: [
           '3 bananes très mûres',
           '150g de farine complète',
@@ -498,7 +498,7 @@ export const RECIPES = {
         calories: 250,
         nutrients: ['Oméga-3', 'Fer', 'Magnésium'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&h=400&fit=crop',
+        emoji: '🥑',
         ingredients: [
           '1 tranche de pain complet',
           '1/2 avocat mûr',
@@ -519,7 +519,7 @@ export const RECIPES = {
         calories: 190,
         nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?w=600&h=400&fit=crop',
+        emoji: '🍫',
         ingredients: [
           '100g de chocolat noir 70% minimum',
           '50g d\'amandes entières',
@@ -541,7 +541,7 @@ export const RECIPES = {
         calories: 230,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=600&h=400&fit=crop',
+        emoji: '🫘',
         ingredients: [
           '200g de pois chiches cuits',
           '1 petite betterave cuite',
@@ -566,7 +566,7 @@ export const RECIPES = {
         calories: 90,
         nutrients: ['Anti-inflammatoire', 'Magnésium', 'Fer'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&h=400&fit=crop',
+        emoji: '🥛',
         ingredients: [
           '250ml de lait d\'amande',
           '1 c.à.c de curcuma en poudre',
@@ -589,7 +589,7 @@ export const RECIPES = {
         calories: 15,
         nutrients: ['Vitamine C', 'Anti-inflammatoire', 'Fer'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&h=400&fit=crop',
+        emoji: '🍵',
         ingredients: [
           '3 rondelles de gingembre frais',
           'Jus d\'un demi-citron',
@@ -609,7 +609,7 @@ export const RECIPES = {
         calories: 170,
         nutrients: ['Oméga-3', 'Fer', 'Antioxydants'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600&h=400&fit=crop',
+        emoji: '🥤',
         ingredients: [
           '100g de cerises surgelées',
           '1 poignée d\'épinards frais',
@@ -630,7 +630,7 @@ export const RECIPES = {
         calories: 150,
         nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&h=400&fit=crop',
+        emoji: '☕',
         ingredients: [
           '250ml de lait d\'avoine',
           '2 c.à.s de cacao cru en poudre',
@@ -652,7 +652,7 @@ export const RECIPES = {
         calories: 35,
         nutrients: ['Vitamine C', 'Anti-inflammatoire', 'Fer'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&h=400&fit=crop',
+        emoji: '🍋',
         ingredients: [
           '250ml d\'eau chaude',
           'Jus d\'un demi-citron',
@@ -676,7 +676,7 @@ export const RECIPES = {
         calories: 410,
         nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1638176066666-6090a61e0c2e?w=600&h=400&fit=crop',
+        emoji: '🥣',
         ingredients: [
           '1 banane congelée',
           '1 c.à.s de beurre de cacahuète',
@@ -698,7 +698,7 @@ export const RECIPES = {
         calories: 420,
         nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
         tags: ['vegetarien', 'sans_gluten', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop',
+        emoji: '🥣',
         ingredients: [
           '1 banane congelée',
           '1 c.à.s de beurre de cacahuète',
@@ -720,7 +720,7 @@ export const RECIPES = {
         calories: 390,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&h=400&fit=crop',
+        emoji: '🍳',
         ingredients: [
           '3 œufs',
           '1/2 avocat mûr',
@@ -743,7 +743,7 @@ export const RECIPES = {
         calories: 370,
         nutrients: ['Protéines', 'Vitamines B', 'Énergie'],
         tags: ['vegetarien', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=400&fit=crop',
+        emoji: '🥞',
         ingredients: [
           '1 banane mûre',
           '2 œufs',
@@ -767,7 +767,7 @@ export const RECIPES = {
         calories: 360,
         nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop',
+        emoji: '🫐',
         ingredients: [
           '1 sachet d\'açaí surgelé (100g)',
           '1/2 banane congelée',
@@ -789,7 +789,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['vegetarien'],
-        photo: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&h=400&fit=crop',
+        emoji: '🍞',
         ingredients: [
           '2 tranches de pain complet',
           '80g de ricotta',
@@ -814,7 +814,7 @@ export const RECIPES = {
         calories: 520,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
+        emoji: '🥦',
         ingredients: [
           '200g de tofu ferme',
           '80g de quinoa',
@@ -838,7 +838,7 @@ export const RECIPES = {
         calories: 550,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&h=400&fit=crop',
+        emoji: '🍗',
         ingredients: [
           '1 filet de poulet',
           '80g de quinoa',
@@ -861,7 +861,7 @@ export const RECIPES = {
         calories: 420,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&h=400&fit=crop',
+        emoji: '🦐',
         ingredients: [
           '200g de crevettes décortiquées',
           '1/2 mangue mûre',
@@ -886,7 +886,7 @@ export const RECIPES = {
         calories: 480,
         nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&h=400&fit=crop',
+        emoji: '🌮',
         ingredients: [
           '200g de haricots noirs cuits',
           '1/2 avocat',
@@ -911,7 +911,7 @@ export const RECIPES = {
         calories: 430,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop',
+        emoji: '🥗',
         ingredients: [
           '100g de quinoa',
           '1 bouquet de persil plat',
@@ -936,7 +936,7 @@ export const RECIPES = {
         calories: 510,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
+        emoji: '🍣',
         ingredients: [
           '150g de thon frais sushi',
           '100g d\'edamame décortiqués',
@@ -963,7 +963,7 @@ export const RECIPES = {
         calories: 440,
         nutrients: ['Protéines', 'Probiotiques', 'Vitamines B'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&h=400&fit=crop',
+        emoji: '🥘',
         ingredients: [
           '200g de tofu ferme',
           '100g de kimchi ou choucroute',
@@ -987,7 +987,7 @@ export const RECIPES = {
         calories: 520,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&h=400&fit=crop',
+        emoji: '🍗',
         ingredients: [
           '1 filet de poulet',
           '1 patate douce moyenne',
@@ -1011,7 +1011,7 @@ export const RECIPES = {
         calories: 460,
         nutrients: ['Protéines', 'Probiotiques', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1543362906-acfc16c67564?w=600&h=400&fit=crop',
+        emoji: '🥘',
         ingredients: [
           '200g de tempeh',
           '1 tête de brocoli',
@@ -1036,7 +1036,7 @@ export const RECIPES = {
         calories: 430,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '1 filet de dorade',
           '1 grosse tête de brocoli',
@@ -1060,7 +1060,7 @@ export const RECIPES = {
         calories: 510,
         nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
         tags: ['vegetarien'],
-        photo: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=600&h=400&fit=crop',
+        emoji: '🍝',
         ingredients: [
           '6 feuilles de lasagne',
           '300g d\'épinards frais',
@@ -1085,7 +1085,7 @@ export const RECIPES = {
         calories: 470,
         nutrients: ['Protéines', 'Vitamines B', 'Énergie'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&h=400&fit=crop',
+        emoji: '🍜',
         ingredients: [
           '100g de nouilles soba (sarrasin)',
           '200g de tofu ferme',
@@ -1112,7 +1112,7 @@ export const RECIPES = {
         calories: 200,
         nutrients: ['Zinc', 'Protéines', 'Vitamines B'],
         tags: ['vegetarien', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=600&h=400&fit=crop',
+        emoji: '🥜',
         ingredients: [
           '150g de flocons d\'avoine',
           '50g de noix de cajou',
@@ -1136,7 +1136,7 @@ export const RECIPES = {
         calories: 190,
         nutrients: ['Protéines', 'Zinc', 'Fibres'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=400&fit=crop',
+        emoji: '🥕',
         ingredients: [
           '100g de houmous (maison ou du commerce)',
           '1 carotte en bâtonnets',
@@ -1157,7 +1157,7 @@ export const RECIPES = {
         calories: 150,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&h=400&fit=crop',
+        emoji: '🥚',
         ingredients: [
           '2 œufs',
           '1 c.à.c de graines de sésame',
@@ -1177,7 +1177,7 @@ export const RECIPES = {
         calories: 220,
         nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop',
+        emoji: '🍯',
         ingredients: [
           '150g de yaourt grec nature',
           '1 c.à.s de miel',
@@ -1198,7 +1198,7 @@ export const RECIPES = {
         calories: 170,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1564093497595-593b96d80571?w=600&h=400&fit=crop',
+        emoji: '🫛',
         ingredients: [
           '200g d\'edamame en cosse (surgelés)',
           '1 c.à.c de fleur de sel',
@@ -1220,7 +1220,7 @@ export const RECIPES = {
         calories: 160,
         nutrients: ['Vitamines B', 'Zinc', 'Énergie'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600&h=400&fit=crop',
+        emoji: '🥤',
         ingredients: [
           '1 poignée d\'épinards frais',
           '1 banane',
@@ -1242,7 +1242,7 @@ export const RECIPES = {
         calories: 80,
         nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600&h=400&fit=crop',
+        emoji: '🍵',
         ingredients: [
           '1 c.à.c de poudre de matcha',
           '250ml de lait d\'amande',
@@ -1262,7 +1262,7 @@ export const RECIPES = {
         calories: 50,
         nutrients: ['Zinc', 'Énergie', 'Hydratation'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=600&h=400&fit=crop',
+        emoji: '🥥',
         ingredients: [
           '250ml d\'eau de coco',
           'Jus d\'un demi-citron vert',
@@ -1282,7 +1282,7 @@ export const RECIPES = {
         calories: 180,
         nutrients: ['Probiotiques', 'Vitamines B', 'Protéines'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=400&fit=crop',
+        emoji: '🥭',
         ingredients: [
           '150g de yaourt nature',
           '1/2 mangue mûre (ou 80g de mangue surgelée)',
@@ -1304,7 +1304,7 @@ export const RECIPES = {
         calories: 90,
         nutrients: ['Vitamines B', 'Zinc', 'Énergie'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?w=600&h=400&fit=crop',
+        emoji: '🥬',
         ingredients: [
           '2 branches de céleri',
           '1/2 concombre',
@@ -1330,7 +1330,7 @@ export const RECIPES = {
         calories: 350,
         nutrients: ['Antioxydants', 'Zinc', 'Fibres'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=600&h=400&fit=crop',
+        emoji: '🫐',
         ingredients: [
           '1 sachet d\'açaí surgelé',
           '1/2 banane',
@@ -1352,7 +1352,7 @@ export const RECIPES = {
         calories: 290,
         nutrients: ['Fibres', 'Antioxydants', 'Oméga-3'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1541167760496-9af0837e40f7?w=600&h=400&fit=crop',
+        emoji: '🍇',
         ingredients: [
           '3 c.à.s de graines de chia',
           '200ml de lait de coco',
@@ -1376,7 +1376,7 @@ export const RECIPES = {
         calories: 320,
         nutrients: ['Fibres', 'Vitamine C', 'Antioxydants'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&h=400&fit=crop',
+        emoji: '🥑',
         ingredients: [
           '2 tranches de pain complet',
           '1 avocat mûr',
@@ -1400,7 +1400,7 @@ export const RECIPES = {
         calories: 310,
         nutrients: ['Antioxydants', 'Vitamine C', 'Fibres'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1638176066666-6090a61e0c2e?w=600&h=400&fit=crop',
+        emoji: '🥣',
         ingredients: [
           '1 sachet d\'açaí surgelé',
           '100ml de jus de grenade pur',
@@ -1423,7 +1423,7 @@ export const RECIPES = {
         calories: 340,
         nutrients: ['Protéines', 'Fibres', 'Vitamine B9'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&h=400&fit=crop',
+        emoji: '🍳',
         ingredients: [
           '3 œufs',
           '1 poignée d\'épinards frais',
@@ -1447,7 +1447,7 @@ export const RECIPES = {
         calories: 370,
         nutrients: ['Fibres', 'Antioxydants', 'Oméga-3'],
         tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&h=400&fit=crop',
+        emoji: '🫐',
         ingredients: [
           '50g de flocons d\'avoine',
           '200ml de lait d\'amande',
@@ -1471,7 +1471,7 @@ export const RECIPES = {
         calories: 460,
         nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
+        emoji: '🥗',
         ingredients: [
           '150g de tofu ferme mariné (tamari, sésame)',
           '100g d\'edamame',
@@ -1495,7 +1495,7 @@ export const RECIPES = {
         calories: 480,
         nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop',
+        emoji: '🍣',
         ingredients: [
           '150g de saumon frais (qualité sashimi)',
           '100g d\'edamame',
@@ -1519,7 +1519,7 @@ export const RECIPES = {
         calories: 420,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=600&h=400&fit=crop',
+        emoji: '🥦',
         ingredients: [
           '150g de quinoa cuit',
           '1 tasse de fleurettes de brocoli cru émincées',
@@ -1544,7 +1544,7 @@ export const RECIPES = {
         calories: 440,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine A'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
+        emoji: '🌈',
         ingredients: [
           '1 petite patate douce en cubes',
           '100g de pois chiches en conserve',
@@ -1569,7 +1569,7 @@ export const RECIPES = {
         calories: 410,
         nutrients: ['Protéines', 'Antioxydants', 'Oméga-3'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop',
+        emoji: '🥗',
         ingredients: [
           '150g de thon frais (ou en conserve au naturel)',
           '2 œufs durs',
@@ -1594,7 +1594,7 @@ export const RECIPES = {
         calories: 280,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=600&h=400&fit=crop',
+        emoji: '🌯',
         ingredients: [
           '4 grandes feuilles de chou vert (collard greens)',
           '3 c.à.s de houmous',
@@ -1620,7 +1620,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Glutathion', 'Antioxydants', 'Fibres'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600&h=400&fit=crop',
+        emoji: '🥗',
         ingredients: [
           '200g de pois chiches rôtis (paprika, cumin)',
           'Mélange de salades',
@@ -1645,7 +1645,7 @@ export const RECIPES = {
         calories: 360,
         nutrients: ['Glutathion', 'Antioxydants', 'Fibres'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '200g de poisson blanc frais',
           '3 citrons verts',
@@ -1670,7 +1670,7 @@ export const RECIPES = {
         calories: 430,
         nutrients: ['Oméga-3', 'Antioxydants', 'Fibres'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '1 pavé de saumon',
           '2 c.à.s d\'herbes fraîches hachées (aneth, persil, ciboulette)',
@@ -1695,7 +1695,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '200g de fleurettes de brocoli',
           '1 poivron rouge en dés',
@@ -1720,7 +1720,7 @@ export const RECIPES = {
         calories: 370,
         nutrients: ['Protéines', 'Zinc', 'Antioxydants'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
+        emoji: '🦐',
         ingredients: [
           '200g de crevettes décortiquées',
           '2 gousses d\'ail émincées',
@@ -1745,7 +1745,7 @@ export const RECIPES = {
         calories: 360,
         nutrients: ['Protéines', 'Fibres', 'Antioxydants'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop',
+        emoji: '🥘',
         ingredients: [
           '200g de tofu ferme',
           '2 c.à.s de tamari',
@@ -1772,7 +1772,7 @@ export const RECIPES = {
         calories: 120,
         nutrients: ['Antioxydants', 'Fibres', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&h=400&fit=crop',
+        emoji: '🍇',
         ingredients: [
           '1/2 mangue',
           '100g de myrtilles',
@@ -1795,7 +1795,7 @@ export const RECIPES = {
         calories: 140,
         nutrients: ['Fibres', 'Antioxydants', 'Protéines'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1564093497595-593b96d80571?w=600&h=400&fit=crop',
+        emoji: '🫛',
         ingredients: [
           '200g d\'edamame surgelés (en cosse)',
           '1 c.à.c de paprika fumé',
@@ -1816,7 +1816,7 @@ export const RECIPES = {
         calories: 80,
         nutrients: ['Fibres', 'Hydratation', 'Antioxydants'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop',
+        emoji: '🥒',
         ingredients: [
           '1 concombre',
           '100g de yaourt grec',
@@ -1838,7 +1838,7 @@ export const RECIPES = {
         calories: 110,
         nutrients: ['Iode', 'Antioxydants', 'Minéraux'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=600&h=400&fit=crop',
+        emoji: '🍘',
         ingredients: [
           '100g de tartare d\'algues (du commerce ou maison)',
           '4 galettes de riz soufflé',
@@ -1860,7 +1860,7 @@ export const RECIPES = {
         calories: 200,
         nutrients: ['Antioxydants', 'Zinc', 'Oméga-3'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1536591375511-5da6b1e18ac2?w=600&h=400&fit=crop',
+        emoji: '🥜',
         ingredients: [
           '30g de noix',
           '20g d\'amandes',
@@ -1884,7 +1884,7 @@ export const RECIPES = {
         calories: 10,
         nutrients: ['Antioxydants', 'Détoxifiant', 'Hydratation'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&h=400&fit=crop',
+        emoji: '💧',
         ingredients: [
           '1 litre d\'eau filtrée',
           '1/2 concombre en rondelles',
@@ -1905,7 +1905,7 @@ export const RECIPES = {
         calories: 110,
         nutrients: ['Antioxydants', 'Fibres', 'Détoxifiant'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&h=400&fit=crop',
+        emoji: '🧃',
         ingredients: [
           '1 betterave crue pelée',
           '2 pommes vertes',
@@ -1925,7 +1925,7 @@ export const RECIPES = {
         calories: 30,
         nutrients: ['Antioxydants', 'Détoxifiant', 'Hydratation'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=600&h=400&fit=crop',
+        emoji: '🍵',
         ingredients: [
           '2 sachets de thé vert',
           '500ml d\'eau chaude (80°C)',
@@ -1947,7 +1947,7 @@ export const RECIPES = {
         calories: 150,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600&h=400&fit=crop',
+        emoji: '🥤',
         ingredients: [
           '3 feuilles de chou kale (tiges retirées)',
           '150g d\'ananas frais',
@@ -1969,7 +1969,7 @@ export const RECIPES = {
         calories: 40,
         nutrients: ['Probiotiques', 'Antioxydants', 'Détoxifiant'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1595981234058-a9302fb97229?w=600&h=400&fit=crop',
+        emoji: '🫧',
         ingredients: [
           '500ml de kombucha nature (F1 terminée)',
           '3 cm de gingembre frais râpé',
@@ -1994,7 +1994,7 @@ export const RECIPES = {
         calories: 320,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Potassium'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=400&fit=crop',
+        emoji: '🥞',
         ingredients: [
           '1 banane mûre',
           '80 g de flocons d\'avoine',
@@ -2020,7 +2020,7 @@ export const RECIPES = {
         calories: 350,
         nutrients: ['Magnésium', 'Protéines', 'Glucides complexes', 'Vitamine B6'],
         tags: ['vegetarien', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1543339308-d595c3a8e6e1?w=600&h=400&fit=crop',
+        emoji: '🥞',
         ingredients: [
           '1 banane mûre',
           '80 g de flocons d\'avoine',
@@ -2045,7 +2045,7 @@ export const RECIPES = {
         calories: 310,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Fer'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1517673400267-0251440c45dc?w=600&h=400&fit=crop',
+        emoji: '🍎',
         ingredients: [
           '80 g de flocons d\'avoine',
           '250 ml de lait d\'avoine',
@@ -2069,7 +2069,7 @@ export const RECIPES = {
         calories: 340,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600&h=400&fit=crop',
+        emoji: '🥜',
         ingredients: [
           '2 tranches de pain complet',
           '2 c. à soupe de beurre de cacahuète naturel',
@@ -2092,7 +2092,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=600&h=400&fit=crop',
+        emoji: '🥣',
         ingredients: [
           '80 g de quinoa',
           '200 ml de lait de coco',
@@ -2117,7 +2117,7 @@ export const RECIPES = {
         calories: 420,
         nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&h=400&fit=crop',
+        emoji: '🍳',
         ingredients: [
           '2 œufs',
           '1 petite patate douce',
@@ -2143,7 +2143,7 @@ export const RECIPES = {
         calories: 420,
         nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Glucides complexes'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '400 g de pois chiches cuits',
           '200 ml de lait de coco',
@@ -2168,7 +2168,7 @@ export const RECIPES = {
         calories: 400,
         nutrients: ['Magnésium', 'Calcium', 'Protéines', 'Fer'],
         tags: ['vegetarien', 'sans_gluten', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '400 g de pois chiches cuits',
           '1 oignon',
@@ -2193,7 +2193,7 @@ export const RECIPES = {
         calories: 450,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop',
+        emoji: '🍠',
         ingredients: [
           '1 grosse patate douce',
           '150 g de lentilles vertes cuites',
@@ -2218,7 +2218,7 @@ export const RECIPES = {
         calories: 480,
         nutrients: ['Calcium', 'Glucides complexes', 'Vitamine B6', 'Magnésium'],
         tags: ['vegetarien'],
-        photo: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&h=400&fit=crop',
+        emoji: '🧀',
         ingredients: [
           '1 patate douce',
           '2 courgettes',
@@ -2244,7 +2244,7 @@ export const RECIPES = {
         calories: 480,
         nutrients: ['Tryptophane', 'Vitamine B6', 'Glucides complexes', 'Protéines'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600&h=400&fit=crop',
+        emoji: '🍗',
         ingredients: [
           '2 filets de poulet',
           '1 c. à soupe de miel',
@@ -2268,7 +2268,7 @@ export const RECIPES = {
         calories: 350,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=600&h=400&fit=crop',
+        emoji: '🍲',
         ingredients: [
           '400 g de courge butternut',
           '100 g de lentilles corail',
@@ -2295,7 +2295,7 @@ export const RECIPES = {
         calories: 400,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Vitamine B6'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '1 grosse patate douce',
           '150 g de lentilles corail',
@@ -2320,7 +2320,7 @@ export const RECIPES = {
         calories: 430,
         nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines'],
         tags: ['vegetarien'],
-        photo: 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&h=400&fit=crop',
+        emoji: '🧀',
         ingredients: [
           '2 pommes de terre moyennes',
           '2 courgettes',
@@ -2344,7 +2344,7 @@ export const RECIPES = {
         calories: 450,
         nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6'],
         tags: ['vegetarien', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&h=400&fit=crop',
+        emoji: '🍝',
         ingredients: [
           '200 g de pâtes complètes',
           '200 g de brocoli',
@@ -2369,7 +2369,7 @@ export const RECIPES = {
         calories: 470,
         nutrients: ['Oméga-3', 'Tryptophane', 'Vitamine B6', 'Magnésium', 'Glucides complexes'],
         tags: ['sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&h=400&fit=crop',
+        emoji: '🐟',
         ingredients: [
           '2 filets de saumon',
           '1 c. à soupe de miso blanc',
@@ -2393,7 +2393,7 @@ export const RECIPES = {
         calories: 380,
         nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600&h=400&fit=crop',
+        emoji: '🍛',
         ingredients: [
           '200 g de lentilles corail',
           '200 g d\'épinards frais',
@@ -2418,7 +2418,7 @@ export const RECIPES = {
         calories: 390,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=600&h=400&fit=crop',
+        emoji: '🍄',
         ingredients: [
           '150 g de sarrasin (kasha)',
           '250 g de champignons mélangés',
@@ -2445,7 +2445,7 @@ export const RECIPES = {
         calories: 220,
         nutrients: ['Magnésium', 'Calcium', 'Oméga-3', 'Fibres'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1541167760496-9af0837e40f7?w=600&h=400&fit=crop',
+        emoji: '🍫',
         ingredients: [
           '3 c. à soupe de graines de chia',
           '200 ml de lait d\'amande',
@@ -2468,7 +2468,7 @@ export const RECIPES = {
         calories: 250,
         nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6'],
         tags: ['vegetarien', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=600&h=400&fit=crop',
+        emoji: '🧁',
         ingredients: [
           '2 bananes mûres',
           '150 g de farine complète',
@@ -2493,7 +2493,7 @@ export const RECIPES = {
         calories: 280,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
         tags: ['vegan', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&h=400&fit=crop',
+        emoji: '🥜',
         ingredients: [
           '1 tranche de pain complet',
           '2 c. à soupe de beurre de cacahuète',
@@ -2515,7 +2515,7 @@ export const RECIPES = {
         calories: 180,
         nutrients: ['Magnésium', 'Protéines végétales', 'Glucides complexes', 'Fer'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1604514628550-37477afdf4e3?w=600&h=400&fit=crop',
+        emoji: '🥜',
         ingredients: [
           '100 g de flocons d\'avoine',
           '80 g de beurre de cacahuète',
@@ -2538,7 +2538,7 @@ export const RECIPES = {
         calories: 120,
         nutrients: ['Fibres', 'Glucides complexes', 'Magnésium', 'Vitamine C'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=600&h=400&fit=crop',
+        emoji: '🍎',
         ingredients: [
           '3 pommes',
           '1 c. à café de cannelle',
@@ -2562,7 +2562,7 @@ export const RECIPES = {
         calories: 150,
         nutrients: ['Magnésium', 'Antioxydants', 'Calcium', 'Fer'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=600&h=400&fit=crop',
+        emoji: '☕',
         ingredients: [
           '250 ml de lait d\'amande',
           '2 c. à soupe de cacao en poudre non sucré',
@@ -2584,7 +2584,7 @@ export const RECIPES = {
         calories: 5,
         nutrients: ['Antioxydants', 'Propriétés apaisantes'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&h=400&fit=crop',
+        emoji: '🍵',
         ingredients: [
           '1 c. à soupe de fleurs de camomille séchées',
           '1/2 c. à café de fleurs de lavande séchées',
@@ -2605,7 +2605,7 @@ export const RECIPES = {
         calories: 100,
         nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
-        photo: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&h=400&fit=crop',
+        emoji: '🥛',
         ingredients: [
           '250 ml de lait d\'amande ou d\'avoine',
           '1/2 c. à café de poudre d\'ashwagandha',
@@ -2628,7 +2628,7 @@ export const RECIPES = {
         calories: 130,
         nutrients: ['Calcium', 'Antioxydants', 'Propriétés anti-inflammatoires'],
         tags: ['vegetarien', 'sans_gluten'],
-        photo: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&h=400&fit=crop',
+        emoji: '☕',
         ingredients: [
           '200 ml de lait entier',
           '50 ml de café ou expresso',
@@ -2650,7 +2650,7 @@ export const RECIPES = {
         calories: 280,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
-        photo: 'https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&h=400&fit=crop',
+        emoji: '🥤',
         ingredients: [
           '1 banane congelée',
           '1 c. à soupe de cacao en poudre non sucré',

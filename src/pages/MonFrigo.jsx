@@ -336,20 +336,14 @@ export default function MonFrigo() {
                   className="w-full bg-white rounded-[20px] p-4 text-left flex gap-4 group"
                   style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
                 >
-                  {/* Photo thumbnail */}
-                  <div className="w-20 h-20 rounded-[14px] overflow-hidden flex-shrink-0">
-                    {recipe.photo ? (
-                      <img
-                        src={recipe.photo}
-                        alt={recipe.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-2xl" style={{ backgroundColor: phaseData.bgColor }}>
-                        🍽
-                      </div>
-                    )}
+                  {/* Emoji thumbnail */}
+                  <div
+                    className="w-20 h-20 rounded-[14px] flex-shrink-0 flex items-center justify-center"
+                    style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}20)` }}
+                  >
+                    <span className="text-3xl group-hover:scale-110 transition-transform duration-500">
+                      {recipe.emoji || '🍽️'}
+                    </span>
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -413,17 +407,18 @@ export default function MonFrigo() {
                 const recipe = matchedRecipes[openRecipe];
                 return (
                   <>
-                    {recipe.photo && (
-                      <div className="relative h-48 overflow-hidden rounded-t-[28px] md:rounded-t-[24px]">
-                        <img src={recipe.photo} alt={recipe.name} className="w-full h-full object-cover" />
-                        <button
-                          onClick={() => setOpenRecipe(null)}
-                          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center"
-                        >
-                          <X size={16} className="text-luna-text-muted" />
-                        </button>
-                      </div>
-                    )}
+                    <div
+                      className="relative h-40 overflow-hidden rounded-t-[28px] md:rounded-t-[24px] flex items-center justify-center"
+                      style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
+                    >
+                      <span className="text-7xl">{recipe.emoji || '🍽️'}</span>
+                      <button
+                        onClick={() => setOpenRecipe(null)}
+                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center"
+                      >
+                        <X size={16} className="text-luna-text-muted" />
+                      </button>
+                    </div>
 
                     <div className="p-5 space-y-5">
                       <div>

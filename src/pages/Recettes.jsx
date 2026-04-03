@@ -206,33 +206,23 @@ export default function Recettes() {
                 onClick={() => setOpenRecipe(i)}
                 className="text-left group"
               >
-                <div className="relative aspect-[4/3] rounded-[18px] overflow-hidden mb-2.5">
-                  {recipe.photo ? (
-                    <img
-                      src={recipe.photo}
-                      alt={recipe.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full flex items-center justify-center text-4xl"
-                      style={{ backgroundColor: phaseData.bgColor }}
-                    >
-                      🍽
-                    </div>
-                  )}
-                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/25 to-transparent" />
+                <div
+                  className="relative aspect-[4/3] rounded-[18px] overflow-hidden mb-2.5 flex items-center justify-center"
+                  style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}20)` }}
+                >
+                  <span className="text-5xl group-hover:scale-110 transition-transform duration-500">
+                    {recipe.emoji || '🍽️'}
+                  </span>
                   <div className="absolute top-2 left-2">
                     <span className="text-[8px] font-body font-bold uppercase tracking-widest px-2 py-0.5 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
                       {mealLabels[recipe.mealType]?.tag || recipe.mealType}
                     </span>
                   </div>
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
-                    <span className="text-[9px] font-body text-white/90 flex items-center gap-1">
+                    <span className="text-[9px] font-body flex items-center gap-1" style={{ color: phaseData.colorDark }}>
                       <Clock size={9} /> {recipe.prepTime}
                     </span>
-                    <span className="text-[9px] font-body font-semibold text-white/90 px-1.5 py-0.5 rounded-pill bg-black/30 backdrop-blur-sm">
+                    <span className="text-[9px] font-body font-semibold px-1.5 py-0.5 rounded-pill" style={{ backgroundColor: `${phaseData.color}25`, color: phaseData.colorDark }}>
                       {recipe.calories} kcal
                     </span>
                   </div>
@@ -265,51 +255,28 @@ export default function Recettes() {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
             >
-              {/* Photo */}
-              {openRecipeData.photo && (
-                <div className="relative h-52 overflow-hidden rounded-t-[28px] md:rounded-t-[24px]">
-                  <img
-                    src={openRecipeData.photo}
-                    alt={openRecipeData.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <button
-                    onClick={() => setOpenRecipe(null)}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
-                  >
-                    <X size={16} className="text-luna-text-muted" />
-                  </button>
-                </div>
-              )}
-
-              {/* Header if no photo */}
-              {!openRecipeData.photo && (
-                <div className="sticky top-0 bg-white rounded-t-[28px] md:rounded-t-[24px] p-5 flex justify-between items-start border-b border-gray-50 z-10">
-                  <div>
-                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                      {mealLabels[openRecipeData.mealType]?.tag}
-                    </p>
-                    <h3 className="font-display text-lg text-luna-text">{openRecipeData.name}</h3>
-                  </div>
-                  <button
-                    onClick={() => setOpenRecipe(null)}
-                    className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors flex-shrink-0"
-                  >
-                    <X size={16} className="text-luna-text-muted" />
-                  </button>
-                </div>
-              )}
+              {/* Emoji Header */}
+              <div
+                className="relative h-40 overflow-hidden rounded-t-[28px] md:rounded-t-[24px] flex items-center justify-center"
+                style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
+              >
+                <span className="text-7xl">{openRecipeData.emoji || '🍽️'}</span>
+                <button
+                  onClick={() => setOpenRecipe(null)}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                >
+                  <X size={16} className="text-luna-text-muted" />
+                </button>
+              </div>
 
               <div className="p-5 space-y-5">
-                {/* Title (when photo exists) */}
-                {openRecipeData.photo && (
-                  <div>
-                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
-                      {mealLabels[openRecipeData.mealType]?.tag}
-                    </p>
-                    <h3 className="font-display text-xl text-luna-text">{openRecipeData.name}</h3>
-                  </div>
-                )}
+                {/* Title */}
+                <div>
+                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
+                    {mealLabels[openRecipeData.mealType]?.tag}
+                  </p>
+                  <h3 className="font-display text-xl text-luna-text">{openRecipeData.name}</h3>
+                </div>
 
                 {/* Why this phase */}
                 {openRecipeData.whyThisPhase && (

@@ -27,7 +27,7 @@ const whyCards = [
     gradient: 'linear-gradient(135deg, #FFF3EB 0%, #F5DCC8 100%)',
   },
   {
-    title: 'Des conseils qui changent chaque jour',
+    title: 'Des conseils qui évoluent avec ton cycle',
     desc: 'Sport, alimentation, sommeil, bien-être. Le tout adapté à ta phase hormonale. Pas de programme générique. Des recommandations qui correspondent à ce que ton corps vit aujourd\'hui.',
     Illustration: EnergyIcon,
     gradient: 'linear-gradient(135deg, #F3EEF8 0%, #E0D5EB 100%)',
@@ -135,7 +135,7 @@ export default function Landing() {
             Ce que LUNA fait pour toi
           </h2>
           <p className="text-center text-luna-text-muted font-body text-sm mb-10 max-w-md mx-auto">
-            Des informations concrètes, personnalisées, mises à jour chaque jour.
+            Des informations concrètes, personnalisées, adaptées à ta phase.
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             {whyCards.map((card, i) => (
