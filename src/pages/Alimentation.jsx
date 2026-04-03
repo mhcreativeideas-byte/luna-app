@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert, ChefHat, ArrowRight, Refrigerator } from 'lucide-react';
+import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert, ChefHat, ArrowRight } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
@@ -313,34 +313,6 @@ export default function Alimentation() {
               </p>
             </div>
             <ArrowRight size={20} style={{ color: phaseData.color }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-          </div>
-        </Link>
-      </motion.div>
-
-      {/* CTA Mon Frigo */}
-      <motion.div variants={item}>
-        <Link
-          to="/mon-frigo"
-          className="block rounded-[24px] overflow-hidden group"
-          style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
-        >
-          <div
-            className="p-6 flex items-center gap-4"
-            style={{ background: 'linear-gradient(135deg, #E8F5E9, #C8E6C9)' }}
-          >
-            <div
-              className="w-14 h-14 rounded-[18px] flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: 'rgba(91, 158, 97, 0.15)' }}
-            >
-              <Refrigerator size={24} style={{ color: '#4D7A50' }} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-display text-lg text-luna-text mb-1">Mon Frigo</h3>
-              <p className="text-xs font-body text-luna-text-muted leading-relaxed">
-                Dis-nous ce que tu as, on te propose des recettes adaptées à ta phase.
-              </p>
-            </div>
-            <ArrowRight size={20} style={{ color: '#4D7A50' }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
           </div>
         </Link>
       </motion.div>
