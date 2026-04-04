@@ -78,9 +78,22 @@ export default function Recettes() {
   // Construire la liste de toutes les recettes filtrées
   const allRecipes = [];
   if (recipes) {
+    console.log('🔍 RECIPES DEBUG:', {
+      phase: activePhase,
+      mealTypes: Object.keys(recipes),
+      requiredTags,
+      dietPreferences,
+      healthIssues,
+    });
     Object.entries(recipes).forEach(([mealType, items]) => {
       if (selectedMeal !== 'all' && mealType !== selectedMeal) return;
-      if (!Array.isArray(items)) return;
+      const isArray = Array.isArray(items);
+      const itemCount = isArray ? items.length : 'NOT ARRAY';
+      console.log(`  📦 ${mealType}: ${itemCount} items, isArray: ${isArray}, type: ${typeof items}`);
+      if (!isArray) {
+        console.log('  ⚠️ items:', items);
+        return;
+      }
       items.forEach((recipe) => {
         // Filtrer selon les tags requis (préférences alimentaires)
         if (requiredTags.length > 0) {
@@ -91,6 +104,9 @@ export default function Recettes() {
         allRecipes.push({ ...recipe, mealType });
       });
     });
+    console.log('✅ Total recettes affichées:', allRecipes.length);
+  } else {
+    console.log('❌ PAS DE RECIPES pour la phase:', activePhase);
   }
 
   const dietLabel = (() => {
