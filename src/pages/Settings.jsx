@@ -200,7 +200,6 @@ export default function Settings() {
 
   return (
     <div className="space-y-2 pb-8">
-      <BackButton />
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <button

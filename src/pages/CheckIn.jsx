@@ -100,7 +100,6 @@ export default function CheckIn() {
 
   return (
     <div className="space-y-5 pb-24">
-      <BackButton />
       {/* Header */}
       <div className="flex items-center gap-3">
         <button

@@ -102,7 +102,6 @@ export default function Recettes() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
-      <BackButton />
       {/* Header */}
       <motion.div variants={item} className="flex items-center gap-3">
         <button
