@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+import { supabase } from '../lib/supabase';
 import BackButton from '../components/ui/BackButton';
 
 const goalOptions = [
@@ -265,22 +266,39 @@ export default function Settings() {
         <SettingRow
           label="Réinitialiser le profil"
           danger
-          onClick={() => {
-            if (window.confirm('Réinitialiser ton profil LUNA ? Toutes tes données seront perdues.')) {
-              dispatch({ type: 'RESET' });
-              localStorage.removeItem('luna-profile');
-              window.location.href = '/';
+          onClick={async () => {
+            if (window.confirm('Réinitialiser ton profil LUNA ? Tu devras refaire l\'onboarding.')) {
+              try {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                  await supabase.from('users').delete().eq('auth_id', user.id);
+                }
+                dispatch({ type: 'RESET' });
+                localStorage.removeItem('luna-profile');
+                window.location.href = '/onboarding';
+              } catch (err) {
+                alert('Erreur : ' + err.message);
+              }
             }
           }}
         />
         <SettingRow
           label="Supprimer le compte"
           danger
-          onClick={() => {
+          onClick={async () => {
             if (window.confirm('Supprimer définitivement ton compte ? Cette action est irréversible.')) {
-              dispatch({ type: 'RESET' });
-              localStorage.removeItem('luna-profile');
-              window.location.href = '/';
+              try {
+                const { data: { user } } = await supabase.auth.getUser();
+                if (user) {
+                  await supabase.rpc('delete_user_completely', { user_auth_id: user.id });
+                }
+                dispatch({ type: 'RESET' });
+                localStorage.clear();
+                await supabase.auth.signOut();
+                window.location.href = '/';
+              } catch (err) {
+                alert('Erreur : ' + err.message);
+              }
             }
           }}
         />
