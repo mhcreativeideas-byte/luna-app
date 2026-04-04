@@ -110,25 +110,11 @@ export default function Dashboard() {
                   Mon profil
                 </button>
                 <button
-                  onClick={() => { setMenuOpen(false); navigate('/sport'); }}
+                  onClick={() => { setMenuOpen(false); navigate('/plus'); }}
                   className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
                 >
-                  <Dumbbell size={16} className="text-luna-text-muted" />
-                  Sport
-                </button>
-                <button
-                  onClick={() => { setMenuOpen(false); navigate('/sommeil'); }}
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
-                >
-                  <Moon size={16} className="text-luna-text-muted" />
-                  Sommeil
-                </button>
-                <button
-                  onClick={() => { setMenuOpen(false); navigate('/journal'); }}
-                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
-                >
-                  <BookOpen size={16} className="text-luna-text-muted" />
-                  Journal
+                  <Sparkles size={16} className="text-luna-text-muted" />
+                  Plus
                 </button>
                 <button
                   onClick={() => { setMenuOpen(false); navigate('/parametres'); }}
