@@ -6,7 +6,7 @@ import {
   Eye, EyeOff, LogOut, RefreshCw, Search,
   ChevronDown, ChevronUp, Calendar, Dumbbell,
   Utensils, Moon, Brain, BookOpen, Flame,
-  ArrowLeft
+  ArrowLeft, Trash2, X, AlertTriangle
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -98,6 +98,29 @@ export default function Admin() {
   const [sortField, setSortField] = useState('created_at');
   const [sortDir, setSortDir] = useState('desc');
   const [expandedUser, setExpandedUser] = useState(null);
+  const [deleteConfirm, setDeleteConfirm] = useState(null); // user object to delete
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDeleteUser = async (user) => {
+    setDeleting(true);
+    try {
+      // Supprimer de la table users
+      const { error: dbError } = await supabase
+        .from('users')
+        .delete()
+        .eq('id', user.id);
+      if (dbError) throw dbError;
+
+      // Mettre à jour la liste locale
+      setUsers((prev) => prev.filter((u) => u.id !== user.id));
+      setDeleteConfirm(null);
+      setExpandedUser(null);
+    } catch (err) {
+      console.error('Erreur suppression:', err);
+      alert('Erreur lors de la suppression : ' + err.message);
+    }
+    setDeleting(false);
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -578,6 +601,13 @@ export default function Admin() {
                                       Santé : {user.health_issues.join(', ')}
                                     </p>
                                   )}
+                                  <button
+                                    onClick={(e) => { e.stopPropagation(); setDeleteConfirm(user); }}
+                                    className="mt-2 flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-500 rounded-lg text-xs font-body font-semibold hover:bg-red-100 transition-colors"
+                                  >
+                                    <Trash2 size={12} />
+                                    Supprimer ce compte
+                                  </button>
                                 </motion.div>
                               )}
                             </div>
@@ -639,6 +669,58 @@ export default function Admin() {
           )}
         </motion.div>
       </div>
+
+      {/* Modal de confirmation de suppression */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center px-4" onClick={() => setDeleteConfirm(null)}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center">
+                <AlertTriangle className="text-red-500" size={20} />
+              </div>
+              <h3 className="font-display text-lg text-gray-800">Supprimer ce compte ?</h3>
+            </div>
+
+            <div className="bg-gray-50 rounded-xl p-4 mb-4">
+              <p className="text-sm font-semibold text-gray-700 font-body">{deleteConfirm.name}</p>
+              <p className="text-xs text-gray-400 font-body">{deleteConfirm.email || 'Pas d\'email'}</p>
+              <p className="text-xs text-gray-400 font-body mt-1">
+                Inscrite le {new Date(deleteConfirm.created_at).toLocaleDateString('fr-FR')}
+              </p>
+            </div>
+
+            <p className="text-sm text-gray-500 font-body mb-5">
+              Cette action est irréversible. Toutes les données de cette utilisatrice seront supprimées.
+            </p>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                className="flex-1 py-2.5 bg-gray-100 text-gray-600 rounded-xl text-sm font-body font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={() => handleDeleteUser(deleteConfirm)}
+                disabled={deleting}
+                className="flex-1 py-2.5 bg-red-500 text-white rounded-xl text-sm font-body font-semibold hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
+              >
+                {deleting ? (
+                  <RefreshCw size={14} className="animate-spin" />
+                ) : (
+                  <Trash2 size={14} />
+                )}
+                Supprimer
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }
