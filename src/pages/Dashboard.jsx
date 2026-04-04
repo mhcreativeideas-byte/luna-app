@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion';
-import { Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles, Settings, User, LogOut, X, Flame, MoreHorizontal } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 
@@ -61,7 +63,9 @@ const PHASE_INSIGHTS = {
 };
 
 export default function Dashboard() {
-  const { greeting, cycleInfo, todayCheckIn, name } = useCycle();
+  const { greeting, cycleInfo, todayCheckIn, name, signOut } = useCycle();
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   if (!cycleInfo) return null;
 
@@ -76,6 +80,77 @@ export default function Dashboard() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+      {/* Top Bar — Menu button */}
+      <motion.div variants={item} className="flex justify-end relative">
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-luna-text-muted hover:text-luna-text hover:border-gray-200 transition-all"
+          style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
+        >
+          <MoreHorizontal size={18} />
+        </button>
+
+        {/* Dropdown Menu */}
+        <AnimatePresence>
+          {menuOpen && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: -5 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -5 }}
+                transition={{ duration: 0.15 }}
+                className="absolute right-0 top-12 bg-white rounded-2xl shadow-lg border border-gray-100 py-2 z-50 w-52"
+              >
+                <button
+                  onClick={() => { setMenuOpen(false); navigate('/profil'); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                >
+                  <User size={16} className="text-luna-text-muted" />
+                  Mon profil
+                </button>
+                <button
+                  onClick={() => { setMenuOpen(false); navigate('/sport'); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                >
+                  <Dumbbell size={16} className="text-luna-text-muted" />
+                  Sport
+                </button>
+                <button
+                  onClick={() => { setMenuOpen(false); navigate('/sommeil'); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                >
+                  <Moon size={16} className="text-luna-text-muted" />
+                  Sommeil
+                </button>
+                <button
+                  onClick={() => { setMenuOpen(false); navigate('/journal'); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                >
+                  <BookOpen size={16} className="text-luna-text-muted" />
+                  Journal
+                </button>
+                <button
+                  onClick={() => { setMenuOpen(false); navigate('/parametres'); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                >
+                  <Settings size={16} className="text-luna-text-muted" />
+                  Paramètres
+                </button>
+                <div className="border-t border-gray-100 my-1" />
+                <button
+                  onClick={() => { setMenuOpen(false); signOut(); }}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-red-500 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut size={16} />
+                  Se déconnecter
+                </button>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      </motion.div>
+
       {/* Hero Greeting */}
       <motion.div variants={item}>
         <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
