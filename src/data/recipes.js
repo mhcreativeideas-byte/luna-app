@@ -266,7 +266,7 @@ export const RECIPES = {
         calories: 281,
         nutrients: ["Fer", "Magnésium", "Protéines complètes", "Calcium"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '60g Quinoa',
           '200ml Lait d\'amande',
@@ -404,7 +404,7 @@ export const RECIPES = {
         calories: 394,
         nutrients: ["Fer", "Vitamine B6", "Graisses saines", "Réconfort digestif"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍚',
         ingredients: [
           '80g Riz rond',
           '300ml Lait de coco',
@@ -613,7 +613,7 @@ export const RECIPES = {
         calories: 372,
         nutrients: ["Protéines", "Anti-inflammatoires", "Antioxydants", "Réconfort"],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥞',
         ingredients: [
           '4 tranches Pain brioché ou complet',
           '2 Œufs',
@@ -662,7 +662,7 @@ export const RECIPES = {
         calories: 398,
         nutrients: ["Fibres", "Cuivre", "Calcium", "Réconfort digestif"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍚',
         ingredients: [
           '50g Flocons de riz',
           '200ml Lait d\'amande',
@@ -1062,7 +1062,7 @@ export const RECIPES = {
         calories: 333,
         nutrients: ["Fer", "Protéines", "Oméga-9", "Magnésium"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '80g Riz complet',
           '80g Edamame décortiqués',
@@ -1236,7 +1236,7 @@ export const RECIPES = {
         calories: 250,
         nutrients: ["Fer", "Vitamine C", "Protéines végétales", "Fibres"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🌶️',
         ingredients: [
           '400g Haricots rouges',
           '400g Tomates concassées',
@@ -1311,7 +1311,7 @@ export const RECIPES = {
         calories: 527,
         nutrients: ["Fer", "Lycopène", "Calcium", "Réconfort"],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍝',
         ingredients: [
           '300g Gnocchis',
           '100g Épinards',
@@ -1362,7 +1362,7 @@ export const RECIPES = {
         calories: 171,
         nutrients: ["Fer", "Vitamine C", "Vitamine K", "Fibres"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍲',
         ingredients: [
           '200g Cresson',
           '2 Pommes de terre',
@@ -1998,7 +1998,7 @@ export const RECIPES = {
         calories: 239,
         nutrients: ["Vitamine C", "Fer", "Protéines complètes", "Fibres"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🫑',
         ingredients: [
           '3 Poivrons',
           '100g Quinoa',
@@ -2152,7 +2152,7 @@ export const RECIPES = {
         calories: 281,
         nutrients: ["Protéines", "Sélénium", "Vitamine C", "Oméga-3"],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🐟',
         ingredients: [
           '2 Filet de cabillaud',
           '1 Courgette',
@@ -2414,7 +2414,7 @@ export const RECIPES = {
         calories: 139,
         nutrients: ["Fibres", "Anti-inflammatoires", "Antioxydants", "Réconfort"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍎',
         ingredients: [
           '3 Pommes',
           '1 c. à café Cannelle',
@@ -2523,7 +2523,7 @@ export const RECIPES = {
         calories: 270,
         nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
-        emoji: '🍽️',
+        emoji: '🟤',
         ingredients: [
           '6 Dattes Medjool',
           '2 c. à soupe Beurre d\'amande',
@@ -2610,7 +2610,7 @@ export const RECIPES = {
         calories: 99,
         nutrients: ["Fibres", "Anti-inflammatoires", "Réconfort", "Digestion"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍎',
         ingredients: [
           '3 Poires',
           '1 cm Gingembre frais',
@@ -2633,7 +2633,7 @@ export const RECIPES = {
         calories: 69,
         nutrients: ["Fer", "Calcium", "Protéines", "Énergie"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🟤',
         ingredients: [
           '50g Sésame noir',
           '50g Flocons d\'avoine',
@@ -3413,7 +3413,7 @@ export const RECIPES = {
         calories: 351,
         nutrients: ["Protéines", "Probiotiques", "Vitamine C", "Zinc"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Fromage blanc',
           '1 Kiwi',
@@ -3602,7 +3602,7 @@ export const RECIPES = {
         calories: 466,
         nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine C"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽️',
+        eemoji: '🥣'
         ingredients: [
           '50g Flocons d\'avoine',
           '150ml Lait végétal',
@@ -3745,7 +3745,7 @@ export const RECIPES = {
         calories: 419,
         nutrients: ["Protéines", "Vitamine B6", "Zinc", "Bêta-carotène"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Ricotta',
           '1 Pêche',
@@ -4562,8 +4562,7 @@ export const RECIPES = {
         calories: 276,
         nutrients: ["Prébiotiques", "Calcium", "Protéines", "Vitamines K"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
-        emoji: '🍽️',
-        ingredients: [
+        ememoji: '🥧'        ingredients: [
           '3 Poireaux',
           '100g Chèvre',
           '3 Œufs',
@@ -5070,8 +5069,7 @@ export const RECIPES = {
         calories: 297,
         nutrients: ["Oméga-3", "Vitamine E", "Folates", "Protéines"],
         tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoemoji: '🐟'       ingredients: [
           '2 Filets de truite',
           '30g Amandes effilées',
           '200g Haricots verts',
@@ -5145,7 +5143,7 @@ export const RECIPES = {
         calories: 248,
         nutrients: ["Vitamine D", "Vitamines B", "Zinc", "Protéines"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Riz complet',
           '250g Champignons variés',
@@ -5225,7 +5223,7 @@ export const RECIPES = {
         calories: 360,
         nutrients: ["Protéines", "Sélénium", "Vitamine C", "Antioxydants"],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🐟',
         ingredients: [
           '2 Filet de daurade',
           '10 Tomates cerises',
@@ -5276,8 +5274,7 @@ export const RECIPES = {
         calories: 298,
         nutrients: ["Folates", "Fer", "Protéines", "Anti-inflammatoires"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emojemoji: '🍛'      ingredients: [
           '150g Haricots mungo',
           '200ml Lait de coco',
           '1 Oignon',
@@ -5525,8 +5522,7 @@ export const RECIPES = {
         calories: 123,
         nutrients: ["Zinc", "Sélénium", "Protéines", "Bonnes graisses"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emojiemoji: '🥜'     ingredients: [
           '30g Amandes',
           '20g Noix du Brésil',
           '20g Graines de courge',
@@ -5547,8 +5543,7 @@ export const RECIPES = {
         calories: 186,
         nutrients: ["Fibres prébiotiques", "Magnésium", "Protéines", "Régulation glycémique"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji:emoji: '🍎'    ingredients: [
           '1 Pomme',
           '1 c. à soupe Beurre d\'amande',
           '1 pincée Cannelle',
@@ -5567,8 +5562,7 @@ export const RECIPES = {
         calories: 201,
         nutrients: ["Zinc", "Oméga-3", "Protéines", "Énergie durable"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: emoji: '🥜'   ingredients: [
           '150g Flocons d\'avoine',
           '30g Graines de tournesol',
           '30g Graines de courge',
@@ -5592,8 +5586,7 @@ export const RECIPES = {
         calories: 122,
         nutrients: ["Protéines", "Fer", "Zinc", "Folates"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: 'emoji: '🫛'  ingredients: [
           '200g Edamame en cosses',
           '1 pincée Sel de mer',
           '1 pincée optionnelle Piment en flocons',
@@ -5667,8 +5660,7 @@ export const RECIPES = {
         calories: 154,
         nutrients: ["Zinc", "Fer", "Protéines", "Fibres"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍽emoji: '🫘' ingredients: [
           '200g Pois chiches',
           '1 c. à café Paprika fumé',
           '1/2 c. à café Cumin',
@@ -5713,7 +5705,7 @@ export const RECIPES = {
         calories: 238,
         nutrients: ["Bêta-carotène", "Zinc", "Magnésium", "Protéines"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue"],
-        emoji: '🍽️',
+        emoji: '🥕',
         ingredients: [
           '2 Carottes',
           '2 c. à soupe Beurre de cajou',
@@ -5731,8 +5723,7 @@ export const RECIPES = {
         calories: 267,
         nutrients: ["Fer", "Calcium", "Oméga-3", "Protéines"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍽️emoji: '🟤'ingredients: [
           '6 Dattes Medjool',
           '30g Chèvre frais',
           '6 cerneaux Noix',
@@ -6313,7 +6304,7 @@ export const RECIPES = {
         calories: 252,
         nutrients: ["Protéines", "Antioxydants", "Zinc", "Vitamine B6"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Skyr ou yaourt islandais',
           '80g Fruits rouges',
@@ -6488,7 +6479,7 @@ export const RECIPES = {
         calories: 308,
         nutrients: ["Protéines", "Vitamine C", "Magnésium", "Bêta-carotène"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Cottage cheese',
           '1 Pêche',
@@ -6667,7 +6658,7 @@ export const RECIPES = {
         calories: 291,
         nutrients: ["Protéines", "Antioxydants", "Zinc", "Calcium"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Cottage cheese',
           '80g Framboises',
@@ -6780,7 +6771,7 @@ export const RECIPES = {
         calories: 234,
         nutrients: ["Protéines", "Zinc", "Antibactérien", "Calcium"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Skyr',
           '1 c. à soupe Graines de courge',
@@ -7199,7 +7190,7 @@ export const RECIPES = {
         calories: 323,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '100g Riz complet',
           '200g Haricots noirs',
@@ -7524,7 +7515,7 @@ export const RECIPES = {
         calories: 275,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '100g Lentilles beluga',
           '1/2 Grenade',
@@ -7599,7 +7590,7 @@ export const RECIPES = {
         calories: 315,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '100g Couscous perlé',
           '1 Courgette',
@@ -7939,8 +7930,7 @@ export const RECIPES = {
         calories: 445,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
         tags: ["anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴'emoji: '🐟'ngredients: [
           '2 Filet de bar',
           '2 Tomate',
           '1 Courgette',
@@ -8110,7 +8100,7 @@ export const RECIPES = {
         calories: 498,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍆',
         ingredients: [
           '2 Aubergines',
           '3 c. à soupe Tahini',
@@ -8163,8 +8153,7 @@ export const RECIPES = {
         calories: 200,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
         tags: ["anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',emoji: '🐟'gredients: [
           '2 Filets de sole',
           '20g Beurre',
           '1 Citron',
@@ -8188,7 +8177,7 @@ export const RECIPES = {
         calories: 364,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🍚',
         ingredients: [
           '3 Poivrons',
           '200g Riz complet cuit',
@@ -8557,8 +8546,8 @@ export const RECIPES = {
         calories: 318,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+emoji: '🥜'redients: [
           '30g Noix du Brésil',
           '20g Canneberges séchées',
           '20g Graines de courge',
@@ -8598,7 +8587,7 @@ export const RECIPES = {
         calories: 139,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
+        emoji: '🥕',
         ingredients: [
           '1 Concombre',
           '1 Avocat',
@@ -8780,8 +8769,8 @@ export const RECIPES = {
         calories: 79,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+ emoji: '🍓'edients: [
           '200g Fraises',
           '6 feuilles Basilic',
           '1 c. à soupe Vinaigre balsamique',
@@ -9021,8 +9010,8 @@ export const RECIPES = {
         calories: 102,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+  emoji: '🍵'dients: [
           '2 sachets Thé vert',
           '1/2 Citron',
           '5 feuilles Basilic frais',
@@ -9115,8 +9104,8 @@ export const RECIPES = {
         calories: 104,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+   emoji: '🍉'ients: [
           '300g Pastèque',
           '1 Citron vert',
           '200ml Eau',
@@ -9159,8 +9148,8 @@ export const RECIPES = {
         calories: 184,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+    emoji: '🍵'ents: [
           '2 sachets Thé noir ou vert',
           '1 Pêche',
           '1 cm Gingembre',
@@ -9226,8 +9215,8 @@ export const RECIPES = {
         calories: 230,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+     emoji: '🥛'nts: [
           '1 Mangue',
           '100g Yaourt nature',
           '100ml Lait',
@@ -9567,7 +9556,7 @@ export const RECIPES = {
         calories: 195,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '80g Riz rond',
           '300ml Lait entier ou végétal',
@@ -9757,8 +9746,8 @@ export const RECIPES = {
         calories: 663,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+      emoji: '🍎'ts: [
           '60g Flocons d\'avoine',
           '2 Pomme',
           '15g Amandes effilées',
@@ -9877,7 +9866,7 @@ export const RECIPES = {
         calories: 282,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '50g Semoule fine',
           '200ml Lait',
@@ -9924,7 +9913,7 @@ export const RECIPES = {
         calories: 685,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🍎',
         ingredients: [
           '4 tranches Brioche',
           '2 Œufs',
@@ -10311,8 +10300,8 @@ export const RECIPES = {
         calories: 442,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+       emoji: '🧀's: [
           '200g Macaroni complets',
           '1/2 Chou-fleur',
           '200ml Lait végétal',
@@ -10363,7 +10352,7 @@ export const RECIPES = {
         calories: 350,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Riz complet',
           '200g Haricots rouges',
@@ -10552,8 +10541,8 @@ export const RECIPES = {
         calories: 370,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+        emoji: '🥪': [
           '4 tranches Pain de campagne',
           '80g Mozzarella',
           '1 Tomate',
@@ -10732,7 +10721,7 @@ export const RECIPES = {
         calories: 206,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '100g Polenta',
           '250g Champignons variés',
@@ -11214,7 +11203,7 @@ export const RECIPES = {
         calories: 408,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🍆',
         ingredients: [
           '2 Aubergines',
           '150g Quinoa cuit',
@@ -11241,7 +11230,7 @@ export const RECIPES = {
         calories: 421,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🥣',
         ingredients: [
           '150g Riz thaï',
           '200ml Lait de coco',
@@ -11425,7 +11414,7 @@ export const RECIPES = {
         calories: 362,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍽️',
+        emoji: '🍚',
         ingredients: [
           '200g Riz basmati',
           '1 Oignon',
@@ -11829,8 +11818,8 @@ export const RECIPES = {
         calories: 237,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
-        emoji: '🍽️',
-        ingredients: [
+        emoji: '🍴',
+        iemoji: '🍎' [
           '1 Pomme',
           '1 c. à café Cannelle',
           '15g Noix concassées',
