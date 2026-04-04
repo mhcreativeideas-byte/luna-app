@@ -258,8 +258,8 @@ export default function Settings() {
       </Section>
 
       <Section title="Légal">
-        <SettingRow label="Conditions générales" />
-        <SettingRow label="Politique de confidentialité" />
+        <SettingRow label="Conditions générales" onClick={() => navigate('/conditions')} />
+        <SettingRow label="Politique de confidentialité" onClick={() => navigate('/confidentialite')} />
       </Section>
 
       <Section title="Zone sensible">

@@ -18,6 +18,8 @@ import Profil from './pages/Profil';
 import Recettes from './pages/Recettes';
 import MonFrigo from './pages/MonFrigo';
 import Admin from './pages/Admin';
+import CGU from './pages/CGU';
+import Privacy from './pages/Privacy';
 
 function ProtectedRoute({ children }) {
   const { onboardingComplete, user, authLoading } = useCycle();
@@ -70,6 +72,8 @@ function App() {
             <Route path="/calendrier" element={<Calendar />} />
             <Route path="/plus" element={<Extras />} />
             <Route path="/parametres" element={<Settings />} />
+            <Route path="/conditions" element={<CGU />} />
+            <Route path="/confidentialite" element={<Privacy />} />
           </Route>
           {/* Legacy routes redirect */}
           <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
