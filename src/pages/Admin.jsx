@@ -250,6 +250,35 @@ export default function Admin() {
     ? Math.round(users.reduce((s, u) => s + (u.period_length || 5), 0) / totalUsers * 10) / 10
     : 0;
 
+  // Ancienneté moyenne (en jours)
+  const avgTenureDays = totalUsers > 0
+    ? Math.round(users.reduce((s, u) => {
+        const created = new Date(u.created_at);
+        const diffMs = _now - created;
+        return s + diffMs / (1000 * 60 * 60 * 24);
+      }, 0) / totalUsers)
+    : 0;
+  const avgTenureLabel = avgTenureDays < 30
+    ? `${avgTenureDays}j`
+    : `${Math.round(avgTenureDays / 30 * 10) / 10} mois`;
+
+  // Ancienneté par utilisatrice (en mois) — pour l'affichage dans le tableau
+  const getUserMonths = (user) => {
+    const created = new Date(user.created_at);
+    const diffMs = _now - created;
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (days < 30) return `${days}j`;
+    const months = Math.round(days / 30 * 10) / 10;
+    return `${months} mois`;
+  };
+
+  // Taux de rétention (utilisatrices actives > 7 jours)
+  const retainedUsers = users.filter((u) => {
+    const created = new Date(u.created_at);
+    return (_now - created) / (1000 * 60 * 60 * 24) > 7;
+  }).length;
+  const retentionRate = totalUsers > 0 ? Math.round((retainedUsers / totalUsers) * 100) : 0;
+
   // Problématiques de santé
   const healthCounts = {};
   users.forEach((u) => {
@@ -366,7 +395,7 @@ export default function Admin() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* KPI Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <KPICard
             icon={<Users size={20} />}
             label="Total utilisatrices"
@@ -394,6 +423,20 @@ export default function Admin() {
             value={`${avgCycle}j`}
             sub={`Règles : ${avgPeriod}j en moyenne`}
             color="#B4A7D6"
+          />
+          <KPICard
+            icon={<Calendar size={20} />}
+            label="Ancienneté moyenne"
+            value={avgTenureLabel}
+            sub="Durée moyenne d'abonnement"
+            color="#7BAFD4"
+          />
+          <KPICard
+            icon={<Shield size={20} />}
+            label="Rétention"
+            value={`${retentionRate}%`}
+            sub={`${retainedUsers} actives > 7 jours`}
+            color="#D4A87B"
           />
         </div>
 
@@ -607,6 +650,7 @@ export default function Admin() {
                     </th>
                     <th className="text-left px-5 py-3 font-semibold hidden md:table-cell">Niveau</th>
                     <th className="text-left px-5 py-3 font-semibold hidden lg:table-cell">Objectifs</th>
+                    <th className="text-left px-5 py-3 font-semibold hidden md:table-cell">Ancienneté</th>
                     <th className="text-left px-5 py-3 font-semibold">
                       <button onClick={() => toggleSort('created_at')} className="flex items-center gap-1 hover:text-gray-700">
                         Inscription
@@ -711,6 +755,11 @@ export default function Admin() {
                               <span className="text-xs text-gray-400 self-center">+{user.goals.length - 4}</span>
                             )}
                           </div>
+                        </td>
+                        <td className="px-5 py-3 hidden md:table-cell">
+                          <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-body font-semibold bg-blue-50 text-blue-600">
+                            {getUserMonths(user)}
+                          </span>
                         </td>
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-1.5 text-gray-500">
