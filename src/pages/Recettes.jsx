@@ -64,6 +64,7 @@ export default function Recettes() {
     if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
     if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
     if (issues.includes('SOPK')) tags.push('sopk_friendly');
+    if (issues.includes('Anti-inflammatoire')) tags.push('anti_inflammatoire');
     return tags;
   })();
 

@@ -38,6 +38,7 @@ const healthOptions = [
   { id: 'Endométriose', icon: '🩺', desc: 'Diagnostiquée ou suspectée' },
   { id: 'SOPK', icon: '🔬', desc: 'Syndrome des ovaires polykystiques' },
   { id: 'Cycles irréguliers', icon: '📅', desc: 'Cycles de durée variable' },
+  { id: 'Anti-inflammatoire', icon: '🍃', desc: 'Privilégier une alimentation anti-inflammatoire' },
 ];
 
 const allergyOptions = [
@@ -89,6 +90,9 @@ function getPersonalizedTip(form, phase) {
   }
   if (form.healthIssues.includes('SPM sévère')) {
     tips.push('Magnésium, B6 et calcium seront tes alliés. On les met en avant pour toi.');
+  }
+  if (form.healthIssues.includes('Anti-inflammatoire')) {
+    tips.push('On met en avant les recettes riches en oméga-3, curcuma et antioxydants pour toi.');
   }
   if (form.dietPreferences.includes('Végane') || form.dietPreferences.includes('Végétarienne')) {
     tips.push('Toutes les recettes et aliments sont adaptés à ton régime alimentaire.');

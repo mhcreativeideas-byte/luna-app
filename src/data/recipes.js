@@ -7,7 +7,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 380,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
-        tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegetarien', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
           '50g de flocons d\'avoine',
@@ -29,7 +29,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 340,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
           '100g de myrtilles surgelées',
@@ -52,7 +52,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 410,
         nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
-        tags: ['vegetarien', 'sans_lactose'],
+        tags: ['vegetarien', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥑',
         ingredients: [
           '1 tranche épaisse de pain complet',
@@ -76,7 +76,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 360,
         nutrients: ['Magnésium', 'Fer', 'Oméga-3'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '50g de flocons d\'avoine',
@@ -99,7 +99,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 320,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
           '80g de farine de sarrasin',
@@ -123,7 +123,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 390,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
-        tags: ['vegetarien', 'sopk_friendly'],
+        tags: ['vegetarien', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍓',
         ingredients: [
           '150g de yaourt nature',
@@ -145,7 +145,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 391,
         nutrients: ["Magnésium", "Oméga-3", "Antioxydants", "Fer"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -169,7 +169,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 407,
         nutrients: ["Magnésium", "Fer", "Potassium", "Tryptophane"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 Banane congelée',
@@ -217,7 +217,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 646,
         nutrients: ["Magnésium", "Oméga-3", "Fibres", "Sérotonine"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '40g Flocons d\'avoine',
@@ -241,7 +241,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 310,
         nutrients: ["Vitamine A", "Bêta-carotène", "Fibres", "Magnésium"],
-        tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '100g Patate douce cuite',
@@ -265,7 +265,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 281,
         nutrients: ["Fer", "Magnésium", "Protéines complètes", "Calcium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '60g Quinoa',
@@ -288,7 +288,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 329,
         nutrients: ["Magnésium", "Anti-inflammatoires", "Fibres", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '100g Farine de sarrasin',
@@ -312,7 +312,7 @@ export const RECIPES = {
         prepTime: '3 min',
         calories: 366,
         nutrients: ["Probiotiques", "Fer", "Calcium", "Oméga-3"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍦',
         ingredients: [
           '150g Yaourt grec',
@@ -335,7 +335,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 183,
         nutrients: ["Fer", "Acide folique", "Antioxydants", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 petite Betterave cuite',
@@ -357,7 +357,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 475,
         nutrients: ["Magnésium", "Vitamine E", "Potassium", "Sérotonine"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain complet',
@@ -425,7 +425,7 @@ export const RECIPES = {
         prepTime: '3 min',
         calories: 422,
         nutrients: ["Probiotiques", "Polyphénols", "Magnésium", "Oméga-3"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍦',
         ingredients: [
           '150g Yaourt nature',
@@ -448,7 +448,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 408,
         nutrients: ["Magnésium", "Zinc", "Antioxydants", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -472,7 +472,7 @@ export const RECIPES = {
         prepTime: '13 min',
         calories: 328,
         nutrients: ["Fer", "Vitamine B12", "Vitamine D", "Protéines"],
-        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '2 Œufs',
@@ -496,7 +496,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 768,
         nutrients: ["Oméga-3", "Fer", "Antioxydants", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍮',
         ingredients: [
           '3 c. à soupe Graines de chia',
@@ -542,7 +542,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 498,
         nutrients: ["Bromélaïne", "Anti-inflammatoires", "Magnésium", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '150g Ananas',
@@ -612,7 +612,7 @@ export const RECIPES = {
         prepTime: '13 min',
         calories: 372,
         nutrients: ["Protéines", "Anti-inflammatoires", "Antioxydants", "Réconfort"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '4 tranches Pain brioché ou complet',
@@ -685,7 +685,7 @@ export const RECIPES = {
         prepTime: '13 min',
         calories: 374,
         nutrients: ["Fer", "Acide folique", "Oméga-9", "Protéines"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
           '1 Tortilla complète',
@@ -712,7 +712,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 490,
         nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '150g de lentilles vertes cuites',
@@ -737,7 +737,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 520,
         nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '150g de lentilles vertes cuites',
@@ -762,7 +762,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 380,
         nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '150g de lentilles corail',
@@ -787,7 +787,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 450,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
-        tags: ['vegetarien', 'sans_gluten'],
+        tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g de quinoa',
@@ -812,7 +812,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 480,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
           '1 grande tortilla complète',
@@ -837,7 +837,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 460,
         nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '200g de pois chiches cuits',
@@ -862,7 +862,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 250,
         nutrients: ["Fer", "Anti-inflammatoires", "Vitamine A", "Protéines végétales"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Lentilles corail',
@@ -887,7 +887,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 194,
         nutrients: ["Bêta-carotène", "Anti-inflammatoires", "Fibres", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '3 Carottes',
@@ -912,7 +912,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 493,
         nutrients: ["Oméga-3", "Vitamine D", "Fer", "Vitamine A"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Pavé de saumon',
@@ -936,7 +936,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 457,
         nutrients: ["Fer", "Protéines végétales", "Anti-inflammatoires", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '400g Pois chiches (boîte)',
@@ -962,7 +962,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 230,
         nutrients: ["Fer", "Calcium", "Protéines complètes", "Acide folique"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -986,7 +986,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 162,
         nutrients: ["Fer", "Anti-inflammatoires", "Protéines", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Lentilles corail',
@@ -1012,7 +1012,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 372,
         nutrients: ["Fer", "Oméga-9", "Vitamine C", "Fibres"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
           '2 Tortilla complète',
@@ -1037,7 +1037,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 360,
         nutrients: ["Oméga-3", "Fer", "Vitamine D", "Calcium"],
-        tags: ["sans_gluten", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["sans_gluten", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '200g Saumon frais',
@@ -1061,7 +1061,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 333,
         nutrients: ["Fer", "Protéines", "Oméga-9", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '80g Riz complet',
@@ -1109,7 +1109,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 311,
         nutrients: ["Fer", "Vitamine C", "Antioxydants", "Fibres"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Boulgour',
@@ -1134,7 +1134,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 365,
         nutrients: ["Vitamine D", "Fer", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '150g Riz arborio',
@@ -1159,7 +1159,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 441,
         nutrients: ["Fer", "Protéines végétales", "Oméga-3", "Acide folique"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '60g Quinoa',
@@ -1184,7 +1184,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 208,
         nutrients: ["Fer", "Protéines", "Anti-inflammatoires", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '150g Pois cassés',
@@ -1210,7 +1210,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 244,
         nutrients: ["Antioxydants", "Oméga-3", "Protéines", "Fer"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '100g Riz noir',
@@ -1235,7 +1235,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 250,
         nutrients: ["Fer", "Vitamine C", "Protéines végétales", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🌶️',
         ingredients: [
           '400g Haricots rouges',
@@ -1261,7 +1261,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 386,
         nutrients: ["Protéines", "Fer", "Oméga-3", "Vitamine B6"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Reste de poulet rôti',
@@ -1285,7 +1285,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 217,
         nutrients: ["Bêta-carotène", "Fer", "Protéines", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '300g Potimarron',
@@ -1310,7 +1310,7 @@ export const RECIPES = {
         prepTime: '17 min',
         calories: 527,
         nutrients: ["Fer", "Lycopène", "Calcium", "Réconfort"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '300g Gnocchis',
@@ -1335,7 +1335,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 439,
         nutrients: ["Magnésium", "Rutine", "Calcium", "Antioxydants"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Sarrasin',
@@ -1361,7 +1361,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 171,
         nutrients: ["Fer", "Vitamine C", "Vitamine K", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '200g Cresson',
@@ -1386,7 +1386,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 317,
         nutrients: ["Fer", "Calcium", "Magnésium", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '200g Pois chiches',
@@ -1412,7 +1412,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 237,
         nutrients: ["Fer", "Anti-spasmodiques", "Vitamine A", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '2 Patate douce',
@@ -1438,7 +1438,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 89,
         nutrients: ["Fer", "Protéines", "Anti-inflammatoires", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '100g Pois chiches',
@@ -1465,7 +1465,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 487,
         nutrients: ["Oméga-3", "Fer", "Iode", "Vitamine D"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '100g Riz à sushi',
@@ -1491,7 +1491,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 365,
         nutrients: ["Fer", "Vitamine C", "Protéines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Pois chiches',
@@ -1519,7 +1519,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 310,
         nutrients: ['Magnésium', 'Vitamine C', 'Fer'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '2 carottes',
@@ -1544,7 +1544,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 530,
         nutrients: ['Oméga-3', 'Fer', 'Magnésium'],
-        tags: ['sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '1 pavé de saumon (150g)',
@@ -1568,7 +1568,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 420,
         nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g de lentilles rouges',
@@ -1593,7 +1593,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 350,
         nutrients: ['Oméga-3', 'Magnésium', 'Vitamine C'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '1 filet de cabillaud (150g)',
@@ -1617,7 +1617,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 440,
         nutrients: ['Fer', 'Vitamine C', 'Magnésium'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '100g de pâtes complètes',
@@ -1642,7 +1642,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 353,
         nutrients: ["Oméga-3", "Vitamine D", "Bêta-carotène", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Pavé de saumon',
@@ -1667,7 +1667,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 260,
         nutrients: ["Vitamine A", "Bêta-carotène", "Magnésium", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '1 Courge butternut',
@@ -1691,7 +1691,7 @@ export const RECIPES = {
         prepTime: '17 min',
         calories: 359,
         nutrients: ["Fer", "Vitamine C", "Magnésium", "Fibres"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Pâtes complètes',
@@ -1715,7 +1715,7 @@ export const RECIPES = {
         prepTime: '55 min',
         calories: 495,
         nutrients: ["Fer", "Magnésium", "Vitamine B6", "Calcium"],
-        tags: ["sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '4 Cuisses de poulet',
@@ -1766,7 +1766,7 @@ export const RECIPES = {
         prepTime: '50 min',
         calories: 266,
         nutrients: ["Vitamine A", "Calcium", "Antioxydants", "Fibres"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '1 Patate douce',
@@ -1791,7 +1791,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 384,
         nutrients: ["Fer héminique", "Vitamine B12", "Vitamine C", "Protéines"],
-        tags: ["sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥩',
         ingredients: [
           '300g Bœuf haché',
@@ -1817,7 +1817,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 437,
         nutrients: ["Fer", "Calcium", "Protéines végétales", "Sésame"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Tofu ferme',
@@ -1868,7 +1868,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 188,
         nutrients: ["Fer", "Iode", "Minéraux", "Oméga-3"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '30g Algues wakame déshydratées',
@@ -1918,7 +1918,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 354,
         nutrients: ["Magnésium", "Fer", "Protéines", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '200g Nouilles soba',
@@ -1944,7 +1944,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 439,
         nutrients: ["Fer", "Zinc", "Anti-inflammatoires", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '250g Crevettes',
@@ -1970,7 +1970,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 447,
         nutrients: ["Protéines", "Fer", "Vitamine B6", "Réconfort"],
-        tags: ["anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '200g Nouilles ramen',
@@ -1997,7 +1997,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 239,
         nutrients: ["Vitamine C", "Fer", "Protéines complètes", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫑',
         ingredients: [
           '3 Poivrons',
@@ -2023,7 +2023,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 429,
         nutrients: ["Oméga-3", "Vitamine K", "Potassium", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '💧',
         ingredients: [
           '2 Filets de maquereau',
@@ -2048,7 +2048,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 378,
         nutrients: ["Fer", "Zinc", "Anti-inflammatoires", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '300g Pois chiches',
@@ -2075,7 +2075,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 282,
         nutrients: ["Calcium", "Vitamine C", "Magnésium", "Fibres"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Pâtes complètes',
@@ -2100,7 +2100,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 408,
         nutrients: ["Fer héminique", "Vitamine C", "Anti-inflammatoires", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥩',
         ingredients: [
           '200g Bœuf émincé',
@@ -2126,7 +2126,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 239,
         nutrients: ["Lycopène", "Antioxydants", "Vitamine C", "Réconfort"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '500g Tomates',
@@ -2151,7 +2151,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 281,
         nutrients: ["Protéines", "Sélénium", "Vitamine C", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Filet de cabillaud',
@@ -2202,7 +2202,7 @@ export const RECIPES = {
         prepTime: '60 min',
         calories: 517,
         nutrients: ["Fer héminique", "Zinc", "Magnésium", "Calcium"],
-        tags: ["sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '💧',
         ingredients: [
           '400g Épaule d\'agneau',
@@ -2229,7 +2229,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 226,
         nutrients: ["Vitamine C", "Anti-inflammatoires", "Détox hormonale", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '1 Chou-fleur',
@@ -2257,7 +2257,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 180,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '100g de dattes Medjool dénoyautées',
@@ -2280,7 +2280,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 220,
         nutrients: ['Fer', 'Magnésium', 'Fibres'],
-        tags: ['vegetarien', 'sopk_friendly'],
+        tags: ['vegetarien', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍌',
         ingredients: [
           '3 bananes très mûres',
@@ -2326,7 +2326,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 190,
         nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '100g de chocolat noir 70% minimum',
@@ -2348,7 +2348,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 230,
         nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g de pois chiches cuits',
@@ -2371,7 +2371,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 231,
         nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '10 Dattes Medjool',
@@ -2413,7 +2413,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 139,
         nutrients: ["Fibres", "Anti-inflammatoires", "Antioxydants", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍎',
         ingredients: [
           '3 Pommes',
@@ -2435,7 +2435,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 275,
         nutrients: ["Fer", "Calcium", "Magnésium", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Pois chiches cuits',
@@ -2500,7 +2500,7 @@ export const RECIPES = {
         prepTime: '2 min',
         calories: 436,
         nutrients: ["Fer", "Magnésium", "Zinc", "Sérotonine"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '30g Abricots secs',
@@ -2522,7 +2522,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 270,
         nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🟤',
         ingredients: [
           '6 Dattes Medjool',
@@ -2544,7 +2544,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 183,
         nutrients: ["Potassium", "Magnésium", "Sérotonine", "Tryptophane"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '2 Bananes',
@@ -2565,7 +2565,7 @@ export const RECIPES = {
         prepTime: '2 min',
         calories: 131,
         nutrients: ["Fer", "Magnésium", "Sérotonine", "Graisses saines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '40g Noix de cajou',
@@ -2655,7 +2655,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 91,
         nutrients: ["Magnésium", "Sérotonine", "Graisses saines", "Antioxydants"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '1 Avocat mûr',
@@ -2681,7 +2681,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 90,
         nutrients: ['Anti-inflammatoire', 'Magnésium', 'Fer'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥛',
         ingredients: [
           '250ml de lait d\'amande',
@@ -2724,7 +2724,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 170,
         nutrients: ['Oméga-3', 'Fer', 'Antioxydants'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '100g de cerises surgelées',
@@ -2745,7 +2745,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 150,
         nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250ml de lait d\'avoine',
@@ -2788,7 +2788,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 113,
         nutrients: ["Anti-inflammatoires", "Magnésium", "Antioxydants", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250ml Lait végétal',
@@ -2834,7 +2834,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 290,
         nutrients: ["Magnésium", "Sérotonine", "Graisses saines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '250ml Lait de coco',
@@ -2923,7 +2923,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 142,
         nutrients: ["Calcium", "Fer", "Réconfort sans caféine", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250ml Lait d\'amande',
@@ -3033,7 +3033,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 115,
         nutrients: ["Fer", "Magnésium", "Acide folique", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '60g Épinards',
@@ -3104,7 +3104,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 390,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '3 œufs',
@@ -3127,7 +3127,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 370,
         nutrients: ['Protéines', 'Vitamines B', 'Énergie'],
-        tags: ['vegetarien', 'sans_lactose'],
+        tags: ['vegetarien', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '1 banane mûre',
@@ -3151,7 +3151,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 360,
         nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
           '1 sachet d\'açaí surgelé (100g)',
@@ -3173,7 +3173,7 @@ export const RECIPES = {
         prepTime: '8 min',
         calories: 380,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['vegetarien'],
+        tags: ['vegetarien', 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '2 tranches de pain complet',
@@ -3218,7 +3218,7 @@ export const RECIPES = {
         prepTime: '13 min',
         calories: 483,
         nutrients: ["Protéines complètes", "Vitamines B", "Antioxydants", "Fibres"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '2 Œufs',
@@ -3243,7 +3243,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 318,
         nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine E"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '200g Flocons d\'avoine',
@@ -3389,7 +3389,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 203,
         nutrients: ["Fer", "Acide folique", "Prébiotiques", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '40g Épinards frais',
@@ -3435,7 +3435,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 241,
         nutrients: ["Vitamine C", "Protéines", "Fer", "Antioxydants"],
-        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '2 Œufs',
@@ -3506,7 +3506,7 @@ export const RECIPES = {
         prepTime: '17 min',
         calories: 314,
         nutrients: ["Protéines complètes", "Oméga-3", "Antioxydants", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Quinoa',
@@ -3531,7 +3531,7 @@ export const RECIPES = {
         prepTime: '7 min',
         calories: 628,
         nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines"],
-        tags: ["anti_fatigue", "spm_friendly"],
+        tags: ["anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain complet',
@@ -3579,7 +3579,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 656,
         nutrients: ["Protéines complètes", "Vitamine C", "Fer", "Oméga-3"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1/2 Mangue',
@@ -3625,7 +3625,7 @@ export const RECIPES = {
         prepTime: '13 min',
         calories: 235,
         nutrients: ["Protéines", "Fer", "Calcium", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Tofu ferme',
@@ -3720,7 +3720,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 92,
         nutrients: ["Protéines", "Fer", "Zinc", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '150g Lentilles corail cuites',
@@ -3769,7 +3769,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 520,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥦',
         ingredients: [
           '200g de tofu ferme',
@@ -3793,7 +3793,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 550,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '1 filet de poulet',
@@ -3841,7 +3841,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 480,
         nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🌮',
         ingredients: [
           '200g de haricots noirs cuits',
@@ -3866,7 +3866,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 430,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['vegetarien', 'sans_gluten'],
+        tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g de quinoa',
@@ -3916,7 +3916,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 423,
         nutrients: ["Protéines", "Zinc", "Vitamine C", "Fer"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -3941,7 +3941,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 342,
         nutrients: ["Protéines", "Oméga-9", "Vitamine K", "Probiotiques"],
-        tags: ["anti_fatigue"],
+        tags: ["anti_fatigue", 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
           '2 Tortilla complète',
@@ -3966,7 +3966,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 465,
         nutrients: ["Oméga-3", "Zinc", "Vitamine D", "Vitamine C"],
-        tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Riz à sushi',
@@ -3992,7 +3992,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 115,
         nutrients: ["Fer", "Zinc", "Protéines végétales", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Lentilles vertes',
@@ -4017,7 +4017,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 423,
         nutrients: ["Zinc", "Sélénium", "Vitamine C", "Magnésium"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '200g Crevettes',
@@ -4043,7 +4043,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 302,
         nutrients: ["Zinc", "Fer", "Fibres prébiotiques", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '200g Pois chiches',
@@ -4095,7 +4095,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 695,
         nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '1 boîte Sardines en conserve',
@@ -4120,7 +4120,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 318,
         nutrients: ["Protéines", "Vitamine B6", "Fibres", "Zinc"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '150g Riz complet',
@@ -4146,7 +4146,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 225,
         nutrients: ["Protéines végétales", "Fer", "Zinc", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '300g Petits pois surgelés',
@@ -4195,7 +4195,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 553,
         nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Tempeh',
@@ -4220,7 +4220,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 383,
         nutrients: ["Fer héminique", "Zinc", "Vitamine C", "Anti-inflammatoires"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥩',
         ingredients: [
           '200g Bœuf émincé',
@@ -4245,7 +4245,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 417,
         nutrients: ["Protéines", "Calcium", "Polyphénols", "Zinc"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -4271,7 +4271,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 330,
         nutrients: ["Zinc", "Fer", "Protéines végétales", "Fibres"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '300g Haricots blancs',
@@ -4325,7 +4325,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 368,
         nutrients: ["Vitamine K", "Vitamine C", "Zinc", "Calcium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '150g Chou kale',
@@ -4350,7 +4350,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 297,
         nutrients: ["Zinc", "Fer", "Protéines", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Lentilles vertes',
@@ -4404,7 +4404,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 416,
         nutrients: ["Probiotiques", "Protéines", "Choline", "Bonnes graisses"],
-        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '100g Riz complet',
@@ -4429,7 +4429,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 295,
         nutrients: ["Oméga-3", "Fer", "Zinc", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Saumon fumé',
@@ -4455,7 +4455,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 471,
         nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Tempeh',
@@ -4481,7 +4481,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 221,
         nutrients: ["Probiotiques", "Protéines", "Iode", "Enzymes"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '2 c. à soupe Pâte miso',
@@ -4507,7 +4507,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 378,
         nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Pois chiches',
@@ -4534,7 +4534,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 338,
         nutrients: ["Zinc", "Sélénium", "Protéines", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '150g Riz complet',
@@ -4561,7 +4561,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 276,
         nutrients: ["Prébiotiques", "Calcium", "Protéines", "Vitamines K"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥧',
         ingredients: [
           '3 Poireaux',
@@ -4612,7 +4612,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 520,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '1 filet de poulet',
@@ -4636,7 +4636,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 460,
         nutrients: ['Protéines', 'Probiotiques', 'Zinc'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥘',
         ingredients: [
           '200g de tempeh',
@@ -4661,7 +4661,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 430,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '1 filet de dorade',
@@ -4685,7 +4685,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 510,
         nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
-        tags: ['vegetarien'],
+        tags: ['vegetarien', 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '6 feuilles de lasagne',
@@ -4710,7 +4710,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 470,
         nutrients: ['Protéines', 'Vitamines B', 'Énergie'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '100g de nouilles soba (sarrasin)',
@@ -4735,7 +4735,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 307,
         nutrients: ["Protéines", "Zinc", "Phytoœstrogènes", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Tofu ferme',
@@ -4761,7 +4761,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 462,
         nutrients: ["Protéines", "Vitamine B6", "Antioxydants", "Énergie"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '4 Cuisses de poulet',
@@ -4787,7 +4787,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 397,
         nutrients: ["Vitamines B", "Vitamine C", "Fibres", "Calcium"],
-        tags: ["vegetarien", "anti_fatigue"],
+        tags: ["vegetarien", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Pâtes complètes',
@@ -4814,7 +4814,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 424,
         nutrients: ["Oméga-3", "Zinc", "Sélénium", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Pavé de saumon',
@@ -4839,7 +4839,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 361,
         nutrients: ["Zinc", "Protéines", "Fer", "Anti-inflammatoires"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '300g Blanc de poulet',
@@ -4864,7 +4864,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 200,
         nutrients: ["Protéines", "Calcium", "Vitamines B", "Fibres"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥧',
         ingredients: [
           '4 Œufs',
@@ -4916,7 +4916,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 242,
         nutrients: ["Protéines", "Fer", "Calcium", "Fibres"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '3 Courgettes',
@@ -4941,7 +4941,7 @@ export const RECIPES = {
         prepTime: '18 min',
         calories: 348,
         nutrients: ["Oméga-3", "Protéines", "Sélénium", "Vitamine C"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '2 Steak de thon',
@@ -4966,7 +4966,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 203,
         nutrients: ["Fer", "Zinc", "Protéines végétales", "Vitamines"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '200g Haricots blancs',
@@ -4994,7 +4994,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 365,
         nutrients: ["Oméga-3", "Vitamine D", "Vitamine C", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Pavé de saumon',
@@ -5018,7 +5018,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 380,
         nutrients: ["Acide folique", "Prébiotiques", "Calcium", "Vitamine C"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '150g Riz arborio',
@@ -5043,7 +5043,7 @@ export const RECIPES = {
         prepTime: '22 min',
         calories: 346,
         nutrients: ["Protéines", "Zinc", "Vitamine C", "Anti-inflammatoires"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '200g Blanc de poulet',
@@ -5069,7 +5069,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 297,
         nutrients: ["Oméga-3", "Vitamine E", "Folates", "Protéines"],
-        tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Filets de truite',
@@ -5119,7 +5119,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 192,
         nutrients: ["Protéines complètes", "Calcium", "Fer", "Fibres"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '100g Quinoa',
@@ -5144,7 +5144,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 248,
         nutrients: ["Vitamine D", "Vitamines B", "Zinc", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Riz complet',
@@ -5170,7 +5170,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 424,
         nutrients: ["Fer", "Zinc", "Vitamine B12", "Bêta-carotène"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍠',
         ingredients: [
           '1 kg Moules',
@@ -5196,7 +5196,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 484,
         nutrients: ["Zinc", "Magnésium", "Protéines", "Calcium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Tofu ferme',
@@ -5224,7 +5224,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 360,
         nutrients: ["Protéines", "Sélénium", "Vitamine C", "Antioxydants"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Filet de daurade',
@@ -5249,7 +5249,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 243,
         nutrients: ["Bêta-carotène", "Vitamine A", "Calcium", "Fibres"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '150g Riz arborio',
@@ -5275,7 +5275,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 298,
         nutrients: ["Folates", "Fer", "Protéines", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Haricots mungo',
@@ -5302,7 +5302,7 @@ export const RECIPES = {
         prepTime: '13 min',
         calories: 460,
         nutrients: ["Oméga-3", "Calcium", "Vitamine D", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '8 Sardines fraîches',
@@ -5327,7 +5327,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 386,
         nutrients: ["Zinc", "Fer", "Vitamine C", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '1/2 Chou-fleur',
@@ -5355,7 +5355,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 200,
         nutrients: ['Zinc', 'Protéines', 'Vitamines B'],
-        tags: ['vegetarien', 'sopk_friendly'],
+        tags: ['vegetarien', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '150g de flocons d\'avoine',
@@ -5420,7 +5420,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 220,
         nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
-        tags: ['vegetarien', 'sans_gluten'],
+        tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
         emoji: '🍯',
         ingredients: [
           '150g de yaourt grec nature',
@@ -5461,7 +5461,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 278,
         nutrients: ["Zinc", "Calcium", "Protéines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '200g Pois chiches cuits',
@@ -5524,7 +5524,7 @@ export const RECIPES = {
         prepTime: '2 min',
         calories: 123,
         nutrients: ["Zinc", "Sélénium", "Protéines", "Bonnes graisses"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '30g Amandes',
@@ -5546,7 +5546,7 @@ export const RECIPES = {
         prepTime: '3 min',
         calories: 186,
         nutrients: ["Fibres prébiotiques", "Magnésium", "Protéines", "Régulation glycémique"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍎',
         ingredients: [
           '1 Pomme',
@@ -5566,7 +5566,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 201,
         nutrients: ["Zinc", "Oméga-3", "Protéines", "Énergie durable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '150g Flocons d\'avoine',
@@ -5639,7 +5639,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 226,
         nutrients: ["Zinc", "Sélénium", "Oméga-3", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '200g Flocons d\'avoine',
@@ -5666,7 +5666,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 154,
         nutrients: ["Zinc", "Fer", "Protéines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍽emoji: ',
         ingredients: [
           '200g Pois chiches',
@@ -5752,7 +5752,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 303,
         nutrients: ["Vitamine K", "Zinc", "Protéines", "Fer"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '30g Chou kale',
@@ -5776,7 +5776,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 80,
         nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍵',
         ingredients: [
           '1 c.à.c de poudre de matcha',
@@ -5816,7 +5816,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 180,
         nutrients: ['Probiotiques', 'Vitamines B', 'Protéines'],
-        tags: ['vegetarien', 'sans_gluten'],
+        tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
         emoji: '🥭',
         ingredients: [
           '150g de yaourt nature',
@@ -5861,7 +5861,7 @@ export const RECIPES = {
         prepTime: '8 min',
         calories: 75,
         nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '1 c. à café Matcha en poudre',
@@ -5883,7 +5883,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 194,
         nutrients: ["Fer", "Bêta-carotène", "Prébiotiques", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '1 Betterave crue',
@@ -5904,7 +5904,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 171,
         nutrients: ["Fer", "Vitamine C", "Hydratation", "Chlorophylle"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '40g Épinards',
@@ -5991,7 +5991,7 @@ export const RECIPES = {
         prepTime: '8 min',
         calories: 240,
         nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Matcha',
@@ -6013,7 +6013,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 254,
         nutrients: ["Vitamine C", "Bêta-carotène", "Anti-inflammatoires", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '2 Oranges',
@@ -6056,7 +6056,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 241,
         nutrients: ["Protéines", "Fer", "Vitamine B12", "Antioxydants"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 Banane',
@@ -6100,7 +6100,7 @@ export const RECIPES = {
         prepTime: '8 min',
         calories: 143,
         nutrients: ["Fer", "Nitrates", "Antioxydants", "Circulation"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '1 c. à café Poudre de betterave',
@@ -6149,7 +6149,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 290,
         nutrients: ['Fibres', 'Antioxydants', 'Oméga-3'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍇',
         ingredients: [
           '3 c.à.s de graines de chia',
@@ -6173,7 +6173,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 320,
         nutrients: ['Fibres', 'Vitamine C', 'Antioxydants'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥑',
         ingredients: [
           '2 tranches de pain complet',
@@ -6197,7 +6197,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 310,
         nutrients: ['Antioxydants', 'Vitamine C', 'Fibres'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '1 sachet d\'açaí surgelé',
@@ -6220,7 +6220,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 340,
         nutrients: ['Protéines', 'Fibres', 'Vitamine B9'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '3 œufs',
@@ -6244,7 +6244,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 370,
         nutrients: ['Fibres', 'Antioxydants', 'Oméga-3'],
-        tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegetarien', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
           '50g de flocons d\'avoine',
@@ -6289,7 +6289,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 297,
         nutrients: ["Oméga-3", "Protéines", "Vitamine C", "Graisses saines"],
-        tags: ["anti_fatigue", "spm_friendly"],
+        tags: ["anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain au levain',
@@ -6312,7 +6312,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 252,
         nutrients: ["Protéines", "Antioxydants", "Zinc", "Vitamine B6"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Skyr ou yaourt islandais',
@@ -6354,7 +6354,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 480,
         nutrients: ["Vitamine C", "Enzymes digestives", "Anti-inflammatoires", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1/2 Mangue',
@@ -6550,7 +6550,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 545,
         nutrients: ["Vitamine C", "Enzymes", "Graisses saines", "Antioxydants"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍦',
         ingredients: [
           '150g Yaourt végétal de coco',
@@ -6619,7 +6619,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 372,
         nutrients: ["Protéines", "Vitamines", "Fer", "Graisses saines"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
           '1 Tortilla complète',
@@ -6735,7 +6735,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 271,
         nutrients: ["Lycopène", "Antioxydants", "Hydratation", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '200g Pastèque',
@@ -6757,7 +6757,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 469,
         nutrients: ["Rutine", "Antioxydants", "Magnésium", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '80g Farine de sarrasin',
@@ -6802,7 +6802,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 460,
         nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '150g de tofu ferme mariné (tamari, sésame)',
@@ -6826,7 +6826,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 480,
         nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍣',
         ingredients: [
           '150g de saumon frais (qualité sashimi)',
@@ -6850,7 +6850,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 420,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥦',
         ingredients: [
           '150g de quinoa cuit',
@@ -6875,7 +6875,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 440,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine A'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🌈',
         ingredients: [
           '1 petite patate douce en cubes',
@@ -6900,7 +6900,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 410,
         nutrients: ['Protéines', 'Antioxydants', 'Oméga-3'],
-        tags: ['sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '150g de thon frais (ou en conserve au naturel)',
@@ -6949,7 +6949,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 467,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Riz à sushi',
@@ -6977,7 +6977,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 313,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Lentilles vertes',
@@ -7005,7 +7005,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 241,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '300g Filet de poisson blanc (cabillaud ou daurade)',
@@ -7032,7 +7032,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 421,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Quinoa',
@@ -7061,7 +7061,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 292,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '200g Thon frais sushi',
@@ -7088,7 +7088,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 303,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Crevettes cuites',
@@ -7143,7 +7143,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 352,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -7170,7 +7170,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 477,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Thon frais',
@@ -7198,7 +7198,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 323,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Riz complet',
@@ -7227,7 +7227,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 302,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍅',
         ingredients: [
           '500g Tomates bien mûres',
@@ -7255,7 +7255,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 367,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Blanc de poulet',
@@ -7282,7 +7282,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 521,
         nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '200g Pois chiches',
@@ -7311,7 +7311,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 348,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -7337,7 +7337,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 353,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Poulpe cuit',
@@ -7363,7 +7363,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 312,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '200g Nouilles de riz',
@@ -7391,7 +7391,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 288,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 Betterave cuite',
@@ -7444,7 +7444,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 381,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '1 Pain pita',
@@ -7472,7 +7472,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 293,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '100g Riz brun',
@@ -7498,7 +7498,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 284,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '300g Pastèque',
@@ -7523,7 +7523,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 275,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Lentilles beluga',
@@ -7574,7 +7574,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 340,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Haricots blancs',
@@ -7598,7 +7598,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 315,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Couscous perlé',
@@ -7624,7 +7624,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 222,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍅',
         ingredients: [
           '2 Concombre',
@@ -7651,7 +7651,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 380,
         nutrients: ['Glutathion', 'Antioxydants', 'Fibres'],
-        tags: ['vegetarien', 'sans_gluten'],
+        tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g de pois chiches rôtis (paprika, cumin)',
@@ -7676,7 +7676,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 360,
         nutrients: ['Glutathion', 'Antioxydants', 'Fibres'],
-        tags: ['sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '200g de poisson blanc frais',
@@ -7701,7 +7701,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 430,
         nutrients: ['Oméga-3', 'Antioxydants', 'Fibres'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '1 pavé de saumon',
@@ -7726,7 +7726,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 380,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '200g de fleurettes de brocoli',
@@ -7751,7 +7751,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 370,
         nutrients: ['Protéines', 'Zinc', 'Antioxydants'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '200g de crevettes décortiquées',
@@ -7776,7 +7776,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 360,
         nutrients: ['Protéines', 'Fibres', 'Antioxydants'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥘',
         ingredients: [
           '200g de tofu ferme',
@@ -7801,7 +7801,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 330,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '2 Pavé de saumon',
@@ -7826,7 +7826,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 369,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '250g Crevettes',
@@ -7853,7 +7853,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 402,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍕',
         ingredients: [
           '1 Pâte à pizza complète',
@@ -7881,7 +7881,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 607,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '4 Cuisses de poulet',
@@ -7909,7 +7909,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 392,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '200g Nouilles soba',
@@ -7938,7 +7938,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 445,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["anti_fatigue", "spm_friendly"],
+        tags: ["anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍴',
         ingredients: [
           '2 Filet de bar',
@@ -7968,7 +7968,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 274,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Lentilles vertes',
@@ -7995,7 +7995,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 504,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '200g Tofu ferme',
@@ -8023,7 +8023,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 450,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '250g Saumon frais sushi',
@@ -8051,7 +8051,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 394,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '150g Riz arborio',
@@ -8080,7 +8080,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 427,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '250g Crevettes',
@@ -8109,7 +8109,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 498,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍆',
         ingredients: [
           '2 Aubergines',
@@ -8137,7 +8137,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 360,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '250g Crevettes',
@@ -8187,7 +8187,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 364,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '3 Poivrons',
@@ -8214,7 +8214,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 264,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '200g Filet de daurade',
@@ -8263,7 +8263,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 434,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '300g Lotte',
@@ -8290,7 +8290,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 330,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '1/2 Chou-fleur',
@@ -8341,7 +8341,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 322,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -8367,7 +8367,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 296,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
           '200g Crevettes',
@@ -8392,7 +8392,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 342,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '200g Pois chiches',
@@ -8418,7 +8418,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 328,
         nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Boulgour',
@@ -8446,7 +8446,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 120,
         nutrients: ['Antioxydants', 'Fibres', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍇',
         ingredients: [
           '1/2 mangue',
@@ -8534,7 +8534,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 200,
         nutrients: ['Antioxydants', 'Zinc', 'Oméga-3'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '30g de noix',
@@ -8598,7 +8598,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 139,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥕',
         ingredients: [
           '1 Concombre',
@@ -8666,7 +8666,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 155,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '100g Pois chiches',
@@ -8689,7 +8689,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 180,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🟤',
         ingredients: [
           '50g Noix de coco râpée',
@@ -8802,7 +8802,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 200,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🟤',
         ingredients: [
           '60g Noix de cajou',
@@ -8825,7 +8825,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 180,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍅',
         ingredients: [
           '200g Tomates cerises',
@@ -8893,7 +8893,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 110,
         nutrients: ['Antioxydants', 'Fibres', 'Détoxifiant'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '1 betterave crue pelée',
@@ -8913,7 +8913,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 30,
         nutrients: ['Antioxydants', 'Détoxifiant', 'Hydratation'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍵',
         ingredients: [
           '2 sachets de thé vert',
@@ -8935,7 +8935,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 150,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '3 feuilles de chou kale (tiges retirées)',
@@ -9022,7 +9022,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 102,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍴',
   emoji: '🍵',
   ingredients: [
@@ -9069,7 +9069,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 120,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍋',
         ingredients: [
           '2 Citrons',
@@ -9257,7 +9257,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 320,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Potassium'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '1 banane mûre',
@@ -9283,7 +9283,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 350,
         nutrients: ['Magnésium', 'Protéines', 'Glucides complexes', 'Vitamine B6'],
-        tags: ['vegetarien', 'sopk_friendly'],
+        tags: ['vegetarien', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '1 banane mûre',
@@ -9308,7 +9308,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 310,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Fer'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍎',
         ingredients: [
           '80 g de flocons d\'avoine',
@@ -9332,7 +9332,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 340,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '2 tranches de pain complet',
@@ -9355,7 +9355,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 380,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '80 g de quinoa',
@@ -9380,7 +9380,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 420,
         nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane'],
-        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '2 œufs',
@@ -9404,7 +9404,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 291,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '1 Banane mûre',
@@ -9428,7 +9428,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 239,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -9476,7 +9476,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 227,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain complet',
@@ -9522,7 +9522,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 335,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '40g Flocons d\'avoine',
@@ -9546,7 +9546,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 401,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🧁',
         ingredients: [
           '3 Bananes très mûres',
@@ -9596,7 +9596,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 564,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '100g Farine de sarrasin',
@@ -9621,7 +9621,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 261,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '3 c. à soupe Graines de chia',
@@ -9670,7 +9670,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 412,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1/2 Avocat',
@@ -9739,7 +9739,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 264,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 Poire mûre',
@@ -9762,7 +9762,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 663,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍴',
       emoji: '🍎',
       ingredients: [
@@ -9811,7 +9811,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 286,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '1/2 Banane mûre',
@@ -9858,7 +9858,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 703,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '4 tranches Pain de mie',
@@ -9883,7 +9883,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 282,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Semoule fine',
@@ -9954,7 +9954,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 489,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Flocons de sarrasin',
@@ -9980,7 +9980,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 420,
         nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Glucides complexes'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '400 g de pois chiches cuits',
@@ -10005,7 +10005,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 400,
         nutrients: ['Magnésium', 'Calcium', 'Protéines', 'Fer'],
-        tags: ['vegetarien', 'sans_gluten', 'sopk_friendly'],
+        tags: ['vegetarien', 'sans_gluten', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '400 g de pois chiches cuits',
@@ -10030,7 +10030,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 450,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍠',
         ingredients: [
           '1 grosse patate douce',
@@ -10081,7 +10081,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 480,
         nutrients: ['Tryptophane', 'Vitamine B6', 'Glucides complexes', 'Protéines'],
-        tags: ['sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '2 filets de poulet',
@@ -10105,7 +10105,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 350,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '400 g de courge butternut',
@@ -10130,7 +10130,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 626,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '1 grosse Patate douce',
@@ -10157,7 +10157,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 401,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '2 Courgette',
@@ -10184,7 +10184,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 498,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '1 Courge butternut',
@@ -10210,7 +10210,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 446,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Spaghetti complètes',
@@ -10237,7 +10237,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 307,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '150g Riz complet',
@@ -10289,7 +10289,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 419,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Lentilles corail',
@@ -10344,7 +10344,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 305,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '150g Riz arborio',
@@ -10370,7 +10370,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 350,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Riz complet',
@@ -10399,7 +10399,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 332,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '500g Tomates',
@@ -10425,7 +10425,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 523,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '1 Courgette',
@@ -10455,7 +10455,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 443,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '8 Feuilles de lasagne',
@@ -10483,7 +10483,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 269,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '1 Patate douce',
@@ -10509,7 +10509,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 443,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Pâtes',
@@ -10583,7 +10583,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 370,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Lentilles jaunes (toor dal)',
@@ -10611,7 +10611,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 484,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '200g Nouilles de blé complet',
@@ -10637,7 +10637,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 231,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '400g Tomates concassées',
@@ -10712,7 +10712,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 283,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Haricots blancs',
@@ -10740,7 +10740,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 206,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '100g Polenta',
@@ -10765,7 +10765,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 299,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '500g Carottes',
@@ -10819,7 +10819,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 400,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Vitamine B6'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '1 grosse patate douce',
@@ -10844,7 +10844,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 430,
         nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines'],
-        tags: ['vegetarien'],
+        tags: ['vegetarien', 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '2 pommes de terre moyennes',
@@ -10868,7 +10868,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 450,
         nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6'],
-        tags: ['vegetarien', 'sopk_friendly'],
+        tags: ['vegetarien', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200 g de pâtes complètes',
@@ -10893,7 +10893,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 470,
         nutrients: ['Oméga-3', 'Tryptophane', 'Vitamine B6', 'Magnésium', 'Glucides complexes'],
-        tags: ['sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
           '2 filets de saumon',
@@ -10917,7 +10917,7 @@ export const RECIPES = {
         prepTime: '25 min',
         calories: 380,
         nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '200 g de lentilles corail',
@@ -10942,7 +10942,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 390,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍄',
         ingredients: [
           '150 g de sarrasin (kasha)',
@@ -10967,7 +10967,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 251,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '300g Brocoli',
@@ -10992,7 +10992,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 488,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Pâtes',
@@ -11017,7 +11017,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 633,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '4 Cuisses de poulet',
@@ -11067,7 +11067,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 282,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '150g Riz',
@@ -11094,7 +11094,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 404,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍕',
         ingredients: [
           '1 Pâte à pizza complète',
@@ -11144,7 +11144,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 291,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '150g Lentilles vertes',
@@ -11171,7 +11171,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 562,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
           '400g Pommes de terre',
@@ -11195,7 +11195,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 213,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
           '200g Nouilles udon',
@@ -11222,7 +11222,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 408,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍆',
         ingredients: [
           '2 Aubergines',
@@ -11249,7 +11249,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 421,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '150g Riz thaï',
@@ -11276,7 +11276,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 499,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍝',
         ingredients: [
           '200g Pâtes',
@@ -11302,7 +11302,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 656,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '4 Cuisses de poulet',
@@ -11329,7 +11329,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 296,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '150g Nouilles de blé',
@@ -11355,7 +11355,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 336,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
           '3 Courgettes',
@@ -11380,7 +11380,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 584,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🎃',
         ingredients: [
           '1/2 Courge butternut',
@@ -11406,7 +11406,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 598,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
           '300g Blanc de poulet cuit',
@@ -11433,7 +11433,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 362,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '200g Riz basmati',
@@ -11459,7 +11459,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 346,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '200g Nouilles de riz',
@@ -11488,7 +11488,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 355,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍠',
         ingredients: [
           '2 Patate douce',
@@ -11513,7 +11513,7 @@ export const RECIPES = {
         prepTime: '45 min',
         calories: 345,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍚',
         ingredients: [
           '150g Riz arborio',
@@ -11539,7 +11539,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 578,
         nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
-        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Riz',
@@ -11594,7 +11594,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 250,
         nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6'],
-        tags: ['vegetarien', 'sopk_friendly'],
+        tags: ['vegetarien', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🧁',
         ingredients: [
           '2 bananes mûres',
@@ -11619,7 +11619,7 @@ export const RECIPES = {
         prepTime: '3 min',
         calories: 280,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '1 tranche de pain complet',
@@ -11641,7 +11641,7 @@ export const RECIPES = {
         prepTime: '10 min + repos',
         calories: 180,
         nutrients: ['Magnésium', 'Protéines végétales', 'Glucides complexes', 'Fer'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '100 g de flocons d\'avoine',
@@ -11664,7 +11664,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 120,
         nutrients: ['Fibres', 'Glucides complexes', 'Magnésium', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍎',
         ingredients: [
           '3 pommes',
@@ -11707,7 +11707,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 460,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🧁',
         ingredients: [
           '100g Flocons d\'avoine',
@@ -11732,7 +11732,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 196,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '20g Chocolat noir 70%',
@@ -11771,7 +11771,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 181,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍞',
         ingredients: [
           '1 tranche Pain complet',
@@ -11792,7 +11792,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 180,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🟤',
         ingredients: [
           '8 Dattes Medjool',
@@ -11815,7 +11815,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 362,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍮',
         ingredients: [
           '3 c. à soupe Graines de chia',
@@ -11837,7 +11837,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 237,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍴',
         emoji: '🍎',
         ingredients: [
@@ -11882,7 +11882,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 160,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '100g Chocolat noir 70%',
@@ -11924,7 +11924,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 260,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '100g Chocolat noir 70%',
@@ -11969,7 +11969,7 @@ export const RECIPES = {
         prepTime: '15 min',
         calories: 150,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '100ml Jus de pois chiches (aquafaba)',
@@ -11993,7 +11993,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 150,
         nutrients: ['Magnésium', 'Antioxydants', 'Calcium', 'Fer'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250 ml de lait d\'amande',
@@ -12036,7 +12036,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 100,
         nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥛',
         ingredients: [
           '250 ml de lait d\'amande ou d\'avoine',
@@ -12081,7 +12081,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 280,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 banane congelée',
@@ -12104,7 +12104,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 113,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250ml Lait végétal',
@@ -12173,7 +12173,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 229,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '250ml Lait d\'avoine',
@@ -12241,7 +12241,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 177,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '250ml Lait végétal',
@@ -12287,7 +12287,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 310,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '250ml Lait de coco',
