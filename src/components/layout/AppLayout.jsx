@@ -40,7 +40,7 @@ function EmailBanner() {
             <Mail size={16} className="text-amber-600" />
           </div>
           <p className="text-sm text-amber-800 font-body flex-1">
-            Pense à vérifier ton email pour sécuriser ton compte 💌
+            Vérifie ta boîte mail, on t'a envoyé un petit mot de bienvenue 💌
           </p>
           <button
             onClick={dismiss}
