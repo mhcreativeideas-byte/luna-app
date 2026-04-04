@@ -169,7 +169,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 407,
         nutrients: ["Magnésium", "Fer", "Potassium", "Tryptophane"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
         emoji: '🥤',
         ingredients: [
           '1 Banane congelée',
@@ -3151,7 +3151,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 360,
         nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
+        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
         emoji: '🫐',
         ingredients: [
           '1 sachet d\'açaí surgelé (100g)',
@@ -6735,7 +6735,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 271,
         nutrients: ["Lycopène", "Antioxydants", "Hydratation", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥤',
         ingredients: [
           '200g Pastèque',
@@ -9670,7 +9670,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 412,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1/2 Avocat',
@@ -10611,7 +10611,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 484,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍜',
         ingredients: [
           '200g Nouilles de blé complet',
