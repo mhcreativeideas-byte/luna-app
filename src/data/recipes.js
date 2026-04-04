@@ -425,7 +425,7 @@ export const RECIPES = {
         prepTime: '3 min',
         calories: 422,
         nutrients: ["Probiotiques", "Polyphénols", "Magnésium", "Oméga-3"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
           '150g Yaourt nature',
@@ -787,7 +787,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 450,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
-        tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
+        tags: ['vegetarien', 'sans_gluten'],
         emoji: '🥗',
         ingredients: [
           '100g de quinoa',
@@ -962,7 +962,7 @@ export const RECIPES = {
         prepTime: '30 min',
         calories: 230,
         nutrients: ["Fer", "Calcium", "Protéines complètes", "Acide folique"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -1037,7 +1037,7 @@ export const RECIPES = {
         prepTime: '40 min',
         calories: 360,
         nutrients: ["Oméga-3", "Fer", "Vitamine D", "Calcium"],
-        tags: ["sans_gluten", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["sans_gluten", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
           '200g Saumon frais',
@@ -4095,7 +4095,7 @@ export const RECIPES = {
         prepTime: '10 min',
         calories: 695,
         nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
         emoji: '🥗',
         ingredients: [
           '1 boîte Sardines en conserve',
@@ -4245,7 +4245,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 417,
         nutrients: ["Protéines", "Calcium", "Polyphénols", "Zinc"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
           '100g Quinoa',
@@ -6289,7 +6289,7 @@ export const RECIPES = {
         prepTime: '20 min',
         calories: 297,
         nutrients: ["Oméga-3", "Protéines", "Vitamine C", "Graisses saines"],
-        tags: ["anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain au levain',
@@ -6312,7 +6312,7 @@ export const RECIPES = {
         prepTime: '5 min',
         calories: 252,
         nutrients: ["Protéines", "Antioxydants", "Zinc", "Vitamine B6"],
-        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
           '150g Skyr ou yaourt islandais',
@@ -7968,7 +7968,7 @@ export const RECIPES = {
         prepTime: '35 min',
         calories: 274,
         nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
-        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
           '100g Lentilles vertes',
