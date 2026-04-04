@@ -248,10 +248,10 @@ export default function Settings() {
       </Section>
 
       <Section title="Communauté">
-        <SettingRow label="Partage tes commentaires" />
-        <SettingRow label="Signaler un bug" />
-        <SettingRow label="Demander une fonctionnalité" />
-        <SettingRow label="Contacte-nous" />
+        <SettingRow label="Partage tes commentaires" onClick={() => window.location.href = 'mailto:hello@lunawellness.app?subject=Commentaire LUNA'} />
+        <SettingRow label="Signaler un bug" onClick={() => window.location.href = 'mailto:hello@lunawellness.app?subject=Bug LUNA'} />
+        <SettingRow label="Demander une fonctionnalité" onClick={() => window.location.href = 'mailto:hello@lunawellness.app?subject=Suggestion LUNA'} />
+        <SettingRow label="Contacte-nous" onClick={() => window.location.href = 'mailto:hello@lunawellness.app?subject=Contact LUNA'} />
       </Section>
 
       <Section title="Légal">
