@@ -78,12 +78,18 @@ export default function Recettes() {
   // Construire la liste de toutes les recettes filtrées
   const allRecipes = [];
   if (recipes) {
-    Object.entries(recipes).forEach(([mealType, variants]) => {
+    Object.entries(recipes).forEach(([mealType, items]) => {
       if (selectedMeal !== 'all' && mealType !== selectedMeal) return;
-      const recipe = selectRecipe(variants);
-      if (recipe) {
+      if (!Array.isArray(items)) return;
+      items.forEach((recipe) => {
+        // Filtrer selon les tags requis (préférences alimentaires)
+        if (requiredTags.length > 0) {
+          const recipeTags = recipe.tags || [];
+          const matches = requiredTags.every(tag => recipeTags.includes(tag));
+          if (!matches) return;
+        }
         allRecipes.push({ ...recipe, mealType });
-      }
+      });
     });
   }
 
