@@ -5,6 +5,7 @@ import { ChevronLeft, Clock, X, Sparkles, Filter } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -101,6 +102,7 @@ export default function Recettes() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
+      <BackButton />
       {/* Header */}
       <motion.div variants={item} className="flex items-center gap-3">
         <button

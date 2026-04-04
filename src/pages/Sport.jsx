@@ -4,6 +4,7 @@ import { Clock, X, ChevronRight, Flame, Zap, Heart, Check, Footprints, Plus, Tra
 import { useCycle } from '../contexts/CycleContext';
 import { EXERCISES } from '../data/exercises';
 import { PHASES } from '../data/phases';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -74,6 +75,7 @@ export default function Sport() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+      <BackButton />
       {/* Phase tag + Title */}
       <motion.div variants={item}>
         <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-widest mb-3">

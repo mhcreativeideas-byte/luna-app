@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, Settings, Share2, TrendingUp } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -29,6 +30,7 @@ export default function Profil() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-4">
+      <BackButton />
       {/* Header */}
       <motion.div variants={item} className="flex justify-between items-start">
         <h1 className="font-display text-2xl text-luna-text">Profil</h1>

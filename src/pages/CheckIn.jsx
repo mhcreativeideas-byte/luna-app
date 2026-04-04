@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { SYMPTOM_CATEGORIES, TAG_COLORS } from '../data/symptoms';
+import BackButton from '../components/ui/BackButton';
 
 function CustomTagPill({ onAdd, color }) {
   const [open, setOpen] = useState(false);
@@ -99,6 +100,7 @@ export default function CheckIn() {
 
   return (
     <div className="space-y-5 pb-24">
+      <BackButton />
       {/* Header */}
       <div className="flex items-center gap-3">
         <button

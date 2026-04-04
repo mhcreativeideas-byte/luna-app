@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+import BackButton from '../components/ui/BackButton';
 
 const goalOptions = [
   { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
@@ -198,6 +199,7 @@ export default function Settings() {
 
   return (
     <div className="space-y-2 pb-8">
+      <BackButton />
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <button

@@ -3,6 +3,7 @@ import { Dumbbell, Moon, ChevronRight, Sparkles, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -69,6 +70,7 @@ export default function Extras() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+      <BackButton />
       {/* Header */}
       <motion.div variants={item}>
         <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">

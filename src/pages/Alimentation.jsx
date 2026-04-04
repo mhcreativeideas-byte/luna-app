@@ -5,6 +5,7 @@ import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldChe
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -99,6 +100,7 @@ export default function Alimentation() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+      <BackButton />
       {/* Phase tag + Title */}
       <motion.div variants={item}>
         <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-widest mb-3">

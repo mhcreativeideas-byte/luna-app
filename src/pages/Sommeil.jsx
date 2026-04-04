@@ -4,6 +4,7 @@ import { Moon as MoonIcon, Wind } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { MORNING_RITUALS } from '../data/affirmations';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -180,6 +181,7 @@ export default function Sommeil() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+      <BackButton />
       {/* Hero */}
       <motion.div variants={item}>
         <div

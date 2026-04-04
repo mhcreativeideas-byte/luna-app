@@ -5,6 +5,7 @@ import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, Chevron
 import { useCycle } from '../contexts/CycleContext';
 import { AFFIRMATIONS, MORNING_RITUALS } from '../data/affirmations';
 import { PHASES } from '../data/phases';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -508,6 +509,7 @@ export default function Journal() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+      <BackButton />
       {/* Phase tag + Title */}
       <motion.div variants={item}>
         <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-widest mb-3">
