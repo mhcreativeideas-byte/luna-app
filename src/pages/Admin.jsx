@@ -123,11 +123,11 @@ export default function Admin() {
   const handleDeleteUser = async (user) => {
     setDeleting(true);
     try {
-      const { error: dbError } = await supabase
-        .from('users')
-        .delete()
-        .eq('id', user.id);
-      if (dbError) throw dbError;
+      // Supprime le profil ET le compte auth via la fonction SQL
+      const { error } = await supabase.rpc('delete_user_completely', {
+        user_auth_id: user.auth_id,
+      });
+      if (error) throw error;
 
       setUsers((prev) => prev.filter((u) => u.id !== user.id));
       setDeleteConfirm(null);
@@ -142,12 +142,14 @@ export default function Admin() {
   const handleBulkDelete = async () => {
     setDeleting(true);
     try {
-      const ids = Array.from(selectedUsers);
-      const { error: dbError } = await supabase
-        .from('users')
-        .delete()
-        .in('id', ids);
-      if (dbError) throw dbError;
+      const usersToDelete = users.filter((u) => selectedUsers.has(u.id));
+      // Supprime chaque compte complètement (profil + auth)
+      for (const user of usersToDelete) {
+        const { error } = await supabase.rpc('delete_user_completely', {
+          user_auth_id: user.auth_id,
+        });
+        if (error) throw error;
+      }
 
       setUsers((prev) => prev.filter((u) => !selectedUsers.has(u.id)));
       setSelectedUsers(new Set());
