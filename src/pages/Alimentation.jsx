@@ -494,20 +494,20 @@ export default function Alimentation() {
               transition={{ delay: delay * 0.05, duration: 0.4, ease: 'easeOut' }}
               className="flex flex-col items-center gap-2"
             >
-              <div className="w-20 h-20 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FAF5F0' }}>
+              <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FAF5F0' }}>
                 {imgSrc ? (
                   <img
                     src={imgSrc}
                     alt={name}
                     loading="lazy"
-                    className="w-[4.5rem] h-[4.5rem] object-contain"
+                    className="w-12 h-12 object-contain"
                     style={{ mixBlendMode: 'multiply' }}
                     onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
                   />
                 ) : null}
-                <span className="text-3xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
+                <span className="text-xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
               </div>
-              <span className="text-[11px] font-body font-semibold text-luna-text-body text-center leading-tight">{name}</span>
+              <span className="text-[10px] font-body font-semibold text-luna-text-body text-center leading-tight">{name}</span>
             </motion.div>
           );
         };
@@ -537,7 +537,7 @@ export default function Alimentation() {
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#F5DFD0' }} />
                 </div>
-                <div className="grid grid-cols-3 gap-y-5 gap-x-3 justify-items-center">
+                <div className="grid grid-cols-3 gap-y-3 gap-x-3 justify-items-center">
                   {seasonal.fruits.map((fruit, i) => (
                     <FoodCard key={fruit} name={fruit} delay={i} />
                   ))}
@@ -545,7 +545,7 @@ export default function Alimentation() {
               </div>
 
               {/* Légumes */}
-              <div className="px-5 pt-4 pb-6">
+              <div className="px-5 pt-3 pb-5">
                 <div className="flex items-center justify-center gap-2 mb-5">
                   <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
                   <h4 className="text-[10px] font-body font-bold uppercase tracking-[0.2em] px-3" style={{ color: '#5A8A5E' }}>
@@ -553,7 +553,7 @@ export default function Alimentation() {
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
                 </div>
-                <div className="grid grid-cols-3 gap-y-5 gap-x-3 justify-items-center">
+                <div className="grid grid-cols-3 gap-y-3 gap-x-3 justify-items-center">
                   {seasonal.legumes.map((legume, i) => (
                     <FoodCard key={legume} name={legume} delay={seasonal.fruits.length + i} />
                   ))}
