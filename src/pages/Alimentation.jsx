@@ -537,7 +537,7 @@ export default function Alimentation() {
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#F5DFD0' }} />
                 </div>
-                <div className="grid grid-cols-3 gap-y-3 gap-x-3 justify-items-center">
+                <div className="flex flex-wrap justify-center gap-3">
                   {seasonal.fruits.map((fruit, i) => (
                     <FoodCard key={fruit} name={fruit} delay={i} />
                   ))}
@@ -553,7 +553,7 @@ export default function Alimentation() {
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
                 </div>
-                <div className="grid grid-cols-3 gap-y-3 gap-x-3 justify-items-center">
+                <div className="grid grid-cols-5 gap-y-3 gap-x-2 justify-items-center">
                   {seasonal.legumes.map((legume, i) => (
                     <FoodCard key={legume} name={legume} delay={seasonal.fruits.length + i} />
                   ))}
