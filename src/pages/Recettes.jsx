@@ -43,7 +43,7 @@ const mealLabels = {
 
 export default function Recettes() {
   const navigate = useNavigate();
-  const { cycleInfo, dietPreferences, healthIssues, cookingTime } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, cookingTime, allergies } = useCycle();
   const [selectedMeal, setSelectedMeal] = useState('all');
   const [selectedPhase, setSelectedPhase] = useState('current');
   const [openRecipe, setOpenRecipe] = useState(null);
@@ -101,6 +101,34 @@ export default function Recettes() {
     return total;
   };
 
+  // Mots-clés allergènes dans les ingrédients
+  const ALLERGEN_KEYWORDS = {
+    'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin', 'fruits à coque'],
+    'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
+    'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari', 'protéine de soja'],
+    'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
+    'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'colin', 'merlu', 'poisson'],
+    'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
+    'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'yogourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'emmental', 'comté', 'chèvre', 'feta', 'mascarpone', 'crème entière'],
+    'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'fusilli', 'couscous', 'boulgour', 'semoule', 'croûton', 'chapelure', 'tortilla', 'wrap'],
+    'Sésame': ['sésame', 'tahini', 'tahin', 'gomasio'],
+    'Céleri': ['céleri', 'celeri'],
+    'Moutarde': ['moutarde'],
+    'Sulfites': ['vin', 'vinaigre balsamique', 'sulfite'],
+  };
+
+  // Vérifier si une recette contient un allergène
+  const containsAllergen = (recipe, allergyList) => {
+    if (!allergyList || allergyList.length === 0) return false;
+    const ingredientsText = (recipe.ingredients || []).join(' ').toLowerCase();
+    const nameText = recipe.name?.toLowerCase() || '';
+    const fullText = ingredientsText + ' ' + nameText;
+    return allergyList.some((allergy) => {
+      const keywords = ALLERGEN_KEYWORDS[allergy] || [];
+      return keywords.some((kw) => fullText.includes(kw.toLowerCase()));
+    });
+  };
+
   // Construire la liste de toutes les recettes filtrées
   const allRecipes = [];
   if (recipes) {
@@ -116,6 +144,8 @@ export default function Recettes() {
         }
         // Filtrer par temps de cuisine max
         if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return;
+        // Filtrer par allergies (exclure les recettes contenant un allergène)
+        if (containsAllergen(recipe, allergies)) return;
         allRecipes.push({ ...recipe, mealType });
       });
     });
@@ -151,6 +181,7 @@ export default function Recettes() {
             {phaseData.shortName} · {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''}
             {dietLabel && <span className="ml-1.5 text-luna-text-muted">· 🌱 {dietLabel}</span>}
             {maxTime && <span className="ml-1.5 text-luna-text-muted">· 🕐 ≤ {maxTime} min</span>}
+            {allergies?.length > 0 && <span className="ml-1.5 text-luna-text-muted">· 🚫 {allergies.length} allergène{allergies.length > 1 ? 's' : ''}</span>}
           </p>
         </div>
         <button
