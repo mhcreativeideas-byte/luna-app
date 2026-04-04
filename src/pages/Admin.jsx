@@ -98,25 +98,62 @@ export default function Admin() {
   const [sortField, setSortField] = useState('created_at');
   const [sortDir, setSortDir] = useState('desc');
   const [expandedUser, setExpandedUser] = useState(null);
-  const [deleteConfirm, setDeleteConfirm] = useState(null); // user object to delete
+  const [deleteConfirm, setDeleteConfirm] = useState(null); // user object or 'bulk'
   const [deleting, setDeleting] = useState(false);
+  const [selectedUsers, setSelectedUsers] = useState(new Set());
+
+  const toggleSelectUser = (userId, e) => {
+    e.stopPropagation();
+    setSelectedUsers((prev) => {
+      const next = new Set(prev);
+      if (next.has(userId)) next.delete(userId);
+      else next.add(userId);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedUsers.size === filteredUsers.length) {
+      setSelectedUsers(new Set());
+    } else {
+      setSelectedUsers(new Set(filteredUsers.map((u) => u.id)));
+    }
+  };
 
   const handleDeleteUser = async (user) => {
     setDeleting(true);
     try {
-      // Supprimer de la table users
       const { error: dbError } = await supabase
         .from('users')
         .delete()
         .eq('id', user.id);
       if (dbError) throw dbError;
 
-      // Mettre à jour la liste locale
       setUsers((prev) => prev.filter((u) => u.id !== user.id));
       setDeleteConfirm(null);
       setExpandedUser(null);
     } catch (err) {
       console.error('Erreur suppression:', err);
+      alert('Erreur lors de la suppression : ' + err.message);
+    }
+    setDeleting(false);
+  };
+
+  const handleBulkDelete = async () => {
+    setDeleting(true);
+    try {
+      const ids = Array.from(selectedUsers);
+      const { error: dbError } = await supabase
+        .from('users')
+        .delete()
+        .in('id', ids);
+      if (dbError) throw dbError;
+
+      setUsers((prev) => prev.filter((u) => !selectedUsers.has(u.id)));
+      setSelectedUsers(new Set());
+      setDeleteConfirm(null);
+    } catch (err) {
+      console.error('Erreur suppression groupée:', err);
       alert('Erreur lors de la suppression : ' + err.message);
     }
     setDeleting(false);
@@ -500,9 +537,20 @@ export default function Admin() {
           className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
         >
           <div className="p-5 border-b border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <h3 className="font-display text-lg text-gray-800">
-              Liste des utilisatrices
-            </h3>
+            <div className="flex items-center gap-3">
+              <h3 className="font-display text-lg text-gray-800">
+                Liste des utilisatrices
+              </h3>
+              {selectedUsers.size > 0 && (
+                <button
+                  onClick={() => setDeleteConfirm('bulk')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-red-500 text-white rounded-xl text-xs font-body font-semibold hover:bg-red-600 transition-colors"
+                >
+                  <Trash2 size={12} />
+                  Supprimer ({selectedUsers.size})
+                </button>
+              )}
+            </div>
             <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
               <input
@@ -535,6 +583,14 @@ export default function Admin() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-gray-50 text-gray-500 font-body">
+                    <th className="w-10 px-3 py-3">
+                      <input
+                        type="checkbox"
+                        checked={filteredUsers.length > 0 && selectedUsers.size === filteredUsers.length}
+                        onChange={toggleSelectAll}
+                        className="w-4 h-4 rounded border-gray-300 text-luna-rose focus:ring-luna-rose/30 cursor-pointer"
+                      />
+                    </th>
                     <th className="text-left px-5 py-3 font-semibold">
                       <button onClick={() => toggleSort('name')} className="flex items-center gap-1 hover:text-gray-700">
                         Prénom
@@ -568,9 +624,17 @@ export default function Admin() {
                         key={user.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="border-t border-gray-50 hover:bg-gray-50/50 cursor-pointer transition-colors"
+                        className={`border-t border-gray-50 hover:bg-gray-50/50 cursor-pointer transition-colors ${selectedUsers.has(user.id) ? 'bg-red-50/50' : ''}`}
                         onClick={() => setExpandedUser(isExpanded ? null : user.id)}
                       >
+                        <td className="px-3 py-3" onClick={(e) => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            checked={selectedUsers.has(user.id)}
+                            onChange={(e) => toggleSelectUser(user.id, e)}
+                            className="w-4 h-4 rounded border-gray-300 text-luna-rose focus:ring-luna-rose/30 cursor-pointer"
+                          />
+                        </td>
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
@@ -683,19 +747,38 @@ export default function Admin() {
               <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center">
                 <AlertTriangle className="text-red-500" size={20} />
               </div>
-              <h3 className="font-display text-lg text-gray-800">Supprimer ce compte ?</h3>
+              <h3 className="font-display text-lg text-gray-800">
+                {deleteConfirm === 'bulk'
+                  ? `Supprimer ${selectedUsers.size} compte${selectedUsers.size > 1 ? 's' : ''} ?`
+                  : 'Supprimer ce compte ?'
+                }
+              </h3>
             </div>
 
-            <div className="bg-gray-50 rounded-xl p-4 mb-4">
-              <p className="text-sm font-semibold text-gray-700 font-body">{deleteConfirm.name}</p>
-              <p className="text-xs text-gray-400 font-body">{deleteConfirm.email || 'Pas d\'email'}</p>
-              <p className="text-xs text-gray-400 font-body mt-1">
-                Inscrite le {new Date(deleteConfirm.created_at).toLocaleDateString('fr-FR')}
-              </p>
-            </div>
+            {deleteConfirm === 'bulk' ? (
+              <div className="bg-gray-50 rounded-xl p-4 mb-4 max-h-40 overflow-y-auto space-y-2">
+                {users.filter((u) => selectedUsers.has(u.id)).map((u) => (
+                  <div key={u.id} className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[10px] font-bold text-red-500">
+                      {u.name?.charAt(0)?.toUpperCase()}
+                    </div>
+                    <span className="text-xs text-gray-600 font-body">{u.name}</span>
+                    <span className="text-xs text-gray-400 font-body">— {u.email || 'pas d\'email'}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-gray-50 rounded-xl p-4 mb-4">
+                <p className="text-sm font-semibold text-gray-700 font-body">{deleteConfirm.name}</p>
+                <p className="text-xs text-gray-400 font-body">{deleteConfirm.email || 'Pas d\'email'}</p>
+                <p className="text-xs text-gray-400 font-body mt-1">
+                  Inscrite le {new Date(deleteConfirm.created_at).toLocaleDateString('fr-FR')}
+                </p>
+              </div>
+            )}
 
             <p className="text-sm text-gray-500 font-body mb-5">
-              Cette action est irréversible. Toutes les données de cette utilisatrice seront supprimées.
+              Cette action est irréversible. Toutes les données seront supprimées.
             </p>
 
             <div className="flex gap-3">
@@ -706,7 +789,7 @@ export default function Admin() {
                 Annuler
               </button>
               <button
-                onClick={() => handleDeleteUser(deleteConfirm)}
+                onClick={() => deleteConfirm === 'bulk' ? handleBulkDelete() : handleDeleteUser(deleteConfirm)}
                 disabled={deleting}
                 className="flex-1 py-2.5 bg-red-500 text-white rounded-xl text-sm font-body font-semibold hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
               >
@@ -715,7 +798,7 @@ export default function Admin() {
                 ) : (
                   <Trash2 size={14} />
                 )}
-                Supprimer
+                Supprimer{deleteConfirm === 'bulk' ? ` (${selectedUsers.size})` : ''}
               </button>
             </div>
           </motion.div>
