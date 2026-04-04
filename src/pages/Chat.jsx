@@ -5,7 +5,6 @@ import { ChevronLeft, Send, Sparkles, ChevronDown, Plus, Clock, Trash2, Archive,
 import { useCycle } from '../contexts/CycleContext';
 import { getLunaResponse, SUGGESTION_CATEGORIES, QUICK_SUGGESTIONS } from '../data/chatResponses';
 import { PHASES } from '../data/phases';
-import BackButton from '../components/ui/BackButton';
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -160,7 +159,6 @@ export default function Chat() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-5rem)] lg:h-[calc(100vh-2rem)]">
-      <BackButton />
       {/* Header */}
       <div className="flex items-center gap-3 pb-3">
         <button
