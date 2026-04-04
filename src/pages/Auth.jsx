@@ -48,7 +48,9 @@ export default function Auth() {
           setError('Un compte existe déjà avec cet email. Connecte-toi.');
           setMode('login');
         } else {
-          setSuccessMessage('Vérifie tes emails pour confirmer ton compte, puis connecte-toi.');
+          // Marquer comme nouveau compte pour afficher la bannière de rappel
+          localStorage.setItem('luna_email_unverified', 'true');
+          // La redirection se fait automatiquement via onAuthStateChange
         }
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
