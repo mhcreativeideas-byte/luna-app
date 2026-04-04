@@ -244,7 +244,7 @@ export default function Settings() {
       </Section>
 
       <Section title="Réseaux sociaux">
-        <SettingRow label="Instagram" value="@luna.wellness" onClick={() => window.open('https://www.instagram.com/luna.wellness', '_blank')} />
+        <SettingRow label="Instagram" value="@luna.cyclesfood" onClick={() => window.open('https://www.instagram.com/luna.cyclesfood', '_blank')} />
       </Section>
 
       <Section title="Communauté">
