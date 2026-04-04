@@ -43,7 +43,7 @@ const mealLabels = {
 
 export default function Recettes() {
   const navigate = useNavigate();
-  const { cycleInfo, dietPreferences, healthIssues } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, cookingTime } = useCycle();
   const [selectedMeal, setSelectedMeal] = useState('all');
   const [selectedPhase, setSelectedPhase] = useState('current');
   const [openRecipe, setOpenRecipe] = useState(null);
@@ -75,6 +75,32 @@ export default function Recettes() {
     return match || variants[variants.length - 1];
   };
 
+  // Temps max en minutes selon le profil onboarding
+  const maxTime = (() => {
+    if (!cookingTime) return null; // pas de limite
+    if (cookingTime === '15min') return 15;
+    if (cookingTime === '30min') return 30;
+    if (cookingTime === '45min') return 45;
+    return null; // '60min+' = pas de limite
+  })();
+
+  // Extraire les minutes depuis le champ prepTime (ex: "10 min", "1h15", "45 min")
+  const parseMinutes = (prepTime) => {
+    if (!prepTime) return 999;
+    const str = prepTime.toLowerCase().replace(/\s/g, '');
+    const hMatch = str.match(/(\d+)\s*h/);
+    const mMatch = str.match(/(\d+)\s*min/);
+    let total = 0;
+    if (hMatch) total += parseInt(hMatch[1]) * 60;
+    if (mMatch) total += parseInt(mMatch[1]);
+    if (!hMatch && !mMatch) {
+      const num = parseInt(str);
+      if (!isNaN(num)) total = num;
+      else total = 999;
+    }
+    return total;
+  };
+
   // Construire la liste de toutes les recettes filtrées
   const allRecipes = [];
   if (recipes) {
@@ -82,11 +108,14 @@ export default function Recettes() {
       if (selectedMeal !== 'all' && mealType !== selectedMeal) return;
       if (!Array.isArray(items)) return;
       items.forEach((recipe) => {
+        // Filtrer par tags alimentaires (préférences)
         if (requiredTags.length > 0) {
           const recipeTags = recipe.tags || [];
           const matches = requiredTags.every(tag => recipeTags.includes(tag));
           if (!matches) return;
         }
+        // Filtrer par temps de cuisine max
+        if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return;
         allRecipes.push({ ...recipe, mealType });
       });
     });
@@ -121,6 +150,7 @@ export default function Recettes() {
           <p className="text-xs font-body text-luna-text-hint mt-0.5">
             {phaseData.shortName} · {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''}
             {dietLabel && <span className="ml-1.5 text-luna-text-muted">· 🌱 {dietLabel}</span>}
+            {maxTime && <span className="ml-1.5 text-luna-text-muted">· 🕐 ≤ {maxTime} min</span>}
           </p>
         </div>
         <button
