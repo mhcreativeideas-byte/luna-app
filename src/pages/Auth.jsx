@@ -49,7 +49,7 @@ export default function Auth() {
           setMode('login');
         } else {
           // Marquer comme nouveau compte pour afficher la bannière de rappel
-          localStorage.setItem('luna_email_unverified', 'true');
+          localStorage.setItem('luna-email-unverified', 'true');
           // La redirection se fait automatiquement via onAuthStateChange
         }
       } else {

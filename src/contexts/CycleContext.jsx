@@ -26,7 +26,6 @@ const initialState = {
   customSymptoms: [],
   temperatureLogs: {},
   spottingLogs: [],
-  chatHistory: [],
   conversations: [],
   activeConversationId: null,
   notifications: true,
@@ -169,8 +168,6 @@ function cycleReducer(state, action) {
     case 'REMOVE_CUSTOM_SYMPTOM': {
       return { ...state, customSymptoms: state.customSymptoms.filter((s) => s !== action.payload.label) };
     }
-    case 'ADD_CHAT_MESSAGE':
-      return { ...state, chatHistory: [...state.chatHistory, action.payload] };
     case 'CREATE_CONVERSATION': {
       // payload: { id, title? }
       const newConv = {
@@ -220,8 +217,6 @@ function cycleReducer(state, action) {
     }
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };
-    case 'LOAD_DEMO_DATA':
-      return { ...state, journalEntries: action.payload.entries, sportSessions: action.payload.sportSessions || [] };
     case 'RESET':
       return initialState;
     default:

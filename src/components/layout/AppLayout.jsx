@@ -12,8 +12,8 @@ function EmailBanner() {
 
   useEffect(() => {
     // Afficher si l'email n'est pas confirmé OU si on vient de s'inscrire
-    const justSignedUp = localStorage.getItem('luna_email_unverified');
-    const dismissed = localStorage.getItem('luna_email_banner_dismissed');
+    const justSignedUp = localStorage.getItem('luna-email-unverified');
+    const dismissed = localStorage.getItem('luna-email-banner-dismissed');
     const emailNotConfirmed = user && !user.email_confirmed_at;
 
     if ((justSignedUp || emailNotConfirmed) && !dismissed) {
@@ -23,8 +23,8 @@ function EmailBanner() {
 
   const dismiss = () => {
     setShow(false);
-    localStorage.setItem('luna_email_banner_dismissed', 'true');
-    localStorage.removeItem('luna_email_unverified');
+    localStorage.setItem('luna-email-banner-dismissed', 'true');
+    localStorage.removeItem('luna-email-unverified');
   };
 
   return (
