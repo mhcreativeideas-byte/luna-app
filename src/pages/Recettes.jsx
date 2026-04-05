@@ -43,11 +43,12 @@ const mealLabels = {
 
 export default function Recettes() {
   const navigate = useNavigate();
-  const { cycleInfo, dietPreferences, healthIssues, cookingTime, allergies } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies } = useCycle();
   const [selectedMeal, setSelectedMeal] = useState('all');
   const [selectedPhase, setSelectedPhase] = useState('current');
   const [openRecipe, setOpenRecipe] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
 
   const currentPhase = cycleInfo?.phase || 'follicular';
   const activePhase = selectedPhase === 'current' ? currentPhase : selectedPhase;
@@ -149,6 +150,11 @@ export default function Recettes() {
         if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return;
         // Filtrer par allergies (exclure les recettes contenant un allergène)
         if (containsAllergen(recipe, allergies)) return;
+        // Filtrer par niveau de cuisine (escalier : débutant ≤ intermédiaire ≤ avancé)
+        const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
+        const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
+        const maxLevel = LEVEL_ORDER[selectedLevel] || 3;
+        if (recipeLevel > maxLevel) return;
         allRecipes.push({ ...recipe, mealType });
       });
     });
@@ -206,7 +212,7 @@ export default function Recettes() {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
+            <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
               {PHASE_FILTERS.map((pf) => (
                 <button
                   key={pf.id}
@@ -224,6 +230,33 @@ export default function Recettes() {
                 >
                   {pf.icon && <span>{pf.icon}</span>}
                   {pf.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Niveau de cuisine */}
+            <div className="flex gap-2 pt-1">
+              {[
+                { id: 'debutant', label: 'Débutant', icon: '🌱' },
+                { id: 'intermediaire', label: 'Intermédiaire', icon: '🌿' },
+                { id: 'avance', label: 'Tout niveau', icon: '👩‍🍳' },
+              ].map((lvl) => (
+                <button
+                  key={lvl.id}
+                  onClick={() => setSelectedLevel(lvl.id)}
+                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
+                  style={selectedLevel === lvl.id ? {
+                    borderColor: phaseData.color,
+                    backgroundColor: phaseData.bgColor,
+                    color: phaseData.colorDark,
+                  } : {
+                    borderColor: '#F0EEEC',
+                    backgroundColor: 'white',
+                    color: '#8A7B7F',
+                  }}
+                >
+                  <span>{lvl.icon}</span>
+                  {lvl.label}
                 </button>
               ))}
             </div>
