@@ -1057,7 +1057,9 @@ function generateRecipeResponse(phase, mealType, diet, ctx) {
 
     // 50% de chance d'utiliser une recette interne si disponible, sinon catalogue
     if (internalRecipes.length > 0 && Math.random() < 0.4) {
-      const recipe = internalRecipes[Math.floor(Math.random() * internalRecipes.length)];
+      const nonRecent = internalRecipes.filter(r => !wasRecentlyProposed(r.name));
+      const recipe = nonRecent.length > 0 ? nonRecent[Math.floor(Math.random() * nonRecent.length)] : internalRecipes[Math.floor(Math.random() * internalRecipes.length)];
+      trackRecipe(recipe.name);
       if (recipe.instructions) {
         const dietLabel = diet === 'vegan' ? ' 🌱 (vegan)' : diet === 'vegetarien' ? ' 🥚 (végé)' : diet === 'sans_gluten' ? ' (sans gluten)' : '';
         return `J'ai une idée pour toi${dietLabel} :\n\n👩‍🍳 ${recipe.name}\n⏱️ ${recipe.time}\n\n📝 Ingrédients :\n${recipe.ingredients.map((i) => `• ${i}`).join('\n')}\n\n👉 ${recipe.instructions}\n\n💡 ${recipe.why}\n\nEn phase ${phaseName}, ton corps a surtout besoin de ${nutrients.priority.slice(0, 3).join(', ')}.`;
@@ -1071,7 +1073,9 @@ function generateRecipeResponse(phase, mealType, diet, ctx) {
   // 2. Chercher dans le catalogue des 601 recettes (avec filtres profil)
   const catalogPool = getCatalogRecipes(phase, mealType, ctx);
   if (catalogPool.length > 0) {
-    const recipe = catalogPool[Math.floor(Math.random() * catalogPool.length)];
+    const nonRecentCatalog = catalogPool.filter(r => !wasRecentlyProposed(r.name));
+    const recipe = nonRecentCatalog.length > 0 ? nonRecentCatalog[Math.floor(Math.random() * nonRecentCatalog.length)] : catalogPool[Math.floor(Math.random() * catalogPool.length)];
+    trackRecipe(recipe.name);
     return formatCatalogRecipe(recipe, phaseName, nutrients);
   }
 
@@ -1084,7 +1088,9 @@ function generateRecipeResponse(phase, mealType, diet, ctx) {
       const filtered = filterRecipesByDiet(recipes, diet);
       if (filtered.length > 0) recipes = filtered;
     }
-    const recipe = recipes[Math.floor(Math.random() * recipes.length)];
+    const nonRecentFallback = recipes.filter(r => !wasRecentlyProposed(r.name));
+    const recipe = nonRecentFallback.length > 0 ? nonRecentFallback[Math.floor(Math.random() * nonRecentFallback.length)] : recipes[Math.floor(Math.random() * recipes.length)];
+    if (recipe) trackRecipe(recipe.name);
     if (recipe && recipe.instructions) {
       const mealLabels = { petit_dej: 'petit-déjeuner', dejeuner: 'déjeuner', diner: 'dîner' };
       return `J'ai trouvé une super idée de ${mealLabels[randomMeal] || 'repas'} pour ta phase ${phaseName} :\n\n👩‍🍳 ${recipe.name}\n⏱️ ${recipe.time}\n\n📝 Ingrédients :\n${recipe.ingredients.map((i) => `• ${i}`).join('\n')}\n\n👉 ${recipe.instructions}\n\n💡 ${recipe.why}\n\n${nutrients.metabolism}`;
@@ -1094,7 +1100,9 @@ function generateRecipeResponse(phase, mealType, diet, ctx) {
   // 4. Dernier fallback : catalogue sans filtre de type
   const anyPool = getCatalogRecipes(phase, null, ctx);
   if (anyPool.length > 0) {
-    const recipe = anyPool[Math.floor(Math.random() * anyPool.length)];
+    const nonRecentAny = anyPool.filter(r => !wasRecentlyProposed(r.name));
+    const recipe = nonRecentAny.length > 0 ? nonRecentAny[Math.floor(Math.random() * nonRecentAny.length)] : anyPool[Math.floor(Math.random() * anyPool.length)];
+    trackRecipe(recipe.name);
     return formatCatalogRecipe(recipe, phaseName, nutrients);
   }
 
@@ -1108,12 +1116,31 @@ function generateFullDayMenu(phase, diet, ctx) {
   const phaseRecipes = RECIPES[phase];
 
   const pick = (type) => {
-    let pool = phaseRecipes[type] || [];
+    // Internal recipes
+    let internalPool = phaseRecipes[type] || [];
     if (diet) {
-      const filtered = filterRecipesByDiet(pool, diet);
-      if (filtered.length > 0) pool = filtered;
+      const filtered = filterRecipesByDiet(internalPool, diet);
+      if (filtered.length > 0) internalPool = filtered;
     }
-    return pool[Math.floor(Math.random() * pool.length)];
+
+    // Catalog recipes
+    const catalogMealKey = MEAL_TYPE_MAP[type];
+    let catalogPool = catalogMealKey ? getCatalogRecipes(phase, type, ctx) : [];
+
+    // 40% internal, 60% catalog when both available
+    if (internalPool.length > 0 && catalogPool.length > 0) {
+      const useInternal = Math.random() < 0.4;
+      const pool = useInternal ? internalPool : catalogPool;
+      const recipe = pool[Math.floor(Math.random() * pool.length)];
+      trackRecipe(recipe.name);
+      return recipe;
+    }
+
+    const combinedPool = [...internalPool, ...catalogPool];
+    if (combinedPool.length === 0) return null;
+    const recipe = combinedPool[Math.floor(Math.random() * combinedPool.length)];
+    trackRecipe(recipe.name);
+    return recipe;
   };
 
   const petitDej = pick('petit_dej');
@@ -1121,11 +1148,14 @@ function generateFullDayMenu(phase, diet, ctx) {
   const gouter = pick('gouter') || pick('snack');
   const diner = pick('diner');
 
+  const recipeTime = (r) => r.time || r.prepTime || '';
+  const recipeWhy = (r) => r.why || r.whyThisPhase || '';
+
   let response = `Voilà ta journée nutrition pour la phase ${phaseName} (J${ctx.currentDay}) :\n\n`;
-  response += `☀️ PETIT-DÉJ :\n${petitDej ? `👩‍🍳 ${petitDej.name}${petitDej.time ? ` (${petitDej.time})` : ''}\n${petitDej.why ? `💡 ${petitDej.why.split('.')[0]}.` : ''}` : 'Porridge + fruits + graines'}\n\n`;
-  response += `🍽️ DÉJEUNER :\n${dejeuner ? `👩‍🍳 ${dejeuner.name}${dejeuner.time ? ` (${dejeuner.time})` : ''}\n${dejeuner.why ? `💡 ${dejeuner.why.split('.')[0]}.` : ''}` : 'Bowl complet protéines + légumes + céréales'}\n\n`;
-  response += `🍵 GOÛTER :\n${gouter ? `✨ ${gouter.name}\n${gouter.why ? `💡 ${gouter.why.split('.')[0]}.` : ''}` : 'Fruits + oléagineux'}\n\n`;
-  response += `🌙 DÎNER :\n${diner ? `👩‍🍳 ${diner.name}${diner.time ? ` (${diner.time})` : ''}\n${diner.why ? `💡 ${diner.why.split('.')[0]}.` : ''}` : 'Protéine légère + légumes + féculents complets'}\n\n`;
+  response += `☀️ PETIT-DÉJ :\n${petitDej ? `👩‍🍳 ${petitDej.name}${recipeTime(petitDej) ? ` (${recipeTime(petitDej)})` : ''}\n${recipeWhy(petitDej) ? `💡 ${recipeWhy(petitDej).split('.')[0]}.` : ''}` : 'Porridge + fruits + graines'}\n\n`;
+  response += `🍽️ DÉJEUNER :\n${dejeuner ? `👩‍🍳 ${dejeuner.name}${recipeTime(dejeuner) ? ` (${recipeTime(dejeuner)})` : ''}\n${recipeWhy(dejeuner) ? `💡 ${recipeWhy(dejeuner).split('.')[0]}.` : ''}` : 'Bowl complet protéines + légumes + céréales'}\n\n`;
+  response += `🍵 GOÛTER :\n${gouter ? `✨ ${gouter.name}\n${recipeWhy(gouter) ? `💡 ${recipeWhy(gouter).split('.')[0]}.` : ''}` : 'Fruits + oléagineux'}\n\n`;
+  response += `🌙 DÎNER :\n${diner ? `👩‍🍳 ${diner.name}${recipeTime(diner) ? ` (${recipeTime(diner)})` : ''}\n${recipeWhy(diner) ? `💡 ${recipeWhy(diner).split('.')[0]}.` : ''}` : 'Protéine légère + légumes + féculents complets'}\n\n`;
   response += `🧬 Tes hormones : ${nutrients.hormones}\n\n📊 Nutriments prioritaires : ${nutrients.priority.join(', ')}\n${nutrients.metabolism}`;
 
   return response;
@@ -1364,6 +1394,140 @@ const HOW_ARE_YOU = [
 // Compteur global pour varier les intros
 let _introCounter = 0;
 
+// ===== SUIVI DES RECETTES PROPOSÉES =====
+const _recentRecipes = [];
+const MAX_RECENT = 10;
+
+function trackRecipe(name) {
+  if (!name) return;
+  _recentRecipes.unshift(name);
+  if (_recentRecipes.length > MAX_RECENT) _recentRecipes.length = MAX_RECENT;
+}
+
+function wasRecentlyProposed(name) {
+  return _recentRecipes.includes(name);
+}
+
+// ===== DÉTECTION AUTOMATIQUE PAR HEURE =====
+function detectMealTypeByTime() {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 10) return 'petit_dej';
+  if (hour >= 11 && hour < 14) return 'dejeuner';
+  if (hour >= 14 && hour < 17) return 'gouter';
+  if (hour >= 17 && hour < 22) return 'diner';
+  return 'snack';
+}
+
+// ===== RECHERCHE PAR INGRÉDIENTS =====
+function findIngredientsList(question) {
+  const match = question.match(/(?:j'?ai|avec|utiliser|dans mon frigo|il me reste)\s+(?:du |des |de la |de l'|le |la |les |un |une )?([\w\sàâéèêëïîôùûüç,']+)/i);
+  if (!match) return null;
+  const raw = match[1].replace(/\s+et\s+/g, ',').replace(/\s*,\s*/g, ',');
+  const ingredients = raw.split(',').map(s => s.trim().toLowerCase()).filter(s => s.length > 2);
+  return ingredients.length > 0 ? ingredients : null;
+}
+
+function searchRecipesByIngredients(ingredients, phase, ctx) {
+  const catalogPhase = CATALOG_RECIPES?.[phase];
+  if (!catalogPhase) return null;
+
+  let allRecipes = [];
+  ['breakfast', 'lunch', 'dinner', 'snack'].forEach(key => {
+    if (catalogPhase[key]) allRecipes.push(...catalogPhase[key]);
+  });
+
+  // Also search internal recipes
+  const phaseRecipes = RECIPES[phase];
+  ['petit_dej', 'dejeuner', 'diner', 'gouter'].forEach(key => {
+    if (phaseRecipes[key]) allRecipes.push(...phaseRecipes[key]);
+  });
+
+  const scored = allRecipes.map(recipe => {
+    const recipeText = [...(recipe.ingredients || [])].join(' ').toLowerCase();
+    const matches = ingredients.filter(ing => recipeText.includes(ing));
+    return { recipe, score: matches.length, matchedIngredients: matches };
+  }).filter(r => r.score > 0).sort((a, b) => b.score - a.score);
+
+  return scored.length > 0 ? scored.slice(0, 3) : null;
+}
+
+// ===== DÉTECTION DE CUISINE =====
+function detectCuisine(q) {
+  if (q.match(/asiat|chinois|japonais|tha[ïi]|wok|sushi|ramen|noodle/i)) return 'asian';
+  if (q.match(/italien|pasta|pizza|risotto|italie|pesto|bolognaise/i)) return 'italian';
+  if (q.match(/mexicain|tacos|burrito|mexique|guacamole|fajita/i)) return 'mexican';
+  if (q.match(/m[eé]diterran|grec|libanais|oriental|houmous|falafel/i)) return 'mediterranean';
+  if (q.match(/indien|masala|tandoori|naan|inde|dal|curry indien/i)) return 'indian';
+  if (q.match(/marocain|maroc|tajine|couscous|harira/i)) return 'moroccan';
+  return null;
+}
+
+// ===== MÉMOIRE CONVERSATIONNELLE =====
+function handleConversationMemory(question, history, phase, ctx) {
+  if (!history || history.length < 2) return null;
+  const q = question.toLowerCase();
+
+  // Detect follow-up intent
+  const isFollowUp = q.match(/^(oui|ouais|yes|ok|d'?accord|go|la premi[eè]re|la deuxi[eè]me|la troisi[eè]me|celle[- ]?l[aà]|donne[- ]?moi|d[eé]tails?|plus d'?infos?|la recette|comment (on fait|faire|pr[eé]parer)|ingr[eé]dients?|[eé]tapes?|montre|explique)/i);
+  if (!isFollowUp) return null;
+
+  // Find the last luna message with recipe suggestions
+  const lastLunaMessages = history.filter(m => m.role === 'luna').slice(-3);
+
+  for (const msg of lastLunaMessages.reverse()) {
+    const content = msg.content;
+
+    // Check if it contains recipe names (lines starting with 👩‍🍳 or ✨ or •)
+    const recipeLines = content.match(/(?:👩‍🍳|✨)\s*(.+)/g);
+    if (recipeLines && recipeLines.length > 0) {
+      // User wants details on a recipe
+      const cleanNames = recipeLines.map(l => l.replace(/(?:👩‍🍳|✨)\s*/, '').replace(/\s*\(.*\)/, '').trim());
+
+      // Determine which recipe they want
+      let targetName = cleanNames[0]; // default: first one
+      if (q.match(/deuxi[eè]me|2[eè]?me|seconde/)) targetName = cleanNames[1] || cleanNames[0];
+      if (q.match(/troisi[eè]me|3[eè]?me|derni[eè]re/)) targetName = cleanNames[cleanNames.length - 1] || cleanNames[0];
+
+      // Search for the full recipe in catalog + internal
+      const phaseName = PHASE_LABELS[phase];
+      const nutrients = PHASE_NUTRIENTS[phase];
+
+      // Search catalog
+      const catalogPhase = CATALOG_RECIPES?.[phase];
+      if (catalogPhase) {
+        for (const mealKey of ['breakfast', 'lunch', 'dinner', 'snack']) {
+          const recipes = catalogPhase[mealKey] || [];
+          const found = recipes.find(r => r.name === targetName || r.name.includes(targetName) || targetName.includes(r.name));
+          if (found) {
+            return formatCatalogRecipe(found, phaseName, nutrients);
+          }
+        }
+      }
+
+      // Search internal
+      const phaseRecipes = RECIPES[phase];
+      for (const mealKey of ['petit_dej', 'dejeuner', 'diner', 'gouter', 'snack']) {
+        const recipes = phaseRecipes[mealKey] || [];
+        const found = recipes.find(r => r.name === targetName || r.name.includes(targetName) || targetName.includes(r.name));
+        if (found && found.instructions) {
+          return `Voilà la recette :\n\n👩‍🍳 ${found.name}\n⏱️ ${found.time}\n\n📝 Ingrédients :\n${found.ingredients.map(i => '• ' + i).join('\n')}\n\n👉 ${found.instructions}\n\n💡 ${found.why}`;
+        }
+      }
+
+      // If we can't find the exact recipe, acknowledge
+      return `Je n'ai pas retrouvé la recette exacte "${targetName}" mais je peux t'en proposer une autre ! Dis-moi quel type de repas tu veux (petit-déj, déjeuner, dîner, goûter) 💛`;
+    }
+
+    // Check if last message had topic-based suggestions (food advice etc.)
+    if (content.includes('Dis-moi') || content.includes('dis-moi') || content.includes('Sur quoi')) {
+      // User is responding to a prompt - let them ask freely
+      return null;
+    }
+  }
+
+  return null;
+}
+
 // Naturalise les réponses : varie l'intro, le ton, la structure
 function naturalizeResponse(text, name) {
   if (!name || name === 'ma belle') return text;
@@ -1395,7 +1559,7 @@ function naturalizeResponse(text, name) {
   }
 }
 
-export function getLunaResponse(question, phase, userContext = {}) {
+export function getLunaResponse(question, phase, userContext = {}, conversationHistory = []) {
   const q = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const qOriginal = question.toLowerCase();
   const responses = RESPONSES[phase] || RESPONSES.follicular;
@@ -1413,6 +1577,8 @@ export function getLunaResponse(question, phase, userContext = {}) {
     goals: userContext.goals || [],
     dietPreferences: userContext.dietPreferences || ['omnivore'],
     healthIssues: userContext.healthIssues || [],
+    lastCheckInEnergy: userContext.energy,
+    lastCheckInSymptoms: userContext.symptoms,
   };
 
   // ===== 0. SALUTATIONS, REMERCIEMENTS, SMALL TALK =====
@@ -1442,15 +1608,43 @@ export function getLunaResponse(question, phase, userContext = {}) {
     ]);
   }
 
+  // ===== 0.5 MÉMOIRE CONVERSATIONNELLE =====
+  const memoryResponse = handleConversationMemory(question, conversationHistory, phase, ctx);
+  if (memoryResponse) return naturalizeResponse(memoryResponse, name);
+
   // ===== 1. BOISSONS (priorité haute — avant recettes) =====
   if (qOriginal.match(/boisson|quoi boire|que boire|boire.*aujourd|tisane|infusion/i) && !qOriginal.match(/manger|repas|recette|cuisiner/i)) {
     const raw = responses['boisson'] ? responses['boisson'](ctx) : responses['default'](ctx);
     return naturalizeResponse(raw, name);
   }
 
+  // ===== 1.5 RECHERCHE PAR INGRÉDIENTS =====
+  const ingredientPattern = qOriginal.match(/(?:j'?ai|avec|il me reste|utiliser)\s+/i);
+  if (ingredientPattern && !qOriginal.match(/mal|douleur|problème|pas d'énergie/i)) {
+    const ingredients = findIngredientsList(qOriginal);
+    if (ingredients && ingredients.length > 0) {
+      const results = searchRecipesByIngredients(ingredients, phase, ctx);
+      if (results && results.length > 0) {
+        const phaseName = PHASE_LABELS[phase];
+        let response = `Avec ${ingredients.join(', ')}, voilà ce que je te propose pour ta phase ${phaseName} :\n\n`;
+        results.forEach((r, i) => {
+          const recipe = r.recipe;
+          const time = recipe.time || recipe.prepTime || '';
+          response += `${i + 1}. 👩‍🍳 ${recipe.name}${time ? ` (${time})` : ''}\n`;
+          response += `   ✅ Match : ${r.matchedIngredients.join(', ')}\n`;
+          if (recipe.why || recipe.whyThisPhase) response += `   💡 ${(recipe.why || recipe.whyThisPhase).split('.')[0]}.\n`;
+          response += '\n';
+        });
+        response += `Dis-moi laquelle te tente et je te donne la recette complète 💛`;
+        return naturalizeResponse(response, name);
+      }
+    }
+  }
+
   // ===== 2. NUTRITION & RECETTES =====
-  const mealType = detectMealType(qOriginal);
+  const mealType = detectMealType(qOriginal) || (qOriginal.match(/recette|manger|cuisiner|quoi.*manger|qu'?est.?ce (que |qu'?)?je mange/i) && !qOriginal.match(/soir|midi|matin|goûter|snack|petit/i) ? detectMealTypeByTime() : null);
   const diet = detectDietPreference(qOriginal);
+  const cuisine = detectCuisine(qOriginal);
 
   const profileDiet = (() => {
     const prefs = userContext.dietPreferences || [];
@@ -1476,6 +1670,23 @@ export function getLunaResponse(question, phase, userContext = {}) {
 
   // Recette ou question "qu'est-ce que je mange ce soir ?"
   if (isRecipeRequest || isMealQuestion || (mealType && !findFood(qOriginal))) {
+    // Cuisine filter
+    if (cuisine) {
+      const catalogPool = getCatalogRecipes(phase, mealType, ctx);
+      const cuisineFiltered = catalogPool.filter(r => {
+        const tags = (r.tags || []).join(' ').toLowerCase();
+        const recipeCuisine = (r.cuisine || '').toLowerCase();
+        return recipeCuisine.includes(cuisine) || tags.includes(cuisine);
+      });
+      if (cuisineFiltered.length > 0) {
+        const recipe = cuisineFiltered[Math.floor(Math.random() * cuisineFiltered.length)];
+        trackRecipe(recipe.name);
+        const phaseName = PHASE_LABELS[phase];
+        const nutrients = PHASE_NUTRIENTS[phase];
+        const raw = formatCatalogRecipe(recipe, phaseName, nutrients);
+        return naturalizeResponse(raw + dietIntro, name);
+      }
+    }
     const raw = generateRecipeResponse(phase, mealType, effectiveDiet, ctx);
     if (raw) return naturalizeResponse(raw + dietIntro, name);
   }
@@ -1610,6 +1821,17 @@ export function getLunaResponse(question, phase, userContext = {}) {
   }
 
   // ===== 6. Réponse par défaut — conversationnelle et utile =====
+  // Add check-in context if available
+  let checkInPrefix = '';
+  if (ctx.lastCheckInEnergy && ctx.lastCheckInEnergy < 40) {
+    checkInPrefix = `Je vois que ton énergie est à ${ctx.lastCheckInEnergy} aujourd'hui — prends soin de toi. `;
+  } else if (ctx.lastCheckInEnergy && ctx.lastCheckInEnergy > 75) {
+    checkInPrefix = `Ton énergie est à ${ctx.lastCheckInEnergy} aujourd'hui, super ! `;
+  }
+  if (ctx.lastCheckInSymptoms && ctx.lastCheckInSymptoms.length > 0) {
+    const symptomList = ctx.lastCheckInSymptoms.slice(0, 3).join(', ');
+    checkInPrefix += `Tu as noté ${symptomList} dans ton check-in. `;
+  }
   const raw = responses['default'](ctx);
-  return naturalizeResponse(raw, name);
+  return naturalizeResponse(checkInPrefix + raw, name);
 }

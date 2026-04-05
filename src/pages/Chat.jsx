@@ -104,7 +104,8 @@ export default function Chat() {
     // Simule un délai de "réflexion"
     setTyping(true);
     setTimeout(() => {
-      const response = getLunaResponse(content, phase, userContext);
+      const currentMessages = [...messages, userMsg];
+      const response = getLunaResponse(content, phase, userContext, currentMessages);
       const lunaMsg = { role: 'luna', content: response, date: new Date().toISOString() };
       dispatch({ type: 'ADD_CONVERSATION_MESSAGE', payload: { conversationId: activeConversationId, message: lunaMsg } });
       setTyping(false);

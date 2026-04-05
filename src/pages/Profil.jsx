@@ -1,6 +1,7 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, Settings, Share2, TrendingUp } from 'lucide-react';
+import { Calendar, Camera, Settings, Share2, TrendingUp } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import BackButton from '../components/ui/BackButton';
 
@@ -14,7 +15,36 @@ const item = {
 };
 
 export default function Profil() {
-  const { name, cycleLength, periodLength, cycleInfo, checkIns, goals } = useCycle();
+  const { name, cycleLength, periodLength, cycleInfo, checkIns, goals, dispatch, profileImage } = useCycle();
+  const fileInputRef = useRef(null);
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const maxSize = 200;
+        let width = img.width;
+        let height = img.height;
+        if (width > height) {
+          if (width > maxSize) { height = Math.round(height * maxSize / width); width = maxSize; }
+        } else {
+          if (height > maxSize) { width = Math.round(width * maxSize / height); height = maxSize; }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+        dispatch({ type: 'SET_PROFILE', payload: { profileImage: dataUrl } });
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
   const totalCheckIns = checkIns?.length || 0;
 
@@ -46,12 +76,38 @@ export default function Profil() {
       {/* Avatar & name */}
       <motion.div variants={item} className="text-center py-4">
         <div
-          className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-3"
-          style={{
-            background: 'linear-gradient(135deg, #F5D0D5, #F2C0A8)',
-          }}
+          className="relative w-20 h-20 mx-auto mb-3 cursor-pointer"
+          onClick={() => fileInputRef.current?.click()}
         >
-          <span className="text-2xl font-display text-white">{name?.[0]?.toUpperCase()}</span>
+          {profileImage ? (
+            <img
+              src={profileImage}
+              alt="Avatar"
+              className="w-20 h-20 rounded-full object-cover"
+            />
+          ) : (
+            <div
+              className="w-20 h-20 rounded-full flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #F5D0D5, #F2C0A8)',
+              }}
+            >
+              <span className="text-2xl font-display text-white">{name?.[0]?.toUpperCase()}</span>
+            </div>
+          )}
+          <div
+            className="absolute bottom-0 right-0 w-7 h-7 rounded-full flex items-center justify-center border-2 border-white"
+            style={{ background: 'linear-gradient(135deg, #C4727F, #D4846A)' }}
+          >
+            <Camera size={13} className="text-white" />
+          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={handleImageUpload}
+          />
         </div>
         <h2 className="font-display text-xl text-luna-text">{name}</h2>
         {cycleInfo && (

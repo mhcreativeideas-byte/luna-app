@@ -33,6 +33,7 @@ const initialState = {
   language: 'fr',
   smartTracking: false,
   calendarStartDay: 'monday',
+  profileImage: null,
   partnerCode: null,
 };
 
