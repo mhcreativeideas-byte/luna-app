@@ -5,7 +5,6 @@ import { ChevronLeft, Clock, X, Sparkles, Filter } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
-import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -71,14 +70,6 @@ export default function Recettes() {
     return tags;
   })();
 
-  const selectRecipe = (variants) => {
-    if (!Array.isArray(variants)) return variants;
-    if (variants.length === 1) return variants[0];
-    if (!requiredTags.length) return variants[variants.length - 1];
-    const match = variants.find(r => requiredTags.every(tag => (r.tags || []).includes(tag)));
-    return match || variants[variants.length - 1];
-  };
-
   // Temps max en minutes selon le profil onboarding
   const maxTime = (() => {
     if (!cookingTime) return null; // pas de limite
@@ -118,7 +109,7 @@ export default function Recettes() {
     'Sésame': ['sésame', 'tahini', 'tahin', 'gomasio'],
     'Céleri': ['céleri', 'celeri'],
     'Moutarde': ['moutarde'],
-    'Sulfites': ['vin', 'vinaigre balsamique', 'sulfite'],
+    'Sulfites': ['vin blanc', 'vin rouge', 'vin rosé', 'vinaigre balsamique', 'sulfite'],
   };
 
   // Vérifier si une recette contient un allergène
@@ -168,6 +159,9 @@ export default function Recettes() {
     if (prefs.includes('Sans gluten')) labels.push('Sans gluten');
     if (prefs.includes('Sans lactose')) labels.push('Sans lactose');
     if ((healthIssues || []).includes('SOPK')) labels.push('SOPK');
+    if ((healthIssues || []).includes('Anti-inflammatoire')) labels.push('Anti-inflammatoire');
+    if ((healthIssues || []).includes('Endométriose')) labels.push('Endométriose');
+    if ((healthIssues || []).includes('SPM sévère')) labels.push('SPM sévère');
     return labels.join(' · ');
   })();
 

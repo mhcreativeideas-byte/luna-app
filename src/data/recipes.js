@@ -6994,7 +6994,7 @@ export const RECIPES = {
         calories: 154,
         nutrients: ["Zinc", "Fer", "Protéines", "Fibres"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
-        emoji: '🍽emoji: ',
+        emoji: '🫘',
         ingredients: [
           '200g Pois chiches',
           '1 c. à café Paprika fumé',
@@ -7061,7 +7061,7 @@ export const RECIPES = {
         calories: 267,
         nutrients: ["Fer", "Calcium", "Oméga-3", "Protéines"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
-        emoji: '🍽️emoji: ',
+        emoji: '🫐',
         ingredients: [
           '6 Dattes Medjool',
           '30g Chèvre frais',
