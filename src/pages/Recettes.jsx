@@ -48,6 +48,7 @@ export default function Recettes() {
   const [openRecipe, setOpenRecipe] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
+  const [selectedCuisines, setSelectedCuisines] = useState([]);
 
   const currentPhase = cycleInfo?.phase || 'follicular';
   const activePhase = selectedPhase === 'current' ? currentPhase : selectedPhase;
@@ -146,6 +147,8 @@ export default function Recettes() {
         const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
         const maxLevel = LEVEL_ORDER[selectedLevel] || 3;
         if (recipeLevel > maxLevel) return;
+        // Filtrer par style de cuisine (multi-sélection, vide = tout)
+        if (selectedCuisines.length > 0 && !selectedCuisines.includes(recipe.cuisine)) return;
         allRecipes.push({ ...recipe, mealType });
       });
     });
@@ -185,6 +188,7 @@ export default function Recettes() {
             {dietLabel && <span className="ml-1.5 text-luna-text-muted">· 🌱 {dietLabel}</span>}
             {maxTime && <span className="ml-1.5 text-luna-text-muted">· 🕐 ≤ {maxTime} min</span>}
             {allergies?.length > 0 && <span className="ml-1.5 text-luna-text-muted">· 🚫 {allergies.length} allergène{allergies.length > 1 ? 's' : ''}</span>}
+            {selectedCuisines.length > 0 && <span className="ml-1.5 text-luna-text-muted">· 🍽️ {selectedCuisines.length} cuisine{selectedCuisines.length > 1 ? 's' : ''}</span>}
           </p>
         </div>
         <button
@@ -253,6 +257,45 @@ export default function Recettes() {
                   {lvl.label}
                 </button>
               ))}
+            </div>
+
+            {/* Style de cuisine */}
+            <div className="pt-1">
+              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Envie du moment</p>
+              <div className="flex gap-2 flex-wrap">
+                {[
+                  { id: 'francais', label: 'Français', icon: '🇫🇷' },
+                  { id: 'italien', label: 'Italien', icon: '🇮🇹' },
+                  { id: 'asiatique', label: 'Asiatique', icon: '🥢' },
+                  { id: 'mediterraneen', label: 'Méditerranéen', icon: '🫒' },
+                  { id: 'indien', label: 'Indien', icon: '🍛' },
+                  { id: 'mexicain', label: 'Mexicain', icon: '🌮' },
+                  { id: 'fusion', label: 'Healthy / Fusion', icon: '🥗' },
+                ].map((c) => {
+                  const isActive = selectedCuisines.includes(c.id);
+                  return (
+                    <button
+                      key={c.id}
+                      onClick={() => setSelectedCuisines((prev) =>
+                        prev.includes(c.id) ? prev.filter((x) => x !== c.id) : [...prev, c.id]
+                      )}
+                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
+                      style={isActive ? {
+                        borderColor: phaseData.color,
+                        backgroundColor: phaseData.bgColor,
+                        color: phaseData.colorDark,
+                      } : {
+                        borderColor: '#F0EEEC',
+                        backgroundColor: 'white',
+                        color: '#8A7B7F',
+                      }}
+                    >
+                      <span>{c.icon}</span>
+                      {c.label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </motion.div>
         )}
