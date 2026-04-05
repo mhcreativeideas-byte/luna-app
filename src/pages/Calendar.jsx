@@ -87,15 +87,33 @@ export default function Calendar() {
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <BackButton />
-      {/* Phase tag + Title */}
+      {/* Hero */}
       <motion.div variants={item}>
-        <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-widest mb-3">
-          {phaseData.shortName} · Cycle
-        </p>
-        <h1 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
-          Ton cycle,{' '}
-          <em style={{ color: phaseData.colorDark }}>jour après jour</em>
-        </h1>
+        <div
+          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          style={{
+            background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+          }}
+        >
+          <div
+            className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
+            style={{ backgroundColor: phaseData.color }}
+          />
+          <div
+            className="absolute bottom-4 -left-6 w-20 h-20 rounded-full opacity-10"
+            style={{ backgroundColor: phaseData.color }}
+          />
+
+          <div className="relative">
+            <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3" style={{ color: phaseData.color }}>
+              {phaseData.shortName} · Cycle
+            </p>
+            <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight">
+              Ton cycle,{' '}
+              <em style={{ color: phaseData.colorDark }}>jour après jour</em>
+            </h1>
+          </div>
+        </div>
       </motion.div>
 
       {/* Cycle overview card */}

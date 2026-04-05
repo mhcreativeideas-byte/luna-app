@@ -185,33 +185,34 @@ export default function Sommeil() {
       {/* Hero */}
       <motion.div variants={item}>
         <div
-          className="rounded-[28px] p-6 pb-8 relative overflow-hidden"
+          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
           style={{
             background: phase === 'menstrual'
-              ? 'linear-gradient(160deg, #1a1520 0%, #2d1f2e 50%, #3a2535 100%)'
+              ? 'linear-gradient(145deg, #1a1520 0%, #2d1f2e 50%, #3a2535 100%)'
               : phase === 'luteal'
-              ? 'linear-gradient(160deg, #2a1f35 0%, #3d2d4a 50%, #4a3560 100%)'
-              : 'linear-gradient(160deg, #1a2030 0%, #2a3040 50%, #354050 100%)',
+              ? 'linear-gradient(145deg, #2a1f35 0%, #3d2d4a 50%, #4a3560 100%)'
+              : 'linear-gradient(145deg, #1a2030 0%, #2a3040 50%, #354050 100%)',
           }}
         >
-          <div className="flex justify-center mb-4">
-            <MoonIcon size={32} className="text-white/60" />
-          </div>
-          <div className="text-center relative z-10">
-            <p className="text-[10px] font-body text-white/50 uppercase tracking-widest mb-2">
+          <div
+            className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-10 bg-white"
+          />
+          <div
+            className="absolute bottom-4 -left-6 w-20 h-20 rounded-full opacity-5 bg-white"
+          />
+
+          <div className="relative">
+            <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3 text-white/50">
               {phaseData.shortName} · Sommeil
             </p>
-            <h1 className="font-display text-[28px] font-bold leading-tight" style={{ color: '#EDE0F5', textShadow: '0 1px 8px rgba(0,0,0,0.3)' }}>
+            <h1 className="font-display text-[30px] md:text-4xl leading-tight mb-3" style={{ color: '#EDE0F5' }}>
               {titles.main}{' '}
               <em style={{ color: '#D4B8E8' }}>{titles.italic}</em>
             </h1>
-            <p className="text-sm font-body text-white/60 mt-3 leading-relaxed max-w-xs mx-auto">
+            <p className="text-sm font-body text-white/60 leading-relaxed">
               {phaseData.sleepQuality}
             </p>
           </div>
-          {/* Decorative elements */}
-          <div className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-white/5" />
-          <div className="absolute -bottom-6 -left-6 w-28 h-28 rounded-full bg-white/3" />
         </div>
       </motion.div>
 

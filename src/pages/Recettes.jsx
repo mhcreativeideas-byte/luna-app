@@ -196,25 +196,47 @@ export default function Recettes() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
-      {/* Header */}
-      <motion.div variants={item} className="flex items-center gap-3">
-        <div className="flex-1">
-          <h1 className="font-display text-2xl text-luna-text">Recettes & Boissons</h1>
-          <p className="text-xs font-body text-luna-text-hint mt-0.5">
-            {phaseData.shortName} · {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''}
-            {dietLabel && <span className="ml-1.5 text-luna-text-muted">· 🌱 {dietLabel}</span>}
-            {maxTime && <span className="ml-1.5 text-luna-text-muted">· 🕐 ≤ {maxTime} min</span>}
-            {allergies?.length > 0 && <span className="ml-1.5 text-luna-text-muted">· 🚫 {allergies.length} allergène{allergies.length > 1 ? 's' : ''}</span>}
-            {selectedCuisines.length > 0 && <span className="ml-1.5 text-luna-text-muted">· 🍽️ {selectedCuisines.length} cuisine{selectedCuisines.length > 1 ? 's' : ''}</span>}
-          </p>
-        </div>
-        <button
-          onClick={() => setShowFilters(!showFilters)}
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
+      {/* Hero */}
+      <motion.div variants={item}>
+        <div
+          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          style={{
+            background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+          }}
         >
-          <Filter size={18} />
-        </button>
+          <div
+            className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
+            style={{ backgroundColor: phaseData.color }}
+          />
+          <div
+            className="absolute bottom-4 -left-6 w-20 h-20 rounded-full opacity-10"
+            style={{ backgroundColor: phaseData.color }}
+          />
+
+          <div className="relative">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em]" style={{ color: phaseData.color }}>
+                {phaseData.shortName} · Recettes
+              </p>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="w-9 h-9 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+                style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
+              >
+                <Filter size={16} />
+              </button>
+            </div>
+            <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight mb-3">
+              Recettes &{' '}
+              <em style={{ color: phaseData.colorDark }}>Boissons</em>
+            </h1>
+            <p className="text-sm font-body text-luna-text-body leading-relaxed">
+              {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''} adaptées à ta phase
+              {dietLabel && <span> · 🌱 {dietLabel}</span>}
+              {maxTime && <span> · 🕐 ≤ {maxTime} min</span>}
+            </p>
+          </div>
+        </div>
       </motion.div>
 
       {/* CTA Mon Frigo */}
