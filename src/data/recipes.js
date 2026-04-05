@@ -3,7 +3,7 @@ export const RECIPES = {
     breakfast: [
       {
         name: 'Porridge aux fruits rouges',
-        description: 'Porridge réconfortant aux fruits rouges, graines de lin et chocolat noir',
+        description: 'Porridge réconfortant aux fruits rouges, graines de lin et chocolat noir.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -27,7 +27,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl fer & énergie',
-        description: 'Smoothie bowl violet aux myrtilles, épinards, spiruline et beurre de cacahuète',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les myrtilles regorgent d\'antioxydants protecteurs. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -52,7 +52,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine avocat-épinards-œuf poché',
-        description: 'Tartine croustillante garnie d\'avocat, épinards sautés et œuf poché crémeux',
+        description: 'Les épinards sont riches en fer et en folate essentiels. L\'avocat apporte des graisses saines qui soutiennent les hormones. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -78,7 +78,7 @@ export const RECIPES = {
       },
       {
         name: 'Overnight oats chocolat-banane',
-        description: 'Flocons d\'avoine au cacao et banane préparés la veille, riches en magnésium',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -103,7 +103,7 @@ export const RECIPES = {
       },
       {
         name: 'Crêpes sarrasin aux fruits rouges',
-        description: 'Crêpes légères au sarrasin sans gluten, garnies de fruits rouges et compote',
+        description: 'Le sarrasin est sans gluten et riche en magnésium. Les œufs fournissent protéines complètes et vitamine B12. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -129,7 +129,7 @@ export const RECIPES = {
       },
       {
         name: 'Granola bowl yaourt-grenade',
-        description: 'Bol de yaourt nature avec granola maison, grenade et graines de courge',
+        description: 'Bol de yaourt nature avec granola maison, grenade et graines de courge.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -153,7 +153,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge anti-inflammatoire aux fruits rouges',
-        description: 'L\'avoine apporte du magnésium anti-crampes, les fruits rouges sont bourrés d\'ant',
+        description: 'Recette anti-inflammatoire, anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -179,7 +179,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl cacao-banane-épinards',
-        description: 'Le cacao est riche en magnésium anti-crampes, la banane apporte du tryptophane p',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La banane apporte du tryptophane, précurseur de la sérotonine. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -205,7 +205,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartines avocat-œuf poché-graines de sésame',
-        description: 'L\'œuf apporte protéines complètes et vitamine B12, l\'avocat des graisses anti-in',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -231,7 +231,7 @@ export const RECIPES = {
       },
       {
         name: 'Overnight oats chocolat noir et banane',
-        description: 'Préparé la veille, zéro effort le matin. Le chocolat noir 70% booste la sérotoni',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -257,7 +257,7 @@ export const RECIPES = {
       },
       {
         name: 'Pancakes patate douce et cannelle',
-        description: 'La patate douce est riche en bêta-carotène et vitamine A qui soutiennent l\'équil',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. La cannelle aide à réguler la glycémie. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -283,7 +283,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de quinoa chaud aux amandes et miel',
-        description: 'Le quinoa contient tous les acides aminés essentiels, plus du fer et magnésium. ',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Les amandes apportent magnésium et vitamine E. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -308,7 +308,7 @@ export const RECIPES = {
       },
       {
         name: 'Crêpes sarrasin et compote pomme-gingembre',
-        description: 'Le sarrasin est sans gluten et riche en magnésium. Le gingembre est un puissant ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le sarrasin est sans gluten et riche en magnésium. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -334,7 +334,7 @@ export const RECIPES = {
       },
       {
         name: 'Yaourt grec figues, noix et miel',
-        description: 'Le yaourt grec apporte protéines et probiotiques pour la digestion souvent pertu',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -359,7 +359,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie betterave-framboise-gingembre',
-        description: 'La betterave est une bombe de fer et d\'acide folique, les framboises bourrent d\'',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. La betterave soutient la circulation et l\'oxygénation. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -383,7 +383,7 @@ export const RECIPES = {
       },
       {
         name: 'Toast beurre d\'amande, banane et cacao',
-        description: 'Le beurre d\'amande fournit magnésium et vitamine E. La banane apporte du potassi',
+        description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -408,7 +408,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge millet au lait de coco et mangue',
-        description: 'Le millet est riche en magnésium et fer, sans gluten. Le lait de coco apporte de',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -433,7 +433,7 @@ export const RECIPES = {
       },
       {
         name: 'Riz au lait végétal, cardamome et pistaches',
-        description: 'Réconfortant, le riz est doux pour le système digestif sensible pendant les règl',
+        description: 'Le miel apporte une énergie naturelle rapide. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -457,7 +457,7 @@ export const RECIPES = {
       },
       {
         name: 'Granola bowl au yaourt et grenade',
-        description: 'Le yaourt apporte des probiotiques pour le transit perturbé pendant les règles. ',
+        description: 'La grenade regorge d\'antioxydants et de vitamine C. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -482,7 +482,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge au beurre de cajou et myrtilles',
-        description: 'Les noix de cajou sont riches en magnésium et zinc. Les myrtilles apportent des ',
+        description: 'Les myrtilles regorgent d\'antioxydants protecteurs. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -508,7 +508,7 @@ export const RECIPES = {
       },
       {
         name: 'Œufs au plat sur lit d\'épinards et champignons',
-        description: 'Les œufs apportent fer, vitamine B12 et protéines complètes. Les épinards double',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Les œufs fournissent protéines complètes et vitamine B12. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -534,7 +534,7 @@ export const RECIPES = {
       },
       {
         name: 'Chia pudding framboise-coco',
-        description: 'Les graines de chia sont riches en oméga-3 anti-inflammatoires et en fer. Prépar',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -558,7 +558,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de houmous, avocat et graines de tournesol',
-        description: 'Le houmous apporte du fer végétal et des protéines. L\'avocat des graisses anti-i',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '7 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -584,7 +584,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie anti-inflammatoire ananas-curcuma',
-        description: 'L\'ananas contient de la bromélaïne, une enzyme anti-inflammatoire naturelle. Le ',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -609,7 +609,7 @@ export const RECIPES = {
       },
       {
         name: 'Galette de flocons d\'avoine aux pommes',
-        description: 'Les flocons d\'avoine stabilisent la glycémie et apportent du magnésium. La pomme',
+        description: 'Recette anti-SPM, pour bien démarrer la journée. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -635,7 +635,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de fromage blanc aux abricots secs et pistaches',
-        description: 'Les abricots secs sont l\'un des fruits les plus riches en fer. Les pistaches app',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -660,7 +660,7 @@ export const RECIPES = {
       },
       {
         name: 'Pain perdu à la cannelle et fruits rouges',
-        description: 'Le pain perdu est le petit-déjeuner réconfort par excellence. La cannelle régule',
+        description: 'La cannelle aide à réguler la glycémie. Les œufs fournissent protéines complètes et vitamine B12. Idéal pendant les règles pour bien démarrer la journée.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -687,7 +687,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl açaí-banane-graines de chanvre',
-        description: 'L\'açaí est l\'un des fruits les plus antioxydants au monde. Les graines de chanvr',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -713,7 +713,7 @@ export const RECIPES = {
       },
       {
         name: 'Bouillie de flocons de riz au lait d\'amande et poire',
-        description: 'Les flocons de riz sont doux pour le système digestif sensible pendant les règle',
+        description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -739,7 +739,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap petit-déjeuner aux haricots noirs et avocat',
-        description: 'Les haricots noirs sont parmi les légumineuses les plus riches en fer et en acid',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'mexicain',
@@ -767,7 +767,7 @@ export const RECIPES = {
     
       {
         name: 'Porridge golden au curcuma et cerises noires',
-        description: 'Les cerises noires contiennent des anthocyanines, parmi les anti-inflammatoires naturels les plus pu',
+        description: 'Les cerises noires contiennent des anthocyanines, parmi les anti-inflammatoires naturels les plus pu.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -794,7 +794,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine d\'avocat au saumon fumé et graines de chanvre',
-        description: 'Triple source d\'oméga-3 : saumon fumé (EPA/DHA), avocat (ALA), graines de chanvre (GLA). Le GLA est ',
+        description: 'Triple source d\'oméga-3 : saumon fumé (EPA/DHA), avocat (ALA), graines de chanvre (GLA). Le GLA est.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -820,7 +820,7 @@ export const RECIPES = {
       },
       {
         name: 'Chia pudding anti-inflammatoire cacao-cerise',
-        description: 'Les graines de chia sont la source végétale la plus concentrée en oméga-3 ALA. Le cacao cru contient',
+        description: 'Les graines de chia sont la source végétale la plus concentrée en oméga-3 ALA. Le cacao cru contient.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -845,7 +845,7 @@ export const RECIPES = {
       },
       {
         name: 'Omelette aux champignons shiitake et curcuma',
-        description: 'Les shiitake contiennent du lentinane, un bêta-glucane immunomodulateur et anti-inflammatoire. Le cu',
+        description: 'Les shiitake contiennent du lentinane, un bêta-glucane immunomodulateur et anti-inflammatoire. Le cu.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -874,7 +874,7 @@ export const RECIPES = {
     lunch: [
       {
         name: 'Bowl lentilles-épinards-tofu',
-        description: 'Bowl riche en fer avec lentilles, épinards, tofu mariné et avocat',
+        description: 'Bowl riche en fer avec lentilles, épinards, tofu mariné et avocat.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -901,7 +901,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl lentilles-épinards-saumon',
-        description: 'Bowl riche en fer avec lentilles, épinards, saumon et avocat, sauce curcuma',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Le saumon est riche en oméga-3 anti-inflammatoires. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -928,7 +928,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de lentilles corail au curcuma',
-        description: 'Soupe veloutée de lentilles corail, curcuma, tomate et lait de coco',
+        description: 'Soupe veloutée de lentilles corail, curcuma, tomate et lait de coco.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -955,7 +955,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade tiède quinoa-betterave-chèvre',
-        description: 'Salade tiède de quinoa, betterave rôtie, chèvre frais et noix avec vinaigrette au citron',
+        description: 'Salade tiède de quinoa, betterave rôtie, chèvre frais et noix avec vinaigrette au citron.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -982,7 +982,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap épinards-houmous-falafels',
-        description: 'Wrap complet garni de houmous, falafels maison, épinards et crudités',
+        description: 'Wrap complet garni de houmous, falafels maison, épinards et crudités.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -1009,7 +1009,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de pois chiches aux épinards',
-        description: 'Curry onctueux de pois chiches et épinards au lait de coco, servi avec du riz basmati',
+        description: 'Curry onctueux de pois chiches et épinards au lait de coco, servi avec du riz basmati.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -1036,7 +1036,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl lentilles corail, patate douce et sauce curcuma',
-        description: 'Les lentilles corail sont une excellente source de fer végétal. Le curcuma est l',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les épinards sont riches en fer et en folate essentiels. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1063,7 +1063,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de légumes racines au gingembre',
-        description: 'Les légumes racines réchauffent et réconfortent. Le gingembre réduit les nausées',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. La patate douce est riche en bêta-carotène et vitamines.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -1090,7 +1090,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon grillé, purée de patate douce et épinards',
-        description: 'Le saumon est la meilleure source d\'oméga-3 anti-inflammatoires et de vitamine D',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Le saumon est riche en oméga-3 anti-inflammatoires. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1116,7 +1116,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry doux de pois chiches aux épinards',
-        description: 'Les pois chiches sont riches en fer, protéines et fibres. Le curry contient du c',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Les pois chiches apportent protéines végétales et fibres.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -1144,7 +1144,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade tiède de quinoa, betterave et chèvre',
-        description: 'Le quinoa et la betterave sont tous deux riches en fer. Le chèvre apporte du cal',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1170,7 +1170,7 @@ export const RECIPES = {
       },
       {
         name: 'Dahl de lentilles au curcuma et coriandre',
-        description: 'Le dahl est l\'un des plats les plus riches en fer végétal. Le curcuma et le ging',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -1198,7 +1198,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap aux haricots rouges, avocat et roquette',
-        description: 'Les haricots rouges sont parmi les légumineuses les plus riches en fer. L\'avocat',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1225,7 +1225,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin d\'épinards et saumon à la béchamel légère',
-        description: 'Le combo saumon-épinards est le duo parfait en phase menstruelle : oméga-3 anti-',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Le saumon est riche en oméga-3 anti-inflammatoires. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -1251,7 +1251,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz complet, edamame et avocat',
-        description: 'Les edamame sont très riches en fer végétal et en protéines. Le riz complet stab',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -1277,7 +1277,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe miso aux champignons et tofu soyeux',
-        description: 'La soupe miso est réconfortante et facile à digérer. Le miso apporte des probiot',
+        description: 'Le miso est un fermenté riche en probiotiques. Le tofu apporte des protéines végétales complètes. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -1303,7 +1303,7 @@ export const RECIPES = {
       },
       {
         name: 'Taboulé de boulgour aux herbes et grenade',
-        description: 'Le boulgour est riche en fer et en fibres. La grenade apporte des antioxydants p',
+        description: 'La grenade regorge d\'antioxydants et de vitamine C. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -1330,7 +1330,7 @@ export const RECIPES = {
       },
       {
         name: 'Risotto aux champignons et épinards',
-        description: 'Les champignons sont l\'une des rares sources végétales de vitamine D, essentiell',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -1357,7 +1357,7 @@ export const RECIPES = {
       },
       {
         name: 'Buddha bowl betterave, houmous et quinoa',
-        description: 'Un concentré de fer végétal : betterave + quinoa + houmous (pois chiches). Color',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. La betterave soutient la circulation et l\'oxygénation. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -1384,7 +1384,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de pois cassés au curcuma et citron',
-        description: 'Les pois cassés sont très riches en fer végétal et en protéines. Le curcuma est ',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -1412,7 +1412,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz noir, saumon et avocat',
-        description: 'Le riz noir (riz vénéré) contient plus d\'antioxydants que les myrtilles. Le saum',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1439,7 +1439,7 @@ export const RECIPES = {
       },
       {
         name: 'Chili sin carne aux haricots rouges',
-        description: 'Les haricots rouges sont une bombe de fer végétal. La tomate ajoute de la vitami',
+        description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1467,7 +1467,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de poulet rôti, betterave et noix',
-        description: 'Le poulet apporte des protéines maigres et de la vitamine B6 régulatrice d\'humeu',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. La betterave soutient la circulation et l\'oxygénation.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1493,7 +1493,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe thaï potimarron et lentilles corail',
-        description: 'Le potimarron est riche en bêta-carotène et vitamine A. Les lentilles corail app',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les lentilles apportent fer, protéines et fibres rassasiantes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -1520,7 +1520,7 @@ export const RECIPES = {
       },
       {
         name: 'Poêlée de gnocchis aux épinards et tomates séchées',
-        description: 'Les gnocchis sont réconfortants et fournissent de l\'énergie. Les épinards ajoute',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '17 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -1547,7 +1547,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de sarrasin, feta et légumes rôtis',
-        description: 'Le sarrasin est riche en magnésium et en rutine (renforce les vaisseaux sanguins',
+        description: 'Le sarrasin est sans gluten et riche en magnésium. La feta apporte calcium et protéines. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1575,7 +1575,7 @@ export const RECIPES = {
       },
       {
         name: 'Potage de cresson et pomme de terre',
-        description: 'Le cresson est l\'un des légumes les plus riches en fer et en vitamine C. La pomm',
+        description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1602,7 +1602,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de falafel aux betteraves et sauce tahini',
-        description: 'Les falafels (pois chiches) apportent fer et protéines. La betterave double l\'ap',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Les pois chiches apportent protéines végétales et fibres. Idéal pendant les règles pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -1630,7 +1630,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de patate douce et lentilles au cumin',
-        description: 'Double source de fer : lentilles + patate douce. Le cumin aide la digestion et a',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. La patate douce est riche en bêta-carotène et vitamines.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -1658,7 +1658,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe marocaine harira simplifiée',
-        description: 'La harira est l\'une des soupes les plus riches en fer au monde : pois chiches + ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les lentilles apportent fer, protéines et fibres rassasiantes.',
         prepTime: '40 min',
         difficulty: 'avance',
         cuisine: 'fusion',
@@ -1687,7 +1687,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz japonais au saumon et algues',
-        description: 'Un donburi réconfortant. Le saumon apporte oméga-3 et vitamine D. Les algues nor',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1715,7 +1715,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade tiède de pois chiches rôtis et épinards',
-        description: 'Les pois chiches rôtis sont croquants et riches en fer. Les épinards doublent l\'',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Les pois chiches apportent protéines végétales et fibres.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -1744,7 +1744,7 @@ export const RECIPES = {
     
       {
         name: 'Soupe de miso au gingembre et algues wakame',
-        description: 'Le miso est fermenté et riche en enzymes anti-inflammatoires. Le gingembre inhibe les prostaglandine',
+        description: 'Le miso est fermenté et riche en enzymes anti-inflammatoires. Le gingembre inhibe les prostaglandine.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -1771,7 +1771,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de patate douce, épinards et pois chiches au curcuma',
-        description: 'Un concentré anti-inflammatoire : curcuma + gingembre + ail forment le trio d\'or. La patate douce ap',
+        description: 'Un concentré anti-inflammatoire : curcuma + gingembre + ail forment le trio d\'or. La patate douce ap.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -1800,7 +1800,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz au curcuma, avocat et œuf mollet',
-        description: 'Le riz au curcuma colore et apporte de la curcumine. L\'avocat fournit des oméga-9 anti-inflammatoire',
+        description: 'Le riz au curcuma colore et apporte de la curcumine. L\'avocat fournit des oméga-9 anti-inflammatoire.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1827,7 +1827,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de lentilles tièdes au curcuma et grenade',
-        description: 'Les lentilles contiennent des polyphénols anti-inflammatoires. La grenade est l\'un des fruits les pl',
+        description: 'Les lentilles contiennent des polyphénols anti-inflammatoires. La grenade est l\'un des fruits les pl.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1855,7 +1855,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de sarrasin au saumon, avocat et graines de lin',
-        description: 'Le sarrasin est anti-inflammatoire grâce à sa rutine. Le saumon apporte EPA/DHA. L\'avocat des oméga-',
+        description: 'Le sarrasin est anti-inflammatoire grâce à sa rutine. Le saumon apporte EPA/DHA. L\'avocat des oméga-.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1882,7 +1882,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de chou rouge fermenté et carottes au cumin',
-        description: 'Le chou rouge fermenté (choucroute rouge) apporte des probiotiques et des anthocyanines. Les carotte',
+        description: 'Le chou rouge fermenté (choucroute rouge) apporte des probiotiques et des anthocyanines. Les carotte.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1909,7 +1909,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de quinoa au tempeh grillé et légumes anti-inflammatoires',
-        description: 'Le tempeh fermenté contient des isoflavones anti-inflammatoires plus biodisponibles que le tofu. Le ',
+        description: 'Le tempeh fermenté contient des isoflavones anti-inflammatoires plus biodisponibles que le tofu. Le.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -1939,7 +1939,7 @@ export const RECIPES = {
     dinner: [
       {
         name: 'Soupe réconfortante au gingembre',
-        description: 'Soupe de légumes racines au gingembre avec pain complet',
+        description: 'Soupe de légumes racines au gingembre avec pain complet.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -1966,7 +1966,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon teriyaki, riz complet et brocoli',
-        description: 'Pavé de saumon glacé teriyaki, accompagné de riz complet et brocoli vapeur',
+        description: 'Pavé de saumon glacé teriyaki, accompagné de riz complet et brocoli vapeur.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -1992,7 +1992,7 @@ export const RECIPES = {
       },
       {
         name: 'Dahl de lentilles rouges au lait de coco',
-        description: 'Dahl crémeux de lentilles rouges au lait de coco, curcuma et coriandre fraîche',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. Le lait de coco apporte des graisses saines et de l\'onctuosité.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -2019,7 +2019,7 @@ export const RECIPES = {
       },
       {
         name: 'Papillote de cabillaud, légumes racines',
-        description: 'Cabillaud en papillote avec carottes, patate douce et herbes, cuisson vapeur douce',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2045,7 +2045,7 @@ export const RECIPES = {
       },
       {
         name: 'Pâtes complètes sauce tomate-épinards',
-        description: 'Pâtes complètes à la sauce tomate maison, épinards fondus et basilic frais',
+        description: 'Pâtes complètes à la sauce tomate maison, épinards fondus et basilic frais.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -2072,7 +2072,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon teriyaki et légumes vapeur',
-        description: 'Le saumon est ton meilleur allié pendant les règles : oméga-3 anti-douleur, vita',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le saumon est riche en oméga-3 anti-inflammatoires. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -2099,7 +2099,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe veloutée de butternut au lait de coco',
-        description: 'La butternut est riche en bêta-carotène et vitamine A qui soutiennent l\'équilibr',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -2125,7 +2125,7 @@ export const RECIPES = {
       },
       {
         name: 'Pâtes complètes aux épinards, ail et citron',
-        description: 'Simple et rapide pour les soirs de fatigue. Les pâtes complètes apportent magnés',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '17 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -2151,7 +2151,7 @@ export const RECIPES = {
       },
       {
         name: 'Tajine de poulet aux pruneaux et amandes',
-        description: 'Les pruneaux sont exceptionnellement riches en fer. Les amandes apportent magnés',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les amandes apportent magnésium et vitamine E. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '55 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -2179,7 +2179,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe thaï au lait de coco et crevettes',
-        description: 'Les crevettes sont riches en fer, zinc et sélénium. Le lait de coco apporte des ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -2206,7 +2206,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de légumes d\'hiver au chèvre',
-        description: 'Les légumes racines réchauffent et nourrissent. Le chèvre apporte calcium et pro',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '50 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -2233,7 +2233,7 @@ export const RECIPES = {
       },
       {
         name: 'Boulettes de bœuf sauce tomate aux herbes',
-        description: 'La viande de bœuf est la source la plus biodisponible de fer héminique — celui q',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -2261,7 +2261,7 @@ export const RECIPES = {
       },
       {
         name: 'Poêlée de tofu aux légumes et sésame',
-        description: 'Le tofu ferme est riche en fer et en calcium végétal. Le sésame apporte encore p',
+        description: 'Le tofu apporte des protéines végétales complètes. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -2289,7 +2289,7 @@ export const RECIPES = {
       },
       {
         name: 'Blanquette de poulet légère aux carottes',
-        description: 'Un classique réconfortant et léger. Le poulet apporte des protéines maigres et d',
+        description: 'Le poulet apporte des protéines maigres de qualité. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '50 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -2316,7 +2316,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare d\'algues et riz sushi',
-        description: 'Les algues sont extrêmement riches en fer, iode et minéraux. Le vinaigre de riz ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -2344,7 +2344,7 @@ export const RECIPES = {
       },
       {
         name: 'Omelette aux champignons et fromage frais',
-        description: 'Quand l\'énergie est au plus bas, une omelette est prête en 10 minutes. Les œufs ',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2398,7 +2398,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de crevettes au lait de coco et épinards',
-        description: 'Les crevettes apportent fer, zinc et sélénium. Le curry au curcuma est anti-infl',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les épinards sont riches en fer et en folate essentiels. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -2426,7 +2426,7 @@ export const RECIPES = {
       },
       {
         name: 'Ramen maison au poulet et œuf mollet',
-        description: 'Le bouillon chaud est ce qu\'il y a de plus réconfortant. Le poulet apporte proté',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les œufs fournissent protéines complètes et vitamine B12. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'avance',
         cuisine: 'asiatique',
@@ -2455,7 +2455,7 @@ export const RECIPES = {
       },
       {
         name: 'Poivrons farcis au quinoa et haricots noirs',
-        description: 'Les poivrons sont riches en vitamine C (3x plus qu\'une orange). Le quinoa apport',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -2483,7 +2483,7 @@ export const RECIPES = {
       },
       {
         name: 'Filet de maquereau grillé et purée de céleri',
-        description: 'Le maquereau est l\'un des poissons les plus riches en oméga-3, encore plus que l',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -2510,7 +2510,7 @@ export const RECIPES = {
       },
       {
         name: 'Dahl de pois chiches à la tomate et coriandre',
-        description: 'Les pois chiches sont riches en fer, zinc et protéines. La tomate apporte vitami',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les pois chiches apportent protéines végétales et fibres. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -2539,7 +2539,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de pâtes aux brocolis et ricotta',
-        description: 'Le brocoli est riche en vitamine C et aide à métaboliser les hormones. La ricott',
+        description: 'Le brocoli aide à métaboliser les œstrogènes en excès. La ricotta apporte calcium et protéines douces. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -2566,7 +2566,7 @@ export const RECIPES = {
       },
       {
         name: 'Sauté de bœuf aux brocolis et sauce hoisin',
-        description: 'Le bœuf est la source la plus biodisponible de fer héminique. Le brocoli ajoute ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -2594,7 +2594,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de tomates roties au basilic et croûtons',
-        description: 'Les tomates rôties concentrent leur lycopène (antioxydant puissant). Le basilic ',
+        description: 'Recette anti-SPM, 100% végétal, pour un dîner léger et réparateur. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -2621,7 +2621,7 @@ export const RECIPES = {
       },
       {
         name: 'Papillote de cabillaud aux légumes et citron',
-        description: 'Le cabillaud est un poisson maigre riche en protéines et sélénium. La cuisson en',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -2648,7 +2648,7 @@ export const RECIPES = {
       },
       {
         name: 'Riz sauté aux légumes et tofu fumé',
-        description: 'Le tofu fumé a un goût plus intense et apporte fer, calcium et protéines. Les lé',
+        description: 'Le tofu apporte des protéines végétales complètes. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '22 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -2676,7 +2676,7 @@ export const RECIPES = {
       },
       {
         name: 'Agneau mijoté aux pruneaux et amandes',
-        description: 'L\'agneau est très riche en fer héminique et en zinc. Les pruneaux sont exception',
+        description: 'Les amandes apportent magnésium et vitamine E. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '60 min',
         difficulty: 'avance',
         cuisine: 'fusion',
@@ -2705,7 +2705,7 @@ export const RECIPES = {
       },
       {
         name: 'Velouté de chou-fleur au curcuma et graines',
-        description: 'Le chou-fleur est riche en vitamine C et aide le foie à métaboliser les hormones',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal pendant les règles pour un dîner léger et réparateur.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -2734,7 +2734,7 @@ export const RECIPES = {
     
       {
         name: 'Saumon sauvage laqué au curcuma et brocoli vapeur',
-        description: 'Le saumon est la source n°1 d\'oméga-3 EPA/DHA, les anti-inflammatoires les plus puissants. Le curcum',
+        description: 'Le saumon est la source n°1 d\'oméga-3 EPA/DHA, les anti-inflammatoires les plus puissants. Le curcum.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2761,7 +2761,7 @@ export const RECIPES = {
       },
       {
         name: 'Sardines grillées au citron et salade de fenouil',
-        description: 'Les sardines ont un ratio oméga-3/oméga-6 exceptionnel — le meilleur de tous les poissons. Le fenoui',
+        description: 'Les sardines ont un ratio oméga-3/oméga-6 exceptionnel — le meilleur de tous les poissons. Le fenoui.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2788,7 +2788,7 @@ export const RECIPES = {
       },
       {
         name: 'Velouté de betterave au gingembre et coco',
-        description: 'La betterave contient des bétalaïnes, des pigments puissamment anti-inflammatoires. Le gingembre réd',
+        description: 'La betterave contient des bétalaïnes, des pigments puissamment anti-inflammatoires. Le gingembre réd.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -2816,7 +2816,7 @@ export const RECIPES = {
       },
       {
         name: 'Maquereau rôti aux tomates cerises et romarin',
-        description: 'Le maquereau contient encore plus d\'oméga-3 que le saumon. Les tomates apportent du lycopène, un ant',
+        description: 'Le maquereau contient encore plus d\'oméga-3 que le saumon. Les tomates apportent du lycopène, un ant.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2843,7 +2843,7 @@ export const RECIPES = {
       },
       {
         name: 'Wok de tofu au gingembre, brocoli et sésame',
-        description: 'Le tofu contient des isoflavones anti-inflammatoires. Le brocoli du sulforaphane. Le gingembre du gi',
+        description: 'Le tofu contient des isoflavones anti-inflammatoires. Le brocoli du sulforaphane. Le gingembre du gi.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -2871,7 +2871,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de potimarron au gingembre et noix',
-        description: 'Le potimarron est riche en bêta-carotène, un précurseur de la vitamine A anti-inflammatoire. Le ging',
+        description: 'Le potimarron est riche en bêta-carotène, un précurseur de la vitamine A anti-inflammatoire. Le ging.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -2899,7 +2899,7 @@ export const RECIPES = {
       },
       {
         name: 'Filet de truite en croûte de noix et herbes',
-        description: 'La truite est riche en oméga-3 et astaxanthine (le pigment rose), un anti-inflammatoire 6000x plus p',
+        description: 'La truite est riche en oméga-3 et astaxanthine (le pigment rose), un anti-inflammatoire 6000x plus p.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2928,7 +2928,7 @@ export const RECIPES = {
     snack: [
       {
         name: 'Energy balls chocolat-dattes',
-        description: 'Bouchées énergétiques au chocolat noir, dattes et beurre d\'amande',
+        description: 'Bouchées énergétiques au chocolat noir, dattes et beurre d\'amande.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -2953,7 +2953,7 @@ export const RECIPES = {
       },
       {
         name: 'Banana bread protéiné',
-        description: 'Banana bread moelleux aux noix et graines de chia, riche en fer',
+        description: 'Banana bread moelleux aux noix et graines de chia, riche en fer.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -2980,7 +2980,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine avocat-graines',
-        description: 'Tartine de pain complet à l\'avocat, graines de courge et citron',
+        description: 'Tartine de pain complet à l\'avocat, graines de courge et citron.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -3003,7 +3003,7 @@ export const RECIPES = {
       },
       {
         name: 'Carrés chocolat noir-amandes',
-        description: 'Carrés fondants au chocolat noir 70%, amandes et fleur de sel',
+        description: 'Carrés fondants au chocolat noir 70%, amandes et fleur de sel.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3027,7 +3027,7 @@ export const RECIPES = {
       },
       {
         name: 'Houmous de betterave et crackers',
-        description: 'Houmous rose à la betterave, pois chiches et tahini, servi avec des crackers de sarrasin',
+        description: 'Houmous rose à la betterave, pois chiches et tahini, servi avec des crackers de sarrasin.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -3052,7 +3052,7 @@ export const RECIPES = {
       },
       {
         name: 'Energy balls dattes-cacao-amandes',
-        description: 'Les dattes sont riches en fer et en sucres naturels. Le cacao apporte du magnési',
+        description: 'Le cacao est riche en magnésium, idéal contre les crampes. Les amandes apportent magnésium et vitamine E. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3077,7 +3077,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat noir 70% et banane',
-        description: 'Le combo le plus simple et le plus efficace. Le chocolat noir 70%+ apporte magné',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '2 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3098,7 +3098,7 @@ export const RECIPES = {
       },
       {
         name: 'Compote maison pomme-cannelle-gingembre',
-        description: 'La cannelle régule la glycémie et réduit les crampes. Le gingembre est anti-infl',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. La cannelle aide à réguler la glycémie. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -3122,7 +3122,7 @@ export const RECIPES = {
       },
       {
         name: 'Houmous maison et bâtonnets de légumes',
-        description: 'Les pois chiches sont riches en fer et protéines végétales. Le tahini ajoute du ',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -3147,7 +3147,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de ricotta, miel et noix',
-        description: 'La ricotta apporte du calcium et des protéines douces. Les noix sont riches en o',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -3170,7 +3170,7 @@ export const RECIPES = {
       },
       {
         name: 'Pudding de chia au lait de coco et mangue',
-        description: 'Les graines de chia absorbent 10x leur poids en eau — elles hydratent et rassasi',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3193,7 +3193,7 @@ export const RECIPES = {
       },
       {
         name: 'Mix de fruits secs et chocolat noir',
-        description: 'Un mélange pratique à emporter. Les abricots secs sont très riches en fer, les a',
+        description: 'Les amandes apportent magnésium et vitamine E. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '2 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3217,7 +3217,7 @@ export const RECIPES = {
       },
       {
         name: 'Bouchées de dattes fourrées au beurre d\'amande',
-        description: 'Les dattes sont très riches en fer et en sucres naturels réconfortants. Le beurr',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3241,7 +3241,7 @@ export const RECIPES = {
       },
       {
         name: 'Banane congelée trempée au chocolat',
-        description: 'Une glace maison saine et satisfaisante. La banane apporte du potassium anti-cra',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3264,7 +3264,7 @@ export const RECIPES = {
       },
       {
         name: 'Mélange trail réconfort : cajou-coco-chocolat',
-        description: 'Les noix de cajou sont riches en fer et magnésium. La noix de coco apporte des g',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le lait de coco apporte des graisses saines et de l\'onctuosité.',
         prepTime: '2 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3287,7 +3287,7 @@ export const RECIPES = {
       },
       {
         name: 'Tranches de patate douce rôties au tahini',
-        description: 'La patate douce rôtie est naturellement sucrée et riche en bêta-carotène. Le tah',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -3312,7 +3312,7 @@ export const RECIPES = {
       },
       {
         name: 'Compote de poire au gingembre et vanille',
-        description: 'La poire est douce pour le transit et riche en fibres solubles. Le gingembre est',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour un encas sain et rassasiant.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -3337,7 +3337,7 @@ export const RECIPES = {
       },
       {
         name: 'Boules protéinées sésame noir et miel',
-        description: 'Le sésame noir est encore plus riche en fer et calcium que le sésame blanc. Comb',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3362,7 +3362,7 @@ export const RECIPES = {
       },
       {
         name: 'Verrines de mousse au chocolat à l\'avocat',
-        description: 'L\'avocat donne une texture mousse incroyable sans crème. Le cacao apporte magnés',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le cacao est riche en magnésium, idéal contre les crampes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3389,7 +3389,7 @@ export const RECIPES = {
     
       {
         name: 'Energy balls curcuma-gingembre-dattes',
-        description: 'Des snacks anti-inflammatoires concentrés. Le curcuma + gingembre + poivre noir forment le trio le p',
+        description: 'Des snacks anti-inflammatoires concentrés. Le curcuma + gingembre + poivre noir forment le trio le p.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3415,7 +3415,7 @@ export const RECIPES = {
       },
       {
         name: 'Compote anti-inflammatoire pomme-gingembre-cannelle',
-        description: 'La pomme cuite libère de la pectine prébiotique qui nourrit les bonnes bactéries (un microbiome sain',
+        description: 'La pomme cuite libère de la pectine prébiotique qui nourrit les bonnes bactéries (un microbiome sain.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -3440,7 +3440,7 @@ export const RECIPES = {
       },
       {
         name: 'Mousse de chocolat noir à l\'avocat et gingembre',
-        description: 'Le chocolat noir 85%+ contient des flavanols parmi les anti-inflammatoires les plus puissants. L\'avo',
+        description: 'Le chocolat noir 85%+ contient des flavanols parmi les anti-inflammatoires les plus puissants. L\'avo.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3468,7 +3468,7 @@ export const RECIPES = {
     drink: [
       {
         name: 'Golden milk au curcuma',
-        description: 'Lait doré anti-inflammatoire au curcuma, gingembre et cannelle',
+        description: 'Lait doré anti-inflammatoire au curcuma, gingembre et cannelle.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3493,7 +3493,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion gingembre-citron',
-        description: 'Infusion chaude au gingembre frais et citron, apaisante et digestive',
+        description: 'Infusion chaude au gingembre frais et citron, apaisante et digestive.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3515,7 +3515,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie anti-inflammatoire',
-        description: 'Smoothie aux cerises, épinards et graines de lin, riche en oméga-3',
+        description: 'Smoothie aux cerises, épinards et graines de lin, riche en oméga-3.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3538,7 +3538,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat chaud magnésium',
-        description: 'Chocolat chaud onctueux au cacao cru, lait d\'avoine et cannelle',
+        description: 'Chocolat chaud onctueux au cacao cru, lait d\'avoine et cannelle.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3562,7 +3562,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau chaude citron-miel-cannelle',
-        description: 'Boisson chaude douce au citron, miel et cannelle, réconfortante et digestive',
+        description: 'La cannelle aide à réguler la glycémie. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3585,7 +3585,7 @@ export const RECIPES = {
       },
       {
         name: 'Golden latte au curcuma',
-        description: 'Le curcuma est l\'anti-inflammatoire naturel le plus puissant. Combiné au poivre ',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3611,7 +3611,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion gingembre-camomille-miel',
-        description: 'La camomille est relaxante et anti-spasmodique (calme les crampes). Le gingembre',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. La camomille calme le système nerveux et aide au sommeil.',
         prepTime: '8 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3635,7 +3635,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat chaud au lait de coco',
-        description: 'Le cacao est une des sources les plus concentrées en magnésium. Le lait de coco ',
+        description: 'Le cacao est riche en magnésium, idéal contre les crampes. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3660,7 +3660,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau chaude citron-gingembre-miel',
-        description: 'Simple et efficace. Le citron apporte de la vitamine C qui aide à absorber le fe',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3684,7 +3684,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie réconfortant banane-avoine-cacao',
-        description: 'Un smoothie qui se boit comme un dessert mais qui nourrit ton corps. Banane (pot',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3709,7 +3709,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion framboisier (feuilles de framboisier)',
-        description: 'La feuille de framboisier est utilisée depuis des siècles pour soutenir la santé',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3732,7 +3732,7 @@ export const RECIPES = {
       },
       {
         name: 'Latte de caroube au lait d\'amande',
-        description: 'La caroube a un goût chocolaté SANS caféine (contrairement au cacao). Riche en c',
+        description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3756,7 +3756,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion ortie-framboisier-mélisse',
-        description: 'L\'ortie est très riche en fer et minéraux. Le framboisier tonifie l\'utérus et ré',
+        description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3780,7 +3780,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie protéiné chocolat-banane',
-        description: 'Un smoothie épais comme un milkshake. Le cacao apporte magnésium et sérotonine, ',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3804,7 +3804,7 @@ export const RECIPES = {
       },
       {
         name: 'Tisane de thym et miel (anti-fatigue)',
-        description: 'Le thym est un tonique naturel qui combat la fatigue. Il a aussi des propriétés ',
+        description: 'Le miel apporte une énergie naturelle rapide. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '11 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3828,7 +3828,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau de coco tiède au gingembre et citron',
-        description: 'L\'eau de coco est naturellement riche en électrolytes et potassium. Tiédie avec ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le miel apporte une énergie naturelle rapide. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '6 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3852,7 +3852,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus vert reminéralisant épinards-pomme-citron',
-        description: 'Les épinards apportent fer, magnésium et acide folique. La pomme fournit des fib',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les épinards sont riches en fer et en folate essentiels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3878,7 +3878,7 @@ export const RECIPES = {
     
       {
         name: 'Smoothie anti-inflammatoire cerise-gingembre-épinards',
-        description: 'Trio anti-inflammatoire puissant : cerises (anthocyanines), gingembre (gingérol), épinards (quercéti',
+        description: 'Trio anti-inflammatoire puissant : cerises (anthocyanines), gingembre (gingérol), épinards (quercéti.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3903,7 +3903,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion puissante gingembre-curcuma-cannelle',
-        description: 'Les trois épices anti-inflammatoires les plus documentées scientifiquement. Le gingembre inhibe COX-',
+        description: 'Les trois épices anti-inflammatoires les plus documentées scientifiquement. Le gingembre inhibe COX-.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3930,7 +3930,7 @@ export const RECIPES = {
       },
       {
         name: 'Lait d\'or (golden milk) au poivre noir et miel',
-        description: 'La boisson anti-inflammatoire la plus étudiée au monde. Le poivre noir multiplie par 2000% l\'absorpt',
+        description: 'La boisson anti-inflammatoire la plus étudiée au monde. Le poivre noir multiplie par 2000% l\'absorpt.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -3956,7 +3956,7 @@ export const RECIPES = {
       },
       {
         name: 'Thé vert matcha glacé au gingembre et citron',
-        description: 'Le matcha contient 137x plus de catéchines (EGCG) que le thé vert classique. L\'EGCG est l\'un des ant',
+        description: 'Le matcha contient 137x plus de catéchines (EGCG) que le thé vert classique. L\'EGCG est l\'un des ant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -3987,7 +3987,7 @@ export const RECIPES = {
     breakfast: [
       {
         name: 'Smoothie bowl protéiné végétal',
-        description: 'Smoothie bowl énergisant banane, beurre de cacahuète et granola au lait végétal',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4011,7 +4011,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl protéiné',
-        description: 'Smoothie bowl énergisant banane, beurre de cacahuète et granola',
+        description: 'Smoothie bowl énergisant banane, beurre de cacahuète et granola.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4035,7 +4035,7 @@ export const RECIPES = {
       },
       {
         name: 'Œufs brouillés avocat-graines de courge',
-        description: 'Œufs brouillés crémeux sur avocat écrasé, parsemés de graines de courge riches en zinc',
+        description: 'Œufs brouillés crémeux sur avocat écrasé, parsemés de graines de courge riches en zinc.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4060,7 +4060,7 @@ export const RECIPES = {
       },
       {
         name: 'Pancakes protéinés banane-flocons d\'avoine',
-        description: 'Pancakes moelleux à base de banane et flocons d\'avoine, riches en protéines et énergie',
+        description: 'Pancakes moelleux à base de banane et flocons d\'avoine, riches en protéines et énergie.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4086,7 +4086,7 @@ export const RECIPES = {
       },
       {
         name: 'Açaí bowl énergie',
-        description: 'Bowl d\'açaí vibrant garni de granola, fruits frais et graines de chia pour un boost d\'énergie',
+        description: 'Bowl d\'açaí vibrant garni de granola, fruits frais et graines de chia pour un boost d\'énergie.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4110,7 +4110,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine complète ricotta-figue-noix',
-        description: 'Tartine sur pain complet avec ricotta crémeuse, figues fraîches, noix et miel',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. La cannelle aide à réguler la glycémie. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '8 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -4135,7 +4135,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie protéiné banane-beurre de cacahuète',
-        description: 'L\'énergie remonte ! Ce smoothie riche en protéines et glucides complexes soutien',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4159,7 +4159,7 @@ export const RECIPES = {
       },
       {
         name: 'Œufs brouillés aux légumes sur pain complet',
-        description: 'Les œufs sont la protéine la plus complète. L\'énergie qui remonte en folliculair',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4186,7 +4186,7 @@ export const RECIPES = {
       },
       {
         name: 'Granola maison aux graines de tournesol',
-        description: 'Les graines de tournesol sont riches en zinc et sélénium qui soutiennent la mont',
+        description: 'Recette adapté au SOPK, 100% végétal, pour bien démarrer la journée. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -4213,7 +4213,7 @@ export const RECIPES = {
       },
       {
         name: 'Açaí bowl aux fruits frais et graines',
-        description: 'L\'açaí est l\'un des fruits les plus riches en antioxydants. En phase folliculair',
+        description: 'Recette adapté au SOPK, 100% végétal, pour bien démarrer la journée. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4238,7 +4238,7 @@ export const RECIPES = {
       },
       {
         name: 'Galettes de sarrasin aux champignons et fromage',
-        description: 'Les champignons apportent de la vitamine D et des vitamines B essentielles en ph',
+        description: 'Le sarrasin est sans gluten et riche en magnésium. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -4264,7 +4264,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge protéiné au beurre de cacahuète et banane',
-        description: 'L\'énergie revient, il faut la soutenir avec des protéines. Le beurre de cacahuèt',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4290,7 +4290,7 @@ export const RECIPES = {
       },
       {
         name: 'Muffins aux myrtilles et citron',
-        description: 'Les myrtilles sont parmi les fruits les plus riches en antioxydants. Le citron a',
+        description: 'Les myrtilles regorgent d\'antioxydants protecteurs. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -4318,7 +4318,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de fromage frais, radis et graines germées',
-        description: 'Les graines germées sont des bombes nutritionnelles : vitamines B, zinc, enzymes',
+        description: 'Recette adapté au SOPK, pour bien démarrer la journée. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -4344,7 +4344,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie vert épinards-pomme-gingembre',
-        description: 'Un boost de vitamines vertes pour accompagner ta montée d\'énergie. Les épinards ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les épinards sont riches en fer et en folate essentiels. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4369,7 +4369,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de fromage blanc, kiwi et graines de courge',
-        description: 'Le fromage blanc est riche en protéines et probiotiques. Le kiwi contient plus d',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4394,7 +4394,7 @@ export const RECIPES = {
       },
       {
         name: 'Shakshuka légère aux poivrons',
-        description: 'Les poivrons sont parmi les légumes les plus riches en vitamine C. Les œufs poch',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -4422,7 +4422,7 @@ export const RECIPES = {
       },
       {
         name: 'Pancakes protéinés à la banane et flocons d\'avoine',
-        description: 'Seulement 3 ingrédients ! La banane + l\'œuf + l\'avoine = des pancakes riches en ',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4445,7 +4445,7 @@ export const RECIPES = {
       },
       {
         name: 'Omelette aux asperges et fromage de chèvre',
-        description: 'Les asperges sont riches en folates et prébiotiques essentiels en phase de recon',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4471,7 +4471,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de quinoa petit-déj aux fruits et noix',
-        description: 'Le quinoa au petit-déjeuner change du porridge et apporte des protéines complète',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le quinoa fournit protéines complètes et fer végétal. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '17 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4498,7 +4498,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de sardines écrasées et citron',
-        description: 'Les sardines sont une mine d\'or nutritionnelle : oméga-3, vitamine D, calcium (d',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '7 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -4524,7 +4524,7 @@ export const RECIPES = {
       },
       {
         name: 'Pancakes à la courgette et feta',
-        description: 'Des pancakes salés et originaux. La courgette apporte des vitamines B et du pota',
+        description: 'La feta apporte calcium et protéines. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4550,7 +4550,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie protéiné mangue-épinards-graines de chanvre',
-        description: 'Les graines de chanvre contiennent les 9 acides aminés essentiels — une protéine',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La banane apporte du tryptophane, précurseur de la sérotonine. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4574,7 +4574,7 @@ export const RECIPES = {
       },
       {
         name: 'Muesli bircher aux pommes et graines de tournesol',
-        description: 'Le muesli bircher est préparé la veille et riche en fibres prébiotiques. Les gra',
+        description: 'Recette adapté au SOPK, 100% végétal, pour bien démarrer la journée. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4600,7 +4600,7 @@ export const RECIPES = {
       },
       {
         name: 'Tofu brouillé aux légumes (scramble vegan)',
-        description: 'Le tofu brouillé remplace les œufs avec plus de fer et de calcium. Le curcuma do',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le tofu apporte des protéines végétales complètes. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -4627,7 +4627,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol d\'avoine salé aux champignons et œuf',
-        description: 'L\'avoine en version salée est une révélation. Les champignons apportent vitamine',
+        description: 'Une recette savoureuse et nourrissante pour bien démarrer la journée. Idéal en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4654,7 +4654,7 @@ export const RECIPES = {
       },
       {
         name: 'Croque-gaufre au comté et jambon',
-        description: 'Riche en protéines du jambon et calcium du comté. Un petit-déj salé et copieux q',
+        description: 'Une recette savoureuse et nourrissante pour bien démarrer la journée. Idéal en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -4678,7 +4678,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl vert protéiné aux graines de courge',
-        description: 'Les graines de courge sont la meilleure source végétale de zinc, essentiel pour ',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La banane apporte du tryptophane, précurseur de la sérotonine. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4703,7 +4703,7 @@ export const RECIPES = {
       },
       {
         name: 'Galettes de lentilles corail et cumin',
-        description: 'Les lentilles corail apportent protéines, fer et zinc — trois nutriments essenti',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -4729,7 +4729,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de ricotta, pêche et pistaches',
-        description: 'La ricotta est plus légère que le yaourt grec mais tout aussi protéinée. Les pis',
+        description: 'Le miel apporte une énergie naturelle rapide. La ricotta apporte calcium et protéines douces. Idéal en phase folliculaire pour bien démarrer la journée.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -4755,7 +4755,7 @@ export const RECIPES = {
     
       {
         name: 'Tartine d\'avocat au curcuma et pousses de brocoli',
-        description: 'Les pousses de brocoli contiennent 50x plus de sulforaphane que le brocoli adulte. L\'avocat apporte ',
+        description: 'Les pousses de brocoli contiennent 50x plus de sulforaphane que le brocoli adulte. L\'avocat apporte.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -4782,7 +4782,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge aux myrtilles, noix et graines de lin',
-        description: 'Les myrtilles sont parmi les fruits les plus anti-inflammatoires grâce à leurs ptérostilbènes et ant',
+        description: 'Les myrtilles sont parmi les fruits les plus anti-inflammatoires grâce à leurs ptérostilbènes et ant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4811,7 +4811,7 @@ export const RECIPES = {
     lunch: [
       {
         name: 'Buddha bowl tofu-quinoa-brocoli',
-        description: 'Buddha bowl protéiné au tofu grillé, quinoa, brocoli et patate douce',
+        description: 'Buddha bowl protéiné au tofu grillé, quinoa, brocoli et patate douce.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -4837,7 +4837,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet grillé quinoa-brocoli',
-        description: 'Assiette complète poulet grillé, quinoa, brocoli et patate douce',
+        description: 'Assiette complète poulet grillé, quinoa, brocoli et patate douce.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -4862,7 +4862,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade thaï crevettes-mangue',
-        description: 'Salade fraîche aux crevettes grillées, mangue, chou rouge et vinaigrette cacahuète-citron vert',
+        description: 'Salade fraîche aux crevettes grillées, mangue, chou rouge et vinaigrette cacahuète-citron vert.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -4889,7 +4889,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl mexicain haricots noirs-avocat',
-        description: 'Bowl coloré aux haricots noirs épicés, avocat, maïs, salsa fraîche et riz complet',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'mexicain',
@@ -4916,7 +4916,7 @@ export const RECIPES = {
       },
       {
         name: 'Taboulé de quinoa aux herbes et feta',
-        description: 'Taboulé léger au quinoa, persil, menthe, concombre, tomates cerises et feta émiettée',
+        description: 'Taboulé léger au quinoa, persil, menthe, concombre, tomates cerises et feta émiettée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -4943,7 +4943,7 @@ export const RECIPES = {
       },
       {
         name: 'Poke bowl thon-edamame-riz',
-        description: 'Poke bowl frais au thon cru mariné, edamame, concombre, avocat et riz vinaigré',
+        description: 'Une recette savoureuse et nourrissante pour un déjeuner équilibré et nourrissant. Idéal en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -4970,7 +4970,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade quinoa, poulet grillé et brocoli',
-        description: 'Protéines maigres du poulet + protéines complètes du quinoa + vitamine C du broc',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -4997,7 +4997,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap poulet-avocat-roquette',
-        description: 'Riche en protéines et en bonnes graisses, ce wrap donne l\'énergie nécessaire pou',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -5024,7 +5024,7 @@ export const RECIPES = {
       },
       {
         name: 'Poke bowl saumon, edamame et mangue',
-        description: 'Le saumon apporte des oméga-3 et de la vitamine D, les edamame du zinc et des pr',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le saumon est riche en oméga-3 anti-inflammatoires.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5052,7 +5052,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de lentilles vertes aux légumes croquants',
-        description: 'Les lentilles vertes sont riches en fer, zinc et protéines. Avec des légumes cru',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -5079,7 +5079,7 @@ export const RECIPES = {
       },
       {
         name: 'Sauté de crevettes aux brocolis et noix de cajou',
-        description: 'Les crevettes sont riches en zinc et sélénium, essentiels pour soutenir la crois',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les noix sont riches en oméga-3 bénéfiques pour le cerveau.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5107,7 +5107,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de falafels, houmous et salade fraîche',
-        description: 'Les pois chiches (falafels + houmous) sont riches en zinc, fer et fibres prébiot',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -5135,7 +5135,7 @@ export const RECIPES = {
       },
       {
         name: 'Pad thaï au tofu et légumes',
-        description: 'Un classique thaï énergisant. Les cacahuètes apportent du zinc, le tofu des prot',
+        description: 'Le tofu apporte des protéines végétales complètes. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5163,7 +5163,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de sardines, avocat et pamplemousse',
-        description: 'Les sardines sont une mine d\'or nutritionnelle : oméga-3, vitamine D, calcium (d',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -5190,7 +5190,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz complet, poulet teriyaki et légumes grillés',
-        description: 'Un repas complet et équilibré. Le poulet apporte des protéines maigres et de la ',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5218,7 +5218,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de petits pois à la menthe fraîche',
-        description: 'Les petits pois sont riches en protéines végétales, fer et zinc. La menthe aide ',
+        description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -5244,7 +5244,7 @@ export const RECIPES = {
       },
       {
         name: 'Tacos de poisson aux agrumes',
-        description: 'Le poisson blanc est léger en calories mais riche en protéines et sélénium. Les ',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
@@ -5271,7 +5271,7 @@ export const RECIPES = {
       },
       {
         name: 'Buddha bowl au tempeh et légumes rôtis',
-        description: 'Le tempeh est un super-aliment : fermenté (probiotiques), riche en protéines, zi',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Les pois chiches apportent protéines végétales et fibres.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5298,7 +5298,7 @@ export const RECIPES = {
       },
       {
         name: 'Wok de bœuf aux brocolis et sauce gingembre',
-        description: 'Le bœuf est la meilleure source de fer héminique et de zinc. Le brocoli aide à m',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5325,7 +5325,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de quinoa, grenade et halloumi grillé',
-        description: 'Le halloumi grillé apporte protéines et calcium. Le quinoa des protéines complèt',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. La grenade regorge d\'antioxydants et de vitamine C. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -5353,7 +5353,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de haricots blancs à l\'italienne',
-        description: 'Les haricots blancs sont riches en zinc, fer et protéines végétales. Le romarin ',
+        description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -5381,7 +5381,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol bibimbap coréen au bœuf et légumes',
-        description: 'Le bœuf est la meilleure source de fer héminique et de zinc. Le bibimbap combine',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Les œufs fournissent protéines complètes et vitamine B12.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5411,7 +5411,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de chou kale massé aux cranberries et noix de cajou',
-        description: 'Le chou kale est un super-aliment : vitamine K, vitamine C, fer, calcium. Massé ',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Les noix sont riches en oméga-3 bénéfiques pour le cerveau.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -5438,7 +5438,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de lentilles vertes aux épinards et coco',
-        description: 'Les lentilles vertes sont plus riches en zinc que les corail. Les épinards ajout',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les épinards sont riches en fer et en folate essentiels.',
         prepTime: '40 min',
         difficulty: 'avance',
         cuisine: 'indien',
@@ -5467,7 +5467,7 @@ export const RECIPES = {
       },
       {
         name: 'Wraps de laitue au poulet thaï',
-        description: 'Les wraps de laitue sont ultra-légers et sans gluten. Le poulet apporte protéine',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Le poulet apporte des protéines maigres de qualité.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5496,7 +5496,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz complet aux œufs, avocat et kimchi',
-        description: 'Le kimchi est un aliment fermenté riche en probiotiques essentiels pour un bon m',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Les œufs fournissent protéines complètes et vitamine B12.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5523,7 +5523,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de saumon fumé aux lentilles tièdes',
-        description: 'Le saumon fumé apporte oméga-3 et protéines sans cuisson. Les lentilles tièdes s',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Les lentilles apportent fer, protéines et fibres rassasiantes.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -5551,7 +5551,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de tempeh grillé et légumes rôtis',
-        description: 'Le tempeh est fermenté (probiotiques) et plus riche en protéines que le tofu. Gr',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Le brocoli aide à métaboliser les œstrogènes en excès.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5579,7 +5579,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de miso aux nouilles et légumes',
-        description: 'Le miso est un aliment fermenté riche en probiotiques et enzymes. Les nouilles f',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le miso est un fermenté riche en probiotiques. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5607,7 +5607,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de pois chiches grillés au cumin et agrumes',
-        description: 'Les pois chiches grillés sont croquants et riches en zinc, fer et protéines. Les',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Les pois chiches apportent protéines végétales et fibres.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -5636,7 +5636,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz aux crevettes teriyaki et edamame',
-        description: 'Les crevettes apportent zinc et sélénium essentiels à la croissance folliculaire',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5665,7 +5665,7 @@ export const RECIPES = {
       },
       {
         name: 'Tarte aux poireaux et chèvre sans pâte',
-        description: 'Les poireaux sont riches en prébiotiques qui nourrissent les bonnes bactéries. L',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -5693,7 +5693,7 @@ export const RECIPES = {
     
       {
         name: 'Salade arc-en-ciel aux 7 légumes et vinaigrette curcuma',
-        description: 'Chaque couleur = un type d\'antioxydant anti-inflammatoire différent. Rouge (lycopène), orange (bêta-',
+        description: 'Chaque couleur = un type d\'antioxydant anti-inflammatoire différent. Rouge (lycopène), orange (bêta-.',
         prepTime: '15 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -5724,7 +5724,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de brocoli au gingembre et amandes',
-        description: 'Le brocoli est le roi du sulforaphane — il active les voies Nrf2 qui réduisent l\'inflammation cellul',
+        description: 'Le brocoli est le roi du sulforaphane — il active les voies Nrf2 qui réduisent l\'inflammation cellul.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -5752,7 +5752,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz noir aux edamame et avocat',
-        description: 'Le riz noir contient des anthocyanines — les mêmes pigments anti-inflammatoires que les myrtilles. L',
+        description: 'Le riz noir contient des anthocyanines — les mêmes pigments anti-inflammatoires que les myrtilles. L.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5780,7 +5780,7 @@ export const RECIPES = {
       },
       {
         name: 'Taboulé de chou-fleur cru au persil et grenade',
-        description: 'Le chou-fleur cru conserve tout son sulforaphane. Le persil est l\'une des herbes les plus riches en ',
+        description: 'Le chou-fleur cru conserve tout son sulforaphane. Le persil est l\'une des herbes les plus riches en.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -5808,7 +5808,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de saumon fumé aux betteraves et aneth',
-        description: 'Le saumon fumé apporte oméga-3 sans cuisson. La betterave contient des bétalaïnes anti-inflammatoire',
+        description: 'Le saumon fumé apporte oméga-3 sans cuisson. La betterave contient des bétalaïnes anti-inflammatoire.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -5836,7 +5836,7 @@ export const RECIPES = {
       },
       {
         name: 'Poke bowl au thon frais et légumes marinés',
-        description: 'Le thon frais est riche en oméga-3 DHA et en sélénium (cofacteur anti-inflammatoire). Le gingembre m',
+        description: 'Le thon frais est riche en oméga-3 DHA et en sélénium (cofacteur anti-inflammatoire). Le gingembre m.',
         prepTime: '15 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -5866,7 +5866,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de haricots blancs aux tomates cerises et basilic',
-        description: 'Les haricots blancs contiennent des saponines anti-inflammatoires. Les tomates du lycopène. Le basil',
+        description: 'Les haricots blancs contiennent des saponines anti-inflammatoires. Les tomates du lycopène. Le basil.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -5895,7 +5895,7 @@ export const RECIPES = {
     dinner: [
       {
         name: 'Sauté de tofu aux légumes fermentés',
-        description: 'Sauté de tofu avec légumes fermentés et riz complet pour les probiotiques',
+        description: 'Sauté de tofu avec légumes fermentés et riz complet pour les probiotiques.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5921,7 +5921,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet rôti aux herbes, patate douce',
-        description: 'Poulet rôti aux herbes de Provence accompagné de patate douce fondante et haricots verts',
+        description: 'Poulet rôti aux herbes de Provence accompagné de patate douce fondante et haricots verts.',
         prepTime: '35 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -5947,7 +5947,7 @@ export const RECIPES = {
       },
       {
         name: 'Stir-fry de tempeh aux légumes croquants',
-        description: 'Sauté de tempeh mariné au tamari avec brocoli, poivron, carottes et sésame',
+        description: 'Sauté de tempeh mariné au tamari avec brocoli, poivron, carottes et sésame.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -5974,7 +5974,7 @@ export const RECIPES = {
       },
       {
         name: 'Filet de dorade, purée de brocoli',
-        description: 'Filet de dorade poêlé sur purée de brocoli légère, citron et amandes effilées',
+        description: 'Le brocoli aide à métaboliser les œstrogènes en excès. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6000,7 +6000,7 @@ export const RECIPES = {
       },
       {
         name: 'Lasagnes végétariennes aux épinards',
-        description: 'Lasagnes gratinées aux épinards, ricotta, tomates et parmesan',
+        description: 'Lasagnes gratinées aux épinards, ricotta, tomates et parmesan.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -6027,7 +6027,7 @@ export const RECIPES = {
       },
       {
         name: 'Wok de nouilles soba au tofu grillé',
-        description: 'Nouilles soba sautées au tofu grillé, légumes croquants et sauce soja-gingembre',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le tofu apporte des protéines végétales complètes. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -6054,7 +6054,7 @@ export const RECIPES = {
       },
       {
         name: 'Sauté de tofu aux légumes et sauce soja-gingembre',
-        description: 'Le tofu est riche en protéines et phytoœstrogènes doux qui accompagnent la monté',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le tofu apporte des protéines végétales complètes. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -6082,7 +6082,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet rôti aux herbes, légumes grillés et riz',
-        description: 'Le poulet rôti est riche en protéines et vitamine B6 qui soutient la production ',
+        description: 'Le poulet apporte des protéines maigres de qualité. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6110,7 +6110,7 @@ export const RECIPES = {
       },
       {
         name: 'Pasta primavera aux légumes de saison',
-        description: 'Un classique italien plein de couleurs. Les légumes de saison apportent vitamine',
+        description: 'Une recette savoureuse et nourrissante pour un dîner léger et réparateur. Idéal en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -6139,7 +6139,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon en croûte de graines sur lit de quinoa',
-        description: 'Le saumon apporte oméga-3 et vitamine D. La croûte de graines ajoute zinc, sélén',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Le quinoa fournit protéines complètes et fer végétal. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6166,7 +6166,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de poulet au lait de coco et épinards',
-        description: 'Le poulet apporte zinc et protéines, le curry contient du curcuma anti-inflammat',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Le lait de coco apporte des graisses saines et de l\'onctuosité.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -6193,7 +6193,7 @@ export const RECIPES = {
       },
       {
         name: 'Quiche sans pâte aux légumes et chèvre',
-        description: 'Sans pâte = plus légère et sans gluten. Les œufs et le chèvre apportent protéine',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -6220,7 +6220,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol poke végétarien au tofu mariné',
-        description: 'Coloré et frais, ce poke bol apporte tout ce dont la phase folliculaire a besoin',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le tofu apporte des protéines végétales complètes. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -6249,7 +6249,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de courgettes et quinoa au parmesan',
-        description: 'Le quinoa apporte protéines complètes et fer, les courgettes sont légères et ric',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -6276,7 +6276,7 @@ export const RECIPES = {
       },
       {
         name: 'Steak de thon grillé, salade d\'agrumes et avocat',
-        description: 'Le thon est riche en protéines, oméga-3, sélénium et vitamines B. Les agrumes ap',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '18 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6303,7 +6303,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe minestrone aux haricots blancs',
-        description: 'Les haricots blancs sont une excellente source de fer, zinc et protéines végétal',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '45 min',
         difficulty: 'avance',
         cuisine: 'italien',
@@ -6333,7 +6333,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon en papillote aux légumes et citron',
-        description: 'La cuisson en papillote préserve tous les oméga-3 du saumon. Le citron aide l\'ab',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6359,7 +6359,7 @@ export const RECIPES = {
       },
       {
         name: 'Risotto aux asperges et citron',
-        description: 'Les asperges sont riches en acide folique et prébiotiques qui nourrissent les bo',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -6386,7 +6386,7 @@ export const RECIPES = {
       },
       {
         name: 'Sauté de poulet au gingembre et brocoli',
-        description: 'Le poulet est riche en protéines et zinc. Le brocoli aide à métaboliser l\'œstrog',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '22 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -6414,7 +6414,7 @@ export const RECIPES = {
       },
       {
         name: 'Filet de truite aux amandes et haricots verts',
-        description: 'La truite est riche en oméga-3 et protéines. Les amandes ajoutent vitamine E et ',
+        description: 'Les amandes apportent magnésium et vitamine E. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6440,7 +6440,7 @@ export const RECIPES = {
       },
       {
         name: 'Tacos de poisson et salade de chou',
-        description: 'Le poisson blanc est léger et riche en sélénium. Le chou cru apporte des fibres ',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mexicain',
@@ -6468,7 +6468,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de quinoa aux courgettes et chèvre',
-        description: 'Le quinoa au gratin est croustillant dessus et fondant dedans. Il apporte protéi',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -6495,7 +6495,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz aux champignons teriyaki et édamame',
-        description: 'Les champignons apportent vitamine D et vitamines B. La sauce teriyaki maison es',
+        description: 'Recette adapté au SOPK, 100% végétal, pour un dîner léger et réparateur. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -6523,7 +6523,7 @@ export const RECIPES = {
       },
       {
         name: 'Moules marinières au vin blanc et frites de patate douce',
-        description: 'Les moules sont extraordinairement riches en fer, zinc et vitamine B12. Les frit',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6551,7 +6551,7 @@ export const RECIPES = {
       },
       {
         name: 'Wok de tofu aux noix de cajou et légumes',
-        description: 'Les noix de cajou apportent zinc et magnésium. Le tofu fournit protéines et calc',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '20 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -6581,7 +6581,7 @@ export const RECIPES = {
       },
       {
         name: 'Papillote de daurade aux herbes et légumes',
-        description: 'La daurade est un poisson maigre riche en protéines et sélénium. La cuisson en p',
+        description: 'Le fenouil aide à soulager les ballonnements. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6608,7 +6608,7 @@ export const RECIPES = {
       },
       {
         name: 'Risotto au potimarron et sauge',
-        description: 'Le potimarron est riche en bêta-carotène et vitamine A. Le risotto est réconfort',
+        description: 'Une recette savoureuse et nourrissante pour un dîner léger et réparateur. Idéal en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -6636,7 +6636,7 @@ export const RECIPES = {
       },
       {
         name: 'Dhal de haricots mungo au lait de coco',
-        description: 'Les haricots mungo sont riches en folates, fer et protéines végétales. Le lait d',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase folliculaire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -6665,7 +6665,7 @@ export const RECIPES = {
       },
       {
         name: 'Poêlée de sardines fraîches au citron et ail',
-        description: 'Les sardines fraîches sont la source la plus accessible d\'oméga-3, calcium (arêt',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6692,7 +6692,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de pois chiches et chou-fleur rôti',
-        description: 'Le chou-fleur rôti est caramélisé et riche en vitamine C. Les pois chiches appor',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Le lait de coco apporte des graisses saines et de l\'onctuosité.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -6721,7 +6721,7 @@ export const RECIPES = {
     
       {
         name: 'Saumon en croûte de graines de lin et chia',
-        description: 'Triple oméga-3 : saumon (EPA/DHA) + lin (ALA) + chia (ALA). Les graines de lin contiennent aussi des',
+        description: 'Triple oméga-3 : saumon (EPA/DHA) + lin (ALA) + chia (ALA). Les graines de lin contiennent aussi des.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6749,7 +6749,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry vert thaï aux légumes et lait de coco',
-        description: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï — trois anti-inflammatoires trad',
+        description: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï — trois anti-inflammatoires trad.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -6778,7 +6778,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet grillé au romarin et patate douce rôtie',
-        description: 'Le romarin contient de l\'acide rosmarinique et de l\'acide carnosique, deux anti-inflammatoires puiss',
+        description: 'Le romarin contient de l\'acide rosmarinique et de l\'acide carnosique, deux anti-inflammatoires puiss.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6805,7 +6805,7 @@ export const RECIPES = {
       },
       {
         name: 'Dhal anti-inflammatoire aux épices indiennes',
-        description: 'Les épices indiennes sont un arsenal anti-inflammatoire : curcuma (curcumine), cumin (thymoquinone),',
+        description: 'Les épices indiennes sont un arsenal anti-inflammatoire : curcuma (curcumine), cumin (thymoquinone),.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -6835,7 +6835,7 @@ export const RECIPES = {
       },
       {
         name: 'Wok de crevettes au curcuma et noix de cajou',
-        description: 'Les crevettes apportent de l\'astaxanthine (pigment rose anti-inflammatoire) et du sélénium. Les noix',
+        description: 'Les crevettes apportent de l\'astaxanthine (pigment rose anti-inflammatoire) et du sélénium. Les noix.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -6865,7 +6865,7 @@ export const RECIPES = {
       },
       {
         name: 'Papillote de cabillaud au gingembre et citronnelle',
-        description: 'Le cabillaud apporte des protéines légères et du sélénium. La citronnelle contient du citral, un pui',
+        description: 'Le cabillaud apporte des protéines légères et du sélénium. La citronnelle contient du citral, un pui.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6892,7 +6892,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz au poulet grillé, brocoli et sauce gingembre',
-        description: 'Le brocoli cuit al dente préserve le maximum de sulforaphane. La sauce au gingembre est anti-inflamm',
+        description: 'Le brocoli cuit al dente préserve le maximum de sulforaphane. La sauce au gingembre est anti-inflamm.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6923,7 +6923,7 @@ export const RECIPES = {
     snack: [
       {
         name: 'Granola maison protéiné',
-        description: 'Granola croquant aux noix, graines et flocons d\'avoine, riche en zinc',
+        description: 'Granola croquant aux noix, graines et flocons d\'avoine, riche en zinc.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6949,7 +6949,7 @@ export const RECIPES = {
       },
       {
         name: 'Crackers houmous et crudités',
-        description: 'Houmous maison avec bâtonnets de légumes croquants et crackers',
+        description: 'Houmous maison avec bâtonnets de légumes croquants et crackers.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -6972,7 +6972,7 @@ export const RECIPES = {
       },
       {
         name: 'Œuf dur et graines',
-        description: 'Œuf dur assaisonné avec graines de sésame et paprika',
+        description: 'Œuf dur assaisonné avec graines de sésame et paprika.',
         prepTime: '12 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -6994,7 +6994,7 @@ export const RECIPES = {
       },
       {
         name: 'Yaourt grec miel-noix-graines de courge',
-        description: 'Yaourt grec crémeux garni de miel, noix concassées et graines de courge riches en zinc',
+        description: 'Yaourt grec crémeux garni de miel, noix concassées et graines de courge riches en zinc.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -7017,7 +7017,7 @@ export const RECIPES = {
       },
       {
         name: 'Edamame au sel de mer',
-        description: 'Edamame vapeur légèrement salés, snack protéiné et riche en zinc',
+        description: 'Edamame vapeur légèrement salés, snack protéiné et riche en zinc.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -7039,7 +7039,7 @@ export const RECIPES = {
       },
       {
         name: 'Houmous maison et crudités',
-        description: 'Les pois chiches apportent zinc et protéines, le tahini du calcium. Parfait pour',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un encas sain et rassasiant.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -7064,7 +7064,7 @@ export const RECIPES = {
       },
       {
         name: 'Yaourt grec, granola et fruits frais',
-        description: 'Le yaourt grec est la collation protéinée parfaite en folliculaire : protéines, ',
+        description: 'Une recette savoureuse et nourrissante pour un encas sain et rassasiant. Idéal en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -7108,7 +7108,7 @@ export const RECIPES = {
       },
       {
         name: 'Mix trail énergétique',
-        description: 'Un mix à emporter partout. Riche en zinc (graines de courge), sélénium (noix du ',
+        description: 'Les amandes apportent magnésium et vitamine E. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase folliculaire pour un encas sain et rassasiant.',
         prepTime: '2 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7132,7 +7132,7 @@ export const RECIPES = {
       },
       {
         name: 'Pomme au beurre d\'amande et cannelle',
-        description: 'La pomme apporte des fibres prébiotiques, le beurre d\'amande des protéines et du',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7154,7 +7154,7 @@ export const RECIPES = {
       },
       {
         name: 'Barres de céréales maison aux graines',
-        description: 'Prépare-les le dimanche pour la semaine. Riches en zinc (graines de tournesol et',
+        description: 'Recette anti-inflammatoire, adapté au SOPK, 100% végétal, pour un encas sain et rassasiant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -7181,7 +7181,7 @@ export const RECIPES = {
       },
       {
         name: 'Edamame croquants au sel de mer',
-        description: 'Les edamame sont très riches en protéines, fer et zinc. Croquants et salés, ils ',
+        description: 'Recette adapté au SOPK, 100% végétal, pour un encas sain et rassasiant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '7 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -7204,7 +7204,7 @@ export const RECIPES = {
       },
       {
         name: 'Rouleaux de printemps aux crudités et crevettes',
-        description: 'Les crevettes apportent zinc et sélénium. Les crudités crues conservent toutes l',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '15 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -7233,7 +7233,7 @@ export const RECIPES = {
       },
       {
         name: 'Granola protéiné maison aux graines',
-        description: 'Prépare-le le dimanche pour la semaine. Riche en zinc (graines de courge), sélén',
+        description: 'Recette adapté au SOPK, 100% végétal, pour un encas sain et rassasiant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -7262,7 +7262,7 @@ export const RECIPES = {
       },
       {
         name: 'Pois chiches croquants aux épices',
-        description: 'L\'alternative saine aux chips ! Les pois chiches grillés sont riches en zinc, fe',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7287,7 +7287,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de thon et avocat',
-        description: 'Le thon en conserve est pratique et riche en protéines, sélénium et oméga-3. L\'a',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -7312,7 +7312,7 @@ export const RECIPES = {
       },
       {
         name: 'Bâtonnets de carotte au beurre de cajou',
-        description: 'Les carottes sont riches en bêta-carotène. Le beurre de cajou apporte zinc, magn',
+        description: 'Recette 100% végétal, pour un encas sain et rassasiant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7332,7 +7332,7 @@ export const RECIPES = {
       },
       {
         name: 'Dattes fourrées au fromage de chèvre et noix',
-        description: 'Les dattes apportent du fer et de l\'énergie rapide. Le chèvre fournit calcium et',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7356,7 +7356,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie vert protéiné kale-banane-beurre de cacahuète',
-        description: 'Le kale apporte vitamine K, vitamine C et fer. Le beurre de cacahuète fournit pr',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7381,7 +7381,7 @@ export const RECIPES = {
     
       {
         name: 'Houmous au curcuma et bâtonnets de légumes',
-        description: 'Les pois chiches contiennent des saponines anti-inflammatoires. Le tahini apporte du sésame (sésamin',
+        description: 'Les pois chiches contiennent des saponines anti-inflammatoires. Le tahini apporte du sésame (sésamin.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -7410,7 +7410,7 @@ export const RECIPES = {
       },
       {
         name: 'Crumble de fruits rouges au curcuma et flocons d\'avoine',
-        description: 'Les fruits rouges sont un cocktail d\'anthocyanines, d\'acide ellagique et de resvératrol — trois fami',
+        description: 'Les fruits rouges sont un cocktail d\'anthocyanines, d\'acide ellagique et de resvératrol — trois fami.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7440,7 +7440,7 @@ export const RECIPES = {
     drink: [
       {
         name: 'Matcha latte',
-        description: 'Matcha latte onctueux au lait d\'amande, énergisant et antioxydant',
+        description: 'Matcha latte onctueux au lait d\'amande, énergisant et antioxydant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -7462,7 +7462,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau de coco citron vert',
-        description: 'Boisson hydratante à l\'eau de coco, citron vert et menthe fraîche',
+        description: 'Boisson hydratante à l\'eau de coco, citron vert et menthe fraîche.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7484,7 +7484,7 @@ export const RECIPES = {
       },
       {
         name: 'Lassi mangue-curcuma',
-        description: 'Lassi onctueux à la mangue et au curcuma, riche en probiotiques et anti-inflammatoire',
+        description: 'Lassi onctueux à la mangue et au curcuma, riche en probiotiques et anti-inflammatoire.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -7508,7 +7508,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus vert détox',
-        description: 'Jus frais de céleri, concombre, pomme verte et citron pour un boost détoxifiant',
+        description: 'Recette adapté au SOPK, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7533,7 +7533,7 @@ export const RECIPES = {
       },
       {
         name: 'Matcha latte au lait d\'amande',
-        description: 'Le matcha libère la caféine progressivement (pas de crash), apporte de la L-théa',
+        description: 'Le matcha offre une énergie douce et durable grâce à la L-théanine. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '8 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -7557,7 +7557,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus de betterave-carotte-pomme',
-        description: 'La betterave améliore le flux sanguin et l\'endurance (parfait quand l\'énergie mo',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. La betterave soutient la circulation et l\'oxygénation.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7580,7 +7580,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie vert énergie',
-        description: 'Ton corps est en mode reconstruction, gave-le de chlorophylle et de vitamines. É',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les épinards sont riches en fer et en folate essentiels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7605,7 +7605,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau de coco-citron vert-menthe',
-        description: 'L\'eau de coco est naturellement riche en électrolytes (potassium, magnésium). La',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Le lait de coco apporte des graisses saines et de l\'onctuosité.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7629,7 +7629,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion ortie-menthe (boost de fer)',
-        description: 'L\'ortie est l\'une des plantes les plus riches en fer, silice et minéraux. Elle s',
+        description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '13 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7653,7 +7653,7 @@ export const RECIPES = {
       },
       {
         name: 'Kombucha maison ou nature',
-        description: 'Le kombucha est une boisson fermentée riche en probiotiques qui renforcent ton m',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7675,7 +7675,7 @@ export const RECIPES = {
       },
       {
         name: 'Thé vert matcha au lait de coco',
-        description: 'Le matcha apporte de la L-théanine pour une concentration calme et des catéchine',
+        description: 'Le matcha offre une énergie douce et durable grâce à la L-théanine. Le miel apporte une énergie naturelle rapide.',
         prepTime: '8 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -7699,7 +7699,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus frais orange-carotte-curcuma',
-        description: 'L\'orange et la carotte sont riches en vitamine C et bêta-carotène. Le curcuma es',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7721,7 +7721,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau infusée citron-concombre-gingembre',
-        description: 'L\'hydratation est essentielle pour la croissance folliculaire. Le citron apporte',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7746,7 +7746,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie protéiné banane-épinards-spiruline',
-        description: 'La spiruline est un super-aliment : 60% de protéines, riche en fer, B12 et antio',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La banane apporte du tryptophane, précurseur de la sérotonine.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7770,7 +7770,7 @@ export const RECIPES = {
       },
       {
         name: 'Tisane de fenouil et anis étoilé',
-        description: 'Le fenouil et l\'anis étoilé ont des propriétés œstrogéniques douces qui accompag',
+        description: 'Le fenouil aide à soulager les ballonnements. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '11 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7794,7 +7794,7 @@ export const RECIPES = {
       },
       {
         name: 'Latte de betterave (beet latte)',
-        description: 'La betterave améliore la circulation sanguine grâce aux nitrates. Sans caféine, ',
+        description: 'La betterave soutient la circulation et l\'oxygénation. Un choix parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
         prepTime: '8 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7820,7 +7820,7 @@ export const RECIPES = {
     
       {
         name: 'Jus vert anti-inflammatoire céleri-concombre-gingembre',
-        description: 'Le céleri contient de l\'apigénine, un flavonoïde anti-inflammatoire. Le concombre hydrate et contien',
+        description: 'Le céleri contient de l\'apigénine, un flavonoïde anti-inflammatoire. Le concombre hydrate et contien.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7843,7 +7843,7 @@ export const RECIPES = {
       },
       {
         name: 'Thé vert sencha au citron et menthe',
-        description: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2 — deux voies pro-inflammatoires',
+        description: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2 — deux voies pro-inflammatoires.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7867,7 +7867,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie anti-inflammatoire ananas-curcuma-poivre noir',
-        description: 'L\'ananas contient de la bromélaïne, une enzyme qui réduit l\'inflammation des tissus. Le curcuma + po',
+        description: 'L\'ananas contient de la bromélaïne, une enzyme qui réduit l\'inflammation des tissus. Le curcuma + po.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7892,7 +7892,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau infusée anti-inflammatoire concombre-curcuma-citron',
-        description: 'Le concombre contient des cucurbitacines anti-inflammatoires. Le curcuma frais infusé dans l\'eau lib',
+        description: 'Le concombre contient des cucurbitacines anti-inflammatoires. Le curcuma frais infusé dans l\'eau lib.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7922,7 +7922,7 @@ export const RECIPES = {
     breakfast: [
       {
         name: 'Açaí bowl tropical',
-        description: 'Açaí bowl coloré avec fruits frais et graines de courge',
+        description: 'Açaí bowl coloré avec fruits frais et graines de courge.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7946,7 +7946,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de fruits frais et graines de chia',
-        description: 'Bowl léger aux fruits frais, graines de chia et lait de coco, riche en fibres',
+        description: 'Les myrtilles regorgent d\'antioxydants protecteurs. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7972,7 +7972,7 @@ export const RECIPES = {
       },
       {
         name: 'Toast complet avocat-radis-graines germées',
-        description: 'Toast de pain complet avec avocat crémeux, radis croquants et graines germées',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -7998,7 +7998,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl antioxydant grenade-açaí',
-        description: 'Smoothie bowl violet intense à la grenade et açaí, garni de superaliments',
+        description: 'Smoothie bowl violet intense à la grenade et açaí, garni de superaliments.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8023,7 +8023,7 @@ export const RECIPES = {
       },
       {
         name: 'Omelette aux légumes verts et herbes',
-        description: 'Omelette légère aux épinards, courgette, brocoli et fines herbes fraîches',
+        description: 'Omelette légère aux épinards, courgette, brocoli et fines herbes fraîches.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8049,7 +8049,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge aux myrtilles et graines',
-        description: 'Porridge onctueux aux myrtilles fraîches, graines de lin et noix, riche en fibres',
+        description: 'Les myrtilles regorgent d\'antioxydants protecteurs. Les amandes apportent magnésium et vitamine E. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8073,7 +8073,7 @@ export const RECIPES = {
       },
       {
         name: 'Açaí bowl aux fruits d\'été et graines de courge',
-        description: 'Pic d\'énergie ! L\'açaí est ultra-riche en antioxydants qui protègent tes cellule',
+        description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8098,7 +8098,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartines saumon fumé-avocat-citron',
-        description: 'Le saumon fumé apporte des oméga-3 et protéines, l\'avocat des graisses saines et',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le saumon est riche en oméga-3 anti-inflammatoires. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -8123,7 +8123,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de skyr aux fruits rouges et pistaches',
-        description: 'Le skyr est ultra-protéiné (2x plus que le yaourt). Les fruits rouges apportent ',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Le miel apporte une énergie naturelle rapide. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8147,7 +8147,7 @@ export const RECIPES = {
       },
       {
         name: 'Galettes de banane à la noix de coco',
-        description: 'Seulement 3 ingrédients, ultra-rapide. L\'énergie de la banane + les bonnes grais',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -8169,7 +8169,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie tropical mangue-ananas-curcuma',
-        description: 'Un smoothie solaire comme toi en ovulation ! La mangue et l\'ananas sont riches e',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8192,7 +8192,7 @@ export const RECIPES = {
       },
       {
         name: 'Œufs Benedict sauce légère aux herbes',
-        description: 'Un brunch chic pour ta phase la plus confiante ! Les œufs apportent protéines et',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -8218,7 +8218,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge aux graines de chia et fruits frais',
-        description: 'Un porridge léger chargé en fibres. Les graines de chia apportent oméga-3 et rég',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8242,7 +8242,7 @@ export const RECIPES = {
       },
       {
         name: 'Toast au fromage de chèvre, figues et miel',
-        description: 'Les figues sont riches en fibres et calcium. Le chèvre apporte des protéines. Le',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8266,7 +8266,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl mangue-passion-coco',
-        description: 'Exotique et vitaminé. La mangue et le fruit de la passion sont bourrés de vitami',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8290,7 +8290,7 @@ export const RECIPES = {
       },
       {
         name: 'Crêpes complètes aux fruits et miel',
-        description: 'Des crêpes légères à la farine complète — plus de fibres et de nutriments que le',
+        description: 'Le miel apporte une énergie naturelle rapide. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -8314,7 +8314,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de cottage cheese aux pêches et amandes',
-        description: 'Le cottage cheese est très riche en protéines et pauvre en graisses. Les pêches ',
+        description: 'Les amandes apportent magnésium et vitamine E. Le miel apporte une énergie naturelle rapide. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8338,7 +8338,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus frais carotte-orange-gingembre',
-        description: 'Un shot de vitamines pour commencer la journée au sommet. La carotte et l\'orange',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8383,7 +8383,7 @@ export const RECIPES = {
       },
       {
         name: 'Granola bowl au yaourt de coco et fruits tropicaux',
-        description: 'Le yaourt de coco apporte des graisses saines sans lactose. Les fruits tropicaux',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8409,7 +8409,7 @@ export const RECIPES = {
       },
       {
         name: 'Œufs brouillés au saumon fumé et ciboulette',
-        description: 'Le saumon fumé apporte oméga-3 et vitamine D sans cuisson. Les œufs fournissent ',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8434,7 +8434,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge froid aux graines de chia et kiwi',
-        description: 'Les graines de chia apportent oméga-3 et fibres. Le kiwi contient plus de vitami',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8458,7 +8458,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap d\'œufs brouillés aux légumes frais',
-        description: 'Un wrap léger et protéiné. Les œufs fournissent les acides aminés essentiels. Le',
+        description: 'Les épinards sont riches en fer et en folate essentiels. L\'avocat apporte des graisses saines qui soutiennent les hormones. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8484,7 +8484,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie grenade-fraise-menthe',
-        description: 'La grenade est l\'un des fruits les plus antioxydants. Les fraises apportent de l',
+        description: 'La grenade regorge d\'antioxydants et de vitamine C. Le miel apporte une énergie naturelle rapide. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8509,7 +8509,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de cottage cheese aux framboises et graines de tournesol',
-        description: 'Le cottage cheese est très protéiné et pauvre en graisses. Les framboises apport',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8533,7 +8533,7 @@ export const RECIPES = {
       },
       {
         name: 'Galettes de courgette et menthe à la feta',
-        description: 'Les courgettes sont légères et riches en potassium. La feta apporte calcium et p',
+        description: 'La feta apporte calcium et protéines. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -8559,7 +8559,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine d\'houmous de betterave et graines germées',
-        description: 'Le houmous de betterave combine fer des pois chiches et antioxydants de la bette',
+        description: 'La betterave soutient la circulation et l\'oxygénation. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -8584,7 +8584,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl pastèque-framboise-basilic',
-        description: 'La pastèque est riche en lycopène et ultra-hydratante. Les framboises ajoutent d',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8608,7 +8608,7 @@ export const RECIPES = {
       },
       {
         name: 'Pancakes au sarrasin et myrtilles',
-        description: 'Le sarrasin est sans gluten et riche en rutine qui renforce les vaisseaux. Les m',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les myrtilles regorgent d\'antioxydants protecteurs. Idéal en phase ovulatoire pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8632,7 +8632,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de skyr aux graines de courge et miel de manuka',
-        description: 'Le skyr islandais contient 2x plus de protéines que le yaourt classique. Les gra',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8656,7 +8656,7 @@ export const RECIPES = {
     
       {
         name: 'Smoothie anti-inflammatoire mangue-curcuma-coco',
-        description: 'La mangue contient de la mangiférine, un polyphénol anti-inflammatoire unique. Le curcuma + coco = a',
+        description: 'La mangue contient de la mangiférine, un polyphénol anti-inflammatoire unique. Le curcuma + coco = a.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8682,7 +8682,7 @@ export const RECIPES = {
       },
       {
         name: 'Chia pudding matcha-mangue',
-        description: 'Le matcha contient 137x plus d\'EGCG que le thé vert. La mangue sa mangiférine. Les graines de chia d',
+        description: 'Le matcha contient 137x plus d\'EGCG que le thé vert. La mangue sa mangiférine. Les graines de chia d.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -8707,7 +8707,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge froid aux myrtilles et graines anti-inflammatoires',
-        description: 'Préparé la veille avec un mix de graines anti-inflammatoires (chia, lin, chanvre). Les myrtilles ajo',
+        description: 'Préparé la veille avec un mix de graines anti-inflammatoires (chia, lin, chanvre). Les myrtilles ajo.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8737,7 +8737,7 @@ export const RECIPES = {
     lunch: [
       {
         name: 'Poke bowl tofu-mangue',
-        description: 'Poke bowl frais avec tofu mariné, edamame, concombre et mangue',
+        description: 'Poke bowl frais avec tofu mariné, edamame, concombre et mangue.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -8763,7 +8763,7 @@ export const RECIPES = {
       },
       {
         name: 'Poke bowl saumon-mangue',
-        description: 'Poke bowl frais avec saumon, edamame, concombre et mangue',
+        description: 'Poke bowl frais avec saumon, edamame, concombre et mangue.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -8789,7 +8789,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de quinoa-grenade-brocoli-avocat',
-        description: 'Salade fraîche et détox au quinoa, brocoli cru, grenade et avocat crémeux',
+        description: 'Salade fraîche et détox au quinoa, brocoli cru, grenade et avocat crémeux.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8816,7 +8816,7 @@ export const RECIPES = {
       },
       {
         name: 'Buddha bowl arc-en-ciel',
-        description: 'Bowl coloré avec patate douce rôtie, chou rouge, pois chiches, carotte et sauce tahini',
+        description: 'Bowl coloré avec patate douce rôtie, chou rouge, pois chiches, carotte et sauce tahini.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8843,7 +8843,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade niçoise revisitée',
-        description: 'Salade niçoise légère avec thon frais, œuf, haricots verts et olives',
+        description: 'Salade niçoise légère avec thon frais, œuf, haricots verts et olives.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -8870,7 +8870,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap de collard greens aux légumes crus',
-        description: 'Feuilles de chou vert farcies de légumes crus, houmous et graines germées',
+        description: 'Feuilles de chou vert farcies de légumes crus, houmous et graines germées.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -8896,7 +8896,7 @@ export const RECIPES = {
       },
       {
         name: 'Poke bowl saumon, mangue, edamame et avocat',
-        description: 'Le saumon cru préserve 100% de ses oméga-3 et vitamine D. Les edamame apportent ',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le saumon est riche en oméga-3 anti-inflammatoires.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -8926,7 +8926,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade rainbow aux lentilles et grenade',
-        description: 'Chaque couleur de légume apporte un type d\'antioxydant différent. La grenade est',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. La grenade regorge d\'antioxydants et de vitamine C.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -8956,7 +8956,7 @@ export const RECIPES = {
       },
       {
         name: 'Ceviche de poisson blanc aux agrumes',
-        description: 'Le poisson blanc est ultra-protéiné et léger — exactement ce qu\'il faut quand to',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
@@ -8985,7 +8985,7 @@ export const RECIPES = {
       },
       {
         name: 'Buddha bowl quinoa, falafels et sauce tahini',
-        description: 'Les pois chiches apportent zinc et fibres qui aident à éliminer l\'excès d\'œstrog',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Les pois chiches apportent protéines végétales et fibres. Idéal en phase ovulatoire pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -9016,7 +9016,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare de thon à l\'avocat et sésame',
-        description: 'Le thon cru préserve ses oméga-3 et son sélénium, un antioxydant puissant qui pr',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -9045,7 +9045,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de crevettes, pamplemousse et avocat',
-        description: 'Les crevettes sont riches en zinc et sélénium essentiels à l\'ovulation. Le pampl',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -9074,7 +9074,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap de poulet grillé aux légumes croquants',
-        description: 'Léger et protéiné, parfait pour un déjeuner actif. Le poulet apporte des protéin',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Le poulet apporte des protéines maigres de qualité. Idéal en phase ovulatoire pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -9104,7 +9104,7 @@ export const RECIPES = {
       },
       {
         name: 'Taboulé de quinoa à la menthe et grenade',
-        description: 'Le quinoa remplace le boulgour pour un taboulé sans gluten et plus riche en prot',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. La grenade regorge d\'antioxydants et de vitamine C. Idéal en phase ovulatoire pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -9133,7 +9133,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade niçoise revisitée au thon frais',
-        description: 'Un classique méditerranéen riche en oméga-3 (thon), protéines complètes (œufs), ',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -9163,7 +9163,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol tex-mex aux haricots noirs et avocat',
-        description: 'Les haricots noirs sont riches en fibres qui aident à éliminer l\'excès d\'œstrogè',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
@@ -9194,7 +9194,7 @@ export const RECIPES = {
       },
       {
         name: 'Gaspacho de tomates et pastèque',
-        description: 'La tomate et la pastèque sont riches en lycopène, un antioxydant puissant. Froid',
+        description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -9224,7 +9224,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade d\'avocat, mangue et poulet grillé',
-        description: 'L\'avocat apporte du glutathion, l\'antioxydant maître qui protège tes cellules au',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -9253,7 +9253,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl méditerranéen aux pois chiches grillés',
-        description: 'Les pois chiches grillés apportent zinc et fibres de manière croquante et fun. L',
+        description: 'Les pois chiches apportent protéines végétales et fibres. La feta apporte calcium et protéines. Idéal en phase ovulatoire pour un déjeuner équilibré et nourrissant.',
         prepTime: '30 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -9284,7 +9284,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de quinoa, avocat, mangue et crevettes grillées',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le quinoa fournit protéines complètes et fer végétal.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9312,7 +9312,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de poulpe grillé aux agrumes et roquette',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9340,7 +9340,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de nouilles de riz froides au concombre et sauce sésame',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '20 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -9370,7 +9370,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare de betterave et avocat aux noix',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Les noix sont riches en oméga-3 bénéfiques pour le cerveau.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9398,7 +9398,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol poké végétarien au tofu croustillant',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le tofu apporte des protéines végétales complètes.',
         prepTime: '20 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -9427,7 +9427,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade fattoush aux herbes fraîches',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -9457,7 +9457,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz brun, sashimi de saumon et avocat',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9485,7 +9485,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de pastèque, feta et menthe',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'La feta apporte calcium et protéines. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9512,7 +9512,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de lentilles beluga, grenade et sauce tahini',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. La grenade regorge d\'antioxydants et de vitamine C.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -9540,7 +9540,7 @@ export const RECIPES = {
       },
       {
         name: 'Wrap de houmous, falafels et taboulé',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Le tahini est riche en calcium et en graisses saines. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -9567,7 +9567,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de haricots blancs aux tomates séchées et basilic',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9593,7 +9593,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de couscous perlé aux légumes grillés et feta',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. La feta apporte calcium et protéines. Idéal en phase ovulatoire pour un déjeuner équilibré et nourrissant.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -9621,7 +9621,7 @@ export const RECIPES = {
       },
       {
         name: 'Gaspacho vert aux concombre, avocat et herbes',
-        description: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au somme',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9649,7 +9649,7 @@ export const RECIPES = {
     
       {
         name: 'Salade de pastèque au gingembre et menthe',
-        description: 'La pastèque contient du lycopène et de la citrulline, un acide aminé anti-inflammatoire. Le gingembr',
+        description: 'La pastèque contient du lycopène et de la citrulline, un acide aminé anti-inflammatoire. Le gingembr.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9675,7 +9675,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl poké au thon, edamame et gingembre frais',
-        description: 'Le thon cru est riche en oméga-3 DHA (le plus anti-inflammatoire). Les edamame apportent des isoflav',
+        description: 'Le thon cru est riche en oméga-3 DHA (le plus anti-inflammatoire). Les edamame apportent des isoflav.',
         prepTime: '15 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -9705,7 +9705,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de quinoa aux herbes, grenade et noix',
-        description: 'Le quinoa contient de la quercétine (anti-inflammatoire). La grenade des punicalagines. Les noix omé',
+        description: 'Le quinoa contient de la quercétine (anti-inflammatoire). La grenade des punicalagines. Les noix omé.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9734,7 +9734,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de fenouil cru, orange et olives',
-        description: 'Le fenouil cru contient de l\'anéthol, un anti-inflammatoire et antispasmodique. L\'orange apporte de ',
+        description: 'Le fenouil cru contient de l\'anéthol, un anti-inflammatoire et antispasmodique. L\'orange apporte de.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9760,7 +9760,7 @@ export const RECIPES = {
       },
       {
         name: 'Taboulé de sarrasin aux herbes et tomates séchées',
-        description: 'Le sarrasin contient de la rutine, un flavonoïde anti-inflammatoire et protecteur vasculaire. Les to',
+        description: 'Le sarrasin contient de la rutine, un flavonoïde anti-inflammatoire et protecteur vasculaire. Les to.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -9790,7 +9790,7 @@ export const RECIPES = {
     dinner: [
       {
         name: 'Grande salade méditerranéenne',
-        description: 'Salade composée colorée aux pois chiches rôtis, légumes grillés et tahini',
+        description: 'Salade composée colorée aux pois chiches rôtis, légumes grillés et tahini.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -9817,7 +9817,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade colorée & ceviche',
-        description: 'Grande salade composée avec ceviche de poisson au citron vert',
+        description: 'Grande salade composée avec ceviche de poisson au citron vert.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'mexicain',
@@ -9844,7 +9844,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon en croûte d\'herbes, salade de chou kale',
-        description: 'Pavé de saumon en croûte d\'herbes fraîches avec salade de kale massé au citron',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9871,7 +9871,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry léger de légumes au lait de coco',
-        description: 'Curry doux aux brocolis, poivrons et pois chiches dans un bouillon de coco léger',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les pois chiches apportent protéines végétales et fibres. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9898,7 +9898,7 @@ export const RECIPES = {
       },
       {
         name: 'Crevettes sautées ail-citron, brocoli vapeur',
-        description: 'Crevettes sautées à l\'ail et au citron avec brocoli vapeur et quinoa',
+        description: 'Crevettes sautées à l\'ail et au citron avec brocoli vapeur et quinoa.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -9925,7 +9925,7 @@ export const RECIPES = {
       },
       {
         name: 'Tofu grillé sauce tahini, taboulé de chou-fleur',
-        description: 'Tofu mariné et grillé avec sauce tahini-citron et taboulé de chou-fleur aux herbes',
+        description: 'Le tofu apporte des protéines végétales complètes. Le tahini est riche en calcium et en graisses saines. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -9952,7 +9952,7 @@ export const RECIPES = {
       },
       {
         name: 'Saumon grillé et salade d\'asperges au citron',
-        description: 'Le saumon est la meilleure source d\'oméga-3 et de vitamine D. Les asperges sont ',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -9979,7 +9979,7 @@ export const RECIPES = {
       },
       {
         name: 'Brochettes de crevettes marinées et riz basmati',
-        description: 'Les crevettes sont riches en zinc et sélénium qui soutiennent la fertilité au pi',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10008,7 +10008,7 @@ export const RECIPES = {
       },
       {
         name: 'Pizza maison aux légumes grillés et roquette',
-        description: 'Une pizza maison avec une pâte complète apporte fibres et glucides complexes. Le',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -10038,7 +10038,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet grillé au citron et légumes méditerranéens',
-        description: 'Le poulet apporte protéines et vitamine B6. Les légumes méditerranéens sont gorg',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Le poulet apporte des protéines maigres de qualité. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -10068,7 +10068,7 @@ export const RECIPES = {
       },
       {
         name: 'Nouilles soba froides au concombre et sauce sésame',
-        description: 'Les nouilles soba (sarrasin) sont riches en magnésium et protéines. Froides, ell',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. L\'avocat apporte des graisses saines qui soutiennent les hormones.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -10099,7 +10099,7 @@ export const RECIPES = {
       },
       {
         name: 'Filet de bar en croûte d\'herbes et ratatouille',
-        description: 'Le bar est un poisson maigre riche en protéines et sélénium. La ratatouille est ',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10131,7 +10131,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade tiède de lentilles et saumon fumé',
-        description: 'Les lentilles apportent fer et protéines végétales. Le saumon fumé ajoute oméga-',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Les lentilles apportent fer, protéines et fibres rassasiantes. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10160,7 +10160,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry vert thaï aux légumes et tofu',
-        description: 'Le curry vert thaï est aromatique et anti-inflammatoire. Le tofu apporte des pro',
+        description: 'Le tofu apporte des protéines végétales complètes. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -10190,7 +10190,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare de saumon aux herbes fraîches',
-        description: 'Le saumon cru conserve 100% de ses oméga-3. Les herbes fraîches ajoutent des ant',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10220,7 +10220,7 @@ export const RECIPES = {
       },
       {
         name: 'Risotto aux fruits de mer et citron',
-        description: 'Les fruits de mer sont les aliments les plus riches en zinc et sélénium. Le riso',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -10251,7 +10251,7 @@ export const RECIPES = {
       },
       {
         name: 'Wok de crevettes aux légumes croquants',
-        description: 'Les crevettes apportent zinc, sélénium et protéines. Les légumes croquants conse',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -10282,7 +10282,7 @@ export const RECIPES = {
       },
       {
         name: 'Aubergines grillées au tahini et grenade',
-        description: 'Le tahini est riche en calcium et magnésium. L\'aubergine est une source d\'antiox',
+        description: 'La grenade regorge d\'antioxydants et de vitamine C. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -10312,7 +10312,7 @@ export const RECIPES = {
       },
       {
         name: 'Crevettes sautées à l\'ail et au citron sur lit de roquette',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10339,7 +10339,7 @@ export const RECIPES = {
       },
       {
         name: 'Filet de sole meunière aux câpres et beurre citronné',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10366,7 +10366,7 @@ export const RECIPES = {
       },
       {
         name: 'Poivrons farcis au riz et herbes fraîches',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Recette anti-SPM, 100% végétal, pour un dîner léger et réparateur. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10395,7 +10395,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare de daurade aux agrumes et avocat',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10422,7 +10422,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade tiède d\'asperges, œuf poché et parmesan',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10448,7 +10448,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry de lotte au lait de coco et citronnelle',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -10477,7 +10477,7 @@ export const RECIPES = {
       },
       {
         name: 'Taboulé de chou-fleur cru aux herbes et grenade',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'La grenade regorge d\'antioxydants et de vitamine C. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -10505,7 +10505,7 @@ export const RECIPES = {
       },
       {
         name: 'Brochettes de thon mi-cuit aux graines de sésame',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10532,7 +10532,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de quinoa aux herbes, feta et olives',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10560,7 +10560,7 @@ export const RECIPES = {
       },
       {
         name: 'Papillote de crevettes aux légumes et coriandre',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10587,7 +10587,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de pois chiches à la marocaine',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un dîner léger et réparateur.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10615,7 +10615,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl méditerranéen au boulgour et légumes grillés',
-        description: 'En ovulation, ton énergie est au sommet. Privilégie le léger et le frais le soir',
+        description: 'Recette anti-SPM, 100% végétal, pour un dîner léger et réparateur. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '25 min',
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
@@ -10644,7 +10644,7 @@ export const RECIPES = {
     
       {
         name: 'Ceviche de daurade au citron vert et avocat',
-        description: 'Le poisson cru conserve 100% de ses oméga-3 (pas de dégradation à la cuisson). Le citron vert est ri',
+        description: 'Le poisson cru conserve 100% de ses oméga-3 (pas de dégradation à la cuisson). Le citron vert est ri.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mexicain',
@@ -10672,7 +10672,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare de saumon à l\'avocat et graines de chanvre',
-        description: 'Le saumon cru = oméga-3 intacts. Les graines de chanvre apportent du GLA (acide gamma-linolénique), ',
+        description: 'Le saumon cru = oméga-3 intacts. Les graines de chanvre apportent du GLA (acide gamma-linolénique),.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10700,7 +10700,7 @@ export const RECIPES = {
       },
       {
         name: 'Crevettes grillées à l\'ail et au persil, courgettes sautées',
-        description: 'Les crevettes contiennent de l\'astaxanthine et du sélénium. L\'ail cru libère de l\'allicine (anti-inf',
+        description: 'Les crevettes contiennent de l\'astaxanthine et du sélénium. L\'ail cru libère de l\'allicine (anti-inf.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10727,7 +10727,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade tiède d\'asperges au saumon et vinaigrette au curcuma',
-        description: 'Les asperges contiennent des saponines anti-inflammatoires et du glutathion (le maître antioxydant d',
+        description: 'Les asperges contiennent des saponines anti-inflammatoires et du glutathion (le maître antioxydant d.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10754,7 +10754,7 @@ export const RECIPES = {
       },
       {
         name: 'Brochettes de crevettes marinées au curcuma et citron vert',
-        description: 'Les crevettes marinées au curcuma absorbent la curcumine à travers leur chair. Le citron vert ajoute',
+        description: 'Les crevettes marinées au curcuma absorbent la curcumine à travers leur chair. Le citron vert ajoute.',
         prepTime: '15 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -10783,7 +10783,7 @@ export const RECIPES = {
       },
       {
         name: 'Wraps de laitue au poulet grillé et sauce au gingembre',
-        description: 'La laitue remplace le pain (zéro gluten). Le poulet grillé apporte des protéines maigres. La sauce a',
+        description: 'La laitue remplace le pain (zéro gluten). Le poulet grillé apporte des protéines maigres. La sauce a.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10812,7 +10812,7 @@ export const RECIPES = {
       },
       {
         name: 'Salade de poulpe grillé au persil et citron',
-        description: 'Le poulpe est riche en sélénium (cofacteur des enzymes anti-inflammatoires) et en taurine (anti-infl',
+        description: 'Le poulpe est riche en sélénium (cofacteur des enzymes anti-inflammatoires) et en taurine (anti-infl.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10839,7 +10839,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de riz au curcuma, légumes grillés et sauce tahini',
-        description: 'Le riz au curcuma colore et apporte de la curcumine. Les légumes grillés concentrent leurs polyphéno',
+        description: 'Le riz au curcuma colore et apporte de la curcumine. Les légumes grillés concentrent leurs polyphéno.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -10871,7 +10871,7 @@ export const RECIPES = {
     snack: [
       {
         name: 'Salade de fruits antioxydante',
-        description: 'Salade de fruits frais de saison avec menthe et graines de grenade',
+        description: 'Salade de fruits frais de saison avec menthe et graines de grenade.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10896,7 +10896,7 @@ export const RECIPES = {
       },
       {
         name: 'Edamame épicés',
-        description: 'Edamame grillés au sel de mer, paprika fumé et sésame',
+        description: 'Edamame grillés au sel de mer, paprika fumé et sésame.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -10919,7 +10919,7 @@ export const RECIPES = {
       },
       {
         name: 'Bâtonnets de concombre au tzatziki léger',
-        description: 'Concombre croquant avec tzatziki au yaourt végétal et aneth',
+        description: 'Concombre croquant avec tzatziki au yaourt végétal et aneth.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -10943,7 +10943,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare d\'algues sur galette de riz',
-        description: 'Tartare d\'algues marines iodé sur galettes de riz croustillantes',
+        description: 'Tartare d\'algues marines iodé sur galettes de riz croustillantes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10967,7 +10967,7 @@ export const RECIPES = {
       },
       {
         name: 'Mix de noix et baies de goji',
-        description: 'Mélange énergétique de noix, amandes, graines de courge et baies de goji',
+        description: 'Mélange énergétique de noix, amandes, graines de courge et baies de goji.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -10991,7 +10991,7 @@ export const RECIPES = {
       },
       {
         name: 'Mix de noix du Brésil, canneberges et graines de courge',
-        description: 'Les noix du Brésil sont la source n°1 de sélénium (2 noix = 100% des besoins). L',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11014,7 +11014,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de fromage frais et figues',
-        description: 'Les figues sont riches en calcium et fibres. Le fromage frais apporte des protéi',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -11037,7 +11037,7 @@ export const RECIPES = {
       },
       {
         name: 'Bâtonnets de concombre et guacamole',
-        description: 'L\'avocat est la meilleure source de glutathion, l\'antioxydant maître du corps. L',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'mexicain',
@@ -11062,7 +11062,7 @@ export const RECIPES = {
       },
       {
         name: 'Brochettes de fruits frais au miel',
-        description: 'Chaque fruit apporte un type d\'antioxydant différent. Fraises = vitamine C, kiwi',
+        description: 'Le miel apporte une énergie naturelle rapide. La mangue est riche en vitamine A et antioxydants. Idéal en phase ovulatoire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11088,7 +11088,7 @@ export const RECIPES = {
       },
       {
         name: 'Yaourt de coco aux fruits de la passion',
-        description: 'Le yaourt de coco est riche en graisses saines et sans lactose. Le fruit de la p',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal en phase ovulatoire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11111,7 +11111,7 @@ export const RECIPES = {
       },
       {
         name: 'Crackers aux graines et houmous de betterave',
-        description: 'La betterave ajoute des nitrates naturels qui améliorent la circulation sanguine',
+        description: 'Les pois chiches apportent protéines végétales et fibres. La betterave soutient la circulation et l\'oxygénation. Idéal en phase ovulatoire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -11136,7 +11136,7 @@ export const RECIPES = {
       },
       {
         name: 'Energy balls coco-citron-matcha',
-        description: 'Le matcha apporte des antioxydants puissants (EGCG) et de la L-théanine pour une',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le matcha offre une énergie douce et durable grâce à la L-théanine.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -11162,7 +11162,7 @@ export const RECIPES = {
       },
       {
         name: 'Rondelles de concombre au saumon fumé et cream cheese',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Le saumon est riche en oméga-3 anti-inflammatoires. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11187,7 +11187,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartare de mangue à la coriandre et citron vert',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. La mangue est riche en vitamine A et antioxydants. Idéal en phase ovulatoire pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11211,7 +11211,7 @@ export const RECIPES = {
       },
       {
         name: 'Œufs durs farcis au houmous',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
@@ -11235,7 +11235,7 @@ export const RECIPES = {
       },
       {
         name: 'Carpaccio de fraises au basilic et vinaigre balsamique',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -11259,7 +11259,7 @@ export const RECIPES = {
       },
       {
         name: 'Energy balls matcha-coco-cajou',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le matcha offre une énergie douce et durable grâce à la L-théanine.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -11284,7 +11284,7 @@ export const RECIPES = {
       },
       {
         name: 'Verrines de gaspacho de tomates cerises',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11309,7 +11309,7 @@ export const RECIPES = {
       },
       {
         name: 'Brochettes de melon, jambon cru et menthe',
-        description: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est ',
+        description: 'Recette anti-SPM, pour un encas sain et rassasiant. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11334,7 +11334,7 @@ export const RECIPES = {
     
       {
         name: 'Tartelettes de concombre au thon et avocat',
-        description: 'Le concombre en rondelles remplace le pain (zéro inflammation du gluten). Le thon apporte oméga-3. L',
+        description: 'Le concombre en rondelles remplace le pain (zéro inflammation du gluten). Le thon apporte oméga-3. L.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11360,7 +11360,7 @@ export const RECIPES = {
       },
       {
         name: 'Mousse de mangue au lait de coco et curcuma',
-        description: 'La mangue contient de la mangiférine anti-inflammatoire. Le lait de coco facilite l\'absorption du cu',
+        description: 'La mangue contient de la mangiférine anti-inflammatoire. Le lait de coco facilite l\'absorption du cu.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11385,7 +11385,7 @@ export const RECIPES = {
       },
       {
         name: 'Bouchées d\'avocat au sésame et citron vert',
-        description: 'L\'avocat contient des oméga-9 anti-inflammatoires et du glutathion. Le sésame apporte de la sésamine',
+        description: 'L\'avocat contient des oméga-9 anti-inflammatoires et du glutathion. Le sésame apporte de la sésamine.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11412,7 +11412,7 @@ export const RECIPES = {
     drink: [
       {
         name: 'Eau infusée détox',
-        description: 'Eau fraîche infusée au concombre, citron, menthe et gingembre',
+        description: 'Eau fraîche infusée au concombre, citron, menthe et gingembre.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11435,7 +11435,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus betterave-pomme-gingembre',
-        description: 'Jus frais détoxifiant à la betterave, pomme verte et gingembre',
+        description: 'Jus frais détoxifiant à la betterave, pomme verte et gingembre.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11457,7 +11457,7 @@ export const RECIPES = {
       },
       {
         name: 'Thé vert glacé à la pêche',
-        description: 'Thé vert rafraîchissant à la pêche fraîche et menthe',
+        description: 'Thé vert rafraîchissant à la pêche fraîche et menthe.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11481,7 +11481,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie vert kale-ananas-gingembre',
-        description: 'Smoothie vert détoxifiant au kale, ananas frais et gingembre',
+        description: 'Smoothie vert détoxifiant au kale, ananas frais et gingembre.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11505,7 +11505,7 @@ export const RECIPES = {
       },
       {
         name: 'Kombucha maison au gingembre',
-        description: 'Kombucha pétillant au gingembre frais, riche en probiotiques naturels',
+        description: 'Kombucha pétillant au gingembre frais, riche en probiotiques naturels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11529,7 +11529,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau détox concombre-menthe-citron vert',
-        description: 'L\'hydratation est cruciale pendant l\'ovulation. Le concombre et la menthe rafraî',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11555,7 +11555,7 @@ export const RECIPES = {
       },
       {
         name: 'Kombucha au gingembre',
-        description: 'Le kombucha apporte des probiotiques qui renforcent le microbiote. Un bon microb',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11576,7 +11576,7 @@ export const RECIPES = {
       },
       {
         name: 'Thé vert glacé au citron et basilic',
-        description: 'Le thé vert est riche en catéchines, des antioxydants puissants. Le basilic aide',
+        description: 'Le miel apporte une énergie naturelle rapide. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11603,7 +11603,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie pastèque-menthe-citron vert',
-        description: 'La pastèque est riche en lycopène et en eau — ultra-hydratante. La menthe rafraî',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11627,7 +11627,7 @@ export const RECIPES = {
       },
       {
         name: 'Limonade maison au curcuma',
-        description: 'Le curcuma est anti-inflammatoire et antioxydant. Le citron apporte de la vitami',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal en phase ovulatoire pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11653,7 +11653,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion hibiscus glacée',
-        description: 'L\'hibiscus est l\'une des plantes les plus riches en antioxydants. Sa couleur rou',
+        description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11679,7 +11679,7 @@ export const RECIPES = {
       },
       {
         name: 'Agua fresca pastèque-citron vert',
-        description: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est natur',
+        description: 'Le citron stimule la digestion et apporte de la vitamine C. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11704,7 +11704,7 @@ export const RECIPES = {
       },
       {
         name: 'Limonade rose à la framboise',
-        description: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est natur',
+        description: 'Le miel apporte une énergie naturelle rapide. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase ovulatoire pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11728,7 +11728,7 @@ export const RECIPES = {
       },
       {
         name: 'Thé glacé pêche-gingembre',
-        description: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est natur',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le miel apporte une énergie naturelle rapide. Idéal en phase ovulatoire pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11755,7 +11755,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus vert concombre-pomme-celeri-citron',
-        description: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est natur',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11778,7 +11778,7 @@ export const RECIPES = {
       },
       {
         name: 'Eau infusée fraise-basilic',
-        description: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est natur',
+        description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11802,7 +11802,7 @@ export const RECIPES = {
       },
       {
         name: 'Lassi à la mangue (sans sucre ajouté)',
-        description: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est natur',
+        description: 'La mangue est riche en vitamine A et antioxydants. Un choix parfait en phase ovulatoire pour profiter du pic d\'énergie et soutenir l\'ovulation.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'indien',
@@ -11828,7 +11828,7 @@ export const RECIPES = {
     
       {
         name: 'Eau de coco infusée au curcuma et citron vert',
-        description: 'L\'eau de coco est naturellement riche en électrolytes et contient de l\'acide laurique anti-inflammat',
+        description: 'L\'eau de coco est naturellement riche en électrolytes et contient de l\'acide laurique anti-inflammat.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11853,7 +11853,7 @@ export const RECIPES = {
       },
       {
         name: 'Jus anti-inflammatoire betterave-carotte-gingembre',
-        description: 'La betterave crue contient des bétalaïnes intactes. La carotte du bêta-carotène. Le gingembre du gin',
+        description: 'La betterave crue contient des bétalaïnes intactes. La carotte du bêta-carotène. Le gingembre du gin.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -11876,7 +11876,7 @@ export const RECIPES = {
       },
       {
         name: 'Limonade au curcuma et gingembre',
-        description: 'Une limonade thérapeutique. Le curcuma + gingembre + citron + poivre noir = les 4 piliers anti-infla',
+        description: 'Une limonade thérapeutique. Le curcuma + gingembre + citron + poivre noir = les 4 piliers anti-infla.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12067,7 +12067,7 @@ export const RECIPES = {
       },
       {
         name: 'Pancakes avoine-banane au beurre d\'amande et chocolat',
-        description: 'Réconfortant et stabilisant. L\'avoine et la banane apportent des glucides comple',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les amandes apportent magnésium et vitamine E. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12093,7 +12093,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge réconfortant pomme caramélisée et cannelle',
-        description: 'La pomme cuite est douce pour le transit souvent perturbé en lutéale. La cannell',
+        description: 'La cannelle aide à réguler la glycémie. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12120,7 +12120,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie banane-avoine-cacao-beurre de cacahuète',
-        description: 'Un smoothie qui se boit comme un dessert. Le cacao booste la sérotonine, le beur',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12145,7 +12145,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartines beurre d\'amande, banane et miel',
-        description: 'Simple, rapide, réconfortant. Le magnésium du beurre d\'amande + le potassium de ',
+        description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12170,7 +12170,7 @@ export const RECIPES = {
       },
       {
         name: 'Granola bowl au yaourt et compote',
-        description: 'Le yaourt apporte des probiotiques pour le transit, le granola de l\'énergie dura',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12195,7 +12195,7 @@ export const RECIPES = {
       },
       {
         name: 'Overnight oats au lait de coco et mangue',
-        description: 'Préparé la veille. Zéro effort le matin quand la motivation est basse. Le lait d',
+        description: 'Le lait de coco apporte des graisses saines et de l\'onctuosité. La mangue est riche en vitamine A et antioxydants. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12221,7 +12221,7 @@ export const RECIPES = {
       },
       {
         name: 'Muffins banane-noix sans sucre ajouté',
-        description: 'Les bananes mûres sucrent naturellement. Les noix apportent oméga-3 et magnésium',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12249,7 +12249,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz au lait, cannelle et raisins secs',
-        description: 'Ultra-réconfortant et doux pour le système digestif. Le riz au lait rappelle l\'e',
+        description: 'La cannelle aide à réguler la glycémie. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12275,7 +12275,7 @@ export const RECIPES = {
       },
       {
         name: 'Crêpes au sarrasin, Nutella maison et banane',
-        description: 'Le sarrasin est riche en magnésium. Le Nutella maison (noisettes + cacao) est pl',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12302,7 +12302,7 @@ export const RECIPES = {
       },
       {
         name: 'Pudding de chia au chocolat',
-        description: 'Les graines de chia apportent oméga-3 et fibres. Le cacao apporte magnésium et s',
+        description: 'Le cacao est riche en magnésium, idéal contre les crampes. Les graines de chia apportent oméga-3 et fibres. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12328,7 +12328,7 @@ export const RECIPES = {
       },
       {
         name: 'Gaufres complètes aux myrtilles',
-        description: 'Les myrtilles sont parmi les fruits les plus antioxydants. Les gaufres complètes',
+        description: 'Les myrtilles regorgent d\'antioxydants protecteurs. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12355,7 +12355,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl chocolat-avocat-banane',
-        description: 'L\'avocat rend le smoothie ultra-crémeux et apporte des graisses saines. Le cacao',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. La banane apporte du tryptophane, précurseur de la sérotonine.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12382,7 +12382,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge au chocolat blanc et framboises',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Recette anti-SPM, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12406,7 +12406,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de beurre de cajou, miel et graines de chia',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Les graines de chia apportent oméga-3 et fibres. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12430,7 +12430,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie réconfort poire-vanille-amande',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Les amandes apportent magnésium et vitamine E. La cannelle aide à réguler la glycémie. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12455,7 +12455,7 @@ export const RECIPES = {
       },
       {
         name: 'Crumble de flocons d\'avoine aux pommes',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12482,7 +12482,7 @@ export const RECIPES = {
       },
       {
         name: 'Bowl de yaourt au caramel de dattes',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Recette anti-SPM, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12508,7 +12508,7 @@ export const RECIPES = {
       },
       {
         name: 'Mugcake au chocolat et banane (2 min)',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12534,7 +12534,7 @@ export const RECIPES = {
       },
       {
         name: 'Açaí bowl au beurre de cacahuète et granola',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12559,7 +12559,7 @@ export const RECIPES = {
       },
       {
         name: 'French toast roulé banane-chocolat',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. La cannelle aide à réguler la glycémie. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12586,7 +12586,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de semoule au lait, amandes et fleur d\'oranger',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Les amandes apportent magnésium et vitamine E. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12612,7 +12612,7 @@ export const RECIPES = {
       },
       {
         name: 'Smoothie bowl chocolat-noisette-banane',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12637,7 +12637,7 @@ export const RECIPES = {
       },
       {
         name: 'Brioche perdue à la compote et cannelle',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'La cannelle aide à réguler la glycémie. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12663,7 +12663,7 @@ export const RECIPES = {
       },
       {
         name: 'Porridge de sarrasin aux poires et noix de pécan',
-        description: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le sarrasin est sans gluten et riche en magnésium. Idéal en phase lutéale pour bien démarrer la journée.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12690,7 +12690,7 @@ export const RECIPES = {
     
       {
         name: 'Porridge réconfort au cacao cru et cerises anti-inflammatoires',
-        description: 'Le cacao cru contient 4x plus de flavonoïdes que le cacao torréfié. Les cerises des anthocyanines. L',
+        description: 'Le cacao cru contient 4x plus de flavonoïdes que le cacao torréfié. Les cerises des anthocyanines. L.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -12717,7 +12717,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de patate douce au beurre d\'amande, banane et curcuma',
-        description: 'Le beurre d\'amande apporte de la vitamine E (anti-inflammatoire). La banane du potassium anti-rétent',
+        description: 'Le beurre d\'amande apporte de la vitamine E (anti-inflammatoire). La banane du potassium anti-rétent.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12743,7 +12743,7 @@ export const RECIPES = {
       },
       {
         name: 'Omelette aux champignons shiitake et sauge',
-        description: 'Les shiitake contiennent du lentinane anti-inflammatoire. La sauge de l\'acide rosmarinique. Les œufs',
+        description: 'Les shiitake contiennent du lentinane anti-inflammatoire. La sauge de l\'acide rosmarinique. Les œufs.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -12769,7 +12769,7 @@ export const RECIPES = {
       },
       {
         name: 'Galettes de sarrasin au saumon fumé et avocat',
-        description: 'Le sarrasin contient de la rutine anti-inflammatoire. Le saumon fumé des oméga-3. L\'avocat des oméga',
+        description: 'Le sarrasin contient de la rutine anti-inflammatoire. Le saumon fumé des oméga-3. L\'avocat des oméga.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -12961,7 +12961,7 @@ export const RECIPES = {
       },
       {
         name: 'Curry doux de patate douce aux pois chiches',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La patate douce est riche en bêta-carotène et vitamines. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -12990,7 +12990,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de légumes au fromage et herbes',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13019,7 +13019,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe veloutée de butternut au lait de coco et graines',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le lait de coco apporte des graisses saines et de l\'onctuosité.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13047,7 +13047,7 @@ export const RECIPES = {
       },
       {
         name: 'Spaghetti complètes sauce tomate maison et champignons',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -13076,7 +13076,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz, poulet teriyaki et brocoli vapeur',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -13104,7 +13104,7 @@ export const RECIPES = {
       },
       {
         name: 'Quiche lorraine allégée aux épinards',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13132,7 +13132,7 @@ export const RECIPES = {
       },
       {
         name: 'Dahl de lentilles corail au lait de coco',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '45 min',
         difficulty: 'avance',
         cuisine: 'indien',
@@ -13162,7 +13162,7 @@ export const RECIPES = {
       },
       {
         name: 'Mac and cheese au chou-fleur',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -13191,7 +13191,7 @@ export const RECIPES = {
       },
       {
         name: 'Risotto crémeux aux champignons et parmesan',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -13219,7 +13219,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol mexicain haricots rouges, riz et guacamole',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Le citron stimule la digestion et apporte de la vitamine C.',
         prepTime: '45 min',
         difficulty: 'avance',
         cuisine: 'mexicain',
@@ -13250,7 +13250,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de tomates rôties et pain grillé',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13278,7 +13278,7 @@ export const RECIPES = {
       },
       {
         name: 'Tajine de légumes aux amandes et abricots',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les amandes apportent magnésium et vitamine E. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '45 min',
         difficulty: 'avance',
         cuisine: 'mediterraneen',
@@ -13310,7 +13310,7 @@ export const RECIPES = {
       },
       {
         name: 'Lasagnes aux légumes et béchamel légère',
-        description: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La ricotta apporte calcium et protéines douces. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '45 min',
         difficulty: 'avance',
         cuisine: 'italien',
@@ -13340,7 +13340,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de patate douce et lentilles au garam masala',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. La patate douce est riche en bêta-carotène et vitamines.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -13368,7 +13368,7 @@ export const RECIPES = {
       },
       {
         name: 'Pasta alla norma (pâtes à l\'aubergine)',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'La ricotta apporte calcium et protéines douces. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -13395,7 +13395,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz au curry japonais',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Le tofu apporte des protéines végétales complètes. Le poulet apporte des protéines maigres de qualité. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -13422,7 +13422,7 @@ export const RECIPES = {
       },
       {
         name: 'Grilled cheese gourmet à la tomate et pesto',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'debutant',
         cuisine: 'italien',
@@ -13448,7 +13448,7 @@ export const RECIPES = {
       },
       {
         name: 'Dahl crémeux de lentilles jaunes au citron',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les lentilles apportent fer, protéines et fibres rassasiantes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'indien',
@@ -13478,7 +13478,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de nouilles aux légumes rôtis et sauce tahini',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -13506,7 +13506,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de tomates, lentilles corail et coco',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les lentilles apportent fer, protéines et fibres rassasiantes.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13534,7 +13534,7 @@ export const RECIPES = {
       },
       {
         name: 'Croque-madame au jambon et gruyère',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13560,7 +13560,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz sauté au kimchi et œuf',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -13587,7 +13587,7 @@ export const RECIPES = {
       },
       {
         name: 'Minestrone d\'hiver aux pâtes et haricots',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -13617,7 +13617,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de polenta crémeuse aux champignons',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Recette anti-SPM, pour un déjeuner équilibré et nourrissant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -13644,7 +13644,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe veloutée de carottes à la coriandre et coco',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Le lait de coco apporte des graisses saines et de l\'onctuosité. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13672,7 +13672,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de macaroni au fromage et brocoli',
-        description: 'En phase lutéale, ton métabolisme accélère et ton corps a besoin de glucides com',
+        description: 'Le brocoli aide à métaboliser les œstrogènes en excès. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -13701,7 +13701,7 @@ export const RECIPES = {
     
       {
         name: 'Soupe de lentilles au curcuma et gingembre',
-        description: 'En lutéale, l\'inflammation augmente naturellement avec la chute de progestérone. Les lentilles appor',
+        description: 'En lutéale, l\'inflammation augmente naturellement avec la chute de progestérone. Les lentilles appor.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -13730,7 +13730,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz au curry japonais anti-inflammatoire',
-        description: 'Le curry japonais contient curcuma, gingembre et ail — trois anti-inflammatoires puissants. Les caro',
+        description: 'Le curry japonais contient curcuma, gingembre et ail — trois anti-inflammatoires puissants. Les caro.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -13760,7 +13760,7 @@ export const RECIPES = {
       },
       {
         name: 'Dahl de lentilles jaunes au tamarin et coriandre',
-        description: 'Les lentilles jaunes contiennent des polyphénols. Le tamarin apporte de l\'acide tartrique anti-infla',
+        description: 'Les lentilles jaunes contiennent des polyphénols. Le tamarin apporte de l\'acide tartrique anti-infla.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -13789,7 +13789,7 @@ export const RECIPES = {
       },
       {
         name: 'One pot nouilles de riz tomate-curcuma-basilic',
-        description: 'La tomate cuite = lycopène x3. Le curcuma s\'infuse dans la sauce. Le basilic apporte eugénol. Un pla',
+        description: 'La tomate cuite = lycopène x3. Le curcuma s\'infuse dans la sauce. Le basilic apporte eugénol. Un pla.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -13818,7 +13818,7 @@ export const RECIPES = {
       },
       {
         name: 'Velouté de céleri-rave au curcuma et huile d\'olive',
-        description: 'Le céleri-rave contient de l\'apigénine et des polyacétylènes anti-inflammatoires. Le curcuma ajoute ',
+        description: 'Le céleri-rave contient de l\'apigénine et des polyacétylènes anti-inflammatoires. Le curcuma ajoute.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -14008,7 +14008,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe veloutée de brocoli au fromage',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Le brocoli aide à métaboliser les œstrogènes en excès. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -14035,7 +14035,7 @@ export const RECIPES = {
       },
       {
         name: 'Pâtes au pesto, tomates cerises et mozzarella',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -14062,7 +14062,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet rôti au miel et patate douce',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'La patate douce est riche en bêta-carotène et vitamines. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14089,7 +14089,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin dauphinois allégé',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -14116,7 +14116,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz sauté aux légumes et œuf',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les œufs fournissent protéines complètes et vitamine B12. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14145,7 +14145,7 @@ export const RECIPES = {
       },
       {
         name: 'Pizza maison pâte complète, champignons et roquette',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -14172,7 +14172,7 @@ export const RECIPES = {
       },
       {
         name: 'Croque-monsieur au jambon et béchamel légère',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -14199,7 +14199,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de lentilles au cumin et citron',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Les lentilles apportent fer, protéines et fibres rassasiantes. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -14228,7 +14228,7 @@ export const RECIPES = {
       },
       {
         name: 'Tortilla espagnole aux pommes de terre et oignons',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14254,7 +14254,7 @@ export const RECIPES = {
       },
       {
         name: 'Nouilles udon au bouillon miso et légumes',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le miso est un fermenté riche en probiotiques. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -14283,7 +14283,7 @@ export const RECIPES = {
       },
       {
         name: 'Aubergines farcies au quinoa et feta',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Le quinoa fournit protéines complètes et fer végétal. La feta apporte calcium et protéines. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14312,7 +14312,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz thaï au lait de coco et basilic',
-        description: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps trav',
+        description: 'Le tofu apporte des protéines végétales complètes. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '40 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -14341,7 +14341,7 @@ export const RECIPES = {
       },
       {
         name: 'One pot pasta tomate-basilic-mozzarella',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -14369,7 +14369,7 @@ export const RECIPES = {
       },
       {
         name: 'Poulet au citron et olives à la marocaine',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14398,7 +14398,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de nouilles au poulet et gingembre',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le poulet apporte des protéines maigres de qualité. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -14426,7 +14426,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de courgettes à la mozzarella',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'francais',
@@ -14453,7 +14453,7 @@ export const RECIPES = {
       },
       {
         name: 'Dhal de butternut et pois chiches',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Les épinards sont riches en fer et en folate essentiels. Les pois chiches apportent protéines végétales et fibres. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14481,7 +14481,7 @@ export const RECIPES = {
       },
       {
         name: 'Tourte au poulet et légumes (chicken pot pie)',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Les œufs fournissent protéines complètes et vitamine B12. Le poulet apporte des protéines maigres de qualité. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '45 min',
         difficulty: 'avance',
         cuisine: 'fusion',
@@ -14510,7 +14510,7 @@ export const RECIPES = {
       },
       {
         name: 'Riz pilaf aux raisins secs et amandes',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Les amandes apportent magnésium et vitamine E. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14538,7 +14538,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe pho au bœuf (version simplifiée)',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Le gingembre aide à calmer les nausées et l\'inflammation. La cannelle aide à réguler la glycémie. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'fusion',
@@ -14569,7 +14569,7 @@ export const RECIPES = {
       },
       {
         name: 'Patate douce farcie aux haricots noirs et guacamole',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. La patate douce est riche en bêta-carotène et vitamines. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
@@ -14596,7 +14596,7 @@ export const RECIPES = {
       },
       {
         name: 'Risotto à la citrouille et sauge',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -14624,7 +14624,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz thaï au curry massaman',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Le tofu apporte des protéines végétales complètes. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '35 min',
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
@@ -14653,7 +14653,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de penne aux épinards et quatre fromages',
-        description: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides c',
+        description: 'Les épinards sont riches en fer et en folate essentiels. La ricotta apporte calcium et protéines douces. Idéal en phase lutéale pour un dîner léger et réparateur.',
         prepTime: '45 min',
         difficulty: 'intermediaire',
         cuisine: 'italien',
@@ -14682,7 +14682,7 @@ export const RECIPES = {
     
       {
         name: 'Saumon grillé au miso et brocoli vapeur',
-        description: 'Le miso ajoute des enzymes anti-inflammatoires au saumon déjà riche en oméga-3. Le brocoli vapeur pr',
+        description: 'Le miso ajoute des enzymes anti-inflammatoires au saumon déjà riche en oméga-3. Le brocoli vapeur pr.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -14738,7 +14738,7 @@ export const RECIPES = {
       },
       {
         name: 'Gratin de patate douce au romarin et ail',
-        description: 'La patate douce est anti-inflammatoire grâce à ses anthocyanines (peau violette) et bêta-carotène. L',
+        description: 'La patate douce est anti-inflammatoire grâce à ses anthocyanines (peau violette) et bêta-carotène. L.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -14765,7 +14765,7 @@ export const RECIPES = {
       },
       {
         name: 'Soupe de tomates rôties à l\'ail et au basilic',
-        description: 'Rôtir tomates et ail concentre lycopène x3 et transforme l\'alliine en allicine (plus anti-inflammato',
+        description: 'Rôtir tomates et ail concentre lycopène x3 et transforme l\'alliine en allicine (plus anti-inflammato.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -14821,7 +14821,7 @@ export const RECIPES = {
       },
       {
         name: 'Bol de riz au tempeh grillé et sauce anti-inflammatoire',
-        description: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma-',
+        description: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma-.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
@@ -14850,7 +14850,7 @@ export const RECIPES = {
       },
       {
         name: 'Riz sauté anti-inflammatoire au curcuma et légumes',
-        description: 'Le riz au curcuma est la base anti-inflammatoire. Les légumes sautés rapidement conservent leurs pol',
+        description: 'Le riz au curcuma est la base anti-inflammatoire. Les légumes sautés rapidement conservent leurs pol.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -14981,7 +14981,7 @@ export const RECIPES = {
       },
       {
         name: 'Banane au beurre de cacahuète et pépites de chocolat',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15004,7 +15004,7 @@ export const RECIPES = {
       },
       {
         name: 'Muffins avoine-myrtilles-noix',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'Les myrtilles regorgent d\'antioxydants protecteurs. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15031,7 +15031,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat noir 70% et amandes',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'Les amandes apportent magnésium et vitamine E. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15051,7 +15051,7 @@ export const RECIPES = {
       },
       {
         name: 'Nice cream banane-cacao (glace maison)',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15074,7 +15074,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de beurre d\'amande au miel et cannelle',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -15097,7 +15097,7 @@ export const RECIPES = {
       },
       {
         name: 'Energy balls dattes-coco-beurre de cacahuète',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'Le cacao est riche en magnésium, idéal contre les crampes. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15122,7 +15122,7 @@ export const RECIPES = {
       },
       {
         name: 'Pudding de chia vanille et fruits rouges',
-        description: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton co',
+        description: 'Les graines de chia apportent oméga-3 et fibres. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15146,7 +15146,7 @@ export const RECIPES = {
       },
       {
         name: 'Pomme au four à la cannelle et noix',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. La cannelle aide à réguler la glycémie. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15172,7 +15172,7 @@ export const RECIPES = {
       },
       {
         name: 'Nice cream vanille-cookie (glace maison)',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15195,7 +15195,7 @@ export const RECIPES = {
       },
       {
         name: 'Truffes au chocolat noir et fleur de sel',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'Le cacao est riche en magnésium, idéal contre les crampes. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15219,7 +15219,7 @@ export const RECIPES = {
       },
       {
         name: 'Tartine de confiture et beurre d\'amande',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -15241,7 +15241,7 @@ export const RECIPES = {
       },
       {
         name: 'Barre de chocolat maison aux flocons d\'avoine',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15266,7 +15266,7 @@ export const RECIPES = {
       },
       {
         name: 'Mug de porridge express au micro-ondes',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15290,7 +15290,7 @@ export const RECIPES = {
       },
       {
         name: 'Mousse au chocolat express à l\'aquafaba',
-        description: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme aug',
+        description: 'Les pois chiches apportent protéines végétales et fibres. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '15 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15315,7 +15315,7 @@ export const RECIPES = {
     
       {
         name: 'Energy balls cacao cru et noix anti-inflammatoires',
-        description: 'Le cacao cru non torréfié conserve 4x plus de flavanols. Les noix apportent oméga-3 ALA. Les dattes ',
+        description: 'Le cacao cru non torréfié conserve 4x plus de flavanols. Les noix apportent oméga-3 ALA. Les dattes.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15341,7 +15341,7 @@ export const RECIPES = {
       },
       {
         name: 'Compote de fruits rouges au gingembre et cannelle',
-        description: 'Les fruits rouges cuits libèrent des anthocyanines et de l\'acide ellagique. Le gingembre et la canne',
+        description: 'Les fruits rouges cuits libèrent des anthocyanines et de l\'acide ellagique. Le gingembre et la canne.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
@@ -15368,7 +15368,7 @@ export const RECIPES = {
       },
       {
         name: 'Truffes au chocolat noir et gingembre',
-        description: 'Le chocolat noir 85%+ contient des flavanols anti-inflammatoires concentrés. Le gingembre ajoute du ',
+        description: 'Le chocolat noir 85%+ contient des flavanols anti-inflammatoires concentrés. Le gingembre ajoute du.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15516,7 +15516,7 @@ export const RECIPES = {
       },
       {
         name: 'Lait d\'or (golden milk) au curcuma et cannelle',
-        description: 'En lutéale, évite le café après 14h (ton sommeil est déjà fragile). Ces boissons',
+        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15542,7 +15542,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion camomille-valériane-passiflore',
-        description: 'En lutéale, évite le café après 14h (ton sommeil est déjà fragile). Ces boissons',
+        description: 'La camomille calme le système nerveux et aide au sommeil. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15567,7 +15567,7 @@ export const RECIPES = {
       },
       {
         name: 'Tisane menthe-fenouil (anti-ballonnements)',
-        description: 'En lutéale, évite le café après 14h (ton sommeil est déjà fragile). Ces boissons',
+        description: 'Le fenouil aide à soulager les ballonnements. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15591,7 +15591,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat chaud au lait d\'avoine et cannelle',
-        description: 'En lutéale, évite le café après 14h (ton sommeil est déjà fragile). Ces boissons',
+        description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15616,7 +15616,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion de feuilles de framboisier',
-        description: 'En lutéale, évite le café après 14h (ton sommeil est déjà fragile). Ces boissons',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15639,7 +15639,7 @@ export const RECIPES = {
       },
       {
         name: 'Moon milk à la lavande et miel',
-        description: 'En lutéale, évite le café après 14h (ton sommeil est déjà fragile). Ces boissons',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15665,7 +15665,7 @@ export const RECIPES = {
       },
       {
         name: 'Moon milk à l\'ashwagandha et cacao',
-        description: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, r',
+        description: 'Le cacao est riche en magnésium, idéal contre les crampes. La cannelle aide à réguler la glycémie. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15691,7 +15691,7 @@ export const RECIPES = {
       },
       {
         name: 'Tisane de mélisse et verveine (anti-stress)',
-        description: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, r',
+        description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15715,7 +15715,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat chaud épais au lait de coco et vanille',
-        description: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, r',
+        description: 'La cannelle aide à réguler la glycémie. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15740,7 +15740,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion de sauge et miel (régulatrice hormonale)',
-        description: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, r',
+        description: 'Le miel apporte une énergie naturelle rapide. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15764,7 +15764,7 @@ export const RECIPES = {
       },
       {
         name: 'Latte de caroube et cannelle',
-        description: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, r',
+        description: 'La cannelle aide à réguler la glycémie. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15788,7 +15788,7 @@ export const RECIPES = {
       },
       {
         name: 'Tisane de gattilier (vitex) et camomille',
-        description: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, r',
+        description: 'La camomille calme le système nerveux et aide au sommeil. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
         prepTime: '10 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15813,7 +15813,7 @@ export const RECIPES = {
     
       {
         name: 'Smoothie anti-SPM chocolat-cerise-gingembre',
-        description: 'Le cacao contient du magnésium (anti-SPM) et des flavanols anti-inflammatoires. Les cerises des anth',
+        description: 'Le cacao contient du magnésium (anti-SPM) et des flavanols anti-inflammatoires. Les cerises des anth.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15838,7 +15838,7 @@ export const RECIPES = {
       },
       {
         name: 'Chocolat chaud anti-inflammatoire au curcuma et cannelle',
-        description: 'Le cacao + curcuma + cannelle + gingembre + poivre = le cocktail anti-inflammatoire le plus réconfor',
+        description: 'Le cacao + curcuma + cannelle + gingembre + poivre = le cocktail anti-inflammatoire le plus réconfor.',
         prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15865,7 +15865,7 @@ export const RECIPES = {
       },
       {
         name: 'Infusion de sauge et camomille anti-inflammatoire',
-        description: 'La sauge contient de l\'acide rosmarinique (anti-inflammatoire COX-2). La camomille de l\'apigénine et',
+        description: 'La sauge contient de l\'acide rosmarinique (anti-inflammatoire COX-2). La camomille de l\'apigénine et.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
@@ -15890,7 +15890,7 @@ export const RECIPES = {
       },
       {
         name: 'Tisane anti-SPM gingembre-camomille-mélisse',
-        description: 'Le gingembre inhibe COX-2 et les prostaglandines. La camomille apporte apigénine et bisabolol (anti-',
+        description: 'Le gingembre inhibe COX-2 et les prostaglandines. La camomille apporte apigénine et bisabolol (anti-.',
         prepTime: '3 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
