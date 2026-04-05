@@ -32,15 +32,22 @@ const INGREDIENT_CATEGORIES = [
     items: ['Tomate', 'Concombre', 'Carotte', 'Courgette', 'Aubergine', 'Poivron', 'Brocoli',
       'Épinard', 'Laitue', 'Chou', 'Chou-fleur', 'Chou kale', 'Patate douce', 'Pomme de terre',
       'Oignon', 'Ail', 'Gingembre', 'Betterave', 'Radis', 'Fenouil', 'Céleri',
-      'Poireau', 'Artichaut', 'Asperge', 'Petit pois', 'Haricot vert', 'Maïs', 'Potimarron', 'Champignon'],
+      'Poireau', 'Asperge', 'Maïs', 'Potimarron', 'Champignon'],
   },
   {
     id: 'proteines',
     label: 'Protéines',
     icon: '🥩',
-    items: ['Poulet', 'Dinde', 'Bœuf', 'Saumon', 'Thon', 'Sardines', 'Maquereau', 'Crevettes', 'Cabillaud',
+    items: ['Poulet', 'Bœuf', 'Saumon', 'Thon', 'Sardines', 'Maquereau', 'Crevettes', 'Cabillaud',
       'Tofu', 'Tempeh', 'Œuf', 'Lentilles', 'Lentilles corail', 'Pois chiches',
       'Haricots rouges', 'Haricots noirs', 'Haricots blancs', 'Edamame'],
+  },
+  {
+    id: 'laitiers',
+    label: 'Laitiers',
+    icon: '🧀',
+    items: ['Lait', 'Lait d\'amande', 'Lait d\'avoine', 'Lait de coco', 'Yaourt',
+      'Fromage', 'Crème fraîche', 'Beurre', 'Mozzarella', 'Parmesan', 'Feta', 'Chèvre', 'Ricotta'],
   },
   {
     id: 'feculents',
@@ -48,13 +55,6 @@ const INGREDIENT_CATEGORIES = [
     icon: '🌾',
     items: ['Riz', 'Riz complet', 'Quinoa', 'Avoine', 'Flocons d\'avoine', 'Pâtes', 'Pâtes complètes',
       'Pain complet', 'Sarrasin', 'Boulgour', 'Semoule', 'Tortilla', 'Farine', 'Nouilles'],
-  },
-  {
-    id: 'laitiers',
-    label: 'Laitiers',
-    icon: '🧀',
-    items: ['Lait', 'Lait d\'amande', 'Lait d\'avoine', 'Lait de coco', 'Yaourt', 'Yaourt de coco',
-      'Fromage', 'Crème fraîche', 'Beurre', 'Mozzarella', 'Parmesan', 'Feta', 'Chèvre', 'Ricotta'],
   },
   {
     id: 'graines',
