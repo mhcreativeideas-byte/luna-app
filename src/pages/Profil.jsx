@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Calendar, Camera, Settings, Share2, TrendingUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Camera, Settings, Share2, TrendingUp, Trash2, Pencil } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import BackButton from '../components/ui/BackButton';
 
@@ -17,6 +17,7 @@ const item = {
 export default function Profil() {
   const { name, cycleLength, periodLength, cycleInfo, checkIns, goals, dispatch, profileImage } = useCycle();
   const fileInputRef = useRef(null);
+  const [showPhotoMenu, setShowPhotoMenu] = useState(false);
 
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
@@ -75,32 +76,64 @@ export default function Profil() {
 
       {/* Avatar & name */}
       <motion.div variants={item} className="text-center py-4">
-        <div
-          className="relative w-20 h-20 mx-auto mb-3 cursor-pointer"
-          onClick={() => fileInputRef.current?.click()}
-        >
-          {profileImage ? (
-            <img
-              src={profileImage}
-              alt="Avatar"
-              className="w-20 h-20 rounded-full object-cover"
-            />
-          ) : (
-            <div
-              className="w-20 h-20 rounded-full flex items-center justify-center"
-              style={{
-                background: 'linear-gradient(135deg, #F5D0D5, #F2C0A8)',
-              }}
-            >
-              <span className="text-2xl font-display text-white">{name?.[0]?.toUpperCase()}</span>
-            </div>
-          )}
+        <div className="relative w-20 h-20 mx-auto mb-3">
           <div
-            className="absolute bottom-0 right-0 w-7 h-7 rounded-full flex items-center justify-center border-2 border-white"
-            style={{ background: 'linear-gradient(135deg, #C4727F, #D4846A)' }}
+            className="cursor-pointer"
+            onClick={() => profileImage ? setShowPhotoMenu(!showPhotoMenu) : fileInputRef.current?.click()}
           >
-            <Camera size={13} className="text-white" />
+            {profileImage ? (
+              <img
+                src={profileImage}
+                alt="Avatar"
+                className="w-20 h-20 rounded-full object-cover"
+              />
+            ) : (
+              <div
+                className="w-20 h-20 rounded-full flex items-center justify-center"
+                style={{
+                  background: 'linear-gradient(135deg, #F5D0D5, #F2C0A8)',
+                }}
+              >
+                <span className="text-2xl font-display text-white">{name?.[0]?.toUpperCase()}</span>
+              </div>
+            )}
+            <div
+              className="absolute bottom-0 right-0 w-7 h-7 rounded-full flex items-center justify-center border-2 border-white"
+              style={{ background: 'linear-gradient(135deg, #C4727F, #D4846A)' }}
+            >
+              <Camera size={13} className="text-white" />
+            </div>
           </div>
+
+          {/* Photo menu */}
+          <AnimatePresence>
+            {showPhotoMenu && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: -5 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -5 }}
+                className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-white rounded-[16px] overflow-hidden z-20"
+                style={{ boxShadow: '0 4px 20px rgba(45, 34, 38, 0.12)', minWidth: '160px' }}
+              >
+                <button
+                  onClick={() => { setShowPhotoMenu(false); fileInputRef.current?.click(); }}
+                  className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                >
+                  <Pencil size={15} className="text-luna-text-muted" />
+                  Modifier
+                </button>
+                <div className="h-px bg-gray-100" />
+                <button
+                  onClick={() => { setShowPhotoMenu(false); dispatch({ type: 'SET_PROFILE', payload: { profileImage: null } }); }}
+                  className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-red-400 hover:bg-red-50 transition-colors"
+                >
+                  <Trash2 size={15} />
+                  Supprimer
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <input
             ref={fileInputRef}
             type="file"
@@ -116,6 +149,11 @@ export default function Profil() {
           </p>
         )}
       </motion.div>
+
+      {/* Backdrop to close photo menu */}
+      {showPhotoMenu && (
+        <div className="fixed inset-0 z-10" onClick={() => setShowPhotoMenu(false)} />
+      )}
 
       {/* Cycle stats */}
       <motion.div variants={item} className="grid grid-cols-2 gap-3">
