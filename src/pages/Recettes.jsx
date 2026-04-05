@@ -270,7 +270,7 @@ export default function Recettes() {
                   { id: 'mediterraneen', label: 'Méditerranéen', icon: '🫒' },
                   { id: 'indien', label: 'Indien', icon: '🍛' },
                   { id: 'mexicain', label: 'Mexicain', icon: '🌮' },
-                  { id: 'fusion', label: 'Healthy / Fusion', icon: '🥗' },
+                  { id: 'fusion', label: 'Healthy', icon: '🥗' },
                 ].map((c) => {
                   const isActive = selectedCuisines.includes(c.id);
                   return (
