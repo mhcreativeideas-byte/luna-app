@@ -413,13 +413,13 @@ export default function Recettes() {
         ) : (
           <div className="grid grid-cols-2 gap-3">
             {allRecipes.map((recipe, i) => (
-              <motion.button
+              <motion.div
                 key={`${recipe.mealType}-${i}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.05 * i, duration: 0.4 }}
                 onClick={() => setOpenRecipe(i)}
-                className="text-left group"
+                className="text-left group cursor-pointer"
               >
                 <div
                   className="relative aspect-[4/3] rounded-[18px] overflow-hidden mb-2.5 flex items-center justify-center"
@@ -455,7 +455,7 @@ export default function Recettes() {
                 <p className="text-[10px] font-body text-luna-text-muted mt-0.5 leading-relaxed line-clamp-2">
                   {recipe.description}
                 </p>
-              </motion.button>
+              </motion.div>
             ))}
           </div>
         )}

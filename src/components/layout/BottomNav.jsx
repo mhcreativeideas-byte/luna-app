@@ -36,7 +36,7 @@ function NavItem({ to, icon: Icon, label }) {
           >
             <Icon size={18} strokeWidth={isActive ? 2 : 1.5} />
           </div>
-          <span className="text-[9px] font-semibold font-body leading-none">{label}</span>
+          <span className="text-[8px] font-semibold font-body leading-none tracking-tight">{label}</span>
         </>
       )}
     </NavLink>
