@@ -48,6 +48,7 @@ export default function Recettes() {
   const [openRecipe, setOpenRecipe] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
+  const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
 
   const currentPhase = cycleInfo?.phase || 'follicular';
@@ -73,11 +74,12 @@ export default function Recettes() {
 
   // Temps max en minutes selon le profil onboarding
   const maxTime = (() => {
-    if (!cookingTime) return null; // pas de limite
-    if (cookingTime === '15min') return 15;
-    if (cookingTime === '30min') return 30;
-    if (cookingTime === '45min') return 45;
-    return null; // '60min+' = pas de limite
+    const time = selectedTime || '';
+    if (!time || time === '60min+') return null; // pas de limite
+    if (time === '15min') return 15;
+    if (time === '30min') return 30;
+    if (time === '45min') return 45;
+    return null;
   })();
 
   // Extraire les minutes depuis le champ prepTime (ex: "10 min", "1h15", "45 min")
@@ -232,36 +234,73 @@ export default function Recettes() {
               ))}
             </div>
 
-            {/* Niveau de cuisine */}
-            <div className="flex gap-2 pt-1">
-              {[
-                { id: 'debutant', label: 'Débutant', icon: '🌱' },
-                { id: 'intermediaire', label: 'Intermédiaire', icon: '🌿' },
-                { id: 'avance', label: 'Tout niveau', icon: '👩‍🍳' },
-              ].map((lvl) => (
-                <button
-                  key={lvl.id}
-                  onClick={() => setSelectedLevel(lvl.id)}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
-                  style={selectedLevel === lvl.id ? {
-                    borderColor: phaseData.color,
-                    backgroundColor: phaseData.bgColor,
-                    color: phaseData.colorDark,
-                  } : {
-                    borderColor: '#F0EEEC',
-                    backgroundColor: 'white',
-                    color: '#8A7B7F',
-                  }}
-                >
-                  <span>{lvl.icon}</span>
-                  {lvl.label}
-                </button>
-              ))}
+            {/* Niveau */}
+            <div className="pt-1">
+              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Niveau</p>
+              <div className="flex gap-2">
+                {[
+                  { id: 'debutant', label: 'Débutant', icon: '🌱' },
+                  { id: 'intermediaire', label: 'Intermédiaire', icon: '🌿' },
+                  { id: 'avance', label: 'Tout niveau', icon: '👩‍🍳' },
+                ].map((lvl) => (
+                  <button
+                    key={lvl.id}
+                    onClick={() => setSelectedLevel(lvl.id)}
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
+                    style={selectedLevel === lvl.id ? {
+                      borderColor: phaseData.color,
+                      backgroundColor: phaseData.bgColor,
+                      color: phaseData.colorDark,
+                    } : {
+                      borderColor: '#F0EEEC',
+                      backgroundColor: 'white',
+                      color: '#8A7B7F',
+                    }}
+                  >
+                    <span>{lvl.icon}</span>
+                    {lvl.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {/* Style de cuisine */}
+            {/* Temps */}
             <div className="pt-1">
-              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Envie du moment</p>
+              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Temps</p>
+              <div className="flex gap-2">
+                {[
+                  { id: '15min', label: '15 min', icon: '⚡' },
+                  { id: '30min', label: '30 min', icon: '🕐' },
+                  { id: '45min', label: '45 min', icon: '🕑' },
+                  { id: '60min+', label: 'Pas de limite', icon: '♾️' },
+                ].map((t) => {
+                  const isActive = selectedTime === t.id || (!selectedTime && t.id === '60min+');
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => setSelectedTime(t.id)}
+                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
+                      style={isActive ? {
+                        borderColor: phaseData.color,
+                        backgroundColor: phaseData.bgColor,
+                        color: phaseData.colorDark,
+                      } : {
+                        borderColor: '#F0EEEC',
+                        backgroundColor: 'white',
+                        color: '#8A7B7F',
+                      }}
+                    >
+                      <span>{t.icon}</span>
+                      {t.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Cuisine */}
+            <div className="pt-1">
+              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Cuisine</p>
               <div className="flex gap-2 flex-wrap">
                 {[
                   { id: 'francais', label: 'Français', icon: '🇫🇷' },
