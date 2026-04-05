@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Plus, X, Search, Sparkles, Clock, ChefHat } from 'lucide-react';
+import { ChevronLeft, Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
@@ -163,6 +163,12 @@ export default function MonFrigo() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [openRecipe, setOpenRecipe] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const saved = localStorage.getItem('luna-favorites');
+      return saved ? JSON.parse(saved) : [];
+    } catch { return []; }
+  });
   const inputRef = useRef(null);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -172,6 +178,18 @@ export default function MonFrigo() {
   useEffect(() => {
     localStorage.setItem('luna-frigo', JSON.stringify(fridgeItems));
   }, [fridgeItems]);
+
+  useEffect(() => {
+    localStorage.setItem('luna-favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (recipeName) => {
+    setFavorites((prev) =>
+      prev.includes(recipeName) ? prev.filter((n) => n !== recipeName) : [...prev, recipeName]
+    );
+  };
+
+  const isFavorite = (recipeName) => favorites.includes(recipeName);
 
   // Auto-complétion
   const suggestions = useMemo(() => {
@@ -518,7 +536,7 @@ export default function MonFrigo() {
                 >
                   {/* Emoji thumbnail */}
                   <div
-                    className="w-20 h-20 rounded-[14px] flex-shrink-0 flex items-center justify-center"
+                    className="w-20 h-20 rounded-[14px] flex-shrink-0 flex items-center justify-center relative"
                     style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}20)` }}
                   >
                     <span className="text-3xl group-hover:scale-110 transition-transform duration-500">
@@ -534,6 +552,15 @@ export default function MonFrigo() {
                       <span className="text-[10px] font-body text-luna-text-hint flex items-center gap-1">
                         <Clock size={9} /> {recipe.prepTime}
                       </span>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
+                        className="ml-auto w-6 h-6 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                      >
+                        <Heart
+                          size={13}
+                          className={isFavorite(recipe.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-hint'}
+                        />
+                      </button>
                     </div>
                     <h3 className="font-display text-sm text-luna-text leading-snug mb-1.5 line-clamp-1">{recipe.name}</h3>
 
@@ -592,12 +619,23 @@ export default function MonFrigo() {
                       style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
                     >
                       <span className="text-7xl">{recipe.emoji || '🍽️'}</span>
-                      <button
-                        onClick={() => setOpenRecipe(null)}
-                        className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center"
-                      >
-                        <X size={16} className="text-luna-text-muted" />
-                      </button>
+                      <div className="absolute top-3 right-3 flex items-center gap-2">
+                        <button
+                          onClick={() => toggleFavorite(recipe.name)}
+                          className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                        >
+                          <Heart
+                            size={16}
+                            className={isFavorite(recipe.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-muted'}
+                          />
+                        </button>
+                        <button
+                          onClick={() => setOpenRecipe(null)}
+                          className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                        >
+                          <X size={16} className="text-luna-text-muted" />
+                        </button>
+                      </div>
                     </div>
 
                     <div className="p-5 space-y-5">

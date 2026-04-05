@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Clock, X, Sparkles, Filter } from 'lucide-react';
+import { ChevronLeft, Clock, X, Sparkles, Filter, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
@@ -17,6 +17,7 @@ const item = {
 
 const MEAL_TYPES = [
   { id: 'all', label: 'Tout', icon: '🍽️' },
+  { id: 'favorites', label: 'Favoris', icon: '❤️' },
   { id: 'breakfast', label: 'Petit-déj', icon: '🌅' },
   { id: 'lunch', label: 'Déjeuner', icon: '☀️' },
   { id: 'dinner', label: 'Dîner', icon: '🌙' },
@@ -50,6 +51,25 @@ export default function Recettes() {
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
   const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const saved = localStorage.getItem('luna-favorites');
+      return saved ? JSON.parse(saved) : [];
+    } catch { return []; }
+  });
+
+  // Persister les favoris
+  useEffect(() => {
+    localStorage.setItem('luna-favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (recipeName) => {
+    setFavorites((prev) =>
+      prev.includes(recipeName) ? prev.filter((n) => n !== recipeName) : [...prev, recipeName]
+    );
+  };
+
+  const isFavorite = (recipeName) => favorites.includes(recipeName);
 
   const currentPhase = cycleInfo?.phase || 'follicular';
   const activePhase = selectedPhase === 'current' ? currentPhase : selectedPhase;
@@ -131,7 +151,7 @@ export default function Recettes() {
   const allRecipes = [];
   if (recipes) {
     Object.entries(recipes).forEach(([mealType, items]) => {
-      if (selectedMeal !== 'all' && mealType !== selectedMeal) return;
+      if (selectedMeal !== 'all' && selectedMeal !== 'favorites' && mealType !== selectedMeal) return;
       if (!Array.isArray(items)) return;
       items.forEach((recipe) => {
         // Filtrer par tags alimentaires (préférences)
@@ -151,6 +171,8 @@ export default function Recettes() {
         if (recipeLevel > maxLevel) return;
         // Filtrer par style de cuisine (multi-sélection, vide = tout)
         if (selectedCuisines.length > 0 && !selectedCuisines.includes(recipe.cuisine)) return;
+        // Filtrer par favoris
+        if (selectedMeal === 'favorites' && !isFavorite(recipe.name)) return;
         allRecipes.push({ ...recipe, mealType });
       });
     });
@@ -397,6 +419,15 @@ export default function Recettes() {
                       {mealLabels[recipe.mealType]?.tag || recipe.mealType}
                     </span>
                   </div>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
+                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"
+                  >
+                    <Heart
+                      size={14}
+                      className={isFavorite(recipe.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-hint'}
+                    />
+                  </button>
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
                     <span className="text-[9px] font-body flex items-center gap-1" style={{ color: phaseData.colorDark }}>
                       <Clock size={9} /> {recipe.prepTime}
@@ -440,12 +471,23 @@ export default function Recettes() {
                 style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
               >
                 <span className="text-7xl">{openRecipeData.emoji || '🍽️'}</span>
-                <button
-                  onClick={() => setOpenRecipe(null)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
-                >
-                  <X size={16} className="text-luna-text-muted" />
-                </button>
+                <div className="absolute top-3 right-3 flex items-center gap-2">
+                  <button
+                    onClick={() => toggleFavorite(openRecipeData.name)}
+                    className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                  >
+                    <Heart
+                      size={16}
+                      className={isFavorite(openRecipeData.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-muted'}
+                    />
+                  </button>
+                  <button
+                    onClick={() => setOpenRecipe(null)}
+                    className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                  >
+                    <X size={16} className="text-luna-text-muted" />
+                  </button>
+                </div>
               </div>
 
               <div className="p-5 space-y-5">
