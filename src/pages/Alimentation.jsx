@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert, Leaf, Zap } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
@@ -28,6 +28,27 @@ const PHASE_FOOD_INTROS = {
   follicular: 'L\'œstrogène remonte. Ton corps est en mode construction. Protéines, zinc et probiotiques sont tes alliés.',
   ovulatory: 'Pic hormonal : privilégie les fibres pour éliminer l\'excès d\'œstrogène et les antioxydants pour protéger tes cellules.',
   luteal: 'Ton métabolisme augmente de 10-20%. Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
+};
+
+const NUTRIENT_ICONS = {
+  'Magnésium': '🧲',
+  'Vitamine B6': '💊',
+  'Calcium': '🦴',
+  'Glucides complexes': '🌾',
+  'Tryptophane': '🧠',
+  'Fer': '🩸',
+  'Vitamine C': '🍊',
+  'Oméga-3': '🐟',
+  'Zinc': '⚡',
+  'Protéines': '💪',
+  'Vitamine E': '🌿',
+  'Probiotiques': '🦠',
+  'Fibres': '🥦',
+  'Antioxydants': '🫐',
+  'Crucifères (DIM)': '🥬',
+  'Eau': '💧',
+  'Sélénium': '🌰',
+  'Vitamine B12': '🔴',
 };
 
 // ——— Mapping santé : nutriments & superaliments par condition ———
@@ -99,58 +120,92 @@ export default function Alimentation() {
   })();
 
   return (
-    <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
+    <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <BackButton />
-      {/* Phase tag + Title */}
+
+      {/* ===== HERO SECTION ===== */}
       <motion.div variants={item}>
-        <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-widest mb-3">
-          {phaseData.shortName} · Alimentation
-        </p>
-        <h1 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
-          {titles.main}{' '}
-          <em style={{ color: phaseData.colorDark }}>{titles.italic}</em>
-        </h1>
-        <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
-          {PHASE_FOOD_INTROS[phase]}
-        </p>
+        <div
+          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          style={{
+            background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+          }}
+        >
+          {/* Decorative circle */}
+          <div
+            className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
+            style={{ backgroundColor: phaseData.color }}
+          />
+          <div
+            className="absolute bottom-4 -left-6 w-20 h-20 rounded-full opacity-10"
+            style={{ backgroundColor: phaseData.color }}
+          />
+
+          <div className="relative">
+            <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3" style={{ color: phaseData.color }}>
+              {phaseData.shortName} · Nutrition
+            </p>
+            <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight mb-3">
+              {titles.main}{' '}
+              <em style={{ color: phaseData.colorDark }}>{titles.italic}</em>
+            </h1>
+            <p className="text-sm font-body text-luna-text-body leading-relaxed">
+              {PHASE_FOOD_INTROS[phase]}
+            </p>
+          </div>
+        </div>
       </motion.div>
 
-      {/* Priority Nutrients — Interactive */}
+      {/* ===== NUTRIMENTS PRIORITAIRES ===== */}
       <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-          <div className="flex items-center gap-2 mb-1">
-            <Sparkles size={16} style={{ color: phaseData.color }} />
-            <h2 className="font-display text-lg text-luna-text">Nutriments prioritaires</h2>
+        <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
+          {/* Section header */}
+          <div className="flex items-center gap-3 mb-2">
+            <div
+              className="w-9 h-9 rounded-[12px] flex items-center justify-center"
+              style={{ backgroundColor: `${phaseData.color}15` }}
+            >
+              <Sparkles size={16} style={{ color: phaseData.colorDark }} />
+            </div>
+            <div>
+              <h2 className="font-display text-lg text-luna-text leading-tight">Nutriments prioritaires</h2>
+              <p className="text-[10px] font-body text-luna-text-hint mt-0.5">Clique pour voir les aliments</p>
+            </div>
           </div>
-          <p className="text-xs font-body text-luna-text-hint mb-4">Clique sur un nutriment pour découvrir les aliments à privilégier.</p>
 
-          <div className="flex flex-wrap gap-2">
+          {/* Nutrient grid — 2 columns */}
+          <div className="grid grid-cols-2 gap-2 mt-4">
             {phaseData.nutrients.map((n) => {
               const isBeneficial = hasHealthBadges && beneficialNutrients.has(n);
+              const isActive = openNutrient === n;
+              const icon = NUTRIENT_ICONS[n] || '✨';
               return (
-                <button
+                <motion.button
                   key={n}
-                  onClick={() => { setOpenNutrient(openNutrient === n ? null : n); setSelectedFood(null); }}
-                  className="px-4 py-2.5 rounded-[14px] text-sm font-body font-semibold transition-all duration-300 inline-flex items-center gap-1.5"
-                  style={openNutrient === n ? {
+                  whileTap={{ scale: 0.97 }}
+                  onClick={() => { setOpenNutrient(isActive ? null : n); setSelectedFood(null); }}
+                  className="flex items-center gap-2.5 px-4 py-3 rounded-[16px] text-left transition-all duration-300"
+                  style={isActive ? {
                     backgroundColor: phaseData.color,
                     color: 'white',
-                    boxShadow: `0 4px 12px ${phaseData.color}40`,
+                    boxShadow: `0 4px 16px ${phaseData.color}35`,
                   } : {
                     backgroundColor: phaseData.bgColor,
                     color: phaseData.colorDark,
                   }}
                 >
-                  {n}
+                  <span className="text-lg flex-shrink-0">{icon}</span>
+                  <span className="text-[13px] font-body font-semibold leading-tight">{n}</span>
                   {isBeneficial && (
-                    <span className="text-[10px]" title="Recommandé pour ta santé">💚</span>
+                    <span className="text-[9px] ml-auto flex-shrink-0" title="Recommandé pour ta santé">💚</span>
                   )}
-                </button>
+                </motion.button>
               );
             })}
           </div>
+
           {hasHealthBadges && (
-            <div className="flex items-center gap-2 mt-3 pt-3 border-t border-gray-50">
+            <div className="flex items-center gap-2 mt-4 pt-3 border-t border-gray-50">
               <span className="text-[10px]">💚</span>
               <p className="text-[10px] font-body text-luna-text-hint">
                 = Nutriment clé pour {userIssues.join(' & ')}
@@ -164,7 +219,7 @@ export default function Alimentation() {
         </div>
       </motion.div>
 
-      {/* Expanded Nutrient Detail */}
+      {/* ===== NUTRIENT DETAIL (expanded) ===== */}
       <AnimatePresence mode="wait">
         {openNutrient && nutrientsFull[openNutrient] && (
           <motion.div
@@ -177,18 +232,21 @@ export default function Alimentation() {
           >
             <div
               className="rounded-[24px] overflow-hidden"
-              style={{ boxShadow: '0 4px 20px rgba(45,34,38,0.08)' }}
+              style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}
             >
               {/* Header band */}
               <div
                 className="px-5 pt-5 pb-4"
-                style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}15)` }}
+                style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}20)` }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-display text-xl text-luna-text">{openNutrient}</h3>
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-xl">{NUTRIENT_ICONS[openNutrient] || '✨'}</span>
+                    <h3 className="font-display text-xl text-luna-text">{openNutrient}</h3>
+                  </div>
                   <button
                     onClick={() => setOpenNutrient(null)}
-                    className="w-7 h-7 rounded-full bg-white/60 flex items-center justify-center"
+                    className="w-8 h-8 rounded-full bg-white/70 flex items-center justify-center hover:bg-white transition-colors"
                   >
                     <X size={14} className="text-luna-text-muted" />
                   </button>
@@ -200,20 +258,20 @@ export default function Alimentation() {
 
               {/* Foods grid */}
               <div className="bg-white px-5 py-5">
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-4">
                   <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">
                     Aliments riches en {openNutrient.toLowerCase()}
                   </p>
                   {isFiltering && (
                     <span
-                      className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-pill"
+                      className="text-[9px] font-body font-semibold px-2.5 py-1 rounded-pill"
                       style={{ backgroundColor: `${phaseData.color}15`, color: phaseData.colorDark }}
                     >
                       🌱 {dietLabel}
                     </span>
                   )}
                 </div>
-                <div className="grid grid-cols-4 gap-3">
+                <div className="grid grid-cols-4 gap-4">
                   {filterFoods(nutrientsFull[openNutrient].foods).map((food, i) => {
                     const isActive = selectedFood === food.name;
                     const isSuperfood = hasHealthBadges && superfoodSet.has(food.name);
@@ -222,17 +280,18 @@ export default function Alimentation() {
                         key={food.name}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.05 }}
+                        transition={{ delay: i * 0.04 }}
                         onClick={() => setSelectedFood(isActive ? null : food.name)}
                         className="flex flex-col items-center gap-1.5 transition-all"
                       >
                         <div className="relative">
                           <div
-                            className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl transition-all"
+                            className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl transition-all duration-200"
                             style={{
                               backgroundColor: isActive ? `${phaseData.color}25` : phaseData.bgColor,
                               border: isActive ? `2px solid ${phaseData.color}` : '2px solid transparent',
-                              transform: isActive ? 'scale(1.08)' : 'scale(1)',
+                              transform: isActive ? 'scale(1.1)' : 'scale(1)',
+                              boxShadow: isActive ? `0 4px 12px ${phaseData.color}20` : 'none',
                             }}
                           >
                             {food.emoji}
@@ -274,11 +333,11 @@ export default function Alimentation() {
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="mt-4 flex items-start gap-2.5 rounded-[14px] px-4 py-3"
-                      style={{ backgroundColor: `${phaseData.color}10` }}
+                      className="mt-4 flex items-start gap-2.5 rounded-[16px] px-4 py-3.5"
+                      style={{ backgroundColor: `${phaseData.color}08`, border: `1px solid ${phaseData.color}15` }}
                     >
                       <Lightbulb size={14} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
-                      <p className="text-xs font-body text-luna-text-body leading-relaxed italic">
+                      <p className="text-xs font-body text-luna-text-body leading-relaxed">
                         {displayText}
                       </p>
                     </motion.div>
@@ -290,168 +349,207 @@ export default function Alimentation() {
         )}
       </AnimatePresence>
 
-
-      {/* Section supprimée : CTA Recettes & Boissons — maintenant un onglet séparé */}
-
-      {/* Drinks */}
+      {/* ===== BOISSONS ===== */}
       <motion.div variants={item}>
-        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
-              <Droplets size={20} style={{ color: phaseData.colorDark }} />
-            </div>
-            <div>
-              <h3 className="font-display text-base text-luna-text">Boissons</h3>
-              <p className="text-[10px] font-body text-luna-text-muted">Clique pour savoir pourquoi</p>
+        <div
+          className="rounded-[24px] overflow-hidden"
+          style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}
+        >
+          {/* Drinks header */}
+          <div
+            className="px-5 pt-5 pb-4"
+            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}12)` }}
+          >
+            <div className="flex items-center gap-3">
+              <div
+                className="w-10 h-10 rounded-[14px] flex items-center justify-center"
+                style={{ backgroundColor: `${phaseData.color}20` }}
+              >
+                <Droplets size={18} style={{ color: phaseData.colorDark }} />
+              </div>
+              <div>
+                <h3 className="font-display text-lg text-luna-text">Tes boissons</h3>
+                <p className="text-[10px] font-body text-luna-text-muted mt-0.5">Adaptées à ta phase · Clique pour en savoir plus</p>
+              </div>
             </div>
           </div>
 
-          {/* Good drinks */}
-          {(() => {
-            const filteredGood = filterFoods(phaseData.drinks.good);
-            return (
-              <div className="rounded-[16px] bg-white/70 p-4 mb-3" style={{ boxShadow: '0 1px 6px rgba(45,34,38,0.03)' }}>
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck size={14} style={{ color: '#7BAE7F' }} />
-                    <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: '#7BAE7F' }}>
-                      À privilégier
-                    </p>
-                  </div>
-                  {isFiltering && (
-                    <span className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-pill" style={{ backgroundColor: '#7BAE7F15', color: '#4D7A50' }}>
-                      🌱 {dietLabel}
-                    </span>
-                  )}
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {filteredGood.map((d, i) => {
-                    const key = `good-${i}`;
-                    const isOpen = expandedDrink === key;
-                    return (
-                      <button
-                        key={i}
-                        onClick={() => setExpandedDrink(isOpen ? null : key)}
-                        className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
-                        style={{
-                          backgroundColor: isOpen ? '#7BAE7F25' : '#7BAE7F12',
-                          color: '#4D7A50',
-                          border: isOpen ? '1.5px solid #7BAE7F' : '1px solid #7BAE7F25',
-                          boxShadow: isOpen ? '0 2px 8px rgba(123,174,127,0.2)' : 'none',
-                        }}
-                      >
-                        🍵 {d.name}
-                      </button>
-                    );
-                  })}
-                </div>
-                {/* Shared explanation zone */}
-                <AnimatePresence>
-                  {expandedDrink?.startsWith('good-') && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="mt-3 pl-3 pr-2 py-2.5 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#7BAE7F0A]"
-                        style={{ borderLeft: '3px solid #7BAE7F' }}
-                      >
-                        <span className="font-semibold" style={{ color: '#4D7A50' }}>
-                          {filteredGood[Number(expandedDrink.split('-')[1])]?.name} →
-                        </span>{' '}
-                        {filteredGood[Number(expandedDrink.split('-')[1])]?.why}
+          <div className="bg-white px-5 py-4 space-y-4">
+            {/* Good drinks */}
+            {(() => {
+              const filteredGood = filterFoods(phaseData.drinks.good);
+              return (
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#7BAE7F15' }}>
+                        <ShieldCheck size={12} style={{ color: '#7BAE7F' }} />
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })()}
-
-          {/* Bad drinks */}
-          <div className="rounded-[16px] bg-white/50 p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <ShieldAlert size={14} style={{ color: '#D4727F' }} />
-              <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: '#D4727F' }}>
-                À limiter
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {phaseData.drinks.bad.map((d, i) => {
-                const key = `bad-${i}`;
-                const isOpen = expandedDrink === key;
-                return (
-                  <button
-                    key={i}
-                    onClick={() => setExpandedDrink(isOpen ? null : key)}
-                    className="inline-flex items-center gap-1.5 text-xs font-body font-medium px-3 py-2 rounded-full transition-all duration-200"
-                    style={{
-                      backgroundColor: isOpen ? '#D4727F20' : '#D4727F10',
-                      color: '#A3555F',
-                      border: isOpen ? '1.5px solid #D4727F' : '1px solid #D4727F20',
-                      boxShadow: isOpen ? '0 2px 8px rgba(212,114,127,0.2)' : 'none',
-                    }}
-                  >
-                    ⚠️ {d.name}
-                  </button>
-                );
-              })}
-            </div>
-            {/* Shared explanation zone */}
-            <AnimatePresence>
-              {expandedDrink?.startsWith('bad-') && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="overflow-hidden"
-                >
-                  <div className="mt-3 pl-3 pr-2 py-2.5 text-xs font-body text-luna-text-body leading-relaxed rounded-[12px] bg-[#D4727F08]"
-                    style={{ borderLeft: '3px solid #D4727F' }}
-                  >
-                    <span className="font-semibold" style={{ color: '#A3555F' }}>
-                      {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.name} →
-                    </span>{' '}
-                    {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.why}
+                      <p className="text-xs font-body font-bold uppercase tracking-wider" style={{ color: '#5A8A5E' }}>
+                        À privilégier
+                      </p>
+                    </div>
+                    {isFiltering && (
+                      <span className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-pill" style={{ backgroundColor: '#7BAE7F15', color: '#4D7A50' }}>
+                        🌱 {dietLabel}
+                      </span>
+                    )}
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <div className="flex flex-wrap gap-2">
+                    {filteredGood.map((d, i) => {
+                      const key = `good-${i}`;
+                      const isOpen = expandedDrink === key;
+                      return (
+                        <button
+                          key={i}
+                          onClick={() => setExpandedDrink(isOpen ? null : key)}
+                          className="inline-flex items-center gap-1.5 text-xs font-body font-semibold px-3.5 py-2.5 rounded-[12px] transition-all duration-200"
+                          style={{
+                            backgroundColor: isOpen ? '#7BAE7F20' : '#F5FAF5',
+                            color: '#4D7A50',
+                            border: isOpen ? '1.5px solid #7BAE7F' : '1.5px solid #7BAE7F20',
+                            boxShadow: isOpen ? '0 2px 8px rgba(123,174,127,0.15)' : 'none',
+                          }}
+                        >
+                          🍵 {d.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {/* Explanation */}
+                  <AnimatePresence>
+                    {expandedDrink?.startsWith('good-') && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
+                          style={{ backgroundColor: '#F5FAF5', borderLeft: '3px solid #7BAE7F' }}
+                        >
+                          <span className="font-bold" style={{ color: '#4D7A50' }}>
+                            {filteredGood[Number(expandedDrink.split('-')[1])]?.name}
+                          </span>{' '}
+                          — {filteredGood[Number(expandedDrink.split('-')[1])]?.why}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })()}
+
+            {/* Divider */}
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-px bg-gray-100" />
+              <span className="text-[9px] font-body text-luna-text-hint uppercase tracking-wider">vs</span>
+              <div className="flex-1 h-px bg-gray-100" />
+            </div>
+
+            {/* Bad drinks */}
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#D4727F12' }}>
+                  <ShieldAlert size={12} style={{ color: '#D4727F' }} />
+                </div>
+                <p className="text-xs font-body font-bold uppercase tracking-wider" style={{ color: '#A3555F' }}>
+                  À limiter
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {phaseData.drinks.bad.map((d, i) => {
+                  const key = `bad-${i}`;
+                  const isOpen = expandedDrink === key;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setExpandedDrink(isOpen ? null : key)}
+                      className="inline-flex items-center gap-1.5 text-xs font-body font-semibold px-3.5 py-2.5 rounded-[12px] transition-all duration-200"
+                      style={{
+                        backgroundColor: isOpen ? '#D4727F15' : '#FDF5F5',
+                        color: '#A3555F',
+                        border: isOpen ? '1.5px solid #D4727F' : '1.5px solid #D4727F15',
+                        boxShadow: isOpen ? '0 2px 8px rgba(212,114,127,0.15)' : 'none',
+                      }}
+                    >
+                      ⚠️ {d.name}
+                    </button>
+                  );
+                })}
+              </div>
+              {/* Explanation */}
+              <AnimatePresence>
+                {expandedDrink?.startsWith('bad-') && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
+                      style={{ backgroundColor: '#FDF5F5', borderLeft: '3px solid #D4727F' }}
+                    >
+                      <span className="font-bold" style={{ color: '#A3555F' }}>
+                        {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.name}
+                      </span>{' '}
+                      — {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.why}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </motion.div>
 
-      {/* Sugar Cravings - Luteal only */}
+      {/* ===== ENVIES DE SUCRE — Luteal only ===== */}
       {phase === 'luteal' && phaseData.sugarCravings && (
         <motion.div variants={item}>
-          <div className="rounded-[20px] p-5 bg-white" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-            <div className="flex items-center gap-2 mb-2">
-              <Cookie size={16} style={{ color: phaseData.colorDark }} />
-              <h3 className="font-display text-base text-luna-text">Envies de sucre ?</h3>
+          <div
+            className="rounded-[24px] overflow-hidden"
+            style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}
+          >
+            <div
+              className="px-5 pt-5 pb-4"
+              style={{ background: `linear-gradient(135deg, #FFF5E6, #FFECD2)` }}
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: '#E8A87C30' }}>
+                  <Cookie size={18} style={{ color: '#D4846A' }} />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg text-luna-text">Envies de sucre ?</h3>
+                  <p className="text-[10px] font-body text-luna-text-muted mt-0.5">C'est normal en phase lutéale</p>
+                </div>
+              </div>
             </div>
-            <p className="text-sm font-body text-luna-text-muted leading-relaxed mb-3">
-              {phaseData.sugarCravings.explanation}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {phaseData.sugarCravings.alternatives.map((a, i) => (
-                <span
-                  key={i}
-                  className="text-xs font-body px-3 py-1.5 rounded-pill"
-                  style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
-                >
-                  {a}
-                </span>
-              ))}
+            <div className="bg-white px-5 py-4">
+              <p className="text-sm font-body text-luna-text-body leading-relaxed mb-4">
+                {phaseData.sugarCravings.explanation}
+              </p>
+              <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
+                Alternatives saines
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {phaseData.sugarCravings.alternatives.map((a, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-body font-semibold px-3.5 py-2 rounded-[12px]"
+                    style={{ backgroundColor: '#FFF5E6', color: '#B8764A', border: '1px solid #E8A87C25' }}
+                  >
+                    {a}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
       )}
 
-      {/* Fruits & Légumes de saison */}
+      {/* ===== FRUITS & LÉGUMES DE SAISON ===== */}
       {(() => {
         const currentMonth = new Date().getMonth() + 1;
         const seasonal = SEASONAL_FOODS[currentMonth];
@@ -465,10 +563,13 @@ export default function Alimentation() {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: delay * 0.05, duration: 0.4, ease: 'easeOut' }}
+              transition={{ delay: delay * 0.04, duration: 0.4, ease: 'easeOut' }}
               className="flex flex-col items-center gap-2"
             >
-              <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FAF5F0' }}>
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden"
+                style={{ backgroundColor: '#FAF5F0', boxShadow: '0 2px 8px rgba(45,34,38,0.06)' }}
+              >
                 {imgSrc ? (
                   <img
                     src={imgSrc}
@@ -494,9 +595,12 @@ export default function Alimentation() {
             >
               {/* Header */}
               <div className="px-6 pt-6 pb-2 text-center">
-                <p className="text-[10px] font-body font-bold uppercase tracking-[0.25em] mb-1" style={{ color: '#B09ACB' }}>
-                  De saison
-                </p>
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Leaf size={14} style={{ color: '#B09ACB' }} />
+                  <p className="text-[10px] font-body font-bold uppercase tracking-[0.25em]" style={{ color: '#B09ACB' }}>
+                    De saison
+                  </p>
+                </div>
                 <h3 className="font-display text-3xl text-luna-text">
                   {monthNames[currentMonth]}
                 </h3>
@@ -538,9 +642,14 @@ export default function Alimentation() {
         );
       })()}
 
-      {/* Quote */}
-      <motion.div variants={item} className="text-center py-4">
-        <p className="text-sm font-body text-luna-text-hint italic px-8 leading-relaxed">
+      {/* ===== CITATION ===== */}
+      <motion.div variants={item} className="text-center py-3">
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <div className="w-8 h-px" style={{ backgroundColor: phaseData.color + '40' }} />
+          <Sparkles size={12} style={{ color: phaseData.color + '60' }} />
+          <div className="w-8 h-px" style={{ backgroundColor: phaseData.color + '40' }} />
+        </div>
+        <p className="text-sm font-body text-luna-text-muted italic px-8 leading-relaxed">
           "Mange pour la femme que tu es aujourd'hui."
         </p>
       </motion.div>
