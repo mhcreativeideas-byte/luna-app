@@ -5,7 +5,6 @@ import { ChevronLeft, Plus, X, Search, Sparkles, Clock, ChefHat } from 'lucide-r
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
-import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -16,37 +15,68 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-// Base d'ingrédients pour l'auto-complétion
-const ALL_INGREDIENTS = [
-  // Fruits
-  'Pomme', 'Banane', 'Orange', 'Citron', 'Fraise', 'Framboise', 'Myrtille', 'Mangue',
-  'Avocat', 'Poire', 'Kiwi', 'Cerise', 'Abricot', 'Pêche', 'Melon', 'Pastèque',
-  'Raisin', 'Figue', 'Ananas', 'Noix de coco',
-  // Légumes
-  'Tomate', 'Concombre', 'Carotte', 'Courgette', 'Aubergine', 'Poivron', 'Brocoli',
-  'Épinard', 'Laitue', 'Chou', 'Chou-fleur', 'Patate douce', 'Pomme de terre',
-  'Oignon', 'Ail', 'Gingembre', 'Betterave', 'Radis', 'Fenouil', 'Céleri',
-  'Poireau', 'Artichaut', 'Asperge', 'Petit pois', 'Haricot vert', 'Maïs',
-  // Protéines
-  'Poulet', 'Saumon', 'Thon', 'Tofu', 'Tempeh', 'Œuf', 'Lentilles', 'Pois chiches',
-  'Haricots rouges', 'Haricots blancs', 'Sardines', 'Maquereau', 'Bœuf', 'Dinde',
-  // Céréales & féculents
-  'Riz', 'Quinoa', 'Avoine', 'Flocons d\'avoine', 'Pâtes', 'Pain complet', 'Sarrasin',
-  'Boulgour', 'Semoule', 'Tortilla', 'Farine',
-  // Produits laitiers & alternatives
-  'Lait', 'Lait d\'amande', 'Lait d\'avoine', 'Lait de coco', 'Yaourt', 'Fromage',
-  'Crème fraîche', 'Beurre', 'Mozzarella', 'Parmesan', 'Feta',
-  // Graines & noix
-  'Amandes', 'Noix', 'Noix de cajou', 'Noisettes', 'Graines de lin', 'Graines de chia',
-  'Graines de courge', 'Graines de tournesol', 'Graines de sésame', 'Cacahuètes',
-  'Beurre de cacahuète',
-  // Condiments & épices
-  'Huile d\'olive', 'Vinaigre balsamique', 'Sauce soja', 'Tamari', 'Miel', 'Sirop d\'érable',
-  'Curcuma', 'Cannelle', 'Chocolat noir', 'Cacao', 'Vanille', 'Basilic', 'Menthe',
-  'Persil', 'Coriandre', 'Curry', 'Paprika', 'Tahini', 'Houmous', 'Moutarde',
-  // Autres
-  'Açaí', 'Spiruline', 'Matcha', 'Ashwagandha', 'Kombucha',
+// Catégories d'ingrédients pour sélection rapide
+const INGREDIENT_CATEGORIES = [
+  {
+    id: 'fruits',
+    label: 'Fruits',
+    icon: '🍎',
+    items: ['Pomme', 'Banane', 'Orange', 'Citron', 'Citron vert', 'Fraise', 'Framboise', 'Myrtille', 'Mangue',
+      'Avocat', 'Poire', 'Kiwi', 'Cerise', 'Abricot', 'Pêche', 'Melon', 'Pastèque',
+      'Raisin', 'Figue', 'Ananas', 'Noix de coco', 'Grenade', 'Açaí', 'Datte'],
+  },
+  {
+    id: 'legumes',
+    label: 'Légumes',
+    icon: '🥬',
+    items: ['Tomate', 'Concombre', 'Carotte', 'Courgette', 'Aubergine', 'Poivron', 'Brocoli',
+      'Épinard', 'Laitue', 'Chou', 'Chou-fleur', 'Chou kale', 'Patate douce', 'Pomme de terre',
+      'Oignon', 'Ail', 'Gingembre', 'Betterave', 'Radis', 'Fenouil', 'Céleri',
+      'Poireau', 'Artichaut', 'Asperge', 'Petit pois', 'Haricot vert', 'Maïs', 'Potimarron', 'Champignon'],
+  },
+  {
+    id: 'proteines',
+    label: 'Protéines',
+    icon: '🥩',
+    items: ['Poulet', 'Dinde', 'Bœuf', 'Saumon', 'Thon', 'Sardines', 'Maquereau', 'Crevettes', 'Cabillaud',
+      'Tofu', 'Tempeh', 'Œuf', 'Lentilles', 'Lentilles corail', 'Pois chiches',
+      'Haricots rouges', 'Haricots noirs', 'Haricots blancs', 'Edamame'],
+  },
+  {
+    id: 'feculents',
+    label: 'Féculents',
+    icon: '🌾',
+    items: ['Riz', 'Riz complet', 'Quinoa', 'Avoine', 'Flocons d\'avoine', 'Pâtes', 'Pâtes complètes',
+      'Pain complet', 'Sarrasin', 'Boulgour', 'Semoule', 'Tortilla', 'Farine', 'Nouilles'],
+  },
+  {
+    id: 'laitiers',
+    label: 'Laitiers',
+    icon: '🧀',
+    items: ['Lait', 'Lait d\'amande', 'Lait d\'avoine', 'Lait de coco', 'Yaourt', 'Yaourt de coco',
+      'Fromage', 'Crème fraîche', 'Beurre', 'Mozzarella', 'Parmesan', 'Feta', 'Chèvre', 'Ricotta'],
+  },
+  {
+    id: 'graines',
+    label: 'Graines & Noix',
+    icon: '🥜',
+    items: ['Amandes', 'Noix', 'Noix de cajou', 'Noisettes', 'Pistaches', 'Graines de lin',
+      'Graines de chia', 'Graines de courge', 'Graines de tournesol', 'Graines de sésame',
+      'Cacahuètes', 'Beurre de cacahuète', 'Beurre d\'amande', 'Tahini'],
+  },
+  {
+    id: 'condiments',
+    label: 'Épices & Co',
+    icon: '🌿',
+    items: ['Huile d\'olive', 'Vinaigre balsamique', 'Sauce soja', 'Tamari', 'Miel', 'Sirop d\'érable',
+      'Curcuma', 'Cannelle', 'Chocolat noir', 'Cacao', 'Vanille', 'Basilic', 'Menthe',
+      'Persil', 'Coriandre', 'Curry', 'Paprika', 'Moutarde', 'Houmous', 'Miso',
+      'Spiruline', 'Matcha'],
+  },
 ];
+
+// Liste complète pour l'auto-complétion
+const ALL_INGREDIENTS = INGREDIENT_CATEGORIES.flatMap((cat) => cat.items);
 
 // Normaliser pour la recherche
 function normalize(str) {
@@ -74,12 +104,55 @@ function getMatchScore(recipe, fridgeItems) {
   return { score, matched, missing };
 }
 
+// Extraire les minutes depuis le champ prepTime
+function parseMinutes(prepTime) {
+  if (!prepTime) return 999;
+  const str = prepTime.toLowerCase().replace(/\s/g, '');
+  const hMatch = str.match(/(\d+)\s*h/);
+  const mMatch = str.match(/(\d+)\s*min/);
+  let total = 0;
+  if (hMatch) total += parseInt(hMatch[1]) * 60;
+  if (mMatch) total += parseInt(mMatch[1]);
+  if (!hMatch && !mMatch) {
+    const num = parseInt(str);
+    if (!isNaN(num)) total = num;
+    else total = 999;
+  }
+  return total;
+}
+
+// Mots-clés allergènes
+const ALLERGEN_KEYWORDS = {
+  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin', 'fruits à coque'],
+  'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
+  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari', 'protéine de soja'],
+  'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
+  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'colin', 'merlu', 'poisson'],
+  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
+  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'yogourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'emmental', 'comté', 'chèvre', 'feta', 'mascarpone', 'crème entière'],
+  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'fusilli', 'couscous', 'boulgour', 'semoule', 'croûton', 'chapelure', 'tortilla', 'wrap'],
+  'Sésame': ['sésame', 'tahini', 'tahin', 'gomasio'],
+  'Céleri': ['céleri', 'celeri'],
+  'Moutarde': ['moutarde'],
+  'Sulfites': ['vin blanc', 'vin rouge', 'vin rosé', 'vinaigre balsamique', 'sulfite'],
+};
+
+function containsAllergen(recipe, allergyList) {
+  if (!allergyList || allergyList.length === 0) return false;
+  const ingredientsText = (recipe.ingredients || []).join(' ').toLowerCase();
+  const nameText = recipe.name?.toLowerCase() || '';
+  const fullText = ingredientsText + ' ' + nameText;
+  return allergyList.some((allergy) => {
+    const keywords = ALLERGEN_KEYWORDS[allergy] || [];
+    return keywords.some((kw) => fullText.includes(kw.toLowerCase()));
+  });
+}
+
 export default function MonFrigo() {
   const navigate = useNavigate();
-  const { cycleInfo, dietPreferences, healthIssues, dispatch, fridgeItems: savedItems } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies } = useCycle();
   const [searchQuery, setSearchQuery] = useState('');
   const [fridgeItems, setFridgeItems] = useState(() => {
-    // Charger depuis localStorage
     try {
       const saved = localStorage.getItem('luna-frigo');
       return saved ? JSON.parse(saved) : [];
@@ -89,6 +162,7 @@ export default function MonFrigo() {
   });
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [openRecipe, setOpenRecipe] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(null);
   const inputRef = useRef(null);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -130,7 +204,7 @@ export default function MonFrigo() {
     setShowSuggestions(false);
   };
 
-  // Filtrage recettes selon le profil
+  // Tags requis selon le profil
   const requiredTags = useMemo(() => {
     const tags = [];
     const prefs = dietPreferences || ['omnivore'];
@@ -140,16 +214,25 @@ export default function MonFrigo() {
     if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
     if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
     if (issues.includes('SOPK')) tags.push('sopk_friendly');
+    if (issues.includes('Anti-inflammatoire')) tags.push('anti_inflammatoire');
+    if (issues.includes('Endométriose')) tags.push('anti_inflammatoire');
+    if (issues.includes('SPM sévère')) tags.push('spm_friendly');
     return tags;
   }, [dietPreferences, healthIssues]);
 
-  const selectRecipe = (variants) => {
-    if (!Array.isArray(variants)) return variants;
-    if (variants.length === 1) return variants[0];
-    if (!requiredTags.length) return variants[variants.length - 1];
-    const match = variants.find(r => requiredTags.every(tag => (r.tags || []).includes(tag)));
-    return match || variants[variants.length - 1];
-  };
+  // Temps max
+  const maxTime = (() => {
+    const time = cookingTime || '';
+    if (!time || time === '60min+') return null;
+    if (time === '15min') return 15;
+    if (time === '30min') return 30;
+    if (time === '45min') return 45;
+    return null;
+  })();
+
+  // Niveau max
+  const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
+  const maxLevel = LEVEL_ORDER[cookingLevel] || 3;
 
   // Calculer les recettes matchées, triées par score
   const matchedRecipes = useMemo(() => {
@@ -159,18 +242,33 @@ export default function MonFrigo() {
     const recipes = RECIPES[phase];
     if (!recipes) return [];
 
-    Object.entries(recipes).forEach(([mealType, variants]) => {
-      const recipe = selectRecipe(variants);
-      if (!recipe) return;
-      const match = getMatchScore(recipe, fridgeItems);
-      if (match.score > 0) {
-        results.push({ ...recipe, mealType, ...match });
-      }
+    Object.entries(recipes).forEach(([mealType, items]) => {
+      if (!Array.isArray(items)) return;
+      items.forEach((recipe) => {
+        // Filtrer par tags alimentaires
+        if (requiredTags.length > 0) {
+          const recipeTags = recipe.tags || [];
+          if (!requiredTags.every(tag => recipeTags.includes(tag))) return;
+        }
+        // Filtrer par temps
+        if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return;
+        // Filtrer par allergies
+        if (containsAllergen(recipe, allergies)) return;
+        // Filtrer par niveau
+        const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
+        if (recipeLevel > maxLevel) return;
+
+        // Calculer le matching
+        const match = getMatchScore(recipe, fridgeItems);
+        if (match.score > 0) {
+          results.push({ ...recipe, mealType, ...match });
+        }
+      });
     });
 
     // Trier par score décroissant
     return results.sort((a, b) => b.score - a.score);
-  }, [fridgeItems, phase, requiredTags]);
+  }, [fridgeItems, phase, requiredTags, maxTime, allergies, maxLevel]);
 
   const mealLabels = {
     breakfast: 'PETIT-DÉJ',
@@ -257,28 +355,106 @@ export default function MonFrigo() {
         </AnimatePresence>
       </motion.div>
 
+      {/* Catégories d'ingrédients — sélection rapide */}
+      {fridgeItems.length === 0 || activeCategory !== null ? (
+        <motion.div variants={item}>
+          {/* Category tabs */}
+          <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2">
+            {INGREDIENT_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all flex-shrink-0"
+                style={activeCategory === cat.id ? {
+                  backgroundColor: phaseData.color,
+                  color: 'white',
+                  boxShadow: `0 4px 12px ${phaseData.color}40`,
+                } : {
+                  backgroundColor: 'white',
+                  color: '#8A7B7F',
+                  boxShadow: '0 1px 4px rgba(45,34,38,0.06)',
+                }}
+              >
+                <span>{cat.icon}</span>
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Ingredient pills for selected category */}
+          <AnimatePresence mode="wait">
+            {activeCategory && (
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {INGREDIENT_CATEGORIES.find((c) => c.id === activeCategory)?.items.map((ing) => {
+                    const isInFridge = fridgeItems.includes(ing);
+                    return (
+                      <button
+                        key={ing}
+                        onClick={() => isInFridge ? removeItem(ing) : addItem(ing)}
+                        className="px-3 py-1.5 rounded-pill text-xs font-body font-semibold transition-all border"
+                        style={isInFridge ? {
+                          backgroundColor: phaseData.bgColor,
+                          borderColor: phaseData.color,
+                          color: phaseData.colorDark,
+                        } : {
+                          backgroundColor: 'white',
+                          borderColor: '#F0EEEC',
+                          color: '#8A7B7F',
+                        }}
+                      >
+                        {isInFridge && <span className="mr-1">✓</span>}
+                        {ing}
+                      </button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      ) : null}
+
       {/* Frigo items */}
       <motion.div variants={item}>
-        {fridgeItems.length === 0 ? (
-          <div className="text-center py-8">
+        {fridgeItems.length === 0 && !activeCategory ? (
+          <div className="text-center py-8 bg-white rounded-[20px]" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
             <p className="text-4xl mb-3">🧊</p>
             <p className="text-sm font-body text-luna-text-muted mb-1">Ton frigo est vide !</p>
             <p className="text-xs font-body text-luna-text-hint">
-              Ajoute des ingrédients pour découvrir les recettes que tu peux faire.
+              Sélectionne une catégorie ci-dessus ou tape un ingrédient.
             </p>
           </div>
-        ) : (
+        ) : fridgeItems.length > 0 ? (
           <div>
             <div className="flex items-center justify-between mb-3">
               <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">
                 Dans mon frigo ({fridgeItems.length})
               </p>
-              <button
-                onClick={() => setFridgeItems([])}
-                className="text-[10px] font-body text-luna-text-hint hover:text-red-400 transition-colors"
-              >
-                Tout vider
-              </button>
+              <div className="flex items-center gap-3">
+                {activeCategory === null && (
+                  <button
+                    onClick={() => setActiveCategory(INGREDIENT_CATEGORIES[0].id)}
+                    className="text-[10px] font-body font-semibold transition-colors"
+                    style={{ color: phaseData.color }}
+                  >
+                    + Ajouter
+                  </button>
+                )}
+                <button
+                  onClick={() => setFridgeItems([])}
+                  className="text-[10px] font-body text-luna-text-hint hover:text-red-400 transition-colors"
+                >
+                  Tout vider
+                </button>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {fridgeItems.map((item) => (
@@ -301,7 +477,7 @@ export default function MonFrigo() {
               ))}
             </div>
           </div>
-        )}
+        ) : null}
       </motion.div>
 
       {/* Matched recipes */}
@@ -312,6 +488,9 @@ export default function MonFrigo() {
             <h2 className="font-display text-lg text-luna-text">
               {matchedRecipes.length > 0 ? `${matchedRecipes.length} recette${matchedRecipes.length > 1 ? 's' : ''} possible${matchedRecipes.length > 1 ? 's' : ''}` : 'Aucune recette trouvée'}
             </h2>
+            <span className="text-[10px] font-body text-luna-text-hint ml-auto">
+              Phase {phaseData.shortName}
+            </span>
           </div>
 
           {matchedRecipes.length === 0 ? (
@@ -329,10 +508,10 @@ export default function MonFrigo() {
             <div className="space-y-3">
               {matchedRecipes.map((recipe, i) => (
                 <motion.button
-                  key={`${recipe.mealType}-${i}`}
+                  key={`${recipe.mealType}-${recipe.name}-${i}`}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.05 * i }}
+                  transition={{ delay: 0.03 * Math.min(i, 10) }}
                   onClick={() => setOpenRecipe(i)}
                   className="w-full bg-white rounded-[20px] p-4 text-left flex gap-4 group"
                   style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
@@ -427,6 +606,7 @@ export default function MonFrigo() {
                           {mealLabels[recipe.mealType]}
                         </p>
                         <h3 className="font-display text-xl text-luna-text">{recipe.name}</h3>
+                        <p className="text-xs font-body text-luna-text-hint mt-1">{recipe.description}</p>
                       </div>
 
                       {/* Match score */}
