@@ -78,9 +78,9 @@ const INGREDIENT_CATEGORIES = [
 // Liste complète pour l'auto-complétion
 const ALL_INGREDIENTS = INGREDIENT_CATEGORIES.flatMap((cat) => cat.items);
 
-// Normaliser pour la recherche
+// Normaliser pour la recherche (gère œ→oe, æ→ae, etc.)
 function normalize(str) {
-  return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  return str.toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
 // Calculer le score de matching d'une recette avec les ingrédients du frigo
