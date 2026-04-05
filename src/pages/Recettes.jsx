@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Clock, X, Sparkles, Filter, Heart } from 'lucide-react';
+import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
@@ -198,13 +198,6 @@ export default function Recettes() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       {/* Header */}
       <motion.div variants={item} className="flex items-center gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
-        >
-          <ChevronLeft size={20} />
-        </button>
         <div className="flex-1">
           <h1 className="font-display text-2xl text-luna-text">Recettes & Boissons</h1>
           <p className="text-xs font-body text-luna-text-hint mt-0.5">
@@ -222,6 +215,27 @@ export default function Recettes() {
         >
           <Filter size={18} />
         </button>
+      </motion.div>
+
+      {/* CTA Mon Frigo */}
+      <motion.div variants={item}>
+        <Link
+          to="/mon-frigo"
+          className="flex items-center gap-3 bg-white rounded-[18px] px-4 py-3.5 group"
+          style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.05)' }}
+        >
+          <div
+            className="w-10 h-10 rounded-[12px] flex items-center justify-center flex-shrink-0"
+            style={{ backgroundColor: `${phaseData.color}15` }}
+          >
+            <Refrigerator size={18} style={{ color: phaseData.colorDark }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-body font-semibold text-luna-text">Mon Frigo</p>
+            <p className="text-[11px] font-body text-luna-text-hint">Trouve une recette avec ce que tu as</p>
+          </div>
+          <ArrowRight size={16} style={{ color: phaseData.color }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+        </Link>
       </motion.div>
 
       {/* Phase filter (collapsible) */}

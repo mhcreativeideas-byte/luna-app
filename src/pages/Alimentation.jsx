@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert, ChefHat, ArrowRight } from 'lucide-react';
+import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
@@ -291,33 +291,7 @@ export default function Alimentation() {
       </AnimatePresence>
 
 
-      {/* CTA Recettes & Boissons */}
-      <motion.div variants={item}>
-        <Link
-          to="/recettes"
-          className="block rounded-[24px] overflow-hidden group"
-          style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
-        >
-          <div
-            className="p-6 flex items-center gap-4"
-            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}15)` }}
-          >
-            <div
-              className="w-14 h-14 rounded-[18px] flex items-center justify-center flex-shrink-0"
-              style={{ backgroundColor: `${phaseData.color}20` }}
-            >
-              <ChefHat size={24} style={{ color: phaseData.colorDark }} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-display text-lg text-luna-text mb-1">Recettes & Boissons</h3>
-              <p className="text-xs font-body text-luna-text-muted leading-relaxed">
-                Découvre des recettes adaptées à ta phase {phaseData.shortName.toLowerCase()}, filtrées selon ton profil.
-              </p>
-            </div>
-            <ArrowRight size={20} style={{ color: phaseData.color }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-          </div>
-        </Link>
-      </motion.div>
+      {/* Section supprimée : CTA Recettes & Boissons — maintenant un onglet séparé */}
 
       {/* Drinks */}
       <motion.div variants={item}>

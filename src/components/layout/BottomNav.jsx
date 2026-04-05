@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Home, UtensilsCrossed, Refrigerator, CalendarDays, MessageCircle, LayoutGrid } from 'lucide-react';
+import { Home, UtensilsCrossed, ChefHat, CalendarDays, MessageCircle } from 'lucide-react';
 
 const leftItems = [
-  { to: '/alimentation', icon: UtensilsCrossed, label: 'Food' },
-  { to: '/mon-frigo', icon: Refrigerator, label: 'Frigo' },
+  { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
+  { to: '/recettes', icon: ChefHat, label: 'Recettes' },
 ];
 
 const rightItems = [
