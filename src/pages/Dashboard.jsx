@@ -168,7 +168,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Cycle Circle — Phase-colored ring with LUNA logo */}
-      <motion.div variants={item} className="flex flex-col items-center py-6">
+      <motion.div variants={item} className="flex flex-col items-center py-6 cursor-pointer" onClick={() => navigate('/calendrier')} whileTap={{ scale: 0.97 }}>
         <div className="relative w-56 h-56">
           {/* LUNA logo watermark */}
           <img
