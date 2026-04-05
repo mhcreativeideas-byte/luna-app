@@ -10998,7 +10998,6 @@ export const RECIPES = {
         calories: 318,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍴',
         emoji: '🥜',
         ingredients: [
           '30g Noix du Brésil',
@@ -11242,7 +11241,6 @@ export const RECIPES = {
         calories: 79,
         nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍴',
  emoji: '🍓',
  ingredients: [
           '200g Fraises',
@@ -11583,7 +11581,6 @@ export const RECIPES = {
         calories: 102,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍴',
   emoji: '🍵',
   ingredients: [
           '2 sachets Thé vert',
@@ -11686,7 +11683,6 @@ export const RECIPES = {
         calories: 104,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍴',
    emoji: '🍉',
    ingredients: [
           '300g Pastèque',
@@ -11735,7 +11731,6 @@ export const RECIPES = {
         calories: 184,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
-        emoji: '🍴',
     emoji: '🍵',
     ingredients: [
           '2 sachets Thé noir ou vert',
@@ -11809,7 +11804,6 @@ export const RECIPES = {
         calories: 230,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
-        emoji: '🍴',
      emoji: '🥛',
      ingredients: [
           '1 Mangue',
@@ -12462,7 +12456,6 @@ export const RECIPES = {
         calories: 663,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍴',
       emoji: '🍎',
       ingredients: [
           '60g Flocons d\'avoine',
@@ -13169,7 +13162,6 @@ export const RECIPES = {
         calories: 442,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍴',
        emoji: '🧀',
        ingredients: [
           '200g Macaroni complets',
@@ -13429,7 +13421,6 @@ export const RECIPES = {
         calories: 370,
         nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
-        emoji: '🍴',
         emoji: '🥪',
         ingredients: [
           '4 tranches Pain de campagne',
@@ -15153,7 +15144,6 @@ export const RECIPES = {
         calories: 237,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
-        emoji: '🍴',
         emoji: '🍎',
         ingredients: [
           '1 Pomme',
