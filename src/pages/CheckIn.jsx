@@ -99,7 +99,7 @@ export default function CheckIn() {
   const phaseColor = cycleInfo?.phaseData?.color || '#C4727F';
 
   return (
-    <div className="space-y-5 pb-24">
+    <div className="space-y-5 pb-6">
       {/* Header */}
       <div className="flex items-center gap-3">
         <button

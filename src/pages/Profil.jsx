@@ -60,7 +60,7 @@ export default function Profil() {
     .slice(0, 6);
 
   return (
-    <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-4">
+    <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <BackButton />
       {/* Header */}
       <motion.div variants={item} className="flex justify-between items-start">

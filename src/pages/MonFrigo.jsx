@@ -1,10 +1,11 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
+import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
+import BackButton from '../components/ui/BackButton';
 
 const container = {
   hidden: { opacity: 0 },
@@ -298,15 +299,10 @@ export default function MonFrigo() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
+      <BackButton />
+
       {/* Header */}
-      <motion.div variants={item} className="flex items-center gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
-        >
-          <ChevronLeft size={20} />
-        </button>
+      <motion.div variants={item}>
         <div>
           <h1 className="font-display text-2xl text-luna-text">Mon Frigo</h1>
           <p className="text-xs font-body text-luna-text-hint mt-0.5">

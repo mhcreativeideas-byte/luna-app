@@ -199,7 +199,7 @@ export default function Settings() {
   const healthLabel = (healthIssues || []).length > 0 ? `${healthIssues.length} sélectionné${healthIssues.length > 1 ? 's' : ''}` : 'Aucun';
 
   return (
-    <div className="space-y-2 pb-8">
+    <div className="space-y-2 pb-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <button
