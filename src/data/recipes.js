@@ -33,7 +33,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 340,
         nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
           '100g de myrtilles surgelées',
@@ -159,7 +159,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 391,
         nutrients: ["Magnésium", "Oméga-3", "Antioxydants", "Fer"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -185,7 +185,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 407,
         nutrients: ["Magnésium", "Fer", "Potassium", "Tryptophane"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
         emoji: '🥤',
         ingredients: [
           '1 Banane congelée',
@@ -289,7 +289,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 281,
         nutrients: ["Fer", "Magnésium", "Protéines complètes", "Calcium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '60g Quinoa',
@@ -314,7 +314,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 329,
         nutrients: ["Magnésium", "Anti-inflammatoires", "Fibres", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '100g Farine de sarrasin',
@@ -365,7 +365,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 183,
         nutrients: ["Fer", "Acide folique", "Antioxydants", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 petite Betterave cuite',
@@ -389,7 +389,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 475,
         nutrients: ["Magnésium", "Vitamine E", "Potassium", "Sérotonine"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain complet',
@@ -414,7 +414,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 569,
         nutrients: ["Magnésium", "Fer", "Vitamine C", "Graisses saines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "sopk_friendly", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
           '50g Millet',
@@ -439,7 +439,7 @@ export const RECIPES = {
         cuisine: 'indien',
         calories: 394,
         nutrients: ["Fer", "Vitamine B6", "Graisses saines", "Réconfort digestif"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍚',
         ingredients: [
           '80g Riz rond',
@@ -488,7 +488,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 408,
         nutrients: ["Magnésium", "Zinc", "Antioxydants", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -693,7 +693,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 429,
         nutrients: ["Antioxydants", "Oméga-3", "Protéines complètes", "Potassium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '100g Purée d\'açaí surgelée',
@@ -719,7 +719,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 398,
         nutrients: ["Fibres", "Cuivre", "Calcium", "Réconfort digestif"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍚',
         ingredients: [
           '50g Flocons de riz',
@@ -745,7 +745,7 @@ export const RECIPES = {
         cuisine: 'mexicain',
         calories: 374,
         nutrients: ["Fer", "Acide folique", "Oméga-9", "Protéines"],
-        tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🌯',
         ingredients: [
           '1 Tortilla complète',
@@ -773,7 +773,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 340,
         nutrients: ['Curcumine', 'Anthocyanines', 'Pipérine', 'Magnésium'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
         '50g Flocons d\'avoine',
@@ -1176,7 +1176,7 @@ export const RECIPES = {
         cuisine: 'indien',
         calories: 162,
         nutrients: ["Fer", "Anti-inflammatoires", "Protéines", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '150g Lentilles corail',
@@ -1499,7 +1499,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 217,
         nutrients: ["Bêta-carotène", "Fer", "Protéines", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '300g Potimarron',
@@ -2105,7 +2105,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 260,
         nutrients: ["Vitamine A", "Bêta-carotène", "Magnésium", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
           '1 Courge butternut',
@@ -2711,7 +2711,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 226,
         nutrients: ["Vitamine C", "Anti-inflammatoires", "Détox hormonale", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
           '1 Chou-fleur',
@@ -2986,7 +2986,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 250,
         nutrients: ['Oméga-3', 'Fer', 'Magnésium'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['sans_lactose'],
         emoji: '🥑',
         ingredients: [
           '1 tranche de pain complet',
@@ -3128,7 +3128,7 @@ export const RECIPES = {
         cuisine: 'mediterraneen',
         calories: 275,
         nutrients: ["Fer", "Calcium", "Magnésium", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫘',
         ingredients: [
           '200g Pois chiches cuits',
@@ -3176,7 +3176,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 165,
         nutrients: ["Oméga-3", "Fer", "Vitamine C", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
         emoji: '🍮',
         ingredients: [
           '3 c. à soupe Graines de chia',
@@ -3318,7 +3318,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 99,
         nutrients: ["Fibres", "Anti-inflammatoires", "Réconfort", "Digestion"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
         emoji: '🍎',
         ingredients: [
           '3 Poires',
@@ -3343,7 +3343,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 69,
         nutrients: ["Fer", "Calcium", "Protéines", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🟤',
         ingredients: [
           '50g Sésame noir',
@@ -3368,7 +3368,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 91,
         nutrients: ["Magnésium", "Sérotonine", "Graisses saines", "Antioxydants"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '1 Avocat mûr',
@@ -3474,7 +3474,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 90,
         nutrients: ['Anti-inflammatoire', 'Magnésium', 'Fer'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥛',
         ingredients: [
           '250ml de lait d\'amande',
@@ -3499,7 +3499,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ['Vitamine C', 'Anti-inflammatoire', 'Fer'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍵',
         ingredients: [
           '3 rondelles de gingembre frais',
@@ -3521,7 +3521,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 170,
         nutrients: ['Oméga-3', 'Fer', 'Antioxydants'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '100g de cerises surgelées',
@@ -3544,7 +3544,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 150,
         nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose'],
         emoji: '☕',
         ingredients: [
           '250ml de lait d\'avoine',
@@ -3568,7 +3568,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 35,
         nutrients: ['Vitamine C', 'Anti-inflammatoire', 'Fer'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍋',
         ingredients: [
           '250ml d\'eau chaude',
@@ -3591,7 +3591,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 113,
         nutrients: ["Anti-inflammatoires", "Magnésium", "Antioxydants", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250ml Lait végétal',
@@ -3617,7 +3617,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Anti-spasmodique", "Anti-inflammatoires", "Relaxant", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '250ml Eau chaude',
@@ -3641,7 +3641,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 290,
         nutrients: ["Magnésium", "Sérotonine", "Graisses saines", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍫',
         ingredients: [
           '250ml Lait de coco',
@@ -3666,7 +3666,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 22,
         nutrients: ["Vitamine C", "Anti-inflammatoires", "Hydratation", "Digestion"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes"],
         emoji: '💧',
         ingredients: [
           '250ml Eau chaude',
@@ -3690,7 +3690,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 220,
         nutrients: ["Magnésium", "Potassium", "Sérotonine", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1 Banane',
@@ -3715,7 +3715,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Tonifiant utérin", "Fer", "Calcium", "Vitamines B"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
         emoji: '🍵',
         ingredients: [
           '2 c. à café Feuilles de framboisier séchées',
@@ -3738,7 +3738,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 142,
         nutrients: ["Calcium", "Fer", "Réconfort sans caféine", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue"],
         emoji: '☕',
         ingredients: [
           '250ml Lait d\'amande',
@@ -3762,7 +3762,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Fer", "Tonifiant utérin", "Anxiolytique", "Minéraux"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly"],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Feuilles d\'ortie',
@@ -3786,7 +3786,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 210,
         nutrients: ["Magnésium", "Potassium", "Sérotonine", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1 Banane congelée',
@@ -3810,7 +3810,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 19,
         nutrients: ["Anti-fatigue", "Anti-spasmodique", "Immunité", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes"],
         emoji: '🍵',
         ingredients: [
           '2 c. à café Thym frais ou séché',
@@ -3834,7 +3834,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 70,
         nutrients: ["Électrolytes", "Potassium", "Anti-inflammatoires", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue"],
         emoji: '💧',
         ingredients: [
           '250ml Eau de coco',
@@ -3858,7 +3858,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 115,
         nutrients: ["Fer", "Magnésium", "Acide folique", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '60g Épinards',
@@ -3909,7 +3909,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 45,
         nutrients: ['Gingérol', 'Curcumine', 'Cinnamaldéhyde', 'Pipérine'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '3 cm Gingembre frais',
@@ -3936,7 +3936,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 275,
         nutrients: ['Curcumine x2000%', 'Pipérine', 'Gingérol', 'Cinnamaldéhyde'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🟡',
         ingredients: [
         '250ml Lait de coco',
@@ -3962,7 +3962,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 55,
         nutrients: ['EGCG', 'Catéchines', 'Gingérol', 'Vitamine C'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '1 c. à café Matcha',
@@ -3993,7 +3993,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 410,
         nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥣',
         ingredients: [
           '1 banane congelée',
@@ -4141,7 +4141,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 506,
         nutrients: ["Protéines", "Zinc", "Magnésium", "Glucides complexes"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥤',
         ingredients: [
           '1 Banane',
@@ -4270,7 +4270,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 443,
         nutrients: ["Protéines", "Zinc", "Fibres", "Énergie durable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -4350,7 +4350,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 203,
         nutrients: ["Fer", "Acide folique", "Prébiotiques", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '40g Épinards frais',
@@ -4477,7 +4477,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 314,
         nutrients: ["Protéines complètes", "Oméga-3", "Antioxydants", "Magnésium"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
           '50g Quinoa',
@@ -4580,7 +4580,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 466,
         nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -4606,7 +4606,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 235,
         nutrients: ["Protéines", "Fer", "Calcium", "Anti-inflammatoires"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🫘',
         ingredients: [
           '200g Tofu ferme',
@@ -4709,7 +4709,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 92,
         nutrients: ["Protéines", "Fer", "Zinc", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥞',
         ingredients: [
           '150g Lentilles corail cuites',
@@ -4761,7 +4761,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 345,
         nutrients: ['Sulforaphane x50', 'Oméga-9', 'Curcumine', 'Sésamine'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
         emoji: '🥑',
         ingredients: [
         '2 Tranches de patate douce rôties',
@@ -4788,7 +4788,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 380,
         nutrients: ['Ptérostilbènes', 'Anthocyanines', 'Oméga-3 ALA', 'Lignanes'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
         '50g Flocons d\'avoine',
@@ -4817,7 +4817,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 520,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥦',
         ingredients: [
           '200g de tofu ferme',
@@ -5224,7 +5224,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 225,
         nutrients: ["Protéines végétales", "Fer", "Zinc", "Vitamine C"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
           '300g Petits pois surgelés',
@@ -6955,7 +6955,7 @@ export const RECIPES = {
         cuisine: 'mediterraneen',
         calories: 190,
         nutrients: ['Protéines', 'Zinc', 'Fibres'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_lactose', 'sopk_friendly'],
         emoji: '🥕',
         ingredients: [
           '100g de houmous (maison ou du commerce)',
@@ -7023,7 +7023,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 170,
         nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🫛',
         ingredients: [
           '200g d\'edamame en cosse (surgelés)',
@@ -7160,7 +7160,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 201,
         nutrients: ["Zinc", "Oméga-3", "Protéines", "Énergie durable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
           '150g Flocons d\'avoine',
@@ -7187,7 +7187,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 122,
         nutrients: ["Protéines", "Fer", "Zinc", "Folates"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🫛',
         ingredients: [
           '200g Edamame en cosses',
@@ -7318,7 +7318,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 238,
         nutrients: ["Bêta-carotène", "Zinc", "Magnésium", "Protéines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue"],
         emoji: '🥕',
         ingredients: [
           '2 Carottes',
@@ -7362,7 +7362,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 303,
         nutrients: ["Vitamine K", "Zinc", "Protéines", "Fer"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '30g Chou kale',
@@ -7416,7 +7416,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 185,
         nutrients: ['Anthocyanines', 'Acide ellagique', 'Curcumine', 'Resvératrol'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🟡',
         ingredients: [
         '100g Myrtilles',
@@ -7446,7 +7446,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 80,
         nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🍵',
         ingredients: [
           '1 c.à.c de poudre de matcha',
@@ -7468,7 +7468,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 50,
         nutrients: ['Zinc', 'Énergie', 'Hydratation'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🥥',
         ingredients: [
           '250ml d\'eau de coco',
@@ -7514,7 +7514,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 90,
         nutrients: ['Vitamines B', 'Zinc', 'Énergie'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥬',
         ingredients: [
           '2 branches de céleri',
@@ -7539,7 +7539,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 75,
         nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '☕',
         ingredients: [
           '1 c. à café Matcha en poudre',
@@ -7563,7 +7563,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 194,
         nutrients: ["Fer", "Bêta-carotène", "Prébiotiques", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '1 Betterave crue',
@@ -7635,7 +7635,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Fer", "Silice", "Minéraux", "Reconstruction"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍵',
         ingredients: [
           '2 c. à café Feuilles d\'ortie séchées',
@@ -7659,7 +7659,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 140,
         nutrients: ["Probiotiques", "Microbiote", "Digestion", "Détox œstrogènes"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🫧',
         ingredients: [
           '250ml Kombucha nature',
@@ -7681,7 +7681,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 240,
         nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Matcha',
@@ -7705,7 +7705,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 254,
         nutrients: ["Vitamine C", "Bêta-carotène", "Anti-inflammatoires", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
           '2 Oranges',
@@ -7752,7 +7752,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 241,
         nutrients: ["Protéines", "Fer", "Vitamine B12", "Antioxydants"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '1 Banane',
@@ -7776,7 +7776,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Phytoœstrogènes", "Digestion", "Minéraux", "Apaisement"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Graines de fenouil',
@@ -7800,7 +7800,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 143,
         nutrients: ["Fer", "Nitrates", "Antioxydants", "Circulation"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '☕',
         ingredients: [
           '1 c. à café Poudre de betterave',
@@ -7826,7 +7826,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 75,
         nutrients: ['Apigénine', 'Cucurbitacines', 'Gingérol', 'Vitamine C'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '3 branches Céleri',
@@ -7849,7 +7849,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 30,
         nutrients: ['EGCG', 'Catéchines', 'Vitamine C', 'Menthol'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '1 c. à café Thé vert sencha',
@@ -7873,7 +7873,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 215,
         nutrients: ['Bromélaïne', 'Curcumine x2000%', 'Pipérine', 'Gingérol'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '150g Ananas',
@@ -8079,7 +8079,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 477,
         nutrients: ["Antioxydants", "Zinc", "Vitamine C", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
           '100g Purée d\'açaí',
@@ -8224,7 +8224,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 353,
         nutrients: ["Fibres", "Oméga-3", "Vitamines", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
           '40g Flocons d\'avoine',
@@ -8272,7 +8272,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 494,
         nutrients: ["Vitamine C", "Antioxydants", "Graisses saines", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥤',
         ingredients: [
           '150g Mangue congelée',
@@ -8389,7 +8389,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 545,
         nutrients: ["Vitamine C", "Enzymes", "Graisses saines", "Antioxydants"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
           '150g Yaourt végétal de coco',
@@ -8440,7 +8440,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 404,
         nutrients: ["Oméga-3", "Vitamine C", "Fibres", "Énergie"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
           '40g Flocons d\'avoine',
@@ -8490,7 +8490,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 209,
         nutrients: ["Polyphénols", "Vitamine C", "Antioxydants", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥤',
         ingredients: [
           '1/2 Grenade',
@@ -8614,7 +8614,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 469,
         nutrients: ["Rutine", "Antioxydants", "Magnésium", "Fibres"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥞',
         ingredients: [
           '80g Farine de sarrasin',
@@ -8662,7 +8662,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 255,
         nutrients: ['Mangiférine', 'Curcumine', 'Gingérol', 'Pipérine'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '1/2 Mangue',
@@ -8688,7 +8688,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 320,
         nutrients: ['EGCG x137', 'Mangiférine', 'Oméga-3 ALA', 'Catéchines'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
         '3 c. à soupe Graines de chia',
@@ -8713,7 +8713,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 345,
         nutrients: ['Ptérostilbènes', 'Oméga-3 ALA', 'GLA', 'Lignanes'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
         '40g Flocons d\'avoine',
@@ -8743,7 +8743,7 @@ export const RECIPES = {
         cuisine: 'asiatique',
         calories: 460,
         nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
           '150g de tofu ferme mariné (tamari, sésame)',
@@ -10997,7 +10997,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 318,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥜',
         ingredients: [
           '30g Noix du Brésil',
@@ -11042,7 +11042,7 @@ export const RECIPES = {
         cuisine: 'mexicain',
         calories: 139,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥕',
         ingredients: [
           '1 Concombre',
@@ -11067,7 +11067,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 120,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍢',
         ingredients: [
           '5 Fraises',
@@ -11093,7 +11093,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 258,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
           '150g Dessert végétal coco',
@@ -11116,7 +11116,7 @@ export const RECIPES = {
         cuisine: 'mediterraneen',
         calories: 155,
         nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
-        tags: ["vegetarien", "vegan", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
           '100g Pois chiches',
@@ -11364,7 +11364,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 175,
         nutrients: ['Mangiférine', 'Curcumine', 'Acide laurique', 'Vitamine C'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
         '1 Mangue mûre',
@@ -11389,7 +11389,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 195,
         nutrients: ['Oméga-9', 'Glutathion', 'Sésamine', 'Limonoïdes'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥑',
         ingredients: [
         '1 Avocat',
@@ -11461,7 +11461,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 30,
         nutrients: ['Antioxydants', 'Détoxifiant', 'Hydratation'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🍵',
         ingredients: [
           '2 sachets de thé vert',
@@ -11485,7 +11485,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 150,
         nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
           '3 feuilles de chou kale (tiges retirées)',
@@ -11559,7 +11559,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 125,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫧',
         ingredients: [
           '250ml Kombucha nature',
@@ -11580,7 +11580,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 102,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
   emoji: '🍵',
   ingredients: [
           '2 sachets Thé vert',
@@ -11606,7 +11606,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 104,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥤',
         ingredients: [
           '300g Pastèque',
@@ -11630,7 +11630,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 120,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍋',
         ingredients: [
           '2 Citrons',
@@ -11656,7 +11656,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 53,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍵',
         ingredients: [
           '2 c. à soupe Fleurs d\'hibiscus séchées',
@@ -11682,7 +11682,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 104,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
    emoji: '🍉',
    ingredients: [
           '300g Pastèque',
@@ -11706,7 +11706,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 162,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍋',
         ingredients: [
           '80g Framboises',
@@ -11730,7 +11730,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 184,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍵',
     ingredients: [
           '2 sachets Thé noir ou vert',
@@ -11756,7 +11756,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 159,
         nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🧃',
         ingredients: [
           '1 Concombre',
@@ -11828,7 +11828,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 65,
         nutrients: ['Acide laurique', 'Curcumine', 'Électrolytes', 'Gingérol'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🟡',
         ingredients: [
         '300ml Eau de coco',
@@ -11853,7 +11853,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 95,
         nutrients: ['Bétalaïnes', 'Bêta-carotène', 'Gingérol', 'Vitamine C'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '1 Betterave crue',
@@ -11876,7 +11876,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 55,
         nutrients: ['Curcumine', 'Gingérol', 'Vitamine C', 'Pipérine'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '2 Citron',
@@ -11908,7 +11908,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 320,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Potassium'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_lactose', 'sopk_friendly'],
         emoji: '🥞',
         ingredients: [
           '1 banane mûre',
@@ -11963,7 +11963,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 310,
         nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Fer'],
-        tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_lactose', 'sopk_friendly'],
         emoji: '🍎',
         ingredients: [
           '80 g de flocons d\'avoine',
@@ -11989,7 +11989,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 340,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['sans_lactose'],
         emoji: '🥜',
         ingredients: [
           '2 tranches de pain complet',
@@ -12014,7 +12014,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 380,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥣',
         ingredients: [
           '80 g de quinoa',
@@ -12093,7 +12093,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 239,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
           '50g Flocons d\'avoine',
@@ -12120,7 +12120,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 452,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1 Banane',
@@ -12145,7 +12145,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 227,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain complet',
@@ -12195,7 +12195,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 335,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
           '40g Flocons d\'avoine',
@@ -12355,7 +12355,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 412,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1/2 Avocat',
@@ -12406,7 +12406,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 413,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍞',
         ingredients: [
           '2 tranches Pain complet',
@@ -12430,7 +12430,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 264,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1 Poire mûre',
@@ -12533,7 +12533,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 501,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
           '100g Purée d\'açaí surgelée',
@@ -12611,7 +12611,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 472,
         nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
           '1 Banane congelée',
@@ -12689,7 +12689,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 390,
         nutrients: ['Flavonoïdes x4', 'Anthocyanines', 'Bêta-glucane', 'Théobromine'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
         '50g Flocons d\'avoine',
@@ -12716,7 +12716,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 420,
         nutrients: ['Vitamine E', 'Curcumine', 'Potassium', 'Cinnamaldéhyde'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
         emoji: '🥑',
         ingredients: [
         '2 Tranches de patate douce rôties',
@@ -12933,7 +12933,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 350,
         nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
           '400 g de courge butternut',
@@ -13951,7 +13951,7 @@ export const RECIPES = {
         cuisine: 'indien',
         calories: 380,
         nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
           '200 g de lentilles corail',
@@ -14706,7 +14706,7 @@ export const RECIPES = {
         cuisine: 'indien',
         calories: 365,
         nutrients: ['Bêta-carotène', 'Curcumine', 'Gingérol', 'Acide laurique'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
         '1/2 Courge butternut',
@@ -14905,7 +14905,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 280,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-        tags: ['vegan', 'sans_lactose'],
+        tags: ['sans_lactose'],
         emoji: '🥜',
         ingredients: [
           '1 tranche de pain complet',
@@ -15048,7 +15048,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 260,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
           '2 Bananes congelées',
@@ -15071,7 +15071,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 181,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍞',
         ingredients: [
           '1 tranche Pain complet',
@@ -15094,7 +15094,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 180,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🟤',
         ingredients: [
           '8 Dattes Medjool',
@@ -15143,7 +15143,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 237,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍎',
         ingredients: [
           '1 Pomme',
@@ -15168,7 +15168,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 369,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍦',
         ingredients: [
           '2 Bananes congelées',
@@ -15262,7 +15262,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 292,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
           '3 c. à soupe Flocons d\'avoine',
@@ -15286,7 +15286,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 150,
         nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
           '100ml Jus de pois chiches (aquafaba)',
@@ -15337,7 +15337,7 @@ export const RECIPES = {
         cuisine: 'francais',
         calories: 115,
         nutrients: ['Anthocyanines', 'Acide ellagique', 'Gingérol', 'Cinnamaldéhyde'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍪',
         ingredients: [
         '100g Myrtilles',
@@ -15364,7 +15364,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 120,
         nutrients: ['Flavanols', 'Gingérol', 'Théobromine', 'Cinnamaldéhyde'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
         '100g Chocolat noir 85%',
@@ -15415,7 +15415,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 5,
         nutrients: ['Antioxydants', 'Propriétés apaisantes'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍵',
         ingredients: [
           '1 c. à soupe de fleurs de camomille séchées',
@@ -15438,7 +15438,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 100,
         nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose'],
+        tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🥛',
         ingredients: [
           '250 ml de lait d\'amande ou d\'avoine',
@@ -15487,7 +15487,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 280,
         nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines'],
-        tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+        tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥤',
         ingredients: [
           '1 banane congelée',
@@ -15512,7 +15512,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 113,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '☕',
         ingredients: [
           '250ml Lait végétal',
@@ -15538,7 +15538,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 18,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Camomille séchée',
@@ -15563,7 +15563,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '10 feuilles Menthe fraîche',
@@ -15587,7 +15587,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 229,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
           '250ml Lait d\'avoine',
@@ -15612,7 +15612,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '2 c. à café Feuilles de framboisier séchées',
@@ -15635,7 +15635,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 144,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🥛',
         ingredients: [
           '250ml Lait végétal',
@@ -15661,7 +15661,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 177,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
           '250ml Lait végétal',
@@ -15687,7 +15687,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Mélisse séchée',
@@ -15711,7 +15711,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 310,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
           '250ml Lait de coco',
@@ -15736,7 +15736,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 19,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '4-5 Feuilles de sauge',
@@ -15760,7 +15760,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 179,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '☕',
         ingredients: [
           '250ml Lait végétal',
@@ -15784,7 +15784,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 15,
         nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-        tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+        tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍵',
         ingredients: [
           '1 c. à café Gattilier (vitex) séché',
@@ -15809,7 +15809,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 275,
         nutrients: ['Flavanols', 'Anthocyanines', 'Gingérol', 'Magnésium'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '100g Cerises surgelées',
@@ -15834,7 +15834,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 290,
         nutrients: ['Flavanols', 'Curcumine', 'Cinnamaldéhyde', 'Gingérol'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
         '250ml Lait de coco',
@@ -15861,7 +15861,7 @@ export const RECIPES = {
         cuisine: 'fusion',
         calories: 25,
         nutrients: ['Acide rosmarinique', 'Apigénine', 'Bisabolol', 'Vitamine C'],
-        tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+        tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
         '4 Feuilles de sauge',
