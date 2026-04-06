@@ -84,8 +84,8 @@ export const PHASES = {
     drinks: {
       good: [
         { name: 'Tisanes anti-inflammatoires', why: 'La camomille et l\'ortie réduisent les prostaglandines responsables des crampes. Effet antispasmodique naturel.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
-        { name: 'Golden latte (curcuma)', why: 'La curcumine est un puissant anti-inflammatoire qui soulage les douleurs menstruelles. Le poivre noir booste son absorption x20.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
-        { name: 'Eau citron chaud', why: 'Stimule la digestion souvent ralentie pendant les règles et aide à compenser la perte de vitamine C.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
+        { name: 'Lait d\'or', why: 'La curcumine est un puissant anti-inflammatoire qui soulage les douleurs menstruelles. Le poivre noir booste son absorption x20.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
+        { name: 'Eau tiède citronnée', why: 'Stimule la digestion souvent ralentie pendant les règles et aide à compenser la perte de vitamine C.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Infusion gingembre', why: 'Le gingérol réduit les nausées et les crampes aussi efficacement que l\'ibuprofène selon certaines études.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Thé à la cannelle', why: 'La cannelle améliore la sensibilité à l\'insuline et réduit les crampes. Elle aide aussi à réguler les cycles.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
       ],
@@ -306,7 +306,7 @@ export const PHASES = {
       good: [
         { name: 'Eau détox concombre-menthe', why: 'Ultra-hydratante et rafraîchissante. Ta température corporelle est plus élevée à l\'ovulation, cette boisson aide à réguler.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Thé vert', why: 'Les catéchines soutiennent le métabolisme des œstrogènes au pic. Antioxydant puissant sans trop de caféine.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
-        { name: 'Kombucha', why: 'Les probiotiques naturels aident ton estrobolome (bactéries intestinales) à métaboliser l\'excès d\'œstrogène.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
+        { name: 'Thé matcha glacé', why: 'La L-théanine du matcha apporte une concentration calme sans excitation. Parfait pour canaliser l\'énergie naturellement élevée de l\'ovulation.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Jus de légumes frais', why: 'Apporte des micronutriments concentrés (zinc, B6) qui soutiennent la production de progestérone à venir.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
       ],
       bad: [
