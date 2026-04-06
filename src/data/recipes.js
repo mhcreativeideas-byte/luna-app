@@ -15015,7 +15015,7 @@ export const RECIPES = {
         whyThisPhase: 'Les envies de sucre en lutéale sont normales. Ton métabolisme augmente et ton corps réclame de l\'énergie. Ce snack te fait plaisir tout en nourrissant ton corps.',
       },
       {
-        name: 'Nice cream banane-cacao (glace maison)',
+        name: 'Glace maison banane-cacao',
         description: 'La banane apporte du tryptophane, précurseur de la sérotonine. Le cacao est riche en magnésium, idéal contre les crampes. Idéal en phase lutéale pour un encas sain et rassasiant.',
         prepTime: '5 min',
         difficulty: 'debutant',
