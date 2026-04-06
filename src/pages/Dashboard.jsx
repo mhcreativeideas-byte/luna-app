@@ -351,6 +351,82 @@ export default function Dashboard() {
         <p className="text-xs font-body text-luna-text-hint mt-1">Suivi jour par jour de ton cycle</p>
       </motion.div>
 
+      {/* Cycle overview card */}
+      <motion.div variants={item}>
+        <div className="rounded-[24px] p-5 bg-white" style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.06)' }}>
+          {/* Current phase */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-xl"
+                style={{ backgroundColor: phaseData.bgColor }}
+              >
+                {phaseData.icon}
+              </div>
+              <div>
+                <p className="font-display text-base text-luna-text">{phaseData.shortName}</p>
+                <p className="text-xs font-body text-luna-text-muted">Jour {currentDay} sur {cycleLength}</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>
+                {daysUntilPeriod}
+              </p>
+              <p className="text-[9px] font-body text-luna-text-hint uppercase">jours avant règles</p>
+            </div>
+          </div>
+
+          {/* Cycle progress bar with phase colors */}
+          <div className="relative mb-3">
+            <div className="h-3 rounded-full overflow-hidden flex">
+              {[
+                { key: 'menstrual', width: (periodLength / cycleLength) * 100 },
+                { key: 'follicular', width: ((ovulationDay - 1 - periodLength) / cycleLength) * 100 },
+                { key: 'ovulatory', width: (3 / cycleLength) * 100 },
+                { key: 'luteal', width: ((cycleLength - ovulationDay - 1) / cycleLength) * 100 },
+              ].map((seg) => (
+                <div
+                  key={seg.key}
+                  className="h-full"
+                  style={{ width: `${seg.width}%`, backgroundColor: PHASES[seg.key].color, opacity: 0.3 }}
+                />
+              ))}
+            </div>
+            {/* Current position indicator */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white transition-all duration-500"
+              style={{
+                left: `${Math.round((currentDay / cycleLength) * 100)}%`,
+                transform: `translateX(-50%) translateY(-50%)`,
+                backgroundColor: phaseData.color,
+                boxShadow: `0 0 0 3px ${phaseData.color}30`,
+              }}
+            />
+          </div>
+
+          {/* Phase labels under bar */}
+          <div className="flex">
+            {[
+              { key: 'menstrual', width: (periodLength / cycleLength) * 100 },
+              { key: 'follicular', width: ((ovulationDay - 1 - periodLength) / cycleLength) * 100 },
+              { key: 'ovulatory', width: (3 / cycleLength) * 100 },
+              { key: 'luteal', width: ((cycleLength - ovulationDay - 1) / cycleLength) * 100 },
+            ].map((seg) => {
+              const pd = PHASES[seg.key];
+              const Icon = PHASE_ICONS[seg.key];
+              return (
+                <div key={seg.key} className="flex flex-col items-center" style={{ width: `${seg.width}%` }}>
+                  <Icon size={10} style={{ color: pd.color }} />
+                  <span className="text-[8px] font-body text-luna-text-hint mt-0.5 leading-none">
+                    {pd.shortName.split(' ')[0]}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
+
       {/* Calendar grid */}
       <motion.div variants={item}>
         <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}>
