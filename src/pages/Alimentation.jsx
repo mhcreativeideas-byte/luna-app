@@ -188,6 +188,7 @@ export default function Alimentation() {
   const [openNutrient, setOpenNutrient] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
+  const [expandedBadDrink, setExpandedBadDrink] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -367,20 +368,49 @@ export default function Alimentation() {
             <div className="flex items-center gap-2 mb-2.5">
               <AlertTriangle size={12} style={{ color: '#C4727F' }} />
               <p className="text-[10px] font-body font-bold uppercase tracking-wider" style={{ color: '#A3555F' }}>
-                À limiter
+                À limiter · Clique pour savoir pourquoi
               </p>
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {phaseData.drinks.bad.map((d, i) => (
-                <span
-                  key={i}
-                  className="text-[11px] font-body font-semibold px-3 py-1.5 rounded-full"
-                  style={{ backgroundColor: '#D4727F12', color: '#A3555F' }}
-                >
-                  {d.name}
-                </span>
-              ))}
+              {phaseData.drinks.bad.map((d, i) => {
+                const isOpen = expandedBadDrink === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setExpandedBadDrink(isOpen ? null : i)}
+                    className="text-[11px] font-body font-semibold px-3 py-1.5 rounded-full transition-all"
+                    style={{
+                      backgroundColor: isOpen ? '#D4727F20' : '#D4727F12',
+                      color: '#A3555F',
+                      border: isOpen ? '1.5px solid #D4727F' : '1.5px solid transparent',
+                    }}
+                  >
+                    {d.name}
+                  </button>
+                );
+              })}
             </div>
+            <AnimatePresence>
+              {expandedBadDrink !== null && phaseData.drinks.bad[expandedBadDrink] && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden"
+                >
+                  <div
+                    className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
+                    style={{ backgroundColor: '#FDF5F5', borderLeft: '3px solid #D4727F' }}
+                  >
+                    <span className="font-bold" style={{ color: '#A3555F' }}>
+                      {phaseData.drinks.bad[expandedBadDrink].name}
+                    </span>{' '}
+                    — {phaseData.drinks.bad[expandedBadDrink].why}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Bouton recettes */}
