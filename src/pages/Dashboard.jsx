@@ -162,7 +162,7 @@ export default function Dashboard() {
                         cx={cx} cy={cy} r={R}
                         fill="none"
                         stroke={p.color}
-                        strokeWidth={isCurrentPhase ? 8 : 5}
+                        strokeWidth={isCurrentPhase ? 12 : 8}
                         strokeLinecap="round"
                         strokeDasharray={`${dashLen} ${C - dashLen}`}
                         strokeDashoffset={dashOffset}
