@@ -1468,7 +1468,7 @@ export const RECIPES = {
       {
         name: 'Salade de poulet rôti, betterave et noix',
         description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. La betterave soutient la circulation et l\'oxygénation.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 386,
@@ -1772,7 +1772,7 @@ export const RECIPES = {
       {
         name: 'Curry de patate douce, épinards et pois chiches au curcuma',
         description: 'Un concentré anti-inflammatoire : curcuma + gingembre + ail forment le trio d\'or. La patate douce ap.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 385,
@@ -2817,7 +2817,7 @@ export const RECIPES = {
       {
         name: 'Maquereau rôti aux tomates cerises et romarin',
         description: 'Le maquereau contient encore plus d\'oméga-3 que le saumon. Les tomates apportent du lycopène, un ant.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 445,
@@ -2872,7 +2872,7 @@ export const RECIPES = {
       {
         name: 'Soupe de potimarron au gingembre et noix',
         description: 'Le potimarron est riche en bêta-carotène, un précurseur de la vitamine A anti-inflammatoire. Le ging.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 215,
@@ -3684,7 +3684,7 @@ export const RECIPES = {
       {
         name: 'Infusion framboisier (feuilles de framboisier)',
         description: 'Le miel apporte une énergie naturelle rapide. Un choix parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
-        prepTime: '13 min',
+        prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 15,
@@ -3731,7 +3731,7 @@ export const RECIPES = {
       {
         name: 'Infusion ortie-framboisier-mélisse',
         description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait pendant les règles pour compenser les pertes en fer et soulager les crampes.',
-        prepTime: '13 min',
+        prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 15,
@@ -3779,7 +3779,7 @@ export const RECIPES = {
       {
         name: 'Tisane de thym et miel (anti-fatigue)',
         description: 'Le miel apporte une énergie naturelle rapide. Le citron stimule la digestion et apporte de la vitamine C. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
-        prepTime: '11 min',
+        prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 19,
@@ -5699,7 +5699,7 @@ export const RECIPES = {
       {
         name: 'Soupe de brocoli au gingembre et amandes',
         description: 'Le brocoli est le roi du sulforaphane — il active les voies Nrf2 qui réduisent l\'inflammation cellul.',
-        prepTime: '10 min',
+        prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 195,
@@ -5727,7 +5727,7 @@ export const RECIPES = {
       {
         name: 'Bol de riz noir aux edamame et avocat',
         description: 'Le riz noir contient des anthocyanines — les mêmes pigments anti-inflammatoires que les myrtilles. L.',
-        prepTime: '10 min',
+        prepTime: '20 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 395,
@@ -6724,7 +6724,7 @@ export const RECIPES = {
       {
         name: 'Curry vert thaï aux légumes et lait de coco',
         description: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï — trois anti-inflammatoires trad.',
-        prepTime: '10 min',
+        prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 375,
@@ -6753,7 +6753,7 @@ export const RECIPES = {
       {
         name: 'Poulet grillé au romarin et patate douce rôtie',
         description: 'Le romarin contient de l\'acide rosmarinique et de l\'acide carnosique, deux anti-inflammatoires puiss.',
-        prepTime: '10 min',
+        prepTime: '35 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 420,
@@ -6867,7 +6867,7 @@ export const RECIPES = {
       {
         name: 'Bol de riz au poulet grillé, brocoli et sauce gingembre',
         description: 'Le brocoli cuit al dente préserve le maximum de sulforaphane. La sauce au gingembre est anti-inflamm.',
-        prepTime: '10 min',
+        prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 425,
@@ -13667,7 +13667,7 @@ export const RECIPES = {
       {
         name: 'Soupe de lentilles au curcuma et gingembre',
         description: 'En lutéale, l\'inflammation augmente naturellement avec la chute de progestérone. Les lentilles appor.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 275,
@@ -13696,7 +13696,7 @@ export const RECIPES = {
       {
         name: 'Bol de riz au curry japonais anti-inflammatoire',
         description: 'Le curry japonais contient curcuma, gingembre et ail — trois anti-inflammatoires puissants. Les caro.',
-        prepTime: '10 min',
+        prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 410,
@@ -14675,7 +14675,7 @@ export const RECIPES = {
       {
         name: 'Curry de butternut au curcuma et lait de coco',
         description: 'La butternut est riche en bêta-carotène anti-inflammatoire. Le curry au curcuma ajoute sa curcumine.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 365,
@@ -14704,7 +14704,7 @@ export const RECIPES = {
       {
         name: 'Gratin de patate douce au romarin et ail',
         description: 'La patate douce est anti-inflammatoire grâce à ses anthocyanines (peau violette) et bêta-carotène. L.',
-        prepTime: '10 min',
+        prepTime: '35 min',
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 280,
@@ -14787,7 +14787,7 @@ export const RECIPES = {
       {
         name: 'Bol de riz au tempeh grillé et sauce anti-inflammatoire',
         description: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma-.',
-        prepTime: '10 min',
+        prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 400,
