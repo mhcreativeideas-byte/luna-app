@@ -8,7 +8,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 380,
-        nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
+        nutrients: ['Fer', 'Magnésium', 'Oméga-3', 'Zinc'],
         tags: ['vegetarien', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
@@ -32,7 +32,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 340,
-        nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
+        nutrients: ['Fer', 'Magnésium', 'Vitamine C', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
@@ -57,7 +57,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 410,
-        nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
+        nutrients: ['Fer', 'Oméga-3', 'Vitamine C', 'Glutathion'],
         tags: ['vegetarien', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥑',
         ingredients: [
@@ -83,7 +83,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 360,
-        nutrients: ['Magnésium', 'Fer', 'Oméga-3'],
+        nutrients: ['Magnésium', 'Fer', 'Oméga-3', 'Zinc'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍫',
         ingredients: [
@@ -108,7 +108,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 320,
-        nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
+        nutrients: ['Fer', 'Magnésium', 'Vitamine C', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
@@ -134,7 +134,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 390,
-        nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
+        nutrients: ['Fer', 'Magnésium', 'Vitamine C', 'Probiotiques', 'Zinc'],
         tags: ['vegetarien', 'sopk_friendly'],
         emoji: '🍓',
         ingredients: [
@@ -158,7 +158,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 391,
-        nutrients: ["Magnésium", "Oméga-3", "Antioxydants", "Fer"],
+        nutrients: ["Magnésium", "Oméga-3", "Antioxydants", "Fer", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -184,7 +184,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 407,
-        nutrients: ["Magnésium", "Fer", "Potassium", "Tryptophane"],
+        nutrients: ["Magnésium", "Fer", "Potassium", "Tryptophane", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly"],
         emoji: '🥤',
         ingredients: [
@@ -210,7 +210,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 303,
-        nutrients: ["Fer", "Vitamine B12", "Oméga-9", "Calcium"],
+        nutrients: ["Fer", "Vitamine B12", "Oméga-9", "Calcium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
@@ -236,7 +236,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 646,
-        nutrients: ["Magnésium", "Oméga-3", "Fibres", "Sérotonine"],
+        nutrients: ["Magnésium", "Oméga-3", "Fibres", "Sérotonine", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -288,7 +288,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 281,
-        nutrients: ["Fer", "Magnésium", "Protéines complètes", "Calcium"],
+        nutrients: ["Fer", "Magnésium", "Protéines complètes", "Calcium", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -339,7 +339,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 366,
-        nutrients: ["Probiotiques", "Fer", "Calcium", "Oméga-3"],
+        nutrients: ["Probiotiques", "Fer", "Calcium", "Oméga-3", 'Glutathion', 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
@@ -364,7 +364,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 183,
-        nutrients: ["Fer", "Acide folique", "Antioxydants", "Anti-inflammatoires"],
+        nutrients: ["Fer", "Acide folique", "Antioxydants", "Anti-inflammatoires", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -388,7 +388,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 475,
-        nutrients: ["Magnésium", "Vitamine E", "Potassium", "Sérotonine"],
+        nutrients: ["Magnésium", "Vitamine E", "Potassium", "Sérotonine", 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍞',
         ingredients: [
@@ -413,7 +413,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 569,
-        nutrients: ["Magnésium", "Fer", "Vitamine C", "Graisses saines"],
+        nutrients: ["Magnésium", "Fer", "Vitamine C", "Graisses saines", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "sopk_friendly", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
@@ -462,7 +462,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 422,
-        nutrients: ["Probiotiques", "Polyphénols", "Magnésium", "Oméga-3"],
+        nutrients: ["Probiotiques", "Polyphénols", "Magnésium", "Oméga-3", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
@@ -487,7 +487,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 408,
-        nutrients: ["Magnésium", "Zinc", "Antioxydants", "Fibres"],
+        nutrients: ["Magnésium", "Zinc", "Antioxydants", "Fibres", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
@@ -513,7 +513,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 328,
-        nutrients: ["Fer", "Vitamine B12", "Vitamine D", "Protéines"],
+        nutrients: ["Fer", "Vitamine B12", "Vitamine D", "Protéines", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍳',
         ingredients: [
@@ -539,7 +539,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 768,
-        nutrients: ["Oméga-3", "Fer", "Antioxydants", "Fibres"],
+        nutrients: ["Oméga-3", "Fer", "Antioxydants", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍮',
         ingredients: [
@@ -563,7 +563,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 362,
-        nutrients: ["Fer", "Protéines", "Vitamine E", "Magnésium"],
+        nutrients: ["Fer", "Protéines", "Vitamine E", "Magnésium", 'Glutathion'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
@@ -614,7 +614,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 260,
-        nutrients: ["Magnésium", "Fibres", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Fibres", "Protéines", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥞',
         ingredients: [
@@ -718,7 +718,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 398,
-        nutrients: ["Fibres", "Cuivre", "Calcium", "Réconfort digestif"],
+        nutrients: ["Fibres", "Cuivre", "Calcium", "Réconfort digestif", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍚',
         ingredients: [
@@ -744,7 +744,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mexicain',
         calories: 374,
-        nutrients: ["Fer", "Acide folique", "Oméga-9", "Protéines"],
+        nutrients: ["Fer", "Acide folique", "Oméga-9", "Protéines", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🌯',
         ingredients: [
@@ -772,7 +772,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 340,
-        nutrients: ['Curcumine', 'Anthocyanines', 'Pipérine', 'Magnésium'],
+        nutrients: ['Curcumine', 'Anthocyanines', 'Pipérine', 'Magnésium', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -799,7 +799,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 385,
-        nutrients: ['Oméga-3 EPA/DHA', 'GLA', 'ALA', 'Vitamine D'],
+        nutrients: ['Oméga-3 EPA/DHA', 'GLA', 'ALA', 'Vitamine D', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten'],
         emoji: '🐟',
         ingredients: [
@@ -850,7 +850,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 295,
-        nutrients: ['Lentinane', 'Curcumine', 'Choline', 'Allicine'],
+        nutrients: ['Lentinane', 'Curcumine', 'Choline', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🟡',
         ingredients: [
@@ -879,7 +879,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 490,
-        nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
+        nutrients: ['Fer', 'Oméga-3', 'Vitamine C', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -906,7 +906,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 520,
-        nutrients: ['Fer', 'Oméga-3', 'Vitamine C'],
+        nutrients: ['Fer', 'Oméga-3', 'Vitamine C', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -933,7 +933,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 380,
-        nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
+        nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -960,7 +960,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 450,
-        nutrients: ['Fer', 'Magnésium', 'Vitamine C'],
+        nutrients: ['Fer', 'Magnésium', 'Vitamine C', 'Glutathion', 'Zinc'],
         tags: ['vegetarien', 'sans_gluten'],
         emoji: '🥗',
         ingredients: [
@@ -987,7 +987,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 480,
-        nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
+        nutrients: ['Fer', 'Magnésium', 'Oméga-3', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
@@ -1014,7 +1014,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 460,
-        nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
+        nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -1041,7 +1041,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 250,
-        nutrients: ["Fer", "Anti-inflammatoires", "Vitamine A", "Protéines végétales"],
+        nutrients: ["Fer", "Anti-inflammatoires", "Vitamine A", "Protéines végétales", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -1068,7 +1068,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 194,
-        nutrients: ["Bêta-carotène", "Anti-inflammatoires", "Fibres", "Vitamine C"],
+        nutrients: ["Bêta-carotène", "Anti-inflammatoires", "Fibres", "Vitamine C", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -1095,7 +1095,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 493,
-        nutrients: ["Oméga-3", "Vitamine D", "Fer", "Vitamine A"],
+        nutrients: ["Oméga-3", "Vitamine D", "Fer", "Vitamine A", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -1121,7 +1121,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 457,
-        nutrients: ["Fer", "Protéines végétales", "Anti-inflammatoires", "Fibres"],
+        nutrients: ["Fer", "Protéines végétales", "Anti-inflammatoires", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -1149,7 +1149,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 230,
-        nutrients: ["Fer", "Calcium", "Protéines complètes", "Acide folique"],
+        nutrients: ["Fer", "Calcium", "Protéines complètes", "Acide folique", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -1175,7 +1175,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 162,
-        nutrients: ["Fer", "Anti-inflammatoires", "Protéines", "Magnésium"],
+        nutrients: ["Fer", "Anti-inflammatoires", "Protéines", "Magnésium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -1203,7 +1203,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 372,
-        nutrients: ["Fer", "Oméga-9", "Vitamine C", "Fibres"],
+        nutrients: ["Fer", "Oméga-9", "Vitamine C", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
         emoji: '🌯',
         ingredients: [
@@ -1230,7 +1230,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 360,
-        nutrients: ["Oméga-3", "Fer", "Vitamine D", "Calcium"],
+        nutrients: ["Oméga-3", "Fer", "Vitamine D", "Calcium", 'Glutathion'],
         tags: ["sans_gluten", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -1256,7 +1256,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 333,
-        nutrients: ["Fer", "Protéines", "Oméga-9", "Magnésium"],
+        nutrients: ["Fer", "Protéines", "Oméga-9", "Magnésium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -1282,7 +1282,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 85,
-        nutrients: ["Probiotiques", "Protéines", "Fer", "Immunité"],
+        nutrients: ["Probiotiques", "Protéines", "Fer", "Immunité", 'Glutathion', 'Probiotiques'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -1335,7 +1335,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 365,
-        nutrients: ["Vitamine D", "Fer", "Protéines", "Réconfort"],
+        nutrients: ["Vitamine D", "Fer", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍚',
         ingredients: [
@@ -1362,7 +1362,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 441,
-        nutrients: ["Fer", "Protéines végétales", "Oméga-3", "Acide folique"],
+        nutrients: ["Fer", "Protéines végétales", "Oméga-3", "Acide folique", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -1389,7 +1389,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 208,
-        nutrients: ["Fer", "Protéines", "Anti-inflammatoires", "Vitamine C"],
+        nutrients: ["Fer", "Protéines", "Anti-inflammatoires", "Vitamine C", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -1417,7 +1417,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 244,
-        nutrients: ["Antioxydants", "Oméga-3", "Protéines", "Fer"],
+        nutrients: ["Antioxydants", "Oméga-3", "Protéines", "Fer", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -1444,7 +1444,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 250,
-        nutrients: ["Fer", "Vitamine C", "Protéines végétales", "Fibres"],
+        nutrients: ["Fer", "Vitamine C", "Protéines végétales", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🌶️',
         ingredients: [
@@ -1472,7 +1472,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 386,
-        nutrients: ["Protéines", "Fer", "Oméga-3", "Vitamine B6"],
+        nutrients: ["Protéines", "Fer", "Oméga-3", "Vitamine B6", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -1498,7 +1498,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 217,
-        nutrients: ["Bêta-carotène", "Fer", "Protéines", "Anti-inflammatoires"],
+        nutrients: ["Bêta-carotène", "Fer", "Protéines", "Anti-inflammatoires", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -1525,7 +1525,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 527,
-        nutrients: ["Fer", "Lycopène", "Calcium", "Réconfort"],
+        nutrients: ["Fer", "Lycopène", "Calcium", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍝',
         ingredients: [
@@ -1552,7 +1552,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 439,
-        nutrients: ["Magnésium", "Rutine", "Calcium", "Antioxydants"],
+        nutrients: ["Magnésium", "Rutine", "Calcium", "Antioxydants", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -1580,7 +1580,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 171,
-        nutrients: ["Fer", "Vitamine C", "Vitamine K", "Fibres"],
+        nutrients: ["Fer", "Vitamine C", "Vitamine K", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -1607,7 +1607,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 317,
-        nutrients: ["Fer", "Calcium", "Magnésium", "Protéines"],
+        nutrients: ["Fer", "Calcium", "Magnésium", "Protéines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -1635,7 +1635,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 237,
-        nutrients: ["Fer", "Anti-spasmodiques", "Vitamine A", "Protéines"],
+        nutrients: ["Fer", "Anti-spasmodiques", "Vitamine A", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧀',
         ingredients: [
@@ -1663,7 +1663,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'fusion',
         calories: 89,
-        nutrients: ["Fer", "Protéines", "Anti-inflammatoires", "Vitamine C"],
+        nutrients: ["Fer", "Protéines", "Anti-inflammatoires", "Vitamine C", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -1692,7 +1692,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 487,
-        nutrients: ["Oméga-3", "Fer", "Iode", "Vitamine D"],
+        nutrients: ["Oméga-3", "Fer", "Iode", "Vitamine D", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -1720,7 +1720,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 365,
-        nutrients: ["Fer", "Vitamine C", "Protéines", "Fibres"],
+        nutrients: ["Fer", "Vitamine C", "Protéines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -1749,7 +1749,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 185,
-        nutrients: ['Probiotiques', 'Gingérol', 'Iode', 'Enzymes'],
+        nutrients: ['Probiotiques', 'Gingérol', 'Iode', 'Enzymes', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -1776,7 +1776,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 385,
-        nutrients: ['Curcumine', 'Gingérol', 'Allicine', 'Bêta-carotène'],
+        nutrients: ['Curcumine', 'Gingérol', 'Allicine', 'Bêta-carotène', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
@@ -1805,7 +1805,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 410,
-        nutrients: ['Curcumine', 'Oméga-9', 'Choline', 'Vitamine D'],
+        nutrients: ['Curcumine', 'Oméga-9', 'Choline', 'Vitamine D', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -1832,7 +1832,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 320,
-        nutrients: ['Polyphénols', 'Punicalagines', 'Curcumine', 'Fer'],
+        nutrients: ['Polyphénols', 'Punicalagines', 'Curcumine', 'Fer', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -1860,7 +1860,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 465,
-        nutrients: ['Rutine', 'Oméga-3', 'Lignanes', 'Oméga-9'],
+        nutrients: ['Rutine', 'Oméga-3', 'Lignanes', 'Oméga-9', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -1887,7 +1887,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 175,
-        nutrients: ['Probiotiques', 'Anthocyanines', 'Bêta-carotène', 'Anti-spasmodiques'],
+        nutrients: ['Probiotiques', 'Anthocyanines', 'Bêta-carotène', 'Anti-spasmodiques', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -1914,7 +1914,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 380,
-        nutrients: ['Isoflavones', 'Quercétine', 'Curcumine', 'Sulforaphane'],
+        nutrients: ['Isoflavones', 'Quercétine', 'Curcumine', 'Sulforaphane', 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -1944,7 +1944,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 310,
-        nutrients: ['Magnésium', 'Vitamine C', 'Fer'],
+        nutrients: ['Magnésium', 'Vitamine C', 'Fer', 'Glutathion'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
@@ -1971,7 +1971,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 530,
-        nutrients: ['Oméga-3', 'Fer', 'Magnésium'],
+        nutrients: ['Oméga-3', 'Fer', 'Magnésium', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -1997,7 +1997,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 420,
-        nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium'],
+        nutrients: ['Fer', 'Anti-inflammatoire', 'Magnésium', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -2050,7 +2050,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 440,
-        nutrients: ['Fer', 'Vitamine C', 'Magnésium'],
+        nutrients: ['Fer', 'Vitamine C', 'Magnésium', 'Glutathion'],
         tags: ['vegan', 'sans_lactose'],
         emoji: '🍝',
         ingredients: [
@@ -2077,7 +2077,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 353,
-        nutrients: ["Oméga-3", "Vitamine D", "Bêta-carotène", "Protéines"],
+        nutrients: ["Oméga-3", "Vitamine D", "Bêta-carotène", "Protéines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_crampes", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -2104,7 +2104,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 260,
-        nutrients: ["Vitamine A", "Bêta-carotène", "Magnésium", "Anti-inflammatoires"],
+        nutrients: ["Vitamine A", "Bêta-carotène", "Magnésium", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -2130,7 +2130,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 359,
-        nutrients: ["Fer", "Vitamine C", "Magnésium", "Fibres"],
+        nutrients: ["Fer", "Vitamine C", "Magnésium", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
         emoji: '🍝',
         ingredients: [
@@ -2156,7 +2156,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 495,
-        nutrients: ["Fer", "Magnésium", "Vitamine B6", "Calcium"],
+        nutrients: ["Fer", "Magnésium", "Vitamine B6", "Calcium", 'Glutathion', 'Zinc'],
         tags: ["sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -2211,7 +2211,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 266,
-        nutrients: ["Vitamine A", "Calcium", "Antioxydants", "Fibres"],
+        nutrients: ["Vitamine A", "Calcium", "Antioxydants", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🧀',
         ingredients: [
@@ -2238,7 +2238,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 384,
-        nutrients: ["Fer héminique", "Vitamine B12", "Vitamine C", "Protéines"],
+        nutrients: ["Fer héminique", "Vitamine B12", "Vitamine C", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🥩',
         ingredients: [
@@ -2266,7 +2266,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 437,
-        nutrients: ["Fer", "Calcium", "Protéines végétales", "Sésame"],
+        nutrients: ["Fer", "Calcium", "Protéines végétales", "Sésame", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
         emoji: '🫘',
         ingredients: [
@@ -2294,7 +2294,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 418,
-        nutrients: ["Protéines", "Vitamine B6", "Bêta-carotène", "Réconfort"],
+        nutrients: ["Protéines", "Vitamine B6", "Bêta-carotène", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍗',
         ingredients: [
@@ -2321,7 +2321,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 188,
-        nutrients: ["Fer", "Iode", "Minéraux", "Oméga-3"],
+        nutrients: ["Fer", "Iode", "Minéraux", "Oméga-3", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -2375,7 +2375,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 354,
-        nutrients: ["Magnésium", "Fer", "Protéines", "Anti-inflammatoires"],
+        nutrients: ["Magnésium", "Fer", "Protéines", "Anti-inflammatoires", 'Glutathion'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
@@ -2403,7 +2403,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 439,
-        nutrients: ["Fer", "Zinc", "Anti-inflammatoires", "Oméga-3"],
+        nutrients: ["Fer", "Zinc", "Anti-inflammatoires", "Oméga-3", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -2431,7 +2431,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'asiatique',
         calories: 447,
-        nutrients: ["Protéines", "Fer", "Vitamine B6", "Réconfort"],
+        nutrients: ["Protéines", "Fer", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🍗',
         ingredients: [
@@ -2460,7 +2460,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 239,
-        nutrients: ["Vitamine C", "Fer", "Protéines complètes", "Fibres"],
+        nutrients: ["Vitamine C", "Fer", "Protéines complètes", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫑',
         ingredients: [
@@ -2488,7 +2488,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 429,
-        nutrients: ["Oméga-3", "Vitamine K", "Potassium", "Protéines"],
+        nutrients: ["Oméga-3", "Vitamine K", "Potassium", "Protéines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '💧',
         ingredients: [
@@ -2515,7 +2515,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 378,
-        nutrients: ["Fer", "Zinc", "Anti-inflammatoires", "Protéines"],
+        nutrients: ["Fer", "Zinc", "Anti-inflammatoires", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -2544,7 +2544,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 282,
-        nutrients: ["Calcium", "Vitamine C", "Magnésium", "Fibres"],
+        nutrients: ["Calcium", "Vitamine C", "Magnésium", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍝',
         ingredients: [
@@ -2571,7 +2571,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 408,
-        nutrients: ["Fer héminique", "Vitamine C", "Anti-inflammatoires", "Protéines"],
+        nutrients: ["Fer héminique", "Vitamine C", "Anti-inflammatoires", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🥩',
         ingredients: [
@@ -2599,7 +2599,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 239,
-        nutrients: ["Lycopène", "Antioxydants", "Vitamine C", "Réconfort"],
+        nutrients: ["Lycopène", "Antioxydants", "Vitamine C", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -2653,7 +2653,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 433,
-        nutrients: ["Fer", "Calcium", "Protéines", "Vitamines"],
+        nutrients: ["Fer", "Calcium", "Protéines", "Vitamines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
         emoji: '🫘',
         ingredients: [
@@ -2681,7 +2681,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'fusion',
         calories: 517,
-        nutrients: ["Fer héminique", "Zinc", "Magnésium", "Calcium"],
+        nutrients: ["Fer héminique", "Zinc", "Magnésium", "Calcium", 'Glutathion', 'Zinc'],
         tags: ["sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '💧',
         ingredients: [
@@ -2710,7 +2710,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 226,
-        nutrients: ["Vitamine C", "Anti-inflammatoires", "Détox hormonale", "Magnésium"],
+        nutrients: ["Vitamine C", "Anti-inflammatoires", "Détox hormonale", "Magnésium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -2739,7 +2739,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 420,
-        nutrients: ['Oméga-3 EPA/DHA', 'Curcumine', 'Sulforaphane', 'Gingérol'],
+        nutrients: ['Oméga-3 EPA/DHA', 'Curcumine', 'Sulforaphane', 'Gingérol', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -2766,7 +2766,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 380,
-        nutrients: ['Oméga-3', 'Anéthol', 'Vitamine D', 'Sélénium'],
+        nutrients: ['Oméga-3', 'Anéthol', 'Vitamine D', 'Sélénium', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -2793,7 +2793,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 195,
-        nutrients: ['Bétalaïnes', 'Gingérol', 'Acide laurique', 'Nitrates'],
+        nutrients: ['Bétalaïnes', 'Gingérol', 'Acide laurique', 'Nitrates', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -2821,7 +2821,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 445,
-        nutrients: ['Oméga-3', 'Lycopène', 'Acide rosmarinique', 'Sélénium'],
+        nutrients: ['Oméga-3', 'Lycopène', 'Acide rosmarinique', 'Sélénium', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🦐',
         ingredients: [
@@ -2848,7 +2848,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 365,
-        nutrients: ['Isoflavones', 'Sulforaphane', 'Gingérol', 'Sésamine'],
+        nutrients: ['Isoflavones', 'Sulforaphane', 'Gingérol', 'Sésamine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥘',
         ingredients: [
@@ -2876,7 +2876,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 215,
-        nutrients: ['Bêta-carotène', 'Gingérol', 'Oméga-3 ALA', 'Vitamine A'],
+        nutrients: ['Bêta-carotène', 'Gingérol', 'Oméga-3 ALA', 'Vitamine A', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -2904,7 +2904,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 395,
-        nutrients: ['Oméga-3', 'Astaxanthine', 'Quercétine', 'Allicine'],
+        nutrients: ['Oméga-3', 'Astaxanthine', 'Quercétine', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🍽️',
         ingredients: [
@@ -2933,7 +2933,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 180,
-        nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
+        nutrients: ['Fer', 'Magnésium', 'Oméga-3', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍫',
         ingredients: [
@@ -2958,7 +2958,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 220,
-        nutrients: ['Fer', 'Magnésium', 'Fibres'],
+        nutrients: ['Fer', 'Magnésium', 'Fibres', 'Glutathion', 'Zinc'],
         tags: ['vegetarien', 'sopk_friendly'],
         emoji: '🍌',
         ingredients: [
@@ -2985,7 +2985,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 250,
-        nutrients: ['Oméga-3', 'Fer', 'Magnésium'],
+        nutrients: ['Oméga-3', 'Fer', 'Magnésium', 'Glutathion', 'Zinc'],
         tags: ['sans_lactose'],
         emoji: '🥑',
         ingredients: [
@@ -3008,7 +3008,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 190,
-        nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
+        nutrients: ['Magnésium', 'Fer', 'Antioxydants', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
@@ -3032,7 +3032,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 230,
-        nutrients: ['Fer', 'Magnésium', 'Oméga-3'],
+        nutrients: ['Fer', 'Magnésium', 'Oméga-3', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
@@ -3057,7 +3057,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 231,
-        nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine"],
+        nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
@@ -3082,7 +3082,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 216,
-        nutrients: ["Magnésium", "Sérotonine", "Potassium", "Tryptophane"],
+        nutrients: ["Magnésium", "Sérotonine", "Potassium", "Tryptophane", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes"],
         emoji: '🍫',
         ingredients: [
@@ -3127,7 +3127,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 275,
-        nutrients: ["Fer", "Calcium", "Magnésium", "Protéines"],
+        nutrients: ["Fer", "Calcium", "Magnésium", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫘',
         ingredients: [
@@ -3152,7 +3152,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 207,
-        nutrients: ["Calcium", "Oméga-3", "Protéines", "Réconfort"],
+        nutrients: ["Calcium", "Oméga-3", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
@@ -3198,7 +3198,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 436,
-        nutrients: ["Fer", "Magnésium", "Zinc", "Sérotonine"],
+        nutrients: ["Fer", "Magnésium", "Zinc", "Sérotonine", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "anti_crampes", "spm_friendly"],
         emoji: '🍫',
         ingredients: [
@@ -3222,7 +3222,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 270,
-        nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine"],
+        nutrients: ["Fer", "Magnésium", "Vitamine E", "Sérotonine", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🟤',
         ingredients: [
@@ -3246,7 +3246,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 183,
-        nutrients: ["Potassium", "Magnésium", "Sérotonine", "Tryptophane"],
+        nutrients: ["Potassium", "Magnésium", "Sérotonine", "Tryptophane", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
@@ -3269,7 +3269,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 131,
-        nutrients: ["Fer", "Magnésium", "Sérotonine", "Graisses saines"],
+        nutrients: ["Fer", "Magnésium", "Sérotonine", "Graisses saines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🍫',
         ingredients: [
@@ -3292,7 +3292,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 193,
-        nutrients: ["Bêta-carotène", "Calcium", "Magnésium", "Fibres"],
+        nutrients: ["Bêta-carotène", "Calcium", "Magnésium", "Fibres", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍠',
         ingredients: [
@@ -3342,7 +3342,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 69,
-        nutrients: ["Fer", "Calcium", "Protéines", "Énergie"],
+        nutrients: ["Fer", "Calcium", "Protéines", "Énergie", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🟤',
         ingredients: [
@@ -3367,7 +3367,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 91,
-        nutrients: ["Magnésium", "Sérotonine", "Graisses saines", "Antioxydants"],
+        nutrients: ["Magnésium", "Sérotonine", "Graisses saines", "Antioxydants", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
@@ -3394,7 +3394,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 145,
-        nutrients: ['Curcumine', 'Gingérol', 'Pipérine', 'Magnésium'],
+        nutrients: ['Curcumine', 'Gingérol', 'Pipérine', 'Magnésium', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🟤',
         ingredients: [
@@ -3445,7 +3445,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 225,
-        nutrients: ['Flavanols', 'Oméga-9', 'Gingérol', 'Théobromine'],
+        nutrients: ['Flavanols', 'Oméga-9', 'Gingérol', 'Théobromine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
@@ -3473,7 +3473,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 90,
-        nutrients: ['Anti-inflammatoire', 'Magnésium', 'Fer'],
+        nutrients: ['Anti-inflammatoire', 'Magnésium', 'Fer', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥛',
         ingredients: [
@@ -3520,7 +3520,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 170,
-        nutrients: ['Oméga-3', 'Fer', 'Antioxydants'],
+        nutrients: ['Oméga-3', 'Fer', 'Antioxydants', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -3543,7 +3543,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 150,
-        nutrients: ['Magnésium', 'Fer', 'Antioxydants'],
+        nutrients: ['Magnésium', 'Fer', 'Antioxydants', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose'],
         emoji: '☕',
         ingredients: [
@@ -3663,7 +3663,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 220,
-        nutrients: ["Magnésium", "Potassium", "Sérotonine", "Fibres"],
+        nutrients: ["Magnésium", "Potassium", "Sérotonine", "Fibres", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
@@ -3711,7 +3711,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 142,
-        nutrients: ["Calcium", "Fer", "Réconfort sans caféine", "Magnésium"],
+        nutrients: ["Calcium", "Fer", "Réconfort sans caféine", "Magnésium", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue"],
         emoji: '☕',
         ingredients: [
@@ -3759,7 +3759,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 210,
-        nutrients: ["Magnésium", "Potassium", "Sérotonine", "Protéines"],
+        nutrients: ["Magnésium", "Potassium", "Sérotonine", "Protéines", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
@@ -3831,7 +3831,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 115,
-        nutrients: ["Fer", "Magnésium", "Acide folique", "Vitamine C"],
+        nutrients: ["Fer", "Magnésium", "Acide folique", "Vitamine C", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🧃',
         ingredients: [
@@ -3857,7 +3857,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 235,
-        nutrients: ['Anthocyanines', 'Gingérol', 'Quercétine', 'Oméga-3 ALA'],
+        nutrients: ['Anthocyanines', 'Gingérol', 'Quercétine', 'Oméga-3 ALA', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥤',
         ingredients: [
@@ -4014,7 +4014,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 390,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍳',
         ingredients: [
@@ -4039,7 +4039,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 370,
-        nutrients: ['Protéines', 'Vitamines B', 'Énergie'],
+        nutrients: ['Protéines', 'Vitamines B', 'Énergie', 'Zinc'],
         tags: ['vegetarien', 'sans_lactose'],
         emoji: '🥞',
         ingredients: [
@@ -4089,7 +4089,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 380,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['vegetarien'],
         emoji: '🍞',
         ingredients: [
@@ -4114,7 +4114,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 506,
-        nutrients: ["Protéines", "Zinc", "Magnésium", "Glucides complexes"],
+        nutrients: ["Protéines", "Zinc", "Magnésium", "Glucides complexes", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥤',
         ingredients: [
@@ -4138,7 +4138,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 483,
-        nutrients: ["Protéines complètes", "Vitamines B", "Antioxydants", "Fibres"],
+        nutrients: ["Protéines complètes", "Vitamines B", "Antioxydants", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍳',
         ingredients: [
@@ -4165,7 +4165,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 318,
-        nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine E"],
+        nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine E", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
@@ -4192,7 +4192,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 455,
-        nutrients: ["Antioxydants", "Zinc", "Vitamines", "Énergie"],
+        nutrients: ["Antioxydants", "Zinc", "Vitamines", "Énergie", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -4243,7 +4243,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 443,
-        nutrients: ["Protéines", "Zinc", "Fibres", "Énergie durable"],
+        nutrients: ["Protéines", "Zinc", "Fibres", "Énergie durable", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -4269,7 +4269,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 173,
-        nutrients: ["Antioxydants", "Vitamine C", "Probiotiques", "Énergie"],
+        nutrients: ["Antioxydants", "Vitamine C", "Probiotiques", "Énergie", 'Probiotiques'],
         tags: ["vegetarien", "anti_fatigue"],
         emoji: '🧁',
         ingredients: [
@@ -4323,7 +4323,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 203,
-        nutrients: ["Fer", "Acide folique", "Prébiotiques", "Anti-inflammatoires"],
+        nutrients: ["Fer", "Acide folique", "Prébiotiques", "Anti-inflammatoires", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -4348,7 +4348,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 351,
-        nutrients: ["Protéines", "Probiotiques", "Vitamine C", "Zinc"],
+        nutrients: ["Protéines", "Probiotiques", "Vitamine C", "Zinc", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -4373,7 +4373,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 241,
-        nutrients: ["Vitamine C", "Protéines", "Fer", "Antioxydants"],
+        nutrients: ["Vitamine C", "Protéines", "Fer", "Antioxydants", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍳',
         ingredients: [
@@ -4401,7 +4401,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 173,
-        nutrients: ["Protéines", "Glucides complexes", "Potassium", "Fibres"],
+        nutrients: ["Protéines", "Glucides complexes", "Potassium", "Fibres", 'Zinc'],
         tags: ["vegetarien", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥞',
         ingredients: [
@@ -4424,7 +4424,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 495,
-        nutrients: ["Folates", "Protéines", "Calcium", "Prébiotiques"],
+        nutrients: ["Folates", "Protéines", "Calcium", "Prébiotiques", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍳',
         ingredients: [
@@ -4450,7 +4450,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 314,
-        nutrients: ["Protéines complètes", "Oméga-3", "Antioxydants", "Magnésium"],
+        nutrients: ["Protéines complètes", "Oméga-3", "Antioxydants", "Magnésium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -4477,7 +4477,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 628,
-        nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines"],
+        nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines", 'Glutathion'],
         tags: ["anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
@@ -4529,7 +4529,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 656,
-        nutrients: ["Protéines complètes", "Vitamine C", "Fer", "Oméga-3"],
+        nutrients: ["Protéines complètes", "Vitamine C", "Fer", "Oméga-3", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -4553,7 +4553,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 466,
-        nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine C"],
+        nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine C", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -4579,7 +4579,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 235,
-        nutrients: ["Protéines", "Fer", "Calcium", "Anti-inflammatoires"],
+        nutrients: ["Protéines", "Fer", "Calcium", "Anti-inflammatoires", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🫘',
         ingredients: [
@@ -4606,7 +4606,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 487,
-        nutrients: ["Vitamines B", "Vitamine D", "Protéines", "Magnésium"],
+        nutrients: ["Vitamines B", "Vitamine D", "Protéines", "Magnésium", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🍳',
         ingredients: [
@@ -4657,7 +4657,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 503,
-        nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines"],
+        nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥤',
         ingredients: [
@@ -4682,7 +4682,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 92,
-        nutrients: ["Protéines", "Fer", "Zinc", "Fibres"],
+        nutrients: ["Protéines", "Fer", "Zinc", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥞',
         ingredients: [
@@ -4734,7 +4734,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 345,
-        nutrients: ['Sulforaphane x50', 'Oméga-9', 'Curcumine', 'Sésamine'],
+        nutrients: ['Sulforaphane x50', 'Oméga-9', 'Curcumine', 'Sésamine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
         emoji: '🥑',
         ingredients: [
@@ -4761,7 +4761,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 380,
-        nutrients: ['Ptérostilbènes', 'Anthocyanines', 'Oméga-3 ALA', 'Lignanes'],
+        nutrients: ['Ptérostilbènes', 'Anthocyanines', 'Oméga-3 ALA', 'Lignanes', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -4790,7 +4790,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 520,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥦',
         ingredients: [
@@ -4816,7 +4816,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 550,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
@@ -4841,7 +4841,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 420,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🦐',
         ingredients: [
@@ -4868,7 +4868,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mexicain',
         calories: 480,
-        nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
+        nutrients: ['Protéines', 'Zinc', 'Probiotiques', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🌮',
         ingredients: [
@@ -4922,7 +4922,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 510,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🍣',
         ingredients: [
@@ -4949,7 +4949,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 423,
-        nutrients: ["Protéines", "Zinc", "Vitamine C", "Fer"],
+        nutrients: ["Protéines", "Zinc", "Vitamine C", "Fer", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -4976,7 +4976,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 342,
-        nutrients: ["Protéines", "Oméga-9", "Vitamine K", "Probiotiques"],
+        nutrients: ["Protéines", "Oméga-9", "Vitamine K", "Probiotiques", 'Glutathion', 'Probiotiques'],
         tags: ["anti_fatigue"],
         emoji: '🌯',
         ingredients: [
@@ -5003,7 +5003,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 465,
-        nutrients: ["Oméga-3", "Zinc", "Vitamine D", "Vitamine C"],
+        nutrients: ["Oméga-3", "Zinc", "Vitamine D", "Vitamine C", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -5031,7 +5031,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 115,
-        nutrients: ["Fer", "Zinc", "Protéines végétales", "Fibres"],
+        nutrients: ["Fer", "Zinc", "Protéines végétales", "Fibres", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -5058,7 +5058,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 423,
-        nutrients: ["Zinc", "Sélénium", "Vitamine C", "Magnésium"],
+        nutrients: ["Zinc", "Sélénium", "Vitamine C", "Magnésium", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
@@ -5086,7 +5086,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 302,
-        nutrients: ["Zinc", "Fer", "Fibres prébiotiques", "Protéines"],
+        nutrients: ["Zinc", "Fer", "Fibres prébiotiques", "Protéines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -5142,7 +5142,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 695,
-        nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines"],
+        nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -5169,7 +5169,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 318,
-        nutrients: ["Protéines", "Vitamine B6", "Fibres", "Zinc"],
+        nutrients: ["Protéines", "Vitamine B6", "Fibres", "Zinc", 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue"],
         emoji: '🍗',
         ingredients: [
@@ -5197,7 +5197,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 225,
-        nutrients: ["Protéines végétales", "Fer", "Zinc", "Vitamine C"],
+        nutrients: ["Protéines végétales", "Fer", "Zinc", "Vitamine C", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -5223,7 +5223,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
         calories: 530,
-        nutrients: ["Protéines", "Sélénium", "Vitamine C", "Oméga-3"],
+        nutrients: ["Protéines", "Sélénium", "Vitamine C", "Oméga-3", 'Glutathion'],
         tags: ["anti_fatigue", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -5250,7 +5250,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 553,
-        nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer"],
+        nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer", 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -5277,7 +5277,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 383,
-        nutrients: ["Fer héminique", "Zinc", "Vitamine C", "Anti-inflammatoires"],
+        nutrients: ["Fer héminique", "Zinc", "Vitamine C", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥩',
         ingredients: [
@@ -5304,7 +5304,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 417,
-        nutrients: ["Protéines", "Calcium", "Polyphénols", "Zinc"],
+        nutrients: ["Protéines", "Calcium", "Polyphénols", "Zinc", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -5332,7 +5332,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 330,
-        nutrients: ["Zinc", "Fer", "Protéines végétales", "Fibres"],
+        nutrients: ["Zinc", "Fer", "Protéines végétales", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -5360,7 +5360,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 420,
-        nutrients: ["Fer héminique", "Zinc", "Protéines", "Vitamines variées"],
+        nutrients: ["Fer héminique", "Zinc", "Protéines", "Vitamines variées", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥩',
         ingredients: [
@@ -5390,7 +5390,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 368,
-        nutrients: ["Vitamine K", "Vitamine C", "Zinc", "Calcium"],
+        nutrients: ["Vitamine K", "Vitamine C", "Zinc", "Calcium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -5417,7 +5417,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'indien',
         calories: 297,
-        nutrients: ["Zinc", "Fer", "Protéines", "Anti-inflammatoires"],
+        nutrients: ["Zinc", "Fer", "Protéines", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -5475,7 +5475,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 416,
-        nutrients: ["Probiotiques", "Protéines", "Choline", "Bonnes graisses"],
+        nutrients: ["Probiotiques", "Protéines", "Choline", "Bonnes graisses", 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🍳',
         ingredients: [
@@ -5502,7 +5502,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 295,
-        nutrients: ["Oméga-3", "Fer", "Zinc", "Protéines"],
+        nutrients: ["Oméga-3", "Fer", "Zinc", "Protéines", 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -5530,7 +5530,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 471,
-        nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer"],
+        nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer", 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
@@ -5558,7 +5558,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 221,
-        nutrients: ["Probiotiques", "Protéines", "Iode", "Enzymes"],
+        nutrients: ["Probiotiques", "Protéines", "Iode", "Enzymes", 'Glutathion', 'Probiotiques'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -5586,7 +5586,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 378,
-        nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines"],
+        nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -5615,7 +5615,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 338,
-        nutrients: ["Zinc", "Sélénium", "Protéines", "Oméga-3"],
+        nutrients: ["Zinc", "Sélénium", "Protéines", "Oméga-3", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
@@ -5672,7 +5672,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 285,
-        nutrients: ['Lycopène', 'Bêta-carotène', 'Anthocyanines', 'Chlorophylle'],
+        nutrients: ['Lycopène', 'Bêta-carotène', 'Anthocyanines', 'Chlorophylle', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -5703,7 +5703,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 195,
-        nutrients: ['Sulforaphane', 'Vitamine E', 'Gingérol', 'Allicine'],
+        nutrients: ['Sulforaphane', 'Vitamine E', 'Gingérol', 'Allicine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -5731,7 +5731,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 395,
-        nutrients: ['Anthocyanines', 'Isoflavones', 'Oméga-9', 'Sésamine'],
+        nutrients: ['Anthocyanines', 'Isoflavones', 'Oméga-9', 'Sésamine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -5759,7 +5759,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 195,
-        nutrients: ['Sulforaphane', 'Apigénine', 'Punicalagines', 'Vitamine C'],
+        nutrients: ['Sulforaphane', 'Apigénine', 'Punicalagines', 'Vitamine C', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍽️',
         ingredients: [
@@ -5815,7 +5815,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 445,
-        nutrients: ['Oméga-3 DHA', 'Shogaol', 'Sélénium', 'Isoflavones'],
+        nutrients: ['Oméga-3 DHA', 'Shogaol', 'Sélénium', 'Isoflavones', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -5845,7 +5845,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 265,
-        nutrients: ['Saponines', 'Lycopène', 'Eugénol', 'Allicine'],
+        nutrients: ['Saponines', 'Lycopène', 'Eugénol', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -5874,7 +5874,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 440,
-        nutrients: ['Protéines', 'Probiotiques', 'Vitamines B'],
+        nutrients: ['Protéines', 'Probiotiques', 'Vitamines B', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥘',
         ingredients: [
@@ -5900,7 +5900,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 520,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍗',
         ingredients: [
@@ -5926,7 +5926,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 460,
-        nutrients: ['Protéines', 'Probiotiques', 'Zinc'],
+        nutrients: ['Protéines', 'Probiotiques', 'Zinc', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥘',
         ingredients: [
@@ -5953,7 +5953,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 430,
-        nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
+        nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🐟',
         ingredients: [
@@ -5979,7 +5979,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 510,
-        nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
+        nutrients: ['Protéines', 'Vitamines B', 'Zinc', 'Glutathion'],
         tags: ['vegetarien'],
         emoji: '🍝',
         ingredients: [
@@ -6006,7 +6006,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 470,
-        nutrients: ['Protéines', 'Vitamines B', 'Énergie'],
+        nutrients: ['Protéines', 'Vitamines B', 'Énergie', 'Glutathion'],
         tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
@@ -6033,7 +6033,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 307,
-        nutrients: ["Protéines", "Zinc", "Phytoœstrogènes", "Vitamine C"],
+        nutrients: ["Protéines", "Zinc", "Phytoœstrogènes", "Vitamine C", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
@@ -6061,7 +6061,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 462,
-        nutrients: ["Protéines", "Vitamine B6", "Antioxydants", "Énergie"],
+        nutrients: ["Protéines", "Vitamine B6", "Antioxydants", "Énergie", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍗',
         ingredients: [
@@ -6089,7 +6089,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 397,
-        nutrients: ["Vitamines B", "Vitamine C", "Fibres", "Calcium"],
+        nutrients: ["Vitamines B", "Vitamine C", "Fibres", "Calcium", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue"],
         emoji: '🍝',
         ingredients: [
@@ -6118,7 +6118,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 424,
-        nutrients: ["Oméga-3", "Zinc", "Sélénium", "Protéines"],
+        nutrients: ["Oméga-3", "Zinc", "Sélénium", "Protéines", 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -6145,7 +6145,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 361,
-        nutrients: ["Zinc", "Protéines", "Fer", "Anti-inflammatoires"],
+        nutrients: ["Zinc", "Protéines", "Fer", "Anti-inflammatoires", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍛',
         ingredients: [
@@ -6172,7 +6172,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 200,
-        nutrients: ["Protéines", "Calcium", "Vitamines B", "Fibres"],
+        nutrients: ["Protéines", "Calcium", "Vitamines B", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥧',
         ingredients: [
@@ -6199,7 +6199,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 403,
-        nutrients: ["Protéines", "Zinc", "Vitamine C", "Oméga-9"],
+        nutrients: ["Protéines", "Zinc", "Vitamine C", "Oméga-9", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🍣',
         ingredients: [
@@ -6228,7 +6228,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 242,
-        nutrients: ["Protéines", "Fer", "Calcium", "Fibres"],
+        nutrients: ["Protéines", "Fer", "Calcium", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🧀',
         ingredients: [
@@ -6255,7 +6255,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 348,
-        nutrients: ["Oméga-3", "Protéines", "Sélénium", "Vitamine C"],
+        nutrients: ["Oméga-3", "Protéines", "Sélénium", "Vitamine C", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -6282,7 +6282,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'italien',
         calories: 203,
-        nutrients: ["Fer", "Zinc", "Protéines végétales", "Vitamines"],
+        nutrients: ["Fer", "Zinc", "Protéines végétales", "Vitamines", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍲',
         ingredients: [
@@ -6338,7 +6338,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 380,
-        nutrients: ["Acide folique", "Prébiotiques", "Calcium", "Vitamine C"],
+        nutrients: ["Acide folique", "Prébiotiques", "Calcium", "Vitamine C", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🍚',
         ingredients: [
@@ -6365,7 +6365,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 346,
-        nutrients: ["Protéines", "Zinc", "Vitamine C", "Anti-inflammatoires"],
+        nutrients: ["Protéines", "Zinc", "Vitamine C", "Anti-inflammatoires", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
@@ -6393,7 +6393,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 297,
-        nutrients: ["Oméga-3", "Vitamine E", "Folates", "Protéines"],
+        nutrients: ["Oméga-3", "Vitamine E", "Folates", "Protéines", 'Zinc'],
         tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -6419,7 +6419,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mexicain',
         calories: 506,
-        nutrients: ["Protéines", "Sélénium", "Vitamine C", "Probiotiques"],
+        nutrients: ["Protéines", "Sélénium", "Vitamine C", "Probiotiques", 'Glutathion', 'Probiotiques'],
         tags: ["anti_fatigue"],
         emoji: '🥗',
         ingredients: [
@@ -6447,7 +6447,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 192,
-        nutrients: ["Protéines complètes", "Calcium", "Fer", "Fibres"],
+        nutrients: ["Protéines complètes", "Calcium", "Fer", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🧀',
         ingredients: [
@@ -6474,7 +6474,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 248,
-        nutrients: ["Vitamine D", "Vitamines B", "Zinc", "Protéines"],
+        nutrients: ["Vitamine D", "Vitamines B", "Zinc", "Protéines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
@@ -6502,7 +6502,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 424,
-        nutrients: ["Fer", "Zinc", "Vitamine B12", "Bêta-carotène"],
+        nutrients: ["Fer", "Zinc", "Vitamine B12", "Bêta-carotène", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍠',
         ingredients: [
@@ -6530,7 +6530,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 484,
-        nutrients: ["Zinc", "Magnésium", "Protéines", "Calcium"],
+        nutrients: ["Zinc", "Magnésium", "Protéines", "Calcium", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🫘',
         ingredients: [
@@ -6587,7 +6587,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 243,
-        nutrients: ["Bêta-carotène", "Vitamine A", "Calcium", "Fibres"],
+        nutrients: ["Bêta-carotène", "Vitamine A", "Calcium", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🍚',
         ingredients: [
@@ -6615,7 +6615,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 298,
-        nutrients: ["Folates", "Fer", "Protéines", "Anti-inflammatoires"],
+        nutrients: ["Folates", "Fer", "Protéines", "Anti-inflammatoires", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
         emoji: '🍛',
         ingredients: [
@@ -6644,7 +6644,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 460,
-        nutrients: ["Oméga-3", "Calcium", "Vitamine D", "Protéines"],
+        nutrients: ["Oméga-3", "Calcium", "Vitamine D", "Protéines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -6671,7 +6671,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 386,
-        nutrients: ["Zinc", "Fer", "Vitamine C", "Anti-inflammatoires"],
+        nutrients: ["Zinc", "Fer", "Vitamine C", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
         emoji: '🍛',
         ingredients: [
@@ -6700,7 +6700,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 430,
-        nutrients: ['Oméga-3 EPA/DHA/ALA', 'Lignanes', 'Fibres', 'Sélénium'],
+        nutrients: ['Oméga-3 EPA/DHA/ALA', 'Lignanes', 'Fibres', 'Sélénium', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -6728,7 +6728,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 375,
-        nutrients: ['Acide laurique', 'Polyphénols', 'Sulforaphane', 'Eugénol'],
+        nutrients: ['Acide laurique', 'Polyphénols', 'Sulforaphane', 'Eugénol', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
@@ -6757,7 +6757,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 420,
-        nutrients: ['Acide rosmarinique', 'Acide carnosique', 'Bêta-carotène', 'Protéines'],
+        nutrients: ['Acide rosmarinique', 'Acide carnosique', 'Bêta-carotène', 'Protéines', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🍠',
         ingredients: [
@@ -6784,7 +6784,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 340,
-        nutrients: ['Curcumine', 'Thymoquinone', 'Linalol', 'Gingérol'],
+        nutrients: ['Curcumine', 'Thymoquinone', 'Linalol', 'Gingérol', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
@@ -6814,7 +6814,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 435,
-        nutrients: ['Astaxanthine', 'Curcumine', 'Gingérol', 'Sélénium'],
+        nutrients: ['Astaxanthine', 'Curcumine', 'Gingérol', 'Sélénium', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥘',
         ingredients: [
@@ -6871,7 +6871,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 425,
-        nutrients: ['Sulforaphane', 'Gingérol', 'Zinc', 'Allicine'],
+        nutrients: ['Sulforaphane', 'Gingérol', 'Zinc', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -6902,7 +6902,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 200,
-        nutrients: ['Zinc', 'Protéines', 'Vitamines B'],
+        nutrients: ['Zinc', 'Protéines', 'Vitamines B', 'Glutathion'],
         tags: ['vegetarien', 'sopk_friendly'],
         emoji: '🥜',
         ingredients: [
@@ -6973,7 +6973,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 220,
-        nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
+        nutrients: ['Protéines', 'Zinc', 'Probiotiques', 'Glutathion'],
         tags: ['vegetarien', 'sans_gluten'],
         emoji: '🍯',
         ingredients: [
@@ -7018,7 +7018,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 278,
-        nutrients: ["Zinc", "Calcium", "Protéines", "Fibres"],
+        nutrients: ["Zinc", "Calcium", "Protéines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫘',
         ingredients: [
@@ -7043,7 +7043,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 388,
-        nutrients: ["Protéines", "Probiotiques", "Calcium", "Énergie"],
+        nutrients: ["Protéines", "Probiotiques", "Calcium", "Énergie", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🍦',
         ingredients: [
@@ -7087,7 +7087,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 123,
-        nutrients: ["Zinc", "Sélénium", "Protéines", "Bonnes graisses"],
+        nutrients: ["Zinc", "Sélénium", "Protéines", "Bonnes graisses", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥜',
         ingredients: [
@@ -7111,7 +7111,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 186,
-        nutrients: ["Fibres prébiotiques", "Magnésium", "Protéines", "Régulation glycémique"],
+        nutrients: ["Fibres prébiotiques", "Magnésium", "Protéines", "Régulation glycémique", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍎',
         ingredients: [
@@ -7133,7 +7133,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 201,
-        nutrients: ["Zinc", "Oméga-3", "Protéines", "Énergie durable"],
+        nutrients: ["Zinc", "Oméga-3", "Protéines", "Énergie durable", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
@@ -7212,7 +7212,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 226,
-        nutrients: ["Zinc", "Sélénium", "Oméga-3", "Protéines"],
+        nutrients: ["Zinc", "Sélénium", "Oméga-3", "Protéines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -7241,7 +7241,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 154,
-        nutrients: ["Zinc", "Fer", "Protéines", "Fibres"],
+        nutrients: ["Zinc", "Fer", "Protéines", "Fibres", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '🫘',
         ingredients: [
@@ -7266,7 +7266,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 356,
-        nutrients: ["Protéines", "Sélénium", "Oméga-3", "Graisses saines"],
+        nutrients: ["Protéines", "Sélénium", "Oméga-3", "Graisses saines", 'Glutathion'],
         tags: ["anti_fatigue"],
         emoji: '🍞',
         ingredients: [
@@ -7311,7 +7311,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 267,
-        nutrients: ["Fer", "Calcium", "Oméga-3", "Protéines"],
+        nutrients: ["Fer", "Calcium", "Oméga-3", "Protéines", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
         emoji: '🫐',
         ingredients: [
@@ -7335,7 +7335,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 303,
-        nutrients: ["Vitamine K", "Zinc", "Protéines", "Fer"],
+        nutrients: ["Vitamine K", "Zinc", "Protéines", "Fer", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -7360,7 +7360,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 195,
-        nutrients: ['Saponines', 'Sésamine', 'Curcumine', 'Allicine'],
+        nutrients: ['Saponines', 'Sésamine', 'Curcumine', 'Allicine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🫘',
         ingredients: [
@@ -7389,7 +7389,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 185,
-        nutrients: ['Anthocyanines', 'Acide ellagique', 'Curcumine', 'Resvératrol'],
+        nutrients: ['Anthocyanines', 'Acide ellagique', 'Curcumine', 'Resvératrol', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🟡',
         ingredients: [
@@ -7419,7 +7419,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 80,
-        nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
+        nutrients: ['Antioxydants', 'Vitamines B', 'Énergie', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🍵',
         ingredients: [
@@ -7512,7 +7512,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 75,
-        nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable"],
+        nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
         emoji: '☕',
         ingredients: [
@@ -7559,7 +7559,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 171,
-        nutrients: ["Fer", "Vitamine C", "Hydratation", "Chlorophylle"],
+        nutrients: ["Fer", "Vitamine C", "Hydratation", "Chlorophylle", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -7632,7 +7632,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 140,
-        nutrients: ["Probiotiques", "Microbiote", "Digestion", "Détox œstrogènes"],
+        nutrients: ["Probiotiques", "Microbiote", "Digestion", "Détox œstrogènes", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
         emoji: '🫧',
         ingredients: [
@@ -7725,7 +7725,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 241,
-        nutrients: ["Protéines", "Fer", "Vitamine B12", "Antioxydants"],
+        nutrients: ["Protéines", "Fer", "Vitamine B12", "Antioxydants", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -7773,7 +7773,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 143,
-        nutrients: ["Fer", "Nitrates", "Antioxydants", "Circulation"],
+        nutrients: ["Fer", "Nitrates", "Antioxydants", "Circulation", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '☕',
         ingredients: [
@@ -7925,7 +7925,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 290,
-        nutrients: ['Fibres', 'Antioxydants', 'Oméga-3'],
+        nutrients: ['Fibres', 'Antioxydants', 'Oméga-3', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍇',
         ingredients: [
@@ -7951,7 +7951,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 320,
-        nutrients: ['Fibres', 'Vitamine C', 'Antioxydants'],
+        nutrients: ['Fibres', 'Vitamine C', 'Antioxydants', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🥑',
         ingredients: [
@@ -8002,7 +8002,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 340,
-        nutrients: ['Protéines', 'Fibres', 'Vitamine B9'],
+        nutrients: ['Protéines', 'Fibres', 'Vitamine B9', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
@@ -8028,7 +8028,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 370,
-        nutrients: ['Fibres', 'Antioxydants', 'Oméga-3'],
+        nutrients: ['Fibres', 'Antioxydants', 'Oméga-3', 'Glutathion', 'Zinc'],
         tags: ['vegetarien', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🫐',
         ingredients: [
@@ -8052,7 +8052,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 477,
-        nutrients: ["Antioxydants", "Zinc", "Vitamine C", "Énergie"],
+        nutrients: ["Antioxydants", "Zinc", "Vitamine C", "Énergie", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -8077,7 +8077,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 297,
-        nutrients: ["Oméga-3", "Protéines", "Vitamine C", "Graisses saines"],
+        nutrients: ["Oméga-3", "Protéines", "Vitamine C", "Graisses saines", 'Glutathion', 'Zinc'],
         tags: ["anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
@@ -8102,7 +8102,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 252,
-        nutrients: ["Protéines", "Antioxydants", "Zinc", "Vitamine B6"],
+        nutrients: ["Protéines", "Antioxydants", "Zinc", "Vitamine B6", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -8126,7 +8126,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 379,
-        nutrients: ["Énergie", "Protéines", "Graisses saines", "Potassium"],
+        nutrients: ["Énergie", "Protéines", "Graisses saines", "Potassium", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥞',
         ingredients: [
@@ -8171,7 +8171,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 293,
-        nutrients: ["Protéines", "Choline", "Fer", "Vitamine C"],
+        nutrients: ["Protéines", "Choline", "Fer", "Vitamine C", 'Glutathion', 'Probiotiques'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍳',
         ingredients: [
@@ -8197,7 +8197,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 353,
-        nutrients: ["Fibres", "Oméga-3", "Vitamines", "Énergie"],
+        nutrients: ["Fibres", "Oméga-3", "Vitamines", "Énergie", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -8221,7 +8221,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 434,
-        nutrients: ["Calcium", "Fibres", "Protéines", "Énergie"],
+        nutrients: ["Calcium", "Fibres", "Protéines", "Énergie", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
         emoji: '🍞',
         ingredients: [
@@ -8245,7 +8245,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 494,
-        nutrients: ["Vitamine C", "Antioxydants", "Graisses saines", "Énergie"],
+        nutrients: ["Vitamine C", "Antioxydants", "Graisses saines", "Énergie", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥤',
         ingredients: [
@@ -8293,7 +8293,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 308,
-        nutrients: ["Protéines", "Vitamine C", "Magnésium", "Bêta-carotène"],
+        nutrients: ["Protéines", "Vitamine C", "Magnésium", "Bêta-carotène", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -8362,7 +8362,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 545,
-        nutrients: ["Vitamine C", "Enzymes", "Graisses saines", "Antioxydants"],
+        nutrients: ["Vitamine C", "Enzymes", "Graisses saines", "Antioxydants", 'Glutathion', 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
@@ -8413,7 +8413,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 404,
-        nutrients: ["Oméga-3", "Vitamine C", "Fibres", "Énergie"],
+        nutrients: ["Oméga-3", "Vitamine C", "Fibres", "Énergie", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -8437,7 +8437,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 372,
-        nutrients: ["Protéines", "Vitamines", "Fer", "Graisses saines"],
+        nutrients: ["Protéines", "Vitamines", "Fer", "Graisses saines", 'Glutathion'],
         tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🌯',
         ingredients: [
@@ -8611,7 +8611,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 234,
-        nutrients: ["Protéines", "Zinc", "Antibactérien", "Calcium"],
+        nutrients: ["Protéines", "Zinc", "Antibactérien", "Calcium", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -8686,7 +8686,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 345,
-        nutrients: ['Ptérostilbènes', 'Oméga-3 ALA', 'GLA', 'Lignanes'],
+        nutrients: ['Ptérostilbènes', 'Oméga-3 ALA', 'GLA', 'Lignanes', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -8716,7 +8716,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 460,
-        nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
+        nutrients: ['Fibres', 'Antioxydants', 'Zinc', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -8742,7 +8742,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 480,
-        nutrients: ['Fibres', 'Antioxydants', 'Zinc'],
+        nutrients: ['Fibres', 'Antioxydants', 'Zinc', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍣',
         ingredients: [
@@ -8768,7 +8768,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 420,
-        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
+        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥦',
         ingredients: [
@@ -8795,7 +8795,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 440,
-        nutrients: ['Fibres', 'Antioxydants', 'Vitamine A'],
+        nutrients: ['Fibres', 'Antioxydants', 'Vitamine A', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🌈',
         ingredients: [
@@ -8849,7 +8849,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 280,
-        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
+        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🌯',
         ingredients: [
@@ -8875,7 +8875,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 467,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -8905,7 +8905,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 313,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -8935,7 +8935,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
         calories: 241,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -8964,7 +8964,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 421,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -8995,7 +8995,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 292,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -9024,7 +9024,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 303,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9053,7 +9053,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 373,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Probiotiques'],
         tags: ["anti_fatigue", "spm_friendly"],
         emoji: '🌯',
         ingredients: [
@@ -9083,7 +9083,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 352,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -9112,7 +9112,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 477,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9142,7 +9142,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
         calories: 323,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -9173,7 +9173,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 302,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍅',
         ingredients: [
@@ -9203,7 +9203,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 367,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9232,7 +9232,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 521,
-        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines"],
+        nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥣',
         ingredients: [
@@ -9263,7 +9263,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 348,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -9291,7 +9291,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 353,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9319,7 +9319,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 312,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
@@ -9349,7 +9349,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 288,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -9377,7 +9377,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 387,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫘',
         ingredients: [
@@ -9436,7 +9436,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 293,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -9464,7 +9464,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 284,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9491,7 +9491,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 275,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🥣',
         ingredients: [
@@ -9546,7 +9546,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 340,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9600,7 +9600,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 222,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍅',
         ingredients: [
@@ -9654,7 +9654,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 440,
-        nutrients: ['Oméga-3 DHA', 'Isoflavones', 'Gingérol', 'Sésamine'],
+        nutrients: ['Oméga-3 DHA', 'Isoflavones', 'Gingérol', 'Sésamine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -9684,7 +9684,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 345,
-        nutrients: ['Quercétine', 'Punicalagines', 'Oméga-3 ALA', 'Curcumine'],
+        nutrients: ['Quercétine', 'Punicalagines', 'Oméga-3 ALA', 'Curcumine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -9739,7 +9739,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 295,
-        nutrients: ['Rutine', 'Lycopène', 'Apigénine', 'Polyphénols'],
+        nutrients: ['Rutine', 'Lycopène', 'Apigénine', 'Polyphénols', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍽️',
         ingredients: [
@@ -9769,7 +9769,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 380,
-        nutrients: ['Glutathion', 'Antioxydants', 'Fibres'],
+        nutrients: ['Glutathion', 'Antioxydants', 'Fibres', 'Zinc'],
         tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
         emoji: '🥗',
         ingredients: [
@@ -9823,7 +9823,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 430,
-        nutrients: ['Oméga-3', 'Antioxydants', 'Fibres'],
+        nutrients: ['Oméga-3', 'Antioxydants', 'Fibres', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -9850,7 +9850,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 380,
-        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
+        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -9877,7 +9877,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 370,
-        nutrients: ['Protéines', 'Zinc', 'Antioxydants'],
+        nutrients: ['Protéines', 'Zinc', 'Antioxydants', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
@@ -9904,7 +9904,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 360,
-        nutrients: ['Protéines', 'Fibres', 'Antioxydants'],
+        nutrients: ['Protéines', 'Fibres', 'Antioxydants', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥘',
         ingredients: [
@@ -9931,7 +9931,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 330,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -9958,7 +9958,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 369,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🦐',
         ingredients: [
@@ -10017,7 +10017,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 607,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍗',
         ingredients: [
@@ -10047,7 +10047,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 392,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🍜',
         ingredients: [
@@ -10078,7 +10078,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 445,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["anti_fatigue", "spm_friendly"],
         emoji: '🍴',
         ingredients: [
@@ -10110,7 +10110,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 274,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -10169,7 +10169,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 450,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -10199,7 +10199,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 394,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🍚',
         ingredients: [
@@ -10230,7 +10230,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 427,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🦐',
         ingredients: [
@@ -10261,7 +10261,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 498,
-        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines"],
+        nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍆',
         ingredients: [
@@ -10291,7 +10291,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 360,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🦐',
         ingredients: [
@@ -10345,7 +10345,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 364,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍚',
         ingredients: [
@@ -10374,7 +10374,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 264,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -10401,7 +10401,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 273,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -10456,7 +10456,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mediterraneen',
         calories: 330,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -10484,7 +10484,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 470,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🐟',
         ingredients: [
@@ -10511,7 +10511,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 322,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -10566,7 +10566,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 342,
-        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
+        nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥗',
         ingredients: [
@@ -10623,7 +10623,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mexicain',
         calories: 285,
-        nutrients: ['Oméga-3', 'Limonoïdes', 'Oméga-9', 'Vitamine C'],
+        nutrients: ['Oméga-3', 'Limonoïdes', 'Oméga-9', 'Vitamine C', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥑',
         ingredients: [
@@ -10651,7 +10651,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 395,
-        nutrients: ['Oméga-3 EPA/DHA', 'GLA', 'Oméga-9', 'Sélénium'],
+        nutrients: ['Oméga-3 EPA/DHA', 'GLA', 'Oméga-9', 'Sélénium', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -10679,7 +10679,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 285,
-        nutrients: ['Astaxanthine', 'Allicine', 'Apigénine', 'Sélénium'],
+        nutrients: ['Astaxanthine', 'Allicine', 'Apigénine', 'Sélénium', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥘',
         ingredients: [
@@ -10706,7 +10706,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 410,
-        nutrients: ['Glutathion', 'Oméga-3', 'Curcumine', 'Saponines'],
+        nutrients: ['Glutathion', 'Oméga-3', 'Curcumine', 'Saponines', 'Zinc'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -10733,7 +10733,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 385,
-        nutrients: ['Astaxanthine', 'Curcumine', 'Limonoïdes', 'Gingérol'],
+        nutrients: ['Astaxanthine', 'Curcumine', 'Limonoïdes', 'Gingérol', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🟡',
         ingredients: [
@@ -10762,7 +10762,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 295,
-        nutrients: ['Gingérol', 'Allicine', 'Protéines', 'Vitamine A'],
+        nutrients: ['Gingérol', 'Allicine', 'Protéines', 'Vitamine A', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🍗',
         ingredients: [
@@ -10791,7 +10791,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 295,
-        nutrients: ['Sélénium', 'Taurine', 'Apigénine', 'Oléocanthal'],
+        nutrients: ['Sélénium', 'Taurine', 'Apigénine', 'Oléocanthal', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -10818,7 +10818,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 395,
-        nutrients: ['Curcumine', 'Polyphénols', 'Sésamine', 'Allicine'],
+        nutrients: ['Curcumine', 'Polyphénols', 'Sésamine', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -10875,7 +10875,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 140,
-        nutrients: ['Fibres', 'Antioxydants', 'Protéines'],
+        nutrients: ['Fibres', 'Antioxydants', 'Protéines', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🫛',
         ingredients: [
@@ -10898,7 +10898,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 80,
-        nutrients: ['Fibres', 'Hydratation', 'Antioxydants'],
+        nutrients: ['Fibres', 'Hydratation', 'Antioxydants', 'Glutathion', 'Probiotiques'],
         tags: ['vegetarien', 'sans_gluten'],
         emoji: '🥒',
         ingredients: [
@@ -10922,7 +10922,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 110,
-        nutrients: ['Iode', 'Antioxydants', 'Minéraux'],
+        nutrients: ['Iode', 'Antioxydants', 'Minéraux', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
         emoji: '🍘',
         ingredients: [
@@ -10946,7 +10946,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 200,
-        nutrients: ['Antioxydants', 'Zinc', 'Oméga-3'],
+        nutrients: ['Antioxydants', 'Zinc', 'Oméga-3', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥜',
         ingredients: [
@@ -10970,7 +10970,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 318,
-        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
+        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥜',
         ingredients: [
@@ -11015,7 +11015,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mexicain',
         calories: 139,
-        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
+        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🥕',
         ingredients: [
@@ -11066,7 +11066,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 258,
-        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
+        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🍦',
         ingredients: [
@@ -11089,7 +11089,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'mediterraneen',
         calories: 155,
-        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
+        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
         emoji: '🫘',
         ingredients: [
@@ -11114,7 +11114,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 180,
-        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines"],
+        nutrients: ["Antioxydants", "Zinc", "Énergie", "Vitamines", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🟤',
         ingredients: [
@@ -11236,7 +11236,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 200,
-        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fraîcheur"],
+        nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fraîcheur", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🟤',
         ingredients: [
@@ -11311,7 +11311,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 165,
-        nutrients: ['Oméga-3', 'Oméga-9', 'Cucurbitacines', 'Sélénium'],
+        nutrients: ['Oméga-3', 'Oméga-9', 'Cucurbitacines', 'Sélénium', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥑',
         ingredients: [
@@ -11362,7 +11362,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 195,
-        nutrients: ['Oméga-9', 'Glutathion', 'Sésamine', 'Limonoïdes'],
+        nutrients: ['Oméga-9', 'Glutathion', 'Sésamine', 'Limonoïdes', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥑',
         ingredients: [
@@ -11458,7 +11458,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 150,
-        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C'],
+        nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥤',
         ingredients: [
@@ -11532,7 +11532,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 125,
-        nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
+        nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
         emoji: '🫧',
         ingredients: [
@@ -11776,7 +11776,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 230,
-        nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur"],
+        nutrients: ["Hydratation", "Antioxydants", "Vitamines", "Fraîcheur", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
      emoji: '🥛',
      ingredients: [
@@ -11881,7 +11881,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 320,
-        nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Potassium'],
+        nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Potassium', 'Zinc'],
         tags: ['sans_lactose', 'sopk_friendly'],
         emoji: '🥞',
         ingredients: [
@@ -11909,7 +11909,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 350,
-        nutrients: ['Magnésium', 'Protéines', 'Glucides complexes', 'Vitamine B6'],
+        nutrients: ['Magnésium', 'Protéines', 'Glucides complexes', 'Vitamine B6', 'Zinc'],
         tags: ['vegetarien', 'sopk_friendly'],
         emoji: '🥞',
         ingredients: [
@@ -11936,7 +11936,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 310,
-        nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Fer'],
+        nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Fer', 'Zinc'],
         tags: ['sans_lactose', 'sopk_friendly'],
         emoji: '🍎',
         ingredients: [
@@ -11987,7 +11987,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 380,
-        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes'],
+        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥣',
         ingredients: [
@@ -12014,7 +12014,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 420,
-        nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane'],
+        nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane', 'Glutathion'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍳',
         ingredients: [
@@ -12040,7 +12040,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 291,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥞',
         ingredients: [
@@ -12066,7 +12066,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 239,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -12093,7 +12093,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 452,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
@@ -12118,7 +12118,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 227,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍞',
         ingredients: [
@@ -12143,7 +12143,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 180,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍦',
         ingredients: [
@@ -12168,7 +12168,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 335,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -12194,7 +12194,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 401,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🧁',
         ingredients: [
@@ -12275,7 +12275,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 261,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
@@ -12328,7 +12328,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 412,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
@@ -12355,7 +12355,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 400,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -12403,7 +12403,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 264,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥤',
         ingredients: [
@@ -12428,7 +12428,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 663,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
       emoji: '🍎',
       ingredients: [
@@ -12454,7 +12454,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 320,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Probiotiques'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍦',
         ingredients: [
@@ -12531,7 +12531,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 703,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍞',
         ingredients: [
@@ -12558,7 +12558,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 282,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -12635,7 +12635,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 489,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -12662,7 +12662,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 390,
-        nutrients: ['Flavonoïdes x4', 'Anthocyanines', 'Bêta-glucane', 'Théobromine'],
+        nutrients: ['Flavonoïdes x4', 'Anthocyanines', 'Bêta-glucane', 'Théobromine', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -12689,7 +12689,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 420,
-        nutrients: ['Vitamine E', 'Curcumine', 'Potassium', 'Cinnamaldéhyde'],
+        nutrients: ['Vitamine E', 'Curcumine', 'Potassium', 'Cinnamaldéhyde', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
         emoji: '🥑',
         ingredients: [
@@ -12715,7 +12715,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 310,
-        nutrients: ['Lentinane', 'Acide rosmarinique', 'Choline', 'Allicine'],
+        nutrients: ['Lentinane', 'Acide rosmarinique', 'Choline', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍽️',
         ingredients: [
@@ -12741,7 +12741,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 395,
-        nutrients: ['Rutine', 'Oméga-3', 'Oméga-9', 'Vitamine D'],
+        nutrients: ['Rutine', 'Oméga-3', 'Oméga-9', 'Vitamine D', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -12771,7 +12771,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 420,
-        nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Glucides complexes'],
+        nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Glucides complexes', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -12798,7 +12798,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 400,
-        nutrients: ['Magnésium', 'Calcium', 'Protéines', 'Fer'],
+        nutrients: ['Magnésium', 'Calcium', 'Protéines', 'Fer', 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ['vegetarien', 'sans_gluten', 'sopk_friendly'],
         emoji: '🍛',
         ingredients: [
@@ -12825,7 +12825,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 450,
-        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales'],
+        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍠',
         ingredients: [
@@ -12906,7 +12906,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 350,
-        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6'],
+        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -12933,7 +12933,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 626,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -12962,7 +12962,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 401,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🧀',
         ingredients: [
@@ -12991,7 +12991,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 498,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -13019,7 +13019,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 446,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍝',
         ingredients: [
@@ -13048,7 +13048,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 307,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍗',
         ingredients: [
@@ -13076,7 +13076,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 482,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥧',
         ingredients: [
@@ -13104,7 +13104,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'indien',
         calories: 419,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -13134,7 +13134,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 442,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
        emoji: '🧀',
        ingredients: [
@@ -13162,7 +13162,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 305,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍚',
         ingredients: [
@@ -13190,7 +13190,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'mexicain',
         calories: 350,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -13221,7 +13221,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 332,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -13249,7 +13249,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'mediterraneen',
         calories: 523,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -13281,7 +13281,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'italien',
         calories: 443,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍝',
         ingredients: [
@@ -13311,7 +13311,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 269,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -13339,7 +13339,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 443,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍝',
         ingredients: [
@@ -13366,7 +13366,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 384,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍛',
         ingredients: [
@@ -13418,7 +13418,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'indien',
         calories: 370,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -13448,7 +13448,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 484,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍜',
         ingredients: [
@@ -13476,7 +13476,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 231,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍲',
         ingredients: [
@@ -13530,7 +13530,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 288,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍳',
         ingredients: [
@@ -13557,7 +13557,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 283,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍝',
         ingredients: [
@@ -13587,7 +13587,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 206,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -13614,7 +13614,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 299,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -13642,7 +13642,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 505,
-        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+        nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🧀',
         ingredients: [
@@ -13671,7 +13671,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 275,
-        nutrients: ['Curcumine', 'Gingérol', 'Polyphénols', 'Pipérine'],
+        nutrients: ['Curcumine', 'Gingérol', 'Polyphénols', 'Pipérine', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -13700,7 +13700,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 410,
-        nutrients: ['Curcumine', 'Gingérol', 'Allicine', 'Bêta-carotène'],
+        nutrients: ['Curcumine', 'Gingérol', 'Allicine', 'Bêta-carotène', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
@@ -13730,7 +13730,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 325,
-        nutrients: ['Polyphénols', 'Curcumine', 'Acide tartrique', 'Linalol'],
+        nutrients: ['Polyphénols', 'Curcumine', 'Acide tartrique', 'Linalol', 'Glutathion', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
@@ -13759,7 +13759,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 415,
-        nutrients: ['Lycopène x3', 'Curcumine', 'Eugénol', 'Allicine'],
+        nutrients: ['Lycopène x3', 'Curcumine', 'Eugénol', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
         emoji: '🟡',
         ingredients: [
@@ -13788,7 +13788,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 190,
-        nutrients: ['Apigénine', 'Polyacétylènes', 'Curcumine', 'Oléocanthal'],
+        nutrients: ['Apigénine', 'Polyacétylènes', 'Curcumine', 'Oléocanthal', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -13818,7 +13818,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 400,
-        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Vitamine B6'],
+        nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Vitamine B6', 'Glutathion', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -13845,7 +13845,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 430,
-        nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines'],
+        nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines', 'Glutathion'],
         tags: ['vegetarien'],
         emoji: '🧀',
         ingredients: [
@@ -13871,7 +13871,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 450,
-        nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6'],
+        nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6', 'Glutathion'],
         tags: ['vegetarien', 'sopk_friendly'],
         emoji: '🍝',
         ingredients: [
@@ -13898,7 +13898,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 470,
-        nutrients: ['Oméga-3', 'Tryptophane', 'Vitamine B6', 'Magnésium', 'Glucides complexes'],
+        nutrients: ['Oméga-3', 'Tryptophane', 'Vitamine B6', 'Magnésium', 'Glucides complexes', 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
         emoji: '🐟',
         ingredients: [
@@ -13924,7 +13924,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 380,
-        nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres'],
+        nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres', 'Glutathion', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🍛',
         ingredients: [
@@ -13951,7 +13951,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'italien',
         calories: 390,
-        nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B'],
+        nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B', 'Glutathion'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🍄',
         ingredients: [
@@ -13978,7 +13978,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 251,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -14032,7 +14032,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 633,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍗',
         ingredients: [
@@ -14059,7 +14059,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 615,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🧀',
         ingredients: [
@@ -14086,7 +14086,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 282,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍳',
         ingredients: [
@@ -14169,7 +14169,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 291,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -14198,7 +14198,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 562,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍳',
         ingredients: [
@@ -14224,7 +14224,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 213,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Probiotiques'],
         tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍜',
         ingredients: [
@@ -14253,7 +14253,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 408,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍆',
         ingredients: [
@@ -14282,7 +14282,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 421,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🥣',
         ingredients: [
@@ -14311,7 +14311,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 499,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍝',
         ingredients: [
@@ -14339,7 +14339,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 656,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍗',
         ingredients: [
@@ -14368,7 +14368,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 296,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -14396,7 +14396,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'francais',
         calories: 336,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🧀',
         ingredients: [
@@ -14423,7 +14423,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 584,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🎃',
         ingredients: [
@@ -14451,7 +14451,7 @@ export const RECIPES = {
         difficulty: 'avance',
         cuisine: 'fusion',
         calories: 598,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍗',
         ingredients: [
@@ -14480,7 +14480,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 362,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍚',
         ingredients: [
@@ -14508,7 +14508,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'fusion',
         calories: 346,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍲',
         ingredients: [
@@ -14539,7 +14539,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'mexicain',
         calories: 355,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
         emoji: '🍠',
         ingredients: [
@@ -14566,7 +14566,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 345,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍚',
         ingredients: [
@@ -14594,7 +14594,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'asiatique',
         calories: 578,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🍛',
         ingredients: [
@@ -14623,7 +14623,7 @@ export const RECIPES = {
         difficulty: 'intermediaire',
         cuisine: 'italien',
         calories: 403,
-        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+        nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
         emoji: '🧀',
         ingredients: [
@@ -14652,7 +14652,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 455,
-        nutrients: ['Oméga-3 EPA/DHA', 'Enzymes', 'Sulforaphane', 'Gingérol'],
+        nutrients: ['Oméga-3 EPA/DHA', 'Enzymes', 'Sulforaphane', 'Gingérol', 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -14679,7 +14679,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'indien',
         calories: 365,
-        nutrients: ['Bêta-carotène', 'Curcumine', 'Gingérol', 'Acide laurique'],
+        nutrients: ['Bêta-carotène', 'Curcumine', 'Gingérol', 'Acide laurique', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍛',
         ingredients: [
@@ -14708,7 +14708,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 280,
-        nutrients: ['Bêta-carotène', 'Acide rosmarinique', 'Acide carnosique', 'Allicine'],
+        nutrients: ['Bêta-carotène', 'Acide rosmarinique', 'Acide carnosique', 'Allicine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍠',
         ingredients: [
@@ -14735,7 +14735,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 165,
-        nutrients: ['Lycopène x3', 'Allicine', 'Eugénol', 'Curcumine'],
+        nutrients: ['Lycopène x3', 'Allicine', 'Eugénol', 'Curcumine', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥣',
         ingredients: [
@@ -14762,7 +14762,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 430,
-        nutrients: ['Oméga-3', 'Bêta-carotène', 'Curcumine', 'Acide rosmarinique'],
+        nutrients: ['Oméga-3', 'Bêta-carotène', 'Curcumine', 'Acide rosmarinique', 'Glutathion'],
         tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
         emoji: '🐟',
         ingredients: [
@@ -14791,7 +14791,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 400,
-        nutrients: ['Isoflavones', 'Curcumine', 'Gingérol', 'Sulforaphane'],
+        nutrients: ['Isoflavones', 'Curcumine', 'Gingérol', 'Sulforaphane', 'Glutathion', 'Probiotiques', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥗',
         ingredients: [
@@ -14820,7 +14820,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 355,
-        nutrients: ['Curcumine', 'Sulforaphane', 'Gingérol', 'Bêta-carotène'],
+        nutrients: ['Curcumine', 'Sulforaphane', 'Gingérol', 'Bêta-carotène', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🥘',
         ingredients: [
@@ -14851,7 +14851,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 250,
-        nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6'],
+        nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6', 'Glutathion'],
         tags: ['vegetarien', 'sopk_friendly'],
         emoji: '🧁',
         ingredients: [
@@ -14902,7 +14902,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 180,
-        nutrients: ['Magnésium', 'Protéines végétales', 'Glucides complexes', 'Fer'],
+        nutrients: ['Magnésium', 'Protéines végétales', 'Glucides complexes', 'Fer', 'Zinc'],
         tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
         emoji: '🥜',
         ingredients: [
@@ -14951,7 +14951,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 277,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
@@ -14974,7 +14974,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 460,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🧁',
         ingredients: [
@@ -15001,7 +15001,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 196,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
@@ -15044,7 +15044,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 181,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍞',
         ingredients: [
@@ -15067,7 +15067,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 180,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🟤',
         ingredients: [
@@ -15116,7 +15116,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 237,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍎',
         ingredients: [
@@ -15164,7 +15164,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 160,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
@@ -15188,7 +15188,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 204,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍞',
         ingredients: [
@@ -15210,7 +15210,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 260,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion', 'Zinc'],
         tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
@@ -15235,7 +15235,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 292,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🥣',
         ingredients: [
@@ -15259,7 +15259,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 150,
-        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+        nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
         emoji: '🍫',
         ingredients: [
@@ -15284,7 +15284,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 135,
-        nutrients: ['Flavanols x4', 'Oméga-3 ALA', 'Gingérol', 'Cinnamaldéhyde'],
+        nutrients: ['Flavanols x4', 'Oméga-3 ALA', 'Gingérol', 'Cinnamaldéhyde', 'Glutathion'],
         tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
@@ -15337,7 +15337,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 120,
-        nutrients: ['Flavanols', 'Gingérol', 'Théobromine', 'Cinnamaldéhyde'],
+        nutrients: ['Flavanols', 'Gingérol', 'Théobromine', 'Cinnamaldéhyde', 'Zinc'],
         tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
         emoji: '🍫',
         ingredients: [
@@ -15364,7 +15364,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 150,
-        nutrients: ['Magnésium', 'Antioxydants', 'Calcium', 'Fer'],
+        nutrients: ['Magnésium', 'Antioxydants', 'Calcium', 'Fer', 'Zinc'],
         tags: ['vegan', 'sans_gluten', 'sans_lactose'],
         emoji: '☕',
         ingredients: [
@@ -15411,7 +15411,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 100,
-        nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium'],
+        nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose'],
         emoji: '🥛',
         ingredients: [
@@ -15460,7 +15460,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 280,
-        nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines'],
+        nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines', 'Zinc'],
         tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
         emoji: '🥤',
         ingredients: [
@@ -15560,7 +15560,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 229,
-        nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+        nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
@@ -15684,7 +15684,7 @@ export const RECIPES = {
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 310,
-        nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+        nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort", 'Zinc'],
         tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
         emoji: '🍫',
         ingredients: [
