@@ -756,15 +756,15 @@ export default function Alimentation() {
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-t-[28px] w-full max-w-md overflow-y-auto"
-              style={{ maxHeight: '92vh' }}
+              className="bg-white rounded-t-[28px] w-full max-w-md overflow-y-auto overscroll-contain"
+              style={{ maxHeight: '95vh', WebkitOverflowScrolling: 'touch' }}
             >
               {/* Emoji Header */}
               <div
-                className="relative h-40 overflow-hidden rounded-t-[28px] md:rounded-t-[24px] flex items-center justify-center"
+                className="sticky top-0 z-10 relative h-32 overflow-hidden rounded-t-[28px] flex items-center justify-center"
                 style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
               >
-                <span className="text-7xl">{openDailyRecipe.emoji || '🍽️'}</span>
+                <span className="text-5xl">{openDailyRecipe.emoji || '🍽️'}</span>
                 <button
                   onClick={() => setOpenDailyRecipe(null)}
                   className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
@@ -773,7 +773,7 @@ export default function Alimentation() {
                 </button>
               </div>
 
-              <div className="p-5 pb-10 space-y-5">
+              <div className="p-5 pb-24 space-y-5">
                 {/* Title */}
                 <div>
                   <h3 className="font-display text-xl text-luna-text">{openDailyRecipe.name}</h3>
