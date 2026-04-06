@@ -105,7 +105,10 @@ const RESPONSES = {
       `${ctx.name}, écoute ton corps à J${ctx.currentDay}. C'est le moment du yoga restauratif, de la marche douce, du stretching.\n\nPas besoin de forcer — bouger un peu suffit. L'intensité, ça revient naturellement en phase folliculaire. Ton corps récupère, laisse-le faire 🧘‍♀️`,
     ]),
 
-    dormir: (ctx) => `${ctx.name}, le sommeil en phase menstruelle peut être perturbé par les douleurs. Ce qui aide : une bouillotte sur le ventre au coucher, une tisane camomille, et la chambre à 18-19°C.\n\nSi t'as du magnésium, prends-le le soir. Et vise 8-9h — ton corps en a vraiment besoin en ce moment. Dernier repas léger, 2h avant de dormir 🌙`,
+    dormir: (ctx) => pickOne([
+      `${ctx.name}, le sommeil en phase menstruelle peut être perturbé par les douleurs. Bouillotte sur le ventre au coucher, tisane camomille, chambre à 18-19°C.\n\nMagnésium le soir + dernier repas léger 2h avant. Vise 8-9h — ton corps en a besoin 🌙`,
+      `${ctx.name}, bien dormir pendant tes règles c'est possible ! Tisane camomille + bouillotte + chambre fraîche.\n\nSi les douleurs te réveillent, magnésium au coucher. Accorde-toi des nuits longues cette semaine — 8-9h idéalement 😴`,
+    ]),
 
     sucre: (ctx) => adaptFoodText(pickOne([
       `${ctx.name}, les envies de sucre pendant les règles c'est 100% hormonal — ta sérotonine est basse et ton cerveau cherche du sucre rapide pour la remonter.\n\nL'astuce : chocolat noir 70%+, banane avec du beurre de cacahuète, porridge avoine-miel-cannelle, ou dattes + amandes. Ça nourrit le besoin sans le pic glycémique.\n\nZéro culpabilité — c'est de la biochimie, pas un manque de volonté 💛`,
@@ -163,7 +166,10 @@ const RESPONSES = {
       `${ctx.name}, fonce ! Phase folliculaire = meilleure récupération musculaire. C'est le moment de te dépasser : HIIT, muscu, cardio intense, tout est permis.\n\nTon corps en tirera le maximum de bénéfices. Vas-y à fond 🔥`,
     ]),
 
-    dormir: (ctx) => `${ctx.name}, bonne nouvelle — ton sommeil s'améliore naturellement avec la montée d'œstrogène !\n\nProfite pour recaler ton rythme : coucher à heure fixe, lever tôt avec la lumière naturelle, sport le matin ou en journée. 7-8h suffisent en phase folliculaire.\n\nC'est le moment idéal pour poser de bonnes habitudes de sommeil 😴`,
+    dormir: (ctx) => pickOne([
+      `${ctx.name}, bonne nouvelle — ton sommeil s'améliore naturellement avec la montée d'œstrogène !\n\nRecale ton rythme : coucher fixe, lever tôt avec la lumière naturelle, sport le matin. 7-8h suffisent.\n\nC'est le moment idéal pour poser de bonnes habitudes de sommeil 😴`,
+      `${ctx.name}, l'œstrogène remonte et ton sommeil aussi ! Profite pour installer une routine solide.\n\nLumière naturelle le matin, sport en journée, pas d'écran avant le coucher. 7-8h c'est parfait en phase folliculaire 🌅`,
+    ]),
 
     sucre: (ctx) => adaptFoodText(`${ctx.name}, en phase folliculaire les envies de sucre devraient diminuer car l'œstrogène et la sérotonine remontent.\n\nSi tu en as encore, vérifie ton sommeil et ton petit-déj — un petit-déj pas assez protéiné peut provoquer des fringales. Essaie œufs + avocat + pain complet le matin.\n\nTon corps gère mieux le sucre en ce moment — c'est la meilleure phase pour réduire les envies 🍎`, ctx),
 
@@ -204,7 +210,10 @@ const RESPONSES = {
       `${ctx.name}, phase ovulatoire = performance maximale. Fonce sur tout ce qui est intense : HIIT, musculation, cardio, boxe. Ton corps est prêt.\n\nPense à bien t'échauffer (ligaments plus lâches) et vas-y à fond 🔥`,
     ]),
 
-    dormir: (ctx) => `${ctx.name}, t'as beaucoup d'énergie mais ne néglige pas le sommeil ! 7-8h restent nécessaires.\n\nUne courte méditation pour redescendre le soir (10 min), pas d'écran 30 min avant de dormir. La phase lutéale arrive bientôt et tu auras besoin de bonnes réserves 😴`,
+    dormir: (ctx) => pickOne([
+      `${ctx.name}, t'as beaucoup d'énergie mais ne néglige pas le sommeil ! 7-8h restent nécessaires.\n\nMéditation 10 min pour redescendre, pas d'écran 30 min avant. La phase lutéale arrive bientôt — fais des réserves 😴`,
+      `${ctx.name}, même si t'es au top en phase ovulatoire, le sommeil reste la base. 7-8h minimum.\n\nPas d'écran avant de dormir, une petite routine calme. Stock de bon sommeil avant la phase lutéale 🌙`,
+    ]),
 
     confiance: (ctx) => `${ctx.name}, ta confiance est naturellement au MAX ! L'œstrogène + la testostérone = combo gagnant.\n\nC'est LE moment pour les négociations, entretiens, first dates, conversations difficiles, proposer tes idées. Tes capacités verbales et ton charisme sont à leur sommet.\n\nProfite de ces 2-3 jours 👑`,
 
@@ -248,14 +257,20 @@ const RESPONSES = {
         : 'Privilégie le yoga, la marche, le stretching. Ton corps a besoin de douceur.'}\n\nTu reprendras à fond en phase folliculaire 💪`,
     ]),
 
-    dormir: (ctx) => `${ctx.name}, la progestérone te rend somnolente MAIS peut fragmenter ton sommeil — c'est le paradoxe lutéal.\n\nMagnésium au coucher, tisane camomille 45 min avant, chambre à 18-19°C (ta température corporelle monte), pas de café après 14h. Routine stricte : même heure chaque soir.\n\nVise 8-9h en phase lutéale 😴`,
+    dormir: (ctx) => pickOne([
+      `${ctx.name}, la progestérone te rend somnolente MAIS peut fragmenter ton sommeil — c'est le paradoxe lutéal.\n\nMagnésium au coucher, tisane camomille 45 min avant, chambre à 18-19°C (ta température corporelle monte), pas de café après 14h.\n\nVise 8-9h en phase lutéale 😴`,
+      `${ctx.name}, sommeil compliqué en phase lutéale ? C'est fréquent — la progestérone endort mais fragmente les nuits.\n\nMon combo : magnésium le soir, tisane, chambre fraîche (18-19°C), et surtout routine fixe. Couche-toi à la même heure, même le week-end.\n\nTon sommeil va se stabiliser après les règles 🌙`,
+    ]),
 
     sucre: (ctx) => adaptFoodText(pickOne([
       `${ctx.name}, les envies de sucre en phase lutéale sont 100% biologiques ! Ta sérotonine baisse, ton métabolisme augmente, ton corps demande du carburant.\n\nAlternatives malignes : chocolat noir 70%+, porridge avoine-banane-cannelle, dattes + beurre de cacahuète, patate douce rôtie au miel, smoothie banane-cacao.\n\nMange. Nourris. Ton. Corps. C'est de la biologie, pas de la faiblesse 💛`,
       `${ctx.name}, envie de sucre ? Ton corps te le demande pour de bonnes raisons — sérotonine basse + métabolisme en hausse.\n\nFais-toi plaisir intelligemment : chocolat noir, dattes + amandes, banane + beurre de cacahuète, porridge chaud. Ça nourrit le besoin sans le crash.\n\nAucune culpabilité à avoir 🍫`,
     ]), ctx),
 
-    ballonnements: (ctx) => adaptFoodText(`${ctx.name}, les ballonnements en phase lutéale c'est la progestérone qui ralentit ta digestion.\n\nCe qui aide : manger lentement, portions plus petites, tisane de gingembre ou de fenouil, marche 15 min après les repas. Évite les sodas, chewing-gums, et les crucifères crus.\n\nC'est temporaire — ça s'améliore après les règles 🌿`, ctx),
+    ballonnements: (ctx) => adaptFoodText(pickOne([
+      `${ctx.name}, les ballonnements en phase lutéale c'est la progestérone qui ralentit ta digestion.\n\nMange lentement, portions plus petites, tisane gingembre ou fenouil après les repas. Évite sodas et chewing-gums.\n\nC'est temporaire — ça s'améliore après les règles 🌿`,
+      `${ctx.name}, la progestérone ralentit ta digestion en ce moment — d'où les ballonnements.\n\nMes astuces : une petite marche de 15 min après manger, tisane fenouil, et évite de manger trop vite. Les crucifères crus peuvent aggraver.\n\nÇa passe en début de cycle, promis 💚`,
+    ]), ctx),
 
     irritabilite: (ctx) => adaptFoodText(pickOne([
       `${ctx.name}, l'irritabilité en phase lutéale c'est ultra fréquent — la chute d'œstrogène + la progestérone impactent directement la sérotonine.\n\nMagnésium (amandes, chocolat noir), oméga-3 (saumon, noix), respiration 4-7-8 quand ça monte. Limite le café et le sucre raffiné, et communique tes besoins à ton entourage.\n\nCe n'est PAS toi — ce sont tes hormones. Et c'est valide 💜`,
@@ -1531,6 +1546,27 @@ function handleConversationMemory(question, history, phase, ctx) {
 }
 
 // Naturalise les réponses : varie l'intro, le ton, la structure
+// ===== NORMALISATION DE LONGUEUR =====
+// Garde les réponses entre 2-4 paragraphes pour un ton cohérent
+function normalizeLength(text) {
+  if (!text) return text;
+  const paragraphs = text.split('\n\n').filter(p => p.trim());
+
+  // Si <= 4 paragraphes c'est bon
+  if (paragraphs.length <= 4) return text;
+
+  // Garder : intro (1er), les 2 plus riches en contenu, et le dernier (closing)
+  const intro = paragraphs[0];
+  const closing = paragraphs[paragraphs.length - 1];
+  const middle = paragraphs.slice(1, -1);
+
+  // Trier par richesse de contenu (longueur comme proxy)
+  const sorted = middle.sort((a, b) => b.length - a.length);
+  const kept = sorted.slice(0, 2).sort((a, b) => middle.indexOf(a) - middle.indexOf(b));
+
+  return [intro, ...kept, closing].join('\n\n');
+}
+
 function naturalizeResponse(text, name) {
   if (!name || name === 'ma belle') return text;
 
@@ -1561,7 +1597,81 @@ function naturalizeResponse(text, name) {
   }
 }
 
-export function getLunaResponse(question, phase, userContext = {}, conversationHistory = []) {
+// ===== ENRICHISSEMENT CHECK-IN : adapte TOUTES les réponses au ressenti du jour =====
+const SYMPTOM_MICRO_TIPS = {
+  'Crampes': '🔥 Pour tes crampes : bouillotte + tisane gingembre, ça soulage vraiment.',
+  'Ballonnements': '🫧 Pour les ballonnements : évite le sel, bois du fenouil ou du gingembre.',
+  'Maux de tête': '🧊 Pour ton mal de tête : hydrate-toi bien, magnésium + repos au calme.',
+  'Fatigue': '🔋 Pour ta fatigue : protéines au prochain repas + micro-sieste si tu peux.',
+  'Nausées': '🍋 Pour tes nausées : gingembre frais ou en tisane, repas légers et fréquents.',
+  'Acné': '✨ Pour ta peau : zinc (graines de courge) + oméga-3 + beaucoup d\'eau.',
+  'Insomnie': '🌙 Pour mieux dormir ce soir : magnésium, tisane camomille, pas d\'écran 1h avant.',
+  'Anxiété': '🧘 Pour ton anxiété : respiration 4-7-8 (inspire 4s, retiens 7s, expire 8s).',
+  'Irritabilité': '💆 Pour l\'irritabilité : magnésium + marche dehors 15 min, ça aide vraiment.',
+  'Douleurs lombaires': '🧘 Pour ton dos : étirements doux + bouillotte dans le bas du dos.',
+  'Seins douloureux': '💜 Pour la sensibilité des seins : soutien-gorge confort + onagre si tu en as.',
+  'Fringales': '🍫 Pour les fringales : snack protéiné (amandes, yaourt) plutôt que sucré.',
+  'Rétention d\'eau': '💧 Contre la rétention : bois plus d\'eau (paradoxal mais ça marche), réduis le sel.',
+  'Sautes d\'humeur': '🌊 Les sautes d\'humeur c\'est hormonal — sois douce avec toi.',
+  'Diarrhée': '🫖 Tisane de menthe poivrée + riz blanc, ça apaise la digestion.',
+  'Constipation': '🥝 Kiwi le matin + eau tiède citron + fibres douces (flocons d\'avoine).',
+  'Vertiges': '⚡ Mange quelque chose rapidement (banane, poignée d\'amandes) et hydrate-toi.',
+  'Spotting': '🩸 Le spotting est souvent hormonal et bénin, mais note-le pour en parler à ton médecin si ça persiste.',
+};
+
+function enrichWithCheckIn(response, userContext) {
+  if (!response || !userContext) return response;
+
+  const energy = userContext.energy;
+  const symptoms = userContext.symptoms || [];
+  const q = (userContext._question || '').toLowerCase();
+
+  // Ne pas enrichir les salutations, remerciements, small talk, détresse
+  if (q.match(/^(salut|coucou|hello|hey|bonjour|bonsoir|merci|thanks|ça va|ca va)\b/i)) return response;
+
+  let suffix = '';
+
+  // Ajouter un micro-tip pour UN symptôme pertinent (pas celui déjà traité dans la réponse)
+  if (symptoms.length > 0) {
+    // Trouver un symptôme qui n'est PAS déjà abordé dans la réponse
+    const responseLower = response.toLowerCase();
+    const unreferencedSymptom = symptoms.find(s => {
+      const tip = SYMPTOM_MICRO_TIPS[s];
+      if (!tip) return false;
+      // Vérifier que la réponse ne parle pas déjà de ce symptôme
+      const keywords = s.toLowerCase().split(/\s+/);
+      return !keywords.some(kw => kw.length > 3 && responseLower.includes(kw));
+    });
+
+    if (unreferencedSymptom && SYMPTOM_MICRO_TIPS[unreferencedSymptom]) {
+      suffix = `\n\n${SYMPTOM_MICRO_TIPS[unreferencedSymptom]}`;
+    }
+  }
+
+  // Adapter le ton selon l'énergie
+  if (energy && energy <= 30) {
+    // Très basse énergie : ajouter un message doux au début
+    const lowEnergyPrefixes = [
+      'Je sais que t\'es pas au top aujourd\'hui — ',
+      'Avec ton énergie basse aujourd\'hui, vas-y doucement. ',
+      'Prends soin de toi aujourd\'hui 💛 ',
+    ];
+    const prefix = lowEnergyPrefixes[Math.floor(Math.random() * lowEnergyPrefixes.length)];
+    // Insérer le prefix après la première phrase d'accroche (après le nom)
+    return response + suffix;
+  }
+
+  if (energy && energy >= 80) {
+    // Haute énergie : renforcer positivement
+    if (!response.includes('énergie') && !response.includes('forme')) {
+      suffix += (suffix ? ' ' : '\n\n') + 'Ton énergie est top aujourd\'hui, profites-en ! 🔥';
+    }
+  }
+
+  return suffix ? response + suffix : response;
+}
+
+function _getLunaResponseCore(question, phase, userContext = {}, conversationHistory = []) {
   const q = question.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const qOriginal = question.toLowerCase();
   const responses = RESPONSES[phase] || RESPONSES.follicular;
@@ -1823,17 +1933,15 @@ export function getLunaResponse(question, phase, userContext = {}, conversationH
   }
 
   // ===== 6. Réponse par défaut — conversationnelle et utile =====
-  // Add check-in context if available
-  let checkInPrefix = '';
-  if (ctx.lastCheckInEnergy && ctx.lastCheckInEnergy < 40) {
-    checkInPrefix = `Je vois que ton énergie est à ${ctx.lastCheckInEnergy} aujourd'hui — prends soin de toi. `;
-  } else if (ctx.lastCheckInEnergy && ctx.lastCheckInEnergy > 75) {
-    checkInPrefix = `Ton énergie est à ${ctx.lastCheckInEnergy} aujourd'hui, super ! `;
-  }
-  if (ctx.lastCheckInSymptoms && ctx.lastCheckInSymptoms.length > 0) {
-    const symptomList = ctx.lastCheckInSymptoms.slice(0, 3).join(', ');
-    checkInPrefix += `Tu as noté ${symptomList} dans ton check-in. `;
-  }
   const raw = responses['default'](ctx);
-  return naturalizeResponse(checkInPrefix + raw, name);
+  return naturalizeResponse(raw, name);
+}
+
+// ===== WRAPPER PRINCIPAL : core + enrichissement check-in + normalisation =====
+export function getLunaResponse(question, phase, userContext = {}, conversationHistory = []) {
+  // Passer la question au context pour que enrichWithCheckIn puisse l'analyser
+  const enrichedContext = { ...userContext, _question: question };
+  const coreResponse = _getLunaResponseCore(question, phase, userContext, conversationHistory);
+  const enriched = enrichWithCheckIn(coreResponse, enrichedContext);
+  return normalizeLength(enriched);
 }
