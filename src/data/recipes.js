@@ -1801,7 +1801,7 @@ export const RECIPES = {
       {
         name: 'Bol de riz au curcuma, avocat et œuf mollet',
         description: 'Le riz au curcuma colore et apporte de la curcumine. L\'avocat fournit des oméga-9 anti-inflammatoire.',
-        prepTime: '5 min',
+        prepTime: '25 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 410,
@@ -6696,7 +6696,7 @@ export const RECIPES = {
       {
         name: 'Saumon en croûte de graines de lin et chia',
         description: 'Triple oméga-3 : saumon (EPA/DHA) + lin (ALA) + chia (ALA). Les graines de lin contiennent aussi des.',
-        prepTime: '10 min',
+        prepTime: '30 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 430,
@@ -12139,7 +12139,7 @@ export const RECIPES = {
       {
         name: 'Granola bowl au yaourt et compote',
         description: 'Les graines de chia apportent oméga-3 et fibres. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour bien démarrer la journée.',
-        prepTime: '20 min',
+        prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 180,
@@ -13726,7 +13726,7 @@ export const RECIPES = {
       {
         name: 'Dahl de lentilles jaunes au tamarin et coriandre',
         description: 'Les lentilles jaunes contiennent des polyphénols. Le tamarin apporte de l\'acide tartrique anti-infla.',
-        prepTime: '10 min',
+        prepTime: '35 min',
         difficulty: 'debutant',
         cuisine: 'asiatique',
         calories: 325,
@@ -14731,7 +14731,7 @@ export const RECIPES = {
       {
         name: 'Soupe de tomates rôties à l\'ail et au basilic',
         description: 'Rôtir tomates et ail concentre lycopène x3 et transforme l\'alliine en allicine (plus anti-inflammato.',
-        prepTime: '10 min',
+        prepTime: '40 min',
         difficulty: 'debutant',
         cuisine: 'francais',
         calories: 165,
@@ -15481,7 +15481,7 @@ export const RECIPES = {
       {
         name: 'Lait d\'or (golden milk) au curcuma et cannelle',
         description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
-        prepTime: '10 min',
+        prepTime: '5 min',
         difficulty: 'debutant',
         cuisine: 'fusion',
         calories: 113,
