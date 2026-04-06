@@ -102,17 +102,76 @@ const getDrinkIcon = (drinkName) => {
   return '🍵';
 };
 
-const buildDailyMenu = (phase, phaseData) => {
+// Mots-clés allergènes (même liste que Recettes.jsx)
+const ALLERGEN_KEYWORDS = {
+  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin'],
+  'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
+  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari'],
+  'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
+  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'poisson'],
+  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
+  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'feta', 'mascarpone'],
+  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'couscous', 'boulgour', 'semoule', 'tortilla', 'wrap'],
+  'Sésame': ['sésame', 'tahini', 'tahin'],
+  'Céleri': ['céleri', 'celeri'],
+  'Moutarde': ['moutarde'],
+};
+
+const containsAllergen = (recipe, allergyList) => {
+  if (!allergyList || allergyList.length === 0) return false;
+  const fullText = ((recipe.ingredients || []).join(' ') + ' ' + (recipe.name || '')).toLowerCase();
+  return allergyList.some(allergy => {
+    const keywords = ALLERGEN_KEYWORDS[allergy] || [];
+    return keywords.some(kw => fullText.includes(kw.toLowerCase()));
+  });
+};
+
+const buildDailyMenu = (phase, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
   const recipes = RECIPES[phase];
   if (!recipes) return [];
   const rand = seededRandom(getDaySeed() + phase.charCodeAt(0));
   const goodDrinks = phaseData.drinks?.good || [];
 
-  return MEAL_SLOTS.map((slot, i) => {
+  const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
+  const maxLevel = LEVEL_ORDER[cookingLevel] || 3;
+
+  const maxTime = (() => {
+    if (!cookingTime || cookingTime === '60min+') return null;
+    if (cookingTime === '15min') return 15;
+    if (cookingTime === '30min') return 30;
+    if (cookingTime === '45min') return 45;
+    return null;
+  })();
+
+  const parseMinutes = (prepTime) => {
+    if (!prepTime) return 999;
+    const str = prepTime.toLowerCase().replace(/\s/g, '');
+    const hMatch = str.match(/(\d+)\s*h/);
+    const mMatch = str.match(/(\d+)\s*min/);
+    let total = 0;
+    if (hMatch) total += parseInt(hMatch[1]) * 60;
+    if (mMatch) total += parseInt(mMatch[1]);
+    if (!hMatch && !mMatch) { const num = parseInt(str); total = isNaN(num) ? 999 : num; }
+    return total;
+  };
+
+  return MEAL_SLOTS.map((slot) => {
     const pool = recipes[slot.key];
     if (!pool || pool.length === 0) return null;
-    const idx = Math.floor(rand() * pool.length);
-    const recipe = pool[idx];
+
+    // Filtrer le pool selon le profil
+    const filtered = pool.filter(recipe => {
+      if (requiredTags.length > 0 && !requiredTags.every(tag => (recipe.tags || []).includes(tag))) return false;
+      if (containsAllergen(recipe, allergies)) return false;
+      const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
+      if (recipeLevel > maxLevel) return false;
+      if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return false;
+      return true;
+    });
+
+    const available = filtered.length > 0 ? filtered : pool; // fallback si aucun résultat
+    const idx = Math.floor(rand() * available.length);
+    const recipe = available[idx];
     const drinkIdx = Math.floor(rand() * goodDrinks.length);
     const drink = goodDrinks[drinkIdx] || null;
     return {
@@ -125,7 +184,7 @@ const buildDailyMenu = (phase, phaseData) => {
 };
 
 export default function Alimentation() {
-  const { cycleInfo, dietPreferences, healthIssues } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
   const [openNutrient, setOpenNutrient] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
@@ -134,7 +193,22 @@ export default function Alimentation() {
   const phaseData = PHASES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = phaseData.nutrientsFull || {};
-  const dailyMenu = useMemo(() => buildDailyMenu(phase, phaseData), [phase]);
+  const dailyMenu = useMemo(() => {
+    const tags = [];
+    const prefs = dietPreferences || ['omnivore'];
+    const issues = healthIssues || [];
+    if (prefs.includes('Végane')) tags.push('vegan');
+    else if (prefs.includes('Végétarienne')) tags.push('vegetarien');
+    if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
+    if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
+    if (issues.includes('SOPK')) tags.push('sopk_friendly');
+    return buildDailyMenu(phase, phaseData, {
+      requiredTags: tags,
+      allergies: allergies || [],
+      cookingLevel,
+      cookingTime,
+    });
+  }, [phase, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {
