@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight } from 'lucide-react';
+import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
@@ -220,13 +220,29 @@ export default function Recettes() {
               <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em]" style={{ color: phaseData.color }}>
                 {phaseData.shortName} · Recettes
               </p>
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="w-9 h-9 rounded-full bg-white/70 backdrop-blur-sm flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
-              >
-                <Filter size={16} />
-              </button>
+              {(() => {
+                const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0;
+                return (
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className="relative w-9 h-9 rounded-full flex items-center justify-center transition-all"
+                    style={showFilters ? {
+                      backgroundColor: phaseData.color,
+                      color: 'white',
+                      boxShadow: `0 4px 12px ${phaseData.color}40`,
+                    } : {
+                      backgroundColor: 'rgba(255,255,255,0.7)',
+                      color: '#8A7B7F',
+                      boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)',
+                    }}
+                  >
+                    <Filter size={16} />
+                    {hasActiveFilters && !showFilters && (
+                      <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white" style={{ backgroundColor: phaseData.color }} />
+                    )}
+                  </button>
+                );
+              })()}
             </div>
             <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight mb-3">
               Recettes &{' '}
@@ -262,7 +278,7 @@ export default function Recettes() {
         </Link>
       </motion.div>
 
-      {/* Phase filter (collapsible) */}
+      {/* Filter Panel (accordion) */}
       <AnimatePresence>
         {showFilters && (
           <motion.div
@@ -272,128 +288,195 @@ export default function Recettes() {
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
-              {PHASE_FILTERS.map((pf) => (
+            <div
+              className="rounded-[20px] p-4 space-y-4"
+              style={{ backgroundColor: 'white', boxShadow: '0 2px 16px rgba(45, 34, 38, 0.06)' }}
+            >
+              {/* Active filters summary */}
+              {(() => {
+                const activeTags = [];
+                if (selectedPhase !== 'current') {
+                  const pf = PHASE_FILTERS.find(p => p.id === selectedPhase);
+                  activeTags.push({ label: pf?.label, key: 'phase', onRemove: () => setSelectedPhase('current') });
+                }
+                if (selectedLevel !== 'avance') {
+                  const lvlLabel = selectedLevel === 'debutant' ? 'Débutant' : 'Intermédiaire';
+                  activeTags.push({ label: lvlLabel, key: 'level', onRemove: () => setSelectedLevel('avance') });
+                }
+                if (selectedTime && selectedTime !== '60min+') {
+                  activeTags.push({ label: `≤ ${selectedTime.replace('min', ' min')}`, key: 'time', onRemove: () => setSelectedTime('') });
+                }
+                selectedCuisines.forEach(c => {
+                  const cuisineData = [
+                    { id: 'francais', label: 'Français' }, { id: 'italien', label: 'Italien' },
+                    { id: 'asiatique', label: 'Asiatique' }, { id: 'mediterraneen', label: 'Méditerranéen' },
+                    { id: 'indien', label: 'Indien' }, { id: 'mexicain', label: 'Mexicain' },
+                    { id: 'fusion', label: 'Healthy' },
+                  ].find(x => x.id === c);
+                  if (cuisineData) activeTags.push({ label: cuisineData.label, key: c, onRemove: () => setSelectedCuisines(prev => prev.filter(x => x !== c)) });
+                });
+
+                return activeTags.length > 0 && (
+                  <div className="flex items-center gap-2 flex-wrap pb-2 border-b border-gray-50">
+                    <span className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider">Actifs :</span>
+                    {activeTags.map(tag => (
+                      <span
+                        key={tag.key}
+                        className="inline-flex items-center gap-1 text-[11px] font-body font-semibold px-2.5 py-1 rounded-full"
+                        style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
+                      >
+                        {tag.label}
+                        <button onClick={tag.onRemove} className="hover:opacity-70">
+                          <X size={10} />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                );
+              })()}
+
+              {/* Phase */}
+              <div>
+                <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Phase</p>
+                <div className="flex gap-1.5 flex-wrap">
+                  {PHASE_FILTERS.map((pf) => (
+                    <button
+                      key={pf.id}
+                      onClick={() => setSelectedPhase(pf.id)}
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                      style={selectedPhase === pf.id ? {
+                        backgroundColor: phaseData.color,
+                        color: 'white',
+                      } : {
+                        backgroundColor: '#F5F3F1',
+                        color: '#8A7B7F',
+                      }}
+                    >
+                      {pf.icon && <span className="text-[10px]">{pf.icon}</span>}
+                      {pf.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Temps + Niveau row */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Temps</p>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {[
+                      { id: '15min', label: '15\'', icon: '⚡' },
+                      { id: '30min', label: '30\'', icon: '🕐' },
+                      { id: '45min', label: '45\'', icon: '🕑' },
+                      { id: '60min+', label: '∞', icon: '' },
+                    ].map((t) => {
+                      const isActive = selectedTime === t.id || (!selectedTime && t.id === '60min+');
+                      return (
+                        <button
+                          key={t.id}
+                          onClick={() => setSelectedTime(t.id)}
+                          className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                          style={isActive ? {
+                            backgroundColor: phaseData.color,
+                            color: 'white',
+                          } : {
+                            backgroundColor: '#F5F3F1',
+                            color: '#8A7B7F',
+                          }}
+                        >
+                          {t.icon && <span className="text-[10px]">{t.icon}</span>}
+                          {t.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Niveau</p>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {[
+                      { id: 'debutant', label: 'Facile', icon: '🌱' },
+                      { id: 'intermediaire', label: 'Moyen', icon: '🌿' },
+                      { id: 'avance', label: 'Tout', icon: '👩‍🍳' },
+                    ].map((lvl) => (
+                      <button
+                        key={lvl.id}
+                        onClick={() => setSelectedLevel(lvl.id)}
+                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                        style={selectedLevel === lvl.id ? {
+                          backgroundColor: phaseData.color,
+                          color: 'white',
+                        } : {
+                          backgroundColor: '#F5F3F1',
+                          color: '#8A7B7F',
+                        }}
+                      >
+                        <span className="text-[10px]">{lvl.icon}</span>
+                        {lvl.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Cuisine */}
+              <div>
+                <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Cuisine</p>
+                <div className="flex gap-1.5 flex-wrap">
+                  {[
+                    { id: 'francais', label: 'Français', icon: '🇫🇷' },
+                    { id: 'italien', label: 'Italien', icon: '🇮🇹' },
+                    { id: 'asiatique', label: 'Asiatique', icon: '🥢' },
+                    { id: 'mediterraneen', label: 'Médit.', icon: '🫒' },
+                    { id: 'indien', label: 'Indien', icon: '🍛' },
+                    { id: 'mexicain', label: 'Mexicain', icon: '🌮' },
+                    { id: 'fusion', label: 'Healthy', icon: '🥗' },
+                  ].map((c) => {
+                    const isActive = selectedCuisines.includes(c.id);
+                    return (
+                      <button
+                        key={c.id}
+                        onClick={() => setSelectedCuisines((prev) =>
+                          prev.includes(c.id) ? prev.filter((x) => x !== c.id) : [...prev, c.id]
+                        )}
+                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                        style={isActive ? {
+                          backgroundColor: phaseData.color,
+                          color: 'white',
+                        } : {
+                          backgroundColor: '#F5F3F1',
+                          color: '#8A7B7F',
+                        }}
+                      >
+                        <span className="text-[10px]">{c.icon}</span>
+                        {c.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center justify-between pt-2 border-t border-gray-50">
                 <button
-                  key={pf.id}
-                  onClick={() => setSelectedPhase(pf.id)}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
-                  style={selectedPhase === pf.id ? {
-                    borderColor: phaseData.color,
-                    backgroundColor: phaseData.bgColor,
-                    color: phaseData.colorDark,
-                  } : {
-                    borderColor: '#F0EEEC',
-                    backgroundColor: 'white',
-                    color: '#8A7B7F',
+                  onClick={() => {
+                    setSelectedPhase('current');
+                    setSelectedLevel(cookingLevel || 'avance');
+                    setSelectedTime(cookingTime || '');
+                    setSelectedCuisines([]);
                   }}
+                  className="flex items-center gap-1.5 text-[11px] font-body font-semibold text-luna-text-hint hover:text-luna-text transition-colors"
                 >
-                  {pf.icon && <span>{pf.icon}</span>}
-                  {pf.label}
+                  <RotateCcw size={12} />
+                  Réinitialiser
                 </button>
-              ))}
-            </div>
-
-            {/* Niveau */}
-            <div className="pt-1">
-              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Niveau</p>
-              <div className="flex gap-2">
-                {[
-                  { id: 'debutant', label: 'Débutant', icon: '🌱' },
-                  { id: 'intermediaire', label: 'Intermédiaire', icon: '🌿' },
-                  { id: 'avance', label: 'Tout niveau', icon: '👩‍🍳' },
-                ].map((lvl) => (
-                  <button
-                    key={lvl.id}
-                    onClick={() => setSelectedLevel(lvl.id)}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
-                    style={selectedLevel === lvl.id ? {
-                      borderColor: phaseData.color,
-                      backgroundColor: phaseData.bgColor,
-                      color: phaseData.colorDark,
-                    } : {
-                      borderColor: '#F0EEEC',
-                      backgroundColor: 'white',
-                      color: '#8A7B7F',
-                    }}
-                  >
-                    <span>{lvl.icon}</span>
-                    {lvl.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Temps */}
-            <div className="pt-1">
-              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Temps</p>
-              <div className="flex gap-2">
-                {[
-                  { id: '15min', label: '15 min', icon: '⚡' },
-                  { id: '30min', label: '30 min', icon: '🕐' },
-                  { id: '45min', label: '45 min', icon: '🕑' },
-                  { id: '60min+', label: 'Pas de limite', icon: '♾️' },
-                ].map((t) => {
-                  const isActive = selectedTime === t.id || (!selectedTime && t.id === '60min+');
-                  return (
-                    <button
-                      key={t.id}
-                      onClick={() => setSelectedTime(t.id)}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
-                      style={isActive ? {
-                        borderColor: phaseData.color,
-                        backgroundColor: phaseData.bgColor,
-                        color: phaseData.colorDark,
-                      } : {
-                        borderColor: '#F0EEEC',
-                        backgroundColor: 'white',
-                        color: '#8A7B7F',
-                      }}
-                    >
-                      <span>{t.icon}</span>
-                      {t.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Cuisine */}
-            <div className="pt-1">
-              <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mb-1.5">Cuisine</p>
-              <div className="flex gap-2 flex-wrap">
-                {[
-                  { id: 'francais', label: 'Français', icon: '🇫🇷' },
-                  { id: 'italien', label: 'Italien', icon: '🇮🇹' },
-                  { id: 'asiatique', label: 'Asiatique', icon: '🥢' },
-                  { id: 'mediterraneen', label: 'Méditerranéen', icon: '🫒' },
-                  { id: 'indien', label: 'Indien', icon: '🍛' },
-                  { id: 'mexicain', label: 'Mexicain', icon: '🌮' },
-                  { id: 'fusion', label: 'Healthy', icon: '🥗' },
-                ].map((c) => {
-                  const isActive = selectedCuisines.includes(c.id);
-                  return (
-                    <button
-                      key={c.id}
-                      onClick={() => setSelectedCuisines((prev) =>
-                        prev.includes(c.id) ? prev.filter((x) => x !== c.id) : [...prev, c.id]
-                      )}
-                      className="flex items-center gap-1.5 px-3.5 py-2 rounded-pill text-xs font-body font-semibold whitespace-nowrap transition-all border-2 flex-shrink-0"
-                      style={isActive ? {
-                        borderColor: phaseData.color,
-                        backgroundColor: phaseData.bgColor,
-                        color: phaseData.colorDark,
-                      } : {
-                        borderColor: '#F0EEEC',
-                        backgroundColor: 'white',
-                        color: '#8A7B7F',
-                      }}
-                    >
-                      <span>{c.icon}</span>
-                      {c.label}
-                    </button>
-                  );
-                })}
+                <button
+                  onClick={() => setShowFilters(false)}
+                  className="px-4 py-2 rounded-full text-[12px] font-body font-bold text-white transition-all"
+                  style={{ backgroundColor: phaseData.color, boxShadow: `0 4px 12px ${phaseData.color}40` }}
+                >
+                  Voir {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''}
+                </button>
               </div>
             </div>
           </motion.div>
