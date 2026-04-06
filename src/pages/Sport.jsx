@@ -22,7 +22,16 @@ const PHASE_SPORT_TITLES = {
   luteal: { main: 'Transition &', italic: 'Adaptation' },
 };
 
-const QUICK_ACTIVITIES = ['Marche', 'Course', 'Vélo', 'Natation', 'Yoga', 'Danse', 'Musculation', 'Stretching'];
+const QUICK_ACTIVITIES = [
+  { name: 'Marche', icon: '🚶‍♀️' },
+  { name: 'Course', icon: '🏃‍♀️' },
+  { name: 'Vélo', icon: '🚴‍♀️' },
+  { name: 'Natation', icon: '🏊‍♀️' },
+  { name: 'Yoga', icon: '🧘‍♀️' },
+  { name: 'Danse', icon: '💃' },
+  { name: 'Musculation', icon: '🏋️' },
+  { name: 'Stretching', icon: '🤸‍♀️' },
+];
 
 export default function Sport() {
   const { cycleInfo, sportSessions, sportLogs, dispatch } = useCycle();
@@ -177,201 +186,197 @@ export default function Sport() {
         </div>
       </motion.div>
 
-      {/* Séance validée */}
+      {/* Mon activité du jour — bloc unifié */}
       <motion.div variants={item}>
-        <button
-          onClick={toggleSession}
-          className="w-full rounded-[20px] p-5 flex items-center justify-between transition-all"
-          style={{
-            backgroundColor: sessionValidated ? phaseData.bgColor : 'white',
-            boxShadow: '0 2px 12px rgba(45,34,38,0.04)',
-            border: sessionValidated ? `2px solid ${phaseData.color}` : '2px solid transparent',
-          }}
-        >
-          <div className="text-left">
-            <h3 className="font-display text-base text-luna-text">
-              {sessionValidated ? 'Séance validée !' : 'Tu as bougé aujourd\'hui ?'}
-            </h3>
-            <p className="text-xs font-body text-luna-text-muted mt-0.5">
-              {sessionValidated ? 'Bravo, ton corps te remercie 💪' : 'Marque ta séance quand c\'est fait.'}
-            </p>
-          </div>
-          <div
-            className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all"
-            style={{
-              backgroundColor: sessionValidated ? phaseData.color : phaseData.bgColor,
-            }}
+        <div className="bg-white rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+
+          {/* En-tête avec check séance */}
+          <button
+            onClick={toggleSession}
+            className="w-full flex items-center justify-between p-5 pb-4 transition-all"
           >
-            <Check size={20} style={{ color: sessionValidated ? 'white' : phaseData.colorDark }} />
-          </div>
-        </button>
-      </motion.div>
-
-      {/* Mon activité du jour — tracking manuel */}
-      <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
-          <h3 className="font-display text-lg text-luna-text mb-4">Mon activité du jour</h3>
-
-          {/* Compteur de pas */}
-          <div className="mb-5">
-            <div className="flex items-center gap-2 mb-2">
-              <Footprints size={16} style={{ color: phaseData.colorDark }} />
-              <span className="text-sm font-body font-semibold text-luna-text">Mes pas</span>
+            <div className="text-left">
+              <h3 className="font-display text-lg text-luna-text">Mon activité du jour</h3>
+              <p className="text-xs font-body text-luna-text-muted mt-0.5">
+                {sessionValidated ? 'Séance validée, bravo ! 💪' : 'Marque ta séance quand c\'est fait.'}
+              </p>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="flex-1 relative">
-                <input
-                  type="number"
-                  value={stepsInput}
-                  onChange={(e) => setStepsInput(e.target.value)}
-                  placeholder="Ex: 8000"
-                  className="w-full px-4 py-3 rounded-[14px] bg-gray-50 border-0 text-sm font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
-                  style={{ '--tw-ring-color': `${phaseData.color}40` }}
-                />
-                {stepsInput && (
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-body text-luna-text-hint">pas</span>
-                )}
-              </div>
-              <button
-                onClick={saveSteps}
-                className="px-4 py-3 rounded-[14px] text-white text-sm font-body font-bold transition-all hover:opacity-90 flex-shrink-0"
-                style={{ backgroundColor: stepsSaved ? '#7BAE7F' : phaseData.color }}
-              >
-                {stepsSaved ? '✓' : <Save size={16} />}
-              </button>
+            <div
+              className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all"
+              style={{
+                backgroundColor: sessionValidated ? phaseData.color : phaseData.bgColor,
+                border: sessionValidated ? 'none' : `2px solid ${phaseData.color}30`,
+              }}
+            >
+              <Check size={18} style={{ color: sessionValidated ? 'white' : phaseData.colorDark }} />
             </div>
-            {/* Steps progress indication */}
-            {(parseInt(stepsInput) || todayLog.steps) > 0 && (
-              <div className="mt-2">
-                <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
-                  <div
-                    className="h-full rounded-full transition-all duration-500"
-                    style={{
-                      width: `${Math.min(((parseInt(stepsInput) || todayLog.steps) / 10000) * 100, 100)}%`,
-                      backgroundColor: phaseData.color,
-                    }}
-                  />
+          </button>
+
+          <div className="px-5 pb-5">
+            {/* Compteur de pas — compact */}
+            <div
+              className="rounded-[16px] p-4 mb-4"
+              style={{ backgroundColor: phaseData.bgColor }}
+            >
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-10 h-10 rounded-[12px] flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${phaseData.color}18` }}
+                >
+                  <Footprints size={18} style={{ color: phaseData.colorDark }} />
                 </div>
-                <p className="text-[10px] font-body text-luna-text-hint mt-1 text-right">
-                  {((parseInt(stepsInput) || todayLog.steps) / 1000).toFixed(1)}k / 10k pas
-                </p>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      value={stepsInput}
+                      onChange={(e) => setStepsInput(e.target.value)}
+                      placeholder="Nb de pas"
+                      className="flex-1 px-3 py-2 rounded-[10px] bg-white border-0 text-sm font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
+                      style={{ '--tw-ring-color': `${phaseData.color}40` }}
+                    />
+                    <button
+                      onClick={saveSteps}
+                      className="w-9 h-9 rounded-[10px] text-white flex items-center justify-center transition-all hover:opacity-90 flex-shrink-0"
+                      style={{ backgroundColor: stepsSaved ? '#7BAE7F' : phaseData.color }}
+                    >
+                      {stepsSaved ? <Check size={14} /> : <Save size={14} />}
+                    </button>
+                  </div>
+                  {/* Barre de progression */}
+                  {(parseInt(stepsInput) || todayLog.steps) > 0 && (
+                    <div className="mt-2 flex items-center gap-2">
+                      <div className="flex-1 h-1.5 rounded-full bg-white overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{
+                            width: `${Math.min(((parseInt(stepsInput) || todayLog.steps) / 10000) * 100, 100)}%`,
+                            backgroundColor: phaseData.color,
+                          }}
+                        />
+                      </div>
+                      <span className="text-[10px] font-body font-semibold flex-shrink-0" style={{ color: phaseData.colorDark }}>
+                        {((parseInt(stepsInput) || todayLog.steps) / 1000).toFixed(1)}k / 10k
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-
-          {/* Divider */}
-          <div className="h-px bg-gray-100 mb-5" />
-
-          {/* Ajouter une activité */}
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <Plus size={16} style={{ color: phaseData.colorDark }} />
-              <span className="text-sm font-body font-semibold text-luna-text">Ajouter une activité</span>
             </div>
 
-            {/* Quick activity pills */}
-            <div className="flex flex-wrap gap-1.5 mb-3">
+            {/* Séparateur */}
+            <div className="h-px bg-gray-100 mb-4" />
+
+            {/* Activités rapides — grille d'icônes */}
+            <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
+              Ajouter une activité
+            </p>
+            <div className="grid grid-cols-4 gap-2 mb-4">
               {QUICK_ACTIVITIES.map((a) => (
                 <button
-                  key={a}
-                  onClick={() => setActivityName(a)}
-                  className="px-3 py-1.5 rounded-pill text-xs font-body transition-all"
-                  style={activityName === a
-                    ? { backgroundColor: phaseData.bgColor, color: phaseData.colorDark, fontWeight: 600 }
-                    : { backgroundColor: '#F5F2F0', color: '#8A7B7F' }
+                  key={a.name}
+                  onClick={() => setActivityName(a.name)}
+                  className="flex flex-col items-center gap-1 py-2.5 rounded-[14px] transition-all"
+                  style={activityName === a.name
+                    ? { backgroundColor: phaseData.bgColor, border: `1.5px solid ${phaseData.color}` }
+                    : { backgroundColor: '#F8F6F4', border: '1.5px solid transparent' }
                   }
                 >
-                  {a}
+                  <span className="text-xl">{a.icon}</span>
+                  <span
+                    className="text-[10px] font-body leading-tight"
+                    style={{ color: activityName === a.name ? phaseData.colorDark : '#8A7B7F', fontWeight: activityName === a.name ? 600 : 400 }}
+                  >
+                    {a.name}
+                  </span>
                 </button>
               ))}
             </div>
 
-            {/* Custom name input */}
-            <input
-              type="text"
-              value={activityName}
-              onChange={(e) => setActivityName(e.target.value)}
-              placeholder="Ou saisis une activité..."
-              className="w-full px-4 py-3 rounded-[14px] bg-gray-50 border-0 text-sm font-body text-luna-text focus:outline-none focus:ring-2 transition-all mb-2"
-              style={{ '--tw-ring-color': `${phaseData.color}40` }}
-            />
-
-            {/* Duration + Add button */}
+            {/* Champ personnalisé + durée sur une ligne */}
             <div className="flex items-center gap-2">
-              <div className="flex-1 relative">
+              <input
+                type="text"
+                value={activityName}
+                onChange={(e) => setActivityName(e.target.value)}
+                placeholder="Ou saisis une activité..."
+                className="flex-1 px-3 py-2.5 rounded-[12px] bg-gray-50 border-0 text-xs font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
+                style={{ '--tw-ring-color': `${phaseData.color}40` }}
+              />
+              <div className="relative w-20 flex-shrink-0">
                 <input
                   type="number"
                   value={activityDuration}
                   onChange={(e) => setActivityDuration(e.target.value)}
-                  placeholder="Durée (min)"
-                  className="w-full px-4 py-3 rounded-[14px] bg-gray-50 border-0 text-sm font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
+                  placeholder="Min"
+                  className="w-full px-3 py-2.5 rounded-[12px] bg-gray-50 border-0 text-xs font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
                   style={{ '--tw-ring-color': `${phaseData.color}40` }}
                 />
-                {activityDuration && (
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-body text-luna-text-hint">min</span>
-                )}
               </div>
               <button
                 onClick={addActivity}
                 disabled={!activityName.trim()}
-                className="px-5 py-3 rounded-[14px] text-white text-sm font-body font-bold transition-all hover:opacity-90 flex items-center gap-1.5 flex-shrink-0 disabled:opacity-40"
-                style={{ backgroundColor: phaseData.color }}
+                className="w-9 h-9 rounded-[12px] flex items-center justify-center flex-shrink-0 transition-all disabled:opacity-30"
+                style={{ border: `1.5px solid ${phaseData.color}`, color: phaseData.colorDark }}
               >
                 <Plus size={16} />
-                Ajouter
               </button>
             </div>
-          </div>
 
-          {/* Liste des activités ajoutées */}
-          {todayLog.activities && todayLog.activities.length > 0 && (
-            <div className="mt-5 pt-5 border-t border-gray-100">
-              <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
-                Activités du jour
-              </p>
-              <div className="space-y-2">
-                {todayLog.activities.map((act, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between p-3 rounded-[14px]"
-                    style={{ backgroundColor: phaseData.bgColor }}
-                  >
-                    <div className="flex items-center gap-3">
+            {/* Liste des activités ajoutées */}
+            {todayLog.activities && todayLog.activities.length > 0 && (
+              <div className="mt-4 pt-4 border-t border-gray-100">
+                <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2.5">
+                  Aujourd'hui
+                </p>
+                <div className="space-y-2">
+                  {todayLog.activities.map((act, i) => {
+                    const matchedActivity = QUICK_ACTIVITIES.find((a) => a.name === act.name);
+                    return (
                       <div
-                        className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
-                        style={{ backgroundColor: `${phaseData.color}20` }}
+                        key={i}
+                        className="flex items-center justify-between p-3 rounded-[14px]"
+                        style={{ backgroundColor: phaseData.bgColor }}
                       >
-                        <span className="text-sm">🏃</span>
+                        <div className="flex items-center gap-3">
+                          <div
+                            className="w-9 h-9 rounded-[10px] flex items-center justify-center flex-shrink-0"
+                            style={{ backgroundColor: `${phaseData.color}18` }}
+                          >
+                            <span className="text-base">{matchedActivity ? matchedActivity.icon : '🏃'}</span>
+                          </div>
+                          <div>
+                            <p className="text-sm font-body font-semibold text-luna-text">{act.name}</p>
+                            {act.duration > 0 && (
+                              <p className="text-[11px] font-body text-luna-text-muted flex items-center gap-1">
+                                <Clock size={10} /> {act.duration} min
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => removeActivity(i)}
+                          className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/60 transition-colors"
+                        >
+                          <Trash2 size={13} className="text-luna-text-hint" />
+                        </button>
                       </div>
-                      <div>
-                        <p className="text-sm font-body font-semibold text-luna-text">{act.name}</p>
-                        {act.duration > 0 && (
-                          <p className="text-xs font-body text-luna-text-muted flex items-center gap-1">
-                            <Clock size={10} /> {act.duration} min
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => removeActivity(i)}
-                      className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/50 transition-colors"
-                    >
-                      <Trash2 size={14} className="text-luna-text-hint" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              {/* Total duration */}
-              {todayLog.activities.some((a) => a.duration > 0) && (
-                <div className="mt-3 text-right">
-                  <span className="text-xs font-body font-semibold" style={{ color: phaseData.colorDark }}>
-                    Total : {todayLog.activities.reduce((sum, a) => sum + (a.duration || 0), 0)} min
-                  </span>
+                    );
+                  })}
                 </div>
-              )}
-            </div>
-          )}
+
+                {/* Total */}
+                {todayLog.activities.some((a) => a.duration > 0) && (
+                  <div className="mt-3 flex items-center justify-end gap-1.5">
+                    <Clock size={12} style={{ color: phaseData.colorDark }} />
+                    <span className="text-xs font-body font-semibold" style={{ color: phaseData.colorDark }}>
+                      Total : {todayLog.activities.reduce((sum, a) => sum + (a.duration || 0), 0)} min
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </motion.div>
 
