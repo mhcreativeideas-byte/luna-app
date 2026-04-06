@@ -270,77 +270,6 @@ export default function Dashboard() {
         </motion.div>
       </motion.div>
 
-      {/* Today's Mood Board */}
-      <motion.div variants={item}>
-        <h2 className="font-display text-xl text-luna-text mb-1">Aujourd'hui</h2>
-        <p className="text-xs font-body text-luna-text-hint mb-4">{phaseData.name}</p>
-
-        {/* Energy Gauge */}
-        <div className="flex items-center gap-4 mb-4">
-          <span className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Energy Gauge</span>
-          <div className="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
-            <motion.div
-              className="h-full rounded-full"
-              style={{ backgroundColor: phaseData.color }}
-              initial={{ width: 0 }}
-              animate={{ width: `${energyLevel}%` }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-            />
-          </div>
-          <span className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>
-            {energyLevel}%
-          </span>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          {cards.map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1 * i, duration: 0.4 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate(card.link)}
-              className="rounded-[20px] p-4 flex flex-col items-center text-center cursor-pointer"
-              style={{ backgroundColor: card.bg }}
-            >
-              <div
-                className="w-11 h-11 rounded-full flex items-center justify-center mb-2.5"
-                style={{ backgroundColor: `${card.color}18` }}
-              >
-                <card.icon size={18} style={{ color: card.color }} />
-              </div>
-              <span
-                className="text-[9px] font-body font-bold uppercase tracking-widest mb-1"
-                style={{ color: card.color }}
-              >
-                {card.tag}
-              </span>
-              <h3 className="font-display text-sm text-luna-text leading-snug">{card.title}</h3>
-              <p className="text-[11px] font-body text-luna-text-muted mt-1 leading-relaxed">{card.subtitle}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* L'Insight */}
-      <motion.div variants={item}>
-        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
-          <div className="flex items-center gap-2 mb-3">
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: `${phaseData.color}20` }}
-            >
-              <Sparkles size={14} style={{ color: phaseData.color }} />
-            </div>
-            <h3 className="font-display text-base text-luna-text">L'Insight du jour</h3>
-          </div>
-          <p className="text-sm font-body text-luna-text-body leading-relaxed italic">
-            "{PHASE_INSIGHTS[phase]}"
-          </p>
-        </div>
-      </motion.div>
-
       {/* ═══════════════════════════════════════════════════════ */}
       {/* CALENDRIER — merged from Calendar page                */}
       {/* ═══════════════════════════════════════════════════════ */}
@@ -985,6 +914,77 @@ export default function Dashboard() {
         <div className="rounded-[16px] p-3" style={{ backgroundColor: phaseData.bgColor }}>
           <p className="text-xs font-body text-luna-text-muted text-center leading-relaxed">
             📅 Les dates sont des estimations basées sur ton cycle de {cycleLength} jours. Les variations sont normales.
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Today's Mood Board */}
+      <motion.div variants={item}>
+        <h2 className="font-display text-xl text-luna-text mb-1">Aujourd'hui</h2>
+        <p className="text-xs font-body text-luna-text-hint mb-4">{phaseData.name}</p>
+
+        {/* Energy Gauge */}
+        <div className="flex items-center gap-4 mb-4">
+          <span className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Energy Gauge</span>
+          <div className="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ backgroundColor: phaseData.color }}
+              initial={{ width: 0 }}
+              animate={{ width: `${energyLevel}%` }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+            />
+          </div>
+          <span className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>
+            {energyLevel}%
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
+          {cards.map((card, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1 * i, duration: 0.4 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => navigate(card.link)}
+              className="rounded-[20px] p-4 flex flex-col items-center text-center cursor-pointer"
+              style={{ backgroundColor: card.bg }}
+            >
+              <div
+                className="w-11 h-11 rounded-full flex items-center justify-center mb-2.5"
+                style={{ backgroundColor: `${card.color}18` }}
+              >
+                <card.icon size={18} style={{ color: card.color }} />
+              </div>
+              <span
+                className="text-[9px] font-body font-bold uppercase tracking-widest mb-1"
+                style={{ color: card.color }}
+              >
+                {card.tag}
+              </span>
+              <h3 className="font-display text-sm text-luna-text leading-snug">{card.title}</h3>
+              <p className="text-[11px] font-body text-luna-text-muted mt-1 leading-relaxed">{card.subtitle}</p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* L'Insight */}
+      <motion.div variants={item}>
+        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
+          <div className="flex items-center gap-2 mb-3">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ backgroundColor: `${phaseData.color}20` }}
+            >
+              <Sparkles size={14} style={{ color: phaseData.color }} />
+            </div>
+            <h3 className="font-display text-base text-luna-text">L'Insight du jour</h3>
+          </div>
+          <p className="text-sm font-body text-luna-text-body leading-relaxed italic">
+            "{PHASE_INSIGHTS[phase]}"
           </p>
         </div>
       </motion.div>
