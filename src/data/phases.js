@@ -84,7 +84,7 @@ export const PHASES = {
     drinks: {
       good: [
         { name: 'Tisanes anti-inflammatoires', why: 'La camomille et l\'ortie réduisent les prostaglandines responsables des crampes. Effet antispasmodique naturel.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
-        { name: 'Lait d\'or', why: 'La curcumine est un puissant anti-inflammatoire qui soulage les douleurs menstruelles. Le poivre noir booste son absorption x20.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
+        { name: 'Lait d\'or (golden milk)', why: 'La curcumine est un puissant anti-inflammatoire qui soulage les douleurs menstruelles. Le poivre noir booste son absorption x20.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Eau tiède citronnée', why: 'Stimule la digestion souvent ralentie pendant les règles et aide à compenser la perte de vitamine C.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Infusion gingembre', why: 'Le gingérol réduit les nausées et les crampes aussi efficacement que l\'ibuprofène selon certaines études.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Thé à la cannelle', why: 'La cannelle améliore la sensibilité à l\'insuline et réduit les crampes. Elle aide aussi à réguler les cycles.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },

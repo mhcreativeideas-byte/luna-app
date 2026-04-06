@@ -3467,7 +3467,7 @@ export const RECIPES = {
     ],
     drink: [
       {
-        name: 'Golden milk au curcuma',
+        name: 'Lait d\'or (golden milk) au curcuma',
         description: 'Lait doré anti-inflammatoire au curcuma, gingembre et cannelle.',
         prepTime: '5 min',
         difficulty: 'debutant',
@@ -3582,32 +3582,6 @@ export const RECIPES = {
           'Ajoute le jus de citron, le miel et la cannelle. Mélange bien et décore d\'une rondelle de citron.',
         ],
         whyThisPhase: 'La vitamine C du citron booste l\'absorption du fer alimentaire, la cannelle aide à réguler les crampes utérines et le miel apporte une douceur réconfortante sans pic glycémique.',
-      },
-      {
-        name: 'Golden latte au curcuma',
-        description: 'Le curcuma est un puissant anti-inflammatoire naturel. Le gingembre aide à calmer les nausées et l\'inflammation. Idéal pendant les règles pour s\'hydrater avec des bienfaits ciblés.',
-        prepTime: '10 min',
-        difficulty: 'debutant',
-        cuisine: 'fusion',
-        calories: 113,
-        nutrients: ["Anti-inflammatoires", "Magnésium", "Antioxydants", "Réconfort"],
-        tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", 'anti_inflammatoire'],
-        emoji: '☕',
-        ingredients: [
-          '250ml Lait végétal',
-          '1 c. à café Curcuma en poudre',
-          '1/2 c. à café Gingembre râpé',
-          '1 pincée Poivre noir',
-          '1 c. à café Miel',
-          '1 pincée Cannelle',
-        ],
-        steps: [
-          'Chauffe le lait à feu doux.',
-          'Ajoute curcuma, gingembre, poivre et cannelle.',
-          'Fouette bien jusqu\'à ce que ce soit homogène.',
-          'Verse dans une tasse, ajoute le miel.',
-        ],
-        whyThisPhase: 'Le curcuma est l\'anti-inflammatoire naturel le plus puissant. Combiné au poivre noir (qui multiplie son absorption par 20) et au gingembre, c\'est un remède ancestral contre les douleurs menstruelles.',
       },
       {
         name: 'Infusion gingembre-camomille-miel',
