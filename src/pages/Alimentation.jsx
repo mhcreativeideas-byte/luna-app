@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldCheck, ShieldAlert, Leaf, Zap } from 'lucide-react';
+import { X, Cookie, ChevronRight, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
@@ -66,10 +66,36 @@ const HEALTH_SUPERFOODS = {
   'Cycles irréguliers': ['Graines de lin', 'Graines de courge', 'Avocat', 'Noix', 'Saumon', 'Œufs', 'Graines de sésame', 'Zinc'],
 };
 
+const DAILY_MEALS = {
+  menstrual: [
+    { time: 'Matin', icon: '🌅', meal: 'Porridge avoine + banane + cannelle', drink: 'Tisane camomille', drinkIcon: '🍵' },
+    { time: 'Midi', icon: '☀️', meal: 'Lentilles + épinards + saumon', drink: 'Eau tiède citronnée', drinkIcon: '🍋' },
+    { time: 'Snack', icon: '🍪', meal: 'Chocolat noir 70% + amandes', drink: 'Infusion gingembre', drinkIcon: '🫚' },
+    { time: 'Soir', icon: '🌙', meal: 'Soupe butternut + quinoa + brocoli', drink: 'Lait d\'or (golden milk)', drinkIcon: '🥛' },
+  ],
+  follicular: [
+    { time: 'Matin', icon: '🌅', meal: 'Smoothie protéiné + graines de chia', drink: 'Matcha latte', drinkIcon: '🍵' },
+    { time: 'Midi', icon: '☀️', meal: 'Poulet grillé + quinoa + avocat', drink: 'Eau de coco', drinkIcon: '🥥' },
+    { time: 'Snack', icon: '🍪', meal: 'Yaourt + granola + fruits rouges', drink: 'Thé à la menthe', drinkIcon: '🌿' },
+    { time: 'Soir', icon: '🌙', meal: 'Tofu sauté + légumes + riz complet', drink: 'Jus de betterave', drinkIcon: '🥤' },
+  ],
+  ovulatory: [
+    { time: 'Matin', icon: '🌅', meal: 'Tartines complètes + avocat + œuf', drink: 'Thé vert', drinkIcon: '🍵' },
+    { time: 'Midi', icon: '☀️', meal: 'Bowl saumon + crudités + graines', drink: 'Eau détox concombre-menthe', drinkIcon: '🥒' },
+    { time: 'Snack', icon: '🍪', meal: 'Fruits frais + noix du Brésil', drink: 'Thé matcha glacé', drinkIcon: '🧊' },
+    { time: 'Soir', icon: '🌙', meal: 'Salade tiède brocoli + lentilles + feta', drink: 'Jus de légumes frais', drinkIcon: '🥬' },
+  ],
+  luteal: [
+    { time: 'Matin', icon: '🌅', meal: 'Avoine + banane + beurre de cacahuète', drink: 'Tisane camomille', drinkIcon: '🍵' },
+    { time: 'Midi', icon: '☀️', meal: 'Patate douce + saumon + épinards', drink: 'Eau tiède citronnée', drinkIcon: '🍋' },
+    { time: 'Snack', icon: '🍪', meal: 'Dattes + chocolat noir + amandes', drink: 'Infusion mélisse', drinkIcon: '🌿' },
+    { time: 'Soir', icon: '🌙', meal: 'Riz complet + légumes rôtis + tofu', drink: 'Lait d\'or', drinkIcon: '🥛' },
+  ],
+};
+
 export default function Alimentation() {
   const { cycleInfo, dietPreferences, healthIssues } = useCycle();
   const [openNutrient, setOpenNutrient] = useState(null);
-  const [expandedDrink, setExpandedDrink] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -153,6 +179,77 @@ export default function Alimentation() {
               {PHASE_FOOD_INTROS[phase]}
             </p>
           </div>
+        </div>
+      </motion.div>
+
+      {/* ===== TA JOURNÉE IDÉALE ===== */}
+      <motion.div variants={item}>
+        <div className="bg-white rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
+          <div className="px-5 pt-5 pb-2">
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-9 h-9 rounded-[12px] flex items-center justify-center"
+                style={{ backgroundColor: `${phaseData.color}15` }}
+              >
+                <UtensilsCrossed size={16} style={{ color: phaseData.colorDark }} />
+              </div>
+              <div>
+                <h2 className="font-display text-lg text-luna-text leading-tight">Ta journée idéale</h2>
+                <p className="text-[10px] font-body text-luna-text-hint mt-0.5">Repas & boissons adaptés à ta phase</p>
+              </div>
+            </div>
+
+            <div className="space-y-0">
+              {DAILY_MEALS[phase].map((m, i) => (
+                <div key={i} className={`flex items-start gap-3 py-3 ${i < DAILY_MEALS[phase].length - 1 ? 'border-b border-gray-50' : ''}`}>
+                  <div className="flex flex-col items-center gap-0.5 w-10 flex-shrink-0 pt-0.5">
+                    <span className="text-lg">{m.icon}</span>
+                    <span className="text-[9px] font-body font-bold uppercase tracking-wider text-luna-text-hint">{m.time}</span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[13px] font-body font-semibold text-luna-text leading-snug">{m.meal}</p>
+                    <div className="flex items-center gap-1.5 mt-1.5">
+                      <span className="text-xs">{m.drinkIcon}</span>
+                      <span className="text-[11px] font-body text-luna-text-muted">{m.drink}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* À limiter */}
+          <div className="px-5 py-4 mt-1" style={{ backgroundColor: '#FDF8F8' }}>
+            <div className="flex items-center gap-2 mb-3">
+              <AlertTriangle size={13} style={{ color: '#C4727F' }} />
+              <p className="text-[10px] font-body font-bold uppercase tracking-wider" style={{ color: '#A3555F' }}>
+                À limiter pendant cette phase
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {phaseData.drinks.bad.map((d, i) => (
+                <span
+                  key={i}
+                  className="text-[11px] font-body font-semibold px-3 py-1.5 rounded-full"
+                  style={{ backgroundColor: '#D4727F12', color: '#A3555F' }}
+                >
+                  {d.name}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Bouton recettes */}
+          <Link
+            to="/recettes"
+            className="flex items-center justify-center gap-2 px-5 py-3.5 transition-all hover:opacity-80"
+            style={{ backgroundColor: phaseData.bgColor }}
+          >
+            <span className="text-[12px] font-body font-bold" style={{ color: phaseData.colorDark }}>
+              Voir les recettes adaptées
+            </span>
+            <ChevronRight size={14} style={{ color: phaseData.colorDark }} />
+          </Link>
         </div>
       </motion.div>
 
@@ -343,167 +440,24 @@ export default function Alimentation() {
                     </motion.div>
                   );
                 })()}
+
+                {/* Lien vers recettes */}
+                <Link
+                  to="/recettes"
+                  className="mt-4 flex items-center justify-center gap-2 py-3 rounded-[14px] transition-all hover:opacity-80"
+                  style={{ backgroundColor: phaseData.bgColor }}
+                >
+                  <UtensilsCrossed size={13} style={{ color: phaseData.colorDark }} />
+                  <span className="text-[12px] font-body font-bold" style={{ color: phaseData.colorDark }}>
+                    Recettes riches en {openNutrient.toLowerCase()}
+                  </span>
+                  <ChevronRight size={13} style={{ color: phaseData.colorDark }} />
+                </Link>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* ===== BOISSONS ===== */}
-      <motion.div variants={item}>
-        <div
-          className="rounded-[24px] overflow-hidden"
-          style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}
-        >
-          {/* Drinks header */}
-          <div
-            className="px-5 pt-5 pb-4"
-            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}12)` }}
-          >
-            <div className="flex items-center gap-3">
-              <div
-                className="w-10 h-10 rounded-[14px] flex items-center justify-center"
-                style={{ backgroundColor: `${phaseData.color}20` }}
-              >
-                <Droplets size={18} style={{ color: phaseData.colorDark }} />
-              </div>
-              <div>
-                <h3 className="font-display text-lg text-luna-text">Tes boissons</h3>
-                <p className="text-[10px] font-body text-luna-text-muted mt-0.5">Adaptées à ta phase · Clique pour en savoir plus</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white px-5 py-4 space-y-4">
-            {/* Good drinks */}
-            {(() => {
-              const filteredGood = filterFoods(phaseData.drinks.good);
-              return (
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#7BAE7F15' }}>
-                        <ShieldCheck size={12} style={{ color: '#7BAE7F' }} />
-                      </div>
-                      <p className="text-xs font-body font-bold uppercase tracking-wider" style={{ color: '#5A8A5E' }}>
-                        À privilégier
-                      </p>
-                    </div>
-                    {isFiltering && (
-                      <span className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-pill" style={{ backgroundColor: '#7BAE7F15', color: '#4D7A50' }}>
-                        🌱 {dietLabel}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {filteredGood.map((d, i) => {
-                      const key = `good-${i}`;
-                      const isOpen = expandedDrink === key;
-                      return (
-                        <button
-                          key={i}
-                          onClick={() => setExpandedDrink(isOpen ? null : key)}
-                          className="inline-flex items-center gap-1.5 text-xs font-body font-semibold px-3.5 py-2.5 rounded-[12px] transition-all duration-200"
-                          style={{
-                            backgroundColor: isOpen ? '#7BAE7F20' : '#F5FAF5',
-                            color: '#4D7A50',
-                            border: isOpen ? '1.5px solid #7BAE7F' : '1.5px solid #7BAE7F20',
-                            boxShadow: isOpen ? '0 2px 8px rgba(123,174,127,0.15)' : 'none',
-                          }}
-                        >
-                          🍵 {d.name}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {/* Explanation */}
-                  <AnimatePresence>
-                    {expandedDrink?.startsWith('good-') && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
-                          style={{ backgroundColor: '#F5FAF5', borderLeft: '3px solid #7BAE7F' }}
-                        >
-                          <span className="font-bold" style={{ color: '#4D7A50' }}>
-                            {filteredGood[Number(expandedDrink.split('-')[1])]?.name}
-                          </span>{' '}
-                          — {filteredGood[Number(expandedDrink.split('-')[1])]?.why}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })()}
-
-            {/* Divider */}
-            <div className="flex items-center gap-3">
-              <div className="flex-1 h-px bg-gray-100" />
-              <span className="text-[9px] font-body text-luna-text-hint uppercase tracking-wider">vs</span>
-              <div className="flex-1 h-px bg-gray-100" />
-            </div>
-
-            {/* Bad drinks */}
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#D4727F12' }}>
-                  <ShieldAlert size={12} style={{ color: '#D4727F' }} />
-                </div>
-                <p className="text-xs font-body font-bold uppercase tracking-wider" style={{ color: '#A3555F' }}>
-                  À limiter
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {phaseData.drinks.bad.map((d, i) => {
-                  const key = `bad-${i}`;
-                  const isOpen = expandedDrink === key;
-                  return (
-                    <button
-                      key={i}
-                      onClick={() => setExpandedDrink(isOpen ? null : key)}
-                      className="inline-flex items-center gap-1.5 text-xs font-body font-semibold px-3.5 py-2.5 rounded-[12px] transition-all duration-200"
-                      style={{
-                        backgroundColor: isOpen ? '#D4727F15' : '#FDF5F5',
-                        color: '#A3555F',
-                        border: isOpen ? '1.5px solid #D4727F' : '1.5px solid #D4727F15',
-                        boxShadow: isOpen ? '0 2px 8px rgba(212,114,127,0.15)' : 'none',
-                      }}
-                    >
-                      ⚠️ {d.name}
-                    </button>
-                  );
-                })}
-              </div>
-              {/* Explanation */}
-              <AnimatePresence>
-                {expandedDrink?.startsWith('bad-') && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
-                      style={{ backgroundColor: '#FDF5F5', borderLeft: '3px solid #D4727F' }}
-                    >
-                      <span className="font-bold" style={{ color: '#A3555F' }}>
-                        {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.name}
-                      </span>{' '}
-                      — {phaseData.drinks.bad[Number(expandedDrink.split('-')[1])]?.why}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-      </motion.div>
 
       {/* ===== ENVIES DE SUCRE — Luteal only ===== */}
       {phase === 'luteal' && phaseData.sugarCravings && (
@@ -642,17 +596,6 @@ export default function Alimentation() {
         );
       })()}
 
-      {/* ===== CITATION ===== */}
-      <motion.div variants={item} className="text-center py-3">
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="w-8 h-px" style={{ backgroundColor: phaseData.color + '40' }} />
-          <Sparkles size={12} style={{ color: phaseData.color + '60' }} />
-          <div className="w-8 h-px" style={{ backgroundColor: phaseData.color + '40' }} />
-        </div>
-        <p className="text-sm font-body text-luna-text-muted italic px-8 leading-relaxed">
-          "Mange pour la femme que tu es aujourd'hui."
-        </p>
-      </motion.div>
     </motion.div>
   );
 }
