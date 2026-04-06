@@ -3,13 +3,13 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Send, Sparkles, ChevronDown, Plus, Clock, Trash2, Archive, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
-import { getLunaResponse, SUGGESTION_CATEGORIES, QUICK_SUGGESTIONS } from '../data/chatResponses';
+import { getLunaResponse, SUGGESTION_CATEGORIES } from '../data/chatResponses';
 import { PHASES } from '../data/phases';
 
 export default function Chat() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { cycleInfo, dispatch, conversations, activeConversationId, name, cycleLength, periodLength, todayCheckIn, goals, dietPreferences, healthIssues } = useCycle();
+  const { cycleInfo, dispatch, conversations, activeConversationId, name, cycleLength, periodLength, todayCheckIn, goals, dietPreferences, healthIssues, allergies } = useCycle();
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
@@ -21,6 +21,45 @@ export default function Chat() {
   const touchStartX = useRef(0);
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
+
+  // Suggestions rapides contextuelles
+  const contextualSuggestions = (() => {
+    const symptoms = todayCheckIn?.symptoms ? Object.values(todayCheckIn.symptoms).flat() : [];
+    const energy = todayCheckIn?.energy;
+    const suggestions = [];
+
+    // Suggestions basées sur les symptômes du jour
+    if (symptoms.some(s => s.match(/crampe|douleur/i))) suggestions.push('Comment soulager mes crampes ?');
+    if (symptoms.some(s => s.match(/fatigue|épuisée/i)) || (energy != null && energy <= 30)) suggestions.push('Pourquoi je suis si fatiguée ?');
+    if (symptoms.some(s => s.match(/ballon|digestion|gonfle/i))) suggestions.push('Comment réduire les ballonnements ?');
+    if (symptoms.some(s => s.match(/stress|anxiété|irritab/i))) suggestions.push('Comment gérer mon stress ?');
+    if (symptoms.some(s => s.match(/acné|bouton/i))) suggestions.push('Comment calmer mon acné ?');
+    if (symptoms.some(s => s.match(/sommeil|insomnie/i))) suggestions.push('Comment mieux dormir ?');
+    if (symptoms.some(s => s.match(/sucre|envie/i))) suggestions.push('Comment gérer mes envies de sucre ?');
+
+    // Suggestions basées sur la phase
+    if (phase === 'menstrual') {
+      suggestions.push('Quels aliments pour compenser la perte de fer ?');
+      suggestions.push('Quel sport faire pendant mes règles ?');
+    } else if (phase === 'follicular') {
+      suggestions.push('Comment profiter de mon pic d\'énergie ?');
+      suggestions.push('Quels aliments pour cette phase ?');
+    } else if (phase === 'ovulatory') {
+      suggestions.push('Comment optimiser ma phase ovulatoire ?');
+      suggestions.push('Quels aliments riches en fibres ?');
+    } else if (phase === 'luteal') {
+      suggestions.push('Comment gérer mes envies de sucre ?');
+      suggestions.push('Pourquoi je me sens ballonnée ?');
+    }
+
+    // Suggestions générales toujours utiles
+    suggestions.push('Qu\'est-ce que je mange ce soir ?');
+    suggestions.push('Un snack adapté à ma phase ?');
+    suggestions.push('Une recette rapide ?');
+
+    // Dédupliquer et limiter à 5
+    return [...new Set(suggestions)].slice(0, 5);
+  })();
 
   // Contexte utilisatrice pour personnaliser les réponses
   const userContext = {
@@ -34,6 +73,7 @@ export default function Chat() {
     goals: goals || [],
     dietPreferences: dietPreferences || ['omnivore'],
     healthIssues: healthIssues || [],
+    allergies: allergies || [],
   };
 
   // Conversation active
@@ -364,14 +404,28 @@ export default function Chat() {
               <p className="font-display text-lg text-luna-text mb-1">
                 {name ? `Hey ${name} 💛` : 'Hey 💛'}
               </p>
-              <p className="text-sm text-luna-text-muted font-body max-w-xs mx-auto leading-relaxed">
-                Pose-moi n'importe quelle question sur ton cycle, ton alimentation, ton sport, ton sommeil ou ton bien-être.
+              <p className="text-[13px] font-body font-semibold mb-1" style={{ color: phaseData.colorDark }}>
+                J{cycleInfo?.currentDay || '?'} · {phaseData.shortName}
+                {cycleInfo?.daysUntilPeriod > 0 && cycleInfo?.daysUntilPeriod <= 5 && ` · Règles dans ${cycleInfo.daysUntilPeriod}j`}
+              </p>
+              {todayCheckIn?.energy != null && (
+                <p className="text-xs font-body text-luna-text-hint mb-1">
+                  Énergie : {todayCheckIn.energy <= 30 ? '😴 basse' : todayCheckIn.energy <= 60 ? '😊 moyenne' : '⚡ haute'}
+                  {todayCheckIn?.symptoms && Object.values(todayCheckIn.symptoms).flat().length > 0 && (
+                    <span> · {Object.values(todayCheckIn.symptoms).flat().slice(0, 2).join(', ')}</span>
+                  )}
+                </p>
+              )}
+              <p className="text-sm text-luna-text-muted font-body max-w-xs mx-auto leading-relaxed mt-1">
+                {todayCheckIn?.energy != null && todayCheckIn.energy <= 30
+                  ? 'Je vois que ton énergie est basse. Dis-moi comment je peux t\'aider.'
+                  : 'Pose-moi n\'importe quelle question sur ton cycle, ton alimentation, ton sport ou ton bien-être.'}
               </p>
             </div>
 
             {/* Quick suggestions */}
             <div className="space-y-2 mb-4">
-              {QUICK_SUGGESTIONS.map((s, i) => (
+              {contextualSuggestions.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(s)}
@@ -511,7 +565,7 @@ export default function Chat() {
         {messages.length > 0 && !typing && (
           <div className="pt-2">
             <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-1">
-              {QUICK_SUGGESTIONS.filter((s) => !messages.some((m) => m.content === s)).slice(0, 3).map((s, i) => (
+              {contextualSuggestions.filter((s) => !messages.some((m) => m.content === s)).slice(0, 3).map((s, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(s)}

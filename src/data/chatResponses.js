@@ -1013,9 +1013,8 @@ function getCatalogRecipes(phase, mealType, ctx) {
 
   // Appliquer les filtres du profil
   const prefs = ctx.dietPreferences || [];
-  const allergies = ctx.healthIssues?.length > 0 ? ctx.healthIssues.filter(h =>
-    Object.keys(ALLERGEN_KEYWORDS).includes(h)
-  ) : [];
+  const allergies = ctx.allergies || [];
+  const issues = ctx.healthIssues || [];
 
   return pool.filter((recipe) => {
     const tags = recipe.tags || [];
@@ -1025,6 +1024,9 @@ function getCatalogRecipes(phase, mealType, ctx) {
     if (prefs.includes('Végétarienne') && !tags.some(t => ['vegan', 'vegetarien'].includes(t))) return false;
     if (prefs.includes('Sans gluten') && !tags.some(t => ['sans_gluten'].includes(t))) return false;
     if (prefs.includes('Sans lactose') && !tags.some(t => ['sans_lactose', 'vegan'].includes(t))) return false;
+
+    // Filtre SOPK
+    if (issues.includes('SOPK') && !tags.some(t => t === 'sopk_friendly')) return false;
 
     // Filtre allergènes
     if (catalogRecipeHasAllergen(recipe, allergies)) return false;
