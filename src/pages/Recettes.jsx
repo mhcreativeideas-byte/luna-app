@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight } from 'lucide-react';
+import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
 import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
@@ -196,6 +197,7 @@ export default function Recettes() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
+      <TopMenu />
       {/* Hero */}
       <motion.div variants={item}>
         <div

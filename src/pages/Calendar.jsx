@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Droplets, Sun, Sparkles, Moon, Check, CircleDot, Thermometer, Trash2 } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
-import BackButton from '../components/ui/BackButton';
+import TopMenu from '../components/ui/TopMenu';
 
 const container = {
   hidden: { opacity: 0 },
@@ -86,7 +86,7 @@ export default function Calendar() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
-      <BackButton />
+      <TopMenu />
       {/* Hero */}
       <motion.div variants={item}>
         <div

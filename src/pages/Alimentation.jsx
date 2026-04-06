@@ -5,7 +5,7 @@ import { Clock, X, Cookie, ChevronDown, Sparkles, Lightbulb, Droplets, ShieldChe
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
-import BackButton from '../components/ui/BackButton';
+import TopMenu from '../components/ui/TopMenu';
 
 const container = {
   hidden: { opacity: 0 },
@@ -121,7 +121,7 @@ export default function Alimentation() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
-      <BackButton />
+      <TopMenu />
 
       {/* ===== HERO SECTION ===== */}
       <motion.div variants={item}>
