@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Cookie, ChevronRight, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
+import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPES } from '../data/recipes';
@@ -128,6 +128,7 @@ export default function Alimentation() {
   const { cycleInfo, dietPreferences, healthIssues } = useCycle();
   const [openNutrient, setOpenNutrient] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
+  const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -247,7 +248,8 @@ export default function Alimentation() {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 * i, duration: 0.3 }}
-                  className="flex items-center gap-3 rounded-[16px] p-3 transition-all"
+                  onClick={() => setOpenDailyRecipe(m.recipe)}
+                  className="flex items-center gap-3 rounded-[16px] p-3 transition-all cursor-pointer active:scale-[0.98]"
                   style={{ backgroundColor: i % 2 === 0 ? `${phaseData.color}06` : 'transparent' }}
                 >
                   {/* Emoji recette */}
@@ -666,6 +668,123 @@ export default function Alimentation() {
         );
       })()}
 
+      {/* ===== RECIPE DETAIL MODAL ===== */}
+      <AnimatePresence>
+        {openDailyRecipe && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-4"
+            onClick={() => setOpenDailyRecipe(null)}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
+            >
+              {/* Emoji Header */}
+              <div
+                className="relative h-40 overflow-hidden rounded-t-[28px] md:rounded-t-[24px] flex items-center justify-center"
+                style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
+              >
+                <span className="text-7xl">{openDailyRecipe.emoji || '🍽️'}</span>
+                <button
+                  onClick={() => setOpenDailyRecipe(null)}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                >
+                  <X size={16} className="text-luna-text-muted" />
+                </button>
+              </div>
+
+              <div className="p-5 space-y-5">
+                {/* Title */}
+                <div>
+                  <h3 className="font-display text-xl text-luna-text">{openDailyRecipe.name}</h3>
+                  {openDailyRecipe.description && (
+                    <p className="text-sm font-body text-luna-text-muted mt-1 leading-relaxed">{openDailyRecipe.description}</p>
+                  )}
+                </div>
+
+                {/* Why this phase */}
+                {openDailyRecipe.whyThisPhase && (
+                  <div
+                    className="flex items-start gap-2.5 rounded-[14px] px-4 py-3"
+                    style={{ backgroundColor: `${phaseData.color}10` }}
+                  >
+                    <Sparkles size={14} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
+                    <p className="text-xs font-body leading-relaxed italic" style={{ color: phaseData.colorDark }}>
+                      {openDailyRecipe.whyThisPhase}
+                    </p>
+                  </div>
+                )}
+
+                {/* Time + Calories + Nutrients */}
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
+                    <Clock size={12} /> {openDailyRecipe.prepTime}
+                  </span>
+                  <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-pill bg-luna-cream text-luna-text">
+                    {openDailyRecipe.calories} kcal
+                  </span>
+                  {(openDailyRecipe.nutrients || []).map((n) => (
+                    <span
+                      key={n}
+                      className="text-[10px] font-body font-semibold px-2.5 py-1 rounded-pill"
+                      style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
+                    >
+                      {n}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Ingredients */}
+                {openDailyRecipe.ingredients && (
+                  <div>
+                    <h4 className="text-sm font-body font-bold text-luna-text mb-2">Ingrédients</h4>
+                    <ul className="space-y-1.5">
+                      {openDailyRecipe.ingredients.map((ing, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm text-luna-text-body font-body">
+                          <span
+                            className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0"
+                            style={{ backgroundColor: phaseData.color }}
+                          />
+                          {ing}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <hr className="border-gray-50" />
+
+                {/* Steps */}
+                {openDailyRecipe.steps && (
+                  <div>
+                    <h4 className="text-sm font-body font-bold text-luna-text mb-2">Préparation</h4>
+                    <ol className="space-y-3">
+                      {openDailyRecipe.steps.map((step, i) => (
+                        <li key={i} className="flex gap-3 text-sm text-luna-text-body font-body leading-relaxed">
+                          <span
+                            className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5"
+                            style={{ backgroundColor: phaseData.color }}
+                          >
+                            {i + 1}
+                          </span>
+                          {step}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
