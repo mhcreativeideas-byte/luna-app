@@ -116,10 +116,6 @@ export default function Sport() {
             className="relative px-5 pt-5 pb-4"
             style={{ background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}20 100%)` }}
           >
-            <div
-              className="absolute -top-6 -right-6 w-28 h-28 rounded-full opacity-15"
-              style={{ backgroundColor: phaseData.color }}
-            />
             <div className="flex items-center gap-4">
               <div
                 className="w-16 h-16 rounded-[18px] flex items-center justify-center flex-shrink-0"
