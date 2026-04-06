@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
@@ -44,6 +44,8 @@ const mealLabels = {
 
 export default function Recettes() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const nutrientFilter = searchParams.get('nutrient') || '';
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies } = useCycle();
   const [selectedMeal, setSelectedMeal] = useState('all');
   const [selectedPhase, setSelectedPhase] = useState('current');
@@ -172,6 +174,8 @@ export default function Recettes() {
         if (recipeLevel > maxLevel) return;
         // Filtrer par style de cuisine (multi-sélection, vide = tout)
         if (selectedCuisines.length > 0 && !selectedCuisines.includes(recipe.cuisine)) return;
+        // Filtrer par nutriment (depuis lien Alimentation)
+        if (nutrientFilter && !(recipe.nutrients || []).some(n => n.toLowerCase().includes(nutrientFilter.toLowerCase()))) return;
         // Filtrer par favoris
         if (selectedMeal === 'favorites' && !isFavorite(recipe.name)) return;
         allRecipes.push({ ...recipe, mealType });
@@ -256,6 +260,31 @@ export default function Recettes() {
           </div>
         </div>
       </motion.div>
+
+      {/* Nutrient filter banner */}
+      {nutrientFilter && (
+        <motion.div variants={item}>
+          <div
+            className="flex items-center justify-between rounded-[16px] px-4 py-3"
+            style={{ backgroundColor: phaseData.bgColor }}
+          >
+            <div className="flex items-center gap-2">
+              <Sparkles size={14} style={{ color: phaseData.color }} />
+              <p className="text-[12px] font-body font-semibold" style={{ color: phaseData.colorDark }}>
+                Riches en <span className="lowercase">{nutrientFilter}</span>
+              </p>
+            </div>
+            <button
+              onClick={() => setSearchParams({})}
+              className="flex items-center gap-1 text-[11px] font-body font-semibold px-2.5 py-1 rounded-full transition-all hover:opacity-70"
+              style={{ backgroundColor: 'white', color: phaseData.colorDark }}
+            >
+              Tout voir
+              <X size={11} />
+            </button>
+          </div>
+        </motion.div>
+      )}
 
       {/* CTA Mon Frigo */}
       <motion.div variants={item}>
