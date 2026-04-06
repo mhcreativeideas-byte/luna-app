@@ -5,7 +5,7 @@ import { Save, Feather, Sparkles, Wind, History, ChevronDown, ChevronUp, Chevron
 import { useCycle } from '../contexts/CycleContext';
 import { AFFIRMATIONS, MORNING_RITUALS } from '../data/affirmations';
 import { PHASES } from '../data/phases';
-import BackButton from '../components/ui/BackButton';
+import TopMenu from '../components/ui/TopMenu';
 
 const container = {
   hidden: { opacity: 0 },
@@ -509,7 +509,7 @@ export default function Journal() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
-      <BackButton />
+      <TopMenu />
       {/* Hero */}
       <motion.div variants={item}>
         <div

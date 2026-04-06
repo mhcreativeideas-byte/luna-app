@@ -170,7 +170,7 @@ export default function Profil() {
       {/* Calendar link */}
       <motion.div variants={item}>
         <Link
-          to="/calendrier"
+          to="/dashboard"
           className="flex items-center gap-4 bg-white rounded-[20px] p-4 hover:shadow-md transition-all"
           style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}
         >

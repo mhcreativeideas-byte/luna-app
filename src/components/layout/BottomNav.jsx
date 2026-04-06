@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, UtensilsCrossed, ChefHat, CalendarDays, MessageCircle } from 'lucide-react';
+import { UtensilsCrossed, ChefHat, CalendarDays, MessageCircle, BookOpen } from 'lucide-react';
 
 const leftItems = [
   { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
@@ -7,11 +7,11 @@ const leftItems = [
 ];
 
 const rightItems = [
-  { to: '/calendrier', icon: CalendarDays, label: 'Cycle' },
+  { to: '/journal', icon: BookOpen, label: 'Journal' },
   { to: '/chat', icon: MessageCircle, label: 'LUNA' },
 ];
 
-const centerItem = { to: '/dashboard', icon: Home, label: 'Accueil' };
+const centerItem = { to: '/dashboard', icon: CalendarDays, label: 'Cycle' };
 
 function NavItem({ to, icon: Icon, label }) {
   return (
@@ -52,7 +52,7 @@ export default function BottomNav() {
           <NavItem key={item.to} {...item} />
         ))}
 
-        {/* Center — Accueil hero button */}
+        {/* Center — Cycle hero button */}
         <NavLink
           to={centerItem.to}
           className="flex flex-col items-center flex-1 -mt-5 relative"
@@ -70,7 +70,7 @@ export default function BottomNav() {
                     : '0 2px 10px rgba(196, 114, 127, 0.15)',
                 }}
               >
-                <Home size={22} strokeWidth={2} className="text-white" />
+                <CalendarDays size={22} strokeWidth={2} className="text-white" />
               </div>
               <span className="h-[9px] mt-1" />
             </>

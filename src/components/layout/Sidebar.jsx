@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Home, UtensilsCrossed, CalendarDays, MessageCircle, LayoutGrid, Settings, LogOut } from 'lucide-react';
+import { UtensilsCrossed, CalendarDays, MessageCircle, LayoutGrid, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
-  { to: '/dashboard', icon: Home, label: 'Accueil' },
-  { to: '/calendrier', icon: CalendarDays, label: 'Calendrier' },
+  { to: '/dashboard', icon: CalendarDays, label: 'Cycle' },
   { to: '/alimentation', icon: UtensilsCrossed, label: 'Alimentation' },
   { to: '/chat', icon: MessageCircle, label: 'LUNA' },
   { to: '/plus', icon: LayoutGrid, label: 'Plus' },

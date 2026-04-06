@@ -12,7 +12,7 @@ import Extras from './pages/Extras';
 import Journal from './pages/Journal';
 import CheckIn from './pages/CheckIn';
 import Chat from './pages/Chat';
-import Calendar from './pages/Calendar';
+// Calendar is now merged into Dashboard
 import Settings from './pages/Settings';
 import Profil from './pages/Profil';
 import Recettes from './pages/Recettes';
@@ -69,7 +69,7 @@ function App() {
             <Route path="/profil" element={<Profil />} />
             <Route path="/checkin" element={<CheckIn />} />
             <Route path="/chat" element={<Chat />} />
-            <Route path="/calendrier" element={<Calendar />} />
+            <Route path="/calendrier" element={<Navigate to="/dashboard" replace />} />
             <Route path="/plus" element={<Extras />} />
             <Route path="/parametres" element={<Settings />} />
             <Route path="/conditions" element={<CGU />} />
