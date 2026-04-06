@@ -108,26 +108,32 @@ export default function Sport() {
         </div>
       </motion.div>
 
-      {/* Hero Card with Photo — recommandation du jour */}
+      {/* Hero Card — recommandation du jour */}
       <motion.div variants={item}>
         <div className="rounded-[24px] overflow-hidden relative" style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}>
-          {/* Hero photo */}
-          <div className="relative h-52 overflow-hidden">
-            <img
-              src={exerciseData.heroPhoto}
-              alt="Recommandation sport"
-              className="w-full h-full object-cover"
-              loading="lazy"
+          {/* Hero avec icône */}
+          <div
+            className="relative px-5 pt-5 pb-4"
+            style={{ background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}20 100%)` }}
+          >
+            <div
+              className="absolute -top-6 -right-6 w-28 h-28 rounded-full opacity-15"
+              style={{ backgroundColor: phaseData.color }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-            <div className="absolute top-3 left-3">
-              <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2.5 py-1 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
-                ✦ Recommandation du jour
-              </span>
-            </div>
-            <div className="absolute bottom-4 left-4 right-4">
-              <h2 className="font-display text-xl text-white mb-1">{exerciseData.type}</h2>
-              <p className="text-xs font-body text-white/80">Durée recommandée : {exerciseData.duration}</p>
+            <div className="flex items-center gap-4">
+              <div
+                className="w-16 h-16 rounded-[18px] flex items-center justify-center flex-shrink-0"
+                style={{ backgroundColor: `${phaseData.color}18` }}
+              >
+                <span className="text-3xl">{exerciseData.icon}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <span className="text-[9px] font-body font-bold uppercase tracking-widest px-2 py-0.5 rounded-pill mb-1.5 inline-block" style={{ backgroundColor: `${phaseData.color}15`, color: phaseData.colorDark }}>
+                  ✦ Recommandation du jour
+                </span>
+                <h2 className="font-display text-lg text-luna-text leading-snug">{exerciseData.type}</h2>
+                <p className="text-xs font-body text-luna-text-muted mt-0.5">Durée recommandée : {exerciseData.duration}</p>
+              </div>
             </div>
           </div>
 
@@ -395,20 +401,17 @@ export default function Sport() {
               className="w-full text-left bg-white rounded-[20px] overflow-hidden transition-all hover:shadow-md group"
               style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
             >
-              <div className="flex">
-                {/* Photo */}
-                <div className="relative w-28 h-28 flex-shrink-0 overflow-hidden">
-                  <img
-                    src={ex.photo}
-                    alt={ex.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/10" />
+              <div className="flex items-center p-4 gap-4">
+                {/* Icône */}
+                <div
+                  className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: phaseData.bgColor }}
+                >
+                  <span className="text-2xl">{ex.icon}</span>
                 </div>
 
                 {/* Info */}
-                <div className="flex-1 p-4 flex flex-col justify-center min-w-0">
+                <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-display text-luna-text leading-snug">{ex.name}</h3>
                   <div className="flex items-center gap-2 mt-1.5">
                     <span className="text-[10px] font-body text-luna-text-hint flex items-center gap-1">
@@ -420,7 +423,7 @@ export default function Sport() {
                   </div>
                 </div>
 
-                <div className="flex items-center pr-4">
+                <div className="flex items-center">
                   <ChevronRight size={16} className="text-luna-text-hint group-hover:text-luna-text-muted transition-colors" />
                 </div>
               </div>
@@ -487,22 +490,29 @@ export default function Sport() {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
             >
-              {/* Photo hero */}
-              <div className="relative h-56 overflow-hidden rounded-t-[28px] md:rounded-t-[24px]">
-                <img
-                  src={selectedExercise.photo}
-                  alt={selectedExercise.name}
-                  className="w-full h-full object-cover"
+              {/* Header avec icône */}
+              <div
+                className="relative px-5 pt-5 pb-5 rounded-t-[28px] md:rounded-t-[24px]"
+                style={{ background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}20 100%)` }}
+              >
+                <div
+                  className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-15"
+                  style={{ backgroundColor: phaseData.color }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <button
                   onClick={() => setSelectedExercise(null)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
                 >
                   <X size={16} className="text-luna-text-muted" />
                 </button>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="font-display text-xl text-white">{selectedExercise.name}</h3>
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-14 h-14 rounded-[16px] flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: `${phaseData.color}18` }}
+                  >
+                    <span className="text-3xl">{selectedExercise.icon}</span>
+                  </div>
+                  <h3 className="font-display text-xl text-luna-text pr-8">{selectedExercise.name}</h3>
                 </div>
               </div>
 
