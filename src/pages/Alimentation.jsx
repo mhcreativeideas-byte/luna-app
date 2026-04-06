@@ -675,16 +675,17 @@ export default function Alimentation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-4"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-end justify-center"
             onClick={() => setOpenDailyRecipe(null)}
           >
             <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-t-[28px] md:rounded-[24px] w-full max-w-md max-h-[85vh] overflow-y-auto"
+              className="bg-white rounded-t-[28px] w-full max-w-md overflow-y-auto"
+              style={{ maxHeight: '92vh' }}
             >
               {/* Emoji Header */}
               <div
@@ -700,7 +701,7 @@ export default function Alimentation() {
                 </button>
               </div>
 
-              <div className="p-5 space-y-5">
+              <div className="p-5 pb-10 space-y-5">
                 {/* Title */}
                 <div>
                   <h3 className="font-display text-xl text-luna-text">{openDailyRecipe.name}</h3>
