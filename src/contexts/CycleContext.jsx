@@ -207,9 +207,16 @@ function cycleReducer(state, action) {
       return { ...state, conversations: filtered, activeConversationId: newActiveId };
     }
     case 'ARCHIVE_CONVERSATION': {
-      const convs = state.conversations.map((c) =>
+      const MAX_ARCHIVED = 3;
+      let convs = state.conversations.map((c) =>
         c.id === action.payload.id ? { ...c, archived: !c.archived } : c
       );
+      // Si on dépasse 3 archives, supprimer la plus ancienne
+      const archived = convs.filter((c) => c.archived).sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+      if (archived.length > MAX_ARCHIVED) {
+        const toRemove = archived.slice(0, archived.length - MAX_ARCHIVED).map((c) => c.id);
+        convs = convs.filter((c) => !toRemove.includes(c.id));
+      }
       const newActiveId = state.activeConversationId === action.payload.id
         ? (convs.find((c) => !c.archived && c.id !== action.payload.id)?.id || null)
         : state.activeConversationId;
