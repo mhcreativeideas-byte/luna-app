@@ -634,48 +634,85 @@ export default function Alimentation() {
       </AnimatePresence>
 
       {/* ===== ENVIES DE SUCRE — Luteal only ===== */}
-      {phase === 'luteal' && phaseData.sugarCravings && (
-        <motion.div variants={item}>
-          <div
-            className="rounded-[24px] overflow-hidden"
-            style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}
-          >
+      {phase === 'luteal' && phaseData.sugarCravings && (() => {
+        // Chercher les recettes correspondantes dans toutes les phases
+        const findMatchingRecipe = (altName) => {
+          const lower = altName.toLowerCase();
+          // Mots-clés pour matcher
+          const keywords = lower.includes('energy balls') ? ['energy balls']
+            : lower.includes('glace maison') || lower.includes('nice cream') ? ['nice cream', 'glace']
+            : lower.includes('smoothie banane-cacao') ? ['smoothie banane-cacao', 'smoothie banane cacao']
+            : lower.includes('dattes fourrées') ? ['dattes fourrées', 'bouchées de dattes']
+            : [];
+          if (keywords.length === 0) return null;
+          for (const ph of ['luteal', 'menstrual', 'follicular', 'ovulatory']) {
+            const phRecipes = RECIPES[ph];
+            if (!phRecipes) continue;
+            for (const mealType of ['snack', 'drink', 'breakfast', 'lunch', 'dinner']) {
+              const pool = phRecipes[mealType];
+              if (!pool) continue;
+              const match = pool.find(r => keywords.some(kw => r.name.toLowerCase().includes(kw)));
+              if (match) return match;
+            }
+          }
+          return null;
+        };
+
+        return (
+          <motion.div variants={item}>
             <div
-              className="px-5 pt-5 pb-4"
-              style={{ background: `linear-gradient(135deg, #FFF5E6, #FFECD2)` }}
+              className="rounded-[24px] overflow-hidden"
+              style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: '#E8A87C30' }}>
-                  <Cookie size={18} style={{ color: '#D4846A' }} />
+              <div
+                className="px-5 pt-5 pb-4"
+                style={{ background: `linear-gradient(135deg, #FFF5E6, #FFECD2)` }}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: '#E8A87C30' }}>
+                    <Cookie size={18} style={{ color: '#D4846A' }} />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-lg text-luna-text">Envies de sucre ?</h3>
+                    <p className="text-[10px] font-body text-luna-text-muted mt-0.5">C'est normal en phase lutéale</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display text-lg text-luna-text">Envies de sucre ?</h3>
-                  <p className="text-[10px] font-body text-luna-text-muted mt-0.5">C'est normal en phase lutéale</p>
+              </div>
+              <div className="bg-white px-5 py-4">
+                <p className="text-sm font-body text-luna-text-body leading-relaxed mb-4">
+                  {phaseData.sugarCravings.explanation}
+                </p>
+                <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
+                  Alternatives saines
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {phaseData.sugarCravings.alternatives.map((a, i) => {
+                    const matchedRecipe = findMatchingRecipe(a);
+                    return matchedRecipe ? (
+                      <button
+                        key={i}
+                        onClick={() => setOpenDailyRecipe(matchedRecipe)}
+                        className="text-xs font-body font-semibold px-3.5 py-2 rounded-[12px] transition-all active:scale-95"
+                        style={{ backgroundColor: '#FFF5E6', color: '#B8764A', border: '1px solid #E8A87C40' }}
+                      >
+                        {a} <span className="text-[10px] opacity-60">→</span>
+                      </button>
+                    ) : (
+                      <span
+                        key={i}
+                        className="text-xs font-body font-semibold px-3.5 py-2 rounded-[12px]"
+                        style={{ backgroundColor: '#FFF5E6', color: '#B8764A', border: '1px solid #E8A87C25' }}
+                      >
+                        {a}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </div>
-            <div className="bg-white px-5 py-4">
-              <p className="text-sm font-body text-luna-text-body leading-relaxed mb-4">
-                {phaseData.sugarCravings.explanation}
-              </p>
-              <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-3">
-                Alternatives saines
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {phaseData.sugarCravings.alternatives.map((a, i) => (
-                  <span
-                    key={i}
-                    className="text-xs font-body font-semibold px-3.5 py-2 rounded-[12px]"
-                    style={{ backgroundColor: '#FFF5E6', color: '#B8764A', border: '1px solid #E8A87C25' }}
-                  >
-                    {a}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        );
+      })()}
 
       {/* ===== FRUITS & LÉGUMES DE SAISON ===== */}
       {(() => {
