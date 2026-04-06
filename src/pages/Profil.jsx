@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Camera, Settings, Share2, TrendingUp, Trash2, Pencil } from 'lucide-react';
+import { Calendar, Camera, Settings, Share2, TrendingUp, Trash2, Pencil, Send, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+import { PHASES } from '../data/phases';
 import BackButton from '../components/ui/BackButton';
 
 const container = {
@@ -13,6 +14,321 @@ const item = {
   hidden: { opacity: 0, y: 10 },
   show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
+
+const PHASE_NEEDS = {
+  menstrual: ['Repos', 'Douceur', 'Patience'],
+  follicular: ['Encouragement', 'Aventure', 'Spontanéité'],
+  ovulatory: ['Complicité', 'Communication', 'Énergie'],
+  luteal: ['Patience', 'Douceur', 'Pas de prise de tête'],
+};
+
+const PHASE_COLORS = {
+  menstrual: { bg: '#D4727F', bgLight: '#FDE8EB', accent: '#A85566' },
+  follicular: { bg: '#7BAE7F', bgLight: '#EDF5ED', accent: '#4D7A50' },
+  ovulatory: { bg: '#E8A87C', bgLight: '#FFF3EB', accent: '#C47A4A' },
+  luteal: { bg: '#B09ACB', bgLight: '#F3EEF8', accent: '#7D6A96' },
+};
+
+function generateShareCanvas(cycleInfo, userName) {
+  const phase = cycleInfo.phase;
+  const colors = PHASE_COLORS[phase];
+  const phaseData = cycleInfo.phaseData;
+  const needs = PHASE_NEEDS[phase];
+
+  const W = 600, H = 800;
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  const grad = ctx.createLinearGradient(0, 0, W, H);
+  grad.addColorStop(0, '#FBF8F6');
+  grad.addColorStop(1, colors.bgLight);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Decorative circle top-right
+  ctx.beginPath();
+  ctx.arc(W + 20, -20, 140, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '18';
+  ctx.fill();
+
+  // Decorative circle bottom-left
+  ctx.beginPath();
+  ctx.arc(-30, H + 10, 120, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '12';
+  ctx.fill();
+
+  // Phase icon circle
+  ctx.beginPath();
+  ctx.arc(W / 2, 120, 50, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '20';
+  ctx.fill();
+
+  // Phase emoji
+  ctx.font = '40px serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(phaseData.icon, W / 2, 137);
+
+  // Phase name
+  ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#2D2226';
+  ctx.textAlign = 'center';
+  ctx.fillText(phaseData.name, W / 2, 210);
+
+  // Cycle day
+  ctx.font = '18px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F';
+  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 245);
+
+  // Divider line
+  ctx.strokeStyle = colors.bg + '40';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(80, 280);
+  ctx.lineTo(W - 80, 280);
+  ctx.stroke();
+
+  // Energy bar label
+  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F';
+  ctx.textAlign = 'left';
+  ctx.fillText('ÉNERGIE', 60, 325);
+
+  // Energy bar percentage
+  ctx.textAlign = 'right';
+  ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = colors.accent;
+  ctx.fillText(`${cycleInfo.energyLevel}%`, W - 60, 325);
+
+  // Energy bar background
+  const barX = 60, barY = 340, barW = W - 120, barH = 12;
+  ctx.fillStyle = '#E8E4E0';
+  ctx.beginPath();
+  ctx.roundRect(barX, barY, barW, barH, 6);
+  ctx.fill();
+
+  // Energy bar fill
+  ctx.fillStyle = colors.bg;
+  ctx.beginPath();
+  ctx.roundRect(barX, barY, barW * (cycleInfo.energyLevel / 100), barH, 6);
+  ctx.fill();
+
+  // Next period
+  ctx.textAlign = 'center';
+  ctx.font = '16px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#5A4A4E';
+  const periodText = cycleInfo.daysUntilPeriod <= 0
+    ? 'Règles prévues aujourd\'hui'
+    : cycleInfo.daysUntilPeriod === 1
+      ? 'Prochaines règles demain'
+      : `Prochaines règles dans ${cycleInfo.daysUntilPeriod} jours`;
+  ctx.fillText(periodText, W / 2, 400);
+
+  // "Ce dont j'ai besoin" section
+  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F';
+  ctx.fillText('CE DONT J\'AI BESOIN', W / 2, 465);
+
+  // Need pills
+  const pillY = 490;
+  const pillH = 44;
+  const pillGap = 12;
+  const totalPillWidth = needs.reduce((acc, n) => {
+    ctx.font = '16px system-ui, -apple-system, sans-serif';
+    return acc + ctx.measureText(n).width + 36;
+  }, 0) + (needs.length - 1) * pillGap;
+  let pillX = (W - totalPillWidth) / 2;
+
+  needs.forEach((need) => {
+    ctx.font = '16px system-ui, -apple-system, sans-serif';
+    const textW = ctx.measureText(need).width;
+    const pw = textW + 36;
+
+    // Pill background
+    ctx.fillStyle = colors.bg + '20';
+    ctx.beginPath();
+    ctx.roundRect(pillX, pillY, pw, pillH, 22);
+    ctx.fill();
+
+    // Pill border
+    ctx.strokeStyle = colors.bg + '50';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(pillX, pillY, pw, pillH, 22);
+    ctx.stroke();
+
+    // Pill text
+    ctx.fillStyle = colors.accent;
+    ctx.textAlign = 'center';
+    ctx.fillText(need, pillX + pw / 2, pillY + 28);
+
+    pillX += pw + pillGap;
+  });
+
+  // Personal message area
+  if (userName) {
+    ctx.font = 'italic 16px system-ui, -apple-system, sans-serif';
+    ctx.fillStyle = '#8A7B7F';
+    ctx.textAlign = 'center';
+    ctx.fillText(`— ${userName}`, W / 2, 590);
+  }
+
+  // LUNA branding
+  ctx.font = 'bold 14px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = colors.bg + '80';
+  ctx.textAlign = 'center';
+  ctx.fillText('LUNA 🌙', W / 2, H - 50);
+  ctx.font = '11px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F80';
+  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 30);
+
+  return canvas;
+}
+
+function SharePartnerCard({ cycleInfo, name }) {
+  const [shared, setShared] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  if (!cycleInfo) return null;
+
+  const phase = cycleInfo.phase;
+  const phaseData = cycleInfo.phaseData;
+  const needs = PHASE_NEEDS[phase];
+  const colors = PHASE_COLORS[phase];
+
+  const handleShare = useCallback(async () => {
+    const canvas = generateShareCanvas(cycleInfo, name);
+
+    try {
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+      const file = new File([blob], 'luna-phase.png', { type: 'image/png' });
+
+      if (navigator.share && navigator.canShare?.({ files: [file] })) {
+        await navigator.share({
+          title: `LUNA — ${phaseData.name}`,
+          text: `Je suis en ${phaseData.name} (jour ${cycleInfo.currentDay}/${cycleInfo.cycleLength}). Mon énergie est à ${cycleInfo.energyLevel}%.`,
+          files: [file],
+        });
+        setShared(true);
+        setTimeout(() => setShared(false), 3000);
+      } else {
+        // Fallback: download the image
+        const url = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'luna-phase.png';
+        link.href = url;
+        link.click();
+        setShared(true);
+        setTimeout(() => setShared(false), 3000);
+      }
+    } catch (err) {
+      if (err.name !== 'AbortError') {
+        // Fallback: download
+        const url = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'luna-phase.png';
+        link.href = url;
+        link.click();
+      }
+    }
+  }, [cycleInfo, name, phaseData]);
+
+  const handlePreview = useCallback(() => {
+    if (previewUrl) {
+      setPreviewUrl(null);
+      return;
+    }
+    const canvas = generateShareCanvas(cycleInfo, name);
+    setPreviewUrl(canvas.toDataURL('image/png'));
+  }, [cycleInfo, name, previewUrl]);
+
+  return (
+    <div
+      className="bg-white rounded-[20px] p-5"
+      style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}
+    >
+      <div className="flex items-center gap-2 mb-2">
+        <Share2 size={16} style={{ color: colors.bg }} />
+        <h3 className="font-display text-base text-luna-text">Ensemble</h3>
+      </div>
+      <p className="text-sm text-luna-text-muted font-body mb-4 leading-relaxed">
+        Envoie ta carte du jour à ton partenaire pour qu'il comprenne ta phase.
+      </p>
+
+      {/* Mini preview of card content */}
+      <div
+        className="rounded-[16px] p-4 mb-4"
+        style={{ backgroundColor: colors.bgLight, border: `1px solid ${colors.bg}20` }}
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <div
+            className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
+            style={{ backgroundColor: `${colors.bg}20` }}
+          >
+            {phaseData.icon}
+          </div>
+          <div>
+            <p className="font-display text-sm text-luna-text font-semibold">{phaseData.name}</p>
+            <p className="text-[11px] font-body text-luna-text-muted">
+              Jour {cycleInfo.currentDay}/{cycleInfo.cycleLength} · Énergie {cycleInfo.energyLevel}%
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {needs.map((need) => (
+            <span
+              key={need}
+              className="text-[11px] font-body font-medium px-2.5 py-1 rounded-full"
+              style={{ backgroundColor: `${colors.bg}18`, color: colors.accent }}
+            >
+              {need}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Preview image */}
+      <AnimatePresence>
+        {previewUrl && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mb-4 overflow-hidden"
+          >
+            <img
+              src={previewUrl}
+              alt="Aperçu de la carte"
+              className="w-full rounded-[12px]"
+              style={{ border: `1px solid ${colors.bg}20` }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Action buttons */}
+      <div className="flex items-center gap-2">
+        <button
+          onClick={handleShare}
+          className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-body font-semibold text-white transition-all hover:opacity-90 active:scale-[0.97]"
+          style={{ backgroundColor: colors.bg }}
+        >
+          {shared ? <Check size={15} /> : <Send size={15} />}
+          {shared ? 'Envoyé !' : 'Envoyer la carte'}
+        </button>
+        <button
+          onClick={handlePreview}
+          className="px-4 py-2.5 rounded-full text-sm font-body font-medium transition-all"
+          style={{ backgroundColor: `${colors.bg}12`, color: colors.accent }}
+        >
+          {previewUrl ? 'Masquer' : 'Aperçu'}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export default function Profil() {
   const { name, cycleLength, periodLength, cycleInfo, checkIns, goals, dispatch, profileImage } = useCycle();
@@ -187,23 +503,9 @@ export default function Profil() {
         </Link>
       </motion.div>
 
-      {/* Together card */}
+      {/* Together card — Share with partner */}
       <motion.div variants={item}>
-        <div
-          className="bg-white rounded-[20px] p-5"
-          style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}
-        >
-          <div className="flex items-center gap-2 mb-2">
-            <Share2 size={16} style={{ color: '#D4846A' }} />
-            <h3 className="font-display text-base text-luna-text">Ensemble</h3>
-          </div>
-          <p className="text-sm text-luna-text-muted font-body mb-3 leading-relaxed">
-            Partage tes phases avec ton partenaire. Quand il comprend ton cycle, tout est plus simple à deux.
-          </p>
-          <button className="btn-luna-outline text-sm py-2 px-5">
-            L'inviter
-          </button>
-        </div>
+        <SharePartnerCard cycleInfo={cycleInfo} name={name} />
       </motion.div>
 
       {/* Insights card */}
