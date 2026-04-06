@@ -184,7 +184,7 @@ const buildDailyMenu = (phase, phaseData, { requiredTags = [], allergies = [], c
 };
 
 export default function Alimentation() {
-  const { cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, allergies } = useCycle();
   const [openNutrient, setOpenNutrient] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
@@ -205,10 +205,8 @@ export default function Alimentation() {
     return buildDailyMenu(phase, phaseData, {
       requiredTags: tags,
       allergies: allergies || [],
-      cookingLevel,
-      cookingTime,
     });
-  }, [phase, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime]);
+  }, [phase, dietPreferences, healthIssues, allergies]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {
