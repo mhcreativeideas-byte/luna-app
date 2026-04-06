@@ -575,9 +575,6 @@ export default function Journal() {
                   "{affirmations[affirmationIdx]}"
                 </p>
               </div>
-              <div className="mb-3">
-                <MiniBreathingExercise breathing={ritual.breathing} phaseData={phaseData} />
-              </div>
               <div className="bg-white/60 rounded-[16px] p-4">
                 <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">Intention</p>
                 <p className="text-sm font-body" style={{ color: phaseData.colorDark }}>{ritual.intention}</p>
