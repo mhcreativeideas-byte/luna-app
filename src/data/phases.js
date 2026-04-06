@@ -442,7 +442,7 @@ export const PHASES = {
     sugarCravings: {
       explanation: 'Ton métabolisme est plus élevé en phase lutéale. La progestérone fait baisser ta sérotonine, ce qui crée des envies de glucides. C\'est de la biologie, pas de la faiblesse !',
       alternatives: [
-        'Chocolat noir 70%',
+        'Chocolat noir 70% · 2-3 carrés (30g)',
         'Dattes fourrées au beurre de cacahuète',
         'Glace maison banane-cacao',
         'Energy balls maison',
