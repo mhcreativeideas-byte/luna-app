@@ -415,7 +415,7 @@ export const PHASES = {
     },
     drinks: {
       good: [
-        { name: 'Infusions magnésium', why: 'Le magnésium baisse en phase lutéale alors que ton corps en a plus besoin. Il réduit irritabilité, crampes et troubles du sommeil.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
+        { name: 'Infusion de camomille', why: 'Riche en magnésium naturel, la camomille réduit irritabilité, crampes et troubles du sommeil en phase lutéale.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Lait d\'or (golden milk)', why: 'Le curcuma combat l\'inflammation pré-menstruelle. La cannelle aide à stabiliser la glycémie qui fluctue en lutéale.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Tisanes digestives', why: 'La progestérone ralentit le transit intestinal. Menthe poivrée et fenouil aident à réduire ballonnements et inconfort.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         { name: 'Eau tiède citronnée', why: 'Soutient le foie dans l\'élimination des hormones en excès. La vitamine C aide à maintenir le taux de progestérone.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
