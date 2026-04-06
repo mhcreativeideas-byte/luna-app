@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cookie, ChevronRight, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
+import { RECIPES } from '../data/recipes';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
 import TopMenu from '../components/ui/TopMenu';
 
@@ -66,31 +67,61 @@ const HEALTH_SUPERFOODS = {
   'Cycles irréguliers': ['Graines de lin', 'Graines de courge', 'Avocat', 'Noix', 'Saumon', 'Œufs', 'Graines de sésame', 'Zinc'],
 };
 
-const DAILY_MEALS = {
-  menstrual: [
-    { time: 'Matin', icon: '🌅', meal: 'Porridge avoine + banane + cannelle', drink: 'Tisane camomille', drinkIcon: '🍵' },
-    { time: 'Midi', icon: '☀️', meal: 'Lentilles + épinards + saumon', drink: 'Eau tiède citronnée', drinkIcon: '🍋' },
-    { time: 'Snack', icon: '🍪', meal: 'Chocolat noir 70% + amandes', drink: 'Infusion gingembre', drinkIcon: '🫚' },
-    { time: 'Soir', icon: '🌙', meal: 'Soupe butternut + quinoa + brocoli', drink: 'Lait d\'or (golden milk)', drinkIcon: '🥛' },
-  ],
-  follicular: [
-    { time: 'Matin', icon: '🌅', meal: 'Smoothie protéiné + graines de chia', drink: 'Matcha latte', drinkIcon: '🍵' },
-    { time: 'Midi', icon: '☀️', meal: 'Poulet grillé + quinoa + avocat', drink: 'Eau de coco', drinkIcon: '🥥' },
-    { time: 'Snack', icon: '🍪', meal: 'Yaourt + granola + fruits rouges', drink: 'Thé à la menthe', drinkIcon: '🌿' },
-    { time: 'Soir', icon: '🌙', meal: 'Tofu sauté + légumes + riz complet', drink: 'Jus de betterave', drinkIcon: '🥤' },
-  ],
-  ovulatory: [
-    { time: 'Matin', icon: '🌅', meal: 'Tartines complètes + avocat + œuf', drink: 'Thé vert', drinkIcon: '🍵' },
-    { time: 'Midi', icon: '☀️', meal: 'Bowl saumon + crudités + graines', drink: 'Eau détox concombre-menthe', drinkIcon: '🥒' },
-    { time: 'Snack', icon: '🍪', meal: 'Fruits frais + noix du Brésil', drink: 'Thé matcha glacé', drinkIcon: '🧊' },
-    { time: 'Soir', icon: '🌙', meal: 'Salade tiède brocoli + lentilles + feta', drink: 'Jus de légumes frais', drinkIcon: '🥬' },
-  ],
-  luteal: [
-    { time: 'Matin', icon: '🌅', meal: 'Avoine + banane + beurre de cacahuète', drink: 'Tisane camomille', drinkIcon: '🍵' },
-    { time: 'Midi', icon: '☀️', meal: 'Patate douce + saumon + épinards', drink: 'Eau tiède citronnée', drinkIcon: '🍋' },
-    { time: 'Snack', icon: '🍪', meal: 'Dattes + chocolat noir + amandes', drink: 'Infusion mélisse', drinkIcon: '🌿' },
-    { time: 'Soir', icon: '🌙', meal: 'Riz complet + légumes rôtis + tofu', drink: 'Lait d\'or', drinkIcon: '🥛' },
-  ],
+// Pseudo-random basé sur la date du jour (stable dans la journée)
+const seededRandom = (seed) => {
+  let s = seed;
+  return () => {
+    s = (s * 16807 + 0) % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+};
+
+const getDaySeed = () => {
+  const d = new Date();
+  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+};
+
+const MEAL_SLOTS = [
+  { key: 'breakfast', time: 'Matin', icon: '🌅' },
+  { key: 'lunch', time: 'Midi', icon: '☀️' },
+  { key: 'snack', time: 'Snack', icon: '🍪' },
+  { key: 'dinner', time: 'Soir', icon: '🌙' },
+];
+
+const DRINK_ICONS = {
+  'tisane': '🍵', 'infusion': '🍵', 'thé': '🍵', 'matcha': '🍵',
+  'lait': '🥛', 'golden': '🥛', 'smoothie': '🥤', 'jus': '🥤',
+  'eau': '💧', 'kéfir': '🥛', 'kombucha': '🍵',
+};
+
+const getDrinkIcon = (drinkName) => {
+  const lower = drinkName.toLowerCase();
+  for (const [keyword, icon] of Object.entries(DRINK_ICONS)) {
+    if (lower.includes(keyword)) return icon;
+  }
+  return '🍵';
+};
+
+const buildDailyMenu = (phase, phaseData) => {
+  const recipes = RECIPES[phase];
+  if (!recipes) return [];
+  const rand = seededRandom(getDaySeed() + phase.charCodeAt(0));
+  const goodDrinks = phaseData.drinks?.good || [];
+
+  return MEAL_SLOTS.map((slot, i) => {
+    const pool = recipes[slot.key];
+    if (!pool || pool.length === 0) return null;
+    const idx = Math.floor(rand() * pool.length);
+    const recipe = pool[idx];
+    const drinkIdx = Math.floor(rand() * goodDrinks.length);
+    const drink = goodDrinks[drinkIdx] || null;
+    return {
+      ...slot,
+      recipe,
+      drink: drink?.name || '',
+      drinkIcon: drink ? getDrinkIcon(drink.name) : '🍵',
+    };
+  }).filter(Boolean);
 };
 
 export default function Alimentation() {
@@ -102,6 +133,7 @@ export default function Alimentation() {
   const phaseData = PHASES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = phaseData.nutrientsFull || {};
+  const dailyMenu = useMemo(() => buildDailyMenu(phase, phaseData), [phase]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {
@@ -184,46 +216,84 @@ export default function Alimentation() {
 
       {/* ===== TA JOURNÉE IDÉALE ===== */}
       <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
-          <div className="px-5 pt-5 pb-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div
-                className="w-9 h-9 rounded-[12px] flex items-center justify-center"
-                style={{ backgroundColor: `${phaseData.color}15` }}
-              >
-                <UtensilsCrossed size={16} style={{ color: phaseData.colorDark }} />
-              </div>
-              <div>
-                <h2 className="font-display text-lg text-luna-text leading-tight">Ta journée idéale</h2>
-                <p className="text-[10px] font-body text-luna-text-hint mt-0.5">Repas & boissons adaptés à ta phase</p>
+        <div className="rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
+          {/* Header */}
+          <div
+            className="px-5 pt-5 pb-4"
+            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}18)` }}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-10 h-10 rounded-[14px] flex items-center justify-center"
+                  style={{ backgroundColor: `${phaseData.color}20` }}
+                >
+                  <UtensilsCrossed size={18} style={{ color: phaseData.colorDark }} />
+                </div>
+                <div>
+                  <h2 className="font-display text-lg text-luna-text leading-tight">Ta journée idéale</h2>
+                  <p className="text-[10px] font-body text-luna-text-hint mt-0.5">Change chaque jour · Adaptée à ta phase</p>
+                </div>
               </div>
             </div>
+          </div>
 
-            <div className="space-y-0">
-              {DAILY_MEALS[phase].map((m, i) => (
-                <div key={i} className={`flex items-start gap-3 py-3 ${i < DAILY_MEALS[phase].length - 1 ? 'border-b border-gray-50' : ''}`}>
-                  <div className="flex flex-col items-center gap-0.5 w-10 flex-shrink-0 pt-0.5">
-                    <span className="text-lg">{m.icon}</span>
-                    <span className="text-[9px] font-body font-bold uppercase tracking-wider text-luna-text-hint">{m.time}</span>
+          {/* Meals */}
+          <div className="bg-white px-4 py-3">
+            <div className="space-y-2">
+              {dailyMenu.map((m, i) => (
+                <motion.div
+                  key={m.key}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * i, duration: 0.3 }}
+                  className="flex items-center gap-3 rounded-[16px] p-3 transition-all"
+                  style={{ backgroundColor: i % 2 === 0 ? `${phaseData.color}06` : 'transparent' }}
+                >
+                  {/* Emoji recette */}
+                  <div
+                    className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: phaseData.bgColor }}
+                  >
+                    <span className="text-2xl">{m.recipe.emoji || m.icon}</span>
                   </div>
+
+                  {/* Contenu */}
                   <div className="flex-1 min-w-0">
-                    <p className="text-[13px] font-body font-semibold text-luna-text leading-snug">{m.meal}</p>
-                    <div className="flex items-center gap-1.5 mt-1.5">
-                      <span className="text-xs">{m.drinkIcon}</span>
-                      <span className="text-[11px] font-body text-luna-text-muted">{m.drink}</span>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-[9px] font-body font-bold uppercase tracking-wider" style={{ color: phaseData.color }}>{m.time}</span>
+                      <span className="text-[9px] font-body text-luna-text-hint">·</span>
+                      <span className="text-[9px] font-body text-luna-text-hint">{m.recipe.prepTime}</span>
                     </div>
+                    <p className="text-[13px] font-body font-semibold text-luna-text leading-snug truncate">{m.recipe.name}</p>
+                    {m.drink && (
+                      <div className="flex items-center gap-1.5 mt-1">
+                        <span className="text-[10px]">{m.drinkIcon}</span>
+                        <span className="text-[10px] font-body text-luna-text-muted">{m.drink}</span>
+                      </div>
+                    )}
                   </div>
-                </div>
+
+                  {/* Calories */}
+                  <div className="flex-shrink-0 text-right">
+                    <span
+                      className="text-[10px] font-body font-bold px-2 py-1 rounded-full"
+                      style={{ backgroundColor: `${phaseData.color}12`, color: phaseData.colorDark }}
+                    >
+                      {m.recipe.calories} kcal
+                    </span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* À limiter */}
-          <div className="px-5 py-4 mt-1" style={{ backgroundColor: '#FDF8F8' }}>
-            <div className="flex items-center gap-2 mb-3">
-              <AlertTriangle size={13} style={{ color: '#C4727F' }} />
+          <div className="px-5 py-3.5" style={{ backgroundColor: '#FDF8F8' }}>
+            <div className="flex items-center gap-2 mb-2.5">
+              <AlertTriangle size={12} style={{ color: '#C4727F' }} />
               <p className="text-[10px] font-body font-bold uppercase tracking-wider" style={{ color: '#A3555F' }}>
-                À limiter pendant cette phase
+                À limiter
               </p>
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -246,7 +316,7 @@ export default function Alimentation() {
             style={{ backgroundColor: phaseData.bgColor }}
           >
             <span className="text-[12px] font-body font-bold" style={{ color: phaseData.colorDark }}>
-              Voir les recettes adaptées
+              Voir toutes les recettes
             </span>
             <ChevronRight size={14} style={{ color: phaseData.colorDark }} />
           </Link>
