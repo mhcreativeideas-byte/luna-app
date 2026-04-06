@@ -444,7 +444,7 @@ export const PHASES = {
       alternatives: [
         'Chocolat noir 70%',
         'Dattes fourrées au beurre de cacahuète',
-        'Banana nice cream',
+        'Glace maison banane-cacao',
         'Energy balls maison',
         'Smoothie banane-cacao',
       ],
