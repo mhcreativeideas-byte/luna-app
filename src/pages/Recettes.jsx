@@ -360,7 +360,7 @@ export default function Recettes() {
               </div>
 
               {/* Temps + Niveau row */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="flex gap-6 flex-wrap">
                 <div>
                   <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Temps</p>
                   <div className="flex gap-1.5 flex-wrap">
