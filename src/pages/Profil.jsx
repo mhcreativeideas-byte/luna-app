@@ -1,7 +1,7 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Camera, Settings, Share2, TrendingUp, Trash2, Pencil, Send, Check } from 'lucide-react';
+import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Trash2, Pencil, Send, Check, ChevronLeft, ChevronRight, BarChart3, Sparkles } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import BackButton from '../components/ui/BackButton';
@@ -14,6 +14,311 @@ const item = {
   hidden: { opacity: 0, y: 10 },
   show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
+
+const MONTH_NAMES = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+const moods = [
+  { emoji: '😊', label: 'Super', value: 5 },
+  { emoji: '🙂', label: 'Bien', value: 4 },
+  { emoji: '😐', label: 'Neutre', value: 3 },
+  { emoji: '😔', label: 'Pas top', value: 2 },
+  { emoji: '😢', label: 'Difficile', value: 1 },
+];
+
+function getMonthEntries(entries, year, month) {
+  return entries.filter((e) => { const d = new Date(e.date); return d.getFullYear() === year && d.getMonth() === month; });
+}
+function getMonthSportSessions(sessions, year, month) {
+  return (sessions || []).filter((s) => { const d = new Date(s.date); return d.getFullYear() === year && d.getMonth() === month; });
+}
+function getMonthSportLogs(logs, year, month) {
+  return (logs || []).filter((l) => { const d = new Date(l.date); return d.getFullYear() === year && d.getMonth() === month; });
+}
+
+function computeMonthStats(entries, sportSessions = [], sportLogs = []) {
+  if (!entries.length && !sportSessions.length && !sportLogs.length) return null;
+  const energies = entries.filter((e) => e.energy).map((e) => e.energy);
+  const moodValues = entries.filter((e) => e.mood).map((e) => {
+    const m = moods.find((mo) => mo.label === e.mood);
+    return m ? m.value : 3;
+  });
+  const allSymptoms = entries.flatMap((e) => e.symptoms || []);
+  const symptomCounts = {};
+  allSymptoms.forEach((s) => { symptomCounts[s] = (symptomCounts[s] || 0) + 1; });
+  const topSymptoms = Object.entries(symptomCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  const energyByPhase = {};
+  entries.forEach((e) => {
+    if (e.phase && e.energy) {
+      if (!energyByPhase[e.phase]) energyByPhase[e.phase] = [];
+      energyByPhase[e.phase].push(e.energy);
+    }
+  });
+  const avgEnergyByPhase = {};
+  Object.entries(energyByPhase).forEach(([p, vals]) => {
+    avgEnergyByPhase[p] = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length * 10) / 10;
+  });
+  const totalSportSessions = sportSessions.length;
+  const sportByPhase = {};
+  sportSessions.forEach((s) => { if (s.phase) sportByPhase[s.phase] = (sportByPhase[s.phase] || 0) + 1; });
+  const stepsData = sportLogs.filter((l) => l.steps > 0).map((l) => l.steps);
+  const avgSteps = stepsData.length ? Math.round(stepsData.reduce((a, b) => a + b, 0) / stepsData.length) : 0;
+  const allCustomActivities = sportLogs.flatMap((l) => l.activities || []);
+  const totalCustomSessions = allCustomActivities.length;
+  const totalCustomDuration = allCustomActivities.reduce((sum, a) => sum + (a.duration || 0), 0);
+  return {
+    totalEntries: entries.length,
+    avgEnergy: energies.length ? Math.round(energies.reduce((a, b) => a + b, 0) / energies.length * 10) / 10 : null,
+    avgMood: moodValues.length ? Math.round(moodValues.reduce((a, b) => a + b, 0) / moodValues.length * 10) / 10 : null,
+    topSymptoms, avgEnergyByPhase, totalSportSessions, sportByPhase, avgSteps, totalCustomSessions, totalCustomDuration,
+  };
+}
+
+function TrendIcon({ current, previous }) {
+  if (!previous || !current) return null;
+  const diff = current - previous;
+  if (Math.abs(diff) < 0.3) return <Minus size={14} className="text-luna-text-hint" />;
+  if (diff > 0) return <TrendingUp size={14} className="text-green-500" />;
+  return <TrendingDown size={14} className="text-red-400" />;
+}
+
+function ProgressBar({ value, max = 10, color }) {
+  const pct = Math.min((value / max) * 100, 100);
+  return (
+    <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
+      <div className="h-full rounded-full transition-all duration-500" style={{ width: `${pct}%`, backgroundColor: color }} />
+    </div>
+  );
+}
+
+function MonthlyReport() {
+  const { cycleInfo, journalEntries, sportSessions, sportLogs, cycleLength, periodLength } = useCycle();
+  const now = new Date();
+  const [reportMonth, setReportMonth] = useState(now.getMonth());
+  const [reportYear, setReportYear] = useState(now.getFullYear());
+
+  if (!cycleInfo) return null;
+  const phaseData = cycleInfo.phaseData;
+
+  const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
+  const currentMonthSport = useMemo(() => getMonthSportSessions(sportSessions, reportYear, reportMonth), [sportSessions, reportYear, reportMonth]);
+  const currentMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, reportYear, reportMonth), [sportLogs, reportYear, reportMonth]);
+  const prevMo = reportMonth === 0 ? 11 : reportMonth - 1;
+  const prevYr = reportMonth === 0 ? reportYear - 1 : reportYear;
+  const prevMonthEntries = useMemo(() => getMonthEntries(journalEntries, prevYr, prevMo), [journalEntries, prevYr, prevMo]);
+  const prevMonthSport = useMemo(() => getMonthSportSessions(sportSessions, prevYr, prevMo), [sportSessions, prevYr, prevMo]);
+  const prevMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, prevYr, prevMo), [sportLogs, prevYr, prevMo]);
+
+  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries, currentMonthSport, currentMonthLogs), [currentMonthEntries, currentMonthSport, currentMonthLogs]);
+  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries, prevMonthSport, prevMonthLogs), [prevMonthEntries, prevMonthSport, prevMonthLogs]);
+
+  const navPrev = () => { if (reportMonth === 0) { setReportMonth(11); setReportYear(reportYear - 1); } else setReportMonth(reportMonth - 1); };
+  const navNext = () => {
+    if (reportMonth === now.getMonth() && reportYear === now.getFullYear()) return;
+    if (reportMonth === 11) { setReportMonth(0); setReportYear(reportYear + 1); } else setReportMonth(reportMonth + 1);
+  };
+
+  const insights = useMemo(() => {
+    const msgs = [];
+    if (!currentStats) return msgs;
+    if (currentStats.avgEnergy && prevStats?.avgEnergy) {
+      const diff = currentStats.avgEnergy - prevStats.avgEnergy;
+      if (diff > 0.5) msgs.push(`Ton énergie moyenne a augmenté de ${Math.round(diff * 10) / 10} points ce mois.`);
+      else if (diff < -0.5) msgs.push(`Ton énergie était un peu plus basse ce mois. Écoute ton corps.`);
+      else msgs.push('Ton énergie est restée stable par rapport au mois dernier.');
+    }
+    if (currentStats.totalEntries > 0) msgs.push(`Tu as rempli ton journal ${currentStats.totalEntries} jour${currentStats.totalEntries > 1 ? 's' : ''} ce mois.`);
+    if (currentStats.avgEnergyByPhase.follicular > 7) msgs.push('Ton énergie en phase folliculaire est excellente — tu en profites bien !');
+    if (currentStats.topSymptoms.length > 0) { const top = currentStats.topSymptoms[0]; msgs.push(`"${top[0]}" est ton ressenti le plus fréquent ce mois (${top[1]}x).`); }
+    if (currentStats.totalSportSessions > 0) {
+      if (prevStats?.totalSportSessions) {
+        const diff = currentStats.totalSportSessions - prevStats.totalSportSessions;
+        if (diff > 0) msgs.push(`Tu as fait ${diff} séance${diff > 1 ? 's' : ''} de plus que le mois dernier. Continue !`);
+        else if (diff < 0) msgs.push(`Un peu moins de sport ce mois. Écoute ton corps, chaque mouvement compte.`);
+        else msgs.push(`${currentStats.totalSportSessions} séances ce mois, comme le mois dernier. Belle régularité !`);
+      } else msgs.push(`Tu as bougé ${currentStats.totalSportSessions} fois ce mois. Ton corps te remercie !`);
+    }
+    if (currentStats.avgSteps > 0) {
+      if (currentStats.avgSteps >= 10000) msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne — objectif atteint !`);
+      else msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne. Chaque pas compte !`);
+    }
+    if (currentStats.totalCustomSessions > 0) msgs.push(`${currentStats.totalCustomSessions} activité${currentStats.totalCustomSessions > 1 ? 's' : ''} pour ${currentStats.totalCustomDuration} min ce mois.`);
+    return msgs;
+  }, [currentStats, prevStats]);
+
+  return (
+    <div className="rounded-[24px] overflow-hidden" style={{ backgroundColor: phaseData.bgColor }}>
+      <div className="p-5 pb-4">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
+            <BarChart3 size={20} style={{ color: phaseData.colorDark }} />
+          </div>
+          <div className="flex-1">
+            <h2 className="font-display text-lg text-luna-text">Rapport mensuel</h2>
+            <p className="text-[10px] font-body text-luna-text-muted">Tes stats et tendances</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <button onClick={navPrev} className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+            <ChevronLeft size={16} />
+          </button>
+          <h3 className="font-display text-base text-luna-text">
+            {MONTH_NAMES[reportMonth]} {reportYear}
+          </h3>
+          <button
+            onClick={navNext}
+            className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center transition-colors"
+            style={{ opacity: (reportMonth === now.getMonth() && reportYear === now.getFullYear()) ? 0.3 : 1 }}
+            disabled={reportMonth === now.getMonth() && reportYear === now.getFullYear()}
+          >
+            <ChevronRight size={16} className="text-luna-text-muted" />
+          </button>
+        </div>
+      </div>
+
+      <div className="px-5 pb-5 space-y-4">
+        {!currentStats && (
+          <div className="bg-white/60 rounded-[18px] p-6 text-center">
+            <BarChart3 size={32} className="mx-auto mb-2 text-luna-text-hint opacity-30" />
+            <p className="text-sm font-body text-luna-text-muted">Remplis ton journal pour voir ton rapport ici.</p>
+          </div>
+        )}
+
+        {currentStats && (
+          <>
+            <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+              <div className="flex items-center gap-3 mb-3 text-center">
+                <div className="flex-1 p-2 rounded-[12px]" style={{ backgroundColor: phaseData.bgColor }}>
+                  <p className="text-lg font-display font-bold" style={{ color: phaseData.colorDark }}>{periodLength}j</p>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Règles</p>
+                </div>
+                <div className="flex-1 p-2 rounded-[12px]" style={{ backgroundColor: phaseData.bgColor }}>
+                  <p className="text-lg font-display font-bold" style={{ color: phaseData.colorDark }}>{cycleLength}j</p>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Cycle</p>
+                </div>
+                <div className="flex-1 p-2 rounded-[12px] bg-gray-50">
+                  <p className="text-lg font-display font-bold text-luna-text">{currentStats.totalEntries}</p>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Jours suivis</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center p-2 rounded-[12px] bg-gray-50">
+                  <div className="flex items-center justify-center gap-1">
+                    <p className="text-base font-display font-bold text-luna-text">{currentStats.totalSportSessions}</p>
+                    {prevStats && <TrendIcon current={currentStats.totalSportSessions} previous={prevStats.totalSportSessions} />}
+                  </div>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Sport</p>
+                </div>
+                <div className="text-center p-2 rounded-[12px] bg-gray-50">
+                  <div className="flex items-center justify-center gap-1">
+                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgEnergy || '—'}</p>
+                    <TrendIcon current={currentStats.avgEnergy} previous={prevStats?.avgEnergy} />
+                  </div>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Énergie</p>
+                </div>
+                <div className="text-center p-2 rounded-[12px] bg-gray-50">
+                  <div className="flex items-center justify-center gap-1">
+                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgMood || '—'}</p>
+                    <TrendIcon current={currentStats.avgMood} previous={prevStats?.avgMood} />
+                  </div>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Humeur</p>
+                </div>
+              </div>
+              {prevStats && (
+                <div className="mt-3 pt-3 border-t border-gray-50">
+                  <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1.5">
+                    vs {MONTH_NAMES[prevMo]}
+                  </p>
+                  <div className="flex gap-4">
+                    <div className="flex items-center gap-1">
+                      <TrendIcon current={currentStats.avgEnergy} previous={prevStats.avgEnergy} />
+                      <span className="text-[10px] font-body text-luna-text-muted">
+                        Énergie {currentStats.avgEnergy && prevStats.avgEnergy ? (currentStats.avgEnergy > prevStats.avgEnergy ? '+' : '') + (Math.round((currentStats.avgEnergy - prevStats.avgEnergy) * 10) / 10) : '—'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <TrendIcon current={currentStats.totalSportSessions} previous={prevStats.totalSportSessions} />
+                      <span className="text-[10px] font-body text-luna-text-muted">
+                        Sport {currentStats.totalSportSessions > prevStats.totalSportSessions ? '+' : ''}{currentStats.totalSportSessions - prevStats.totalSportSessions}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {Object.keys(currentStats.avgEnergyByPhase).length > 0 && (
+              <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+                <h4 className="text-xs font-display font-semibold text-luna-text mb-3">Énergie par phase</h4>
+                <div className="space-y-3">
+                  {['menstrual', 'follicular', 'ovulatory', 'luteal'].map((p) => {
+                    const val = currentStats.avgEnergyByPhase[p];
+                    const prevVal = prevStats?.avgEnergyByPhase?.[p];
+                    const pd = PHASES[p];
+                    if (!val) return null;
+                    return (
+                      <div key={p}>
+                        <div className="flex items-center justify-between mb-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs">{pd.icon}</span>
+                            <span className="text-[11px] font-body font-semibold text-luna-text">{pd.shortName}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span className="text-xs font-display font-bold" style={{ color: pd.colorDark }}>{val}/10</span>
+                            {prevVal && <TrendIcon current={val} previous={prevVal} />}
+                          </div>
+                        </div>
+                        <ProgressBar value={val} max={10} color={pd.color} />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {currentStats.topSymptoms.length > 0 && (
+              <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+                <h4 className="text-xs font-display font-semibold text-luna-text mb-3">Ressentis fréquents</h4>
+                <div className="space-y-2">
+                  {currentStats.topSymptoms.map(([symptom, count]) => (
+                    <div key={symptom} className="flex items-center justify-between">
+                      <span className="text-[11px] font-body text-luna-text">{symptom}</span>
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex gap-0.5">
+                          {Array.from({ length: Math.min(count, 8) }).map((_, i) => (
+                            <div key={i} className="w-2 h-2 rounded-full" style={{ backgroundColor: phaseData.color }} />
+                          ))}
+                        </div>
+                        <span className="text-[10px] font-body text-luna-text-hint">{count}x</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {insights.length > 0 && (
+              <div className="bg-white/60 rounded-[18px] p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Sparkles size={13} style={{ color: phaseData.colorDark }} />
+                  <h4 className="text-xs font-display font-semibold text-luna-text">Tes insights</h4>
+                </div>
+                <div className="space-y-1.5">
+                  {insights.map((msg, i) => (
+                    <p key={i} className="text-[11px] font-body text-luna-text-body leading-relaxed">• {msg}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <p className="text-[10px] font-body text-luna-text-hint text-center px-4">
+              📊 Plus tu remplis ton journal, plus ton rapport sera précis.
+            </p>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
 
 const PHASE_NEEDS = {
   menstrual: ['Repos', 'Douceur', 'Patience'],
@@ -501,6 +806,11 @@ export default function Profil() {
             <p className="text-xs text-luna-text-hint font-body">Visualise ton cycle mois par mois</p>
           </div>
         </Link>
+      </motion.div>
+
+      {/* Monthly Report */}
+      <motion.div variants={item}>
+        <MonthlyReport />
       </motion.div>
 
       {/* Together card — Share with partner */}
