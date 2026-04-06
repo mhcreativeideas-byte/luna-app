@@ -151,23 +151,6 @@ export default function Dashboard() {
         </p>
       </motion.div>
 
-      {/* Energy Gauge */}
-      <motion.div variants={item} className="flex items-center gap-4">
-        <span className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Energy Gauge</span>
-        <div className="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
-          <motion.div
-            className="h-full rounded-full"
-            style={{ backgroundColor: phaseData.color }}
-            initial={{ width: 0 }}
-            animate={{ width: `${energyLevel}%` }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
-          />
-        </div>
-        <span className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>
-          {energyLevel}%
-        </span>
-      </motion.div>
-
       {/* Cycle Circle — Phase-colored ring with LUNA logo */}
       <motion.div variants={item} className="flex flex-col items-center py-6">
         <div className="relative w-56 h-56">
@@ -291,6 +274,23 @@ export default function Dashboard() {
       <motion.div variants={item}>
         <h2 className="font-display text-xl text-luna-text mb-1">Aujourd'hui</h2>
         <p className="text-xs font-body text-luna-text-hint mb-4">{phaseData.name}</p>
+
+        {/* Energy Gauge */}
+        <div className="flex items-center gap-4 mb-4">
+          <span className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Energy Gauge</span>
+          <div className="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ backgroundColor: phaseData.color }}
+              initial={{ width: 0 }}
+              animate={{ width: `${energyLevel}%` }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+            />
+          </div>
+          <span className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>
+            {energyLevel}%
+          </span>
+        </div>
 
         <div className="grid grid-cols-2 gap-3">
           {cards.map((card, i) => (
