@@ -403,8 +403,8 @@ export default function Sport() {
               onClick={toggleSession}
               className="w-full py-3.5 rounded-[16px] flex items-center justify-center gap-2.5 transition-all"
               style={{
-                backgroundColor: sessionValidated ? phaseData.color : phaseData.bgColor,
-                border: sessionValidated ? 'none' : `2px solid ${phaseData.color}40`,
+                backgroundColor: sessionValidated ? '#7BAE7F' : phaseData.bgColor,
+                border: sessionValidated ? '1.5px solid #7BAE7F' : `2px solid ${phaseData.color}40`,
               }}
             >
               <Check size={18} style={{ color: sessionValidated ? 'white' : phaseData.colorDark }} />
