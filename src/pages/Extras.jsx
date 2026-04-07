@@ -242,6 +242,7 @@ export default function Extras() {
             <div className="flex items-center gap-1.5 mb-1.5">
               <Sparkles size={12} style={{ color: phaseData.color }} />
               <span className="text-xs font-display font-semibold text-luna-text">Le savais-tu ?</span>
+              <span className="text-[10px] font-body text-luna-text-hint">· Phase {phaseData.shortName?.toLowerCase()}</span>
             </div>
             <p className="text-[13px] font-body text-luna-text-body leading-relaxed italic pr-4">
               "{dailyFact}"
