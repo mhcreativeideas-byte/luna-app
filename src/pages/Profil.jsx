@@ -376,7 +376,7 @@ function generateShareCanvas(cycleInfo, userName, sections) {
 
   // ─── Pre-calculate height ───
   const activeSections = Object.entries(sections).filter(([, s]) => s.enabled && s.items.length > 0);
-  let contentH = 390; // header area (icon + name + day + divider + energy + period)
+  let contentH = 440; // header area (icon + name + day + divider + energy + period)
   activeSections.forEach(([key, s]) => {
     if (key === 'needs') contentH += 75;
     else if (key === 'personalMessage') contentH += s.items[0] ? 80 : 0;
@@ -410,79 +410,65 @@ function generateShareCanvas(cycleInfo, userName, sections) {
 
   // ─── Phase icon circle ───
   ctx.beginPath();
-  ctx.arc(W / 2, 95, 46, 0, Math.PI * 2);
-  ctx.fillStyle = colors.bg + '22';
+  ctx.arc(W / 2, 120, 50, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '20';
   ctx.fill();
-  ctx.font = '38px serif';
+  ctx.font = '40px serif';
   ctx.textAlign = 'center';
-  ctx.fillText(phaseData.icon, W / 2, 112);
+  ctx.fillText(phaseData.icon, W / 2, 137);
 
   // Phase name
-  ctx.font = 'bold 28px system-ui, -apple-system, sans-serif';
+  ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#2D2226';
-  ctx.fillText(phaseData.name, W / 2, 175);
+  ctx.fillText(phaseData.name, W / 2, 210);
 
   // Cycle day
-  ctx.font = '15px system-ui, -apple-system, sans-serif';
+  ctx.font = '18px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F';
-  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 200);
+  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 245);
 
-  // Thin divider
-  ctx.strokeStyle = colors.bg + '35';
-  ctx.lineWidth = 1;
+  // Divider
+  ctx.strokeStyle = colors.bg + '40';
+  ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.moveTo(PAD + 60, 225);
-  ctx.lineTo(W - PAD - 60, 225);
+  ctx.moveTo(80, 280);
+  ctx.lineTo(W - 80, 280);
   ctx.stroke();
 
-  // ─── Energy bar inside a card ───
-  const energyCardY = 242;
-  const energyCardH = 70;
-  // Card bg
-  ctx.fillStyle = '#FFFFFF';
-  ctx.shadowColor = 'rgba(45,34,38,0.05)';
-  ctx.shadowBlur = 10;
-  ctx.shadowOffsetY = 2;
-  ctx.beginPath(); ctx.roundRect(PAD, energyCardY, CARD_W, energyCardH, CARD_R); ctx.fill();
-  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-  // Left accent bar
-  ctx.fillStyle = colors.bg;
-  ctx.beginPath(); ctx.roundRect(PAD, energyCardY, 4, energyCardH, [CARD_R, 0, 0, CARD_R]); ctx.fill();
-
-  // Energy label + percentage
-  ctx.font = '600 12px system-ui, -apple-system, sans-serif';
+  // ─── Energy (flat style, like original) ───
+  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F';
   ctx.textAlign = 'left';
-  ctx.fillText('ÉNERGIE', PAD + 20, energyCardY + 25);
+  ctx.fillText('ÉNERGIE', 60, 325);
   ctx.textAlign = 'right';
-  ctx.font = 'bold 16px system-ui, -apple-system, sans-serif';
+  ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = colors.accent;
-  ctx.fillText(`${cycleInfo.energyLevel}%`, W - PAD - 18, energyCardY + 25);
+  ctx.fillText(`${cycleInfo.energyLevel}%`, W - 60, 325);
 
-  // Bar
-  const eBarX = PAD + 20, eBarY = energyCardY + 35, eBarW = CARD_W - 40, eBarH = 8;
-  ctx.fillStyle = colors.bg + '20';
-  ctx.beginPath(); ctx.roundRect(eBarX, eBarY, eBarW, eBarH, 4); ctx.fill();
+  // Energy bar
+  const barX = 60, barY = 340, barW = W - 120, barH = 12;
+  ctx.fillStyle = '#E8E4E0';
+  ctx.beginPath(); ctx.roundRect(barX, barY, barW, barH, 6); ctx.fill();
   ctx.fillStyle = colors.bg;
-  ctx.beginPath(); ctx.roundRect(eBarX, eBarY, eBarW * (cycleInfo.energyLevel / 100), eBarH, 4); ctx.fill();
+  ctx.beginPath(); ctx.roundRect(barX, barY, barW * (cycleInfo.energyLevel / 100), barH, 6); ctx.fill();
 
   // Energy explanation
-  ctx.font = '12px system-ui, -apple-system, sans-serif';
+  ctx.font = '13px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F';
-  ctx.textAlign = 'left';
-  ctx.fillText(getEnergyLabel(cycleInfo.energyLevel), PAD + 20, energyCardY + 60);
+  ctx.textAlign = 'center';
+  ctx.fillText(getEnergyLabel(cycleInfo.energyLevel), W / 2, 375);
 
   // ─── Period info ───
   ctx.textAlign = 'center';
-  ctx.font = '14px system-ui, -apple-system, sans-serif';
+  ctx.font = '16px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#5A4A4E';
   const periodText = cycleInfo.daysUntilPeriod <= 0
     ? 'Règles prévues aujourd\'hui'
     : cycleInfo.daysUntilPeriod === 1 ? 'Prochaines règles demain'
       : `Prochaines règles dans ${cycleInfo.daysUntilPeriod} jours`;
-  ctx.fillText(periodText, W / 2, energyCardY + energyCardH + 30);
+  ctx.fillText(periodText, W / 2, 410);
 
-  let curY = energyCardY + energyCardH + 50;
+  let curY = 440;
 
   // ─── Helper: draw a rounded card section ───
   const drawCardSection = (title, items, emoji) => {
