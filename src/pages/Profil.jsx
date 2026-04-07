@@ -875,24 +875,6 @@ export default function Profil() {
         </div>
       </motion.div>
 
-      {/* Goals */}
-      <motion.div variants={item}>
-        <h3 className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2">Mes objectifs</h3>
-        <div className="flex flex-wrap gap-2">
-          {(goals || []).map((g) => (
-            <span
-              key={g}
-              className="text-xs font-body px-3.5 py-2 rounded-pill bg-white text-luna-text-body"
-              style={{ boxShadow: '0 1px 4px rgba(45,34,38,0.06)' }}
-            >
-              {g}
-            </span>
-          ))}
-          {(!goals || goals.length === 0) && (
-            <p className="text-xs text-luna-text-hint font-body">Aucun objectif defini</p>
-          )}
-        </div>
-      </motion.div>
     </motion.div>
   );
 }
