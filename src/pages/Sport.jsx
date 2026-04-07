@@ -335,7 +335,7 @@ export default function Sport() {
                 border: activityName.trim() ? `1.5px solid ${phaseData.color}` : '1.5px solid transparent',
               }}
             >
-              + Valider cette activité
+              Valider cette activité
             </button>
 
             {/* Liste des activités ajoutées */}
