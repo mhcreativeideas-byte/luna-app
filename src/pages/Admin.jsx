@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'luna2026';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'luna2026admin';
 
 const phaseLabels = {
   menstrual: { name: 'Menstruelle', icon: '🌙', color: '#B4A7D6', bg: '#EEEDFE' },
@@ -88,7 +88,9 @@ function PhaseBar({ data, total }) {
 
 export default function Admin() {
   const navigate = useNavigate();
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(
+    () => sessionStorage.getItem('luna_admin_auth') === 'true'
+  );
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -161,9 +163,16 @@ export default function Admin() {
     setDeleting(false);
   };
 
+  // If already authenticated from sessionStorage, fetch users on mount
+  useEffect(() => {
+    if (authenticated) fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (password === ADMIN_PASSWORD) {
+      sessionStorage.setItem('luna_admin_auth', 'true');
       setAuthenticated(true);
       setError('');
       fetchUsers();
@@ -316,7 +325,7 @@ export default function Admin() {
             <p className="text-sm text-gray-500 font-body mt-1">Accès réservé</p>
           </div>
 
-          <form onSubmit={handleLogin} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+          <form onSubmit={handleLogin} className="bg-white rounded-[24px] p-6 shadow-lg border border-gray-100">
             <label className="block text-sm font-semibold text-gray-700 mb-2 font-body">
               Mot de passe
             </label>
@@ -385,7 +394,7 @@ export default function Admin() {
               Actualiser
             </button>
             <button
-              onClick={() => setAuthenticated(false)}
+              onClick={() => { sessionStorage.removeItem('luna_admin_auth'); setAuthenticated(false); }}
               className="flex items-center gap-2 px-4 py-2 text-sm bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition-all font-body"
             >
               <LogOut size={14} />

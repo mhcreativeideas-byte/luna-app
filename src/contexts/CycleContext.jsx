@@ -360,7 +360,7 @@ export function CycleProvider({ children }) {
         }
       }
     } catch (e) {
-      console.log('Load profile error:', e);
+      console.error('Load profile error:', e);
     }
   };
 
@@ -396,7 +396,7 @@ export function CycleProvider({ children }) {
         current_phase: cycleInfo?.phase || 'unknown',
       }, { onConflict: 'auth_id' });
     } catch (e) {
-      console.log('Save profile error:', e);
+      console.error('Save profile error:', e);
     }
   };
 

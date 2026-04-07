@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2 } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
 
@@ -88,7 +89,7 @@ export default function Dashboard() {
   const [tempConfirming, setTempConfirming] = useState(false);
   const [tempToConfirm, setTempToConfirm] = useState(null);
 
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <DashboardSkeleton />;
 
   const { phase, phaseData, currentDay, energyLevel, daysUntilPeriod } = cycleInfo;
 

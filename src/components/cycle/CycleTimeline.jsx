@@ -1,10 +1,11 @@
 import { useCycle } from '../../contexts/CycleContext';
 import { getPhaseForDay } from '../../data/phases';
 import { PHASES } from '../../data/phases';
+import { CycleTimelineSkeleton } from '../ui/SkeletonLoader';
 
 export default function CycleTimeline() {
   const { cycleInfo, cycleLength, periodLength } = useCycle();
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <CycleTimelineSkeleton />;
 
   const days = Array.from({ length: cycleLength }, (_, i) => i + 1);
 

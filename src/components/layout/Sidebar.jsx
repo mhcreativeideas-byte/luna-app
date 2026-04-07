@@ -11,6 +11,7 @@ const navItems = [
 
 export default function Sidebar() {
   const { name, cycleInfo, signOut } = useCycle();
+  const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
 
   return (
     <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-white/80 backdrop-blur-md border-r border-gray-100 px-4 py-6 fixed left-0 top-0 z-40">
@@ -52,10 +53,10 @@ export default function Sidebar() {
             to={to}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-all duration-300 text-sm font-body font-semibold ${
-                isActive ? 'text-[#C4727F]' : 'text-luna-text-muted hover:bg-gray-50'
+                isActive ? '' : 'text-luna-text-muted hover:bg-gray-50'
               }`
             }
-            style={({ isActive }) => isActive ? { backgroundColor: '#FDE8EB' } : {}}
+            style={({ isActive }) => isActive ? { backgroundColor: phaseData.bgColor, color: phaseData.color } : {}}
           >
             <Icon size={20} strokeWidth={1.8} />
             {label}
@@ -77,7 +78,10 @@ export default function Sidebar() {
             await signOut();
           }
         }}
-        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint hover:text-[#C4727F] transition-colors mt-1 font-body"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint transition-colors mt-1 font-body"
+        style={{ '--hover-color': phaseData.color }}
+        onMouseEnter={(e) => e.currentTarget.style.color = phaseData.color}
+        onMouseLeave={(e) => e.currentTarget.style.color = ''}
       >
         <LogOut size={16} />
         Déconnexion

@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { Zap } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
+import { EnergyGaugeSkeleton } from '../ui/SkeletonLoader';
 
 export default function EnergyGauge() {
   const { cycleInfo } = useCycle();
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <EnergyGaugeSkeleton />;
 
   const { phaseData } = cycleInfo;
   const energy = phaseData.energy;

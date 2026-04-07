@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import BackButton from '../components/ui/BackButton';
+import { ExtrasSkeleton } from '../components/ui/SkeletonLoader';
 
 // Tirage pseudo-aléatoire stable par jour (même seed = même résultat)
 function seededRandom(seed) {
@@ -127,7 +128,7 @@ const SLEEP_SUMMARY = {
 
 export default function Extras() {
   const { cycleInfo } = useCycle();
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <ExtrasSkeleton />;
 
   const { phase, phaseData } = cycleInfo;
   const sport = SPORT_SUMMARY[phase] || SPORT_SUMMARY.follicular;

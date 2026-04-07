@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { useCycle } from '../../contexts/CycleContext';
+import { PhaseCardSkeleton } from '../ui/SkeletonLoader';
 
 export default function PhaseCard() {
   const { cycleInfo } = useCycle();
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <PhaseCardSkeleton />;
 
   const { phaseData, currentDay, cycleLength } = cycleInfo;
   const progress = (currentDay / cycleLength) * 100;

@@ -5,6 +5,7 @@ import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Tr
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import BackButton from '../components/ui/BackButton';
+import { ProfilSkeleton, SkeletonCard } from '../components/ui/SkeletonLoader';
 
 const container = {
   hidden: { opacity: 0 },
@@ -96,7 +97,7 @@ function MonthlyReport() {
   const [reportMonth, setReportMonth] = useState(now.getMonth());
   const [reportYear, setReportYear] = useState(now.getFullYear());
 
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <ProfilSkeleton />;
   const phaseData = cycleInfo.phaseData;
 
   const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
@@ -496,7 +497,7 @@ function SharePartnerCard({ cycleInfo, name }) {
   const [shared, setShared] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
 
-  if (!cycleInfo) return null;
+  if (!cycleInfo) return <SkeletonCard height={200} />;
 
   const phase = cycleInfo.phase;
   const phaseData = cycleInfo.phaseData;

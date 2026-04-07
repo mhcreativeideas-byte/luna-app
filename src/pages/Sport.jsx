@@ -5,6 +5,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { EXERCISES } from '../data/exercises';
 import { PHASES } from '../data/phases';
 import BackButton from '../components/ui/BackButton';
+import { SportSkeleton } from '../components/ui/SkeletonLoader';
 
 const container = {
   hidden: { opacity: 0 },
@@ -82,7 +83,7 @@ export default function Sport() {
   const phaseData = PHASES[phase];
   const exerciseData = EXERCISES[phase];
 
-  if (!exerciseData) return null;
+  if (!exerciseData) return <SportSkeleton />;
 
   const titles = PHASE_SPORT_TITLES[phase];
   const intensityDots = Array.from({ length: 4 }, (_, i) => i < exerciseData.intensity);

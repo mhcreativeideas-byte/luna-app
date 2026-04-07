@@ -20,6 +20,7 @@ import MonFrigo from './pages/MonFrigo';
 import Admin from './pages/Admin';
 import CGU from './pages/CGU';
 import Privacy from './pages/Privacy';
+import NotFound from './pages/NotFound';
 
 function ProtectedRoute({ children }) {
   const { onboardingComplete, user, authLoading } = useCycle();
@@ -80,6 +81,7 @@ function App() {
           <Route path="/explorer" element={<Navigate to="/dashboard" replace />} />
           <Route path="/food" element={<Navigate to="/alimentation" replace />} />
           <Route path="/sleep" element={<Navigate to="/plus" replace />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </CycleProvider>
     </BrowserRouter>
