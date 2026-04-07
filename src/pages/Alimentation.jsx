@@ -155,6 +155,14 @@ const buildDailyMenu = (phase, phaseData, { requiredTags = [], allergies = [], c
     return total;
   };
 
+  // Mélanger les boissons pour éviter les doublons dans la journée
+  const shuffledDrinks = [...goodDrinks];
+  for (let i = shuffledDrinks.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [shuffledDrinks[i], shuffledDrinks[j]] = [shuffledDrinks[j], shuffledDrinks[i]];
+  }
+  let drinkIndex = 0;
+
   return MEAL_SLOTS.map((slot) => {
     const pool = recipes[slot.key];
     if (!pool || pool.length === 0) return null;
@@ -172,8 +180,8 @@ const buildDailyMenu = (phase, phaseData, { requiredTags = [], allergies = [], c
     const available = filtered.length > 0 ? filtered : pool; // fallback si aucun résultat
     const idx = Math.floor(rand() * available.length);
     const recipe = available[idx];
-    const drinkIdx = Math.floor(rand() * goodDrinks.length);
-    const drink = goodDrinks[drinkIdx] || null;
+    const drink = shuffledDrinks[drinkIndex % shuffledDrinks.length] || null;
+    drinkIndex++;
     return {
       ...slot,
       recipe,
