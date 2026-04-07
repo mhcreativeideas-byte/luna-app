@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Trash2, Pencil, Send, Check, ChevronLeft, ChevronRight, BarChart3, Sparkles } from 'lucide-react';
+import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Trash2, Pencil, Send, Check, ChevronLeft, ChevronRight, BarChart3, Sparkles, Eye, EyeOff, X, Plus, MessageCircle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import BackButton from '../components/ui/BackButton';
@@ -328,6 +328,27 @@ const PHASE_NEEDS = {
   luteal: ['Patience', 'Douceur', 'Pas de prise de tête'],
 };
 
+const PHASE_SUPPORT = {
+  menstrual: ['Une bouillotte serait la bienvenue', 'Ne prends pas mon silence personnellement', 'Un câlin sans rien dire, c\'est parfait'],
+  follicular: ['C\'est le bon moment pour planifier ensemble', 'Encourage mes nouvelles idées', 'Propose-moi une sortie ou activité'],
+  ovulatory: ['Planifie un moment à deux ce soir', 'C\'est le moment de parler de sujets importants', 'Je suis partante pour une surprise'],
+  luteal: ['Un câlin vaut mieux qu\'une solution', 'Propose-moi un thé ou un chocolat chaud', 'Sois patient, ça va passer'],
+};
+
+const PHASE_AVOID = {
+  menstrual: ['Évite les remarques sur ma fatigue', 'Pas de "c\'est tes règles ou quoi ?"', 'Ne me force pas à sortir si je n\'ai pas envie'],
+  follicular: ['Ne freine pas mon enthousiasme', 'Évite d\'annuler nos projets', 'Pas besoin de me surprotéger'],
+  ovulatory: ['Évite de me laisser seule ce soir', 'Pas de conflits inutiles, je suis réceptive', 'Ne remets pas à plus tard nos discussions'],
+  luteal: ['Évite les sujets stressants ce soir', 'Pas de "tu réagis trop"', 'Ne commente pas ce que je mange'],
+};
+
+const PHASE_FOOD_IDEAS = {
+  menstrual: ['Chocolat noir et fruits rouges', 'Un plat chaud réconfortant', 'Tisane au gingembre'],
+  follicular: ['Salade fraîche et colorée', 'Bowl protéiné avec avocat', 'Un smoothie aux fruits'],
+  ovulatory: ['Quelque chose de léger et frais', 'Un repas à partager ensemble', 'Jus de fruits maison'],
+  luteal: ['Du chocolat (oui, vraiment)', 'Patate douce et plat réconfortant', 'Infusion camomille avant de dormir'],
+};
+
 const PHASE_COLORS = {
   menstrual: { bg: '#D4727F', bgLight: '#FDE8EB', accent: '#A85566' },
   follicular: { bg: '#7BAE7F', bgLight: '#EDF5ED', accent: '#4D7A50' },
@@ -335,13 +356,30 @@ const PHASE_COLORS = {
   luteal: { bg: '#B09ACB', bgLight: '#F3EEF8', accent: '#7D6A96' },
 };
 
-function generateShareCanvas(cycleInfo, userName) {
+const ENERGY_LABELS = {
+  low: 'Énergie basse — elle a besoin de calme et de douceur',
+  medium: 'Énergie moyenne — un rythme tranquille lui convient',
+  high: 'Pleine d\'énergie — elle est partante pour des activités !',
+};
+const getEnergyLabel = (level) => level <= 35 ? ENERGY_LABELS.low : level <= 65 ? ENERGY_LABELS.medium : ENERGY_LABELS.high;
+
+function generateShareCanvas(cycleInfo, userName, sections) {
   const phase = cycleInfo.phase;
   const colors = PHASE_COLORS[phase];
   const phaseData = cycleInfo.phaseData;
-  const needs = PHASE_NEEDS[phase];
 
-  const W = 600, H = 800;
+  const W = 600;
+  // Calculate dynamic height based on active sections
+  let contentH = 380; // base height (header + energy + period)
+  const activeSections = Object.entries(sections).filter(([, s]) => s.enabled && s.items.length > 0);
+  activeSections.forEach(([key, s]) => {
+    if (key === 'needs') contentH += 80;
+    else if (key === 'personalMessage') contentH += s.items[0] ? 60 : 0;
+    else contentH += 30 + s.items.length * 28 + 20;
+  });
+  contentH += 80; // branding + padding
+  const H = Math.max(600, contentH);
+
   const canvas = document.createElement('canvas');
   canvas.width = W;
   canvas.height = H;
@@ -354,13 +392,11 @@ function generateShareCanvas(cycleInfo, userName) {
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
-  // Decorative circle top-right
+  // Decorative circles
   ctx.beginPath();
   ctx.arc(W + 20, -20, 140, 0, Math.PI * 2);
   ctx.fillStyle = colors.bg + '18';
   ctx.fill();
-
-  // Decorative circle bottom-left
   ctx.beginPath();
   ctx.arc(-30, H + 10, 120, 0, Math.PI * 2);
   ctx.fillStyle = colors.bg + '12';
@@ -368,170 +404,321 @@ function generateShareCanvas(cycleInfo, userName) {
 
   // Phase icon circle
   ctx.beginPath();
-  ctx.arc(W / 2, 120, 50, 0, Math.PI * 2);
+  ctx.arc(W / 2, 100, 50, 0, Math.PI * 2);
   ctx.fillStyle = colors.bg + '20';
   ctx.fill();
-
-  // Phase emoji
   ctx.font = '40px serif';
   ctx.textAlign = 'center';
-  ctx.fillText(phaseData.icon, W / 2, 137);
+  ctx.fillText(phaseData.icon, W / 2, 117);
 
-  // Phase name
-  ctx.font = 'bold 32px system-ui, -apple-system, sans-serif';
+  // Phase name + day
+  ctx.font = 'bold 30px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#2D2226';
-  ctx.textAlign = 'center';
-  ctx.fillText(phaseData.name, W / 2, 210);
-
-  // Cycle day
-  ctx.font = '18px system-ui, -apple-system, sans-serif';
+  ctx.fillText(phaseData.name, W / 2, 185);
+  ctx.font = '16px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F';
-  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 245);
+  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 215);
 
-  // Divider line
+  // Divider
   ctx.strokeStyle = colors.bg + '40';
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.moveTo(80, 280);
-  ctx.lineTo(W - 80, 280);
+  ctx.moveTo(80, 245);
+  ctx.lineTo(W - 80, 245);
   ctx.stroke();
 
-  // Energy bar label
+  // Energy section
   ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F';
   ctx.textAlign = 'left';
-  ctx.fillText('ÉNERGIE', 60, 325);
-
-  // Energy bar percentage
+  ctx.fillText('ÉNERGIE', 60, 285);
   ctx.textAlign = 'right';
   ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = colors.accent;
-  ctx.fillText(`${cycleInfo.energyLevel}%`, W - 60, 325);
-
-  // Energy bar background
-  const barX = 60, barY = 340, barW = W - 120, barH = 12;
+  ctx.fillText(`${cycleInfo.energyLevel}%`, W - 60, 285);
+  // Bar
+  const barX = 60, barY = 300, barW = W - 120, barH = 12;
   ctx.fillStyle = '#E8E4E0';
-  ctx.beginPath();
-  ctx.roundRect(barX, barY, barW, barH, 6);
-  ctx.fill();
-
-  // Energy bar fill
+  ctx.beginPath(); ctx.roundRect(barX, barY, barW, barH, 6); ctx.fill();
   ctx.fillStyle = colors.bg;
-  ctx.beginPath();
-  ctx.roundRect(barX, barY, barW * (cycleInfo.energyLevel / 100), barH, 6);
-  ctx.fill();
-
-  // Next period
+  ctx.beginPath(); ctx.roundRect(barX, barY, barW * (cycleInfo.energyLevel / 100), barH, 6); ctx.fill();
+  // Energy explanation
+  ctx.font = '13px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F';
   ctx.textAlign = 'center';
-  ctx.font = '16px system-ui, -apple-system, sans-serif';
+  ctx.fillText(getEnergyLabel(cycleInfo.energyLevel), W / 2, 335);
+
+  // Period info
+  ctx.font = '15px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#5A4A4E';
   const periodText = cycleInfo.daysUntilPeriod <= 0
     ? 'Règles prévues aujourd\'hui'
-    : cycleInfo.daysUntilPeriod === 1
-      ? 'Prochaines règles demain'
+    : cycleInfo.daysUntilPeriod === 1 ? 'Prochaines règles demain'
       : `Prochaines règles dans ${cycleInfo.daysUntilPeriod} jours`;
-  ctx.fillText(periodText, W / 2, 400);
+  ctx.fillText(periodText, W / 2, 370);
 
-  // "Ce dont j'ai besoin" section
-  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#8A7B7F';
-  ctx.fillText('CE DONT J\'AI BESOIN', W / 2, 465);
+  let curY = 400;
 
-  // Need pills
-  const pillY = 490;
-  const pillH = 44;
-  const pillGap = 12;
-  const totalPillWidth = needs.reduce((acc, n) => {
-    ctx.font = '16px system-ui, -apple-system, sans-serif';
-    return acc + ctx.measureText(n).width + 36;
-  }, 0) + (needs.length - 1) * pillGap;
-  let pillX = (W - totalPillWidth) / 2;
-
-  needs.forEach((need) => {
-    ctx.font = '16px system-ui, -apple-system, sans-serif';
-    const textW = ctx.measureText(need).width;
-    const pw = textW + 36;
-
-    // Pill background
-    ctx.fillStyle = colors.bg + '20';
-    ctx.beginPath();
-    ctx.roundRect(pillX, pillY, pw, pillH, 22);
-    ctx.fill();
-
-    // Pill border
-    ctx.strokeStyle = colors.bg + '50';
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.roundRect(pillX, pillY, pw, pillH, 22);
-    ctx.stroke();
-
-    // Pill text
+  // Helper: draw a section with title + items
+  const drawSection = (title, items, emoji) => {
+    ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = colors.accent;
-    ctx.textAlign = 'center';
-    ctx.fillText(need, pillX + pw / 2, pillY + 28);
+    ctx.textAlign = 'left';
+    ctx.fillText(`${emoji}  ${title.toUpperCase()}`, 60, curY);
+    curY += 8;
+    items.forEach((item) => {
+      ctx.font = '14px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#5A4A4E';
+      ctx.textAlign = 'left';
+      const text = `  •  ${item}`;
+      ctx.fillText(text, 65, curY + 18);
+      curY += 26;
+    });
+    curY += 14;
+  };
 
-    pillX += pw + pillGap;
+  // Draw active sections
+  activeSections.forEach(([key, s]) => {
+    if (key === 'needs' && s.items.length > 0) {
+      ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#8A7B7F';
+      ctx.textAlign = 'center';
+      ctx.fillText('CE DONT J\'AI BESOIN', W / 2, curY);
+      const pillY = curY + 18;
+      const pillH = 38;
+      const pillGap = 10;
+      ctx.font = '14px system-ui, -apple-system, sans-serif';
+      const totalPW = s.items.reduce((a, n) => a + ctx.measureText(n).width + 30, 0) + (s.items.length - 1) * pillGap;
+      let pX = (W - totalPW) / 2;
+      s.items.forEach((need) => {
+        const tw = ctx.measureText(need).width;
+        const pw = tw + 30;
+        ctx.fillStyle = colors.bg + '20';
+        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 19); ctx.fill();
+        ctx.strokeStyle = colors.bg + '50';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 19); ctx.stroke();
+        ctx.fillStyle = colors.accent;
+        ctx.textAlign = 'center';
+        ctx.fillText(need, pX + pw / 2, pillY + 24);
+        pX += pw + pillGap;
+      });
+      curY = pillY + pillH + 20;
+    } else if (key === 'support') {
+      drawSection('Comment me soutenir', s.items, '💛');
+    } else if (key === 'avoid') {
+      drawSection('Ce qu\'il vaut mieux éviter', s.items, '🚫');
+    } else if (key === 'food') {
+      drawSection('Ce qui me ferait plaisir', s.items, '🍽️');
+    } else if (key === 'personalMessage' && s.items[0]) {
+      ctx.font = 'italic 15px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = colors.accent;
+      ctx.textAlign = 'center';
+      ctx.fillText(`"${s.items[0]}"`, W / 2, curY + 5);
+      curY += 30;
+    }
   });
 
-  // Personal message area
+  // User name
   if (userName) {
-    ctx.font = 'italic 16px system-ui, -apple-system, sans-serif';
+    ctx.font = 'italic 15px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = '#8A7B7F';
     ctx.textAlign = 'center';
-    ctx.fillText(`— ${userName}`, W / 2, 590);
+    ctx.fillText(`— ${userName}`, W / 2, curY + 10);
   }
 
   // LUNA branding
   ctx.font = 'bold 14px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = colors.bg + '80';
   ctx.textAlign = 'center';
-  ctx.fillText('LUNA 🌙', W / 2, H - 50);
+  ctx.fillText('LUNA 🌙', W / 2, H - 45);
   ctx.font = '11px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F80';
-  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 30);
+  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 27);
 
   return canvas;
+}
+
+// ─── Editable Section Row ───
+function SectionToggle({ label, emoji, enabled, onToggle, items, onUpdateItems, colors }) {
+  const [editingIdx, setEditingIdx] = useState(null);
+  const [editValue, setEditValue] = useState('');
+  const [adding, setAdding] = useState(false);
+  const [newValue, setNewValue] = useState('');
+
+  const startEdit = (i) => { setEditingIdx(i); setEditValue(items[i]); };
+  const confirmEdit = () => {
+    if (editValue.trim()) {
+      const updated = [...items];
+      updated[editingIdx] = editValue.trim();
+      onUpdateItems(updated);
+    }
+    setEditingIdx(null);
+  };
+  const removeItem = (i) => onUpdateItems(items.filter((_, idx) => idx !== i));
+  const addItem = () => {
+    if (newValue.trim()) {
+      onUpdateItems([...items, newValue.trim()]);
+      setNewValue('');
+      setAdding(false);
+    }
+  };
+
+  return (
+    <div className="mb-3">
+      <button
+        onClick={onToggle}
+        className="flex items-center justify-between w-full py-2"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-sm">{emoji}</span>
+          <span className="font-body text-sm font-semibold text-luna-text">{label}</span>
+        </div>
+        <div
+          className="w-9 h-5 rounded-full flex items-center transition-all duration-200 px-0.5"
+          style={{ backgroundColor: enabled ? colors.bg : '#D5D0D2' }}
+        >
+          <div
+            className="w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"
+            style={{ transform: enabled ? 'translateX(16px)' : 'translateX(0)' }}
+          />
+        </div>
+      </button>
+
+      <AnimatePresence>
+        {enabled && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="pl-6 pb-2 space-y-1.5">
+              {items.map((item, i) => (
+                <div key={i} className="flex items-center gap-1.5 group">
+                  {editingIdx === i ? (
+                    <div className="flex items-center gap-1 flex-1">
+                      <input
+                        type="text"
+                        value={editValue}
+                        onChange={(e) => setEditValue(e.target.value)}
+                        onKeyDown={(e) => e.key === 'Enter' && confirmEdit()}
+                        className="flex-1 text-xs font-body bg-white border rounded-lg px-2 py-1.5 outline-none"
+                        style={{ borderColor: colors.bg }}
+                        autoFocus
+                      />
+                      <button onClick={confirmEdit} className="p-1">
+                        <Check size={13} style={{ color: colors.bg }} />
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <span className="text-xs font-body text-luna-text-body flex-1">• {item}</span>
+                      <button onClick={() => startEdit(i)} className="p-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Pencil size={11} className="text-luna-text-hint" />
+                      </button>
+                      <button onClick={() => removeItem(i)} className="p-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <X size={11} className="text-luna-text-hint" />
+                      </button>
+                    </>
+                  )}
+                </div>
+              ))}
+              {adding ? (
+                <div className="flex items-center gap-1">
+                  <input
+                    type="text"
+                    value={newValue}
+                    onChange={(e) => setNewValue(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && addItem()}
+                    placeholder="Ajouter..."
+                    className="flex-1 text-xs font-body bg-white border rounded-lg px-2 py-1.5 outline-none"
+                    style={{ borderColor: colors.bg }}
+                    autoFocus
+                  />
+                  <button onClick={addItem} className="p-1">
+                    <Check size={13} style={{ color: colors.bg }} />
+                  </button>
+                  <button onClick={() => { setAdding(false); setNewValue(''); }} className="p-1">
+                    <X size={13} className="text-luna-text-hint" />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setAdding(true)}
+                  className="flex items-center gap-1 text-[11px] font-body mt-1 transition-opacity"
+                  style={{ color: colors.bg }}
+                >
+                  <Plus size={11} /> Ajouter
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 }
 
 function SharePartnerCard({ cycleInfo, name }) {
   const [shared, setShared] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [editing, setEditing] = useState(false);
+
+  const phase = cycleInfo?.phase;
+  const phaseData = cycleInfo?.phaseData;
+  const colors = PHASE_COLORS[phase] || PHASE_COLORS.menstrual;
+
+  // Sections state
+  const [sections, setSections] = useState(() => ({
+    needs: { enabled: true, items: [...(PHASE_NEEDS[phase] || [])] },
+    support: { enabled: true, items: [...(PHASE_SUPPORT[phase] || [])] },
+    avoid: { enabled: false, items: [...(PHASE_AVOID[phase] || [])] },
+    food: { enabled: false, items: [...(PHASE_FOOD_IDEAS[phase] || [])] },
+    personalMessage: { enabled: false, items: [''] },
+  }));
+
+  const [personalMsg, setPersonalMsg] = useState('');
 
   if (!cycleInfo) return <SkeletonCard height={200} />;
 
-  const phase = cycleInfo.phase;
-  const phaseData = cycleInfo.phaseData;
-  const needs = PHASE_NEEDS[phase];
-  const colors = PHASE_COLORS[phase];
+  const toggleSection = (key) => {
+    setSections((prev) => ({ ...prev, [key]: { ...prev[key], enabled: !prev[key].enabled } }));
+    setPreviewUrl(null);
+  };
 
-  const handleShare = useCallback(async () => {
-    const canvas = generateShareCanvas(cycleInfo, name);
+  const updateSectionItems = (key, items) => {
+    setSections((prev) => ({ ...prev, [key]: { ...prev[key], items } }));
+    setPreviewUrl(null);
+  };
 
+  const finalSections = {
+    ...sections,
+    personalMessage: { ...sections.personalMessage, items: [personalMsg] },
+  };
+
+  const handleShare = async () => {
+    const canvas = generateShareCanvas(cycleInfo, name, finalSections);
     try {
       const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
       const file = new File([blob], 'luna-phase.png', { type: 'image/png' });
-
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
           title: `LUNA — ${phaseData.name}`,
           text: `Je suis en ${phaseData.name} (jour ${cycleInfo.currentDay}/${cycleInfo.cycleLength}). Mon énergie est à ${cycleInfo.energyLevel}%.`,
           files: [file],
         });
-        setShared(true);
-        setTimeout(() => setShared(false), 3000);
       } else {
-        // Fallback: download the image
         const url = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.download = 'luna-phase.png';
         link.href = url;
         link.click();
-        setShared(true);
-        setTimeout(() => setShared(false), 3000);
       }
+      setShared(true);
+      setTimeout(() => setShared(false), 3000);
     } catch (err) {
       if (err.name !== 'AbortError') {
-        // Fallback: download
         const url = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.download = 'luna-phase.png';
@@ -539,61 +726,167 @@ function SharePartnerCard({ cycleInfo, name }) {
         link.click();
       }
     }
-  }, [cycleInfo, name, phaseData]);
+  };
 
-  const handlePreview = useCallback(() => {
-    if (previewUrl) {
-      setPreviewUrl(null);
-      return;
-    }
-    const canvas = generateShareCanvas(cycleInfo, name);
+  const handlePreview = () => {
+    if (previewUrl) { setPreviewUrl(null); return; }
+    const canvas = generateShareCanvas(cycleInfo, name, finalSections);
     setPreviewUrl(canvas.toDataURL('image/png'));
-  }, [cycleInfo, name, previewUrl]);
+  };
 
   return (
     <div
       className="bg-white rounded-[20px] p-5"
       style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}
     >
-      <div className="flex items-center gap-2 mb-2">
-        <Share2 size={16} style={{ color: colors.bg }} />
-        <h3 className="font-display text-base text-luna-text">Ensemble</h3>
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <Share2 size={16} style={{ color: colors.bg }} />
+          <h3 className="font-display text-base text-luna-text">Ensemble</h3>
+        </div>
+        <button
+          onClick={() => { setEditing(!editing); setPreviewUrl(null); }}
+          className="flex items-center gap-1 text-xs font-body font-medium px-3 py-1.5 rounded-full transition-all"
+          style={{ backgroundColor: editing ? colors.bg : `${colors.bg}15`, color: editing ? '#fff' : colors.accent }}
+        >
+          <Pencil size={11} />
+          {editing ? 'Terminé' : 'Personnaliser'}
+        </button>
       </div>
       <p className="text-sm text-luna-text-muted font-body mb-4 leading-relaxed">
-        Envoie ta carte du jour à ton partenaire pour qu'il comprenne ta phase.
+        Personnalise ta carte et envoie-la à ton partenaire pour qu'il comprenne ta phase.
       </p>
 
-      {/* Mini preview of card content */}
-      <div
-        className="rounded-[16px] p-4 mb-4"
-        style={{ backgroundColor: colors.bgLight, border: `1px solid ${colors.bg}20` }}
-      >
-        <div className="flex items-center gap-3 mb-3">
-          <div
-            className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
-            style={{ backgroundColor: `${colors.bg}20` }}
+      {/* Editing panel */}
+      <AnimatePresence>
+        {editing && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="overflow-hidden"
           >
-            {phaseData.icon}
-          </div>
-          <div>
-            <p className="font-display text-sm text-luna-text font-semibold">{phaseData.name}</p>
-            <p className="text-[11px] font-body text-luna-text-muted">
-              Jour {cycleInfo.currentDay}/{cycleInfo.cycleLength} · Énergie {cycleInfo.energyLevel}%
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-1.5">
-          {needs.map((need) => (
-            <span
-              key={need}
-              className="text-[11px] font-body font-medium px-2.5 py-1 rounded-full"
-              style={{ backgroundColor: `${colors.bg}18`, color: colors.accent }}
+            <div
+              className="rounded-[16px] p-4 mb-4"
+              style={{ backgroundColor: colors.bgLight, border: `1px solid ${colors.bg}15` }}
             >
-              {need}
-            </span>
-          ))}
+              <p className="text-[11px] font-body text-luna-text-hint mb-3 uppercase tracking-wider">Active ou désactive les sections</p>
+
+              <SectionToggle
+                label="Ce dont j'ai besoin"
+                emoji="💜"
+                enabled={sections.needs.enabled}
+                onToggle={() => toggleSection('needs')}
+                items={sections.needs.items}
+                onUpdateItems={(items) => updateSectionItems('needs', items)}
+                colors={colors}
+              />
+              <SectionToggle
+                label="Comment me soutenir"
+                emoji="💛"
+                enabled={sections.support.enabled}
+                onToggle={() => toggleSection('support')}
+                items={sections.support.items}
+                onUpdateItems={(items) => updateSectionItems('support', items)}
+                colors={colors}
+              />
+              <SectionToggle
+                label="Ce qu'il vaut mieux éviter"
+                emoji="🚫"
+                enabled={sections.avoid.enabled}
+                onToggle={() => toggleSection('avoid')}
+                items={sections.avoid.items}
+                onUpdateItems={(items) => updateSectionItems('avoid', items)}
+                colors={colors}
+              />
+              <SectionToggle
+                label="Ce qui me ferait plaisir à manger"
+                emoji="🍽️"
+                enabled={sections.food.enabled}
+                onToggle={() => toggleSection('food')}
+                items={sections.food.items}
+                onUpdateItems={(items) => updateSectionItems('food', items)}
+                colors={colors}
+              />
+
+              {/* Personal message */}
+              <div className="mb-1">
+                <button onClick={() => toggleSection('personalMessage')} className="flex items-center justify-between w-full py-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm">✉️</span>
+                    <span className="font-body text-sm font-semibold text-luna-text">Mon message perso</span>
+                  </div>
+                  <div
+                    className="w-9 h-5 rounded-full flex items-center transition-all duration-200 px-0.5"
+                    style={{ backgroundColor: sections.personalMessage.enabled ? colors.bg : '#D5D0D2' }}
+                  >
+                    <div
+                      className="w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"
+                      style={{ transform: sections.personalMessage.enabled ? 'translateX(16px)' : 'translateX(0)' }}
+                    />
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {sections.personalMessage.enabled && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <textarea
+                        value={personalMsg}
+                        onChange={(e) => { setPersonalMsg(e.target.value); setPreviewUrl(null); }}
+                        placeholder="Ex: Journée difficile, sois patient ce soir 💜"
+                        className="w-full text-xs font-body bg-white border rounded-xl px-3 py-2 outline-none resize-none mt-1"
+                        style={{ borderColor: `${colors.bg}40` }}
+                        rows={2}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mini preview (when not editing) */}
+      {!editing && (
+        <div
+          className="rounded-[16px] p-4 mb-4"
+          style={{ backgroundColor: colors.bgLight, border: `1px solid ${colors.bg}20` }}
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div
+              className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
+              style={{ backgroundColor: `${colors.bg}20` }}
+            >
+              {phaseData.icon}
+            </div>
+            <div>
+              <p className="font-display text-sm text-luna-text font-semibold">{phaseData.name}</p>
+              <p className="text-[11px] font-body text-luna-text-muted">
+                Jour {cycleInfo.currentDay}/{cycleInfo.cycleLength} · Énergie {cycleInfo.energyLevel}%
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-1.5 mb-2">
+            {sections.needs.enabled && sections.needs.items.map((need) => (
+              <span key={need} className="text-[11px] font-body font-medium px-2.5 py-1 rounded-full" style={{ backgroundColor: `${colors.bg}18`, color: colors.accent }}>
+                {need}
+              </span>
+            ))}
+          </div>
+          {/* Summary of active sections */}
+          <div className="flex flex-wrap gap-1 mt-1">
+            {sections.support.enabled && <span className="text-[10px] font-body px-2 py-0.5 rounded-full" style={{ backgroundColor: `${colors.bg}12`, color: colors.accent }}>💛 Soutien</span>}
+            {sections.avoid.enabled && <span className="text-[10px] font-body px-2 py-0.5 rounded-full" style={{ backgroundColor: `${colors.bg}12`, color: colors.accent }}>🚫 À éviter</span>}
+            {sections.food.enabled && <span className="text-[10px] font-body px-2 py-0.5 rounded-full" style={{ backgroundColor: `${colors.bg}12`, color: colors.accent }}>🍽️ Repas</span>}
+            {sections.personalMessage.enabled && personalMsg && <span className="text-[10px] font-body px-2 py-0.5 rounded-full" style={{ backgroundColor: `${colors.bg}12`, color: colors.accent }}>✉️ Message</span>}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Preview image */}
       <AnimatePresence>
@@ -604,12 +897,7 @@ function SharePartnerCard({ cycleInfo, name }) {
             exit={{ opacity: 0, height: 0 }}
             className="mb-4 overflow-hidden"
           >
-            <img
-              src={previewUrl}
-              alt="Aperçu de la carte"
-              className="w-full rounded-[12px]"
-              style={{ border: `1px solid ${colors.bg}20` }}
-            />
+            <img src={previewUrl} alt="Aperçu de la carte" className="w-full rounded-[12px]" style={{ border: `1px solid ${colors.bg}20` }} />
           </motion.div>
         )}
       </AnimatePresence>
