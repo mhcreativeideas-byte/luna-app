@@ -38,6 +38,7 @@ export default function Sport() {
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [activityName, setActivityName] = useState('');
   const [activityDuration, setActivityDuration] = useState('');
+  const [durationUnit, setDurationUnit] = useState('min');
   const [stepsSaved, setStepsSaved] = useState(false);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -64,7 +65,8 @@ export default function Sport() {
 
   const addActivity = () => {
     if (!activityName.trim()) return;
-    const duration = parseInt(activityDuration) || 0;
+    const rawDuration = parseInt(activityDuration) || 0;
+    const duration = durationUnit === 'h' ? rawDuration * 60 : rawDuration;
     dispatch({ type: 'ADD_CUSTOM_ACTIVITY', payload: { date: today, activity: { name: activityName.trim(), duration } } });
     setActivityName('');
     setActivityDuration('');
@@ -289,15 +291,37 @@ export default function Sport() {
                 className="flex-1 px-3 py-2.5 rounded-[12px] bg-gray-50 border-0 text-xs font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
                 style={{ '--tw-ring-color': `${phaseData.color}40` }}
               />
-              <div className="relative w-20 flex-shrink-0">
+              <div className="flex items-center gap-1 flex-shrink-0">
                 <input
                   type="number"
                   value={activityDuration}
                   onChange={(e) => setActivityDuration(e.target.value)}
-                  placeholder="Min"
-                  className="w-full px-3 py-2.5 rounded-[12px] bg-gray-50 border-0 text-xs font-body text-luna-text focus:outline-none focus:ring-2 transition-all"
+                  placeholder="Durée"
+                  className="w-16 px-3 py-2.5 rounded-[12px] bg-gray-50 border-0 text-xs font-body text-luna-text focus:outline-none focus:ring-2 transition-all text-center"
                   style={{ '--tw-ring-color': `${phaseData.color}40` }}
                 />
+                <div className="flex rounded-[10px] overflow-hidden border" style={{ borderColor: `${phaseData.color}30` }}>
+                  <button
+                    onClick={() => setDurationUnit('min')}
+                    className="px-2.5 py-2 text-[10px] font-body font-semibold transition-all"
+                    style={{
+                      backgroundColor: durationUnit === 'min' ? phaseData.color : 'white',
+                      color: durationUnit === 'min' ? 'white' : phaseData.colorDark,
+                    }}
+                  >
+                    min
+                  </button>
+                  <button
+                    onClick={() => setDurationUnit('h')}
+                    className="px-2.5 py-2 text-[10px] font-body font-semibold transition-all"
+                    style={{
+                      backgroundColor: durationUnit === 'h' ? phaseData.color : 'white',
+                      color: durationUnit === 'h' ? 'white' : phaseData.colorDark,
+                    }}
+                  >
+                    h
+                  </button>
+                </div>
               </div>
             </div>
             {/* Bouton Valider activité — visible et explicite */}
@@ -340,7 +364,7 @@ export default function Sport() {
                             <p className="text-sm font-body font-semibold text-luna-text">{act.name}</p>
                             {act.duration > 0 && (
                               <p className="text-[11px] font-body text-luna-text-muted flex items-center gap-1">
-                                <Clock size={10} /> {act.duration} min
+                                <Clock size={10} /> {act.duration >= 60 ? `${Math.floor(act.duration / 60)}h${act.duration % 60 > 0 ? `${String(act.duration % 60).padStart(2, '0')}` : ''}` : `${act.duration} min`}
                               </p>
                             )}
                           </div>
