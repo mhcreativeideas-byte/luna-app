@@ -184,7 +184,7 @@ export default function Sport() {
               <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
                 <Dumbbell size={16} className="mx-auto mb-1" style={{ color: phaseData.colorDark }} />
                 <p className="text-lg font-display font-bold text-luna-text">{exerciseData.exercises.length}</p>
-                <p className="text-[9px] font-body text-luna-text-hint uppercase">Exercices</p>
+                <p className="text-[8px] font-body text-luna-text-hint uppercase leading-tight">Idées<br/>d'exercices</p>
               </div>
             </div>
           </div>
