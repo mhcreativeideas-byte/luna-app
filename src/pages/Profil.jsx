@@ -369,172 +369,231 @@ function generateShareCanvas(cycleInfo, userName, sections) {
   const phaseData = cycleInfo.phaseData;
 
   const W = 600;
-  // Calculate dynamic height based on active sections
-  let contentH = 380; // base height (header + energy + period)
+  const PAD = 40; // horizontal padding
+  const CARD_PAD = 18; // padding inside cards
+  const CARD_W = W - PAD * 2; // card width
+  const CARD_R = 18; // card border radius
+
+  // ─── Pre-calculate height ───
   const activeSections = Object.entries(sections).filter(([, s]) => s.enabled && s.items.length > 0);
+  let contentH = 390; // header area (icon + name + day + divider + energy + period)
   activeSections.forEach(([key, s]) => {
-    if (key === 'needs') contentH += 80;
-    else if (key === 'personalMessage') contentH += s.items[0] ? 60 : 0;
-    else contentH += 30 + s.items.length * 28 + 20;
+    if (key === 'needs') contentH += 75;
+    else if (key === 'personalMessage') contentH += s.items[0] ? 80 : 0;
+    else contentH += 50 + s.items.length * 30 + CARD_PAD * 2 + 12;
   });
-  contentH += 80; // branding + padding
-  const H = Math.max(600, contentH);
+  contentH += 90; // name + branding + bottom padding
+  const H = Math.max(620, contentH);
 
   const canvas = document.createElement('canvas');
   canvas.width = W;
   canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // Background
+  // ─── Background gradient ───
   const grad = ctx.createLinearGradient(0, 0, W, H);
   grad.addColorStop(0, '#FBF8F6');
-  grad.addColorStop(1, colors.bgLight);
+  grad.addColorStop(0.6, colors.bgLight);
+  grad.addColorStop(1, '#FBF8F6');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, W, H);
 
   // Decorative circles
   ctx.beginPath();
-  ctx.arc(W + 20, -20, 140, 0, Math.PI * 2);
-  ctx.fillStyle = colors.bg + '18';
+  ctx.arc(W + 10, -30, 150, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '14';
   ctx.fill();
   ctx.beginPath();
-  ctx.arc(-30, H + 10, 120, 0, Math.PI * 2);
-  ctx.fillStyle = colors.bg + '12';
+  ctx.arc(-40, H + 20, 130, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '10';
   ctx.fill();
 
-  // Phase icon circle
+  // ─── Phase icon circle ───
   ctx.beginPath();
-  ctx.arc(W / 2, 100, 50, 0, Math.PI * 2);
-  ctx.fillStyle = colors.bg + '20';
+  ctx.arc(W / 2, 95, 46, 0, Math.PI * 2);
+  ctx.fillStyle = colors.bg + '22';
   ctx.fill();
-  ctx.font = '40px serif';
+  ctx.font = '38px serif';
   ctx.textAlign = 'center';
-  ctx.fillText(phaseData.icon, W / 2, 117);
+  ctx.fillText(phaseData.icon, W / 2, 112);
 
-  // Phase name + day
-  ctx.font = 'bold 30px system-ui, -apple-system, sans-serif';
+  // Phase name
+  ctx.font = 'bold 28px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#2D2226';
-  ctx.fillText(phaseData.name, W / 2, 185);
-  ctx.font = '16px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#8A7B7F';
-  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 215);
+  ctx.fillText(phaseData.name, W / 2, 175);
 
-  // Divider
-  ctx.strokeStyle = colors.bg + '40';
-  ctx.lineWidth = 1.5;
+  // Cycle day
+  ctx.font = '15px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F';
+  ctx.fillText(`Jour ${cycleInfo.currentDay} sur ${cycleInfo.cycleLength}`, W / 2, 200);
+
+  // Thin divider
+  ctx.strokeStyle = colors.bg + '35';
+  ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.moveTo(80, 245);
-  ctx.lineTo(W - 80, 245);
+  ctx.moveTo(PAD + 60, 225);
+  ctx.lineTo(W - PAD - 60, 225);
   ctx.stroke();
 
-  // Energy section
-  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+  // ─── Energy bar inside a card ───
+  const energyCardY = 242;
+  const energyCardH = 70;
+  // Card bg
+  ctx.fillStyle = '#FFFFFF';
+  ctx.shadowColor = 'rgba(45,34,38,0.05)';
+  ctx.shadowBlur = 10;
+  ctx.shadowOffsetY = 2;
+  ctx.beginPath(); ctx.roundRect(PAD, energyCardY, CARD_W, energyCardH, CARD_R); ctx.fill();
+  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+  // Left accent bar
+  ctx.fillStyle = colors.bg;
+  ctx.beginPath(); ctx.roundRect(PAD, energyCardY, 4, energyCardH, [CARD_R, 0, 0, CARD_R]); ctx.fill();
+
+  // Energy label + percentage
+  ctx.font = '600 12px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F';
   ctx.textAlign = 'left';
-  ctx.fillText('ÉNERGIE', 60, 285);
+  ctx.fillText('ÉNERGIE', PAD + 20, energyCardY + 25);
   ctx.textAlign = 'right';
-  ctx.font = 'bold 18px system-ui, -apple-system, sans-serif';
+  ctx.font = 'bold 16px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = colors.accent;
-  ctx.fillText(`${cycleInfo.energyLevel}%`, W - 60, 285);
-  // Bar
-  const barX = 60, barY = 300, barW = W - 120, barH = 12;
-  ctx.fillStyle = '#E8E4E0';
-  ctx.beginPath(); ctx.roundRect(barX, barY, barW, barH, 6); ctx.fill();
-  ctx.fillStyle = colors.bg;
-  ctx.beginPath(); ctx.roundRect(barX, barY, barW * (cycleInfo.energyLevel / 100), barH, 6); ctx.fill();
-  // Energy explanation
-  ctx.font = '13px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#8A7B7F';
-  ctx.textAlign = 'center';
-  ctx.fillText(getEnergyLabel(cycleInfo.energyLevel), W / 2, 335);
+  ctx.fillText(`${cycleInfo.energyLevel}%`, W - PAD - 18, energyCardY + 25);
 
-  // Period info
-  ctx.font = '15px system-ui, -apple-system, sans-serif';
+  // Bar
+  const eBarX = PAD + 20, eBarY = energyCardY + 35, eBarW = CARD_W - 40, eBarH = 8;
+  ctx.fillStyle = colors.bg + '20';
+  ctx.beginPath(); ctx.roundRect(eBarX, eBarY, eBarW, eBarH, 4); ctx.fill();
+  ctx.fillStyle = colors.bg;
+  ctx.beginPath(); ctx.roundRect(eBarX, eBarY, eBarW * (cycleInfo.energyLevel / 100), eBarH, 4); ctx.fill();
+
+  // Energy explanation
+  ctx.font = '12px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F';
+  ctx.textAlign = 'left';
+  ctx.fillText(getEnergyLabel(cycleInfo.energyLevel), PAD + 20, energyCardY + 60);
+
+  // ─── Period info ───
+  ctx.textAlign = 'center';
+  ctx.font = '14px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#5A4A4E';
   const periodText = cycleInfo.daysUntilPeriod <= 0
     ? 'Règles prévues aujourd\'hui'
     : cycleInfo.daysUntilPeriod === 1 ? 'Prochaines règles demain'
       : `Prochaines règles dans ${cycleInfo.daysUntilPeriod} jours`;
-  ctx.fillText(periodText, W / 2, 370);
+  ctx.fillText(periodText, W / 2, energyCardY + energyCardH + 30);
 
-  let curY = 400;
+  let curY = energyCardY + energyCardH + 50;
 
-  // Helper: draw a section with title + items
-  const drawSection = (title, items, emoji) => {
-    ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
-    ctx.fillStyle = colors.accent;
+  // ─── Helper: draw a rounded card section ───
+  const drawCardSection = (title, items, emoji) => {
+    const itemH = 28;
+    const cardH = 44 + items.length * itemH + 10;
+
+    // Card shadow + bg
+    ctx.fillStyle = '#FFFFFF';
+    ctx.shadowColor = 'rgba(45,34,38,0.05)';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 2;
+    ctx.beginPath(); ctx.roundRect(PAD, curY, CARD_W, cardH, CARD_R); ctx.fill();
+    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+
+    // Left accent
+    ctx.fillStyle = colors.bg;
+    ctx.beginPath(); ctx.roundRect(PAD, curY, 4, cardH, [CARD_R, 0, 0, CARD_R]); ctx.fill();
+
+    // Emoji + Title
+    ctx.font = '18px serif';
     ctx.textAlign = 'left';
-    ctx.fillText(`${emoji}  ${title.toUpperCase()}`, 60, curY);
-    curY += 8;
-    items.forEach((item) => {
-      ctx.font = '14px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#5A4A4E';
+    ctx.fillText(emoji, PAD + 18, curY + 28);
+    ctx.font = '600 13px system-ui, -apple-system, sans-serif';
+    ctx.fillStyle = colors.accent;
+    ctx.fillText(title, PAD + 42, curY + 27);
+
+    // Items
+    items.forEach((item, i) => {
+      const iy = curY + 48 + i * itemH;
+      // Dot
+      ctx.fillStyle = colors.bg + '60';
+      ctx.beginPath(); ctx.arc(PAD + 28, iy - 4, 3, 0, Math.PI * 2); ctx.fill();
+      // Text
+      ctx.font = '13px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#4A3E42';
       ctx.textAlign = 'left';
-      const text = `  •  ${item}`;
-      ctx.fillText(text, 65, curY + 18);
-      curY += 26;
+      ctx.fillText(item, PAD + 40, iy);
     });
-    curY += 14;
+
+    curY += cardH + 12;
   };
 
-  // Draw active sections
+  // ─── Draw active sections ───
   activeSections.forEach(([key, s]) => {
     if (key === 'needs' && s.items.length > 0) {
-      ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+      // Needs as centered pills (no card wrapper)
+      ctx.font = '600 11px system-ui, -apple-system, sans-serif';
       ctx.fillStyle = '#8A7B7F';
       ctx.textAlign = 'center';
-      ctx.fillText('CE DONT J\'AI BESOIN', W / 2, curY);
+      ctx.fillText('CE DONT J\'AI BESOIN', W / 2, curY + 5);
       const pillY = curY + 18;
-      const pillH = 38;
-      const pillGap = 10;
-      ctx.font = '14px system-ui, -apple-system, sans-serif';
-      const totalPW = s.items.reduce((a, n) => a + ctx.measureText(n).width + 30, 0) + (s.items.length - 1) * pillGap;
+      const pillH = 34;
+      const pillGap = 8;
+      ctx.font = '13px system-ui, -apple-system, sans-serif';
+      const totalPW = s.items.reduce((a, n) => a + ctx.measureText(n).width + 28, 0) + (s.items.length - 1) * pillGap;
       let pX = (W - totalPW) / 2;
       s.items.forEach((need) => {
         const tw = ctx.measureText(need).width;
-        const pw = tw + 30;
-        ctx.fillStyle = colors.bg + '20';
-        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 19); ctx.fill();
-        ctx.strokeStyle = colors.bg + '50';
-        ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 19); ctx.stroke();
+        const pw = tw + 28;
+        ctx.fillStyle = colors.bg + '18';
+        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 17); ctx.fill();
+        ctx.strokeStyle = colors.bg + '40';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 17); ctx.stroke();
         ctx.fillStyle = colors.accent;
         ctx.textAlign = 'center';
-        ctx.fillText(need, pX + pw / 2, pillY + 24);
+        ctx.fillText(need, pX + pw / 2, pillY + 22);
         pX += pw + pillGap;
       });
-      curY = pillY + pillH + 20;
+      curY = pillY + pillH + 18;
     } else if (key === 'support') {
-      drawSection('Comment me soutenir', s.items, '💛');
+      drawCardSection('Comment me soutenir', s.items, '💛');
     } else if (key === 'avoid') {
-      drawSection('Ce qu\'il vaut mieux éviter', s.items, '🚫');
+      drawCardSection('Ce qu\'il vaut mieux éviter', s.items, '🚫');
     } else if (key === 'food') {
-      drawSection('Ce qui me ferait plaisir', s.items, '🍽️');
+      drawCardSection('Ce qui me ferait plaisir', s.items, '🍽️');
     } else if (key === 'personalMessage' && s.items[0]) {
-      ctx.font = 'italic 15px system-ui, -apple-system, sans-serif';
+      // Personal message in a styled quote card
+      const msgH = 60;
+      ctx.fillStyle = colors.bg + '12';
+      ctx.beginPath(); ctx.roundRect(PAD, curY, CARD_W, msgH, CARD_R); ctx.fill();
+      // Quote mark decoration
+      ctx.font = 'bold 36px serif';
+      ctx.fillStyle = colors.bg + '25';
+      ctx.textAlign = 'left';
+      ctx.fillText('"', PAD + 14, curY + 32);
+      // Message text
+      ctx.font = 'italic 14px system-ui, -apple-system, sans-serif';
       ctx.fillStyle = colors.accent;
       ctx.textAlign = 'center';
-      ctx.fillText(`"${s.items[0]}"`, W / 2, curY + 5);
-      curY += 30;
+      ctx.fillText(s.items[0], W / 2, curY + 37);
+      curY += msgH + 12;
     }
   });
 
-  // User name
+  // ─── User name ───
   if (userName) {
-    ctx.font = 'italic 15px system-ui, -apple-system, sans-serif';
+    ctx.font = 'italic 14px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = '#8A7B7F';
     ctx.textAlign = 'center';
-    ctx.fillText(`— ${userName}`, W / 2, curY + 10);
+    ctx.fillText(`— ${userName}`, W / 2, curY + 8);
   }
 
-  // LUNA branding
-  ctx.font = 'bold 14px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = colors.bg + '80';
+  // ─── LUNA branding ───
+  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = colors.bg + '70';
   ctx.textAlign = 'center';
-  ctx.fillText('LUNA 🌙', W / 2, H - 45);
-  ctx.font = '11px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#8A7B7F80';
-  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 27);
+  ctx.fillText('LUNA 🌙', W / 2, H - 42);
+  ctx.font = '10px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = '#8A7B7F60';
+  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 25);
 
   return canvas;
 }
