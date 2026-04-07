@@ -341,14 +341,38 @@ export default function Sport() {
               {activitySaved ? <><Check size={16} /> Activité ajoutée !</> : 'Valider cette activité'}
             </button>
 
-            {/* Liste des activités ajoutées */}
-            {todayLog.activities && todayLog.activities.length > 0 && (
+            {/* Récap "Aujourd'hui" — pas + activités */}
+            {((todayLog.activities && todayLog.activities.length > 0) || todayLog.steps > 0) && (
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-2.5">
                   Aujourd'hui
                 </p>
                 <div className="space-y-2">
-                  {todayLog.activities.map((act, i) => {
+                  {/* Pas sauvegardés */}
+                  {todayLog.steps > 0 && (
+                    <div
+                      className="flex items-center justify-between p-3 rounded-[14px]"
+                      style={{ backgroundColor: phaseData.bgColor }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className="w-9 h-9 rounded-[10px] flex items-center justify-center flex-shrink-0"
+                          style={{ backgroundColor: `${phaseData.color}18` }}
+                        >
+                          <Footprints size={16} style={{ color: phaseData.colorDark }} />
+                        </div>
+                        <div>
+                          <p className="text-sm font-body font-semibold text-luna-text">Marche</p>
+                          <p className="text-[11px] font-body text-luna-text-muted">
+                            {todayLog.steps.toLocaleString('fr-FR')} pas
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Activités */}
+                  {(todayLog.activities || []).map((act, i) => {
                     const matchedActivity = QUICK_ACTIVITIES.find((a) => a.name === act.name);
                     return (
                       <div
@@ -383,8 +407,8 @@ export default function Sport() {
                   })}
                 </div>
 
-                {/* Total */}
-                {todayLog.activities.some((a) => a.duration > 0) && (
+                {/* Total durée activités */}
+                {todayLog.activities && todayLog.activities.some((a) => a.duration > 0) && (
                   <div className="mt-3 flex items-center justify-end gap-1.5">
                     <Clock size={12} style={{ color: phaseData.colorDark }} />
                     <span className="text-xs font-body font-semibold" style={{ color: phaseData.colorDark }}>
