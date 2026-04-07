@@ -225,16 +225,41 @@ export default function Extras() {
 
       {/* Insight — change chaque jour */}
       <motion.div variants={item}>
-        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
-              <Sparkles size={14} style={{ color: phaseData.color }} />
-            </div>
-            <h3 className="font-display text-base text-luna-text">Le savais-tu ?</h3>
+        <div
+          className="rounded-[24px] bg-white relative overflow-hidden"
+          style={{
+            boxShadow: '0 4px 20px rgba(45,34,38,0.08)',
+            borderLeft: `4px solid ${phaseData.color}`,
+          }}
+        >
+          {/* Guillemets décoratifs */}
+          <div
+            className="absolute top-3 right-4 font-display select-none pointer-events-none"
+            style={{ fontSize: '80px', lineHeight: 1, color: `${phaseData.color}10` }}
+          >
+            "
           </div>
-          <p className="text-sm font-body text-luna-text-body leading-relaxed italic">
-            "{dailyFact}"
-          </p>
+
+          <div className="p-5 relative">
+            <div className="flex items-center gap-2 mb-3">
+              <div
+                className="w-8 h-8 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: `${phaseData.color}15` }}
+              >
+                <Sparkles size={14} style={{ color: phaseData.color }} />
+              </div>
+              <h3 className="font-display text-base text-luna-text">Le savais-tu ?</h3>
+            </div>
+            <p className="text-sm font-body text-luna-text-body leading-relaxed italic pr-6">
+              "{dailyFact}"
+            </p>
+            <div className="mt-3 flex items-center gap-1.5">
+              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: phaseData.color }} />
+              <span className="text-[10px] font-body text-luna-text-hint">
+                Nouveau chaque jour · Phase {phaseData.shortName?.toLowerCase()}
+              </span>
+            </div>
+          </div>
         </div>
       </motion.div>
     </motion.div>
