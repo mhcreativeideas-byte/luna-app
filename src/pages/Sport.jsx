@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, ChevronRight, Flame, Zap, Heart, Check, Footprints, Plus, Trash2, Save } from 'lucide-react';
+import { Clock, X, ChevronRight, Flame, Zap, Dumbbell, Check, Footprints, Plus, Trash2, Save } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { EXERCISES } from '../data/exercises';
 import { PHASES } from '../data/phases';
@@ -182,9 +182,9 @@ export default function Sport() {
                 <p className="text-[9px] font-body text-luna-text-hint uppercase">Min</p>
               </div>
               <div className="text-center p-3 rounded-[14px]" style={{ backgroundColor: phaseData.bgColor }}>
-                <Heart size={16} className="mx-auto mb-1" style={{ color: phaseData.colorDark }} />
+                <Dumbbell size={16} className="mx-auto mb-1" style={{ color: phaseData.colorDark }} />
                 <p className="text-lg font-display font-bold text-luna-text">{exerciseData.exercises.length}</p>
-                <p className="text-[9px] font-body text-luna-text-hint uppercase">Idées</p>
+                <p className="text-[9px] font-body text-luna-text-hint uppercase">Exercices</p>
               </div>
             </div>
           </div>
