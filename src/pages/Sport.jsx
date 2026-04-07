@@ -190,27 +190,13 @@ export default function Sport() {
       <motion.div variants={item}>
         <div className="bg-white rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
 
-          {/* En-tête avec check séance */}
-          <button
-            onClick={toggleSession}
-            className="w-full flex items-center justify-between p-5 pb-4 transition-all"
-          >
-            <div className="text-left">
-              <h3 className="font-display text-lg text-luna-text">Mon activité du jour</h3>
-              <p className="text-xs font-body text-luna-text-muted mt-0.5">
-                {sessionValidated ? 'Séance validée, bravo ! 💪' : 'Marque ta séance quand c\'est fait.'}
-              </p>
-            </div>
-            <div
-              className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all"
-              style={{
-                backgroundColor: sessionValidated ? phaseData.color : phaseData.bgColor,
-                border: sessionValidated ? 'none' : `2px solid ${phaseData.color}30`,
-              }}
-            >
-              <Check size={18} style={{ color: sessionValidated ? 'white' : phaseData.colorDark }} />
-            </div>
-          </button>
+          {/* En-tête simple */}
+          <div className="p-5 pb-3">
+            <h3 className="font-display text-lg text-luna-text">Mon activité du jour</h3>
+            <p className="text-xs font-body text-luna-text-muted mt-0.5">
+              Enregistre tes pas et tes activités.
+            </p>
+          </div>
 
           <div className="px-5 pb-5">
             {/* Compteur de pas — compact */}
@@ -237,10 +223,10 @@ export default function Sport() {
                     />
                     <button
                       onClick={saveSteps}
-                      className="w-9 h-9 rounded-[10px] text-white flex items-center justify-center transition-all hover:opacity-90 flex-shrink-0"
+                      className="px-3 h-9 rounded-[10px] text-white flex items-center justify-center gap-1.5 transition-all hover:opacity-90 flex-shrink-0 text-xs font-body font-semibold"
                       style={{ backgroundColor: stepsSaved ? '#7BAE7F' : phaseData.color }}
                     >
-                      {stepsSaved ? <Check size={14} /> : <Save size={14} />}
+                      {stepsSaved ? <><Check size={14} /> Sauvé</> : <><Save size={14} /> Sauver</>}
                     </button>
                   </div>
                   {/* Barre de progression */}
@@ -293,8 +279,8 @@ export default function Sport() {
               ))}
             </div>
 
-            {/* Champ personnalisé + durée sur une ligne */}
-            <div className="flex items-center gap-2">
+            {/* Champ personnalisé + durée + bouton Valider */}
+            <div className="flex items-center gap-2 mb-3">
               <input
                 type="text"
                 value={activityName}
@@ -313,15 +299,20 @@ export default function Sport() {
                   style={{ '--tw-ring-color': `${phaseData.color}40` }}
                 />
               </div>
-              <button
-                onClick={addActivity}
-                disabled={!activityName.trim()}
-                className="w-9 h-9 rounded-[12px] flex items-center justify-center flex-shrink-0 transition-all disabled:opacity-30"
-                style={{ border: `1.5px solid ${phaseData.color}`, color: phaseData.colorDark }}
-              >
-                <Plus size={16} />
-              </button>
             </div>
+            {/* Bouton Valider activité — visible et explicite */}
+            <button
+              onClick={addActivity}
+              disabled={!activityName.trim()}
+              className="w-full py-2.5 rounded-[12px] text-sm font-body font-semibold transition-all disabled:opacity-30"
+              style={{
+                backgroundColor: activityName.trim() ? phaseData.bgColor : '#F5F2F0',
+                color: activityName.trim() ? phaseData.colorDark : '#B0A5AA',
+                border: activityName.trim() ? `1.5px solid ${phaseData.color}` : '1.5px solid transparent',
+              }}
+            >
+              + Valider cette activité
+            </button>
 
             {/* Liste des activités ajoutées */}
             {todayLog.activities && todayLog.activities.length > 0 && (
@@ -376,6 +367,27 @@ export default function Sport() {
                 )}
               </div>
             )}
+
+            {/* Séparateur avant bouton séance */}
+            <div className="h-px bg-gray-100 mt-4 mb-4" />
+
+            {/* Bouton "J'ai bougé aujourd'hui" — en bas, large et explicite */}
+            <button
+              onClick={toggleSession}
+              className="w-full py-3.5 rounded-[16px] flex items-center justify-center gap-2.5 transition-all"
+              style={{
+                backgroundColor: sessionValidated ? phaseData.color : phaseData.bgColor,
+                border: sessionValidated ? 'none' : `2px solid ${phaseData.color}40`,
+              }}
+            >
+              <Check size={18} style={{ color: sessionValidated ? 'white' : phaseData.colorDark }} />
+              <span
+                className="text-sm font-body font-bold"
+                style={{ color: sessionValidated ? 'white' : phaseData.colorDark }}
+              >
+                {sessionValidated ? 'Séance validée ✓' : 'J\'ai bougé aujourd\'hui !'}
+              </span>
+            </button>
           </div>
         </div>
       </motion.div>
