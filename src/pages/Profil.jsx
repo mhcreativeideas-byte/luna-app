@@ -821,26 +821,33 @@ export default function Profil() {
       {/* Insights card */}
       <motion.div variants={item}>
         <div
-          className="rounded-[20px] p-5 text-white relative overflow-hidden"
+          className="rounded-[20px] p-5 relative overflow-hidden"
           style={{
-            background: 'linear-gradient(145deg, #C4727F 0%, #D4846A 50%, #E8A87C 100%)',
+            backgroundColor: phaseData.bgColor,
           }}
         >
-          <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/10" />
+          <div
+            className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-20"
+            style={{ backgroundColor: phaseData.color }}
+          />
           <div className="relative">
             <div className="flex items-center gap-2 mb-3">
-              <TrendingUp size={18} />
-              <h3 className="font-display text-base">Insights</h3>
+              <TrendingUp size={18} style={{ color: phaseData.colorDark }} />
+              <h3 className="font-display text-base text-luna-text">Insights</h3>
             </div>
             {totalCheckIns >= 15 ? (
               <div>
-                <p className="text-sm font-body mb-3 opacity-90">
-                  Tes patterns bases sur {totalCheckIns} check-ins :
+                <p className="text-sm font-body mb-3 text-luna-text-body">
+                  Tes patterns basés sur {totalCheckIns} check-ins :
                 </p>
                 {topSymptoms.length > 0 && (
                   <div className="flex flex-wrap gap-1.5">
                     {topSymptoms.map(([symptom, count]) => (
-                      <span key={symptom} className="text-xs px-2.5 py-1 rounded-pill bg-white/20 font-body">
+                      <span
+                        key={symptom}
+                        className="text-xs px-2.5 py-1 rounded-pill font-body font-semibold"
+                        style={{ backgroundColor: `${phaseData.color}20`, color: phaseData.colorDark }}
+                      >
                         {symptom} ({count}x)
                       </span>
                     ))}
@@ -849,16 +856,16 @@ export default function Profil() {
               </div>
             ) : (
               <div>
-                <p className="text-sm font-body mb-2 opacity-90 leading-relaxed">
+                <p className="text-sm font-body mb-2 text-luna-text-body leading-relaxed">
                   Plus tu enregistres, plus LUNA détecte tes patterns. Après 3 cycles complets, tu auras une vue précise de tes tendances.
                 </p>
-                <p className="text-xs font-body opacity-70">
+                <p className="text-xs font-body text-luna-text-muted">
                   {totalCheckIns}/15 check-ins
                 </p>
-                <div className="h-2 bg-white/20 rounded-full mt-3 overflow-hidden">
+                <div className="h-2 rounded-full mt-3 overflow-hidden" style={{ backgroundColor: `${phaseData.color}20` }}>
                   <div
-                    className="h-full bg-white/60 rounded-full transition-all"
-                    style={{ width: `${Math.min(100, (totalCheckIns / 15) * 100)}%` }}
+                    className="h-full rounded-full transition-all"
+                    style={{ width: `${Math.min(100, (totalCheckIns / 15) * 100)}%`, backgroundColor: phaseData.color }}
                   />
                 </div>
               </div>
