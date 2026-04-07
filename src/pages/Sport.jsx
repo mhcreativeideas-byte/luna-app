@@ -385,7 +385,7 @@ export default function Sport() {
                 className="text-sm font-body font-bold"
                 style={{ color: sessionValidated ? 'white' : phaseData.colorDark }}
               >
-                {sessionValidated ? 'Séance validée ✓' : 'J\'ai bougé aujourd\'hui !'}
+                {sessionValidated ? 'Séance validée' : 'J\'ai bougé aujourd\'hui !'}
               </span>
             </button>
           </div>
