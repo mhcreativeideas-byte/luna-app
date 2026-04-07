@@ -91,7 +91,9 @@ const MEAL_SLOTS = [
 const DRINK_ICONS = {
   'tisane': '🍵', 'infusion': '🍵', 'thé': '🍵', 'matcha': '🍵',
   'lait': '🥛', 'golden': '🥛', 'smoothie': '🥤', 'jus': '🥤',
-  'eau': '💧', 'kéfir': '🥛', 'kombucha': '🍵',
+  'eau': '💧', 'kéfir': '🥛', 'kombucha': '🍵', 'chocolat': '☕',
+  'cacao': '☕', 'bouillon': '🍲', 'limonade': '🍋', 'grenade': '🥤',
+  'hibiscus': '🌺',
 };
 
 const getDrinkIcon = (drinkName) => {
