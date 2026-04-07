@@ -226,39 +226,26 @@ export default function Extras() {
       {/* Insight — change chaque jour */}
       <motion.div variants={item}>
         <div
-          className="rounded-[24px] bg-white relative overflow-hidden"
+          className="rounded-[18px] bg-white relative overflow-hidden"
           style={{
-            boxShadow: '0 4px 20px rgba(45,34,38,0.08)',
-            borderLeft: `4px solid ${phaseData.color}`,
+            boxShadow: '0 3px 14px rgba(45,34,38,0.06)',
+            borderLeft: `3px solid ${phaseData.color}`,
           }}
         >
-          {/* Guillemets décoratifs */}
           <div
-            className="absolute top-3 right-4 font-display select-none pointer-events-none"
-            style={{ fontSize: '80px', lineHeight: 1, color: `${phaseData.color}10` }}
+            className="absolute -top-1 right-3 font-display select-none pointer-events-none"
+            style={{ fontSize: '54px', lineHeight: 1, color: `${phaseData.color}10` }}
           >
             "
           </div>
-
-          <div className="p-5 relative">
-            <div className="flex items-center gap-2 mb-3">
-              <div
-                className="w-8 h-8 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: `${phaseData.color}15` }}
-              >
-                <Sparkles size={14} style={{ color: phaseData.color }} />
-              </div>
-              <h3 className="font-display text-base text-luna-text">Le savais-tu ?</h3>
+          <div className="px-4 py-3.5 relative">
+            <div className="flex items-center gap-1.5 mb-1.5">
+              <Sparkles size={12} style={{ color: phaseData.color }} />
+              <span className="text-xs font-display font-semibold text-luna-text">Le savais-tu ?</span>
             </div>
-            <p className="text-sm font-body text-luna-text-body leading-relaxed italic pr-6">
+            <p className="text-[13px] font-body text-luna-text-body leading-relaxed italic pr-4">
               "{dailyFact}"
             </p>
-            <div className="mt-3 flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: phaseData.color }} />
-              <span className="text-[10px] font-body text-luna-text-hint">
-                Nouveau chaque jour · Phase {phaseData.shortName?.toLowerCase()}
-              </span>
-            </div>
           </div>
         </div>
       </motion.div>
