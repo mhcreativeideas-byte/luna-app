@@ -39,6 +39,7 @@ export default function Sport() {
   const [activityName, setActivityName] = useState('');
   const [activityDuration, setActivityDuration] = useState('');
   const [durationUnit, setDurationUnit] = useState('min');
+  const [activitySaved, setActivitySaved] = useState(false);
   const [stepsSaved, setStepsSaved] = useState(false);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -70,6 +71,8 @@ export default function Sport() {
     dispatch({ type: 'ADD_CUSTOM_ACTIVITY', payload: { date: today, activity: { name: activityName.trim(), duration } } });
     setActivityName('');
     setActivityDuration('');
+    setActivitySaved(true);
+    setTimeout(() => setActivitySaved(false), 2000);
   };
 
   const removeActivity = (index) => {
@@ -327,15 +330,15 @@ export default function Sport() {
             {/* Bouton Valider activité — visible et explicite */}
             <button
               onClick={addActivity}
-              disabled={!activityName.trim()}
-              className="w-full py-2.5 rounded-[12px] text-sm font-body font-semibold transition-all disabled:opacity-30"
+              disabled={!activityName.trim() && !activitySaved}
+              className="w-full py-2.5 rounded-[12px] text-sm font-body font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-30"
               style={{
-                backgroundColor: activityName.trim() ? phaseData.bgColor : '#F5F2F0',
-                color: activityName.trim() ? phaseData.colorDark : '#B0A5AA',
-                border: activityName.trim() ? `1.5px solid ${phaseData.color}` : '1.5px solid transparent',
+                backgroundColor: activitySaved ? '#7BAE7F' : activityName.trim() ? phaseData.bgColor : '#F5F2F0',
+                color: activitySaved ? 'white' : activityName.trim() ? phaseData.colorDark : '#B0A5AA',
+                border: activitySaved ? '1.5px solid #7BAE7F' : activityName.trim() ? `1.5px solid ${phaseData.color}` : '1.5px solid transparent',
               }}
             >
-              Valider cette activité
+              {activitySaved ? <><Check size={16} /> Activité ajoutée !</> : 'Valider cette activité'}
             </button>
 
             {/* Liste des activités ajoutées */}
