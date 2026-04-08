@@ -464,7 +464,7 @@ function generateShareCanvas(cycleInfo, userName, sections) {
       : `Prochaines règles dans ${cycleInfo.daysUntilPeriod} jours`;
   ctx.fillText(periodText, W / 2, 410);
 
-  let curY = 435;
+  let curY = 450;
 
   // ─── Helper: draw a lightweight section (no card, just content) ───
   const drawSection = (title, items, emoji) => {
