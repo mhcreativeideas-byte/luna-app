@@ -525,7 +525,7 @@ function generateShareCanvas(cycleInfo, userName, sections) {
         ctx.fillText(need, pX + pw / 2, pillY + 19);
         pX += pw + pillGap;
       });
-      curY = pillY + pillH + 12;
+      curY = pillY + pillH + 22;
     } else if (key === 'support') {
       drawSection('Comment me soutenir', s.items, '💛');
     } else if (key === 'avoid') {
