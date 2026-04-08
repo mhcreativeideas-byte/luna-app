@@ -706,7 +706,7 @@ function SharePartnerCard({ cycleInfo, name }) {
   // Sections state
   const [sections, setSections] = useState(() => ({
     needs: { enabled: true, items: [...(PHASE_NEEDS[phase] || [])] },
-    support: { enabled: true, items: [...(PHASE_SUPPORT[phase] || [])] },
+    support: { enabled: false, items: [...(PHASE_SUPPORT[phase] || [])] },
     avoid: { enabled: false, items: [...(PHASE_AVOID[phase] || [])] },
     food: { enabled: false, items: [...(PHASE_FOOD_IDEAS[phase] || [])] },
     personalMessage: { enabled: false, items: [''] },
