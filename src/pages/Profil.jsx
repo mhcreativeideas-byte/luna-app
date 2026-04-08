@@ -376,7 +376,7 @@ function generateShareCanvas(cycleInfo, userName, sections) {
   activeSections.forEach(([key, s]) => {
     if (key === 'needs') contentH += 65;
     else if (key === 'personalMessage') contentH += s.items[0] ? 45 : 0;
-    else contentH += 22 + s.items.length * 20 + 14; // title + items + gap
+    else contentH += 28 + s.items.length * 20 + 14; // title + items + gap
   });
   contentH += 65; // name + branding
   const H = Math.max(550, contentH);
@@ -485,7 +485,7 @@ function generateShareCanvas(cycleInfo, userName, sections) {
     ctx.fillStyle = colors.accent;
     ctx.fillText(title, 97, curY);
 
-    curY += 16;
+    curY += 22;
 
     // Items — compact
     items.forEach((item) => {
