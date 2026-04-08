@@ -552,21 +552,23 @@ function generateShareCanvas(cycleInfo, userName, sections) {
 
   // ─── User name ───
   if (userName) {
-    curY += 8;
+    curY += 14;
     ctx.font = 'italic 13px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = '#8A7B7F';
     ctx.textAlign = 'center';
     ctx.fillText(`— ${userName}`, W / 2, curY);
+    curY += 10;
   }
 
-  // ─── LUNA branding (tight to bottom) ───
+  // ─── LUNA branding ───
+  const brandY = Math.max(curY + 30, H - 40);
   ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = colors.bg + '60';
   ctx.textAlign = 'center';
-  ctx.fillText('LUNA 🌙', W / 2, H - 30);
+  ctx.fillText('LUNA 🌙', W / 2, brandY);
   ctx.font = '10px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F50';
-  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 15);
+  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, brandY + 15);
 
   return canvas;
 }
