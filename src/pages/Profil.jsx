@@ -369,21 +369,17 @@ function generateShareCanvas(cycleInfo, userName, sections) {
   const phaseData = cycleInfo.phaseData;
 
   const W = 600;
-  const PAD = 40; // horizontal padding
-  const CARD_PAD = 18; // padding inside cards
-  const CARD_W = W - PAD * 2; // card width
-  const CARD_R = 18; // card border radius
 
   // ─── Pre-calculate height ───
   const activeSections = Object.entries(sections).filter(([, s]) => s.enabled && s.items.length > 0);
   let contentH = 440; // header area (icon + name + day + divider + energy + period)
   activeSections.forEach(([key, s]) => {
-    if (key === 'needs') contentH += 75;
-    else if (key === 'personalMessage') contentH += s.items[0] ? 80 : 0;
-    else contentH += 50 + s.items.length * 30 + CARD_PAD * 2 + 12;
+    if (key === 'needs') contentH += 65;
+    else if (key === 'personalMessage') contentH += s.items[0] ? 45 : 0;
+    else contentH += 22 + s.items.length * 20 + 14; // title + items + gap
   });
-  contentH += 90; // name + branding + bottom padding
-  const H = Math.max(620, contentH);
+  contentH += 65; // name + branding
+  const H = Math.max(550, contentH);
 
   const canvas = document.createElement('canvas');
   canvas.width = W;
@@ -468,118 +464,109 @@ function generateShareCanvas(cycleInfo, userName, sections) {
       : `Prochaines règles dans ${cycleInfo.daysUntilPeriod} jours`;
   ctx.fillText(periodText, W / 2, 410);
 
-  let curY = 440;
+  let curY = 435;
 
-  // ─── Helper: draw a rounded card section ───
-  const drawCardSection = (title, items, emoji) => {
-    const itemH = 28;
-    const cardH = 44 + items.length * itemH + 10;
+  // ─── Helper: draw a lightweight section (no card, just content) ───
+  const drawSection = (title, items, emoji) => {
+    // Thin separator line
+    ctx.strokeStyle = colors.bg + '30';
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+    ctx.moveTo(80, curY);
+    ctx.lineTo(W - 80, curY);
+    ctx.stroke();
+    curY += 16;
 
-    // Card shadow + bg
-    ctx.fillStyle = '#FFFFFF';
-    ctx.shadowColor = 'rgba(45,34,38,0.05)';
-    ctx.shadowBlur = 10;
-    ctx.shadowOffsetY = 2;
-    ctx.beginPath(); ctx.roundRect(PAD, curY, CARD_W, cardH, CARD_R); ctx.fill();
-    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-
-    // Left accent
-    ctx.fillStyle = colors.bg;
-    ctx.beginPath(); ctx.roundRect(PAD, curY, 4, cardH, [CARD_R, 0, 0, CARD_R]); ctx.fill();
-
-    // Emoji + Title
-    ctx.font = '18px serif';
+    // Emoji + Title inline
+    ctx.font = '14px serif';
     ctx.textAlign = 'left';
-    ctx.fillText(emoji, PAD + 18, curY + 28);
-    ctx.font = '600 13px system-ui, -apple-system, sans-serif';
+    ctx.fillText(emoji, 75, curY + 1);
+    ctx.font = '600 12px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = colors.accent;
-    ctx.fillText(title, PAD + 42, curY + 27);
+    ctx.fillText(title, 97, curY);
 
-    // Items
-    items.forEach((item, i) => {
-      const iy = curY + 48 + i * itemH;
-      // Dot
-      ctx.fillStyle = colors.bg + '60';
-      ctx.beginPath(); ctx.arc(PAD + 28, iy - 4, 3, 0, Math.PI * 2); ctx.fill();
-      // Text
-      ctx.font = '13px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#4A3E42';
+    curY += 16;
+
+    // Items — compact
+    items.forEach((item) => {
+      ctx.font = '12px system-ui, -apple-system, sans-serif';
+      ctx.fillStyle = '#5A4A4E';
       ctx.textAlign = 'left';
-      ctx.fillText(item, PAD + 40, iy);
+      ctx.fillText(`·  ${item}`, 85, curY);
+      curY += 18;
     });
 
-    curY += cardH + 12;
+    curY += 6;
   };
 
   // ─── Draw active sections ───
   activeSections.forEach(([key, s]) => {
     if (key === 'needs' && s.items.length > 0) {
-      // Needs as centered pills (no card wrapper)
       ctx.font = '600 11px system-ui, -apple-system, sans-serif';
       ctx.fillStyle = '#8A7B7F';
       ctx.textAlign = 'center';
-      ctx.fillText('CE DONT J\'AI BESOIN', W / 2, curY + 5);
-      const pillY = curY + 18;
-      const pillH = 34;
+      ctx.fillText('CE DONT J\'AI BESOIN', W / 2, curY);
+      const pillY = curY + 12;
+      const pillH = 30;
       const pillGap = 8;
-      ctx.font = '13px system-ui, -apple-system, sans-serif';
-      const totalPW = s.items.reduce((a, n) => a + ctx.measureText(n).width + 28, 0) + (s.items.length - 1) * pillGap;
+      ctx.font = '12px system-ui, -apple-system, sans-serif';
+      const totalPW = s.items.reduce((a, n) => a + ctx.measureText(n).width + 24, 0) + (s.items.length - 1) * pillGap;
       let pX = (W - totalPW) / 2;
       s.items.forEach((need) => {
         const tw = ctx.measureText(need).width;
-        const pw = tw + 28;
+        const pw = tw + 24;
         ctx.fillStyle = colors.bg + '18';
-        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 17); ctx.fill();
+        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 15); ctx.fill();
         ctx.strokeStyle = colors.bg + '40';
         ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 17); ctx.stroke();
+        ctx.beginPath(); ctx.roundRect(pX, pillY, pw, pillH, 15); ctx.stroke();
         ctx.fillStyle = colors.accent;
         ctx.textAlign = 'center';
-        ctx.fillText(need, pX + pw / 2, pillY + 22);
+        ctx.fillText(need, pX + pw / 2, pillY + 19);
         pX += pw + pillGap;
       });
-      curY = pillY + pillH + 18;
+      curY = pillY + pillH + 12;
     } else if (key === 'support') {
-      drawCardSection('Comment me soutenir', s.items, '💛');
+      drawSection('Comment me soutenir', s.items, '💛');
     } else if (key === 'avoid') {
-      drawCardSection('Ce qu\'il vaut mieux éviter', s.items, '🚫');
+      drawSection('Ce qu\'il vaut mieux éviter', s.items, '🚫');
     } else if (key === 'food') {
-      drawCardSection('Ce qui me ferait plaisir', s.items, '🍽️');
+      drawSection('Ce qui me ferait plaisir', s.items, '🍽️');
     } else if (key === 'personalMessage' && s.items[0]) {
-      // Personal message in a styled quote card
-      const msgH = 60;
-      ctx.fillStyle = colors.bg + '12';
-      ctx.beginPath(); ctx.roundRect(PAD, curY, CARD_W, msgH, CARD_R); ctx.fill();
-      // Quote mark decoration
-      ctx.font = 'bold 36px serif';
-      ctx.fillStyle = colors.bg + '25';
-      ctx.textAlign = 'left';
-      ctx.fillText('"', PAD + 14, curY + 32);
-      // Message text
-      ctx.font = 'italic 14px system-ui, -apple-system, sans-serif';
+      // Thin separator
+      ctx.strokeStyle = colors.bg + '30';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.moveTo(80, curY);
+      ctx.lineTo(W - 80, curY);
+      ctx.stroke();
+      curY += 20;
+      // Message text — simple italic centered
+      ctx.font = 'italic 13px system-ui, -apple-system, sans-serif';
       ctx.fillStyle = colors.accent;
       ctx.textAlign = 'center';
-      ctx.fillText(s.items[0], W / 2, curY + 37);
-      curY += msgH + 12;
+      ctx.fillText(`"${s.items[0]}"`, W / 2, curY);
+      curY += 18;
     }
   });
 
   // ─── User name ───
   if (userName) {
-    ctx.font = 'italic 14px system-ui, -apple-system, sans-serif';
+    curY += 8;
+    ctx.font = 'italic 13px system-ui, -apple-system, sans-serif';
     ctx.fillStyle = '#8A7B7F';
     ctx.textAlign = 'center';
-    ctx.fillText(`— ${userName}`, W / 2, curY + 8);
+    ctx.fillText(`— ${userName}`, W / 2, curY);
   }
 
-  // ─── LUNA branding ───
-  ctx.font = 'bold 13px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = colors.bg + '70';
+  // ─── LUNA branding (tight to bottom) ───
+  ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
+  ctx.fillStyle = colors.bg + '60';
   ctx.textAlign = 'center';
-  ctx.fillText('LUNA 🌙', W / 2, H - 42);
+  ctx.fillText('LUNA 🌙', W / 2, H - 30);
   ctx.font = '10px system-ui, -apple-system, sans-serif';
-  ctx.fillStyle = '#8A7B7F60';
-  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 25);
+  ctx.fillStyle = '#8A7B7F50';
+  ctx.fillText('Vis en harmonie avec ton cycle', W / 2, H - 15);
 
   return canvas;
 }
