@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Trash2, Pencil, Send, Check, ChevronLeft, ChevronRight, BarChart3, Sparkles, Eye, EyeOff, X, Plus, MessageCircle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
+import { supabase } from '../lib/supabase';
 import BackButton from '../components/ui/BackButton';
 import { ProfilSkeleton, SkeletonCard } from '../components/ui/SkeletonLoader';
 
@@ -959,7 +960,7 @@ function SharePartnerCard({ cycleInfo, name }) {
 }
 
 export default function Profil() {
-  const { name, cycleLength, periodLength, cycleInfo, checkIns, goals, dispatch, profileImage } = useCycle();
+  const { name, cycleLength, periodLength, cycleInfo, checkIns, goals, dispatch, profileImage, user } = useCycle();
   const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
   const fileInputRef = useRef(null);
   const [showPhotoMenu, setShowPhotoMenu] = useState(false);
@@ -984,8 +985,17 @@ export default function Profil() {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-        dispatch({ type: 'SET_PROFILE', payload: { profileImage: dataUrl } });
+        if (user) {
+          canvas.toBlob(async (blob) => {
+            const path = `${user.id}/avatar.jpg`;
+            await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' });
+            const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(path);
+            dispatch({ type: 'SET_PROFILE', payload: { profileImage: `${urlData.publicUrl}?t=${Date.now()}` } });
+          }, 'image/jpeg', 0.8);
+        } else {
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+          dispatch({ type: 'SET_PROFILE', payload: { profileImage: dataUrl } });
+        }
       };
       img.src = evt.target.result;
     };
@@ -1069,7 +1079,7 @@ export default function Profil() {
                 </button>
                 <div className="h-px bg-gray-100" />
                 <button
-                  onClick={() => { setShowPhotoMenu(false); dispatch({ type: 'SET_PROFILE', payload: { profileImage: null } }); }}
+                  onClick={() => { setShowPhotoMenu(false); if (user) { supabase.storage.from('avatars').remove([`${user.id}/avatar.jpg`]); } dispatch({ type: 'SET_PROFILE', payload: { profileImage: null } }); }}
                   className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-red-400 hover:bg-red-50 transition-colors"
                 >
                   <Trash2 size={15} />

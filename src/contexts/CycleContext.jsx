@@ -313,6 +313,7 @@ export function CycleProvider({ children }) {
       if (session?.user) {
         loadProfileFromSupabase(session.user.id);
         loadTrackingFromSupabase(session.user.id);
+        loadAvatarFromSupabase(session.user.id);
       }
       setAuthLoading(false);
     });
@@ -323,6 +324,7 @@ export function CycleProvider({ children }) {
       if (session?.user) {
         loadProfileFromSupabase(session.user.id);
         loadTrackingFromSupabase(session.user.id);
+        loadAvatarFromSupabase(session.user.id);
       }
       setAuthLoading(false);
     });
@@ -399,6 +401,21 @@ export function CycleProvider({ children }) {
       }
     } catch (e) {
       console.error('Load tracking error:', e);
+    }
+  };
+
+  const loadAvatarFromSupabase = async (userId) => {
+    try {
+      const { data } = await supabase.storage.from('avatars').list(userId);
+      if (data && data.length > 0) {
+        const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(`${userId}/avatar.jpg`);
+        dispatch({
+          type: 'SET_PROFILE',
+          payload: { profileImage: `${urlData.publicUrl}?t=${Date.now()}` },
+        });
+      }
+    } catch (e) {
+      console.error('Load avatar error:', e);
     }
   };
 
