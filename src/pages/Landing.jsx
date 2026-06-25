@@ -65,7 +65,7 @@ const phases = PHASE_ORDER.map((key) => ({ key, ...PHASES[key] }));
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-luna-bg">
+    <main className="min-h-screen bg-luna-bg">
       {/* Hero */}
       <motion.section
         variants={container}
@@ -294,6 +294,6 @@ export default function Landing() {
           LUNA — Comprends ton cycle. Adapte ta vie.
         </p>
       </footer>
-    </div>
+    </main>
   );
 }
