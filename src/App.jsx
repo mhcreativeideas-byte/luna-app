@@ -1,26 +1,35 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { CycleProvider, useCycle } from './contexts/CycleContext';
 import AppLayout from './components/layout/AppLayout';
 import Landing from './pages/Landing';
-import Auth from './pages/Auth';
-import Onboarding from './pages/Onboarding';
-import Dashboard from './pages/Dashboard';
-import Sport from './pages/Sport';
-import Alimentation from './pages/Alimentation';
-import Sommeil from './pages/Sommeil';
-import Extras from './pages/Extras';
-import Journal from './pages/Journal';
-import CheckIn from './pages/CheckIn';
-import Chat from './pages/Chat';
-// Calendar is now merged into Dashboard
-import Settings from './pages/Settings';
-import Profil from './pages/Profil';
-import Recettes from './pages/Recettes';
-import MonFrigo from './pages/MonFrigo';
-import Admin from './pages/Admin';
-import CGU from './pages/CGU';
-import Privacy from './pages/Privacy';
-import NotFound from './pages/NotFound';
+
+const Auth = lazy(() => import('./pages/Auth'));
+const Onboarding = lazy(() => import('./pages/Onboarding'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Sport = lazy(() => import('./pages/Sport'));
+const Alimentation = lazy(() => import('./pages/Alimentation'));
+const Sommeil = lazy(() => import('./pages/Sommeil'));
+const Extras = lazy(() => import('./pages/Extras'));
+const Journal = lazy(() => import('./pages/Journal'));
+const CheckIn = lazy(() => import('./pages/CheckIn'));
+const Chat = lazy(() => import('./pages/Chat'));
+const Settings = lazy(() => import('./pages/Settings'));
+const Profil = lazy(() => import('./pages/Profil'));
+const Recettes = lazy(() => import('./pages/Recettes'));
+const MonFrigo = lazy(() => import('./pages/MonFrigo'));
+const Admin = lazy(() => import('./pages/Admin'));
+const CGU = lazy(() => import('./pages/CGU'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center" style={{ background: '#FAF8F5' }}>
+      <img src="/logo-luna.png" alt="LUNA" className="w-24 opacity-40 animate-pulse" />
+    </div>
+  );
+}
 
 function ProtectedRoute({ children }) {
   const { onboardingComplete, user, authLoading } = useCycle();
@@ -48,41 +57,43 @@ function App() {
   return (
     <BrowserRouter>
       <CycleProvider>
-        <Routes>
-          <Route path="/" element={<HomeRedirect />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
-          <Route path="/admin" element={<Admin />} />
-          <Route
-            element={
-              <ProtectedRoute>
-                <AppLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/sport" element={<Sport />} />
-            <Route path="/alimentation" element={<Alimentation />} />
-            <Route path="/recettes" element={<Recettes />} />
-            <Route path="/mon-frigo" element={<MonFrigo />} />
-            <Route path="/sommeil" element={<Sommeil />} />
-            <Route path="/journal" element={<Journal />} />
-            <Route path="/profil" element={<Profil />} />
-            <Route path="/checkin" element={<CheckIn />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/calendrier" element={<Navigate to="/dashboard" replace />} />
-            <Route path="/plus" element={<Extras />} />
-            <Route path="/parametres" element={<Settings />} />
-            <Route path="/conditions" element={<CGU />} />
-            <Route path="/confidentialite" element={<Privacy />} />
-          </Route>
-          {/* Legacy routes redirect */}
-          <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
-          <Route path="/explorer" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/food" element={<Navigate to="/alimentation" replace />} />
-          <Route path="/sleep" element={<Navigate to="/plus" replace />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<HomeRedirect />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
+            <Route path="/admin" element={<Admin />} />
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/sport" element={<Sport />} />
+              <Route path="/alimentation" element={<Alimentation />} />
+              <Route path="/recettes" element={<Recettes />} />
+              <Route path="/mon-frigo" element={<MonFrigo />} />
+              <Route path="/sommeil" element={<Sommeil />} />
+              <Route path="/journal" element={<Journal />} />
+              <Route path="/profil" element={<Profil />} />
+              <Route path="/checkin" element={<CheckIn />} />
+              <Route path="/chat" element={<Chat />} />
+              <Route path="/calendrier" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/plus" element={<Extras />} />
+              <Route path="/parametres" element={<Settings />} />
+              <Route path="/conditions" element={<CGU />} />
+              <Route path="/confidentialite" element={<Privacy />} />
+            </Route>
+            {/* Legacy routes redirect */}
+            <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
+            <Route path="/explorer" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/food" element={<Navigate to="/alimentation" replace />} />
+            <Route path="/sleep" element={<Navigate to="/plus" replace />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </CycleProvider>
     </BrowserRouter>
   );
