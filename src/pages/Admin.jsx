@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'luna2026admin';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
 
 const phaseLabels = {
   menstrual: { name: 'Menstruelle', icon: '🌙', color: '#B4A7D6', bg: '#EEEDFE' },
