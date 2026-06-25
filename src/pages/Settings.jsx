@@ -270,7 +270,11 @@ export default function Settings() {
               try {
                 const { data: { user } } = await supabase.auth.getUser();
                 if (user) {
-                  await supabase.from('users').delete().eq('auth_id', user.id);
+                  await Promise.all([
+                    supabase.from('users').delete().eq('auth_id', user.id),
+                    supabase.from('user_tracking').delete().eq('auth_id', user.id),
+                    supabase.storage.from('avatars').remove([`${user.id}/avatar.jpg`]),
+                  ]);
                 }
                 dispatch({ type: 'RESET' });
                 localStorage.removeItem('luna-profile');
@@ -289,6 +293,10 @@ export default function Settings() {
               try {
                 const { data: { user } } = await supabase.auth.getUser();
                 if (user) {
+                  await Promise.all([
+                    supabase.from('user_tracking').delete().eq('auth_id', user.id),
+                    supabase.storage.from('avatars').remove([`${user.id}/avatar.jpg`]),
+                  ]);
                   await supabase.rpc('delete_user_completely', { user_auth_id: user.id });
                 }
                 dispatch({ type: 'RESET' });
