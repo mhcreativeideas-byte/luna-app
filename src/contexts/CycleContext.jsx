@@ -299,7 +299,13 @@ export function CycleProvider({ children }) {
   const [state, dispatch] = useReducer(cycleReducer, initialState, (init) => {
     try {
       const saved = localStorage.getItem('luna-profile');
-      return saved ? { ...init, ...JSON.parse(saved) } : init;
+      if (!saved) return init;
+      const parsed = JSON.parse(saved);
+      const merged = { ...init };
+      for (const key of Object.keys(init)) {
+        if (parsed[key] !== undefined) merged[key] = parsed[key];
+      }
+      return merged;
     } catch {
       return init;
     }
