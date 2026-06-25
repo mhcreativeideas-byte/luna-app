@@ -312,6 +312,7 @@ export function CycleProvider({ children }) {
       setUser(session?.user ?? null);
       if (session?.user) {
         loadProfileFromSupabase(session.user.id);
+        loadTrackingFromSupabase(session.user.id);
       }
       setAuthLoading(false);
     });
@@ -321,6 +322,7 @@ export function CycleProvider({ children }) {
       setUser(session?.user ?? null);
       if (session?.user) {
         loadProfileFromSupabase(session.user.id);
+        loadTrackingFromSupabase(session.user.id);
       }
       setAuthLoading(false);
     });
@@ -361,6 +363,42 @@ export function CycleProvider({ children }) {
       }
     } catch (e) {
       console.error('Load profile error:', e);
+    }
+  };
+
+  const loadTrackingFromSupabase = async (userId) => {
+    try {
+      const { data } = await supabase
+        .from('user_tracking')
+        .select('*')
+        .eq('auth_id', userId)
+        .maybeSingle();
+
+      if (data) {
+        dispatch({
+          type: 'SET_PROFILE',
+          payload: {
+            journalEntries: data.journal_entries || [],
+            sportSessions: data.sport_sessions || [],
+            sportLogs: data.sport_logs || [],
+            periodLogs: data.period_logs || [],
+            checkIns: data.check_ins || [],
+            customSymptoms: data.custom_symptoms || [],
+            temperatureLogs: data.temperature_logs || {},
+            spottingLogs: data.spotting_logs || [],
+            conversations: data.conversations || [],
+            partnerCode: data.partner_code || null,
+            ...(data.settings ? {
+              notifications: data.settings.notifications ?? true,
+              language: data.settings.language || 'fr',
+              smartTracking: data.settings.smartTracking ?? false,
+              calendarStartDay: data.settings.calendarStartDay || 'monday',
+            } : {}),
+          },
+        });
+      }
+    } catch (e) {
+      console.error('Load tracking error:', e);
     }
   };
 
@@ -419,6 +457,58 @@ export function CycleProvider({ children }) {
     state.allergies,
     state.cookingLevel,
     state.cookingTime,
+  ]);
+
+  const saveTrackingToSupabase = async () => {
+    if (!user || !state.onboardingComplete) return;
+    try {
+      await supabase.from('user_tracking').upsert({
+        auth_id: user.id,
+        journal_entries: state.journalEntries,
+        sport_sessions: state.sportSessions,
+        sport_logs: state.sportLogs,
+        period_logs: state.periodLogs,
+        check_ins: state.checkIns,
+        custom_symptoms: state.customSymptoms,
+        temperature_logs: state.temperatureLogs,
+        spotting_logs: state.spottingLogs,
+        conversations: state.conversations,
+        partner_code: state.partnerCode,
+        settings: {
+          notifications: state.notifications,
+          language: state.language,
+          smartTracking: state.smartTracking,
+          calendarStartDay: state.calendarStartDay,
+        },
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'auth_id' });
+    } catch (e) {
+      console.error('Save tracking error:', e);
+    }
+  };
+
+  useEffect(() => {
+    if (user && state.onboardingComplete) {
+      const timer = setTimeout(() => {
+        saveTrackingToSupabase();
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [
+    state.journalEntries,
+    state.sportSessions,
+    state.sportLogs,
+    state.periodLogs,
+    state.checkIns,
+    state.customSymptoms,
+    state.temperatureLogs,
+    state.spottingLogs,
+    state.conversations,
+    state.partnerCode,
+    state.notifications,
+    state.language,
+    state.smartTracking,
+    state.calendarStartDay,
   ]);
 
   const hour = new Date().getHours();
