@@ -457,6 +457,8 @@ export function CycleProvider({ children }) {
     state.allergies,
     state.cookingLevel,
     state.cookingTime,
+    state.lastPeriodDate,
+    state.onboardingComplete,
   ]);
 
   const saveTrackingToSupabase = async () => {
