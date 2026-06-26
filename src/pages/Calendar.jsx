@@ -31,7 +31,7 @@ export default function Calendar() {
   const [confirmStart, setConfirmStart] = useState(false);
   const [confirmCycleReset, setConfirmCycleReset] = useState(false);
   const [tempInput, setTempInput] = useState('');
-  const [tempDirty, setTempDirty] = useState(false);
+  const [, setTempDirty] = useState(false);
   const [editingTemp, setEditingTemp] = useState(false);
   const [tempConfirming, setTempConfirming] = useState(false);
   const [tempToConfirm, setTempToConfirm] = useState(null);

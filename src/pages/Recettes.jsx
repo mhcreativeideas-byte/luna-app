@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
@@ -43,7 +43,6 @@ const mealLabels = {
 };
 
 export default function Recettes() {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const nutrientFilter = searchParams.get('nutrient') || '';
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, favorites, dispatch } = useCycle();

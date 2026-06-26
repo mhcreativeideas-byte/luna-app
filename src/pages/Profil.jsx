@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useMemo } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Trash2, Pencil, Send, Check, ChevronLeft, ChevronRight, BarChart3, Sparkles, Eye, EyeOff, X, Plus, MessageCircle } from 'lucide-react';
@@ -960,7 +960,7 @@ function SharePartnerCard({ cycleInfo, name }) {
 }
 
 export default function Profil() {
-  const { name, cycleLength, periodLength, cycleInfo, checkIns, goals, dispatch, profileImage, user } = useCycle();
+  const { name, cycleLength, periodLength, cycleInfo, checkIns, dispatch, profileImage, user } = useCycle();
   const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
   const fileInputRef = useRef(null);
   const [showPhotoMenu, setShowPhotoMenu] = useState(false);

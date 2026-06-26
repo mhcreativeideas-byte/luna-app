@@ -335,7 +335,7 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 export default function Journal() {
-  const { cycleInfo, journalEntries, sportSessions, sportLogs, checkIns, cycleLength, periodLength, customSymptoms, dispatch } = useCycle();
+  const { cycleInfo, journalEntries, sportSessions, sportLogs, checkIns, customSymptoms, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
   const [expandedDay, setExpandedDay] = useState(null);
   // rapport mensuel déplacé dans l'onglet Plus (Extras.jsx)

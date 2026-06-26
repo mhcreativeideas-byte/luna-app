@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
@@ -150,7 +150,6 @@ function containsAllergen(recipe, allergyList) {
 }
 
 export default function MonFrigo() {
-  const navigate = useNavigate();
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, favorites, fridgeItems, dispatch } = useCycle();
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);

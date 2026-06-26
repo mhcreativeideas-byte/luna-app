@@ -33,7 +33,7 @@ function PageLoader() {
 }
 
 function ProtectedRoute({ children }) {
-  const { onboardingComplete, user, authLoading } = useCycle();
+  const { onboardingComplete, authLoading } = useCycle();
   if (authLoading) return null;
   if (!onboardingComplete) return <Navigate to="/" replace />;
   return children;
