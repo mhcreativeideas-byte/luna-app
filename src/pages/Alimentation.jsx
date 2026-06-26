@@ -130,7 +130,7 @@ const containsAllergen = (recipe, allergyList) => {
 
 const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
   if (!recipes) return [];
-  const rand = seededRandom(getDaySeed() + phase.charCodeAt(0));
+  const rand = seededRandom(getDaySeed() + phaseData.shortName.charCodeAt(0));
   const goodDrinks = phaseData.drinks?.good || [];
 
   const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
