@@ -100,6 +100,21 @@ body {
   line-height: 1.6;
 }
 
+/* Réactivité tactile : supprime le délai ~300ms de Safari iOS (attente de
+   double-tap pour zoomer) sur les éléments interactifs, et enlève le flash
+   de surbrillance grise au tap. Les taps s'enregistrent du premier coup. */
+button,
+a,
+[role="button"],
+input,
+textarea,
+select,
+label,
+.cursor-pointer {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   color: var(--color-luna-text);
