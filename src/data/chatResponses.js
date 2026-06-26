@@ -1667,8 +1667,8 @@ function enrichWithCheckIn(response, userContext) {
       'Prends soin de toi aujourd\'hui 💛 ',
     ];
     const prefix = lowEnergyPrefixes[Math.floor(Math.random() * lowEnergyPrefixes.length)];
-    // Insérer le prefix après la première phrase d'accroche (après le nom)
-    return response + suffix;
+    // Message doux ajouté au début pour les jours de très basse énergie
+    return prefix + response + suffix;
   }
 
   if (energy && energy >= 80) {
