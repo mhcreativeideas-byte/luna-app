@@ -590,6 +590,30 @@ export function CycleProvider({ children }) {
     state.fridgeItems,
   ]);
 
+  // Flush pending saves immediately when the app is backgrounded or closed,
+  // so changes made within the debounce window aren't lost. The ref always
+  // points to the freshest save closure without re-binding the listener.
+  const flushRef = useRef(() => {});
+  flushRef.current = () => {
+    if (user && state.onboardingComplete) {
+      saveTrackingToSupabase();
+      saveProfileToSupabase();
+    }
+  };
+
+  useEffect(() => {
+    const flushOnHide = () => {
+      if (document.visibilityState === 'hidden') flushRef.current();
+    };
+    const flushNow = () => flushRef.current();
+    document.addEventListener('visibilitychange', flushOnHide);
+    window.addEventListener('pagehide', flushNow);
+    return () => {
+      document.removeEventListener('visibilitychange', flushOnHide);
+      window.removeEventListener('pagehide', flushNow);
+    };
+  }, []);
+
   const hour = new Date().getHours();
   const isEvening = hour >= 18;
   const isMorning = hour < 12;
