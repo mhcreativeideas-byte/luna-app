@@ -3,7 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Send, Sparkles, ChevronDown, Plus, Clock, Trash2, Archive, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
-import { getLunaResponse, SUGGESTION_CATEGORIES } from '../data/chatResponses';
+import { getLunaResponse, SUGGESTION_CATEGORIES, setCatalogForPhase } from '../data/chatResponses';
+import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { PHASES } from '../data/phases';
 
 export default function Chat() {
@@ -21,6 +22,17 @@ export default function Chat() {
   const touchStartX = useRef(0);
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
+
+  // Charge le catalogue de recettes de la phase courante en arrière-plan,
+  // pour que les suggestions de recettes du chat soient dispo sans alourdir
+  // le chargement initial de la page.
+  useEffect(() => {
+    let cancelled = false;
+    RECIPE_LOADERS[phase]?.().then((recipes) => {
+      if (!cancelled) setCatalogForPhase(phase, recipes);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [phase]);
 
   // Suggestions rapides contextuelles
   const contextualSuggestions = (() => {

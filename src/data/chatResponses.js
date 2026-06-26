@@ -1,14 +1,12 @@
-import { RECIPES_MENSTRUAL } from './recipes-menstrual';
-import { RECIPES_FOLLICULAR } from './recipes-follicular';
-import { RECIPES_OVULATORY } from './recipes-ovulatory';
-import { RECIPES_LUTEAL } from './recipes-luteal';
+// Le catalogue de recettes est chargé à la demande par la page Chat
+// (voir setCatalogForPhase) pour ne pas embarquer ~560 kB de données
+// recettes dans le bundle du Chat. Tant qu'une phase n'est pas chargée,
+// les helpers de suggestion retombent sur les recettes internes.
+const CATALOG_RECIPES = {};
 
-const CATALOG_RECIPES = {
-  menstrual: RECIPES_MENSTRUAL,
-  follicular: RECIPES_FOLLICULAR,
-  ovulatory: RECIPES_OVULATORY,
-  luteal: RECIPES_LUTEAL,
-};
+export function setCatalogForPhase(phase, recipes) {
+  if (phase && recipes) CATALOG_RECIPES[phase] = recipes;
+}
 
 // Catégories de questions suggérées avec icônes
 export const SUGGESTION_CATEGORIES = [
