@@ -1,10 +1,16 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-import { RECIPES } from '../data/recipes';
+
+const RECIPE_LOADERS = {
+  menstrual: () => import('../data/recipes-menstrual').then(m => m.RECIPES_MENSTRUAL),
+  follicular: () => import('../data/recipes-follicular').then(m => m.RECIPES_FOLLICULAR),
+  ovulatory: () => import('../data/recipes-ovulatory').then(m => m.RECIPES_OVULATORY),
+  luteal: () => import('../data/recipes-luteal').then(m => m.RECIPES_LUTEAL),
+};
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
 import TopMenu from '../components/ui/TopMenu';
 
@@ -128,8 +134,7 @@ const containsAllergen = (recipe, allergyList) => {
   });
 };
 
-const buildDailyMenu = (phase, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
-  const recipes = RECIPES[phase];
+const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
   if (!recipes) return [];
   const rand = seededRandom(getDaySeed() + phase.charCodeAt(0));
   const goodDrinks = phaseData.drinks?.good || [];
@@ -204,7 +209,30 @@ export default function Alimentation() {
   const phaseData = PHASES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = phaseData.nutrientsFull || {};
+  const [recipes, setRecipes] = useState(null);
+  const [allRecipes, setAllRecipes] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setRecipes(null);
+    RECIPE_LOADERS[phase]().then(data => {
+      if (!cancelled) setRecipes(data);
+    });
+    return () => { cancelled = true; };
+  }, [phase]);
+
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      Object.entries(RECIPE_LOADERS).map(([k, loader]) => loader().then(data => [k, data]))
+    ).then(entries => {
+      if (!cancelled) setAllRecipes(Object.fromEntries(entries));
+    });
+    return () => { cancelled = true; };
+  }, []);
+
   const dailyMenu = useMemo(() => {
+    if (!recipes) return [];
     const tags = [];
     const prefs = dietPreferences || ['omnivore'];
     const issues = healthIssues || [];
@@ -213,11 +241,11 @@ export default function Alimentation() {
     if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
     if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
     if (issues.includes('SOPK')) tags.push('sopk_friendly');
-    return buildDailyMenu(phase, phaseData, {
+    return buildDailyMenu(recipes, phaseData, {
       requiredTags: tags,
       allergies: allergies || [],
     });
-  }, [phase, dietPreferences, healthIssues, allergies]);
+  }, [phase, recipes, dietPreferences, healthIssues, allergies]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {
@@ -656,7 +684,7 @@ export default function Alimentation() {
             : [];
           if (keywords.length === 0) return null;
           for (const ph of ['luteal', 'menstrual', 'follicular', 'ovulatory']) {
-            const phRecipes = RECIPES[ph];
+            const phRecipes = allRecipes?.[ph];
             if (!phRecipes) continue;
             for (const mealType of ['snack', 'drink', 'breakfast', 'lunch', 'dinner']) {
               const pool = phRecipes[mealType];

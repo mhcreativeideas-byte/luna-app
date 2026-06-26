@@ -4,8 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
-import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
+
+const RECIPE_LOADERS = {
+  menstrual: () => import('../data/recipes-menstrual').then(m => m.RECIPES_MENSTRUAL),
+  follicular: () => import('../data/recipes-follicular').then(m => m.RECIPES_FOLLICULAR),
+  ovulatory: () => import('../data/recipes-ovulatory').then(m => m.RECIPES_OVULATORY),
+  luteal: () => import('../data/recipes-luteal').then(m => m.RECIPES_LUTEAL),
+};
 
 const container = {
   hidden: { opacity: 0 },
@@ -77,7 +83,16 @@ export default function Recettes() {
   const currentPhase = cycleInfo?.phase || 'follicular';
   const activePhase = selectedPhase === 'current' ? currentPhase : selectedPhase;
   const phaseData = PHASES[activePhase];
-  const recipes = RECIPES[activePhase];
+  const [recipes, setRecipes] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setRecipes(null);
+    RECIPE_LOADERS[activePhase]().then(data => {
+      if (!cancelled) setRecipes(data);
+    });
+    return () => { cancelled = true; };
+  }, [activePhase]);
 
   // Filtrage alimentaire selon le profil
   const requiredTags = (() => {
@@ -539,7 +554,11 @@ export default function Recettes() {
 
       {/* Recipe Grid */}
       <motion.div variants={item}>
-        {allRecipes.length === 0 ? (
+        {!recipes ? (
+          <div className="text-center py-12">
+            <img src="/logo-luna.png" alt="" className="w-16 mx-auto opacity-30 animate-pulse" />
+          </div>
+        ) : allRecipes.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-4xl mb-3">🍽️</p>
             <p className="text-sm font-body text-luna-text-muted">

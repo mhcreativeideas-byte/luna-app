@@ -3,8 +3,14 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
-import { RECIPES } from '../data/recipes';
 import { PHASES } from '../data/phases';
+
+const RECIPE_LOADERS = {
+  menstrual: () => import('../data/recipes-menstrual').then(m => m.RECIPES_MENSTRUAL),
+  follicular: () => import('../data/recipes-follicular').then(m => m.RECIPES_FOLLICULAR),
+  ovulatory: () => import('../data/recipes-ovulatory').then(m => m.RECIPES_OVULATORY),
+  luteal: () => import('../data/recipes-luteal').then(m => m.RECIPES_LUTEAL),
+};
 import BackButton from '../components/ui/BackButton';
 
 const container = {
@@ -174,6 +180,16 @@ export default function MonFrigo() {
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
+  const [phaseRecipes, setPhaseRecipes] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setPhaseRecipes(null);
+    RECIPE_LOADERS[phase]().then(data => {
+      if (!cancelled) setPhaseRecipes(data);
+    });
+    return () => { cancelled = true; };
+  }, [phase]);
 
   // Persister dans localStorage
   useEffect(() => {
@@ -255,10 +271,10 @@ export default function MonFrigo() {
 
   // Calculer les recettes matchées, triées par score
   const matchedRecipes = useMemo(() => {
-    if (!fridgeItems.length) return [];
+    if (!fridgeItems.length || !phaseRecipes) return [];
 
     const results = [];
-    const recipes = RECIPES[phase];
+    const recipes = phaseRecipes;
     if (!recipes) return [];
 
     Object.entries(recipes).forEach(([mealType, items]) => {
@@ -287,7 +303,7 @@ export default function MonFrigo() {
 
     // Trier par score décroissant
     return results.sort((a, b) => b.score - a.score);
-  }, [fridgeItems, phase, requiredTags, maxTime, allergies, maxLevel]);
+  }, [fridgeItems, phaseRecipes, requiredTags, maxTime, allergies, maxLevel]);
 
   const mealLabels = {
     breakfast: 'PETIT-DÉJ',
