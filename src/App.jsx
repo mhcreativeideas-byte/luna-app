@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { CycleProvider, useCycle } from './contexts/CycleContext';
 import AppLayout from './components/layout/AppLayout';
+import ErrorBoundary from './components/ErrorBoundary';
 import Landing from './pages/Landing';
 
 const Auth = lazy(() => import('./pages/Auth'));
@@ -55,10 +56,11 @@ function HomeRedirect() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <CycleProvider>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <CycleProvider>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
             <Route path="/" element={<HomeRedirect />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
@@ -92,10 +94,11 @@ function App() {
             <Route path="/food" element={<Navigate to="/alimentation" replace />} />
             <Route path="/sleep" element={<Navigate to="/plus" replace />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </CycleProvider>
-    </BrowserRouter>
+            </Routes>
+          </Suspense>
+        </CycleProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
