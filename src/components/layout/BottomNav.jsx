@@ -19,14 +19,7 @@ function NavItem({ to, icon: Icon, label, phaseData }) {
     <NavLink
       key={to}
       to={to}
-      className={({ isActive }) =>
-        `flex flex-col items-center gap-0.5 flex-1 py-1.5 transition-all duration-300 relative ${
-          isActive ? '' : 'opacity-40 hover:opacity-60'
-        }`
-      }
-      style={({ isActive }) =>
-        isActive ? { color: phaseData.color } : { color: '#2D2226' }
-      }
+      className="flex flex-col items-center gap-0.5 flex-1 py-1.5 transition-all duration-300 relative"
     >
       {({ isActive }) => (
         <>
@@ -36,13 +29,20 @@ function NavItem({ to, icon: Icon, label, phaseData }) {
               style={{ backgroundColor: phaseData.color }}
             />
           )}
+          {/* Icône estompée quand inactive (hiérarchie visuelle) */}
           <div
-            className="w-9 h-9 rounded-full flex items-center justify-center transition-all"
-            style={isActive ? { backgroundColor: phaseData.bgColor } : {}}
+            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${isActive ? '' : 'opacity-40 group-hover:opacity-60'}`}
+            style={isActive ? { backgroundColor: phaseData.bgColor, color: phaseData.color } : { color: '#2D2226' }}
           >
             <Icon size={18} strokeWidth={isActive ? 2 : 1.5} />
           </div>
-          <span className="text-[8px] font-semibold font-body leading-none tracking-tight">{label}</span>
+          {/* Label en couleur pleine lisible (WCAG) — pas d'opacity sur le texte */}
+          <span
+            className="text-[8px] font-semibold font-body leading-none tracking-tight"
+            style={{ color: isActive ? phaseData.color : '#756568' }}
+          >
+            {label}
+          </span>
         </>
       )}
     </NavLink>
