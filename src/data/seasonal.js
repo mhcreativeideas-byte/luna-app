@@ -12,7 +12,7 @@ export const FOOD_EMOJIS = {
   'Poireau': '🥬', 'Potiron': '🎃', 'Topinambour': '🥔', 'Asperge': '🌿', 'Radis': '🔴',
   'Artichaut': '🌿', 'Chou de Bruxelles': '🥬', 'Aubergine': '🍆', 'Concombre': '🥒',
   'Courgette': '🥒', 'Laitue': '🥬', 'Petit pois': '🟢', 'Cresson': '🌿',
-  'Blette': '🥬', 'Fenouil': '🌿', 'Haricot vert': '🫘', 'Poivron': '🫑',
+  'Blette': '🥬', 'Fenouil': '🌿', 'Haricot vert': '🫛', 'Poivron': '🫑',
   'Tomate': '🍅', 'Maïs': '🌽', 'Brocoli': '🥦', 'Courge': '🎃',
 };
 
@@ -41,10 +41,10 @@ export const FOOD_IMAGES = {
   'Myrtille': '/foods/myrtille.png',
   'Pastèque': '/foods/pasteque.png',
   'Prune': '/foods/prune.png',
-  'Mirabelle': '/foods/mirabelle.png',
+  // 'Mirabelle' retiré : l'image était une prune foncée (les mirabelles sont jaunes) → emoji
   'Mûre': '/foods/mure.png',
   'Raisin': '/foods/raisin.png',
-  'Châtaigne': '/foods/chataigne.png',
+  // 'Châtaigne' retiré : l'image était un sachet emballé → emoji 🌰
   'Coing': '/foods/coing.png',
   'Noix': '/foods/noix.png',
   // Légumes
@@ -64,7 +64,7 @@ export const FOOD_IMAGES = {
   'Asperge': '/foods/asperge.png',
   'Radis': '/foods/radis.png',
   'Artichaut': '/foods/artichaut.png',
-  'Chou de Bruxelles': '/foods/chou-de-bruxelles.png',
+  // 'Chou de Bruxelles' retiré : fichier image manquant → emoji 🥬
   'Aubergine': '/foods/aubergine.png',
   'Concombre': '/foods/concombre.png',
   'Courgette': '/foods/courgette.png',
@@ -72,11 +72,11 @@ export const FOOD_IMAGES = {
   'Petit pois': '/foods/petit-pois.png',
   'Cresson': '/foods/cresson.png',
   'Blette': '/foods/blette.png',
-  'Fenouil': '/foods/fenouil.png',
-  'Haricot vert': '/foods/haricot-vert.png',
-  'Poivron': '/foods/poivron.png',
+  // 'Fenouil' retiré : l'image était un sachet de graines → emoji 🌿
+  // 'Haricot vert' retiré : fichier image manquant → emoji 🫛
+  // 'Poivron' retiré : l'image était un moulin à poivre noir → emoji 🫑
   'Tomate': '/foods/tomate.png',
-  'Maïs': '/foods/mais.png',
+  // 'Maïs' retiré : l'image était une boîte de conserve → emoji 🌽
   'Brocoli': '/foods/brocoli.png',
   'Courge': '/foods/courge.png',
 };
