@@ -128,11 +128,7 @@ const SLEEP_SUMMARY = {
 
 export default function Extras() {
   const { cycleInfo } = useCycle();
-  if (!cycleInfo) return <ExtrasSkeleton />;
-
-  const { phase, phaseData } = cycleInfo;
-  const sport = SPORT_SUMMARY[phase] || SPORT_SUMMARY.follicular;
-  const sleep = SLEEP_SUMMARY[phase] || SLEEP_SUMMARY.follicular;
+  const phase = cycleInfo?.phase;
 
   // Fait du jour — change chaque jour, stable dans la journée
   const dailyFact = useMemo(() => {
@@ -141,6 +137,12 @@ export default function Extras() {
     const index = Math.floor(seededRandom(seed + 777) * facts.length);
     return facts[index];
   }, [phase]);
+
+  if (!cycleInfo) return <ExtrasSkeleton />;
+
+  const { phaseData } = cycleInfo;
+  const sport = SPORT_SUMMARY[phase] || SPORT_SUMMARY.follicular;
+  const sleep = SLEEP_SUMMARY[phase] || SLEEP_SUMMARY.follicular;
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">

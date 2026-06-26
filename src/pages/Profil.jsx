@@ -98,9 +98,6 @@ function MonthlyReport() {
   const [reportMonth, setReportMonth] = useState(now.getMonth());
   const [reportYear, setReportYear] = useState(now.getFullYear());
 
-  if (!cycleInfo) return <ProfilSkeleton />;
-  const phaseData = cycleInfo.phaseData;
-
   const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
   const currentMonthSport = useMemo(() => getMonthSportSessions(sportSessions, reportYear, reportMonth), [sportSessions, reportYear, reportMonth]);
   const currentMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, reportYear, reportMonth), [sportLogs, reportYear, reportMonth]);
@@ -146,6 +143,9 @@ function MonthlyReport() {
     if (currentStats.totalCustomSessions > 0) msgs.push(`${currentStats.totalCustomSessions} activité${currentStats.totalCustomSessions > 1 ? 's' : ''} pour ${currentStats.totalCustomDuration} min ce mois.`);
     return msgs;
   }, [currentStats, prevStats]);
+
+  if (!cycleInfo) return <ProfilSkeleton />;
+  const phaseData = cycleInfo.phaseData;
 
   return (
     <div className="rounded-[24px] overflow-hidden" style={{ backgroundColor: phaseData.bgColor }}>
