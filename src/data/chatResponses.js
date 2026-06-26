@@ -896,9 +896,8 @@ function getDietLabel(ctx) {
 
 function filterFoodList(foods, ctx) {
   const prefs = ctx.dietPreferences || ['omnivore'];
-  const issues = ctx.healthIssues || [];
 
-  const meatFish = ['viande rouge', 'bœuf', 'poulet', 'dinde', 'porc', 'saumon', 'sardines', 'maquereau', 'thon', 'crevettes', 'poisson', 'fruits de mer', 'huîtres', 'poisson blanc', 'saumon fumé', 'charcuterie', 'jambon'];
+  const meatFish =['viande rouge', 'bœuf', 'poulet', 'dinde', 'porc', 'saumon', 'sardines', 'maquereau', 'thon', 'crevettes', 'poisson', 'fruits de mer', 'huîtres', 'poisson blanc', 'saumon fumé', 'charcuterie', 'jambon'];
   const animalProducts = ['œufs', 'miel', 'yaourt', 'yaourt grec', 'kéfir', 'fromage', 'lait', 'crème', 'beurre', 'crème fraîche'];
   const dairy = ['yaourt', 'yaourt grec', 'kéfir', 'fromage', 'lait', 'crème', 'beurre', 'crème fraîche', 'lait entier'];
   const glutenFoods = ['pain', 'pain complet', 'pâtes', 'pâtes complètes', 'avoine', 'flocons d\'avoine', 'semoule', 'blé', 'orge', 'seigle', 'gâteau', 'biscuit', 'croissant'];
@@ -1010,13 +1009,6 @@ const MEAL_TYPE_MAP = {
   smoothie: 'snack',
 };
 
-// Parse le temps de préparation en minutes
-function parsePrepTime(str) {
-  if (!str) return 999;
-  const m = str.match(/(\d+)/);
-  return m ? parseInt(m[1], 10) : 999;
-}
-
 // ===== RÉCUPÉRER LES RECETTES DU CATALOGUE FILTRÉES =====
 function getCatalogRecipes(phase, mealType, ctx) {
   const catalogPhase = CATALOG_RECIPES?.[phase];
@@ -1062,8 +1054,7 @@ function getCatalogRecipes(phase, mealType, ctx) {
 
 // Formate une recette du catalogue pour la réponse bot
 function formatCatalogRecipe(recipe, phaseName, nutrients) {
-  const dietLabel = '';
-  const ingredientsList = recipe.ingredients.slice(0, 8).map((i) => `• ${i}`).join('\n');
+  const ingredientsList =recipe.ingredients.slice(0, 8).map((i) => `• ${i}`).join('\n');
   const stepsText = recipe.steps.join(' ');
   const whyText = recipe.whyThisPhase || '';
 
@@ -1189,7 +1180,7 @@ function generateFullDayMenu(phase, diet, ctx) {
 }
 
 // ===== RÉPONSE NUTRITION SPÉCIFIQUE =====
-function generateNutrientResponse(nutrient, phase, ctx) {
+function generateNutrientResponse(nutrient, phase) {
   const phaseName = PHASE_LABELS[phase];
   const nutrients = PHASE_NUTRIENTS[phase];
 
@@ -1327,7 +1318,6 @@ function generateFoodResponse(food, phase, ctx) {
   const phaseName = PHASE_LABELS[phase];
   const qFood = food.toLowerCase();
   const verb = isDrinkItem(food) ? 'boire' : 'manger';
-  const verbDu = isDrinkItem(food) ? 'boire du' : 'manger du';
 
   const isGood = filteredGood.some((f) => qFood.includes(f) || f.includes(qFood));
   const isOk = filteredOk.some((f) => qFood.includes(f) || f.includes(qFood));
@@ -1407,9 +1397,9 @@ const GREETINGS = [
 
 const THANKS = [
   (ctx) => `Avec plaisir ${ctx.name} ! N'hésite pas si tu as d'autres questions 💛`,
-  (ctx) => `De rien ! Je suis là pour ça 😊 Hésite pas à revenir.`,
+  () => `De rien ! Je suis là pour ça 😊 Hésite pas à revenir.`,
   (ctx) => `Ravie d'avoir pu t'aider ${ctx.name} ! Prends soin de toi 💜`,
-  (ctx) => `C'est normal 💛 Si tu as besoin de quoi que ce soit, je suis là !`,
+  () => `C'est normal 💛 Si tu as besoin de quoi que ce soit, je suis là !`,
 ];
 
 const HOW_ARE_YOU = [
@@ -1454,7 +1444,7 @@ function findIngredientsList(question) {
   return ingredients.length > 0 ? ingredients : null;
 }
 
-function searchRecipesByIngredients(ingredients, phase, ctx) {
+function searchRecipesByIngredients(ingredients, phase) {
   const catalogPhase = CATALOG_RECIPES?.[phase];
   if (!catalogPhase) return null;
 
@@ -1490,7 +1480,7 @@ function detectCuisine(q) {
 }
 
 // ===== MÉMOIRE CONVERSATIONNELLE =====
-function handleConversationMemory(question, history, phase, ctx) {
+function handleConversationMemory(question, history, phase) {
   if (!history || history.length < 2) return null;
   const q = question.toLowerCase();
 
