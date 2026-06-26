@@ -552,7 +552,7 @@ export default function Recettes() {
                 key={`${recipe.mealType}-${i}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.05 * i, duration: 0.4 }}
+                transition={{ delay: Math.min(i * 0.04, 0.3), duration: 0.35 }}
                 onClick={() => setOpenRecipe(i)}
                 className="text-left group cursor-pointer"
               >
