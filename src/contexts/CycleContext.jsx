@@ -457,6 +457,28 @@ export function CycleProvider({ children }) {
     localStorage.setItem('luna-profile', JSON.stringify(state));
   }, [state]);
 
+  // One-time migration: move favorites/fridge from old localStorage keys into context
+  useEffect(() => {
+    try {
+      const savedFavs = localStorage.getItem('luna-favorites');
+      if (savedFavs) {
+        const favs = JSON.parse(savedFavs);
+        if (favs.length > 0 && state.favorites.length === 0) {
+          dispatch({ type: 'SET_PROFILE', payload: { favorites: favs } });
+        }
+        localStorage.removeItem('luna-favorites');
+      }
+      const savedFridge = localStorage.getItem('luna-frigo');
+      if (savedFridge) {
+        const items = JSON.parse(savedFridge);
+        if (items.length > 0 && state.fridgeItems.length === 0) {
+          dispatch({ type: 'SET_PROFILE', payload: { fridgeItems: items } });
+        }
+        localStorage.removeItem('luna-frigo');
+      }
+    } catch {}
+  }, []);
+
   const cycleInfo = getCycleInfo(
     state.lastPeriodDate,
     state.cycleLength,
