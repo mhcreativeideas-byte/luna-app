@@ -458,7 +458,6 @@ export function CycleProvider({ children }) {
   }, [state]);
 
   // One-time migration: move favorites/fridge from old localStorage keys into context
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     try {
       const savedFavs = localStorage.getItem('luna-favorites');
