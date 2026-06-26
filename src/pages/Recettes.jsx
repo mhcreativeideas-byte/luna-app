@@ -564,13 +564,13 @@ export default function Recettes() {
                     {recipe.emoji || '🍽️'}
                   </span>
                   <div className="absolute top-2 left-2">
-                    <span className="text-[8px] font-body font-bold uppercase tracking-widest px-2 py-0.5 rounded-pill bg-white/90 backdrop-blur-sm text-luna-text">
+                    <span className="text-[8px] font-body font-bold uppercase tracking-widest px-2 py-0.5 rounded-pill bg-white/90 text-luna-text">
                       {mealLabels[recipe.mealType]?.tag || recipe.mealType}
                     </span>
                   </div>
                   <button
                     onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
-                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center transition-all hover:scale-110"
+                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center transition-all hover:scale-110"
                   >
                     <Heart
                       size={14}
