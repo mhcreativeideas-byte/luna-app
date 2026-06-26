@@ -340,7 +340,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowGoals(false); }}
           >
             <motion.div
@@ -405,7 +405,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowDiet(false); }}
           >
             <motion.div
@@ -466,7 +466,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowHealth(false); }}
           >
             <motion.div
@@ -532,7 +532,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowAllergies(false); }}
           >
             <motion.div
@@ -593,7 +593,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowCooking(false); }}
           >
             <motion.div
@@ -684,7 +684,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowCycleLength(false); }}
           >
             <motion.div
@@ -752,7 +752,7 @@ export default function Settings() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
             onClick={(e) => { if (e.target === e.currentTarget) setShowPeriodLength(false); }}
           >
             <motion.div
