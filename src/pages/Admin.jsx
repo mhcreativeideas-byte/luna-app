@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Users, TrendingUp, Activity, Target, Shield,
-  Eye, EyeOff, LogOut, RefreshCw, Search,
+  LogOut, RefreshCw, Search,
   ChevronDown, ChevronUp, Calendar, Dumbbell,
   Utensils, Moon, Brain, BookOpen, Flame,
   ArrowLeft, Trash2, X, AlertTriangle
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD;
+const ADMIN_EMAILS = ['mhcreative.ideas@gmail.com'];
 
 const phaseLabels = {
   menstrual: { name: 'Menstruelle', icon: '🌙', color: '#B4A7D6', bg: '#EEEDFE' },
@@ -88,12 +88,7 @@ function PhaseBar({ data, total }) {
 
 export default function Admin() {
   const navigate = useNavigate();
-  const [authenticated, setAuthenticated] = useState(
-    () => sessionStorage.getItem('luna_admin_auth') === 'true'
-  );
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+  const [authState, setAuthState] = useState('loading');
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
@@ -163,23 +158,18 @@ export default function Admin() {
     setDeleting(false);
   };
 
-  // If already authenticated from sessionStorage, fetch users on mount
   useEffect(() => {
-    if (authenticated) fetchUsers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    supabase.auth.getUser().then(({ data }) => {
+      if (data.user && ADMIN_EMAILS.includes(data.user.email)) {
+        setAuthState('admin');
+        fetchUsers();
+      } else if (data.user) {
+        setAuthState('denied');
+      } else {
+        setAuthState('unauthenticated');
+      }
+    });
   }, []);
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      sessionStorage.setItem('luna_admin_auth', 'true');
-      setAuthenticated(true);
-      setError('');
-      fetchUsers();
-    } else {
-      setError('Mot de passe incorrect');
-    }
-  };
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -308,62 +298,48 @@ export default function Admin() {
   });
   const sortedDiets = Object.entries(dietCounts).sort((a, b) => b[1] - a[1]);
 
-  // ---- LOGIN SCREEN ----
-  if (!authenticated) {
+  if (authState === 'loading') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+        <RefreshCw className="animate-spin text-luna-rose" size={32} />
+      </div>
+    );
+  }
+
+  if (authState !== 'admin') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm"
+          className="w-full max-w-sm text-center"
         >
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-luna-rose/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Shield className="text-luna-rose" size={32} />
-            </div>
-            <h1 className="font-display text-2xl text-gray-800">Admin LUNA</h1>
-            <p className="text-sm text-gray-500 font-body mt-1">Accès réservé</p>
+          <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Shield className="text-red-400" size={32} />
           </div>
-
-          <form onSubmit={handleLogin} className="bg-white rounded-[24px] p-6 shadow-lg border border-gray-100">
-            <label className="block text-sm font-semibold text-gray-700 mb-2 font-body">
-              Mot de passe
-            </label>
-            <div className="relative mb-4">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => { setPassword(e.target.value); setError(''); }}
-                placeholder="••••••••"
-                className="w-full px-4 py-3 pr-12 rounded-xl bg-gray-50 border border-gray-200 text-gray-800 font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/40 focus:border-luna-rose transition-all"
-                autoFocus
-              />
+          <h1 className="font-display text-2xl text-gray-800 mb-2">Accès réservé</h1>
+          <p className="text-sm text-gray-500 font-body mb-6">
+            {authState === 'unauthenticated'
+              ? 'Connecte-toi avec ton compte admin pour accéder au dashboard.'
+              : 'Ton compte n\'a pas les droits d\'accès à cette page.'}
+          </p>
+          <div className="flex flex-col gap-3">
+            {authState === 'unauthenticated' && (
               <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                onClick={() => navigate('/auth')}
+                className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
               >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                Se connecter
               </button>
-            </div>
-            {error && (
-              <p className="text-red-500 text-sm mb-3 font-body">{error}</p>
             )}
             <button
-              type="submit"
-              className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 mx-auto text-sm text-gray-400 hover:text-gray-600 transition-colors font-body"
             >
-              Accéder au dashboard
+              <ArrowLeft size={14} />
+              Retour à l'app
             </button>
-          </form>
-
-          <button
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2 mx-auto mt-6 text-sm text-gray-400 hover:text-gray-600 transition-colors font-body"
-          >
-            <ArrowLeft size={14} />
-            Retour à l'app
-          </button>
+          </div>
         </motion.div>
       </div>
     );
@@ -394,7 +370,7 @@ export default function Admin() {
               Actualiser
             </button>
             <button
-              onClick={() => { sessionStorage.removeItem('luna_admin_auth'); setAuthenticated(false); }}
+              onClick={() => setAuthState('unauthenticated')}
               className="flex items-center gap-2 px-4 py-2 text-sm bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition-all font-body"
             >
               <LogOut size={14} />
