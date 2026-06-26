@@ -64,6 +64,7 @@ export default function BottomNav() {
         {/* Center — Cycle hero button */}
         <NavLink
           to={centerItem.to}
+          aria-label={centerItem.label}
           className="flex flex-col items-center flex-1 -mt-5 relative"
         >
           {({ isActive }) => (

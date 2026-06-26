@@ -216,6 +216,7 @@ export default function Chat() {
       <div className="flex items-center gap-3 pb-3">
         <button
           onClick={() => navigate('/dashboard')}
+          aria-label="Retour"
           className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
         >
@@ -239,6 +240,8 @@ export default function Chat() {
           {/* Historique */}
           <button
             onClick={() => setShowHistory(!showHistory)}
+            aria-label="Historique des conversations"
+            aria-expanded={showHistory}
             className="w-9 h-9 rounded-full flex items-center justify-center transition-colors"
             style={{
               backgroundColor: showHistory ? `${phaseData.color}20` : 'white',
@@ -251,6 +254,7 @@ export default function Chat() {
           {/* Nouvelle conversation */}
           <button
             onClick={createNewConversation}
+            aria-label="Nouvelle conversation"
             className="w-9 h-9 rounded-full flex items-center justify-center text-white transition-all"
             style={{
               background: `linear-gradient(135deg, ${phaseData.color}, ${phaseData.colorDark})`,
@@ -609,6 +613,7 @@ export default function Chat() {
         <button
           onClick={() => input.trim() && handleSend()}
           disabled={!input.trim()}
+          aria-label="Envoyer"
           className="w-12 h-12 flex items-center justify-center rounded-full text-white transition-all disabled:opacity-30"
           style={{
             background: `linear-gradient(135deg, ${phaseData.color}, ${phaseData.colorDark})`,

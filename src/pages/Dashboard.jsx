@@ -362,13 +362,13 @@ export default function Dashboard() {
         <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}>
           {/* Month nav */}
           <div className="flex items-center justify-between mb-5">
-            <button onClick={prevMonth} className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+            <button onClick={prevMonth} aria-label="Mois précédent" className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
               <ChevronLeft size={18} />
             </button>
             <h2 className="font-display text-lg text-luna-text">
               {MONTH_NAMES[month]} {year}
             </h2>
-            <button onClick={nextMonth} className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+            <button onClick={nextMonth} aria-label="Mois suivant" className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
               <ChevronRight size={18} />
             </button>
           </div>

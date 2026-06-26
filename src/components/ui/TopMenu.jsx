@@ -13,6 +13,8 @@ export default function TopMenu() {
     <div className="flex justify-end relative">
       <button
         onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Menu"
+        aria-expanded={menuOpen}
         className="w-10 h-10 rounded-full bg-white border border-gray-100 flex items-center justify-center text-luna-text-muted hover:text-luna-text hover:border-gray-200 transition-all"
         style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
       >
