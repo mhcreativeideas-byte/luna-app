@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Check, ArrowRight } from 'lucide-react';
@@ -111,7 +111,14 @@ function getPersonalizedTip(form, phase) {
 
 export default function Onboarding() {
   const navigate = useNavigate();
-  const { dispatch, user, saveProfileToSupabase } = useCycle();
+  const { dispatch, user, saveProfileToSupabase, onboardingComplete } = useCycle();
+
+  useEffect(() => {
+    if (onboardingComplete) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [onboardingComplete, navigate]);
+
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);

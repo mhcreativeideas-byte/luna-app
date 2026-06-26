@@ -8,7 +8,7 @@ import { useCycle } from '../contexts/CycleContext';
 export default function Auth() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { user, onboardingComplete } = useCycle();
+  const { user, onboardingComplete, authLoading } = useCycle();
 
   const [mode, setMode] = useState(searchParams.get('mode') === 'login' ? 'login' : 'signup');
   const [email, setEmail] = useState('');
@@ -19,8 +19,9 @@ export default function Auth() {
   const [successMessage, setSuccessMessage] = useState('');
   const [resetMode, setResetMode] = useState(false);
 
-  // Redirect if already logged in
+  // Redirect if already logged in (wait for profile to load first)
   useEffect(() => {
+    if (authLoading) return;
     if (user) {
       if (onboardingComplete) {
         navigate('/dashboard', { replace: true });
@@ -28,7 +29,7 @@ export default function Auth() {
         navigate('/onboarding', { replace: true });
       }
     }
-  }, [user, onboardingComplete, navigate]);
+  }, [user, onboardingComplete, authLoading, navigate]);
 
   const handleEmailAuth = async (e) => {
     e.preventDefault();
@@ -106,7 +107,7 @@ export default function Auth() {
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: `${window.location.origin}/onboarding`,
+          redirectTo: window.location.origin,
         },
       });
       if (oauthError) throw oauthError;

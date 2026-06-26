@@ -313,7 +313,6 @@ export function CycleProvider({ children }) {
 
   // Listen to Supabase auth changes
   useEffect(() => {
-    // Get initial session
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -324,15 +323,28 @@ export function CycleProvider({ children }) {
       setAuthLoading(false);
     });
 
-    // Listen for changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      // INITIAL_SESSION is handled by getSession above — skip to avoid
+      // prematurely setting authLoading=false before OAuth hash is processed
+      if (event === 'INITIAL_SESSION') return;
+
+      if (event === 'SIGNED_IN' && session?.user) {
+        setAuthLoading(true);
+        setUser(session.user);
         await loadProfileFromSupabase(session.user.id);
         loadTrackingFromSupabase(session.user.id);
         loadAvatarFromSupabase(session.user.id);
+        setAuthLoading(false);
+        return;
       }
-      setAuthLoading(false);
+
+      if (event === 'SIGNED_OUT') {
+        setUser(null);
+        return;
+      }
+
+      // TOKEN_REFRESHED, USER_UPDATED — just sync the user object
+      setUser(session?.user ?? null);
     });
 
     return () => subscription.unsubscribe();
