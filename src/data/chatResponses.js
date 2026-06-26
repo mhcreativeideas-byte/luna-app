@@ -1,4 +1,14 @@
-import { RECIPES as CATALOG_RECIPES } from './recipes';
+import { RECIPES_MENSTRUAL } from './recipes-menstrual';
+import { RECIPES_FOLLICULAR } from './recipes-follicular';
+import { RECIPES_OVULATORY } from './recipes-ovulatory';
+import { RECIPES_LUTEAL } from './recipes-luteal';
+
+const CATALOG_RECIPES = {
+  menstrual: RECIPES_MENSTRUAL,
+  follicular: RECIPES_FOLLICULAR,
+  ovulatory: RECIPES_OVULATORY,
+  luteal: RECIPES_LUTEAL,
+};
 
 // Catégories de questions suggérées avec icônes
 export const SUGGESTION_CATEGORIES = [
