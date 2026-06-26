@@ -314,10 +314,10 @@ export function CycleProvider({ children }) {
   // Listen to Supabase auth changes
   useEffect(() => {
     // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        loadProfileFromSupabase(session.user.id);
+        await loadProfileFromSupabase(session.user.id);
         loadTrackingFromSupabase(session.user.id);
         loadAvatarFromSupabase(session.user.id);
       }
@@ -325,10 +325,10 @@ export function CycleProvider({ children }) {
     });
 
     // Listen for changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        loadProfileFromSupabase(session.user.id);
+        await loadProfileFromSupabase(session.user.id);
         loadTrackingFromSupabase(session.user.id);
         loadAvatarFromSupabase(session.user.id);
       }
