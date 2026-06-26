@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect, useState } from 'react';
+import { createContext, useContext, useReducer, useEffect, useState, useRef } from 'react';
 import { PHASES } from '../data/phases';
 import { supabase } from '../lib/supabase';
 
@@ -34,6 +34,8 @@ const initialState = {
   calendarStartDay: 'monday',
   profileImage: null,
   partnerCode: null,
+  favorites: [],
+  fridgeItems: [],
 };
 
 function cycleReducer(state, action) {
@@ -222,6 +224,15 @@ function cycleReducer(state, action) {
         : state.activeConversationId;
       return { ...state, conversations: convs, activeConversationId: newActiveId };
     }
+    case 'TOGGLE_FAVORITE': {
+      const name = action.payload.name;
+      const favs = state.favorites.includes(name)
+        ? state.favorites.filter((n) => n !== name)
+        : [...state.favorites, name];
+      return { ...state, favorites: favs };
+    }
+    case 'SET_FRIDGE_ITEMS':
+      return { ...state, fridgeItems: action.payload };
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };
     case 'RESET':
@@ -295,6 +306,7 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
 export function CycleProvider({ children }) {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const signedOutRef = useRef(false);
 
   const [state, dispatch] = useReducer(cycleReducer, initialState, (init) => {
     try {
@@ -359,6 +371,7 @@ export function CycleProvider({ children }) {
         .eq('auth_id', userId)
         .single();
 
+      if (signedOutRef.current) return;
       if (data && !error) {
         dispatch({
           type: 'SET_PROFILE',
@@ -394,6 +407,7 @@ export function CycleProvider({ children }) {
         .eq('auth_id', userId)
         .maybeSingle();
 
+      if (signedOutRef.current) return;
       if (data) {
         dispatch({
           type: 'SET_PROFILE',
@@ -413,6 +427,8 @@ export function CycleProvider({ children }) {
               language: data.settings.language || 'fr',
               smartTracking: data.settings.smartTracking ?? false,
               calendarStartDay: data.settings.calendarStartDay || 'monday',
+              favorites: data.settings.favorites || [],
+              fridgeItems: data.settings.fridgeItems || [],
             } : {}),
           },
         });
@@ -516,6 +532,8 @@ export function CycleProvider({ children }) {
           language: state.language,
           smartTracking: state.smartTracking,
           calendarStartDay: state.calendarStartDay,
+          favorites: state.favorites,
+          fridgeItems: state.fridgeItems,
         },
         updated_at: new Date().toISOString(),
       }, { onConflict: 'auth_id' });
@@ -546,6 +564,8 @@ export function CycleProvider({ children }) {
     state.language,
     state.smartTracking,
     state.calendarStartDay,
+    state.favorites,
+    state.fridgeItems,
   ]);
 
   const hour = new Date().getHours();
@@ -567,10 +587,12 @@ export function CycleProvider({ children }) {
   const todayCheckIn = state.checkIns.find((c) => c.date === todayStr);
 
   const signOut = async () => {
+    signedOutRef.current = true;
     await supabase.auth.signOut();
     setUser(null);
     localStorage.removeItem('luna-profile');
     dispatch({ type: 'RESET' });
+    signedOutRef.current = false;
   };
 
   return (

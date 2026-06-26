@@ -4,13 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-
-const RECIPE_LOADERS = {
-  menstrual: () => import('../data/recipes-menstrual').then(m => m.RECIPES_MENSTRUAL),
-  follicular: () => import('../data/recipes-follicular').then(m => m.RECIPES_FOLLICULAR),
-  ovulatory: () => import('../data/recipes-ovulatory').then(m => m.RECIPES_OVULATORY),
-  luteal: () => import('../data/recipes-luteal').then(m => m.RECIPES_LUTEAL),
-};
+import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import BackButton from '../components/ui/BackButton';
 
 const container = {
@@ -157,25 +151,11 @@ function containsAllergen(recipe, allergyList) {
 
 export default function MonFrigo() {
   const navigate = useNavigate();
-  const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, favorites, fridgeItems, dispatch } = useCycle();
   const [searchQuery, setSearchQuery] = useState('');
-  const [fridgeItems, setFridgeItems] = useState(() => {
-    try {
-      const saved = localStorage.getItem('luna-frigo');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [openRecipe, setOpenRecipe] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [favorites, setFavorites] = useState(() => {
-    try {
-      const saved = localStorage.getItem('luna-favorites');
-      return saved ? JSON.parse(saved) : [];
-    } catch { return []; }
-  });
   const inputRef = useRef(null);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -191,19 +171,13 @@ export default function MonFrigo() {
     return () => { cancelled = true; };
   }, [phase]);
 
-  // Persister dans localStorage
-  useEffect(() => {
-    localStorage.setItem('luna-frigo', JSON.stringify(fridgeItems));
-  }, [fridgeItems]);
-
-  useEffect(() => {
-    localStorage.setItem('luna-favorites', JSON.stringify(favorites));
-  }, [favorites]);
+  const setFridgeItems = (updater) => {
+    const newItems = typeof updater === 'function' ? updater(fridgeItems) : updater;
+    dispatch({ type: 'SET_FRIDGE_ITEMS', payload: newItems });
+  };
 
   const toggleFavorite = (recipeName) => {
-    setFavorites((prev) =>
-      prev.includes(recipeName) ? prev.filter((n) => n !== recipeName) : [...prev, recipeName]
-    );
+    dispatch({ type: 'TOGGLE_FAVORITE', payload: { name: recipeName } });
   };
 
   const isFavorite = (recipeName) => favorites.includes(recipeName);

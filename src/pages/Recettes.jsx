@@ -5,13 +5,7 @@ import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRigh
 import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-
-const RECIPE_LOADERS = {
-  menstrual: () => import('../data/recipes-menstrual').then(m => m.RECIPES_MENSTRUAL),
-  follicular: () => import('../data/recipes-follicular').then(m => m.RECIPES_FOLLICULAR),
-  ovulatory: () => import('../data/recipes-ovulatory').then(m => m.RECIPES_OVULATORY),
-  luteal: () => import('../data/recipes-luteal').then(m => m.RECIPES_LUTEAL),
-};
+import { RECIPE_LOADERS } from '../data/recipeLoaders';
 
 const container = {
   hidden: { opacity: 0 },
@@ -52,7 +46,7 @@ export default function Recettes() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const nutrientFilter = searchParams.get('nutrient') || '';
-  const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, favorites, dispatch } = useCycle();
   const [selectedMeal, setSelectedMeal] = useState('all');
   const [selectedPhase, setSelectedPhase] = useState('current');
   const [openRecipe, setOpenRecipe] = useState(null);
@@ -60,22 +54,9 @@ export default function Recettes() {
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
   const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
-  const [favorites, setFavorites] = useState(() => {
-    try {
-      const saved = localStorage.getItem('luna-favorites');
-      return saved ? JSON.parse(saved) : [];
-    } catch { return []; }
-  });
-
-  // Persister les favoris
-  useEffect(() => {
-    localStorage.setItem('luna-favorites', JSON.stringify(favorites));
-  }, [favorites]);
 
   const toggleFavorite = (recipeName) => {
-    setFavorites((prev) =>
-      prev.includes(recipeName) ? prev.filter((n) => n !== recipeName) : [...prev, recipeName]
-    );
+    dispatch({ type: 'TOGGLE_FAVORITE', payload: { name: recipeName } });
   };
 
   const isFavorite = (recipeName) => favorites.includes(recipeName);

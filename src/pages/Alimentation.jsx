@@ -4,13 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-
-const RECIPE_LOADERS = {
-  menstrual: () => import('../data/recipes-menstrual').then(m => m.RECIPES_MENSTRUAL),
-  follicular: () => import('../data/recipes-follicular').then(m => m.RECIPES_FOLLICULAR),
-  ovulatory: () => import('../data/recipes-ovulatory').then(m => m.RECIPES_OVULATORY),
-  luteal: () => import('../data/recipes-luteal').then(m => m.RECIPES_LUTEAL),
-};
+import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
 import TopMenu from '../components/ui/TopMenu';
 
