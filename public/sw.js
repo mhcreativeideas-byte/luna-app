@@ -8,11 +8,7 @@ const PRECACHE_ASSETS = [
   '/icon-512.png',
   '/apple-touch-icon.png',
   '/logo-luna.png',
-  '/luna-moon.png',
-  '/icons/brand-symbol.png',
-  '/icons/logo-luna-new.png',
-  '/icons/pictograms-nav.png',
-  '/icons/pictograms-wellness.png'
+  '/luna-moon.png'
 ]
 
 self.addEventListener('install', (event) => {
