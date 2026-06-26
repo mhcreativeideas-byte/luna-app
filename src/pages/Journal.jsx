@@ -226,97 +226,6 @@ function MiniBreathingExercise({ breathing, phaseData }) {
   );
 }
 
-function getMonthEntries(entries, year, month) {
-  return entries.filter((e) => {
-    const d = new Date(e.date);
-    return d.getFullYear() === year && d.getMonth() === month;
-  });
-}
-
-function getMonthSportSessions(sessions, year, month) {
-  return (sessions || []).filter((s) => {
-    const d = new Date(s.date);
-    return d.getFullYear() === year && d.getMonth() === month;
-  });
-}
-
-function getMonthSportLogs(logs, year, month) {
-  return (logs || []).filter((l) => {
-    const d = new Date(l.date);
-    return d.getFullYear() === year && d.getMonth() === month;
-  });
-}
-
-function computeMonthStats(entries, sportSessions = [], sportLogs = []) {
-  if (!entries.length && !sportSessions.length && !sportLogs.length) return null;
-
-  const energies = entries.filter((e) => e.energy).map((e) => e.energy);
-  const moodValues = entries.filter((e) => e.mood).map((e) => {
-    const m = moods.find((mo) => mo.label === e.mood);
-    return m ? m.value : 3;
-  });
-
-  const allSymptoms = entries.flatMap((e) => e.symptoms || []);
-  const symptomCounts = {};
-  allSymptoms.forEach((s) => { symptomCounts[s] = (symptomCounts[s] || 0) + 1; });
-  const topSymptoms = Object.entries(symptomCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5);
-
-  // Energy by phase
-  const energyByPhase = {};
-  entries.forEach((e) => {
-    if (e.phase && e.energy) {
-      if (!energyByPhase[e.phase]) energyByPhase[e.phase] = [];
-      energyByPhase[e.phase].push(e.energy);
-    }
-  });
-  const avgEnergyByPhase = {};
-  Object.entries(energyByPhase).forEach(([p, vals]) => {
-    avgEnergyByPhase[p] = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length * 10) / 10;
-  });
-
-  // Sport sessions stats
-  const totalSportSessions = sportSessions.length;
-  const sportByPhase = {};
-  const sportTypes = {};
-  sportSessions.forEach((s) => {
-    if (s.phase) sportByPhase[s.phase] = (sportByPhase[s.phase] || 0) + 1;
-    if (s.type) sportTypes[s.type] = (sportTypes[s.type] || 0) + 1;
-  });
-  const topSportType = Object.entries(sportTypes).sort((a, b) => b[1] - a[1])[0] || null;
-
-  // Sport logs stats (steps + custom activities)
-  const stepsData = sportLogs.filter((l) => l.steps > 0).map((l) => l.steps);
-  const avgSteps = stepsData.length ? Math.round(stepsData.reduce((a, b) => a + b, 0) / stepsData.length) : 0;
-  const totalStepsDays = stepsData.length;
-
-  const allCustomActivities = sportLogs.flatMap((l) => l.activities || []);
-  const totalCustomSessions = allCustomActivities.length;
-  const totalCustomDuration = allCustomActivities.reduce((sum, a) => sum + (a.duration || 0), 0);
-  const customActivityCounts = {};
-  allCustomActivities.forEach((a) => {
-    if (a.name) customActivityCounts[a.name] = (customActivityCounts[a.name] || 0) + 1;
-  });
-  const topCustomActivities = Object.entries(customActivityCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
-
-  return {
-    totalEntries: entries.length,
-    avgEnergy: energies.length ? Math.round(energies.reduce((a, b) => a + b, 0) / energies.length * 10) / 10 : null,
-    avgMood: moodValues.length ? Math.round(moodValues.reduce((a, b) => a + b, 0) / moodValues.length * 10) / 10 : null,
-    topSymptoms,
-    avgEnergyByPhase,
-    totalSportSessions,
-    sportByPhase,
-    topSportType,
-    avgSteps,
-    totalStepsDays,
-    totalCustomSessions,
-    totalCustomDuration,
-    topCustomActivities,
-  };
-}
-
 function TrendIcon({ current, previous }) {
   if (!previous || !current) return null;
   const diff = current - previous;
@@ -335,14 +244,12 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 export default function Journal() {
-  const { cycleInfo, journalEntries, sportSessions, sportLogs, checkIns, customSymptoms, dispatch } = useCycle();
+  const { cycleInfo, journalEntries, sportSessions, checkIns, customSymptoms, dispatch } = useCycle();
   const [showHistory, setShowHistory] = useState(false);
   const [expandedDay, setExpandedDay] = useState(null);
   // rapport mensuel déplacé dans l'onglet Plus (Extras.jsx)
 
   const now = new Date();
-  const [reportMonth, setReportMonth] = useState(now.getMonth());
-  const [reportYear, setReportYear] = useState(now.getFullYear());
   const [historyMonth, setHistoryMonth] = useState(now.getMonth());
   const [historyYear, setHistoryYear] = useState(now.getFullYear());
 
@@ -370,19 +277,6 @@ export default function Journal() {
   const affirmationIdx = (currentDay - 1) % affirmations.length;
   const ritual = MORNING_RITUALS[phase];
   const titles = PHASE_JOURNAL_TITLES[phase];
-
-  // Report data
-  const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
-  const currentMonthSport = useMemo(() => getMonthSportSessions(sportSessions, reportYear, reportMonth), [sportSessions, reportYear, reportMonth]);
-  const currentMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, reportYear, reportMonth), [sportLogs, reportYear, reportMonth]);
-  const prevMonth = reportMonth === 0 ? 11 : reportMonth - 1;
-  const prevYear = reportMonth === 0 ? reportYear - 1 : reportYear;
-  const prevMonthEntries = useMemo(() => getMonthEntries(journalEntries, prevYear, prevMonth), [journalEntries, prevYear, prevMonth]);
-  const prevMonthSport = useMemo(() => getMonthSportSessions(sportSessions, prevYear, prevMonth), [sportSessions, prevYear, prevMonth]);
-  const prevMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, prevYear, prevMonth), [sportLogs, prevYear, prevMonth]);
-
-  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries, currentMonthSport, currentMonthLogs), [currentMonthEntries, currentMonthSport, currentMonthLogs]);
-  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries, prevMonthSport, prevMonthLogs), [prevMonthEntries, prevMonthSport, prevMonthLogs]);
 
   const toggleSymptom = (s) => {
     setSelectedSymptoms((prev) =>
@@ -435,77 +329,6 @@ export default function Journal() {
     else setHistoryMonth(historyMonth + 1);
     setExpandedDay(null);
   };
-
-  const navPrevMonth = () => {
-    if (reportMonth === 0) { setReportMonth(11); setReportYear(reportYear - 1); }
-    else setReportMonth(reportMonth - 1);
-  };
-  const navNextMonth = () => {
-    const isCurrentMonth = reportMonth === now.getMonth() && reportYear === now.getFullYear();
-    if (isCurrentMonth) return;
-    if (reportMonth === 11) { setReportMonth(0); setReportYear(reportYear + 1); }
-    else setReportMonth(reportMonth + 1);
-  };
-
-  // Insights generation
-  const insights = useMemo(() => {
-    const msgs = [];
-    if (!currentStats) return msgs;
-
-    if (currentStats.avgEnergy && prevStats?.avgEnergy) {
-      const diff = currentStats.avgEnergy - prevStats.avgEnergy;
-      if (diff > 0.5) msgs.push(`Ton énergie moyenne a augmenté de ${Math.round(diff * 10) / 10} points ce mois.`);
-      else if (diff < -0.5) msgs.push(`Ton énergie était un peu plus basse ce mois. Écoute ton corps.`);
-      else msgs.push('Ton énergie est restée stable par rapport au mois dernier.');
-    }
-
-    if (currentStats.totalEntries > 0) {
-      msgs.push(`Tu as rempli ton journal ${currentStats.totalEntries} jour${currentStats.totalEntries > 1 ? 's' : ''} ce mois.`);
-    }
-
-    if (currentStats.avgEnergyByPhase.follicular > 7) {
-      msgs.push('Ton énergie en phase folliculaire est excellente — tu en profites bien !');
-    }
-
-    if (currentStats.topSymptoms.length > 0) {
-      const top = currentStats.topSymptoms[0];
-      msgs.push(`"${top[0]}" est ton ressenti le plus fréquent ce mois (${top[1]}x).`);
-    }
-
-    // Sport insights
-    if (currentStats.totalSportSessions > 0) {
-      if (prevStats?.totalSportSessions) {
-        const diff = currentStats.totalSportSessions - prevStats.totalSportSessions;
-        if (diff > 0) msgs.push(`Tu as fait ${diff} séance${diff > 1 ? 's' : ''} de plus que le mois dernier. Continue comme ça ! 💪`);
-        else if (diff < 0) msgs.push(`Un peu moins de sport ce mois (${currentStats.totalSportSessions} vs ${prevStats.totalSportSessions}). Écoute ton corps, chaque mouvement compte.`);
-        else msgs.push(`${currentStats.totalSportSessions} séances ce mois, comme le mois dernier. Belle régularité !`);
-      } else {
-        msgs.push(`Tu as bougé ${currentStats.totalSportSessions} fois ce mois. Ton corps te remercie !`);
-      }
-
-      if (currentStats.sportByPhase.follicular > 0 && currentStats.sportByPhase.menstrual > 0) {
-        msgs.push('Tu adaptes ton activité à tes phases — c\'est la clé pour progresser sans s\'épuiser.');
-      }
-    }
-
-    // Steps insights
-    if (currentStats.avgSteps > 0) {
-      if (currentStats.avgSteps >= 10000) {
-        msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne — objectif atteint ! 🎯`);
-      } else if (currentStats.avgSteps >= 7000) {
-        msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne, presque à 10k ! Continue.`);
-      } else {
-        msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne. Chaque pas compte !`);
-      }
-    }
-
-    // Custom activities insights
-    if (currentStats.totalCustomSessions > 0) {
-      msgs.push(`${currentStats.totalCustomSessions} activité${currentStats.totalCustomSessions > 1 ? 's' : ''} enregistrée${currentStats.totalCustomSessions > 1 ? 's' : ''} pour un total de ${currentStats.totalCustomDuration} min ce mois.`);
-    }
-
-    return msgs;
-  }, [currentStats, prevStats]);
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
