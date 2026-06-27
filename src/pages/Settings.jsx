@@ -348,7 +348,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               {/* Header */}
@@ -413,7 +413,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
@@ -474,7 +474,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
@@ -540,7 +540,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
@@ -601,7 +601,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
@@ -692,7 +692,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
@@ -760,7 +760,7 @@ export default function Settings() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6"
+              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
               style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
             >
               <div className="flex items-center justify-between mb-5">
