@@ -9,6 +9,7 @@ import {
   ArrowLeft, Trash2, X, AlertTriangle
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { toast } from '../lib/toast';
 
 const ADMIN_EMAILS = ['mhcreative.ideas@gmail.com'];
 
@@ -129,9 +130,10 @@ export default function Admin() {
       setUsers((prev) => prev.filter((u) => u.id !== user.id));
       setDeleteConfirm(null);
       setExpandedUser(null);
+      toast('Compte supprimé ✓');
     } catch (err) {
       console.error('Erreur suppression:', err);
-      alert('Erreur lors de la suppression : ' + err.message);
+      toast('Erreur lors de la suppression : ' + err.message, 'error');
     }
     setDeleting(false);
   };
@@ -148,12 +150,14 @@ export default function Admin() {
         if (error) throw error;
       }
 
+      const count = usersToDelete.length;
       setUsers((prev) => prev.filter((u) => !selectedUsers.has(u.id)));
       setSelectedUsers(new Set());
       setDeleteConfirm(null);
+      toast(`${count} compte${count > 1 ? 's' : ''} supprimé${count > 1 ? 's' : ''} ✓`);
     } catch (err) {
       console.error('Erreur suppression groupée:', err);
-      alert('Erreur lors de la suppression : ' + err.message);
+      toast('Erreur lors de la suppression : ' + err.message, 'error');
     }
     setDeleting(false);
   };
