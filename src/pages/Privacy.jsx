@@ -10,7 +10,7 @@ export default function Privacy() {
     >
       <BackButton />
       <h1 className="font-display text-2xl text-luna-text mb-2">Politique de Confidentialité</h1>
-      <p className="text-xs text-luna-text-hint font-body mb-8">Dernière mise à jour : 4 avril 2026</p>
+      <p className="text-xs text-luna-text-hint font-body mb-8">Dernière mise à jour : 27 juin 2026</p>
 
       <div className="space-y-6 text-sm font-body text-luna-text-body leading-relaxed">
 
@@ -121,9 +121,18 @@ export default function Privacy() {
             <li><strong>Supabase</strong> — Hébergement base de données et authentification</li>
             <li><strong>Vercel</strong> — Hébergement de l'application</li>
             <li><strong>Resend</strong> — Envoi d'emails transactionnels (email de bienvenue)</li>
+            <li><strong>Google</strong> — Authentification « Se connecter avec Google » (uniquement si l'utilisatrice choisit ce mode de connexion)</li>
           </ul>
           <p className="mt-2">
             Ces sous-traitants sont soumis à des obligations de confidentialité et de sécurité conformes au RGPD.
+          </p>
+
+          <h3 className="font-semibold text-luna-text mt-3 mb-1">Accès interne aux données</h3>
+          <p>
+            Seules les personnes habilitées de l'équipe LUNA peuvent accéder aux données personnelles,
+            strictement dans la mesure nécessaire pour fournir, sécuriser et améliorer le service.
+            L'accès aux données de santé (cycle) est limité au strict nécessaire et soumis à une
+            obligation de confidentialité.
           </p>
         </Section>
 
