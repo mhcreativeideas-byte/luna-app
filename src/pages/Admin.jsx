@@ -163,16 +163,21 @@ export default function Admin() {
   };
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user && ADMIN_EMAILS.includes(data.user.email)) {
-        setAuthState('admin');
-        fetchUsers();
-      } else if (data.user) {
-        setAuthState('denied');
-      } else {
-        setAuthState('unauthenticated');
-      }
-    });
+    // getSession() lit la session en local (instantané, ne peut pas se bloquer),
+    // contrairement à getUser() qui fait un appel réseau. + filet de secours en cas d'erreur.
+    supabase.auth.getSession()
+      .then(({ data }) => {
+        const email = data?.session?.user?.email;
+        if (email && ADMIN_EMAILS.includes(email)) {
+          setAuthState('admin');
+          fetchUsers();
+        } else if (email) {
+          setAuthState('denied');
+        } else {
+          setAuthState('unauthenticated');
+        }
+      })
+      .catch(() => setAuthState('unauthenticated'));
   }, []);
 
   const fetchUsers = async () => {
