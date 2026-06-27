@@ -33,6 +33,15 @@ La section **« Abonnements & revenus »** est déjà construite dans l'admin. E
 
 ---
 
+## 🔄 Réactiver le cache hors-ligne (au lancement)
+Le **service worker** (cache pour le mode hors-ligne) a été **désactivé** pendant le développement, car il gardait d'anciennes versions en mémoire et bloquait les mises à jour (spinner admin, écran blanc, vieilles images…).
+
+👉 **À faire au moment du lancement App Store** : remettre un service worker propre, avec une stratégie « network-first » (toujours la dernière version en ligne, cache seulement en secours hors-ligne). Tant qu'on développe activement, on le laisse **désactivé**.
+- Fichier concerné : `src/main.jsx` (la partie qui (dé)sinscrit le service worker)
+- Le fichier `public/sw.js` existe toujours, il n'est juste plus activé
+
+---
+
 ## 📋 Autres chantiers déjà identifiés (rappel)
 - [ ] **Emballage natif (Capacitor)** — indispensable pour soumettre à l'App Store
 - [ ] **« Se connecter avec Apple »** — obligatoire car Google est proposé (à activer une fois le compte développeur prêt)
