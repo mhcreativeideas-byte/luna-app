@@ -918,6 +918,9 @@ export default function Dashboard() {
           <p className="text-xs font-body text-luna-text-muted text-center leading-relaxed">
             📅 Les dates sont des estimations basées sur ton cycle de {cycleLength} jours. Les variations sont normales.
           </p>
+          <p className="text-[11px] font-body text-luna-text-muted text-center leading-relaxed mt-2 opacity-80">
+            LUNA est un outil de bien-être, pas un dispositif médical. Pour toute question de santé, consulte un professionnel.
+          </p>
         </div>
       </motion.div>
 

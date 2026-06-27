@@ -17,7 +17,7 @@
 - [x] Suppression de compte dans l'app (Paramètres)
 - [x] Données chiffrées (Supabase)
 - [ ] **Étiquettes de confidentialité** (questionnaire « App Privacy » dans App Store Connect)
-- [ ] Vérifier le **disclaimer médical** bien visible
+- [x] **Disclaimer médical** visible (CGU + sous les estimations du tableau de bord)
 
 ## C. Connexion
 - [x] Email / mot de passe
@@ -42,7 +42,7 @@
 - [ ] L'app ne doit pas être « juste un site web » → push notifications règlent ça
 - [ ] Aucun bug / crash pendant le test Apple (déjà bien nettoyé ✅)
 - [ ] « Se connecter avec Apple » présent si Google l'est
-- [ ] Disclaimer médical présent (prédictions de cycle)
+- [x] Disclaimer médical présent (prédictions de cycle)
 - [ ] Aucun lien cassé, aucun contenu placeholder
 
 ---
