@@ -8,6 +8,39 @@ App de **bien-être féminin** centrée sur le **cycle menstruel**. Elle aide ch
 ## 🎯 OBJECTIF PRINCIPAL (important)
 Le but est une **vraie app iPhone native**, emballée avec **Capacitor** — **PAS** une simple web app. iPhone d'abord (Android optionnel plus tard). Le code web actuel n'est que la **base de développement**. Toutes les décisions doivent viser l'app iOS sur l'App Store.
 
+## 🎨 DESIGN & ERGONOMIE (très important)
+**Penser « app iPhone native », JAMAIS « site web ».** Référence d'ambiance : apps de bien-être premium type **Calm / Flo / Clue** — épuré, doux, spacieux, haut de gamme. Règles à appliquer systématiquement :
+- **Gros boutons bien visibles**, pleine largeur, hauteur confortable. Zone tactile **≥ 44px** (règle Apple). Coins bien arrondis (style iOS doux).
+- **Disposition en lignes empilées** (row-based) : **une action / une info par ligne**, claire et aérée. Pas de grilles denses façon web.
+- **Espacements généreux**, beaucoup de respiration. **Une info principale par écran**, pas de surcharge.
+- **Navigation en bas** (barre d'onglets, déjà en place) — actions principales accessibles **au pouce**.
+- **Fenêtres qui montent du bas** (bottom sheets) pour les détails/modals, pas de pop-up façon web.
+- **Pas de survol (hover)** : on est tactile. Feedback au tap (légère réduction d'échelle), transitions douces (Framer Motion).
+- **Respecter les zones de sécurité** iPhone (encoche, barre du bas) : `env(safe-area-inset-*)`.
+- **Texte lisible** : tailles confortables, contraste suffisant (surtout les textes secondaires pâles).
+- `touch-action: manipulation` partout (déjà fait) pour des taps qui répondent du premier coup.
+→ En cas de doute, choisir la solution la plus **grosse, claire, tactile et épurée**, comme une vraie app iOS.
+
+## 🎨 Charte de branding (couleurs exactes — ne pas dévier)
+**Polices** : Titres = **Playfair Display** (serif élégant, `--font-display`) · Corps = **DM Sans** (`--font-body`).
+**Ton** : doux, bienveillant, **sans culpabilité**, tutoiement, féminin, premium.
+
+**Couleurs principales :**
+- Rose LUNA (primaire) : `#C4727F` · foncé `#A85A66` · clair `#E8A5AE` · fond `#FDE8EB`
+- Fond crème de l'app : `#FAF7F5` · cartes `#F5F1EE` · blanc `#FFFFFF`
+- Texte : titres `#2D2226` · corps `#4A3F43` · atténué `#756568` · indices `#7A6D70`
+- Lavande (secondaire) : `#B09ACB` · Pêche : `#E8A87C` · Menthe/ciel : `#A8C8D5` · Sauge : `#C8C0B4`
+
+**Dégradé signature** (splash, écran de chargement) : `#F0C4C9` → `#EDC4B3` → `#FAF8F5` (haut → bas).
+
+**Couleurs des 4 phases du cycle :**
+- 🌙 Menstruelle : `#D4727F` (fond `#FDE8EB`)
+- 🌿 Folliculaire : `#7BAE7F` (fond `#EDF5ED`)
+- ☀️ Ovulatoire : `#E8A87C` (fond `#FFF3EB`)
+- 🍂 Lutéale : `#B09ACB` (fond `#F3EEF8`)
+
+> Toutes ces couleurs sont définies en variables CSS dans `src/index.css` (`--color-luna-*`). Toujours réutiliser ces variables, ne pas inventer de nouvelles teintes.
+
 ## Stack technique
 - **JavaScript + React 19** (fichiers `.jsx`, pas de TypeScript)
 - **Vite** (build) · **Tailwind CSS v4** (style) · **React Router v7** (navigation)
