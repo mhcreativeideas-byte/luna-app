@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
+import { toast } from '../lib/toast';
 import BackButton from '../components/ui/BackButton';
 
 const goalOptions = [
@@ -152,16 +153,19 @@ export default function Settings() {
   const saveGoals = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { goals: editedGoals } });
     setShowGoals(false);
+    toast('Objectifs enregistrés ✓');
   };
 
   const saveDiet = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { dietPreferences: editedDiet } });
     setShowDiet(false);
+    toast('Régime enregistré ✓');
   };
 
   const saveHealth = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { healthIssues: editedHealth } });
     setShowHealth(false);
+    toast('Enregistré ✓');
   };
 
   const toggleAllergy = (id) => {
@@ -173,11 +177,13 @@ export default function Settings() {
   const saveAllergies = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { allergies: editedAllergies } });
     setShowAllergies(false);
+    toast('Allergies enregistrées ✓');
   };
 
   const saveCooking = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { cookingLevel: editedCookingLevel, cookingTime: editedCookingTime } });
     setShowCooking(false);
+    toast('Préférences enregistrées ✓');
   };
 
   const [showCycleLength, setShowCycleLength] = useState(false);
@@ -188,11 +194,13 @@ export default function Settings() {
   const saveCycleLength = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { cycleLength: editedCycleLength } });
     setShowCycleLength(false);
+    toast('Durée du cycle enregistrée ✓');
   };
 
   const savePeriodLength = () => {
     dispatch({ type: 'UPDATE_SETTINGS', payload: { periodLength: editedPeriodLength } });
     setShowPeriodLength(false);
+    toast('Durée des règles enregistrée ✓');
   };
 
   const dietLabel = (dietPreferences || ['Omnivore']).join(', ');
@@ -280,7 +288,7 @@ export default function Settings() {
                 localStorage.removeItem('luna-profile');
                 window.location.href = '/onboarding';
               } catch (err) {
-                alert('Erreur : ' + err.message);
+                toast('Erreur : ' + err.message, 'error');
               }
             }
           }}
@@ -304,7 +312,7 @@ export default function Settings() {
                 await supabase.auth.signOut();
                 window.location.href = '/';
               } catch (err) {
-                alert('Erreur : ' + err.message);
+                toast('Erreur : ' + err.message, 'error');
               }
             }
           }}

@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { CycleProvider, useCycle } from './contexts/CycleContext';
 import AppLayout from './components/layout/AppLayout';
 import ErrorBoundary from './components/ErrorBoundary';
+import Toaster from './components/Toaster';
 import Landing from './pages/Landing';
 
 const Auth = lazy(() => import('./pages/Auth'));
@@ -62,6 +63,7 @@ function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <CycleProvider>
+          <Toaster />
           <Suspense fallback={<PageLoader />}>
             <Routes>
             <Route path="/" element={<HomeRedirect />} />
