@@ -168,10 +168,19 @@ export default function Admin() {
   };
 
   useEffect(() => {
+    let resolved = false;
+    // Filet de sécurité : si la vérification n'a pas répondu en 5 s (réseau lent,
+    // cache bizarre…), on affiche le formulaire au lieu de tourner à l'infini.
+    const timer = setTimeout(() => {
+      if (!resolved) setAuthState('unauthenticated');
+    }, 5000);
+
     // getSession() lit la session en local (instantané, ne peut pas se bloquer),
     // contrairement à getUser() qui fait un appel réseau. + filet de secours en cas d'erreur.
     supabase.auth.getSession()
       .then(({ data }) => {
+        resolved = true;
+        clearTimeout(timer);
         const email = data?.session?.user?.email;
         setCurrentEmail(email || null);
         if (email && ADMIN_EMAILS.includes(email)) {
@@ -183,7 +192,13 @@ export default function Admin() {
           setAuthState('unauthenticated');
         }
       })
-      .catch(() => setAuthState('unauthenticated'));
+      .catch(() => {
+        resolved = true;
+        clearTimeout(timer);
+        setAuthState('unauthenticated');
+      });
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Connexion ADMIN (formulaire dédié, reste sur /admin — ne passe pas par l'app)
