@@ -57,6 +57,7 @@
 - `02-Checklist-soumission.md` → ce fichier
 - `03-Etiquettes-confidentialite.md` → réponses « App Privacy »
 - `04-Classification-age.md` → réponses du questionnaire d'âge
+- `05-Evolutions-futures.md` → paiements/abonnements + chantiers à venir
 - `icone-1024.png` → l'icône App Store ✅
 - (à venir) `captures/` → les captures d'écran
 - (à venir) guide « Se connecter avec Apple »
