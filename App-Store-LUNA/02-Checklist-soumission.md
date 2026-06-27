@@ -16,7 +16,7 @@
 - [x] Conditions générales / CGU (`/conditions`)
 - [x] Suppression de compte dans l'app (Paramètres)
 - [x] Données chiffrées (Supabase)
-- [ ] **Étiquettes de confidentialité** (questionnaire « App Privacy » dans App Store Connect)
+- [x] **Étiquettes de confidentialité** — réponses préparées → `03-Etiquettes-confidentialite.md` *(à saisir dans App Store Connect le moment venu)*
 - [x] **Disclaimer médical** visible (CGU + sous les estimations du tableau de bord)
 
 ## C. Connexion
@@ -30,7 +30,7 @@
 - [x] Email de support (hello@lunawellness.app)
 - [x] **Icône 1024×1024** (sans transparence) → `icone-1024.png` *(générée depuis icon-512 ; à ré-exporter depuis le fichier d'origine pour des traits parfaitement nets si besoin)*
 - [ ] **Captures d'écran** aux formats iPhone imposés
-- [ ] **Classification d'âge** (questionnaire)
+- [x] **Classification d'âge** — réponses préparées → `04-Classification-age.md` *(à saisir dans App Store Connect le moment venu)*
 - [ ] **Compte de démonstration** pour le testeur Apple
 
 ## E. Compte développeur Apple
@@ -55,5 +55,8 @@
 ## 📂 Fichiers de ce dossier
 - `01-Fiche-App-Store.md` → tous les textes à copier-coller
 - `02-Checklist-soumission.md` → ce fichier
-- (à venir) `icone-1024.png` → l'icône App Store
+- `03-Etiquettes-confidentialite.md` → réponses « App Privacy »
+- `04-Classification-age.md` → réponses du questionnaire d'âge
+- `icone-1024.png` → l'icône App Store ✅
 - (à venir) `captures/` → les captures d'écran
+- (à venir) guide « Se connecter avec Apple »
