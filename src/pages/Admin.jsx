@@ -91,6 +91,10 @@ export default function Admin() {
   const navigate = useNavigate();
   const [authState, setAuthState] = useState('loading');
   const [currentEmail, setCurrentEmail] = useState(null);
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
@@ -181,6 +185,40 @@ export default function Admin() {
       })
       .catch(() => setAuthState('unauthenticated'));
   }, []);
+
+  // Connexion ADMIN (formulaire dédié, reste sur /admin — ne passe pas par l'app)
+  const handleAdminLogin = async (e) => {
+    e.preventDefault();
+    setLoginError('');
+    setLoginLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: loginEmail.trim(),
+      password: loginPassword,
+    });
+    setLoginLoading(false);
+    if (error) {
+      setLoginError('Email ou mot de passe incorrect.');
+      return;
+    }
+    const email = data?.user?.email;
+    setCurrentEmail(email || null);
+    if (email && ADMIN_EMAILS.includes(email)) {
+      setAuthState('admin');
+      fetchUsers();
+    } else {
+      // compte valide mais pas admin → on déconnecte pour ne pas rester loggué dans l'app
+      await supabase.auth.signOut();
+      setLoginError('Ce compte n\'a pas les droits administrateur.');
+    }
+  };
+
+  const handleAdminGoogle = async () => {
+    setLoginError('');
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/admin` },
+    });
+  };
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -322,47 +360,80 @@ export default function Admin() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm text-center"
+          className="w-full max-w-sm"
         >
-          <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Shield className="text-red-400" size={32} />
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <Shield className="text-red-400" size={32} />
+            </div>
+            <h1 className="font-display text-2xl text-gray-800 mb-1">Espace administrateur</h1>
+            <p className="text-sm text-gray-500 font-body">Accès réservé aux analyses de LUNA</p>
           </div>
-          <h1 className="font-display text-2xl text-gray-800 mb-2">Accès réservé</h1>
-          <p className="text-sm text-gray-500 font-body mb-2">
-            {authState === 'unauthenticated'
-              ? 'Connecte-toi avec ton compte admin pour accéder au dashboard.'
-              : 'Ce compte n\'a pas les droits d\'accès à cette page.'}
-          </p>
-          {currentEmail && (
-            <p className="text-xs text-gray-400 font-body mb-6">
-              Connectée en tant que <span className="font-semibold text-gray-600">{currentEmail}</span>
-            </p>
+
+          {authState === 'denied' ? (
+            <div className="bg-white rounded-2xl p-5 text-center" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}>
+              <p className="text-sm text-gray-600 font-body mb-1">Ce compte n'a pas les droits administrateur.</p>
+              {currentEmail && (
+                <p className="text-xs text-gray-400 font-body mb-4">
+                  Connectée en tant que <span className="font-semibold text-gray-600">{currentEmail}</span>
+                </p>
+              )}
+              <button
+                onClick={async () => { await supabase.auth.signOut(); setCurrentEmail(null); setLoginError(''); setAuthState('unauthenticated'); }}
+                className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
+              >
+                Se déconnecter et entrer en admin
+              </button>
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl p-5" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}>
+              <button
+                onClick={handleAdminGoogle}
+                className="w-full py-3 border border-gray-200 rounded-xl font-body font-semibold text-gray-700 hover:bg-gray-50 transition-all"
+              >
+                Continuer avec Google
+              </button>
+              <div className="flex items-center gap-2 my-3">
+                <div className="flex-1 h-px bg-gray-100" />
+                <span className="text-xs text-gray-400 font-body">ou par email</span>
+                <div className="flex-1 h-px bg-gray-100" />
+              </div>
+              <form onSubmit={handleAdminLogin} className="space-y-3">
+                <input
+                  type="email"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  placeholder="Email administrateur"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-body focus:outline-none focus:border-luna-rose"
+                  required
+                />
+                <input
+                  type="password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  placeholder="Mot de passe"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm font-body focus:outline-none focus:border-luna-rose"
+                  required
+                />
+                {loginError && <p className="text-xs text-red-500 font-body">{loginError}</p>}
+                <button
+                  type="submit"
+                  disabled={loginLoading}
+                  className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all disabled:opacity-60"
+                >
+                  {loginLoading ? 'Connexion…' : 'Se connecter'}
+                </button>
+              </form>
+            </div>
           )}
-          {!currentEmail && <div className="mb-6" />}
-          <div className="flex flex-col gap-3">
-            {authState === 'unauthenticated' ? (
-              <button
-                onClick={() => navigate('/auth?mode=login')}
-                className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
-              >
-                Se connecter
-              </button>
-            ) : (
-              <button
-                onClick={async () => { await supabase.auth.signOut(); navigate('/auth?mode=login'); }}
-                className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
-              >
-                Se déconnecter et changer de compte
-              </button>
-            )}
-            <button
-              onClick={() => navigate('/')}
-              className="flex items-center gap-2 mx-auto text-sm text-gray-400 hover:text-gray-600 transition-colors font-body"
-            >
-              <ArrowLeft size={14} />
-              Retour à l'app
-            </button>
-          </div>
+
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 mx-auto mt-5 text-sm text-gray-400 hover:text-gray-600 transition-colors font-body"
+          >
+            <ArrowLeft size={14} />
+            Retour à l'app
+          </button>
         </motion.div>
       </div>
     );
