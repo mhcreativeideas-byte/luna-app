@@ -5,6 +5,7 @@ import { Calendar, Camera, Settings, Share2, TrendingUp, TrendingDown, Minus, Tr
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { supabase } from '../lib/supabase';
+import { toast } from '../lib/toast';
 import BackButton from '../components/ui/BackButton';
 import { ProfilSkeleton, SkeletonCard } from '../components/ui/SkeletonLoader';
 
@@ -991,6 +992,7 @@ export default function Profil() {
             await supabase.storage.from('avatars').upload(path, blob, { upsert: true, contentType: 'image/jpeg' });
             const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(path);
             dispatch({ type: 'SET_PROFILE', payload: { profileImage: `${urlData.publicUrl}?t=${Date.now()}` } });
+            toast('Photo de profil mise à jour ✓');
           }, 'image/jpeg', 0.8);
         } else {
           const dataUrl = canvas.toDataURL('image/jpeg', 0.8);

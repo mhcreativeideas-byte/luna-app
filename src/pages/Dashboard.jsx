@@ -5,6 +5,7 @@ import { Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles, Flame, ChevronLeft
 import TopMenu from '../components/ui/TopMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
+import { toast } from '../lib/toast';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
 
 const container = {
@@ -854,6 +855,7 @@ export default function Dashboard() {
                           dispatch({ type: 'SET_PERIOD_START', payload: { date: selectedDay.dateStr } });
                           setConfirmCycleReset(false);
                           setSelectedDay(null);
+                          toast('Début des règles enregistré ✓');
                         }}
                         className="flex-1 py-2.5 rounded-pill text-sm font-body font-semibold text-white transition-colors"
                         style={{ backgroundColor: PHASES.menstrual.color }}

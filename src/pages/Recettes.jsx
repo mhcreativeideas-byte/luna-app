@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
+import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 
@@ -55,6 +56,7 @@ export default function Recettes() {
   const [selectedCuisines, setSelectedCuisines] = useState([]);
 
   const toggleFavorite = (recipeName) => {
+    if (!favorites.includes(recipeName)) toast('Ajouté à tes favoris ❤️');
     dispatch({ type: 'TOGGLE_FAVORITE', payload: { name: recipeName } });
   };
 

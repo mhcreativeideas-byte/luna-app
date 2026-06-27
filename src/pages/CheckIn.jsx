@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+import { toast } from '../lib/toast';
 import { SYMPTOM_CATEGORIES, TAG_COLORS } from '../data/symptoms';
 import BackButton from '../components/ui/BackButton';
 
@@ -92,6 +93,7 @@ export default function CheckIn() {
       type: 'ADD_CHECKIN',
       payload: { date: today, energy, symptoms, note, phase: cycleInfo?.phase },
     });
+    toast('Check-in du jour enregistré ✓');
     navigate('/dashboard');
   };
 

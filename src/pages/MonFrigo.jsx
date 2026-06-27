@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
+import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import BackButton from '../components/ui/BackButton';
@@ -176,6 +177,7 @@ export default function MonFrigo() {
   };
 
   const toggleFavorite = (recipeName) => {
+    if (!favorites.includes(recipeName)) toast('Ajouté à tes favoris ❤️');
     dispatch({ type: 'TOGGLE_FAVORITE', payload: { name: recipeName } });
   };
 
