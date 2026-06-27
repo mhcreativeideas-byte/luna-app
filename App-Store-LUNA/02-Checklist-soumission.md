@@ -28,7 +28,7 @@
 - [x] Nom, sous-titre, description, mots-clés → voir `01-Fiche-App-Store.md`
 - [x] Catégorie choisie (Santé et remise en forme)
 - [x] Email de support (hello@lunawellness.app)
-- [ ] **Icône 1024×1024** (sans transparence, sans coins arrondis)
+- [x] **Icône 1024×1024** (sans transparence) → `icone-1024.png` *(générée depuis icon-512 ; à ré-exporter depuis le fichier d'origine pour des traits parfaitement nets si besoin)*
 - [ ] **Captures d'écran** aux formats iPhone imposés
 - [ ] **Classification d'âge** (questionnaire)
 - [ ] **Compte de démonstration** pour le testeur Apple
