@@ -35,7 +35,14 @@
     <meta name="twitter:image" content="https://lunawellness.app/og-image.png" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Écran de chargement intégré : visible instantanément (même si le splash
+           iOS ne s'affiche pas), remplacé automatiquement quand React démarre -->
+      <div id="initial-loader" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,#F0C4C9 0%,#EDC4B3 50%,#FAF8F5 100%);z-index:9999">
+        <img src="/logo-luna.png" alt="LUNA" style="width:150px;opacity:0.95" />
+        <p style="font-family:'Playfair Display',Georgia,serif;color:#2D2226;margin:18px 0 0;font-size:17px;letter-spacing:.3px">Vis en harmonie avec ton cycle</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

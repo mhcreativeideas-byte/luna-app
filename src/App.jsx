@@ -26,8 +26,11 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function PageLoader() {
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: '#FAF8F5' }}>
-      <img src="/logo-luna.png" alt="LUNA" className="w-24 opacity-40 animate-pulse" />
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{ background: 'linear-gradient(180deg,#F0C4C9 0%,#EDC4B3 50%,#FAF8F5 100%)' }}
+    >
+      <img src="/logo-luna.png" alt="LUNA" className="w-24 opacity-90 animate-pulse" />
     </div>
   );
 }
