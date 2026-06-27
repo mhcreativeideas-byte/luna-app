@@ -6,7 +6,7 @@ import {
   LogOut, RefreshCw, Search,
   ChevronDown, ChevronUp, Calendar, Dumbbell,
   Utensils, Moon, Brain, BookOpen, Flame,
-  ArrowLeft, Trash2, X, AlertTriangle
+  ArrowLeft, Trash2, X, AlertTriangle, CreditCard
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -328,6 +328,27 @@ export default function Admin() {
   }).length;
   const retentionRate = totalUsers > 0 ? Math.round((retainedUsers / totalUsers) * 100) : 0;
 
+  // ---- Abonnements & revenus ----
+  // Se remplit automatiquement quand un système de paiement (ex : Stripe) sera connecté
+  // et alimentera les champs subscription_* sur chaque utilisatrice.
+  const paidUsers = users.filter((u) => u.subscription_status === 'active' || u.subscription_status === 'paid');
+  const paidCount = paidUsers.length;
+  const freeCount = totalUsers - paidCount;
+  const conversionRate = totalUsers > 0 ? Math.round((paidCount / totalUsers) * 100) : 0;
+  const monthlyCount = paidUsers.filter((u) => u.subscription_plan === 'monthly').length;
+  const annualCount = paidUsers.filter((u) => u.subscription_plan === 'annual').length;
+  // Revenu récurrent mensuel (MRR) : mensuels + annuels ramenés au mois
+  const mrr = paidUsers.reduce((s, u) => {
+    const price = u.subscription_price || 0;
+    return s + (u.subscription_plan === 'annual' ? price / 12 : price);
+  }, 0);
+  // Encaissé ce mois-ci (selon la date du dernier paiement)
+  const collectedThisMonth = paidUsers.reduce((s, u) => {
+    return u.subscription_last_payment?.startsWith(today.slice(0, 7)) ? s + (u.subscription_price || 0) : s;
+  }, 0);
+  const euros = (n) => `${Math.round(n).toLocaleString('fr-FR')} €`;
+  const paymentsConnected = paidCount > 0; // deviendra true quand des abonnements existeront
+
   // Problématiques de santé
   const healthCounts = {};
   users.forEach((u) => {
@@ -520,6 +541,52 @@ export default function Admin() {
             color="#D4A87B"
           />
         </div>
+
+        {/* Abonnements & Revenus */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+        >
+          <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <h3 className="font-display text-lg text-gray-800">Abonnements & revenus</h3>
+            {!paymentsConnected && (
+              <span className="text-xs font-body text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full">
+                💳 S'activera une fois les paiements connectés
+              </span>
+            )}
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <KPICard
+              icon={<CreditCard size={20} />}
+              label="Abonnées payantes"
+              value={paidCount}
+              sub={`${conversionRate}% des inscrites`}
+              color="#A8D5BA"
+            />
+            <KPICard
+              icon={<TrendingUp size={20} />}
+              label="Revenu mensuel (MRR)"
+              value={euros(mrr)}
+              sub="Récurrent par mois"
+              color="#E8A0BF"
+            />
+            <KPICard
+              icon={<Activity size={20} />}
+              label="Encaissé ce mois"
+              value={euros(collectedThisMonth)}
+              sub={new Date().toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+              color="#F4C2A1"
+            />
+            <KPICard
+              icon={<Users size={20} />}
+              label="Gratuit / Payant"
+              value={`${freeCount} / ${paidCount}`}
+              sub={`${monthlyCount} mensuel · ${annualCount} annuel`}
+              color="#B4A7D6"
+            />
+          </div>
+        </motion.div>
 
         {/* Analytics Row */}
         <div className="grid md:grid-cols-2 gap-4">
