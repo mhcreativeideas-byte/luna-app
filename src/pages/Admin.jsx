@@ -90,6 +90,7 @@ function PhaseBar({ data, total }) {
 export default function Admin() {
   const navigate = useNavigate();
   const [authState, setAuthState] = useState('loading');
+  const [currentEmail, setCurrentEmail] = useState(null);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
@@ -168,6 +169,7 @@ export default function Admin() {
     supabase.auth.getSession()
       .then(({ data }) => {
         const email = data?.session?.user?.email;
+        setCurrentEmail(email || null);
         if (email && ADMIN_EMAILS.includes(email)) {
           setAuthState('admin');
           fetchUsers();
@@ -326,18 +328,31 @@ export default function Admin() {
             <Shield className="text-red-400" size={32} />
           </div>
           <h1 className="font-display text-2xl text-gray-800 mb-2">Accès réservé</h1>
-          <p className="text-sm text-gray-500 font-body mb-6">
+          <p className="text-sm text-gray-500 font-body mb-2">
             {authState === 'unauthenticated'
               ? 'Connecte-toi avec ton compte admin pour accéder au dashboard.'
-              : 'Ton compte n\'a pas les droits d\'accès à cette page.'}
+              : 'Ce compte n\'a pas les droits d\'accès à cette page.'}
           </p>
+          {currentEmail && (
+            <p className="text-xs text-gray-400 font-body mb-6">
+              Connectée en tant que <span className="font-semibold text-gray-600">{currentEmail}</span>
+            </p>
+          )}
+          {!currentEmail && <div className="mb-6" />}
           <div className="flex flex-col gap-3">
-            {authState === 'unauthenticated' && (
+            {authState === 'unauthenticated' ? (
               <button
-                onClick={() => navigate('/auth')}
+                onClick={() => navigate('/auth?mode=login')}
                 className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
               >
                 Se connecter
+              </button>
+            ) : (
+              <button
+                onClick={async () => { await supabase.auth.signOut(); navigate('/auth?mode=login'); }}
+                className="w-full py-3 bg-luna-rose text-white rounded-xl font-body font-bold hover:bg-luna-rose-dark transition-all"
+              >
+                Se déconnecter et changer de compte
               </button>
             )}
             <button
