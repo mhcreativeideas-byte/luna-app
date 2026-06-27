@@ -199,8 +199,7 @@ export default function Admin() {
   const filteredUsers = users
     .filter((u) =>
       u.name?.toLowerCase().includes(search.toLowerCase()) ||
-      u.email?.toLowerCase().includes(search.toLowerCase()) ||
-      u.current_phase?.toLowerCase().includes(search.toLowerCase())
+      u.email?.toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => {
       const aVal = a[sortField] || '';
@@ -632,7 +631,6 @@ export default function Admin() {
                       </button>
                     </th>
                     <th className="text-left px-5 py-3 font-semibold hidden sm:table-cell">Email</th>
-                    <th className="text-left px-5 py-3 font-semibold">Phase</th>
                     <th className="text-left px-5 py-3 font-semibold hidden md:table-cell">
                       <button onClick={() => toggleSort('cycle_length')} className="flex items-center gap-1 hover:text-gray-700">
                         Cycle
@@ -652,7 +650,6 @@ export default function Admin() {
                 </thead>
                 <tbody>
                   {filteredUsers.map((user) => {
-                    const phase = phaseLabels[user.current_phase] || phaseLabels.unknown;
                     const isExpanded = expandedUser === user.id;
                     return (
                       <motion.tr
@@ -673,7 +670,7 @@ export default function Admin() {
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                              style={{ backgroundColor: phase.color }}>
+                              style={{ backgroundColor: '#C4727F' }}>
                               {user.name?.charAt(0)?.toUpperCase()}
                             </div>
                             <div>
@@ -687,19 +684,6 @@ export default function Admin() {
                                   <p className="text-xs text-gray-400">
                                     📧 {user.email || 'Pas d\'email'}
                                   </p>
-                                  <p className="text-xs text-gray-400">
-                                    Règles : {user.period_length}j • Dernières : {user.last_period_date}
-                                  </p>
-                                  {user.diet_preferences?.length > 0 && (
-                                    <p className="text-xs text-gray-400">
-                                      Régime : {user.diet_preferences.join(', ')}
-                                    </p>
-                                  )}
-                                  {user.health_issues?.length > 0 && (
-                                    <p className="text-xs text-gray-400">
-                                      Santé : {user.health_issues.join(', ')}
-                                    </p>
-                                  )}
                                   <button
                                     onClick={(e) => { e.stopPropagation(); setDeleteConfirm(user); }}
                                     className="mt-2 flex items-center gap-1.5 px-3 py-1.5 bg-red-50 text-red-500 rounded-lg text-xs font-body font-semibold hover:bg-red-100 transition-colors"
@@ -714,14 +698,6 @@ export default function Admin() {
                         </td>
                         <td className="px-5 py-3 hidden sm:table-cell">
                           <span className="text-xs text-gray-500 font-body">{user.email || '—'}</span>
-                        </td>
-                        <td className="px-5 py-3">
-                          <span
-                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold font-body"
-                            style={{ backgroundColor: phase.bg, color: phase.color }}
-                          >
-                            {phase.icon} {phase.name}
-                          </span>
                         </td>
                         <td className="px-5 py-3 hidden md:table-cell">
                           <span className="font-accent font-bold text-gray-700">{user.cycle_length}j</span>
