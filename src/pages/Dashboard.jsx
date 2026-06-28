@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Dumbbell, UtensilsCrossed, Moon, BookOpen, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2 } from 'lucide-react';
+import { UtensilsCrossed, Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2 } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
@@ -29,33 +29,6 @@ const PHASE_TITLES = {
   follicular: { main: 'Énergie &', italic: 'Renouveau' },
   ovulatory: { main: 'Rayonnement &', italic: 'Puissance' },
   luteal: { main: 'Transition &', italic: 'Douceur' },
-};
-
-const SANCTUARY_CARDS = {
-  menstrual: [
-    { tag: 'FOOD', icon: UtensilsCrossed, title: 'Fer & Oméga-3', subtitle: 'Booste ta vitalité avec des épinards frais et du saumon.', link: '/alimentation', color: '#D4846A', bg: '#FFF3EB' },
-    { tag: 'SPORT', icon: Dumbbell, title: 'Yoga doux', subtitle: 'Mouvements fluides pour soulager les tensions lombaires.', link: '/sport', color: '#D4727F', bg: '#FDE8EB' },
-    { tag: 'SLEEP', icon: Moon, title: 'Objectif 9h', subtitle: 'Ton corps travaille dur, donne-lui le repos nécessaire.', link: '/sommeil', color: '#B09ACB', bg: '#F3EEF8' },
-    { tag: 'MINDSET', icon: BookOpen, title: 'Journaling : Introspection', subtitle: 'Écris trois choses que ton corps t\'a apprises.', link: '/journal', color: '#8A7B7F', bg: '#F0EBE8' },
-  ],
-  follicular: [
-    { tag: 'FOOD', icon: UtensilsCrossed, title: 'Protéines & Zinc', subtitle: 'Ton corps construit — donne-lui le carburant.', link: '/alimentation', color: '#D4846A', bg: '#FFF3EB' },
-    { tag: 'SPORT', icon: Dumbbell, title: 'HIIT & Cardio', subtitle: 'Ton corps récupère vite — c\'est le moment de pousser.', link: '/sport', color: '#7BAE7F', bg: '#EDF5ED' },
-    { tag: 'SLEEP', icon: Moon, title: 'Objectif 8h', subtitle: 'Recale ton rythme circadien — lève-toi tôt.', link: '/sommeil', color: '#B09ACB', bg: '#F3EEF8' },
-    { tag: 'MINDSET', icon: BookOpen, title: 'Nouveaux projets', subtitle: 'Lance ce que tu repousses depuis trop longtemps.', link: '/journal', color: '#8A7B7F', bg: '#F0EBE8' },
-  ],
-  ovulatory: [
-    { tag: 'FOOD', icon: UtensilsCrossed, title: 'Fibres & Antioxydants', subtitle: 'Accompagne le pic hormonal avec les bons nutriments.', link: '/alimentation', color: '#D4846A', bg: '#FFF3EB' },
-    { tag: 'SPORT', icon: Dumbbell, title: 'Haute intensité', subtitle: 'Force et endurance au max — pousse tes limites.', link: '/sport', color: '#E8A87C', bg: '#FFF3EB' },
-    { tag: 'SLEEP', icon: Moon, title: 'Objectif 8h', subtitle: 'Beaucoup d\'énergie mais protège ton sommeil.', link: '/sommeil', color: '#B09ACB', bg: '#F3EEF8' },
-    { tag: 'MINDSET', icon: BookOpen, title: 'Communication & Leadership', subtitle: 'Tes capacités verbales sont à leur pic.', link: '/journal', color: '#8A7B7F', bg: '#F0EBE8' },
-  ],
-  luteal: [
-    { tag: 'FOOD', icon: UtensilsCrossed, title: 'Magnésium & Glucides', subtitle: '+200-300 cal/jour — ton métabolisme a augmenté.', link: '/alimentation', color: '#D4846A', bg: '#FFF3EB' },
-    { tag: 'SPORT', icon: Dumbbell, title: 'Modéré → Doux', subtitle: 'Pilates, natation, marche — baisse progressivement.', link: '/sport', color: '#B09ACB', bg: '#F3EEF8' },
-    { tag: 'SLEEP', icon: Moon, title: 'Objectif 9h', subtitle: 'La progestérone te rend somnolente — écoute ton corps.', link: '/sommeil', color: '#B09ACB', bg: '#F3EEF8' },
-    { tag: 'MINDSET', icon: BookOpen, title: 'Organisation & tri', subtitle: 'C\'est le moment de finaliser, pas de lancer.', link: '/journal', color: '#8A7B7F', bg: '#F0EBE8' },
-  ],
 };
 
 const PHASE_INSIGHTS = {
@@ -98,7 +71,9 @@ export default function Dashboard() {
   const displayName = name || '';
   const timeGreeting = hour < 12 ? 'Bonjour' : hour < 18 ? 'Bon après-midi' : 'Bonsoir';
 
-  const cards = SANCTUARY_CARDS[phase] || SANCTUARY_CARDS.follicular;
+  const energyLabel = energyLevel >= 70 ? 'Haute' : energyLevel >= 45 ? 'Modérée' : 'Basse';
+  const PHASE_MOODS = { menstrual: 'Repos', follicular: 'Élan', ovulatory: 'Rayonnante', luteal: 'Cocooning' };
+  const moodLabel = PHASE_MOODS[phase] || 'Sereine';
 
   // Calendar logic
   const today = new Date();
@@ -154,7 +129,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Cycle Circle — Phase-colored ring with LUNA logo */}
-      <motion.div variants={item} className="flex flex-col items-center py-6">
+      <motion.div variants={item} className="flex flex-col items-center bg-white rounded-[32px] px-5 py-7" style={{ boxShadow: '0 10px 34px rgba(45,34,38,0.07)' }}>
         <div className="relative w-56 h-56">
           {/* LUNA logo watermark */}
           <img
@@ -270,6 +245,38 @@ export default function Dashboard() {
             }
           </p>
         </motion.div>
+      </motion.div>
+
+      {/* Stats du jour (Énergie · Humeur) */}
+      <motion.div variants={item} className="grid grid-cols-2 gap-3">
+        <div className="bg-white rounded-[22px] p-4" style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)' }}>
+          <Flame size={18} style={{ color: phaseData.color }} />
+          <p className="text-xs font-body text-luna-text-muted mt-2">Énergie</p>
+          <p className="font-display text-lg text-luna-text leading-tight">{energyLabel}</p>
+        </div>
+        <div className="bg-white rounded-[22px] p-4" style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)' }}>
+          <Sparkles size={18} style={{ color: phaseData.colorDark }} />
+          <p className="text-xs font-body text-luna-text-muted mt-2">Humeur</p>
+          <p className="font-display text-lg text-luna-text leading-tight">{moodLabel}</p>
+        </div>
+      </motion.div>
+
+      {/* Menu du jour — mise en avant nutrition */}
+      <motion.div variants={item}>
+        <div
+          onClick={() => navigate('/menu')}
+          className="rounded-[26px] p-5 flex items-center gap-4 cursor-pointer active:scale-[0.99] transition-transform"
+          style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
+        >
+          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
+            <UtensilsCrossed size={20} style={{ color: phaseData.colorDark }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h2 className="font-display text-lg text-luna-text leading-tight">Ton menu du jour</h2>
+            <p className="text-xs font-body text-luna-text-muted mt-0.5">Tes repas adaptés à ta phase, prêts pour aujourd'hui.</p>
+          </div>
+          <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
+        </div>
       </motion.div>
 
       {/* ═══════════════════════════════════════════════════════ */}
@@ -921,59 +928,6 @@ export default function Dashboard() {
           <p className="text-[11px] font-body text-luna-text-muted text-center leading-relaxed mt-2 opacity-80">
             LUNA est un outil de bien-être, pas un dispositif médical. Pour toute question de santé, consulte un professionnel.
           </p>
-        </div>
-      </motion.div>
-
-      {/* Today's Mood Board */}
-      <motion.div variants={item}>
-        <h2 className="font-display text-xl text-luna-text mb-1">Aujourd'hui</h2>
-        <p className="text-xs font-body text-luna-text-hint mb-4">{phaseData.name}</p>
-
-        {/* Energy Gauge */}
-        <div className="flex items-center gap-4 mb-4">
-          <span className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Energy Gauge</span>
-          <div className="flex-1 h-1.5 rounded-full bg-gray-100 overflow-hidden">
-            <motion.div
-              className="h-full rounded-full"
-              style={{ backgroundColor: phaseData.color }}
-              initial={{ width: 0 }}
-              animate={{ width: `${energyLevel}%` }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-            />
-          </div>
-          <span className="text-sm font-display font-bold" style={{ color: phaseData.colorDark }}>
-            {energyLevel}%
-          </span>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          {cards.map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1 * i, duration: 0.4 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate(card.link)}
-              className="rounded-[20px] p-4 flex flex-col items-center text-center cursor-pointer"
-              style={{ backgroundColor: card.bg }}
-            >
-              <div
-                className="w-11 h-11 rounded-full flex items-center justify-center mb-2.5"
-                style={{ backgroundColor: `${card.color}18` }}
-              >
-                <card.icon size={18} style={{ color: card.color }} />
-              </div>
-              <span
-                className="text-[9px] font-body font-bold uppercase tracking-widest mb-1"
-                style={{ color: card.color }}
-              >
-                {card.tag}
-              </span>
-              <h3 className="font-display text-sm text-luna-text leading-snug">{card.title}</h3>
-              <p className="text-[11px] font-body text-luna-text-muted mt-1 leading-relaxed">{card.subtitle}</p>
-            </motion.div>
-          ))}
         </div>
       </motion.div>
 
