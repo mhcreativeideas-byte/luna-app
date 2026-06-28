@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
@@ -67,179 +67,28 @@ const HEALTH_SUPERFOODS = {
   'Cycles irréguliers': ['Graines de lin', 'Graines de courge', 'Avocat', 'Noix', 'Saumon', 'Œufs', 'Graines de sésame', 'Zinc'],
 };
 
-// Pseudo-random basé sur la date du jour (stable dans la journée)
-const seededRandom = (seed) => {
-  let s = seed;
-  return () => {
-    s = (s * 16807 + 0) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
-};
-
-const getDaySeed = () => {
-  const d = new Date();
-  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-};
-
-const MEAL_SLOTS = [
-  { key: 'breakfast', time: 'Matin', icon: '🌅' },
-  { key: 'lunch', time: 'Midi', icon: '☀️' },
-  { key: 'snack', time: 'Snack', icon: '🍪' },
-  { key: 'dinner', time: 'Soir', icon: '🌙' },
-];
-
-const DRINK_ICONS = {
-  'tisane': '🍵', 'infusion': '🍵', 'thé': '🍵', 'matcha': '🍵',
-  'lait': '🥛', 'golden': '🥛', 'smoothie': '🥤', 'jus': '🥤',
-  'eau': '💧', 'kéfir': '🥛', 'kombucha': '🍵', 'chocolat': '☕',
-  'cacao': '☕', 'bouillon': '🍲', 'limonade': '🍋', 'grenade': '🥤',
-  'hibiscus': '🌺',
-};
-
-const getDrinkIcon = (drinkName) => {
-  const lower = drinkName.toLowerCase();
-  for (const [keyword, icon] of Object.entries(DRINK_ICONS)) {
-    if (lower.includes(keyword)) return icon;
-  }
-  return '🍵';
-};
-
-// Mots-clés allergènes (même liste que Recettes.jsx)
-const ALLERGEN_KEYWORDS = {
-  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin'],
-  'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
-  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari'],
-  'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
-  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'poisson'],
-  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
-  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'feta', 'mascarpone'],
-  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'couscous', 'boulgour', 'semoule', 'tortilla', 'wrap'],
-  'Sésame': ['sésame', 'tahini', 'tahin'],
-  'Céleri': ['céleri', 'celeri'],
-  'Moutarde': ['moutarde'],
-};
-
-const containsAllergen = (recipe, allergyList) => {
-  if (!allergyList || allergyList.length === 0) return false;
-  const fullText = ((recipe.ingredients || []).join(' ') + ' ' + (recipe.name || '')).toLowerCase();
-  return allergyList.some(allergy => {
-    const keywords = ALLERGEN_KEYWORDS[allergy] || [];
-    return keywords.some(kw => fullText.includes(kw.toLowerCase()));
-  });
-};
-
-const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
-  if (!recipes) return [];
-  const rand = seededRandom(getDaySeed() + phaseData.shortName.charCodeAt(0));
-  const goodDrinks = phaseData.drinks?.good || [];
-
-  const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
-  const maxLevel = LEVEL_ORDER[cookingLevel] || 3;
-
-  const maxTime = (() => {
-    if (!cookingTime || cookingTime === '60min+') return null;
-    if (cookingTime === '15min') return 15;
-    if (cookingTime === '30min') return 30;
-    if (cookingTime === '45min') return 45;
-    return null;
-  })();
-
-  const parseMinutes = (prepTime) => {
-    if (!prepTime) return 999;
-    const str = prepTime.toLowerCase().replace(/\s/g, '');
-    const hMatch = str.match(/(\d+)\s*h/);
-    const mMatch = str.match(/(\d+)\s*min/);
-    let total = 0;
-    if (hMatch) total += parseInt(hMatch[1]) * 60;
-    if (mMatch) total += parseInt(mMatch[1]);
-    if (!hMatch && !mMatch) { const num = parseInt(str); total = isNaN(num) ? 999 : num; }
-    return total;
-  };
-
-  // Mélanger les boissons pour éviter les doublons dans la journée
-  const shuffledDrinks = [...goodDrinks];
-  for (let i = shuffledDrinks.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [shuffledDrinks[i], shuffledDrinks[j]] = [shuffledDrinks[j], shuffledDrinks[i]];
-  }
-  let drinkIndex = 0;
-
-  return MEAL_SLOTS.map((slot) => {
-    const pool = recipes[slot.key];
-    if (!pool || pool.length === 0) return null;
-
-    // Filtrer le pool selon le profil
-    const filtered = pool.filter(recipe => {
-      if (requiredTags.length > 0 && !requiredTags.every(tag => (recipe.tags || []).includes(tag))) return false;
-      if (containsAllergen(recipe, allergies)) return false;
-      const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
-      if (recipeLevel > maxLevel) return false;
-      if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return false;
-      return true;
-    });
-
-    const available = filtered.length > 0 ? filtered : pool; // fallback si aucun résultat
-    const idx = Math.floor(rand() * available.length);
-    const recipe = available[idx];
-    const drink = shuffledDrinks[drinkIndex % shuffledDrinks.length] || null;
-    drinkIndex++;
-    return {
-      ...slot,
-      recipe,
-      drink: drink?.name || '',
-      drinkIcon: drink ? getDrinkIcon(drink.name) : '🍵',
-    };
-  }).filter(Boolean);
-};
-
 export default function Alimentation() {
-  const { cycleInfo, dietPreferences, healthIssues, allergies } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues } = useCycle();
   const [openNutrient, setOpenNutrient] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
-  const [expandedBadDrink, setExpandedBadDrink] = useState(null);
+  const [allRecipes, setAllRecipes] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = phaseData.nutrientsFull || {};
-  const [recipes, setRecipes] = useState(null);
-  const [allRecipes, setAllRecipes] = useState(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    setRecipes(null);
-    RECIPE_LOADERS[phase]().then(data => {
-      if (!cancelled) setRecipes(data);
-    });
-    return () => { cancelled = true; };
-  }, [phase]);
-
+  // Toutes les recettes (toutes phases) — utilisé par la section « Envies de sucre »
   useEffect(() => {
     let cancelled = false;
     Promise.all(
-      Object.entries(RECIPE_LOADERS).map(([k, loader]) => loader().then(data => [k, data]))
-    ).then(entries => {
+      Object.entries(RECIPE_LOADERS).map(([k, loader]) => loader().then((data) => [k, data]))
+    ).then((entries) => {
       if (!cancelled) setAllRecipes(Object.fromEntries(entries));
     });
     return () => { cancelled = true; };
   }, []);
-
-  const dailyMenu = useMemo(() => {
-    if (!recipes) return [];
-    const tags = [];
-    const prefs = dietPreferences || ['omnivore'];
-    const issues = healthIssues || [];
-    if (prefs.includes('Végane')) tags.push('vegan');
-    else if (prefs.includes('Végétarienne')) tags.push('vegetarien');
-    if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
-    if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
-    if (issues.includes('SOPK')) tags.push('sopk_friendly');
-    return buildDailyMenu(recipes, phaseData, {
-      requiredTags: tags,
-      allergies: allergies || [],
-    });
-  }, [phase, recipes, dietPreferences, healthIssues, allergies]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {
@@ -317,145 +166,6 @@ export default function Alimentation() {
               {PHASE_FOOD_INTROS[phase]}
             </p>
           </div>
-        </div>
-      </motion.div>
-
-      {/* ===== TA JOURNÉE IDÉALE ===== */}
-      <motion.div variants={item}>
-        <div className="rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
-          {/* Header */}
-          <div
-            className="px-5 pt-5 pb-4"
-            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}18)` }}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-[14px] flex items-center justify-center"
-                  style={{ backgroundColor: `${phaseData.color}20` }}
-                >
-                  <UtensilsCrossed size={18} style={{ color: phaseData.colorDark }} />
-                </div>
-                <div>
-                  <h2 className="font-display text-lg text-luna-text leading-tight">Ta journée idéale</h2>
-                  <p className="text-[10px] font-body text-luna-text-hint mt-0.5">Change chaque jour · Adaptée à ta phase</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Meals */}
-          <div className="bg-white px-4 py-3">
-            <div className="space-y-2">
-              {dailyMenu.map((m, i) => (
-                <motion.div
-                  key={m.key}
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 * i, duration: 0.3 }}
-                  onClick={() => setOpenDailyRecipe(m.recipe)}
-                  className="flex items-center gap-3 rounded-[16px] p-3 transition-all cursor-pointer active:scale-[0.98]"
-                  style={{ backgroundColor: i % 2 === 0 ? `${phaseData.color}06` : 'transparent' }}
-                >
-                  {/* Emoji recette */}
-                  <div
-                    className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: phaseData.bgColor }}
-                  >
-                    <span className="text-2xl">{m.recipe.emoji || m.icon}</span>
-                  </div>
-
-                  {/* Contenu */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <span className="text-[9px] font-body font-bold uppercase tracking-wider" style={{ color: phaseData.color }}>{m.time}</span>
-                      <span className="text-[9px] font-body text-luna-text-hint">·</span>
-                      <span className="text-[9px] font-body text-luna-text-hint">{m.recipe.prepTime}</span>
-                    </div>
-                    <p className="text-[13px] font-body font-semibold text-luna-text leading-snug truncate">{m.recipe.name}</p>
-                    {m.drink && (
-                      <div className="flex items-center gap-1.5 mt-1">
-                        <span className="text-[10px]">{m.drinkIcon}</span>
-                        <span className="text-[10px] font-body text-luna-text-muted">{m.drink}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Calories */}
-                  <div className="flex-shrink-0 text-right">
-                    <span
-                      className="text-[10px] font-body font-bold px-2 py-1 rounded-full"
-                      style={{ backgroundColor: `${phaseData.color}12`, color: phaseData.colorDark }}
-                    >
-                      {m.recipe.calories} kcal
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* À limiter */}
-          <div className="px-5 py-3.5" style={{ backgroundColor: '#FDF8F8' }}>
-            <div className="flex items-center gap-2 mb-2.5">
-              <AlertTriangle size={12} style={{ color: '#C4727F' }} />
-              <p className="text-[10px] font-body font-bold uppercase tracking-wider" style={{ color: '#A3555F' }}>
-                À limiter · Clique pour savoir pourquoi
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-1.5">
-              {phaseData.drinks.bad.map((d, i) => {
-                const isOpen = expandedBadDrink === i;
-                return (
-                  <button
-                    key={i}
-                    onClick={() => setExpandedBadDrink(isOpen ? null : i)}
-                    className="text-[11px] font-body font-semibold px-3 py-1.5 rounded-full transition-all"
-                    style={{
-                      backgroundColor: isOpen ? '#D4727F20' : '#D4727F12',
-                      color: '#A3555F',
-                      border: isOpen ? '1.5px solid #D4727F' : '1.5px solid transparent',
-                    }}
-                  >
-                    {d.name}
-                  </button>
-                );
-              })}
-            </div>
-            <AnimatePresence>
-              {expandedBadDrink !== null && phaseData.drinks.bad[expandedBadDrink] && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="overflow-hidden"
-                >
-                  <div
-                    className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
-                    style={{ backgroundColor: '#FDF5F5', borderLeft: '3px solid #D4727F' }}
-                  >
-                    <span className="font-bold" style={{ color: '#A3555F' }}>
-                      {phaseData.drinks.bad[expandedBadDrink].name}
-                    </span>{' '}
-                    — {phaseData.drinks.bad[expandedBadDrink].why}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Bouton recettes */}
-          <Link
-            to="/recettes"
-            className="flex items-center justify-center gap-2 px-5 py-3.5 transition-all hover:opacity-80"
-            style={{ backgroundColor: phaseData.bgColor }}
-          >
-            <span className="text-[12px] font-body font-bold" style={{ color: phaseData.colorDark }}>
-              Voir toutes les recettes
-            </span>
-            <ChevronRight size={14} style={{ color: phaseData.colorDark }} />
-          </Link>
         </div>
       </motion.div>
 
@@ -839,7 +549,7 @@ export default function Alimentation() {
         );
       })()}
 
-      {/* ===== RECIPE DETAIL MODAL ===== */}
+      {/* ===== RECIPE DETAIL MODAL (alternatives « Envies de sucre ») ===== */}
       <AnimatePresence>
         {openDailyRecipe && (
           <motion.div
@@ -858,7 +568,6 @@ export default function Alimentation() {
               className="bg-white rounded-t-[28px] w-full max-w-md overflow-y-auto overscroll-contain"
               style={{ maxHeight: '95vh', WebkitOverflowScrolling: 'touch' }}
             >
-              {/* Emoji Header */}
               <div
                 className="sticky top-0 z-10 relative h-32 overflow-hidden rounded-t-[28px] flex items-center justify-center"
                 style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}25)` }}
@@ -873,7 +582,6 @@ export default function Alimentation() {
               </div>
 
               <div className="p-5 pb-24 space-y-5">
-                {/* Title */}
                 <div>
                   <h3 className="font-display text-xl text-luna-text">{openDailyRecipe.name}</h3>
                   {openDailyRecipe.description && (
@@ -881,7 +589,6 @@ export default function Alimentation() {
                   )}
                 </div>
 
-                {/* Why this phase */}
                 {openDailyRecipe.whyThisPhase && (
                   <div
                     className="flex items-start gap-2.5 rounded-[14px] px-4 py-3"
@@ -894,7 +601,6 @@ export default function Alimentation() {
                   </div>
                 )}
 
-                {/* Time + Calories + Nutrients */}
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
                     <Clock size={12} /> {openDailyRecipe.prepTime}
@@ -913,7 +619,6 @@ export default function Alimentation() {
                   ))}
                 </div>
 
-                {/* Ingredients */}
                 {openDailyRecipe.ingredients && (
                   <div>
                     <h4 className="text-sm font-body font-bold text-luna-text mb-2">Ingrédients</h4>
@@ -933,7 +638,6 @@ export default function Alimentation() {
 
                 <hr className="border-gray-50" />
 
-                {/* Steps */}
                 {openDailyRecipe.steps && (
                   <div>
                     <h4 className="text-sm font-body font-bold text-luna-text mb-2">Préparation</h4>
@@ -957,6 +661,7 @@ export default function Alimentation() {
           </motion.div>
         )}
       </AnimatePresence>
+
     </motion.div>
   );
 }

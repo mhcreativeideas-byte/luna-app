@@ -19,6 +19,7 @@ const Chat = lazy(() => import('./pages/Chat'));
 const Settings = lazy(() => import('./pages/Settings'));
 const Profil = lazy(() => import('./pages/Profil'));
 const Recettes = lazy(() => import('./pages/Recettes'));
+const Menu = lazy(() => import('./pages/Menu'));
 const MonFrigo = lazy(() => import('./pages/MonFrigo'));
 const Admin = lazy(() => import('./pages/Admin'));
 const CGU = lazy(() => import('./pages/CGU'));
@@ -81,6 +82,7 @@ function App() {
               <Route path="/sport" element={<Sport />} />
               <Route path="/alimentation" element={<Alimentation />} />
               <Route path="/recettes" element={<Recettes />} />
+              <Route path="/menu" element={<Menu />} />
               <Route path="/mon-frigo" element={<MonFrigo />} />
               <Route path="/sommeil" element={<Sommeil />} />
               <Route path="/journal" element={<Journal />} />

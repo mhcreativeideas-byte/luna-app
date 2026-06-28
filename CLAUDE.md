@@ -53,8 +53,13 @@ Le but est une **vraie app iPhone native**, emballée avec **Capacitor** — **P
 - `npm run build` — build de production (toujours vérifier que ça passe avant de pousser)
 - `npm run lint` — ESLint
 
+## Navigation (barre du bas, mobile)
+Centrée sur l'alimentation : **Recettes · Frigo · Cycle (centre) · Nutrition · Menu**.
+- **Menu** (`/menu`, `Menu.jsx`) = le **menu du jour** (« Ta journée idéale »), déplacé hors de la page Nutrition.
+- ⚠️ L'onglet **« Plus »** (`/plus`, `Extras.jsx`) a été **retiré de la barre** mais **rien n'est supprimé** : la page et ses contenus (**Journal, Sport, Sommeil, chat LUNA**) existent toujours et restent accessibles par URL. Pour **le réafficher** : remettre `{ to: '/plus', icon: LayoutGrid, label: 'Plus' }` dans `rightItems` de `BottomNav.jsx` (et réimporter `LayoutGrid`). Les routes `/journal`, `/sport`, `/sommeil`, `/chat`, `/plus` sont intactes dans `App.jsx`.
+
 ## Structure
-- `src/pages/` — les écrans : Landing, Auth, Onboarding, Dashboard, Sport, Alimentation, Recettes, MonFrigo, Sommeil, Journal, CheckIn, Chat, Profil, Settings, Extras, Calendar, Admin, CGU, Privacy, NotFound
+- `src/pages/` — les écrans : Landing, Auth, Onboarding, Dashboard, Sport, Alimentation, Recettes, MonFrigo, Sommeil, Journal, CheckIn, Chat, Menu, Profil, Settings, Extras, Calendar, Admin, CGU, Privacy, NotFound
 - `src/contexts/CycleContext.jsx` — **état global** (profil, cycle, journal, favoris, frigo…) + sync Supabase + calcul des phases
 - `src/data/` — contenus : recettes par phase (`recipes-*.js`), `seasonal.js` (fruits/légumes de saison + images `public/foods/`), `phases.js`, `exercises.js`, `chatResponses.js` (le chat est **local/règles**, pas d'IA externe)
 - `App-Store-LUNA/` — tous les documents de soumission App Store (fiche, checklist, confidentialité, âge, icône, évolutions futures)

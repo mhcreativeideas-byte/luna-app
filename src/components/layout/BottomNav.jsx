@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { UtensilsCrossed, ChefHat, CalendarDays, Refrigerator, LayoutGrid } from 'lucide-react';
+import { UtensilsCrossed, ChefHat, CalendarDays, Refrigerator, Salad } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const leftItems = [
@@ -9,7 +9,7 @@ const leftItems = [
 
 const rightItems = [
   { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
-  { to: '/plus', icon: LayoutGrid, label: 'Plus' },
+  { to: '/menu', icon: Salad, label: 'Menu' },
 ];
 
 const centerItem = { to: '/dashboard', icon: CalendarDays, label: 'Cycle' };
