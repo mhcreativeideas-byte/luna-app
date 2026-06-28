@@ -8,7 +8,6 @@ import { toast } from '../lib/toast';
 import BackButton from '../components/ui/BackButton';
 
 const goalOptions = [
-  { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
   { id: 'food', label: 'Mieux manger', icon: '🥗' },
   { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
   { id: 'emotions', label: 'Gérer mes émotions', icon: '🧠' },

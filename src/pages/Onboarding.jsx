@@ -9,7 +9,6 @@ import { getCycleInfo } from '../contexts/CycleContext';
 const TOTAL_STEPS = 6;
 
 const goalOptions = [
-  { id: 'sport', label: 'Adapter mon sport', icon: '🏃‍♀️' },
   { id: 'food', label: 'Mieux manger', icon: '🥗' },
   { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
   { id: 'emotions', label: 'Gérer mes émotions', icon: '🧠' },
@@ -17,12 +16,6 @@ const goalOptions = [
   { id: 'energy', label: 'Plus d\'énergie', icon: '⚡' },
   { id: 'skin', label: 'Soigner ma peau', icon: '✨' },
   { id: 'strength', label: 'Me sentir forte', icon: '💪' },
-];
-
-const fitnessLevels = [
-  { id: 'beginner', label: 'Je débute', desc: 'Et c\'est très bien comme ça', icon: '🌱' },
-  { id: 'intermediate', label: 'Je bouge régulièrement', desc: 'Quelques séances par semaine', icon: '🌿' },
-  { id: 'advanced', label: 'Je suis une athlète', desc: 'Le sport fait partie de ma vie', icon: '🌳' },
 ];
 
 const dietOptions = [
@@ -605,7 +598,7 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 4: Objectifs + Sport */}
+          {/* Step 4: Objectifs */}
           {step === 4 && (
             <motion.div
               key="step4"
@@ -652,33 +645,6 @@ export default function Onboarding() {
                       {label}
                     </motion.button>
                   ))}
-                </div>
-
-                {/* Fitness level */}
-                <div>
-                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Ton niveau sportif
-                  </label>
-                  <div className="space-y-2">
-                    {fitnessLevels.map(({ id, label, desc, icon }) => (
-                      <motion.button
-                        key={id}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => updateForm('fitnessLevel', id)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
-                          form.fitnessLevel === id
-                            ? 'border-orange-300 bg-orange-50'
-                            : 'border-gray-100 bg-white hover:border-orange-200'
-                        }`}
-                      >
-                        <span className="text-2xl">{icon}</span>
-                        <div>
-                          <p className="text-sm font-semibold text-luna-text font-body">{label}</p>
-                          <p className="text-xs text-luna-text-muted font-body">{desc}</p>
-                        </div>
-                      </motion.button>
-                    ))}
-                  </div>
                 </div>
               </div>
             </motion.div>
