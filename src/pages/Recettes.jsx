@@ -202,9 +202,10 @@ export default function Recettes() {
       {/* Hero */}
       <motion.div variants={item}>
         <div
-          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          className="rounded-[28px] px-6 pt-6 pb-7 relative overflow-hidden"
           style={{
             background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+            boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
           }}
         >
           <div
@@ -535,10 +536,11 @@ export default function Recettes() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: Math.min(i * 0.04, 0.3), duration: 0.35 }}
                 onClick={() => setOpenRecipe(i)}
-                className="text-left group cursor-pointer"
+                className="text-left group cursor-pointer bg-white rounded-[22px] p-2.5 active:scale-[0.98] transition-transform"
+                style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
               >
                 <div
-                  className="relative aspect-[4/3] rounded-[18px] overflow-hidden mb-2.5 flex items-center justify-center"
+                  className="relative aspect-[4/3] rounded-[16px] overflow-hidden mb-2.5 flex items-center justify-center"
                   style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}20)` }}
                 >
                   <span className="text-5xl group-hover:scale-110 transition-transform duration-500">
@@ -567,8 +569,8 @@ export default function Recettes() {
                     </span>
                   </div>
                 </div>
-                <h3 className="font-display text-sm text-luna-text leading-snug line-clamp-2">{recipe.name}</h3>
-                <p className="text-[10px] font-body text-luna-text-muted mt-0.5 leading-relaxed line-clamp-2">
+                <h3 className="font-display text-sm text-luna-text leading-snug line-clamp-2 px-1">{recipe.name}</h3>
+                <p className="text-[10px] font-body text-luna-text-muted mt-0.5 mb-0.5 leading-relaxed line-clamp-2 px-1">
                   {recipe.description}
                 </p>
               </motion.div>
