@@ -16,6 +16,9 @@ dist
 dist-ssr
 *.local
 
+# Contenus créa / Instagram (perso, pas dans l'app)
+CM/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

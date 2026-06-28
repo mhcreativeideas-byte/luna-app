@@ -1,0 +1,24 @@
+{
+  "appId": "app.lunawellness",
+  "appName": "LUNA",
+  "webDir": "dist",
+  "backgroundColor": "#FAF7F5",
+  "ios": {
+    "backgroundColor": "#FAF7F5"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "launchAutoHide": true,
+      "backgroundColor": "#F0C4C9",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#FAF7F5"
+    },
+    "Keyboard": {
+      "resize": "native"
+    }
+  }
+}
