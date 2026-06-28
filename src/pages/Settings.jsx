@@ -104,7 +104,7 @@ function Section({ title, children }) {
       <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest px-5 mb-2">
         {title}
       </p>
-      <div className="bg-white rounded-[20px] divide-y divide-gray-50" style={{ boxShadow: '0 2px 16px rgba(45, 34, 38, 0.04)' }}>
+      <div className="bg-white rounded-[22px] divide-y divide-gray-50" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
         {children}
       </div>
     </div>

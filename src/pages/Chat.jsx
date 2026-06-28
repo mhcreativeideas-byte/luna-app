@@ -445,8 +445,8 @@ export default function Chat() {
                 <button
                   key={i}
                   onClick={() => handleSend(s)}
-                  className="block w-full text-left px-4 py-3 rounded-[16px] bg-white text-sm font-body text-luna-text-body hover:shadow-md transition-all"
-                  style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.04)' }}
+                  className="block w-full text-left px-4 py-3.5 rounded-[18px] bg-white text-sm font-body text-luna-text-body active:scale-[0.98] transition-all"
+                  style={{ boxShadow: '0 6px 18px rgba(45, 34, 38, 0.05)' }}
                 >
                   {s}
                 </button>
@@ -506,8 +506,8 @@ export default function Chat() {
                           <button
                             key={i}
                             onClick={() => handleSend(q)}
-                            className="block w-full text-left px-4 py-2.5 rounded-[14px] bg-white text-sm font-body text-luna-text-body hover:shadow-md transition-all"
-                            style={{ boxShadow: '0 1px 6px rgba(45, 34, 38, 0.04)' }}
+                            className="block w-full text-left px-4 py-3 rounded-[16px] bg-white text-sm font-body text-luna-text-body active:scale-[0.98] transition-all"
+                            style={{ boxShadow: '0 6px 18px rgba(45, 34, 38, 0.05)' }}
                           >
                             {q}
                           </button>

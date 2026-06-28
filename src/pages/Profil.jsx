@@ -149,7 +149,7 @@ function MonthlyReport() {
   const phaseData = cycleInfo.phaseData;
 
   return (
-    <div className="rounded-[24px] overflow-hidden" style={{ backgroundColor: phaseData.bgColor }}>
+    <div className="rounded-[28px] overflow-hidden" style={{ backgroundColor: phaseData.bgColor }}>
       <div className="p-5 pb-4">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-[14px] flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
@@ -180,7 +180,7 @@ function MonthlyReport() {
 
       <div className="px-5 pb-5 space-y-4">
         {!currentStats && (
-          <div className="bg-white/60 rounded-[18px] p-6 text-center">
+          <div className="bg-white/60 rounded-[22px] p-6 text-center">
             <BarChart3 size={32} className="mx-auto mb-2 text-luna-text-hint opacity-30" />
             <p className="text-sm font-body text-luna-text-muted">Remplis ton journal pour voir ton rapport ici.</p>
           </div>
@@ -188,7 +188,7 @@ function MonthlyReport() {
 
         {currentStats && (
           <>
-            <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+            <div className="bg-white rounded-[22px] p-4" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
               <div className="flex items-center gap-3 mb-3 text-center">
                 <div className="flex-1 p-2 rounded-[12px]" style={{ backgroundColor: phaseData.bgColor }}>
                   <p className="text-lg font-display font-bold" style={{ color: phaseData.colorDark }}>{periodLength}j</p>
@@ -250,7 +250,7 @@ function MonthlyReport() {
             </div>
 
             {Object.keys(currentStats.avgEnergyByPhase).length > 0 && (
-              <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+              <div className="bg-white rounded-[22px] p-4" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
                 <h4 className="text-xs font-display font-semibold text-luna-text mb-3">Énergie par phase</h4>
                 <div className="space-y-3">
                   {['menstrual', 'follicular', 'ovulatory', 'luteal'].map((p) => {
@@ -279,7 +279,7 @@ function MonthlyReport() {
             )}
 
             {currentStats.topSymptoms.length > 0 && (
-              <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+              <div className="bg-white rounded-[22px] p-4" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
                 <h4 className="text-xs font-display font-semibold text-luna-text mb-3">Ressentis fréquents</h4>
                 <div className="space-y-2">
                   {currentStats.topSymptoms.map(([symptom, count]) => (
@@ -300,7 +300,7 @@ function MonthlyReport() {
             )}
 
             {insights.length > 0 && (
-              <div className="bg-white/60 rounded-[18px] p-4">
+              <div className="bg-white/60 rounded-[22px] p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles size={13} style={{ color: phaseData.colorDark }} />
                   <h4 className="text-xs font-display font-semibold text-luna-text">Tes insights</h4>
@@ -772,8 +772,8 @@ function SharePartnerCard({ cycleInfo, name }) {
 
   return (
     <div
-      className="bg-white rounded-[20px] p-5"
-      style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}
+      className="bg-white rounded-[22px] p-5"
+      style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
     >
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
@@ -1114,11 +1114,11 @@ export default function Profil() {
 
       {/* Cycle stats */}
       <motion.div variants={item} className="grid grid-cols-2 gap-3">
-        <div className="bg-white rounded-[20px] p-5 text-center" style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}>
+        <div className="bg-white rounded-[22px] p-5 text-center" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
           <p className="text-3xl font-display font-bold text-luna-text">{cycleLength}</p>
           <p className="text-xs text-luna-text-hint font-body mt-1">jours de cycle</p>
         </div>
-        <div className="bg-white rounded-[20px] p-5 text-center" style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}>
+        <div className="bg-white rounded-[22px] p-5 text-center" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
           <p className="text-3xl font-display font-bold text-luna-text">{periodLength}</p>
           <p className="text-xs text-luna-text-hint font-body mt-1">jours de règles</p>
         </div>
@@ -1128,8 +1128,8 @@ export default function Profil() {
       <motion.div variants={item}>
         <Link
           to="/dashboard"
-          className="flex items-center gap-4 bg-white rounded-[20px] p-4 hover:shadow-md transition-all"
-          style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.04)' }}
+          className="flex items-center gap-4 bg-white rounded-[22px] p-4 active:scale-[0.99] transition-all"
+          style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
         >
           <div
             className="w-11 h-11 rounded-[14px] flex items-center justify-center"
@@ -1157,7 +1157,7 @@ export default function Profil() {
       {/* Insights card */}
       <motion.div variants={item}>
         <div
-          className="rounded-[20px] p-5 relative overflow-hidden"
+          className="rounded-[22px] p-5 relative overflow-hidden"
           style={{
             backgroundColor: phaseData.bgColor,
           }}

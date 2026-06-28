@@ -294,7 +294,7 @@ export default function CheckIn() {
 
             {/* Summary */}
             {Object.values(symptoms).some((arr) => arr.length > 0) && (
-              <div className="bg-white rounded-[18px] p-4" style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.04)' }}>
+              <div className="bg-white rounded-[22px] p-4" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
                 <p className="text-xs font-body text-luna-text-hint mb-2">Sélectionnés :</p>
                 <div className="flex flex-wrap gap-1.5">
                   {Object.values(symptoms).flat().map((s) => (
