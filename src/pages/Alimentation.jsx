@@ -139,9 +139,10 @@ export default function Alimentation() {
       {/* ===== HERO SECTION ===== */}
       <motion.div variants={item}>
         <div
-          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          className="rounded-[28px] px-6 pt-7 pb-8 relative overflow-hidden"
           style={{
             background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+            boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
           }}
         >
           {/* Decorative circle */}
@@ -171,7 +172,7 @@ export default function Alimentation() {
 
       {/* ===== NUTRIMENTS PRIORITAIRES ===== */}
       <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
+        <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 28px rgba(45,34,38,0.06)' }}>
           {/* Section header */}
           <div className="flex items-center gap-3 mb-2">
             <div
@@ -244,7 +245,7 @@ export default function Alimentation() {
             className="overflow-hidden"
           >
             <div
-              className="rounded-[24px] overflow-hidden"
+              className="rounded-[28px] overflow-hidden"
               style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}
             >
               {/* Header band */}
@@ -403,8 +404,8 @@ export default function Alimentation() {
         return (
           <motion.div variants={item}>
             <div
-              className="rounded-[24px] overflow-hidden"
-              style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}
+              className="rounded-[28px] overflow-hidden"
+              style={{ boxShadow: '0 8px 28px rgba(45,34,38,0.06)' }}
             >
               <div
                 className="px-5 pt-5 pb-4"
@@ -497,7 +498,7 @@ export default function Alimentation() {
         return (
           <motion.div variants={item}>
             <div
-              className="rounded-[24px] overflow-hidden"
+              className="rounded-[28px] overflow-hidden"
               style={{ background: 'linear-gradient(180deg, #FDFBF8 0%, #FAF7F5 100%)', boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
             >
               {/* Header */}
