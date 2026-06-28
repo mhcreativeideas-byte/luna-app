@@ -184,6 +184,12 @@ export default function Menu() {
 
       {/* Header */}
       <motion.div variants={item}>
+        <div
+          className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
+          style={{ backgroundColor: phaseData.bgColor, boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
+        >
+          {phaseData.icon}
+        </div>
         <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
           {phaseData.shortName} · Menu
         </p>
@@ -197,7 +203,7 @@ export default function Menu() {
 
       {/* ===== TA JOURNÉE IDÉALE ===== */}
       <motion.div variants={item}>
-        <div className="rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.05)' }}>
+        <div className="rounded-[28px] overflow-hidden" style={{ boxShadow: '0 8px 28px rgba(45,34,38,0.06)' }}>
           {/* Header */}
           <div
             className="px-5 pt-5 pb-4"
@@ -232,14 +238,14 @@ export default function Menu() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 * i, duration: 0.3 }}
                     onClick={() => setOpenDailyRecipe(m.recipe)}
-                    className="flex items-center gap-3 rounded-[16px] p-3 transition-all cursor-pointer active:scale-[0.98]"
+                    className="flex items-center gap-3.5 rounded-[18px] p-3.5 transition-all cursor-pointer active:scale-[0.98]"
                     style={{ backgroundColor: i % 2 === 0 ? `${phaseData.color}06` : 'transparent' }}
                   >
                     <div
-                      className="w-12 h-12 rounded-[14px] flex items-center justify-center flex-shrink-0"
+                      className="w-14 h-14 rounded-[16px] flex items-center justify-center flex-shrink-0"
                       style={{ backgroundColor: phaseData.bgColor }}
                     >
-                      <span className="text-2xl">{m.recipe.emoji || m.icon}</span>
+                      <span className="text-[26px]">{m.recipe.emoji || m.icon}</span>
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
@@ -247,7 +253,7 @@ export default function Menu() {
                         <span className="text-[9px] font-body text-luna-text-hint">·</span>
                         <span className="text-[9px] font-body text-luna-text-hint">{m.recipe.prepTime}</span>
                       </div>
-                      <p className="text-[13px] font-body font-semibold text-luna-text leading-snug truncate">{m.recipe.name}</p>
+                      <p className="text-sm font-body font-semibold text-luna-text leading-snug truncate">{m.recipe.name}</p>
                       {m.drink && (
                         <div className="flex items-center gap-1.5 mt-1">
                           <span className="text-[10px]">{m.drinkIcon}</span>
