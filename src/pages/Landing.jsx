@@ -27,8 +27,8 @@ const whyCards = [
     gradient: 'linear-gradient(135deg, #FFF3EB 0%, #F5DCC8 100%)',
   },
   {
-    title: 'Des conseils qui évoluent avec ton cycle',
-    desc: 'Sport, alimentation, sommeil, bien-être. Le tout adapté à ta phase hormonale. Pas de programme générique. Des recommandations qui correspondent à ce que ton corps vit aujourd\'hui.',
+    title: 'Une assiette qui évolue avec ton cycle',
+    desc: 'Menu du jour, recettes et nutriments clés, adaptés à ta phase hormonale. Pas de régime générique : des recommandations alimentaires qui correspondent à ce que ton corps vit aujourd\'hui.',
     Illustration: EnergyIcon,
     gradient: 'linear-gradient(135deg, #F3EEF8 0%, #E0D5EB 100%)',
   },
@@ -36,28 +36,28 @@ const whyCards = [
 
 const comparisons = [
   {
-    emoji: '🏋️‍♀️',
-    theme: 'Sport',
-    before: '"Zéro motivation pour le sport cette semaine. Je culpabilise."',
-    after: 'Phase lutéale = énergie basse. C\'est hormonal, pas un manque de volonté. Yoga aujourd\'hui, HIIT dans 5 jours.',
-  },
-  {
     emoji: '🍫',
-    theme: 'Alimentation',
+    theme: 'Fringales',
     before: '"Je craque sur le sucre H24. J\'ai aucune discipline."',
-    after: 'Ton métabolisme brûle 200-300 cal/jour de plus en phase lutéale. Ton corps réclame du carburant. Nourris-le.',
+    after: 'Ton métabolisme brûle 200-300 cal/jour de plus en phase lutéale. Ton corps réclame du carburant : chocolat noir, dattes, fruits — plutôt que de culpabiliser.',
   },
   {
-    emoji: '💼',
-    theme: 'Vie pro',
-    before: '"Ma présentation était nulle. Je me sentais pas légitime."',
-    after: 'En phase ovulatoire, ta confiance et tes capacités verbales sont au max. Planifie tes moments clés.',
+    emoji: '🌙',
+    theme: 'Crampes',
+    before: '"Crampes terribles, j\'avale un cachet et je serre les dents."',
+    after: 'Le magnésium détend les muscles : chocolat noir, amandes, banane. LUNA te propose direct les recettes qui apaisent.',
   },
   {
-    emoji: '😴',
-    theme: 'Sommeil',
-    before: '"Impossible de dormir, je tourne dans mon lit depuis 2h."',
-    after: 'La progestérone chute avant tes règles et perturbe le sommeil. Magnésium + pas d\'écran = game changer.',
+    emoji: '🩸',
+    theme: 'Énergie',
+    before: '"Vidée pendant mes règles, je carbure au café et je tiens pas."',
+    after: 'Tes règles puisent dans ton fer. Lentilles, épinards, œufs : LUNA te montre quoi manger pour recharger.',
+  },
+  {
+    emoji: '✨',
+    theme: 'Peau',
+    before: '"Poussée d\'acné juste avant mes règles, encore une fois."',
+    after: 'Le zinc aide à réguler ta peau : graines de courge, pois chiches, noix. On te guide vers les bons aliments.',
   },
 ];
 
@@ -98,7 +98,7 @@ export default function Landing() {
             variants={item}
             className="text-luna-text-muted text-base md:text-lg font-body max-w-lg mx-auto mb-8 leading-relaxed"
           >
-            Ton cycle influence ton énergie, ton humeur, tes performances. Chaque jour différemment. LUNA t'aide à comprendre ce qui se passe dans ton corps et à adapter ton quotidien en conséquence.
+            Ton cycle influence ton énergie, ton humeur, tes fringales — chaque jour différemment. LUNA t'aide à comprendre ton corps et à adapter ton alimentation à chaque phase.
           </motion.p>
 
           <motion.div variants={item} className="flex flex-col items-center gap-4">
@@ -123,7 +123,7 @@ export default function Landing() {
       <section className="px-4 py-12 bg-white">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-luna-text-body font-body text-base md:text-lg leading-relaxed">
-            On suit nos pas, notre sommeil, nos calories. Mais <strong className="text-luna-text">personne ne nous a appris à comprendre notre cycle</strong>. Pourtant, il impacte tout : énergie, humeur, digestion, peau, libido, performances cognitives. Chaque jour du mois est différent. Il est temps d'en tenir compte.
+            On compte nos calories et nos pas. Mais <strong className="text-luna-text">personne ne nous a appris à nourrir notre corps selon notre cycle</strong>. Pourtant, il impacte tout : énergie, humeur, digestion, peau, fringales. Chaque phase a ses besoins. Il est temps d'en tenir compte.
           </p>
         </div>
       </section>

@@ -1,13 +1,13 @@
 # 📱 Fiche App Store — LUNA
 
 > Tout le texte à copier-coller dans App Store Connect au moment de la soumission.
-> Dernière mise à jour : 27/06/2026
+> Dernière mise à jour : 28/06/2026 (recentré food-first)
 
 ---
 
 ## Nom de l'app (max 30 caractères)
 ```
-LUNA — Cycle & bien-être
+LUNA — Cycle & nutrition
 ```
 
 ## Sous-titre (max 30 caractères)
@@ -41,14 +41,15 @@ Fini de te battre contre ton corps. Apprends à travailler avec lui.
 
 CE QUE LUNA FAIT POUR TOI
 • Comprends tes 4 phases (menstruelle, folliculaire, ovulatoire, lutéale) et tes hormones, expliquées simplement
-• Reçois des conseils sport, alimentation, sommeil et bien-être adaptés à ta phase du jour
-• Des centaines de recettes saines, classées par phase et par saison
+• Ton menu du jour : des repas adaptés à ta phase, prêts à cuisiner
+• Des centaines de recettes saines, classées par phase
+• Tes aliments par phase : les nutriments à prioriser, et pourquoi
 • « Mon Frigo » : indique ce que tu as, LUNA te propose des recettes
-• Suis ton humeur, ton énergie et tes symptômes dans ton journal
-• Échange avec LUNA, ton assistante bien-être, quand tu en as besoin
+• Symptôme → assiette : note tes ressentis du jour, LUNA te dit quoi manger pour les apaiser (crampes, fatigue, fringales…)
+• Suis ton cycle, ton énergie et tes symptômes au quotidien
 
 POURQUOI C'EST DIFFÉRENT
-Pas de programme générique. Tout s'adapte à TON cycle, à tes objectifs, tes préférences alimentaires et ta santé hormonale (SPM, endométriose, SOPK…).
+Pas de régime générique. Tout s'adapte à TON cycle, à tes préférences alimentaires et ta santé hormonale (SPM, endométriose, SOPK…). LUNA, c'est gérer ton cycle par l'assiette.
 
 Basé sur la recherche en endocrinologie. Tes données restent privées et chiffrées.
 
@@ -59,14 +60,14 @@ LUNA est un outil de bien-être et d'information. Il ne remplace pas un avis mé
 
 ## Mots-clés (champ « Keywords », max 100 caractères)
 ```
-cycle menstruel,règles,ovulation,SPM,hormones,nutrition,sport,bien-être,suivi,fertilité,phases
+cycle menstruel,règles,ovulation,SPM,SOPK,hormones,nutrition,recettes,alimentation,phases
 ```
 
 ---
 
 ## Texte promotionnel (optionnel, max 170 caractères — modifiable à tout moment)
 ```
-Comprends ton cycle, adapte ton sport, ton alimentation et ton énergie à chaque phase. Avec douceur, sans culpabilité.
+Comprends ton cycle et adapte ton alimentation à chaque phase : recettes, menu du jour et conseils nutrition. Sans culpabilité.
 ```
 
 ---
@@ -76,9 +77,4 @@ Comprends ton cycle, adapte ton sport, ton alimentation et ton énergie à chaqu
 → LUNA contient des thèmes de santé/maturité légère (cycle menstruel). Probablement **4+** ou **12+** selon les réponses. À confirmer au moment du questionnaire.
 
 ## Compte de démonstration (pour le testeur Apple)
-⚠️ À PRÉPARER avant la soumission : crée un compte test dans LUNA et note ici :
-```
-Email de démo : ____________________
-Mot de passe de démo : ____________________
-```
-(Apple a besoin de se connecter pour tester l'app.)
+→ Guide dédié : `06-Compte-demo.md` (identifiants + étapes + notes à coller dans App Store Connect).
