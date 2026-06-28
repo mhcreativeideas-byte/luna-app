@@ -156,6 +156,12 @@ export default function Alimentation() {
           />
 
           <div className="relative">
+            <div
+              className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
+              style={{ backgroundColor: 'rgba(255,255,255,0.7)', boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
+            >
+              {phaseData.icon}
+            </div>
             <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3" style={{ color: phaseData.color }}>
               {phaseData.shortName} · Nutrition
             </p>
@@ -183,7 +189,7 @@ export default function Alimentation() {
             </div>
             <div>
               <h2 className="font-display text-lg text-luna-text leading-tight">Nutriments prioritaires</h2>
-              <p className="text-[10px] font-body text-luna-text-hint mt-0.5">Clique pour voir les aliments</p>
+              <p className="text-[11px] font-body text-luna-text-hint mt-0.5">Clique pour voir les aliments</p>
             </div>
           </div>
 
@@ -198,7 +204,7 @@ export default function Alimentation() {
                   key={n}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => { setOpenNutrient(isActive ? null : n); setSelectedFood(null); }}
-                  className="flex items-center gap-2.5 px-4 py-3 rounded-[16px] text-left transition-all duration-300"
+                  className="flex items-center gap-2.5 px-4 py-3.5 rounded-[18px] text-left transition-all duration-300"
                   style={isActive ? {
                     backgroundColor: phaseData.color,
                     color: 'white',
@@ -475,8 +481,8 @@ export default function Alimentation() {
               className="flex flex-col items-center gap-2"
             >
               <div
-                className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden"
-                style={{ backgroundColor: '#FAF5F0', boxShadow: '0 2px 8px rgba(45,34,38,0.06)' }}
+                className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden bg-white"
+                style={{ boxShadow: '0 4px 14px rgba(45,34,38,0.08)', border: '1px solid rgba(45,34,38,0.04)' }}
               >
                 {imgSrc ? (
                   <img
@@ -484,13 +490,12 @@ export default function Alimentation() {
                     alt={name}
                     loading="lazy"
                     className="w-12 h-12 object-contain"
-                    style={{ mixBlendMode: 'multiply' }}
                     onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }}
                   />
                 ) : null}
-                <span className="text-xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
+                <span className="text-2xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
               </div>
-              <span className="text-[10px] font-body font-semibold text-luna-text-body text-center leading-tight">{name}</span>
+              <span className="text-[11px] font-body font-semibold text-luna-text-body text-center leading-tight">{name}</span>
             </motion.div>
           );
         };
@@ -499,7 +504,7 @@ export default function Alimentation() {
           <motion.div variants={item}>
             <div
               className="rounded-[28px] overflow-hidden"
-              style={{ background: 'linear-gradient(180deg, #FDFBF8 0%, #FAF7F5 100%)', boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}
+              style={{ background: 'linear-gradient(180deg, #FDFBF8 0%, #FAF7F5 100%)', boxShadow: '0 8px 28px rgba(45,34,38,0.06)' }}
             >
               {/* Header */}
               <div className="px-6 pt-6 pb-2 text-center">
@@ -539,7 +544,7 @@ export default function Alimentation() {
                   </h4>
                   <div className="flex-1 h-px" style={{ backgroundColor: '#D4E8D4' }} />
                 </div>
-                <div className="grid grid-cols-5 gap-y-3 gap-x-2 justify-items-center">
+                <div className="grid grid-cols-4 gap-y-4 gap-x-2 justify-items-center">
                   {seasonal.legumes.map((legume, i) => (
                     <FoodCard key={legume} name={legume} delay={seasonal.fruits.length + i} />
                   ))}
