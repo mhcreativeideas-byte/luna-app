@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MoreHorizontal, User, Sparkles, Settings, LogOut } from 'lucide-react';
+import { MoreHorizontal, User, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 export default function TopMenu() {
@@ -38,13 +38,6 @@ export default function TopMenu() {
               >
                 <User size={16} className="text-luna-text-muted" />
                 Mon profil
-              </button>
-              <button
-                onClick={() => { setMenuOpen(false); navigate('/plus'); }}
-                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
-              >
-                <Sparkles size={16} className="text-luna-text-muted" />
-                Plus
               </button>
               <button
                 onClick={() => { setMenuOpen(false); navigate('/parametres'); }}

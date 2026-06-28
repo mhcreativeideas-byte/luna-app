@@ -1,18 +1,16 @@
 import { NavLink } from 'react-router-dom';
-import { UtensilsCrossed, ChefHat, CalendarDays, Refrigerator, Salad } from 'lucide-react';
+import { UtensilsCrossed, CalendarDays, Apple } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const leftItems = [
-  { to: '/recettes', icon: ChefHat, label: 'Recettes' },
-  { to: '/mon-frigo', icon: Refrigerator, label: 'Frigo' },
+  { to: '/recettes', icon: UtensilsCrossed, label: 'Manger' },
 ];
 
 const rightItems = [
-  { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
-  { to: '/menu', icon: Salad, label: 'Menu' },
+  { to: '/alimentation', icon: Apple, label: 'Mes aliments' },
 ];
 
-const centerItem = { to: '/dashboard', icon: CalendarDays, label: 'Cycle' };
+const centerItem = { to: '/dashboard', icon: CalendarDays, label: 'Mon cycle' };
 
 function NavItem({ to, icon: Icon, label, phaseData }) {
   return (
@@ -82,7 +80,12 @@ export default function BottomNav() {
               >
                 <CalendarDays size={22} strokeWidth={2} className="text-white" />
               </div>
-              <span className="h-[9px] mt-1" />
+              <span
+                className="text-[8px] font-semibold font-body leading-none tracking-tight mt-1"
+                style={{ color: isActive ? phaseData.color : '#756568' }}
+              >
+                {centerItem.label}
+              </span>
             </>
           )}
         </NavLink>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { UtensilsCrossed, Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2 } from 'lucide-react';
+import { Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2, Heart } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
@@ -31,13 +31,6 @@ const PHASE_TITLES = {
   luteal: { main: 'Transition &', italic: 'Douceur' },
 };
 
-const PHASE_INSIGHTS = {
-  menstrual: 'Savais-tu que ton métabolisme de repos augmente légèrement pendant cette phase ?',
-  follicular: 'L\'œstrogène améliore la plasticité cérébrale — tu apprends plus vite en cette phase.',
-  ovulatory: 'Ta voix change légèrement pendant l\'ovulation. Elle devient plus mélodieuse.',
-  luteal: 'Ton métabolisme augmente de 10-20%. Manger plus est normal et nécessaire.',
-};
-
 const MONTH_NAMES = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const WEEKDAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 
@@ -49,7 +42,7 @@ const PHASE_ICONS = {
 };
 
 export default function Dashboard() {
-  const { cycleInfo, name, cycleLength, periodLength, lastPeriodDate, periodLogs, temperatureLogs, spottingLogs, dispatch } = useCycle();
+  const { cycleInfo, name, cycleLength, periodLength, lastPeriodDate, periodLogs, temperatureLogs, spottingLogs, todayCheckIn, dispatch } = useCycle();
   const navigate = useNavigate();
 
   // Calendar state
@@ -309,19 +302,21 @@ export default function Dashboard() {
         </div>
       </motion.div>
 
-      {/* Menu du jour — mise en avant nutrition */}
+      {/* Check-in du jour — accessible depuis Mon cycle */}
       <motion.div variants={item}>
         <div
-          onClick={() => navigate('/menu')}
-          className="rounded-[26px] p-5 flex items-center gap-4 cursor-pointer active:scale-[0.99] transition-transform"
-          style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
+          onClick={() => navigate('/checkin')}
+          className="rounded-[26px] p-5 flex items-center gap-4 cursor-pointer active:scale-[0.99] transition-transform bg-white"
+          style={{ boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
         >
-          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
-            <UtensilsCrossed size={20} style={{ color: phaseData.colorDark }} />
+          <div className="w-12 h-12 rounded-[16px] flex items-center justify-center flex-shrink-0" style={{ backgroundColor: phaseData.bgColor }}>
+            <Heart size={20} style={{ color: phaseData.colorDark }} />
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="font-display text-lg text-luna-text leading-tight">Ton menu du jour</h2>
-            <p className="text-xs font-body text-luna-text-muted mt-0.5">Tes repas adaptés à ta phase, prêts pour aujourd'hui.</p>
+            <h2 className="font-display text-lg text-luna-text leading-tight">Mon check-in du jour</h2>
+            <p className="text-xs font-body text-luna-text-muted mt-0.5">
+              {todayCheckIn ? 'Déjà noté aujourd\'hui ✓ — appuie pour modifier' : 'Comment tu te sens aujourd\'hui ?'}
+            </p>
           </div>
           <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
         </div>
@@ -975,24 +970,6 @@ export default function Dashboard() {
           </p>
           <p className="text-[11px] font-body text-luna-text-muted text-center leading-relaxed mt-2 opacity-80">
             LUNA est un outil de bien-être, pas un dispositif médical. Pour toute question de santé, consulte un professionnel.
-          </p>
-        </div>
-      </motion.div>
-
-      {/* L'Insight */}
-      <motion.div variants={item}>
-        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
-          <div className="flex items-center gap-2 mb-3">
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: `${phaseData.color}20` }}
-            >
-              <Sparkles size={14} style={{ color: phaseData.color }} />
-            </div>
-            <h3 className="font-display text-base text-luna-text">L'Insight du jour</h3>
-          </div>
-          <p className="text-sm font-body text-luna-text-body leading-relaxed italic">
-            "{PHASE_INSIGHTS[phase]}"
           </p>
         </div>
       </motion.div>

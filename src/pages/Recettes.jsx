@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, ChevronDown, RotateCcw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clock, X, Sparkles, Filter, Heart, ChevronDown, RotateCcw, Refrigerator } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import DailyMenu from '../components/food/DailyMenu';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
@@ -41,6 +42,20 @@ const mealLabels = {
   dinner: { label: 'Dîner', tag: 'DINNER' },
   snack: { label: 'Snack', tag: 'SNACK' },
   drink: { label: 'Boisson', tag: 'BOISSON' },
+};
+
+const MANGER_TITLES = {
+  menstrual: { main: 'Manger pour', italic: 'se régénérer' },
+  follicular: { main: 'Manger pour', italic: 's\'élancer' },
+  ovulatory: { main: 'Manger pour', italic: 'rayonner' },
+  luteal: { main: 'Manger pour', italic: 's\'apaiser' },
+};
+
+const MANGER_INTROS = {
+  menstrual: 'Ton menu du jour et tes recettes, pensés pour reconstituer ton énergie pendant tes règles.',
+  follicular: 'Ton menu du jour et tes recettes, pour accompagner ton énergie qui remonte.',
+  ovulatory: 'Ton menu du jour et tes recettes, légers et colorés pour ton pic d\'énergie.',
+  luteal: 'Ton menu du jour et tes recettes, réconfortants et équilibrés pour cette phase.',
 };
 
 export default function Recettes() {
@@ -199,10 +214,11 @@ export default function Recettes() {
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <TopMenu />
-      {/* Hero */}
+
+      {/* En-tête « Manger » — introduit la catégorie (même déco que Mes aliments) */}
       <motion.div variants={item}>
         <div
-          className="rounded-[28px] px-6 pt-6 pb-7 relative overflow-hidden"
+          className="rounded-[28px] px-6 pt-7 pb-8 relative overflow-hidden"
           style={{
             background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
             boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
@@ -218,44 +234,82 @@ export default function Recettes() {
           />
 
           <div className="relative">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em]" style={{ color: phaseData.color }}>
-                {phaseData.shortName} · Recettes
-              </p>
-              {(() => {
-                const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0;
-                return (
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="relative w-9 h-9 rounded-full flex items-center justify-center transition-all"
-                    style={showFilters ? {
-                      backgroundColor: phaseData.color,
-                      color: 'white',
-                      boxShadow: `0 4px 12px ${phaseData.color}40`,
-                    } : {
-                      backgroundColor: 'rgba(255,255,255,0.7)',
-                      color: '#8A7B7F',
-                      boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)',
-                    }}
-                  >
-                    <Filter size={16} />
-                    {hasActiveFilters && !showFilters && (
-                      <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white" style={{ backgroundColor: phaseData.color }} />
-                    )}
-                  </button>
-                );
-              })()}
+            <div
+              className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
+              style={{ backgroundColor: 'rgba(255,255,255,0.7)', boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
+            >
+              {phaseData.icon}
             </div>
+            <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3" style={{ color: phaseData.color }}>
+              {phaseData.shortName} · Manger
+            </p>
             <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight mb-3">
-              Recettes &{' '}
-              <em style={{ color: phaseData.colorDark }}>Boissons</em>
+              {MANGER_TITLES[activePhase].main}{' '}
+              <em style={{ color: phaseData.colorDark }}>{MANGER_TITLES[activePhase].italic}</em>
             </h1>
             <p className="text-sm font-body text-luna-text-body leading-relaxed">
+              {MANGER_INTROS[activePhase]}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Menu du jour — l'action du jour, en haut de « Manger » */}
+      <DailyMenu />
+
+      {/* Bandeau Mon frigo — cuisiner avec ce qu'on a déjà */}
+      <motion.div variants={item}>
+        <Link
+          to="/mon-frigo"
+          className="flex items-center gap-4 rounded-[24px] p-4 active:scale-[0.99] transition-transform"
+          style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
+        >
+          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
+            <Refrigerator size={20} style={{ color: phaseData.colorDark }} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h2 className="font-display text-lg text-luna-text leading-tight">Mon frigo</h2>
+            <p className="text-xs font-body text-luna-text-muted mt-0.5">Cuisine avec ce que tu as déjà.</p>
+          </div>
+          <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
+        </Link>
+      </motion.div>
+
+      {/* Titre section recettes + bouton filtre */}
+      <motion.div variants={item}>
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <h2 className="font-display text-xl text-luna-text leading-tight">Toutes les recettes</h2>
+            <p className="text-xs font-body text-luna-text-hint mt-0.5">
               {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''} adaptées à ta phase
               {dietLabel && <span> · 🌱 {dietLabel}</span>}
               {maxTime && <span> · 🕐 ≤ {maxTime} min</span>}
             </p>
           </div>
+          {(() => {
+            const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0;
+            return (
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                aria-label="Filtres"
+                className="relative w-9 h-9 rounded-full flex items-center justify-center transition-all flex-shrink-0"
+                style={showFilters ? {
+                  backgroundColor: phaseData.color,
+                  color: 'white',
+                  boxShadow: `0 4px 12px ${phaseData.color}40`,
+                } : {
+                  backgroundColor: 'white',
+                  color: '#8A7B7F',
+                  boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)',
+                }}
+              >
+                <Filter size={16} />
+                {hasActiveFilters && !showFilters && (
+                  <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white" style={{ backgroundColor: phaseData.color }} />
+                )}
+              </button>
+            );
+          })()}
         </div>
       </motion.div>
 

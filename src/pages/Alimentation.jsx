@@ -31,6 +31,13 @@ const PHASE_FOOD_INTROS = {
   luteal: 'Ton métabolisme augmente de 10-20%. Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
 };
 
+const PHASE_INSIGHTS = {
+  menstrual: 'Savais-tu que ton métabolisme de repos augmente légèrement pendant cette phase ?',
+  follicular: 'L\'œstrogène améliore la plasticité cérébrale — tu apprends plus vite en cette phase.',
+  ovulatory: 'Ta voix change légèrement pendant l\'ovulation. Elle devient plus mélodieuse.',
+  luteal: 'Ton métabolisme augmente de 10-20%. Manger plus est normal et nécessaire.',
+};
+
 const NUTRIENT_ICONS = {
   'Magnésium': '🧲',
   'Vitamine B6': '💊',
@@ -67,12 +74,17 @@ const HEALTH_SUPERFOODS = {
   'Cycles irréguliers': ['Graines de lin', 'Graines de courge', 'Avocat', 'Noix', 'Saumon', 'Œufs', 'Graines de sésame', 'Zinc'],
 };
 
+// Fruits & légumes de saison — masqués pour l'instant (le code reste en place).
+// Repasser à true pour réafficher la section dans « Mes aliments ».
+const SHOW_SEASONAL = false;
+
 export default function Alimentation() {
   const { cycleInfo, dietPreferences, healthIssues } = useCycle();
   const [openNutrient, setOpenNutrient] = useState(null);
   const [selectedFood, setSelectedFood] = useState(null);
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
   const [allRecipes, setAllRecipes] = useState(null);
+  const [expandedBadDrink, setExpandedBadDrink] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -89,6 +101,16 @@ export default function Alimentation() {
     });
     return () => { cancelled = true; };
   }, []);
+
+  // Ouvre le premier nutriment par défaut → les aliments sont visibles
+  // direct, sans clic (objectif : moins de clics pour l'utilisatrice).
+  useEffect(() => {
+    if (phaseData?.nutrients?.length) {
+      setOpenNutrient(phaseData.nutrients[0]);
+      setSelectedFood(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {
@@ -176,6 +198,24 @@ export default function Alimentation() {
         </div>
       </motion.div>
 
+      {/* ===== L'INSIGHT DU JOUR (discret — petite note, pas un titre) ===== */}
+      <motion.div variants={item}>
+        <div
+          className="rounded-[18px] px-4 py-3.5 flex items-start gap-3"
+          style={{ backgroundColor: `${phaseData.color}0D`, border: `1px solid ${phaseData.color}1F` }}
+        >
+          <Lightbulb size={15} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
+          <div>
+            <p className="text-[11px] font-body font-semibold text-luna-text-muted mb-0.5">
+              Insight du jour
+            </p>
+            <p className="text-[13px] font-body text-luna-text-body leading-relaxed italic">
+              {PHASE_INSIGHTS[phase]}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
       {/* ===== NUTRIMENTS PRIORITAIRES ===== */}
       <motion.div variants={item}>
         <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 28px rgba(45,34,38,0.06)' }}>
@@ -189,7 +229,7 @@ export default function Alimentation() {
             </div>
             <div>
               <h2 className="font-display text-lg text-luna-text leading-tight">Nutriments prioritaires</h2>
-              <p className="text-[11px] font-body text-luna-text-hint mt-0.5">Clique pour voir les aliments</p>
+              <p className="text-[11px] font-body text-luna-text-hint mt-0.5">Touche un nutriment pour changer</p>
             </div>
           </div>
 
@@ -382,6 +422,63 @@ export default function Alimentation() {
         )}
       </AnimatePresence>
 
+      {/* ===== À LIMITER (déplacé depuis le menu du jour) ===== */}
+      {phaseData.drinks?.bad?.length > 0 && (
+        <motion.div variants={item}>
+          <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 28px rgba(45,34,38,0.06)' }}>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-9 h-9 rounded-[12px] flex items-center justify-center" style={{ backgroundColor: '#D4727F15' }}>
+                <AlertTriangle size={16} style={{ color: '#C4727F' }} />
+              </div>
+              <div>
+                <h2 className="font-display text-lg text-luna-text leading-tight">À limiter</h2>
+                <p className="text-[11px] font-body text-luna-text-hint mt-0.5">Touche pour savoir pourquoi</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              {phaseData.drinks.bad.map((d, i) => {
+                const isOpen = expandedBadDrink === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => setExpandedBadDrink(isOpen ? null : i)}
+                    className="text-[12px] font-body font-semibold px-3.5 py-2 rounded-full transition-all"
+                    style={{
+                      backgroundColor: isOpen ? '#D4727F20' : '#D4727F12',
+                      color: '#A3555F',
+                      border: isOpen ? '1.5px solid #D4727F' : '1.5px solid transparent',
+                    }}
+                  >
+                    {d.name}
+                  </button>
+                );
+              })}
+            </div>
+            <AnimatePresence>
+              {expandedBadDrink !== null && phaseData.drinks.bad[expandedBadDrink] && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className="overflow-hidden"
+                >
+                  <div
+                    className="mt-3 pl-4 pr-3 py-3 text-xs font-body text-luna-text-body leading-relaxed rounded-[14px]"
+                    style={{ backgroundColor: '#FDF5F5', borderLeft: '3px solid #D4727F' }}
+                  >
+                    <span className="font-bold" style={{ color: '#A3555F' }}>
+                      {phaseData.drinks.bad[expandedBadDrink].name}
+                    </span>{' '}
+                    — {phaseData.drinks.bad[expandedBadDrink].why}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      )}
+
       {/* ===== ENVIES DE SUCRE — Luteal only ===== */}
       {phase === 'luteal' && phaseData.sugarCravings && (() => {
         // Chercher les recettes correspondantes dans toutes les phases
@@ -463,8 +560,8 @@ export default function Alimentation() {
         );
       })()}
 
-      {/* ===== FRUITS & LÉGUMES DE SAISON ===== */}
-      {(() => {
+      {/* ===== FRUITS & LÉGUMES DE SAISON (masqué — voir SHOW_SEASONAL) ===== */}
+      {SHOW_SEASONAL && (() => {
         const currentMonth = new Date().getMonth() + 1;
         const seasonal = SEASONAL_FOODS[currentMonth];
         const monthNames = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
