@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
-import { UtensilsCrossed, CalendarDays, MessageCircle, LayoutGrid, Settings, LogOut } from 'lucide-react';
+import { UtensilsCrossed, CalendarDays, ChefHat, Refrigerator, Salad, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
+  { to: '/recettes', icon: ChefHat, label: 'Recettes' },
+  { to: '/mon-frigo', icon: Refrigerator, label: 'Frigo' },
   { to: '/dashboard', icon: CalendarDays, label: 'Cycle' },
-  { to: '/alimentation', icon: UtensilsCrossed, label: 'Alimentation' },
-  { to: '/chat', icon: MessageCircle, label: 'LUNA' },
-  { to: '/plus', icon: LayoutGrid, label: 'Plus' },
+  { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
+  { to: '/menu', icon: Salad, label: 'Menu' },
 ];
 
 export default function Sidebar() {
