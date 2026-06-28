@@ -1,15 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import { UtensilsCrossed, ChefHat, CalendarDays, MessageCircle, BookOpen } from 'lucide-react';
+import { UtensilsCrossed, ChefHat, CalendarDays, Refrigerator, LayoutGrid } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const leftItems = [
-  { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
   { to: '/recettes', icon: ChefHat, label: 'Recettes' },
+  { to: '/mon-frigo', icon: Refrigerator, label: 'Frigo' },
 ];
 
 const rightItems = [
-  { to: '/journal', icon: BookOpen, label: 'Journal' },
-  { to: '/chat', icon: MessageCircle, label: 'LUNA' },
+  { to: '/alimentation', icon: UtensilsCrossed, label: 'Nutrition' },
+  { to: '/plus', icon: LayoutGrid, label: 'Plus' },
 ];
 
 const centerItem = { to: '/dashboard', icon: CalendarDays, label: 'Cycle' };

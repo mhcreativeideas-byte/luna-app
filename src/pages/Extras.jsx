@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Dumbbell, Moon, ChevronRight, Sparkles } from 'lucide-react';
+import { Dumbbell, Moon, ChevronRight, Sparkles, BookOpen, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
@@ -156,8 +156,43 @@ export default function Extras() {
           Aller <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>plus loin</em>
         </h1>
         <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
-          Complète ta routine alimentaire avec des conseils sport et sommeil adaptés à ta phase.
+          Ton journal, ton sport, ton sommeil et ton assistante LUNA — tout est réuni ici.
         </p>
+      </motion.div>
+
+      {/* Journal Card */}
+      <motion.div variants={item}>
+        <Link
+          to="/journal"
+          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          style={{ backgroundColor: '#FDE8EB' }}
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-[16px] flex items-center justify-center" style={{ backgroundColor: '#C4727F20' }}>
+              <BookOpen size={22} style={{ color: '#C4727F' }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between">
+                <h2 className="font-display text-lg text-luna-text">Ton journal de bord</h2>
+                <ChevronRight size={18} className="text-luna-text-hint group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm font-body text-luna-text-muted mt-1 leading-relaxed">
+                Note ton humeur, ton énergie et tes symptômes, jour après jour.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {['Humeur', 'Énergie', 'Symptômes'].map((t, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-body font-medium px-3 py-1 rounded-full"
+                    style={{ backgroundColor: '#C4727F18', color: '#A85A66' }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Link>
       </motion.div>
 
       {/* Sport Card */}
@@ -216,6 +251,41 @@ export default function Extras() {
                     key={i}
                     className="text-xs font-body font-medium px-3 py-1 rounded-full"
                     style={{ backgroundColor: '#B09ACB18', color: '#7D6A96' }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Link>
+      </motion.div>
+
+      {/* LUNA chat Card */}
+      <motion.div variants={item}>
+        <Link
+          to="/chat"
+          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          style={{ backgroundColor: '#FFF3EB' }}
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-[16px] flex items-center justify-center" style={{ backgroundColor: '#E8A87C20' }}>
+              <MessageCircle size={22} style={{ color: '#E8A87C' }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between">
+                <h2 className="font-display text-lg text-luna-text">Discute avec LUNA</h2>
+                <ChevronRight size={18} className="text-luna-text-hint group-hover:translate-x-1 transition-transform" />
+              </div>
+              <p className="text-sm font-body text-luna-text-muted mt-1 leading-relaxed">
+                Pose tes questions sur ton cycle, ton alimentation, ton sport ou ton bien-être.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {['Conseils', 'Questions', 'Idées repas'].map((t, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-body font-medium px-3 py-1 rounded-full"
+                    style={{ backgroundColor: '#E8A87C18', color: '#C07A4A' }}
                   >
                     {t}
                   </span>
