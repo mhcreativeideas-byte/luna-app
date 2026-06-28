@@ -66,6 +66,7 @@ export default function Recettes() {
   const [selectedPhase, setSelectedPhase] = useState('current');
   const [openRecipe, setOpenRecipe] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [showRecipes, setShowRecipes] = useState(Boolean(nutrientFilter));
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
   const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
@@ -286,7 +287,7 @@ export default function Recettes() {
               {maxTime && <span> · 🕐 ≤ {maxTime} min</span>}
             </p>
           </div>
-          {(() => {
+          {showRecipes && (() => {
             const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0;
             return (
               <button
@@ -312,6 +313,20 @@ export default function Recettes() {
           })()}
         </div>
       </motion.div>
+
+      {/* Voir les recettes — grille masquée à l'arrivée pour alléger l'écran */}
+      {!showRecipes && (
+        <motion.div variants={item}>
+          <button
+            onClick={() => setShowRecipes(true)}
+            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-[18px] font-body font-bold text-sm transition-all active:scale-[0.99]"
+            style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
+          >
+            Voir les recettes{allRecipes.length > 0 ? ` (${allRecipes.length})` : ''}
+            <ChevronRight size={16} />
+          </button>
+        </motion.div>
+      )}
 
       {/* Nutrient filter banner */}
       {nutrientFilter && (
@@ -543,6 +558,7 @@ export default function Recettes() {
         )}
       </AnimatePresence>
 
+      {showRecipes && (<>
       {/* Meal type filter */}
       <motion.div variants={item}>
         <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-1">
@@ -632,6 +648,7 @@ export default function Recettes() {
           </div>
         )}
       </motion.div>
+      </>)}
 
       {/* Recipe Detail Modal */}
       <AnimatePresence>
