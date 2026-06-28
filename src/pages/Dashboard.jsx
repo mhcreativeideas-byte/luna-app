@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2, Heart } from 'lucide-react';
+import { Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2, Heart, Apple } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { getPhaseForDay, PHASES, PHASE_ORDER } from '../data/phases';
+import { findSymptomFood } from '../data/symptomFoods';
 
 const container = {
   hidden: { opacity: 0 },
@@ -321,6 +322,39 @@ export default function Dashboard() {
           <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
         </div>
       </motion.div>
+
+      {/* Boucle symptôme → aliment : conseil nutrition d'après le check-in */}
+      {(() => {
+        const symptoms = todayCheckIn?.symptoms ? Object.values(todayCheckIn.symptoms).flat() : [];
+        const advice = findSymptomFood(symptoms);
+        if (!advice) return null;
+        return (
+          <motion.div variants={item}>
+            <div
+              className="rounded-[26px] p-5"
+              style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <Apple size={15} style={{ color: phaseData.colorDark }} />
+                <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: phaseData.color }}>
+                  {advice.title}
+                </p>
+              </div>
+              <p className="text-sm font-body text-luna-text-body leading-relaxed">
+                {advice.why} Pense à : <span className="font-semibold">{advice.foods.join(', ')}</span>.
+              </p>
+              <button
+                onClick={() => navigate(`/recettes?nutrient=${encodeURIComponent(advice.nutrient)}`)}
+                className="mt-3 w-full flex items-center justify-center gap-2 py-3 rounded-[14px] text-[13px] font-body font-bold text-white transition-all active:scale-[0.99]"
+                style={{ backgroundColor: phaseData.color, boxShadow: `0 4px 14px ${phaseData.color}40` }}
+              >
+                Voir les recettes riches en {advice.nutrient.toLowerCase()}
+                <ChevronRight size={15} />
+              </button>
+            </div>
+          </motion.div>
+        );
+      })()}
 
       {/* ═══════════════════════════════════════════════════════ */}
       {/* CALENDRIER — merged from Calendar page                */}
