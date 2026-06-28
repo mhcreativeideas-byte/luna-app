@@ -2,7 +2,7 @@
 
 > Réponses prêtes pour le questionnaire « App Privacy » dans App Store Connect.
 > (Apple → ta fiche app → « Confidentialité de l'app »)
-> Basé sur une vérification réelle du code. Dernière mise à jour : 27/06/2026
+> Basé sur une vérification réelle du code. Dernière mise à jour : 28/06/2026
 
 ---
 
@@ -29,6 +29,8 @@ Pour chacune, les réponses sont les mêmes :
 | **Contenu utilisateur** → Photos | Photo de profil (avatar) |
 | **Contenu utilisateur** → Autre contenu | Journal, notes, check-ins, messages du chat |
 | **Identifiants** → ID utilisateur | Identifiant de compte (Supabase) |
+
+> **Note v1 (food-first) :** l'app v1 met en avant le **cycle, les check-ins, les recettes/favoris et le frigo**. Le **sport, le journal et le chat** sont masqués dans l'interface (code conservé). On **garde quand même** leurs déclarations ci-dessus : sur-déclarer est **sans risque** côté Apple, alors que sous-déclarer peut faire refuser l'app — et ces données seront réactivées si on réaffiche ces écrans.
 
 ---
 
