@@ -294,19 +294,28 @@ export default function MonFrigo() {
 
       {/* Header */}
       <motion.div variants={item}>
-        <div>
-          <h1 className="font-display text-2xl text-luna-text">Mon Frigo</h1>
-          <p className="text-xs font-body text-luna-text-hint mt-0.5">
-            Dis-nous ce que tu as, on te dit quoi cuisiner
-          </p>
+        <div
+          className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
+          style={{ backgroundColor: phaseData.bgColor, boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
+        >
+          🧊
         </div>
+        <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
+          {phaseData.shortName} · Mon frigo
+        </p>
+        <h1 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
+          Qu'est-ce qu'on <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>cuisine</em> ?
+        </h1>
+        <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
+          Dis-nous ce que tu as, on te dit quoi cuisiner.
+        </p>
       </motion.div>
 
       {/* Search input */}
       <motion.div variants={item} className="relative">
         <div
-          className="flex items-center gap-3 bg-white rounded-[18px] px-4 py-3.5"
-          style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.06)' }}
+          className="flex items-center gap-3 bg-white rounded-[20px] px-4 py-4"
+          style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
         >
           <Search size={18} className="text-luna-text-hint flex-shrink-0" />
           <input
@@ -430,7 +439,7 @@ export default function MonFrigo() {
       {/* Frigo items */}
       <motion.div variants={item}>
         {fridgeItems.length === 0 && !activeCategory ? (
-          <div className="text-center py-8 bg-white rounded-[20px]" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+          <div className="text-center py-8 bg-white rounded-[22px]" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
             <p className="text-4xl mb-3">🧊</p>
             <p className="text-sm font-body text-luna-text-muted mb-1">Ton frigo est vide !</p>
             <p className="text-xs font-body text-luna-text-hint">
@@ -499,7 +508,7 @@ export default function MonFrigo() {
           </div>
 
           {matchedRecipes.length === 0 ? (
-            <div className="text-center py-6 bg-white rounded-[20px]" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+            <div className="text-center py-6 bg-white rounded-[22px]" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
               <p className="text-sm font-body text-luna-text-muted mb-2">Ajoute plus d'ingrédients pour débloquer des recettes !</p>
               <Link
                 to="/recettes"
@@ -518,12 +527,12 @@ export default function MonFrigo() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.03 * Math.min(i, 10) }}
                   onClick={() => setOpenRecipe(i)}
-                  className="w-full bg-white rounded-[20px] p-4 text-left flex gap-4 group"
-                  style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
+                  className="w-full bg-white rounded-[22px] p-4 text-left flex gap-4 group active:scale-[0.98] transition-transform"
+                  style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
                 >
                   {/* Emoji thumbnail */}
                   <div
-                    className="w-20 h-20 rounded-[14px] flex-shrink-0 flex items-center justify-center relative"
+                    className="w-20 h-20 rounded-[16px] flex-shrink-0 flex items-center justify-center relative"
                     style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}20)` }}
                   >
                     <span className="text-3xl group-hover:scale-110 transition-transform duration-500">
