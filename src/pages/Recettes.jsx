@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, Refrigerator, ArrowRight, ChevronDown, RotateCcw } from 'lucide-react';
+import { ChevronLeft, Clock, X, Sparkles, Filter, Heart, ChevronDown, RotateCcw } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
@@ -282,27 +282,6 @@ export default function Recettes() {
           </div>
         </motion.div>
       )}
-
-      {/* CTA Mon Frigo */}
-      <motion.div variants={item}>
-        <Link
-          to="/mon-frigo"
-          className="flex items-center gap-3 bg-white rounded-[18px] px-4 py-3.5 group"
-          style={{ boxShadow: '0 2px 12px rgba(45, 34, 38, 0.05)' }}
-        >
-          <div
-            className="w-10 h-10 rounded-[12px] flex items-center justify-center flex-shrink-0"
-            style={{ backgroundColor: `${phaseData.color}15` }}
-          >
-            <Refrigerator size={18} style={{ color: phaseData.colorDark }} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-body font-semibold text-luna-text">Mon Frigo</p>
-            <p className="text-[11px] font-body text-luna-text-hint">Trouve une recette avec ce que tu as</p>
-          </div>
-          <ArrowRight size={16} style={{ color: phaseData.color }} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </motion.div>
 
       {/* Filter Panel (accordion) */}
       <AnimatePresence>
