@@ -336,9 +336,10 @@ export default function Journal() {
       {/* Hero */}
       <motion.div variants={item}>
         <div
-          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          className="rounded-[28px] px-6 pt-6 pb-7 relative overflow-hidden"
           style={{
             background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+            boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
           }}
         >
           <div
@@ -370,9 +371,10 @@ export default function Journal() {
         <motion.div variants={item}>
           <Link
             to="/checkin"
-            className="block rounded-[20px] p-5 text-center transition-all hover:shadow-md"
+            className="block rounded-[22px] p-5 text-center transition-all active:scale-[0.99]"
             style={{
               background: `linear-gradient(145deg, ${phaseData.color} 0%, ${phaseData.colorDark} 100%)`,
+              boxShadow: `0 10px 26px ${phaseData.color}38`,
             }}
           >
             <p className="text-white font-display text-lg mb-1">Comment tu te sens ?</p>
@@ -385,7 +387,7 @@ export default function Journal() {
       <>
           {/* Morning Ritual / Mindset */}
           <motion.div variants={item}>
-            <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
+            <div className="rounded-[28px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: `${phaseData.color}20` }}>
                   <Sparkles size={14} style={{ color: phaseData.color }} />
@@ -407,7 +409,7 @@ export default function Journal() {
 
           {/* Mood Tracker */}
           <motion.div variants={item}>
-            <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+            <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
               <h3 className="font-display text-lg text-luna-text mb-1">Humeur</h3>
               <p className="text-xs font-body text-luna-text-muted mb-4">Comment tu te sens aujourd'hui ?</p>
               <div className="flex justify-between mb-5">
@@ -468,7 +470,7 @@ export default function Journal() {
 
           {/* Journal Entry */}
           <motion.div variants={item}>
-            <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+            <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
               <div className="flex items-center gap-2 mb-3">
                 <Feather size={16} style={{ color: phaseData.color }} />
                 <h3 className="font-display text-base text-luna-text">Journal intime</h3>
@@ -495,7 +497,7 @@ export default function Journal() {
 
           {/* History with month navigation */}
           <motion.div variants={item}>
-            <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+            <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
               <button onClick={() => setShowHistory(!showHistory)} className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-2">
                   <History size={16} style={{ color: phaseData.color }} />

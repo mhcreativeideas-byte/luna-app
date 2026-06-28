@@ -116,7 +116,7 @@ function BreathingExercise({ phaseData, breathing }) {
   const phaseLabel = breathPhase === 'inspire' ? 'Inspire' : breathPhase === 'pause' ? 'Pause' : 'Expire';
 
   return (
-    <div className="rounded-[24px] p-6 text-center" style={{ backgroundColor: phaseData.bgColor }}>
+    <div className="rounded-[28px] p-6 text-center" style={{ backgroundColor: phaseData.bgColor }}>
       <h3 className="font-display text-base text-luna-text mb-1">Respiration guidée</h3>
       <p className="text-xs font-body text-luna-text-hint mb-4">
         {breathing?.name || 'Technique 4-7-8'}
@@ -185,13 +185,14 @@ export default function Sommeil() {
       {/* Hero */}
       <motion.div variants={item}>
         <div
-          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          className="rounded-[28px] px-6 pt-6 pb-7 relative overflow-hidden"
           style={{
             background: phase === 'menstrual'
               ? 'linear-gradient(145deg, #1a1520 0%, #2d1f2e 50%, #3a2535 100%)'
               : phase === 'luteal'
               ? 'linear-gradient(145deg, #2a1f35 0%, #3d2d4a 50%, #4a3560 100%)'
               : 'linear-gradient(145deg, #1a2030 0%, #2a3040 50%, #354050 100%)',
+            boxShadow: '0 10px 30px rgba(45,34,38,0.12)',
           }}
         >
           <div
@@ -218,7 +219,7 @@ export default function Sommeil() {
 
       {/* Sleep Goal */}
       <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] p-6 text-center" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+        <div className="bg-white rounded-[28px] p-6 text-center" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
           <div className="flex items-center justify-center gap-2 mb-2">
             <MoonIcon size={16} style={{ color: phaseData.color }} />
             <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">Sleep Goal</p>
@@ -242,7 +243,7 @@ export default function Sommeil() {
 
       {/* Evening Routine */}
       <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+        <div className="bg-white rounded-[28px] p-5" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
           <h2 className="font-display text-lg text-luna-text mb-1">Routine du soir</h2>
           <p className="text-xs font-body text-luna-text-hint mb-4">Adaptée à ta phase {phaseData.shortName.toLowerCase()}.</p>
 
@@ -267,7 +268,7 @@ export default function Sommeil() {
 
       {/* Phase-specific sleep tips */}
       <motion.div variants={item}>
-        <div className="rounded-[20px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
+        <div className="rounded-[22px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
           <h3 className="font-display text-base text-luna-text mb-3">Conseils sommeil · {phaseData.shortName}</h3>
           <div className="space-y-2.5">
             {phaseData.sleepTips.map((tip, i) => (

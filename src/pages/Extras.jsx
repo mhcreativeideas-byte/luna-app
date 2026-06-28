@@ -149,6 +149,12 @@ export default function Extras() {
       <BackButton />
       {/* Header */}
       <motion.div variants={item}>
+        <div
+          className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
+          style={{ backgroundColor: phaseData.bgColor, boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
+        >
+          {phaseData.icon}
+        </div>
         <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
           {phaseData.shortName} · Bien-être
         </p>
@@ -164,7 +170,7 @@ export default function Extras() {
       <motion.div variants={item}>
         <Link
           to="/journal"
-          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          className="block rounded-[28px] p-5 transition-all active:scale-[0.99] shadow-[0_8px_24px_rgba(45,34,38,0.05)] group"
           style={{ backgroundColor: '#FDE8EB' }}
         >
           <div className="flex items-start gap-4">
@@ -199,7 +205,7 @@ export default function Extras() {
       <motion.div variants={item}>
         <Link
           to="/sport"
-          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          className="block rounded-[28px] p-5 transition-all active:scale-[0.99] shadow-[0_8px_24px_rgba(45,34,38,0.05)] group"
           style={{ backgroundColor: '#EDF5ED' }}
         >
           <div className="flex items-start gap-4">
@@ -232,7 +238,7 @@ export default function Extras() {
       <motion.div variants={item}>
         <Link
           to="/sommeil"
-          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          className="block rounded-[28px] p-5 transition-all active:scale-[0.99] shadow-[0_8px_24px_rgba(45,34,38,0.05)] group"
           style={{ backgroundColor: '#F3EEF8' }}
         >
           <div className="flex items-start gap-4">
@@ -265,7 +271,7 @@ export default function Extras() {
       <motion.div variants={item}>
         <Link
           to="/chat"
-          className="block rounded-[24px] p-5 transition-all hover:shadow-md group"
+          className="block rounded-[28px] p-5 transition-all active:scale-[0.99] shadow-[0_8px_24px_rgba(45,34,38,0.05)] group"
           style={{ backgroundColor: '#FFF3EB' }}
         >
           <div className="flex items-start gap-4">
@@ -299,9 +305,9 @@ export default function Extras() {
       {/* Insight — change chaque jour */}
       <motion.div variants={item}>
         <div
-          className="rounded-[18px] bg-white relative overflow-hidden"
+          className="rounded-[22px] bg-white relative overflow-hidden"
           style={{
-            boxShadow: '0 3px 14px rgba(45,34,38,0.06)',
+            boxShadow: '0 8px 24px rgba(45,34,38,0.06)',
             borderLeft: `3px solid ${phaseData.color}`,
           }}
         >

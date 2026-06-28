@@ -94,9 +94,10 @@ export default function Sport() {
       {/* Hero */}
       <motion.div variants={item}>
         <div
-          className="rounded-[24px] px-6 pt-6 pb-7 relative overflow-hidden"
+          className="rounded-[28px] px-6 pt-6 pb-7 relative overflow-hidden"
           style={{
             background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
+            boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
           }}
         >
           <div
@@ -125,7 +126,7 @@ export default function Sport() {
 
       {/* Hero Card — recommandation du jour */}
       <motion.div variants={item}>
-        <div className="rounded-[24px] overflow-hidden relative" style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}>
+        <div className="rounded-[28px] overflow-hidden relative" style={{ boxShadow: '0 8px 28px rgba(45,34,38,0.07)' }}>
           {/* Hero avec icône */}
           <div
             className="relative px-5 pt-5 pb-4"
@@ -194,7 +195,7 @@ export default function Sport() {
 
       {/* Mon activité du jour — bloc unifié */}
       <motion.div variants={item}>
-        <div className="bg-white rounded-[24px] overflow-hidden" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+        <div className="bg-white rounded-[28px] overflow-hidden" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
 
           {/* En-tête simple */}
           <div className="p-5 pb-3">
@@ -463,8 +464,8 @@ export default function Sport() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06 }}
               onClick={() => setSelectedExercise(ex)}
-              className="w-full text-left bg-white rounded-[20px] overflow-hidden transition-all hover:shadow-md group"
-              style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}
+              className="w-full text-left bg-white rounded-[22px] overflow-hidden transition-all active:scale-[0.99] group"
+              style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
             >
               <div className="flex items-center p-4 gap-4">
                 {/* Icône */}
@@ -499,7 +500,7 @@ export default function Sport() {
 
       {/* À éviter */}
       <motion.div variants={item}>
-        <div className="rounded-[20px] p-5 bg-white" style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.04)' }}>
+        <div className="rounded-[22px] p-5 bg-white" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
           <h3 className="font-display text-base text-luna-text mb-3">À éviter en ce moment</h3>
           <div className="space-y-3">
             {exerciseData.avoid.map((a, i) => (
@@ -519,7 +520,7 @@ export default function Sport() {
 
       {/* Pourquoi */}
       <motion.div variants={item}>
-        <div className="rounded-[24px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
+        <div className="rounded-[28px] p-5" style={{ backgroundColor: phaseData.bgColor }}>
           <div className="flex items-center gap-2 mb-2">
             <Zap size={16} style={{ color: phaseData.colorDark }} />
             <h3 className="font-display text-base text-luna-text">Pourquoi ces recommandations ?</h3>
