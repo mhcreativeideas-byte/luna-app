@@ -198,17 +198,19 @@ export default function Dashboard() {
                     const isCurrentPhase = p.name === phase;
                     if (isCurrentPhase) {
                       return (
-                        <circle
+                        <motion.circle
                           key={p.name}
                           cx={cx} cy={cy} r={R}
                           fill="none"
                           stroke="url(#cycleRingGrad)"
                           strokeWidth={13}
                           strokeLinecap="round"
-                          strokeDasharray={`${dashLen} ${C - dashLen}`}
-                          strokeDashoffset={dashOffset}
+                          strokeDasharray={`${dashLen} ${C}`}
                           transform={`rotate(-90 ${cx} ${cy})`}
                           filter="url(#cycleRingGlow)"
+                          initial={{ strokeDashoffset: dashOffset + dashLen }}
+                          animate={{ strokeDashoffset: dashOffset }}
+                          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
                         />
                       );
                     }
@@ -229,11 +231,16 @@ export default function Dashboard() {
                   })}
 
                   {/* Point de progression lumineux */}
-                  <g transform={`rotate(${progressAngle} ${cx} ${cy})`}>
+                  <motion.g
+                    transform={`rotate(${progressAngle} ${cx} ${cy})`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.0, duration: 0.45 }}
+                  >
                     <circle cx={cx} cy={cy - R} r="11" fill={phaseData.color} opacity="0.45" filter="url(#cycleRingHalo)" />
                     <circle cx={cx} cy={cy - R} r="6" fill="#FFFFFF" stroke={phaseData.color} strokeWidth="2.5" />
                     <circle cx={cx} cy={cy - R} r="2.4" fill={cDark} />
-                  </g>
+                  </motion.g>
                 </>
               );
             })()}

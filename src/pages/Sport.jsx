@@ -244,7 +244,7 @@ export default function Sport() {
                           className="h-full rounded-full transition-all duration-500"
                           style={{
                             width: `${Math.min(((parseInt(stepsInput) || todayLog.steps) / 10000) * 100, 100)}%`,
-                            backgroundColor: phaseData.color,
+                            background: `linear-gradient(90deg, ${phaseData.color}80, ${phaseData.color})`,
                           }}
                         />
                       </div>
