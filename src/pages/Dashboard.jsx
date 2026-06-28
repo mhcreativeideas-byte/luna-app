@@ -129,7 +129,7 @@ export default function Dashboard() {
       </motion.div>
 
       {/* Cycle Circle — Phase-colored ring with LUNA logo */}
-      <motion.div variants={item} className="flex flex-col items-center bg-white rounded-[32px] px-5 py-7" style={{ boxShadow: '0 10px 34px rgba(45,34,38,0.07)' }}>
+      <motion.div variants={item} className="flex flex-col items-center bg-white rounded-[32px] px-5 py-7" style={{ boxShadow: `0 14px 38px ${phaseData.color}2B` }}>
         <div className="relative w-56 h-56">
           {/* LUNA logo watermark */}
           <img
@@ -146,6 +146,17 @@ export default function Dashboard() {
               const C = 2 * Math.PI * R;
               const cx = 100, cy = 100;
 
+              // Éclaircit une couleur hex vers le blanc (pour le départ du dégradé)
+              const lighten = (hex, amt) => {
+                const n = parseInt(hex.slice(1), 16);
+                const r = Math.round((((n >> 16) & 255) * (1 - amt)) + 255 * amt);
+                const g = Math.round((((n >> 8) & 255) * (1 - amt)) + 255 * amt);
+                const b = Math.round(((n & 255) * (1 - amt)) + 255 * amt);
+                return `rgb(${r},${g},${b})`;
+              };
+              const cDark = phaseData.colorDark || phaseData.color;
+              const cLight = lighten(phaseData.color, 0.42);
+
               const phases = [
                 { name: 'menstrual', start: 0, end: periodLength / cycleLength, color: '#D4727F' },
                 { name: 'follicular', start: periodLength / cycleLength, end: ovulatoryStart / cycleLength, color: '#7BAE7F' },
@@ -158,41 +169,71 @@ export default function Dashboard() {
 
               return (
                 <>
+                  <defs>
+                    <linearGradient id="cycleRingGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor={cLight} />
+                      <stop offset="55%" stopColor={phaseData.color} />
+                      <stop offset="100%" stopColor={cDark} />
+                    </linearGradient>
+                    <filter id="cycleRingGlow" x="-50%" y="-50%" width="200%" height="200%">
+                      <feGaussianBlur stdDeviation="2.4" result="b" />
+                      <feMerge>
+                        <feMergeNode in="b" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                    <filter id="cycleRingHalo" x="-100%" y="-100%" width="300%" height="300%">
+                      <feGaussianBlur stdDeviation="4" />
+                    </filter>
+                  </defs>
+
+                  {/* Rail discret en fond */}
+                  <circle cx={cx} cy={cy} r={R} fill="none" stroke={phaseData.color} strokeWidth={13} opacity={0.07} />
+
                   {phases.map((p, i) => {
                     const startAngle = p.start + (i === 0 ? 0 : gap / 2);
                     const endAngle = p.end - (i === phases.length - 1 ? 0 : gap / 2);
                     const dashLen = (endAngle - startAngle) * C;
                     const dashOffset = -(startAngle * C);
                     const isCurrentPhase = p.name === phase;
+                    if (isCurrentPhase) {
+                      return (
+                        <circle
+                          key={p.name}
+                          cx={cx} cy={cy} r={R}
+                          fill="none"
+                          stroke="url(#cycleRingGrad)"
+                          strokeWidth={13}
+                          strokeLinecap="round"
+                          strokeDasharray={`${dashLen} ${C - dashLen}`}
+                          strokeDashoffset={dashOffset}
+                          transform={`rotate(-90 ${cx} ${cy})`}
+                          filter="url(#cycleRingGlow)"
+                        />
+                      );
+                    }
                     return (
                       <circle
                         key={p.name}
                         cx={cx} cy={cy} r={R}
                         fill="none"
                         stroke={p.color}
-                        strokeWidth={isCurrentPhase ? 12 : 8}
+                        strokeWidth={6}
                         strokeLinecap="round"
                         strokeDasharray={`${dashLen} ${C - dashLen}`}
                         strokeDashoffset={dashOffset}
                         transform={`rotate(-90 ${cx} ${cy})`}
-                        opacity={isCurrentPhase ? 1 : 0.35}
+                        opacity={0.22}
                       />
                     );
                   })}
 
-                  <circle
-                    cx={cx} cy={cy - R} r="6"
-                    fill="#FFFFFF"
-                    stroke={phaseData.color}
-                    strokeWidth="3"
-                    transform={`rotate(${progressAngle} ${cx} ${cy})`}
-                    style={{ filter: `drop-shadow(0 0 4px ${phaseData.color}80)` }}
-                  />
-                  <circle
-                    cx={cx} cy={cy - R} r="2.5"
-                    fill={phaseData.colorDark || phaseData.color}
-                    transform={`rotate(${progressAngle} ${cx} ${cy})`}
-                  />
+                  {/* Point de progression lumineux */}
+                  <g transform={`rotate(${progressAngle} ${cx} ${cy})`}>
+                    <circle cx={cx} cy={cy - R} r="11" fill={phaseData.color} opacity="0.45" filter="url(#cycleRingHalo)" />
+                    <circle cx={cx} cy={cy - R} r="6" fill="#FFFFFF" stroke={phaseData.color} strokeWidth="2.5" />
+                    <circle cx={cx} cy={cy - R} r="2.4" fill={cDark} />
+                  </g>
                 </>
               );
             })()}
