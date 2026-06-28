@@ -20,59 +20,32 @@ const item = {
 
 const MONTH_NAMES = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 
-const moods = [
-  { emoji: '😊', label: 'Super', value: 5 },
-  { emoji: '🙂', label: 'Bien', value: 4 },
-  { emoji: '😐', label: 'Neutre', value: 3 },
-  { emoji: '😔', label: 'Pas top', value: 2 },
-  { emoji: '😢', label: 'Difficile', value: 1 },
-];
-
-function getMonthEntries(entries, year, month) {
-  return entries.filter((e) => { const d = new Date(e.date); return d.getFullYear() === year && d.getMonth() === month; });
-}
-function getMonthSportSessions(sessions, year, month) {
-  return (sessions || []).filter((s) => { const d = new Date(s.date); return d.getFullYear() === year && d.getMonth() === month; });
-}
-function getMonthSportLogs(logs, year, month) {
-  return (logs || []).filter((l) => { const d = new Date(l.date); return d.getFullYear() === year && d.getMonth() === month; });
+function getMonthCheckIns(checkIns, year, month) {
+  return (checkIns || []).filter((c) => { const d = new Date(c.date); return d.getFullYear() === year && d.getMonth() === month; });
 }
 
-function computeMonthStats(entries, sportSessions = [], sportLogs = []) {
-  if (!entries.length && !sportSessions.length && !sportLogs.length) return null;
-  const energies = entries.filter((e) => e.energy).map((e) => e.energy);
-  const moodValues = entries.filter((e) => e.mood).map((e) => {
-    const m = moods.find((mo) => mo.label === e.mood);
-    return m ? m.value : 3;
-  });
-  const allSymptoms = entries.flatMap((e) => e.symptoms || []);
+function computeMonthStats(checkIns) {
+  if (!checkIns.length) return null;
+  const energies = checkIns.filter((c) => typeof c.energy === 'number').map((c) => c.energy);
+  const allSymptoms = checkIns.flatMap((c) => Object.values(c.symptoms || {}).flat());
   const symptomCounts = {};
   allSymptoms.forEach((s) => { symptomCounts[s] = (symptomCounts[s] || 0) + 1; });
   const topSymptoms = Object.entries(symptomCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
   const energyByPhase = {};
-  entries.forEach((e) => {
-    if (e.phase && e.energy) {
-      if (!energyByPhase[e.phase]) energyByPhase[e.phase] = [];
-      energyByPhase[e.phase].push(e.energy);
+  checkIns.forEach((c) => {
+    if (c.phase && typeof c.energy === 'number') {
+      if (!energyByPhase[c.phase]) energyByPhase[c.phase] = [];
+      energyByPhase[c.phase].push(c.energy);
     }
   });
   const avgEnergyByPhase = {};
   Object.entries(energyByPhase).forEach(([p, vals]) => {
-    avgEnergyByPhase[p] = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length * 10) / 10;
+    avgEnergyByPhase[p] = Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
   });
-  const totalSportSessions = sportSessions.length;
-  const sportByPhase = {};
-  sportSessions.forEach((s) => { if (s.phase) sportByPhase[s.phase] = (sportByPhase[s.phase] || 0) + 1; });
-  const stepsData = sportLogs.filter((l) => l.steps > 0).map((l) => l.steps);
-  const avgSteps = stepsData.length ? Math.round(stepsData.reduce((a, b) => a + b, 0) / stepsData.length) : 0;
-  const allCustomActivities = sportLogs.flatMap((l) => l.activities || []);
-  const totalCustomSessions = allCustomActivities.length;
-  const totalCustomDuration = allCustomActivities.reduce((sum, a) => sum + (a.duration || 0), 0);
   return {
-    totalEntries: entries.length,
-    avgEnergy: energies.length ? Math.round(energies.reduce((a, b) => a + b, 0) / energies.length * 10) / 10 : null,
-    avgMood: moodValues.length ? Math.round(moodValues.reduce((a, b) => a + b, 0) / moodValues.length * 10) / 10 : null,
-    topSymptoms, avgEnergyByPhase, totalSportSessions, sportByPhase, avgSteps, totalCustomSessions, totalCustomDuration,
+    totalEntries: checkIns.length,
+    avgEnergy: energies.length ? Math.round(energies.reduce((a, b) => a + b, 0) / energies.length) : null,
+    topSymptoms, avgEnergyByPhase,
   };
 }
 
@@ -94,22 +67,18 @@ function ProgressBar({ value, max = 10, color }) {
 }
 
 function MonthlyReport() {
-  const { cycleInfo, journalEntries, sportSessions, sportLogs, cycleLength, periodLength } = useCycle();
+  const { cycleInfo, checkIns, favorites, cycleLength, periodLength } = useCycle();
   const now = new Date();
   const [reportMonth, setReportMonth] = useState(now.getMonth());
   const [reportYear, setReportYear] = useState(now.getFullYear());
 
-  const currentMonthEntries = useMemo(() => getMonthEntries(journalEntries, reportYear, reportMonth), [journalEntries, reportYear, reportMonth]);
-  const currentMonthSport = useMemo(() => getMonthSportSessions(sportSessions, reportYear, reportMonth), [sportSessions, reportYear, reportMonth]);
-  const currentMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, reportYear, reportMonth), [sportLogs, reportYear, reportMonth]);
+  const currentMonthCheckIns = useMemo(() => getMonthCheckIns(checkIns, reportYear, reportMonth), [checkIns, reportYear, reportMonth]);
   const prevMo = reportMonth === 0 ? 11 : reportMonth - 1;
   const prevYr = reportMonth === 0 ? reportYear - 1 : reportYear;
-  const prevMonthEntries = useMemo(() => getMonthEntries(journalEntries, prevYr, prevMo), [journalEntries, prevYr, prevMo]);
-  const prevMonthSport = useMemo(() => getMonthSportSessions(sportSessions, prevYr, prevMo), [sportSessions, prevYr, prevMo]);
-  const prevMonthLogs = useMemo(() => getMonthSportLogs(sportLogs, prevYr, prevMo), [sportLogs, prevYr, prevMo]);
+  const prevMonthCheckIns = useMemo(() => getMonthCheckIns(checkIns, prevYr, prevMo), [checkIns, prevYr, prevMo]);
 
-  const currentStats = useMemo(() => computeMonthStats(currentMonthEntries, currentMonthSport, currentMonthLogs), [currentMonthEntries, currentMonthSport, currentMonthLogs]);
-  const prevStats = useMemo(() => computeMonthStats(prevMonthEntries, prevMonthSport, prevMonthLogs), [prevMonthEntries, prevMonthSport, prevMonthLogs]);
+  const currentStats = useMemo(() => computeMonthStats(currentMonthCheckIns), [currentMonthCheckIns]);
+  const prevStats = useMemo(() => computeMonthStats(prevMonthCheckIns), [prevMonthCheckIns]);
 
   const navPrev = () => { if (reportMonth === 0) { setReportMonth(11); setReportYear(reportYear - 1); } else setReportMonth(reportMonth - 1); };
   const navNext = () => {
@@ -120,28 +89,15 @@ function MonthlyReport() {
   const insights = useMemo(() => {
     const msgs = [];
     if (!currentStats) return msgs;
-    if (currentStats.avgEnergy && prevStats?.avgEnergy) {
+    if (currentStats.avgEnergy != null && prevStats?.avgEnergy != null) {
       const diff = currentStats.avgEnergy - prevStats.avgEnergy;
-      if (diff > 0.5) msgs.push(`Ton énergie moyenne a augmenté de ${Math.round(diff * 10) / 10} points ce mois.`);
-      else if (diff < -0.5) msgs.push(`Ton énergie était un peu plus basse ce mois. Écoute ton corps.`);
+      if (diff > 5) msgs.push(`Ton énergie moyenne a augmenté de ${diff} points ce mois.`);
+      else if (diff < -5) msgs.push('Ton énergie était un peu plus basse ce mois. Écoute ton corps.');
       else msgs.push('Ton énergie est restée stable par rapport au mois dernier.');
     }
-    if (currentStats.totalEntries > 0) msgs.push(`Tu as rempli ton journal ${currentStats.totalEntries} jour${currentStats.totalEntries > 1 ? 's' : ''} ce mois.`);
-    if (currentStats.avgEnergyByPhase.follicular > 7) msgs.push('Ton énergie en phase folliculaire est excellente — tu en profites bien !');
+    if (currentStats.totalEntries > 0) msgs.push(`Tu as fait ${currentStats.totalEntries} check-in${currentStats.totalEntries > 1 ? 's' : ''} ce mois.`);
+    if (currentStats.avgEnergyByPhase.follicular > 70) msgs.push('Ton énergie en phase folliculaire est excellente — tu en profites bien !');
     if (currentStats.topSymptoms.length > 0) { const top = currentStats.topSymptoms[0]; msgs.push(`"${top[0]}" est ton ressenti le plus fréquent ce mois (${top[1]}x).`); }
-    if (currentStats.totalSportSessions > 0) {
-      if (prevStats?.totalSportSessions) {
-        const diff = currentStats.totalSportSessions - prevStats.totalSportSessions;
-        if (diff > 0) msgs.push(`Tu as fait ${diff} séance${diff > 1 ? 's' : ''} de plus que le mois dernier. Continue !`);
-        else if (diff < 0) msgs.push(`Un peu moins de sport ce mois. Écoute ton corps, chaque mouvement compte.`);
-        else msgs.push(`${currentStats.totalSportSessions} séances ce mois, comme le mois dernier. Belle régularité !`);
-      } else msgs.push(`Tu as bougé ${currentStats.totalSportSessions} fois ce mois. Ton corps te remercie !`);
-    }
-    if (currentStats.avgSteps > 0) {
-      if (currentStats.avgSteps >= 10000) msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne — objectif atteint !`);
-      else msgs.push(`${(currentStats.avgSteps / 1000).toFixed(1)}k pas/jour en moyenne. Chaque pas compte !`);
-    }
-    if (currentStats.totalCustomSessions > 0) msgs.push(`${currentStats.totalCustomSessions} activité${currentStats.totalCustomSessions > 1 ? 's' : ''} pour ${currentStats.totalCustomDuration} min ce mois.`);
     return msgs;
   }, [currentStats, prevStats]);
 
@@ -182,7 +138,14 @@ function MonthlyReport() {
         {!currentStats && (
           <div className="bg-white/60 rounded-[22px] p-6 text-center">
             <BarChart3 size={32} className="mx-auto mb-2 text-luna-text-hint opacity-30" />
-            <p className="text-sm font-body text-luna-text-muted">Remplis ton journal pour voir ton rapport ici.</p>
+            <p className="text-sm font-body text-luna-text-muted mb-3">Fais ton check-in du jour pour voir ton rapport ici.</p>
+            <Link
+              to="/checkin"
+              className="inline-block text-xs font-body font-semibold px-4 py-2 rounded-pill text-white"
+              style={{ backgroundColor: phaseData.color }}
+            >
+              Faire mon check-in
+            </Link>
           </div>
         )}
 
@@ -200,50 +163,32 @@ function MonthlyReport() {
                 </div>
                 <div className="flex-1 p-2 rounded-[12px] bg-gray-50">
                   <p className="text-lg font-display font-bold text-luna-text">{currentStats.totalEntries}</p>
-                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Jours suivis</p>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Check-ins</p>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div className="text-center p-2 rounded-[12px] bg-gray-50">
                   <div className="flex items-center justify-center gap-1">
-                    <p className="text-base font-display font-bold text-luna-text">{currentStats.totalSportSessions}</p>
-                    {prevStats && <TrendIcon current={currentStats.totalSportSessions} previous={prevStats.totalSportSessions} />}
-                  </div>
-                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Sport</p>
-                </div>
-                <div className="text-center p-2 rounded-[12px] bg-gray-50">
-                  <div className="flex items-center justify-center gap-1">
-                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgEnergy || '—'}</p>
+                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgEnergy != null ? `${currentStats.avgEnergy}%` : '—'}</p>
                     <TrendIcon current={currentStats.avgEnergy} previous={prevStats?.avgEnergy} />
                   </div>
-                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Énergie</p>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Énergie moy.</p>
                 </div>
                 <div className="text-center p-2 rounded-[12px] bg-gray-50">
-                  <div className="flex items-center justify-center gap-1">
-                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgMood || '—'}</p>
-                    <TrendIcon current={currentStats.avgMood} previous={prevStats?.avgMood} />
-                  </div>
-                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Humeur</p>
+                  <p className="text-base font-display font-bold text-luna-text">{favorites?.length || 0}</p>
+                  <p className="text-[8px] font-body text-luna-text-hint uppercase">Recettes ❤️</p>
                 </div>
               </div>
-              {prevStats && (
+              {prevStats && currentStats.avgEnergy != null && prevStats.avgEnergy != null && (
                 <div className="mt-3 pt-3 border-t border-gray-50">
                   <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1.5">
                     vs {MONTH_NAMES[prevMo]}
                   </p>
-                  <div className="flex gap-4">
-                    <div className="flex items-center gap-1">
-                      <TrendIcon current={currentStats.avgEnergy} previous={prevStats.avgEnergy} />
-                      <span className="text-[10px] font-body text-luna-text-muted">
-                        Énergie {currentStats.avgEnergy && prevStats.avgEnergy ? (currentStats.avgEnergy > prevStats.avgEnergy ? '+' : '') + (Math.round((currentStats.avgEnergy - prevStats.avgEnergy) * 10) / 10) : '—'}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <TrendIcon current={currentStats.totalSportSessions} previous={prevStats.totalSportSessions} />
-                      <span className="text-[10px] font-body text-luna-text-muted">
-                        Sport {currentStats.totalSportSessions > prevStats.totalSportSessions ? '+' : ''}{currentStats.totalSportSessions - prevStats.totalSportSessions}
-                      </span>
-                    </div>
+                  <div className="flex items-center gap-1">
+                    <TrendIcon current={currentStats.avgEnergy} previous={prevStats.avgEnergy} />
+                    <span className="text-[10px] font-body text-luna-text-muted">
+                      Énergie {(currentStats.avgEnergy > prevStats.avgEnergy ? '+' : '') + (currentStats.avgEnergy - prevStats.avgEnergy)} pts
+                    </span>
                   </div>
                 </div>
               )}
@@ -266,11 +211,11 @@ function MonthlyReport() {
                             <span className="text-[11px] font-body font-semibold text-luna-text">{pd.shortName}</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <span className="text-xs font-display font-bold" style={{ color: pd.colorDark }}>{val}/10</span>
+                            <span className="text-xs font-display font-bold" style={{ color: pd.colorDark }}>{val}%</span>
                             {prevVal && <TrendIcon current={val} previous={prevVal} />}
                           </div>
                         </div>
-                        <ProgressBar value={val} max={10} color={pd.color} />
+                        <ProgressBar value={val} max={100} color={pd.color} />
                       </div>
                     );
                   })}
@@ -314,7 +259,7 @@ function MonthlyReport() {
             )}
 
             <p className="text-[10px] font-body text-luna-text-hint text-center px-4">
-              📊 Plus tu remplis ton journal, plus ton rapport sera précis.
+              📊 Plus tu fais de check-ins, plus ton rapport sera précis.
             </p>
           </>
         )}
