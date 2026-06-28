@@ -67,6 +67,7 @@ export default function Recettes() {
   const [openRecipe, setOpenRecipe] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
   const [showRecipes, setShowRecipes] = useState(Boolean(nutrientFilter));
+  const [favRecipes, setFavRecipes] = useState(null);
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
   const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
@@ -91,6 +92,27 @@ export default function Recettes() {
     });
     return () => { cancelled = true; };
   }, [activePhase]);
+
+  // Favoris inter-phases : charge toutes les phases une fois, quand on ouvre
+  // « Mes favoris », pour montrer un favori quelle que soit sa phase d'origine.
+  useEffect(() => {
+    if (selectedMeal !== 'favorites' || favRecipes) return;
+    let cancelled = false;
+    Promise.all(
+      Object.entries(RECIPE_LOADERS).map(([ph, loader]) => loader().then((data) => ({ ph, data })))
+    ).then((results) => {
+      if (cancelled) return;
+      const list = [];
+      results.forEach(({ ph, data }) => {
+        Object.entries(data).forEach(([mealType, items]) => {
+          if (!Array.isArray(items)) return;
+          items.forEach((r) => list.push({ ...r, mealType, phase: ph }));
+        });
+      });
+      setFavRecipes(list);
+    });
+    return () => { cancelled = true; };
+  }, [selectedMeal, favRecipes]);
 
   // Filtrage alimentaire selon le profil
   const requiredTags = (() => {
@@ -210,7 +232,11 @@ export default function Recettes() {
     return labels.join(' · ');
   })();
 
-  const openRecipeData = openRecipe !== null ? allRecipes[openRecipe] : null;
+  // En mode favoris on affiche les favoris de toutes les phases ; sinon la phase courante
+  const isFavMode = selectedMeal === 'favorites';
+  const recipesLoading = isFavMode ? !favRecipes : !recipes;
+  const displayedRecipes = isFavMode ? (favRecipes || []).filter((r) => isFavorite(r.name)) : allRecipes;
+  const openRecipeData = openRecipe !== null ? displayedRecipes[openRecipe] : null;
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
@@ -314,9 +340,9 @@ export default function Recettes() {
         </div>
       </motion.div>
 
-      {/* Voir les recettes — grille masquée à l'arrivée pour alléger l'écran */}
+      {/* Voir les recettes / Mes favoris — grille masquée à l'arrivée pour alléger l'écran */}
       {!showRecipes && (
-        <motion.div variants={item}>
+        <motion.div variants={item} className="space-y-2">
           <button
             onClick={() => setShowRecipes(true)}
             className="w-full flex items-center justify-center gap-2 py-3.5 rounded-[18px] font-body font-bold text-sm transition-all active:scale-[0.99]"
@@ -325,6 +351,16 @@ export default function Recettes() {
             Voir les recettes{allRecipes.length > 0 ? ` (${allRecipes.length})` : ''}
             <ChevronRight size={16} />
           </button>
+          {favorites.length > 0 && (
+            <button
+              onClick={() => { setSelectedMeal('favorites'); setShowRecipes(true); }}
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-[18px] font-body font-semibold text-sm bg-white transition-all active:scale-[0.99]"
+              style={{ color: phaseData.colorDark, boxShadow: '0 2px 10px rgba(45,34,38,0.05)' }}
+            >
+              <Heart size={15} className="fill-red-400 text-red-400" />
+              Mes favoris ({favorites.length})
+            </button>
+          )}
         </motion.div>
       )}
 
@@ -586,20 +622,20 @@ export default function Recettes() {
 
       {/* Recipe Grid */}
       <motion.div variants={item}>
-        {!recipes ? (
+        {recipesLoading ? (
           <div className="text-center py-12">
             <img src="/logo-luna.png" alt="" className="w-16 mx-auto opacity-30 animate-pulse" />
           </div>
-        ) : allRecipes.length === 0 ? (
+        ) : displayedRecipes.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-4xl mb-3">🍽️</p>
+            <p className="text-4xl mb-3">{isFavMode ? '❤️' : '🍽️'}</p>
             <p className="text-sm font-body text-luna-text-muted">
-              Aucune recette pour ce filtre.
+              {isFavMode ? 'Aucune recette en favori pour l\'instant. Touche le ❤️ sur une recette pour la retrouver ici.' : 'Aucune recette pour ce filtre.'}
             </p>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-3">
-            {allRecipes.map((recipe, i) => (
+            {displayedRecipes.map((recipe, i) => (
               <motion.div
                 key={`${recipe.mealType}-${i}`}
                 initial={{ opacity: 0, scale: 0.95 }}
