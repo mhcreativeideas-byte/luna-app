@@ -6,7 +6,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
 
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 8;
 
 const goalOptions = [
   { id: 'food', label: 'Mieux manger', icon: '🥗' },
@@ -64,12 +64,14 @@ const cookingTimeOptions = [
 
 // Step backgrounds
 const STEP_COLORS = [
-  { bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)', accent: '#C4727F' },
-  { bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)', accent: '#9B7FB8' },
-  { bg: 'linear-gradient(180deg, #E8F5E9 0%, #FAF7F5 100%)', accent: '#6B9E76' },
-  { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#D4846A' },
-  { bg: 'linear-gradient(180deg, #FDE8D8 0%, #FAF7F5 100%)', accent: '#E8946A' },
-  null, // dynamic based on phase
+  { bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)', accent: '#C4727F' }, // 0 prénom — rose
+  { bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)', accent: '#9B7FB8' }, // 1 cycle — lavande
+  { bg: 'linear-gradient(180deg, #E8F5E9 0%, #FAF7F5 100%)', accent: '#6B9E76' }, // 2 régime — vert
+  { bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)', accent: '#B09ACB' }, // 3 santé — lavande
+  { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#D4846A' }, // 4 cuisine — pêche
+  { bg: 'linear-gradient(180deg, #FDE8D8 0%, #FAF7F5 100%)', accent: '#E8946A' }, // 5 allergies — abricot
+  { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#E8946A' }, // 6 objectifs — pêche
+  null, // 7 récap — dynamique selon la phase
 ];
 
 // Personalized message based on health/diet
@@ -260,22 +262,27 @@ export default function Onboarding() {
 
   return (
     <div
-      className="min-h-[100dvh] flex flex-col px-4 transition-all duration-500"
+      className="h-[100dvh] overflow-y-auto px-4 transition-all duration-500"
       style={{
-        background: step < 5 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5'),
-        paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
-        paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+        background: step < 7 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5'),
+        WebkitOverflowScrolling: 'touch',
       }}
     >
-      <div className="w-full max-w-md mx-auto my-auto">
+      <div
+        className="w-full max-w-md mx-auto min-h-full flex flex-col justify-center"
+        style={{
+          paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+        }}
+      >
         {/* Progress dots */}
-        <div className="flex justify-center gap-2 mb-8">
+        <div className="flex justify-center gap-2 mb-6">
           {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
             <motion.div
               key={i}
               animate={{
                 width: i === step ? 24 : 8,
-                backgroundColor: i <= step ? (step < 5 ? stepColor?.accent : (info ? PHASES[info.phase].color : '#C4727F')) : '#E0D5D8',
+                backgroundColor: i <= step ? (step < 7 ? stepColor?.accent : (info ? PHASES[info.phase].color : '#C4727F')) : '#E0D5D8',
               }}
               className="h-2 rounded-full"
               transition={{ duration: 0.3 }}
@@ -293,15 +300,15 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-8"
+              className="bg-white rounded-[24px] p-6"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="text-center mb-8">
+              <div className="text-center mb-5">
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', delay: 0.2 }}
-                  className="text-5xl block mb-4"
+                  className="text-4xl block mb-3"
                 >
                   👋
                 </motion.span>
@@ -332,15 +339,15 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-8"
+              className="bg-white rounded-[24px] p-6"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="text-center mb-6">
+              <div className="text-center mb-5">
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', delay: 0.2 }}
-                  className="text-5xl block mb-4"
+                  className="text-4xl block mb-3"
                 >
                   🌙
                 </motion.span>
@@ -400,7 +407,7 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 2: Alimentation + Sante */}
+          {/* Step 2: Régime alimentaire */}
           {step === 2 && (
             <motion.div
               key="step2"
@@ -409,91 +416,46 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-8"
+              className="bg-white rounded-[24px] p-6"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="text-center mb-6">
+              <div className="text-center mb-5">
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', delay: 0.2 }}
-                  className="text-5xl block mb-4"
+                  className="text-4xl block mb-3"
                 >
                   🥑
                 </motion.span>
                 <h2 className="font-display text-2xl text-luna-text mb-2">
-                  Ton alimentation & ta santé
+                  Comment tu manges ?
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Pour adapter chaque conseil à toi.
+                  Pour adapter chaque recette à toi.
                 </p>
               </div>
-
-              <div className="space-y-5">
-                {/* Diet */}
-                <div>
-                  <label className="block text-xs font-semibold text-luna-text-hint mb-3 font-body uppercase tracking-wider">
-                    Comment tu manges ?
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {dietOptions.map(({ id, icon }) => (
-                      <motion.button
-                        key={id}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => toggleArray('dietPreferences', id)}
-                        className={`flex items-center gap-2 px-3.5 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
-                          form.dietPreferences.includes(id)
-                            ? 'border-green-400 bg-green-50 text-green-700'
-                            : 'border-gray-100 bg-white text-luna-text-muted hover:border-green-200'
-                        }`}
-                      >
-                        <span className="text-base">{icon}</span>
-                        {id}
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Health */}
-                <div>
-                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Une condition à connaître ? <span className="font-normal lowercase">(optionnel)</span>
-                  </label>
-                  <div className="space-y-2">
-                    {healthOptions.map(({ id, icon, desc }) => (
-                      <motion.button
-                        key={id}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => toggleArray('healthIssues', id)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
-                          form.healthIssues.includes(id)
-                            ? 'border-luna-lavender bg-luna-lavender/10'
-                            : 'border-gray-100 bg-white hover:border-luna-lavender/30'
-                        }`}
-                      >
-                        <span className="text-2xl flex-shrink-0">{icon}</span>
-                        <div className="min-w-0">
-                          <p className={`text-sm font-semibold font-body ${form.healthIssues.includes(id) ? 'text-luna-lavender-dark' : 'text-luna-text'}`}>{id}</p>
-                          <p className="text-xs text-luna-text-muted font-body truncate">{desc}</p>
-                        </div>
-                        {form.healthIssues.includes(id) && (
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className="ml-auto flex-shrink-0 w-5 h-5 rounded-full bg-luna-lavender flex items-center justify-center"
-                          >
-                            <Check size={12} className="text-white" />
-                          </motion.div>
-                        )}
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
+              <div className="flex flex-wrap justify-center gap-2.5">
+                {dietOptions.map(({ id, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleArray('dietPreferences', id)}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
+                      form.dietPreferences.includes(id)
+                        ? 'border-green-400 bg-green-50 text-green-700'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-green-200'
+                    }`}
+                  >
+                    <span className="text-base">{icon}</span>
+                    {id}
+                  </motion.button>
+                ))}
               </div>
             </motion.div>
           )}
 
-          {/* Step 3: Cuisine & Allergies */}
+          {/* Step 3: Santé */}
           {step === 3 && (
             <motion.div
               key="step3"
@@ -502,15 +464,75 @@ export default function Onboarding() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-8"
+              className="bg-white rounded-[24px] p-6"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="text-center mb-6">
+              <div className="text-center mb-5">
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', delay: 0.2 }}
-                  className="text-5xl block mb-4"
+                  className="text-4xl block mb-3"
+                >
+                  🩺
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Une condition à connaître ?
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Optionnel — pour des conseils encore plus justes.
+                </p>
+              </div>
+              <div className="space-y-2">
+                {healthOptions.map(({ id, icon, desc }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => toggleArray('healthIssues', id)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                      form.healthIssues.includes(id)
+                        ? 'border-luna-lavender bg-luna-lavender/10'
+                        : 'border-gray-100 bg-white hover:border-luna-lavender/30'
+                    }`}
+                  >
+                    <span className="text-2xl flex-shrink-0">{icon}</span>
+                    <div className="min-w-0">
+                      <p className={`text-sm font-semibold font-body ${form.healthIssues.includes(id) ? 'text-luna-lavender-dark' : 'text-luna-text'}`}>{id}</p>
+                      <p className="text-xs text-luna-text-muted font-body truncate">{desc}</p>
+                    </div>
+                    {form.healthIssues.includes(id) && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="ml-auto flex-shrink-0 w-5 h-5 rounded-full bg-luna-lavender flex items-center justify-center"
+                      >
+                        <Check size={12} className="text-white" />
+                      </motion.div>
+                    )}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Step 4: En cuisine (niveau + temps) */}
+          {step === 4 && (
+            <motion.div
+              key="step4"
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-[24px] p-6"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
+            >
+              <div className="text-center mb-5">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-4xl block mb-3"
                 >
                   👩‍🍳
                 </motion.span>
@@ -518,11 +540,11 @@ export default function Onboarding() {
                   En cuisine
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Pour te proposer des recettes qui te correspondent.
+                  Pour des recettes qui te ressemblent.
                 </p>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {/* Cooking level */}
                 <div>
                   <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
@@ -534,7 +556,7 @@ export default function Onboarding() {
                         key={id}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => updateForm('cookingLevel', id)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                        className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-[16px] text-left transition-all border-2 ${
                           form.cookingLevel === id
                             ? 'border-orange-300 bg-orange-50'
                             : 'border-gray-100 bg-white hover:border-orange-200'
@@ -561,7 +583,7 @@ export default function Onboarding() {
                         key={id}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => updateForm('cookingTime', id)}
-                        className={`flex flex-col items-center gap-1 px-3 py-3.5 rounded-[16px] text-center transition-all border-2 ${
+                        className={`flex flex-col items-center gap-1 px-3 py-3 rounded-[16px] text-center transition-all border-2 ${
                           form.cookingTime === id
                             ? 'border-orange-300 bg-orange-50'
                             : 'border-gray-100 bg-white hover:border-orange-200'
@@ -574,52 +596,76 @@ export default function Onboarding() {
                     ))}
                   </div>
                 </div>
-
-                {/* Allergies */}
-                <div>
-                  <label className="block text-xs font-semibold text-luna-text-hint mb-2 font-body uppercase tracking-wider">
-                    Allergies alimentaires <span className="font-normal lowercase">(optionnel)</span>
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {allergyOptions.map(({ id, icon }) => (
-                      <motion.button
-                        key={id}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => toggleArray('allergies', id)}
-                        className={`flex items-center gap-1.5 px-3 py-2 rounded-pill text-xs font-body font-semibold transition-all border-2 ${
-                          form.allergies.includes(id)
-                            ? 'border-red-300 bg-red-50 text-red-700'
-                            : 'border-gray-100 bg-white text-luna-text-muted hover:border-red-200'
-                        }`}
-                      >
-                        <span className="text-sm">{icon}</span>
-                        {id}
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
               </div>
             </motion.div>
           )}
 
-          {/* Step 4: Objectifs */}
-          {step === 4 && (
+          {/* Step 5: Allergies */}
+          {step === 5 && (
             <motion.div
-              key="step4"
+              key="step5"
               variants={slideVariants}
               initial="enter"
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-8"
+              className="bg-white rounded-[24px] p-6"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
-              <div className="text-center mb-6">
+              <div className="text-center mb-5">
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', delay: 0.2 }}
-                  className="text-5xl block mb-4"
+                  className="text-4xl block mb-3"
+                >
+                  🥜
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Des allergies ?
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Optionnel — on écartera ces ingrédients de tes recettes.
+                </p>
+              </div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {allergyOptions.map(({ id, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleArray('allergies', id)}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-pill text-xs font-body font-semibold transition-all border-2 ${
+                      form.allergies.includes(id)
+                        ? 'border-red-300 bg-red-50 text-red-700'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-red-200'
+                    }`}
+                  >
+                    <span className="text-sm">{icon}</span>
+                    {id}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Step 6: Objectifs */}
+          {step === 6 && (
+            <motion.div
+              key="step6"
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-[24px] p-6"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
+            >
+              <div className="text-center mb-5">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-4xl block mb-3"
                 >
                   🎯
                 </motion.span>
@@ -633,7 +679,7 @@ export default function Onboarding() {
 
               <div className="space-y-5">
                 {/* Goals */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap justify-center gap-2">
                   {goalOptions.map(({ id, label, icon }) => (
                     <motion.button
                       key={id}
@@ -654,23 +700,23 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 5: Recap personnalisé */}
-          {step === 5 && (
+          {/* Step 7: Recap personnalisé */}
+          {step === 7 && (
             <motion.div
-              key="step5"
+              key="step7"
               variants={slideVariants}
               initial="enter"
               animate="center"
               exit="exit"
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-8 text-center"
+              className="bg-white rounded-[24px] p-6 text-center"
               style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
             >
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: 'spring', delay: 0.2 }}
-                className="text-5xl block mb-4"
+                className="text-4xl block mb-3"
               >
                 ✨
               </motion.span>
@@ -776,7 +822,7 @@ export default function Onboarding() {
             <div />
           )}
 
-          {step < 5 ? (
+          {step < 7 ? (
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setStep((s) => s + 1)}

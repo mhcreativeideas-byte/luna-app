@@ -136,13 +136,16 @@ export default function Auth() {
 
   return (
     <div
-      className="min-h-[100dvh] bg-luna-bg flex flex-col px-4"
-      style={{
-        paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
-        paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
-      }}
+      className="h-[100dvh] overflow-y-auto bg-luna-bg px-4"
+      style={{ WebkitOverflowScrolling: 'touch' }}
     >
-      <div className="w-full max-w-md mx-auto my-auto">
+      <div
+        className="w-full max-w-md mx-auto min-h-full flex flex-col justify-center"
+        style={{
+          paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+        }}
+      >
         {/* Back to landing */}
         <button
           onClick={() => navigate('/')}
