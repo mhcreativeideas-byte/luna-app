@@ -10,7 +10,7 @@ export default function CGU() {
     >
       <BackButton />
       <h1 className="font-display text-2xl text-luna-text mb-2">Conditions Générales d'Utilisation</h1>
-      <p className="text-xs text-luna-text-hint font-body mb-8">Dernière mise à jour : 4 avril 2026</p>
+      <p className="text-xs text-luna-text-hint font-body mb-8">Dernière mise à jour : 29 juin 2026</p>
 
       <div className="space-y-6 text-sm font-body text-luna-text-body leading-relaxed">
 
@@ -18,7 +18,7 @@ export default function CGU() {
           <p>
             LUNA est une application web de suivi du cycle menstruel accessible à l'adresse{' '}
             <a href="https://lunawellness.app" className="text-luna-rose underline">lunawellness.app</a>.
-            Elle propose des conseils personnalisés en matière de bien-être, d'alimentation, de sport et de sommeil,
+            Elle propose des conseils nutrition personnalisés, des recettes et un menu du jour,
             adaptés aux différentes phases du cycle menstruel.
           </p>
           <p className="mt-2">
@@ -60,13 +60,13 @@ export default function CGU() {
           <p>LUNA offre les fonctionnalités suivantes :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>Suivi du cycle menstruel et identification de la phase en cours</li>
-            <li>Conseils alimentaires et recettes adaptées à chaque phase</li>
-            <li>Suggestions d'activités sportives personnalisées</li>
-            <li>Conseils sommeil et bien-être</li>
-            <li>Journal de bord personnel</li>
-            <li>Assistant conversationnel (LUNA Chat)</li>
-            <li>Calendrier de suivi</li>
-            <li>Gestion de liste de courses (Mon Frigo)</li>
+            <li>Menu du jour adapté à ta phase</li>
+            <li>Recettes classées par phase</li>
+            <li>Nutriments et aliments à privilégier selon la phase</li>
+            <li>Conseils nutrition selon tes symptômes du jour</li>
+            <li>Check-in quotidien (humeur, énergie, symptômes)</li>
+            <li>Calendrier de suivi du cycle</li>
+            <li>Gestion de ton frigo et idées de recettes (Mon Frigo)</li>
           </ul>
           <p className="mt-2">
             LUNA se réserve le droit de modifier, suspendre ou interrompre tout ou partie du service
