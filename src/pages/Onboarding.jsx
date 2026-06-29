@@ -260,7 +260,7 @@ export default function Onboarding() {
 
   return (
     <div
-      className="min-h-screen flex flex-col px-4 transition-all duration-500"
+      className="min-h-[100dvh] flex flex-col px-4 transition-all duration-500"
       style={{
         background: step < 5 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5'),
         paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',

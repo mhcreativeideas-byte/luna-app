@@ -136,7 +136,7 @@ export default function Auth() {
 
   return (
     <div
-      className="min-h-screen bg-luna-bg flex flex-col px-4"
+      className="min-h-[100dvh] bg-luna-bg flex flex-col px-4"
       style={{
         paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
         paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',

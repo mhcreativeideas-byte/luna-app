@@ -36,7 +36,7 @@ function NavItem({ to, icon: Icon, label, phaseData }) {
           </div>
           {/* Label en couleur pleine lisible (WCAG) — pas d'opacity sur le texte */}
           <span
-            className="text-[8px] font-semibold font-body leading-none tracking-tight"
+            className="text-[11px] font-semibold font-body leading-none tracking-tight"
             style={{ color: isActive ? phaseData.color : '#756568' }}
           >
             {label}
@@ -81,7 +81,7 @@ export default function BottomNav() {
                 <CalendarDays size={22} strokeWidth={2} className="text-white" />
               </div>
               <span
-                className="text-[8px] font-semibold font-body leading-none tracking-tight mt-1"
+                className="text-[11px] font-semibold font-body leading-none tracking-tight mt-1"
                 style={{ color: isActive ? phaseData.color : '#756568' }}
               >
                 {centerItem.label}
