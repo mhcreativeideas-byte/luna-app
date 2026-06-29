@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ChevronLeft } from 'lucide-react';
+import { Capacitor } from '@capacitor/core';
 import { supabase } from '../lib/supabase';
 import { useCycle } from '../contexts/CycleContext';
+
+// Schéma deep-link de l'app (doit aussi être autorisé dans Supabase → Auth → Redirect URLs)
+const NATIVE_OAUTH_REDIRECT = 'app.lunawellness://login-callback';
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -104,13 +108,24 @@ export default function Auth() {
     setError('');
     setLoading(true);
     try {
-      const { error: oauthError } = await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: window.location.origin,
-        },
-      });
-      if (oauthError) throw oauthError;
+      if (Capacitor.isNativePlatform()) {
+        // Natif : on ouvre le navigateur système, le retour se fait via le
+        // deep-link app.lunawellness://login-callback (géré dans CycleContext).
+        const { data, error: oauthError } = await supabase.auth.signInWithOAuth({
+          provider,
+          options: { redirectTo: NATIVE_OAUTH_REDIRECT, skipBrowserRedirect: true },
+        });
+        if (oauthError) throw oauthError;
+        const { Browser } = await import('@capacitor/browser');
+        await Browser.open({ url: data.url });
+      } else {
+        // Web : redirection classique
+        const { error: oauthError } = await supabase.auth.signInWithOAuth({
+          provider,
+          options: { redirectTo: window.location.origin },
+        });
+        if (oauthError) throw oauthError;
+      }
     } catch (err) {
       setError(err.message || 'Erreur de connexion');
       setLoading(false);

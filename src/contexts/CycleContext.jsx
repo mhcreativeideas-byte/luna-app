@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer, useEffect, useState, useRef } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { PHASES } from '../data/phases';
 import { supabase } from '../lib/supabase';
 
@@ -360,6 +361,26 @@ export function CycleProvider({ children }) {
     });
 
     return () => subscription.unsubscribe();
+  }, []);
+
+  // Natif : capte le retour de la connexion Google (deep-link) et échange le
+  // code contre une session. Sans effet sur le web.
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    let handle;
+    import('@capacitor/app').then(({ App }) => {
+      handle = App.addListener('appUrlOpen', async ({ url }) => {
+        if (!url || !url.includes('login-callback')) return;
+        try {
+          const code = new URL(url).searchParams.get('code');
+          if (code) await supabase.auth.exchangeCodeForSession(code);
+        } catch (e) {
+          console.error('OAuth callback error:', e);
+        }
+        import('@capacitor/browser').then(({ Browser }) => Browser.close().catch(() => {}));
+      });
+    });
+    return () => { handle?.then?.((l) => l.remove?.()); };
   }, []);
 
   // Load profile from Supabase if exists
