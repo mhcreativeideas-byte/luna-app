@@ -9,6 +9,8 @@
 ## 🟢 En résumé
 LUNA demande une connexion → Apple a besoin d'un **identifiant + mot de passe de test** déjà créés, avec un cycle déjà rempli (pour que le testeur voie l'app vivante tout de suite).
 
+> 💡 **Fais-le directement dans le SIMULATEUR** (pas seulement sur le web) : ça connecte aussi le simulateur avec des données → juste après, l'assistant capture les **vraies captures App Store** (Point 3) en un instant. Deux choses réglées d'un coup.
+
 ---
 
 ## Identifiants recommandés
