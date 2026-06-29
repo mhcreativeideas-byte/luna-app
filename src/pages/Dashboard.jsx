@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2, Heart, Apple } from 'lucide-react';
+import { Moon, Sparkles, Flame, ChevronLeft, ChevronRight, Droplets, Sun, Check, CircleDot, Thermometer, Trash2, Heart, Apple, Pencil } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
@@ -387,7 +387,7 @@ export default function Dashboard() {
               <p className="text-2xl font-display font-bold" style={{ color: phaseData.colorDark }}>
                 {daysUntilPeriod}
               </p>
-              <p className="text-[9px] font-body text-luna-text-hint uppercase">jours avant règles</p>
+              <p className="text-[10px] font-body text-luna-text-hint uppercase">jours avant règles</p>
             </div>
           </div>
 
@@ -644,7 +644,7 @@ export default function Dashboard() {
                   { label: 'Progestérone', level: selectedDay.phase === 'luteal' ? 'Élevée' : 'Basse' },
                 ].map((h) => (
                   <div key={h.label} className="rounded-[12px] p-2.5" style={{ backgroundColor: PHASES[selectedDay.phase]?.bgColor }}>
-                    <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest">{h.label}</p>
+                    <p className="text-[10px] font-body font-bold text-luna-text-hint uppercase tracking-widest">{h.label}</p>
                     <p className="text-xs font-body font-semibold mt-0.5" style={{ color: PHASES[selectedDay.phase]?.colorDark }}>{h.level}</p>
                   </div>
                 ))}
@@ -704,7 +704,7 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 text-left">
                           <p className="text-lg font-display font-bold" style={{ color: phaseDark }}>{savedTemp}°C</p>
-                          <p className="text-[10px] font-body text-luna-text-muted">Appuie pour modifier ou supprimer</p>
+                          <p className="text-[11px] font-body text-luna-text-muted">Appuie pour modifier ou supprimer</p>
                         </div>
                         <Check size={16} style={{ color: phaseColor }} />
                       </button>
@@ -732,7 +732,7 @@ export default function Dashboard() {
                               className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
                               autoFocus
                             />
-                            <p className="text-[10px] font-body text-luna-text-muted mt-0.5">Modifie ta température</p>
+                            <p className="text-[11px] font-body text-luna-text-muted mt-0.5">Modifie ta température</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid #E8E4E0' }}>
@@ -780,7 +780,7 @@ export default function Dashboard() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <input
-                            type="text" inputMode="decimal" pattern="[0-9]*[.,]?[0-9]*" placeholder="36.5"
+                            type="text" inputMode="decimal" pattern="[0-9]*[.,]?[0-9]*" placeholder="36,5"
                             value={tempInput}
                             onChange={(e) => { setTempInput(e.target.value); setTempDirty(true); }}
                             onKeyDown={(e) => {
@@ -789,11 +789,11 @@ export default function Dashboard() {
                                 setEditingTemp(false); setTempInput(''); setTempDirty(false);
                               }
                             }}
-                            className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:text-luna-text-hint placeholder:font-normal"
+                            className="w-full bg-transparent text-sm font-body font-semibold text-luna-text outline-none placeholder:font-normal placeholder:italic placeholder:text-gray-300"
                           />
-                          <p className="text-[10px] font-body text-luna-text-muted mt-0.5">En °C, au réveil avant de te lever</p>
+                          <p className="text-[11px] font-body text-luna-text-muted mt-0.5">Appuie pour la noter · en °C, au réveil</p>
                         </div>
-                        {isTempValid && (
+                        {isTempValid ? (
                           <button
                             onClick={() => {
                               dispatch({ type: 'SET_TEMPERATURE', payload: { date: selectedDay.dateStr, temperature: String(tempVal) } });
@@ -804,6 +804,8 @@ export default function Dashboard() {
                           >
                             Valider
                           </button>
+                        ) : (
+                          <Pencil size={15} className="flex-shrink-0" style={{ color: phaseColor }} aria-hidden="true" />
                         )}
                       </div>
                     </div>
@@ -840,7 +842,7 @@ export default function Dashboard() {
                       <p className="text-sm font-body font-semibold text-luna-text">
                         {selectedDay.isManualPeriod ? 'Règles confirmées ✓' : 'Confirmer ce jour de règles'}
                       </p>
-                      <p className="text-[10px] font-body text-luna-text-muted">
+                      <p className="text-[11px] font-body text-luna-text-muted">
                         {selectedDay.isManualPeriod ? 'Appuie pour retirer la confirmation' : 'L\'estimation semble correcte ? Confirme d\'un tap'}
                       </p>
                     </div>
@@ -858,7 +860,7 @@ export default function Dashboard() {
                     </div>
                     <div className="text-left">
                       <p className="text-sm font-body font-semibold text-luna-text">J'ai eu mes règles ce jour</p>
-                      <p className="text-[10px] font-body text-luna-text-muted">Ce jour n'est pas dans l'estimation</p>
+                      <p className="text-[11px] font-body text-luna-text-muted">Ce jour n'est pas dans l'estimation</p>
                     </div>
                   </button>
                 )}
@@ -908,7 +910,7 @@ export default function Dashboard() {
                     </div>
                     <div className="text-left">
                       <p className="text-sm font-body font-semibold text-luna-text">Règles marquées ✓</p>
-                      <p className="text-[10px] font-body text-luna-text-muted">Appuie pour retirer</p>
+                      <p className="text-[11px] font-body text-luna-text-muted">Appuie pour retirer</p>
                     </div>
                   </button>
                 )}
@@ -924,7 +926,7 @@ export default function Dashboard() {
                     </div>
                     <div className="text-left">
                       <p className="text-sm font-body font-semibold text-luna-text">Début de mes règles</p>
-                      <p className="text-[10px] font-body text-luna-text-muted">Recalcule tout le cycle à partir de ce jour</p>
+                      <p className="text-[11px] font-body text-luna-text-muted">Recalcule tout le cycle à partir de ce jour</p>
                     </div>
                   </button>
                 ) : (
@@ -983,7 +985,7 @@ export default function Dashboard() {
                         <p className="text-sm font-body font-semibold text-luna-text">
                           {hasSpotting ? 'Spotting noté ✓' : 'Spotting'}
                         </p>
-                        <p className="text-[10px] font-body text-luna-text-muted">
+                        <p className="text-[11px] font-body text-luna-text-muted">
                           {hasSpotting ? 'Appuie pour retirer' : 'Légères pertes de sang en dehors des règles'}
                         </p>
                       </div>
