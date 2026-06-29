@@ -58,7 +58,7 @@ export default function AppLayout() {
   return (
     <div className="min-h-screen bg-luna-bg">
       <Sidebar />
-      <main className="lg:ml-64 pb-20 lg:pb-6 px-4 md:px-6 lg:px-8 pt-6 max-w-4xl">
+      <main className="lg:ml-64 px-4 md:px-6 lg:px-8 max-w-4xl pt-[calc(env(safe-area-inset-top)+1.5rem)] pb-[calc(env(safe-area-inset-bottom)+5rem)] lg:pt-6 lg:pb-6">
         <EmailBanner />
         <Outlet />
       </main>

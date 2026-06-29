@@ -52,7 +52,7 @@ export default function BottomNav() {
   const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 z-50 lg:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 z-50 lg:hidden pb-[env(safe-area-inset-bottom)]">
       <div className="flex items-end justify-around px-1 h-[68px] relative">
         {/* Left items */}
         {leftItems.map((item) => (
