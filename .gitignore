@@ -19,6 +19,10 @@ dist-ssr
 # Contenus créa / Instagram (perso, pas dans l'app)
 CM/
 
+# Captures d'écran (lourdes, pas dans l'app)
+exemple onboarding/
+App-Store-LUNA/captures/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
