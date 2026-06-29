@@ -318,7 +318,7 @@ export default function CheckIn() {
 
       {/* Sticky save button */}
       {step === 1 && (
-        <div className="fixed bottom-20 left-0 right-0 px-4 lg:bottom-4 lg:left-64">
+        <div className="fixed left-0 right-0 px-4 bottom-[calc(env(safe-area-inset-bottom)+5rem)] lg:bottom-4 lg:left-64">
           <button onClick={save} className="btn-luna w-full justify-center text-base py-4">
             <Check size={18} />
             C'est noté

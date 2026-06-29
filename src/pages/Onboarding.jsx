@@ -260,10 +260,14 @@ export default function Onboarding() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center px-4 py-8 transition-all duration-500"
-      style={{ background: step < 5 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5') }}
+      className="min-h-screen flex flex-col px-4 transition-all duration-500"
+      style={{
+        background: step < 5 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5'),
+        paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
+        paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+      }}
     >
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md mx-auto my-auto">
         {/* Progress dots */}
         <div className="flex justify-center gap-2 mb-8">
           {Array.from({ length: TOTAL_STEPS }).map((_, i) => (

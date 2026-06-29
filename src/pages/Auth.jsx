@@ -135,8 +135,14 @@ export default function Auth() {
   const canSubmit = email.trim().length > 3 && password.length >= 6;
 
   return (
-    <div className="min-h-screen bg-luna-bg flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md">
+    <div
+      className="min-h-screen bg-luna-bg flex flex-col px-4"
+      style={{
+        paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
+        paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
+      }}
+    >
+      <div className="w-full max-w-md mx-auto my-auto">
         {/* Back to landing */}
         <button
           onClick={() => navigate('/')}

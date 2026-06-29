@@ -729,7 +729,7 @@ export default function Recettes() {
                 </div>
               </div>
 
-              <div className="p-5 space-y-5">
+              <div className="p-5 pb-[calc(env(safe-area-inset-bottom)+2rem)] space-y-5">
                 {/* Title */}
                 <div>
                   <p className="text-[9px] font-body font-bold text-luna-text-hint uppercase tracking-widest mb-1">
