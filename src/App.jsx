@@ -9,6 +9,7 @@ import Landing from './pages/Landing';
 const Auth = lazy(() => import('./pages/Auth'));
 const Onboarding = lazy(() => import('./pages/Onboarding'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Calendar = lazy(() => import('./pages/Calendar'));
 const Sport = lazy(() => import('./pages/Sport'));
 const Alimentation = lazy(() => import('./pages/Alimentation'));
 const Sommeil = lazy(() => import('./pages/Sommeil'));
@@ -89,7 +90,7 @@ function App() {
               <Route path="/profil" element={<Profil />} />
               <Route path="/checkin" element={<CheckIn />} />
               <Route path="/chat" element={<Chat />} />
-              <Route path="/calendrier" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/calendrier" element={<Calendar />} />
               <Route path="/plus" element={<Extras />} />
               <Route path="/parametres" element={<Settings />} />
               <Route path="/conditions" element={<CGU />} />
