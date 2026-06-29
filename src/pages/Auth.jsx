@@ -9,6 +9,26 @@ import { useCycle } from '../contexts/CycleContext';
 // Schéma deep-link de l'app (doit aussi être autorisé dans Supabase → Auth → Redirect URLs)
 const NATIVE_OAUTH_REDIRECT = 'app.lunawellness://login-callback';
 
+// Identifiant de l'app (bundle id) — utilisé pour la connexion Apple native
+const APPLE_CLIENT_ID = 'app.lunawellness';
+
+// --- Sécurité Sign in with Apple : génération d'un "nonce" ---
+// Apple exige un code à usage unique : on envoie sa version hachée (SHA-256) à
+// Apple, et la version brute à Supabase, qui vérifie que les deux correspondent.
+function randomNonce(length = 32) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const bytes = crypto.getRandomValues(new Uint8Array(length));
+  return Array.from(bytes, (b) => chars[b % chars.length]).join('');
+}
+
+async function sha256(text) {
+  const data = new TextEncoder().encode(text);
+  const buffer = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(buffer))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 export default function Auth() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -132,6 +152,48 @@ export default function Auth() {
     }
   };
 
+  const handleAppleAuth = async () => {
+    setError('');
+    setLoading(true);
+    try {
+      if (Capacitor.isNativePlatform()) {
+        // iPhone : on ouvre la vraie fenêtre Apple native (Face ID / Touch ID).
+        const { SignInWithApple } = await import('@capacitor-community/apple-sign-in');
+        const rawNonce = randomNonce();
+        const hashedNonce = await sha256(rawNonce);
+        const result = await SignInWithApple.authorize({
+          clientId: APPLE_CLIENT_ID,
+          redirectURI: NATIVE_OAUTH_REDIRECT,
+          scopes: 'email name',
+          nonce: hashedNonce,
+        });
+        const idToken = result?.response?.identityToken;
+        if (!idToken) throw new Error('cancelled');
+        const { error: signInError } = await supabase.auth.signInWithIdToken({
+          provider: 'apple',
+          token: idToken,
+          nonce: rawNonce,
+        });
+        if (signInError) throw signInError;
+        // Redirection gérée par onAuthStateChange dans CycleContext
+      } else {
+        // Web (base de dev) : redirection OAuth classique
+        const { error: oauthError } = await supabase.auth.signInWithOAuth({
+          provider: 'apple',
+          options: { redirectTo: window.location.origin },
+        });
+        if (oauthError) throw oauthError;
+      }
+    } catch (err) {
+      const msg = err?.message || '';
+      // L'utilisatrice a fermé la fenêtre Apple → ce n'est pas une vraie erreur
+      const userCancelled =
+        msg.includes('cancel') || err?.code === '1001' || err?.code === 'ASAuthorizationError';
+      setError(userCancelled ? '' : msg || 'Erreur de connexion Apple');
+      setLoading(false);
+    }
+  };
+
   const canSubmit = email.trim().length > 3 && password.length >= 6;
 
   return (
@@ -185,6 +247,17 @@ export default function Auth() {
             >
               {/* OAuth buttons */}
               <div className="space-y-3 mb-6">
+                <button
+                  onClick={handleAppleAuth}
+                  disabled={loading}
+                  className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-[16px] bg-black text-white font-body font-semibold text-sm hover:bg-black/90 transition-all disabled:opacity-50"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.46 7.83 1.3 10.39.86 1.25 1.89 2.66 3.23 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.28 3.13-2.54.99-1.45 1.39-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13zM14.47 4.42c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-3 1.54-.66.76-1.24 1.97-1.09 3.13 1.14.09 2.31-.58 3.03-1.42z"/>
+                  </svg>
+                  Continuer avec Apple
+                </button>
+
                 <button
                   onClick={() => handleOAuth('google')}
                   disabled={loading}
