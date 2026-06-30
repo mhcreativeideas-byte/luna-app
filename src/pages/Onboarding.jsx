@@ -17,7 +17,7 @@ const PHASE_MOODS = {
 // fromStep = l'étape après laquelle le miroir apparaît (Continuer → miroir → étape suivante).
 const MIRRORS = {
   cycle: {
-    fromStep: 1,
+    after: 1,
     bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)',
     accent: '#A85A66',
     dots: ['#D4727F', '#7BAE7F', '#E8A87C', '#B09ACB'],
@@ -26,7 +26,7 @@ const MIRRORS = {
     text: 'À chaque phase, ton corps réclame d\'autres aliments. LUNA adapte ton assiette à chacune.',
   },
   promise: {
-    fromStep: 3,
+    after: 3,
     bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)',
     accent: '#7E6597',
     Icon: Sparkles,
@@ -35,7 +35,7 @@ const MIRRORS = {
     text: 'La plupart des femmes repèrent leur rythme dès le premier mois avec LUNA. On va te montrer le tien.',
   },
   menu: {
-    fromStep: 4,
+    after: 9,
     bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)',
     accent: '#C2683F',
     icons: [UtensilsCrossed, Refrigerator],
@@ -45,7 +45,7 @@ const MIRRORS = {
     text: 'Ton menu du jour t\'attend chaque matin, adapté à ta phase. Et Mon Frigo cuisine avec ce que tu as déjà.',
   },
   filter: {
-    fromStep: 5,
+    after: 5,
     bg: 'linear-gradient(180deg, #EDF5ED 0%, #FAF7F5 100%)',
     accent: '#4E7A52',
     Icon: ShieldCheck,
@@ -57,16 +57,34 @@ const MIRRORS = {
 };
 import Paywall from '../components/Paywall';
 
-const TOTAL_STEPS = 8;
 
 const goalOptions = [
-  { id: 'food', label: 'Mieux manger', icon: '🥗' },
-  { id: 'sleep', label: 'Mieux dormir', icon: '😴' },
-  { id: 'emotions', label: 'Gérer mes émotions', icon: '🧠' },
-  { id: 'discomfort', label: 'Moins de douleurs', icon: '🌸' },
   { id: 'energy', label: 'Plus d\'énergie', icon: '⚡' },
-  { id: 'skin', label: 'Soigner ma peau', icon: '✨' },
-  { id: 'strength', label: 'Me sentir forte', icon: '💪' },
+  { id: 'emotions', label: 'Apaiser mes émotions', icon: '💛' },
+  { id: 'discomfort', label: 'Moins de douleurs', icon: '🌸' },
+  { id: 'skin', label: 'Belle peau', icon: '✨' },
+  { id: 'digestion', label: 'Mieux digérer', icon: '🌿' },
+  { id: 'cravings', label: 'Moins de fringales', icon: '🍫' },
+  { id: 'balance', label: 'Rééquilibrer mon assiette', icon: '🥗' },
+];
+
+// Q « fringales/appétit selon le cycle » (nouveau — alimentaire + arme le miroir)
+const cravingOptions = [
+  { id: 'sucre', label: 'Envies de sucre', icon: '🍫' },
+  { id: 'faim', label: 'Faim accrue', icon: '🍽️' },
+  { id: 'ballonnements', label: 'Ballonnements', icon: '🎈' },
+  { id: 'appetit', label: 'Perte d\'appétit', icon: '😶' },
+  { id: 'grignotage', label: 'Grignotage émotionnel', icon: '🍪' },
+  { id: 'rien', label: 'Rien de spécial', icon: '🌿' },
+];
+
+// Q « ton plus gros frein en cuisine » (nouveau — arme le miroir menu/frigo)
+const barrierOptions = [
+  { id: 'temps', label: 'Manque de temps', icon: '🕐' },
+  { id: 'idees', label: 'Manque d\'idées', icon: '💡' },
+  { id: 'quoi', label: 'Je sais jamais quoi manger', icon: '🤔' },
+  { id: 'gaspillage', label: 'Je gaspille de la nourriture', icon: '🗑️' },
+  { id: 'budget', label: 'Le budget', icon: '💸' },
 ];
 
 const dietOptions = [
@@ -123,7 +141,13 @@ const STEP_COLORS = [
   { bg: 'linear-gradient(180deg, #FDE8D8 0%, #FAF7F5 100%)', accent: '#E8946A' }, // 5 allergies — abricot
   { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#E8946A' }, // 6 objectifs — pêche
   null, // 7 récap — dynamique selon la phase
+  { bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)', accent: '#C4727F' }, // 8 fringales — rose
+  { bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)', accent: '#D4846A' }, // 9 frein — pêche
 ];
+
+// Ordre de visite des écrans (les ids = numéro de step). Les questions sont
+// rangées pour armer les bons miroirs : fringales→santé→promesse, frein→menu.
+const ORDER = [0, 1, 8, 3, 2, 5, 4, 9, 6, 7];
 
 // Personalized message based on health/diet
 function getPersonalizedTip(form, phase) {
@@ -178,7 +202,8 @@ export default function Onboarding() {
     cycleLength: 28,
     periodLength: 5,
     goals: [],
-    fitnessLevel: 'intermediate',
+    cravings: [],
+    barriers: [],
     dietPreferences: [],
     healthIssues: [],
     allergies: [],
@@ -411,7 +436,7 @@ export default function Onboarding() {
         <div className="flex-1" />
         <div className="w-full max-w-md mx-auto">
           <button
-            onClick={() => { setStep(m.fromStep + 1); setMirror(null); }}
+            onClick={() => { setStep(ORDER[ORDER.indexOf(m.after) + 1]); setMirror(null); }}
             className="btn-luna w-full justify-center text-base py-4"
           >
             Continuer
@@ -428,7 +453,7 @@ export default function Onboarding() {
     <div
       className="h-[100dvh] overflow-y-auto px-4 transition-all duration-500"
       style={{
-        background: step < 7 ? stepColor?.bg : (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5'),
+        background: step === 7 ? (info ? `linear-gradient(180deg, ${PHASES[info.phase].bgColor} 0%, #FAF7F5 100%)` : '#FAF7F5') : (stepColor?.bg || '#FAF7F5'),
         WebkitOverflowScrolling: 'touch',
       }}
     >
@@ -439,19 +464,23 @@ export default function Onboarding() {
           paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
         }}
       >
-        {/* Progress dots */}
+        {/* Progress dots — suivent l'ordre de visite */}
         <div className="flex justify-center gap-2 mb-6">
-          {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-            <motion.div
-              key={i}
-              animate={{
-                width: i === step ? 24 : 8,
-                backgroundColor: i <= step ? (step < 7 ? stepColor?.accent : (info ? PHASES[info.phase].color : '#C4727F')) : '#E0D5D8',
-              }}
-              className="h-2 rounded-full"
-              transition={{ duration: 0.3 }}
-            />
-          ))}
+          {ORDER.map((sid, i) => {
+            const pos = ORDER.indexOf(step);
+            const accent = step === 7 ? (info ? PHASES[info.phase].color : '#C4727F') : (stepColor?.accent || '#C4727F');
+            return (
+              <motion.div
+                key={sid}
+                animate={{
+                  width: i === pos ? 24 : 8,
+                  backgroundColor: i <= pos ? accent : '#E0D5D8',
+                }}
+                className="h-2 rounded-full"
+                transition={{ duration: 0.3 }}
+              />
+            );
+          })}
         </div>
 
         <AnimatePresence mode="wait">
@@ -1000,13 +1029,109 @@ export default function Onboarding() {
               )}
             </motion.div>
           )}
+
+          {/* Step 8: Fringales / appétit selon le cycle */}
+          {step === 8 && (
+            <motion.div
+              key="step8"
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-[24px] p-6"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
+            >
+              <div className="text-center mb-5">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-4xl block mb-3"
+                >
+                  🍫
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Côté assiette, tu ressens quoi ?
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  Ce qui change selon ton cycle. Pour mieux t'aider.
+                </p>
+              </div>
+              <div className="flex flex-wrap justify-center gap-2.5">
+                {cravingOptions.map(({ id, label, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleArray('cravings', id)}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
+                      form.cravings.includes(id)
+                        ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose-light'
+                    }`}
+                  >
+                    <span className="text-base">{icon}</span>
+                    {label}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Step 9: Plus gros frein en cuisine */}
+          {step === 9 && (
+            <motion.div
+              key="step9"
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-[24px] p-6"
+              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
+            >
+              <div className="text-center mb-5">
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: 'spring', delay: 0.2 }}
+                  className="text-4xl block mb-3"
+                >
+                  🍳
+                </motion.span>
+                <h2 className="font-display text-2xl text-luna-text mb-2">
+                  Ton plus gros frein en cuisine ?
+                </h2>
+                <p className="text-luna-text-muted font-body text-sm">
+                  On va te faciliter la vie pile là-dessus.
+                </p>
+              </div>
+              <div className="space-y-2.5">
+                {barrierOptions.map(({ id, label, icon }) => (
+                  <motion.button
+                    key={id}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => toggleArray('barriers', id)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
+                      form.barriers.includes(id)
+                        ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose-light'
+                    }`}
+                  >
+                    <span className="text-xl">{icon}</span>
+                    <span className="text-sm font-body font-semibold">{label}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
 
         {/* Navigation buttons */}
         <div className="flex justify-between mt-6">
-          {step > 0 ? (
+          {ORDER.indexOf(step) > 0 ? (
             <button
-              onClick={() => setStep((s) => s - 1)}
+              onClick={() => setStep(ORDER[ORDER.indexOf(step) - 1])}
               className="flex items-center gap-1 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body"
             >
               <ChevronLeft size={16} />
@@ -1016,13 +1141,13 @@ export default function Onboarding() {
             <div />
           )}
 
-          {step < 7 ? (
+          {step !== 7 ? (
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => {
-                const mid = Object.keys(MIRRORS).find((k) => MIRRORS[k].fromStep === step);
+                const mid = Object.keys(MIRRORS).find((k) => MIRRORS[k].after === step);
                 if (mid) setMirror(mid);
-                else setStep((s) => s + 1);
+                else setStep(ORDER[ORDER.indexOf(step) + 1]);
               }}
               disabled={!canNext()}
               className="btn-luna disabled:opacity-40"
