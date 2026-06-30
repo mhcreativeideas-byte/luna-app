@@ -7,6 +7,7 @@ import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { SEASONAL_FOODS, FOOD_EMOJIS, FOOD_IMAGES } from '../data/seasonal';
 import TopMenu from '../components/ui/TopMenu';
+import PhaseHero from '../components/food/PhaseHero';
 
 const container = {
   hidden: { opacity: 0 },
@@ -158,44 +159,15 @@ export default function Alimentation() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <TopMenu />
 
-      {/* ===== HERO SECTION ===== */}
+      {/* ===== HERO SECTION (composant partagé compact) ===== */}
       <motion.div variants={item}>
-        <div
-          className="rounded-[28px] px-6 pt-7 pb-8 relative overflow-hidden"
-          style={{
-            background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
-            boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
-          }}
-        >
-          {/* Decorative circle */}
-          <div
-            className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
-            style={{ backgroundColor: phaseData.color }}
-          />
-          <div
-            className="absolute bottom-4 -left-6 w-20 h-20 rounded-full opacity-10"
-            style={{ backgroundColor: phaseData.color }}
-          />
-
-          <div className="relative">
-            <div
-              className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
-              style={{ backgroundColor: 'rgba(255,255,255,0.7)', boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
-            >
-              {phaseData.icon}
-            </div>
-            <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3" style={{ color: phaseData.color }}>
-              {phaseData.shortName} · Nutrition
-            </p>
-            <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight mb-3">
-              {titles.main}{' '}
-              <em style={{ color: phaseData.colorDark }}>{titles.italic}</em>
-            </h1>
-            <p className="text-sm font-body text-luna-text-body leading-relaxed">
-              {PHASE_FOOD_INTROS[phase]}
-            </p>
-          </div>
-        </div>
+        <PhaseHero
+          phaseData={phaseData}
+          section="Nutrition"
+          titleMain={titles.main}
+          titleItalic={titles.italic}
+          intro={PHASE_FOOD_INTROS[phase]}
+        />
       </motion.div>
 
       {/* ===== L'INSIGHT DU JOUR (discret — petite note, pas un titre) ===== */}

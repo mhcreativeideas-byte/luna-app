@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Clock, X, Sparkles, Filter, Heart, ChevronDown, RotateCcw, Refrigerator } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import DailyMenu from '../components/food/DailyMenu';
+import PhaseHero from '../components/food/PhaseHero';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
@@ -242,43 +243,15 @@ export default function Recettes() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <TopMenu />
 
-      {/* En-tête « Manger » — introduit la catégorie (même déco que Mes aliments) */}
+      {/* En-tête « Manger » — composant partagé compact (même déco que Mes aliments) */}
       <motion.div variants={item}>
-        <div
-          className="rounded-[28px] px-6 pt-7 pb-8 relative overflow-hidden"
-          style={{
-            background: `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.color}18 100%)`,
-            boxShadow: '0 10px 30px rgba(45,34,38,0.06)',
-          }}
-        >
-          <div
-            className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-20"
-            style={{ backgroundColor: phaseData.color }}
-          />
-          <div
-            className="absolute bottom-4 -left-6 w-20 h-20 rounded-full opacity-10"
-            style={{ backgroundColor: phaseData.color }}
-          />
-
-          <div className="relative">
-            <div
-              className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
-              style={{ backgroundColor: 'rgba(255,255,255,0.7)', boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
-            >
-              {phaseData.icon}
-            </div>
-            <p className="text-[10px] font-body font-bold uppercase tracking-[0.2em] mb-3" style={{ color: phaseData.color }}>
-              {phaseData.shortName} · Manger
-            </p>
-            <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-tight mb-3">
-              {MANGER_TITLES[activePhase].main}{' '}
-              <em style={{ color: phaseData.colorDark }}>{MANGER_TITLES[activePhase].italic}</em>
-            </h1>
-            <p className="text-sm font-body text-luna-text-body leading-relaxed">
-              {MANGER_INTROS[activePhase]}
-            </p>
-          </div>
-        </div>
+        <PhaseHero
+          phaseData={phaseData}
+          section="Manger"
+          titleMain={MANGER_TITLES[activePhase].main}
+          titleItalic={MANGER_TITLES[activePhase].italic}
+          intro={MANGER_INTROS[activePhase]}
+        />
       </motion.div>
 
       {/* Menu du jour — l'action du jour, en haut de « Manger » */}
