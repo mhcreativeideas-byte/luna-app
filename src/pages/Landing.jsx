@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Capacitor } from '@capacitor/core';
 import { ArrowRight, Heart, Shield, Brain, Zap } from 'lucide-react';
 import { PHASES, PHASE_ORDER } from '../data/phases';
 import { BrandSymbol, HormonesIcon, SelfCareIcon, EnergyIcon, Divider } from '../components/illustrations/LunaIllustrations';
+import IntroCarousel from '../components/IntroCarousel';
 
 const container = {
   hidden: { opacity: 0 },
@@ -64,6 +66,10 @@ const comparisons = [
 const phases = PHASE_ORDER.map((key) => ({ key, ...PHASES[key] }));
 
 export default function Landing() {
+  // Dans l'app native : carrousel d'intro court. Sur le web : longue page marketing.
+  if (Capacitor.isNativePlatform()) {
+    return <IntroCarousel />;
+  }
   return (
     <main className="min-h-screen bg-luna-bg">
       {/* Hero */}
