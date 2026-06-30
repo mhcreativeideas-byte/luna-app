@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronRight, X, LogOut } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -208,15 +208,9 @@ export default function Settings() {
   return (
     <div className="space-y-2 pb-6">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-          style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <h1 className="font-display text-xl text-luna-text">Paramètres</h1>
+      <div className="mb-6">
+        <BackButton />
+        <h1 className="font-display text-2xl text-luna-text">Paramètres</h1>
       </div>
 
       <Section title="Profil">
@@ -331,8 +325,10 @@ export default function Settings() {
               navigate('/');
             }
           }}
-          className="w-full text-center py-3 text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors"
+          className="w-full flex items-center justify-center gap-2 py-4 rounded-[22px] bg-white text-sm font-body font-semibold text-luna-rose active:scale-[0.99] transition-all"
+          style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
         >
+          <LogOut size={16} />
           Déconnexion
         </button>
         <p className="text-center text-xs text-luna-text-hint font-body mt-4">
@@ -382,8 +378,8 @@ export default function Settings() {
                     onClick={() => toggleGoal(id)}
                     className={`flex items-center gap-2 px-3.5 py-2.5 rounded-full text-sm font-body font-semibold transition-all border-2 ${
                       editedGoals.includes(id)
-                        ? 'border-orange-300 bg-orange-50 text-orange-700'
-                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-orange-200'
+                        ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose-light'
                     }`}
                   >
                     <span>{icon}</span>
@@ -445,8 +441,8 @@ export default function Settings() {
                     onClick={() => toggleDiet(id)}
                     className={`flex items-center gap-2 px-3.5 py-2.5 rounded-full text-sm font-body font-semibold transition-all border-2 ${
                       editedDiet.includes(id)
-                        ? 'border-green-300 bg-green-50 text-green-700'
-                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-green-200'
+                        ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose-light'
                     }`}
                   >
                     <span>{icon}</span>
@@ -506,13 +502,13 @@ export default function Settings() {
                     onClick={() => toggleHealth(id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
                       editedHealth.includes(id)
-                        ? 'border-purple-300 bg-purple-50'
-                        : 'border-gray-100 bg-white hover:border-purple-200'
+                        ? 'border-luna-rose bg-luna-rose-bg'
+                        : 'border-gray-100 bg-white hover:border-luna-rose-light'
                     }`}
                   >
                     <span className="text-2xl">{icon}</span>
                     <div>
-                      <p className={`text-sm font-body font-semibold ${editedHealth.includes(id) ? 'text-purple-700' : 'text-luna-text-body'}`}>
+                      <p className={`text-sm font-body font-semibold ${editedHealth.includes(id) ? 'text-luna-rose-deep' : 'text-luna-text-body'}`}>
                         {id}
                       </p>
                       <p className="text-xs font-body text-luna-text-muted">{desc}</p>
@@ -572,8 +568,8 @@ export default function Settings() {
                     onClick={() => toggleAllergy(id)}
                     className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-body font-semibold transition-all border-2 ${
                       editedAllergies.includes(id)
-                        ? 'border-red-300 bg-red-50 text-red-700'
-                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-red-200'
+                        ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
+                        : 'border-gray-100 bg-white text-luna-text-muted hover:border-luna-rose-light'
                     }`}
                   >
                     <span className="text-sm">{icon}</span>
@@ -634,8 +630,8 @@ export default function Settings() {
                         onClick={() => setEditedCookingLevel(id)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
                           editedCookingLevel === id
-                            ? 'border-orange-300 bg-orange-50'
-                            : 'border-gray-100 bg-white hover:border-orange-200'
+                            ? 'border-luna-rose bg-luna-rose-bg'
+                            : 'border-gray-100 bg-white hover:border-luna-rose-light'
                         }`}
                       >
                         <span className="text-2xl">{icon}</span>
@@ -660,8 +656,8 @@ export default function Settings() {
                         onClick={() => setEditedCookingTime(id)}
                         className={`flex flex-col items-center gap-1 px-3 py-3 rounded-[16px] text-center transition-all border-2 ${
                           editedCookingTime === id
-                            ? 'border-orange-300 bg-orange-50'
-                            : 'border-gray-100 bg-white hover:border-orange-200'
+                            ? 'border-luna-rose bg-luna-rose-bg'
+                            : 'border-gray-100 bg-white hover:border-luna-rose-light'
                         }`}
                       >
                         <span className="text-xl">{icon}</span>
