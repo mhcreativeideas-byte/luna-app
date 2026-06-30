@@ -7,6 +7,7 @@ import { PHASES } from '../data/phases';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
 import BackButton from '../components/ui/BackButton';
+import BottomSheet from '../components/ui/BottomSheet';
 import { ProfilSkeleton, SkeletonCard } from '../components/ui/SkeletonLoader';
 
 const container = {
@@ -906,10 +907,11 @@ function SharePartnerCard({ cycleInfo, name }) {
 }
 
 export default function Profil() {
-  const { name, cycleLength, periodLength, cycleInfo, checkIns, dispatch, profileImage, user } = useCycle();
+  const { name, cycleLength, periodLength, cycleInfo, dispatch, profileImage, user } = useCycle();
   const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
   const fileInputRef = useRef(null);
   const [showPhotoMenu, setShowPhotoMenu] = useState(false);
+  const [showPartnerSheet, setShowPartnerSheet] = useState(false);
 
   const handleImageUpload = (e) => {
     const file = e.target.files?.[0];
@@ -948,18 +950,6 @@ export default function Profil() {
     };
     reader.readAsDataURL(file);
   };
-
-  const totalCheckIns = checkIns?.length || 0;
-
-  const symptomCounts = {};
-  (checkIns || []).forEach((c) => {
-    Object.values(c.symptoms || {}).flat().forEach((s) => {
-      symptomCounts[s] = (symptomCounts[s] || 0) + 1;
-    });
-  });
-  const topSymptoms = Object.entries(symptomCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 6);
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
@@ -1072,20 +1062,21 @@ export default function Profil() {
       {/* Calendar link */}
       <motion.div variants={item}>
         <Link
-          to="/dashboard"
+          to="/calendrier"
           className="flex items-center gap-4 bg-white rounded-[22px] p-4 active:scale-[0.99] transition-all"
           style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
         >
           <div
             className="w-11 h-11 rounded-[14px] flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #FDE8EB, #F5D0D5)' }}
+            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}30)` }}
           >
-            <Calendar size={20} style={{ color: '#C4727F' }} />
+            <Calendar size={20} style={{ color: phaseData.colorDark }} />
           </div>
-          <div>
+          <div className="flex-1 min-w-0">
             <p className="text-sm font-body font-semibold text-luna-text">Mon calendrier</p>
             <p className="text-xs text-luna-text-hint font-body">Visualise ton cycle mois par mois</p>
           </div>
+          <ChevronRight size={18} className="flex-shrink-0" style={{ color: phaseData.colorDark }} />
         </Link>
       </motion.div>
 
@@ -1094,66 +1085,30 @@ export default function Profil() {
         <MonthlyReport />
       </motion.div>
 
-      {/* Together card — Share with partner */}
+      {/* Carte à partager — ligne qui ouvre une fenêtre du bas */}
       <motion.div variants={item}>
-        <SharePartnerCard cycleInfo={cycleInfo} name={name} />
-      </motion.div>
-
-      {/* Insights card */}
-      <motion.div variants={item}>
-        <div
-          className="rounded-[22px] p-5 relative overflow-hidden"
-          style={{
-            backgroundColor: phaseData.bgColor,
-          }}
+        <button
+          onClick={() => setShowPartnerSheet(true)}
+          className="w-full flex items-center gap-4 bg-white rounded-[22px] p-4 active:scale-[0.99] transition-all text-left"
+          style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
         >
           <div
-            className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-20"
-            style={{ backgroundColor: phaseData.color }}
-          />
-          <div className="relative">
-            <div className="flex items-center gap-2 mb-3">
-              <TrendingUp size={18} style={{ color: phaseData.colorDark }} />
-              <h3 className="font-display text-base text-luna-text">Insights</h3>
-            </div>
-            {totalCheckIns >= 15 ? (
-              <div>
-                <p className="text-sm font-body mb-3 text-luna-text-body">
-                  Tes patterns basés sur {totalCheckIns} check-ins :
-                </p>
-                {topSymptoms.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {topSymptoms.map(([symptom, count]) => (
-                      <span
-                        key={symptom}
-                        className="text-xs px-2.5 py-1 rounded-pill font-body font-semibold"
-                        style={{ backgroundColor: `${phaseData.color}20`, color: phaseData.colorDark }}
-                      >
-                        {symptom} ({count}x)
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div>
-                <p className="text-sm font-body mb-2 text-luna-text-body leading-relaxed">
-                  Plus tu enregistres, plus LUNA détecte tes patterns. Après 3 cycles complets, tu auras une vue précise de tes tendances.
-                </p>
-                <p className="text-xs font-body text-luna-text-muted">
-                  {totalCheckIns}/15 check-ins
-                </p>
-                <div className="h-2 rounded-full mt-3 overflow-hidden" style={{ backgroundColor: `${phaseData.color}20` }}>
-                  <div
-                    className="h-full rounded-full transition-all"
-                    style={{ width: `${Math.min(100, (totalCheckIns / 15) * 100)}%`, background: `linear-gradient(90deg, ${phaseData.color}80, ${phaseData.color})` }}
-                  />
-                </div>
-              </div>
-            )}
+            className="w-11 h-11 rounded-[14px] flex items-center justify-center"
+            style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}30)` }}
+          >
+            <Share2 size={19} style={{ color: phaseData.colorDark }} />
           </div>
-        </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-body font-semibold text-luna-text">Carte à partager</p>
+            <p className="text-xs text-luna-text-hint font-body">Aide ton partenaire à comprendre ta phase</p>
+          </div>
+          <ChevronRight size={18} className="flex-shrink-0" style={{ color: phaseData.colorDark }} />
+        </button>
       </motion.div>
+
+      <BottomSheet open={showPartnerSheet} onClose={() => setShowPartnerSheet(false)} title="Carte à partager">
+        <SharePartnerCard cycleInfo={cycleInfo} name={name} />
+      </BottomSheet>
 
     </motion.div>
   );
