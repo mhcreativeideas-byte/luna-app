@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UtensilsCrossed, CalendarDays, Apple, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
+import ConfirmDialog from '../ui/ConfirmDialog';
 
 const navItems = [
   { to: '/recettes', icon: UtensilsCrossed, label: 'Manger' },
@@ -11,6 +13,7 @@ const navItems = [
 export default function Sidebar() {
   const { name, cycleInfo, signOut } = useCycle();
   const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
+  const [confirmLogout, setConfirmLogout] = useState(false);
 
   return (
     <aside className="hidden lg:flex flex-col w-64 min-h-screen bg-white/80 backdrop-blur-md border-r border-gray-100 px-4 py-6 fixed left-0 top-0 z-40">
@@ -72,11 +75,7 @@ export default function Sidebar() {
         Paramètres
       </NavLink>
       <button
-        onClick={async () => {
-          if (window.confirm('Te déconnecter de LUNA ?')) {
-            await signOut();
-          }
-        }}
+        onClick={() => setConfirmLogout(true)}
         className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-hint transition-colors mt-1 font-body"
         style={{ '--hover-color': phaseData.color }}
         onMouseEnter={(e) => e.currentTarget.style.color = phaseData.color}
@@ -85,6 +84,16 @@ export default function Sidebar() {
         <LogOut size={16} />
         Déconnexion
       </button>
+
+      <ConfirmDialog
+        open={confirmLogout}
+        title="Te déconnecter ?"
+        message="Tu pourras te reconnecter à tout moment."
+        confirmLabel="Déconnexion"
+        Icon={LogOut}
+        onCancel={() => setConfirmLogout(false)}
+        onConfirm={async () => { setConfirmLogout(false); await signOut(); }}
+      />
     </aside>
   );
 }

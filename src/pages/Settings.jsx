@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, X, LogOut } from 'lucide-react';
+import { ChevronRight, X, LogOut, RotateCcw, Trash2 } from 'lucide-react';
+import ConfirmDialog from '../components/ui/ConfirmDialog';
 import { useCycle } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -113,6 +114,7 @@ function Section({ title, children }) {
 export default function Settings() {
   const navigate = useNavigate();
   const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user } = useCycle();
+  const [confirm, setConfirm] = useState(null);
   const [showGoals, setShowGoals] = useState(false);
   const [editedGoals, setEditedGoals] = useState(goals || []);
   const [showDiet, setShowDiet] = useState(false);
@@ -227,13 +229,17 @@ export default function Settings() {
         <SettingRow label="Durée des règles" value={`${periodLength} jours`} onClick={() => { setEditedPeriodLength(periodLength || 5); setShowPeriodLength(true); }} />
         <SettingRow
           label="Réinitialiser le calendrier"
-          onClick={() => {
-            if (window.confirm('Repartir de zéro ? Tes données seront perdues.')) {
+          onClick={() => setConfirm({
+            title: 'Réinitialiser le calendrier ?',
+            message: 'Tu repars de zéro. Tes données de cycle seront perdues.',
+            confirmLabel: 'Réinitialiser',
+            Icon: RotateCcw,
+            action: () => {
               dispatch({ type: 'RESET' });
               localStorage.removeItem('luna-profile');
               window.location.href = '/';
-            }
-          }}
+            },
+          })}
         />
       </Section>
 
@@ -266,8 +272,13 @@ export default function Settings() {
         <SettingRow
           label="Réinitialiser le profil"
           danger
-          onClick={async () => {
-            if (window.confirm('Réinitialiser ton profil LUNA ? Tu devras refaire l\'onboarding.')) {
+          onClick={() => setConfirm({
+            title: 'Réinitialiser ton profil ?',
+            message: 'Tu devras refaire l\'onboarding. Tes données seront effacées.',
+            confirmLabel: 'Réinitialiser le profil',
+            danger: true,
+            Icon: RotateCcw,
+            action: async () => {
               try {
                 const { data: { user } } = await supabase.auth.getUser();
                 if (user) {
@@ -283,14 +294,19 @@ export default function Settings() {
               } catch (err) {
                 toast('Erreur : ' + err.message, 'error');
               }
-            }
-          }}
+            },
+          })}
         />
         <SettingRow
           label="Supprimer le compte"
           danger
-          onClick={async () => {
-            if (window.confirm('Supprimer définitivement ton compte ? Cette action est irréversible.')) {
+          onClick={() => setConfirm({
+            title: 'Supprimer le compte ?',
+            message: 'Cette action est définitive. Toutes tes données seront perdues.',
+            confirmLabel: 'Supprimer définitivement',
+            danger: true,
+            Icon: Trash2,
+            action: async () => {
               try {
                 const { data: { user } } = await supabase.auth.getUser();
                 if (user) {
@@ -307,8 +323,8 @@ export default function Settings() {
               } catch (err) {
                 toast('Erreur : ' + err.message, 'error');
               }
-            }
-          }}
+            },
+          })}
         />
       </Section>
 
@@ -319,12 +335,16 @@ export default function Settings() {
           </p>
         )}
         <button
-          onClick={async () => {
-            if (window.confirm('Te déconnecter de LUNA ?')) {
+          onClick={() => setConfirm({
+            title: 'Te déconnecter ?',
+            message: 'Tu pourras te reconnecter à tout moment.',
+            confirmLabel: 'Déconnexion',
+            Icon: LogOut,
+            action: async () => {
               await signOut();
               navigate('/');
-            }
-          }}
+            },
+          })}
           className="w-full flex items-center justify-center gap-2 py-4 rounded-[22px] bg-white text-sm font-body font-semibold text-luna-rose active:scale-[0.99] transition-all"
           style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}
         >
@@ -335,6 +355,18 @@ export default function Settings() {
           LUNA v3.0.0
         </p>
       </div>
+
+      {/* Fenêtre de confirmation (remplace window.confirm) */}
+      <ConfirmDialog
+        open={!!confirm}
+        title={confirm?.title}
+        message={confirm?.message}
+        confirmLabel={confirm?.confirmLabel}
+        danger={confirm?.danger}
+        Icon={confirm?.Icon}
+        onCancel={() => setConfirm(null)}
+        onConfirm={() => { const a = confirm?.action; setConfirm(null); a?.(); }}
+      />
 
       {/* Goals Modal */}
       <AnimatePresence>
