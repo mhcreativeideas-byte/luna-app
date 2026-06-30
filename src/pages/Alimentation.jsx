@@ -384,7 +384,7 @@ export default function Alimentation() {
 
                 {/* Lien vers recettes */}
                 <Link
-                  to={`/recettes?nutrient=${encodeURIComponent(openNutrient)}`}
+                  to={`/recettes-liste?nutrient=${encodeURIComponent(openNutrient)}`}
                   className="mt-4 flex items-center justify-center gap-2 py-3 rounded-[14px] transition-all hover:opacity-80"
                   style={{ backgroundColor: phaseData.bgColor }}
                 >

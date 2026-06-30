@@ -343,7 +343,7 @@ export default function Dashboard() {
                 {advice.why} Pense à : <span className="font-semibold">{advice.foods.join(', ')}</span>.
               </p>
               <button
-                onClick={() => navigate(`/recettes?nutrient=${encodeURIComponent(advice.nutrient)}`)}
+                onClick={() => navigate(`/recettes-liste?nutrient=${encodeURIComponent(advice.nutrient)}`)}
                 className="mt-3 w-full flex items-center justify-center gap-2 py-3 rounded-[14px] text-[13px] font-body font-bold text-white transition-all active:scale-[0.99]"
                 style={{ backgroundColor: phaseData.color, boxShadow: `0 4px 14px ${phaseData.color}40` }}
               >

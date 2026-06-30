@@ -511,7 +511,7 @@ export default function MonFrigo() {
             <div className="text-center py-6 bg-white rounded-[22px]" style={{ boxShadow: '0 8px 24px rgba(45,34,38,0.06)' }}>
               <p className="text-sm font-body text-luna-text-muted mb-2">Ajoute plus d'ingrédients pour débloquer des recettes !</p>
               <Link
-                to="/recettes"
+                to="/recettes-liste"
                 className="inline-flex items-center gap-2 text-sm font-body font-semibold transition-colors"
                 style={{ color: phaseData.color }}
               >
