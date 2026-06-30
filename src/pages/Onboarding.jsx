@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check, ArrowRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
+import Paywall from '../components/Paywall';
 
 const TOTAL_STEPS = 8;
 
@@ -115,6 +116,8 @@ export default function Onboarding() {
   }, [onboardingComplete, navigate]);
 
   const [step, setStep] = useState(0);
+  const [showIntro, setShowIntro] = useState(true);
+  const [showPaywall, setShowPaywall] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [form, setForm] = useState({
@@ -254,6 +257,57 @@ export default function Onboarding() {
             </motion.div>
           )}
         </motion.div>
+      </div>
+    );
+  }
+
+  const handleFinish = () => {
+    finish().then(() => navigate('/dashboard'));
+  };
+
+  // Écran d'abonnement (après le récap, avant d'entrer dans l'app)
+  if (showPaywall) {
+    return <Paywall onSubscribe={handleFinish} onLater={handleFinish} />;
+  }
+
+  // Manifeste d'ouverture — pose le ton dès la première seconde
+  if (showIntro) {
+    return (
+      <div
+        className="h-[100dvh] overflow-y-auto px-6 flex flex-col"
+        style={{
+          background: 'linear-gradient(180deg, #F0C4C9 0%, #EDC4B3 55%, #FAF8F5 100%)',
+          paddingTop: 'calc(env(safe-area-inset-top) + 2.5rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        <div className="flex-1" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-md mx-auto"
+        >
+          <img src="/logo-luna.png" alt="LUNA" className="w-20 mb-8" />
+          <h1 className="font-display text-[32px] md:text-4xl text-luna-text leading-[1.2]">
+            Tu n'es pas compliquée,<br />
+            <em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>tu es cyclique.</em>
+          </h1>
+          <p className="text-base font-body text-luna-text-body mt-4 leading-relaxed max-w-xs">
+            Ton corps suit un rythme. LUNA t'aide à le comprendre et à vivre avec, en douceur.
+          </p>
+        </motion.div>
+        <div className="flex-1" />
+        <div className="w-full max-w-md mx-auto">
+          <button
+            onClick={() => setShowIntro(false)}
+            className="btn-luna w-full justify-center text-base py-4"
+          >
+            Commencer
+            <ArrowRight size={16} />
+          </button>
+        </div>
       </div>
     );
   }
@@ -403,6 +457,10 @@ export default function Onboarding() {
                 <p className="text-xs text-luna-text-hint font-body text-center italic">
                   Pas sûre ? On affinera ensemble.
                 </p>
+                <div className="flex items-center justify-center gap-1.5 pt-1">
+                  <Lock size={11} className="text-luna-text-hint flex-shrink-0" />
+                  <p className="text-[11px] text-luna-text-hint font-body">Tes données restent privées · modifiable plus tard</p>
+                </div>
               </div>
             </motion.div>
           )}
@@ -511,6 +569,10 @@ export default function Onboarding() {
                     )}
                   </motion.button>
                 ))}
+              </div>
+              <div className="flex items-center justify-center gap-1.5 mt-4">
+                <Lock size={11} className="text-luna-text-hint flex-shrink-0" />
+                <p className="text-[11px] text-luna-text-hint font-body">Confidentiel · ces infos restent entre nous</p>
               </div>
             </motion.div>
           )}
@@ -835,12 +897,10 @@ export default function Onboarding() {
           ) : (
             <motion.button
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                finish().then(() => navigate('/dashboard'));
-              }}
+              onClick={() => setShowPaywall(true)}
               className="btn-luna"
             >
-              Découvrir ma journée
+              Continuer
               <ArrowRight size={16} />
             </motion.button>
           )}
