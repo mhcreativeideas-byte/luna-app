@@ -36,6 +36,12 @@ const PHASE_FILTERS = [
   { id: 'luteal', label: 'Lutéale', icon: '🍂' },
 ];
 
+const CALORIE_OPTIONS = [
+  { id: 200, label: '≤ 200' },
+  { id: 350, label: '≤ 350' },
+  { id: 500, label: '≤ 500' },
+];
+
 const CUISINES = [
   { id: 'francais', label: 'Français', icon: '🇫🇷' },
   { id: 'italien', label: 'Italien', icon: '🇮🇹' },
@@ -66,6 +72,7 @@ export default function RecipesList() {
   const [selectedLevel, setSelectedLevel] = useState(cookingLevel || 'avance');
   const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
+  const [selectedCalories, setSelectedCalories] = useState(null);
 
   const toggleFavorite = (recipeName) => {
     if (!favorites.includes(recipeName)) toast('Ajouté à tes favoris ❤️');
@@ -113,7 +120,7 @@ export default function RecipesList() {
   const maxTime = timeToMaxMinutes(selectedTime);
 
   const allRecipes = filterRecipes(recipes, {
-    selectedMeal, requiredTags, allergies, selectedLevel, selectedTime, selectedCuisines, nutrientFilter,
+    selectedMeal, requiredTags, allergies, selectedLevel, selectedTime, selectedCuisines, nutrientFilter, maxCalories: selectedCalories,
   });
 
   const isFavMode = selectedMeal === 'favorites';
@@ -121,7 +128,7 @@ export default function RecipesList() {
   const displayedRecipes = isFavMode ? (favRecipes || []).filter((r) => isFavorite(r.name)) : allRecipes;
   const openRecipeData = openRecipe !== null ? displayedRecipes[openRecipe] : null;
 
-  const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0;
+  const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0 || selectedCalories;
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
@@ -210,6 +217,9 @@ export default function RecipesList() {
                   const cuisineData = CUISINES.find((x) => x.id === c);
                   if (cuisineData) activeTags.push({ label: cuisineData.label, key: c, onRemove: () => setSelectedCuisines((prev) => prev.filter((x) => x !== c)) });
                 });
+                if (selectedCalories) {
+                  activeTags.push({ label: `≤ ${selectedCalories} kcal`, key: 'calories', onRemove: () => setSelectedCalories(null) });
+                }
 
                 return activeTags.length > 0 && (
                   <div className="flex items-center gap-2 flex-wrap pb-2 border-b border-gray-50">
@@ -296,6 +306,31 @@ export default function RecipesList() {
                 </div>
               </div>
 
+              {/* Calories */}
+              <div>
+                <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Calories</p>
+                <div className="flex gap-1.5 flex-wrap">
+                  {CALORIE_OPTIONS.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() => setSelectedCalories(c.id)}
+                      className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                      style={selectedCalories === c.id ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
+                    >
+                      <span className="text-[10px]">🔥</span>
+                      {c.label}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => setSelectedCalories(null)}
+                    className="px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                    style={!selectedCalories ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
+                  >
+                    Tout
+                  </button>
+                </div>
+              </div>
+
               {/* Cuisine */}
               <div>
                 <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Cuisine</p>
@@ -325,6 +360,7 @@ export default function RecipesList() {
                     setSelectedLevel(cookingLevel || 'avance');
                     setSelectedTime(cookingTime || '');
                     setSelectedCuisines([]);
+                    setSelectedCalories(null);
                   }}
                   className="flex items-center gap-1.5 text-[11px] font-body font-semibold text-luna-text-hint hover:text-luna-text transition-colors"
                 >

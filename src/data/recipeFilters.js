@@ -94,6 +94,7 @@ export function filterRecipes(recipes, {
   selectedTime = '',
   selectedCuisines = [],
   nutrientFilter = '',
+  maxCalories = null,
 } = {}) {
   const out = [];
   if (!recipes) return out;
@@ -114,6 +115,7 @@ export function filterRecipes(recipes, {
       if (recipeLevel > maxLevel) return;
       if (selectedCuisines.length > 0 && !selectedCuisines.includes(recipe.cuisine)) return;
       if (nutrientFilter && !(recipe.nutrients || []).some((n) => n.toLowerCase().includes(nutrientFilter.toLowerCase()))) return;
+      if (maxCalories && Number(recipe.calories) > maxCalories) return;
       out.push({ ...recipe, mealType });
     });
   });
