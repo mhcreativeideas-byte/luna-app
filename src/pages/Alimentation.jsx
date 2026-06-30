@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle } from 'lucide-react';
+import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCrossed, AlertTriangle, Heart, Star } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
@@ -244,7 +244,7 @@ export default function Alimentation() {
                   key={n}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => { setOpenNutrient(isActive ? null : n); setSelectedFood(null); }}
-                  className="flex items-center gap-2.5 px-4 py-3.5 rounded-[18px] text-left transition-all duration-300"
+                  className="flex items-center gap-2 px-3.5 py-3.5 rounded-[18px] text-left transition-all duration-300"
                   style={isActive ? {
                     backgroundColor: phaseData.color,
                     color: 'white',
@@ -254,10 +254,16 @@ export default function Alimentation() {
                     color: phaseData.colorDark,
                   }}
                 >
-                  <span className="text-lg flex-shrink-0">{icon}</span>
-                  <span className="text-[13px] font-body font-semibold leading-tight">{n}</span>
+                  <span className="text-base flex-shrink-0">{icon}</span>
+                  <span className="text-[13px] font-body font-semibold leading-tight flex-1 min-w-0">{n}</span>
                   {isBeneficial && (
-                    <span className="text-[9px] ml-auto flex-shrink-0" title="Recommandé pour ta santé">💚</span>
+                    <Heart
+                      size={11}
+                      className="flex-shrink-0"
+                      fill="currentColor"
+                      style={{ color: isActive ? 'white' : phaseData.colorDark }}
+                      aria-label="Recommandé pour ta santé"
+                    />
                   )}
                 </motion.button>
               );
@@ -266,11 +272,11 @@ export default function Alimentation() {
 
           {hasHealthBadges && (
             <div className="flex items-center gap-2 mt-4 pt-3 border-t border-gray-50">
-              <span className="text-[10px]">💚</span>
+              <Heart size={11} className="flex-shrink-0" fill="currentColor" style={{ color: phaseData.colorDark }} />
               <p className="text-[10px] font-body text-luna-text-hint">
                 = Nutriment clé pour {userIssues.join(' & ')}
               </p>
-              <span className="text-[10px] ml-2">⭐</span>
+              <Star size={11} className="ml-2 flex-shrink-0" fill="currentColor" style={{ color: '#E8A87C' }} />
               <p className="text-[10px] font-body text-luna-text-hint">
                 = Superaliment pour toi
               </p>
@@ -324,14 +330,14 @@ export default function Alimentation() {
                   </p>
                   {isFiltering && (
                     <span
-                      className="text-[9px] font-body font-semibold px-2.5 py-1 rounded-pill"
+                      className="inline-flex items-center gap-1 text-[9px] font-body font-semibold px-2.5 py-1 rounded-pill"
                       style={{ backgroundColor: `${phaseData.color}15`, color: phaseData.colorDark }}
                     >
-                      🌱 {dietLabel}
+                      <Leaf size={10} className="flex-shrink-0" /> {dietLabel}
                     </span>
                   )}
                 </div>
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-3 gap-3">
                   {filterFoods(nutrientsFull[openNutrient].foods).map((food, i) => {
                     const isActive = selectedFood === food.name;
                     const isSuperfood = hasHealthBadges && superfoodSet.has(food.name);
@@ -346,7 +352,7 @@ export default function Alimentation() {
                       >
                         <div className="relative">
                           <div
-                            className="w-14 h-14 rounded-[16px] flex items-center justify-center text-2xl transition-all duration-200"
+                            className="w-16 h-16 rounded-[18px] flex items-center justify-center text-3xl transition-all duration-200"
                             style={{
                               backgroundColor: isActive ? `${phaseData.color}25` : phaseData.bgColor,
                               border: isActive ? `2px solid ${phaseData.color}` : '2px solid transparent',
@@ -358,11 +364,11 @@ export default function Alimentation() {
                           </div>
                           {isSuperfood && (
                             <div
-                              className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center text-[8px]"
+                              className="absolute -top-1 -right-1 w-[18px] h-[18px] rounded-full flex items-center justify-center"
                               style={{ backgroundColor: 'white', boxShadow: '0 1px 4px rgba(45,34,38,0.12)' }}
                               title="Particulièrement bénéfique pour toi"
                             >
-                              ⭐
+                              <Star size={10} fill="currentColor" style={{ color: '#E8A87C' }} />
                             </div>
                           )}
                         </div>
