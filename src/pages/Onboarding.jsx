@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator, Feather } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES, getPhaseForDay } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
@@ -16,6 +16,25 @@ const PHASE_MOODS = {
 // Écrans-miroir « problème → solution », semés entre les questions.
 // fromStep = l'étape après laquelle le miroir apparaît (Continuer → miroir → étape suivante).
 const MIRRORS = {
+  hommefemme: {
+    after: 0,
+    bg: 'linear-gradient(180deg, #F3EEF8 0%, #FDE8EB 60%, #FAF7F5 100%)',
+    accent: '#A85A66',
+    visual: 'lines',
+    titleMain: 'Ton corps n\'est pas un',
+    titleItalic: 'corps d\'homme.',
+    text: 'Les conseils nutrition classiques sont pensés pour un métabolisme stable sur 24h. Le tien suit un cycle de ~28 jours. D\'où l\'intérêt de le suivre.',
+  },
+  volonte: {
+    after: 8,
+    bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)',
+    accent: '#A85A66',
+    Icon: Feather,
+    iconColor: '#C4727F',
+    titleMain: 'Ce n\'est pas un manque de',
+    titleItalic: 'volonté.',
+    text: 'Tes envies de sucre avant les règles sont hormonales — la sérotonine chute. Pas un défaut. Les bons aliments les apaisent, sans te priver.',
+  },
   cycle: {
     after: 1,
     bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)',
@@ -409,7 +428,14 @@ export default function Onboarding() {
           transition={{ duration: 0.5 }}
           className="w-full max-w-md mx-auto"
         >
-          {m.dots ? (
+          {m.visual === 'lines' ? (
+            <svg viewBox="0 0 200 64" width="200" height="64" className="mb-6" role="img" aria-label="Ligne droite sur 24h versus courbe sur 28 jours">
+              <line x1="6" y1="22" x2="135" y2="22" stroke="#B8AAAD" strokeWidth="2.5" strokeLinecap="round" />
+              <text x="143" y="26" style={{ fontSize: '10px', fill: '#9A8A8E' }}>24h</text>
+              <path d="M6 54 Q 38 32, 70 54 T 135 54" fill="none" stroke="#C4727F" strokeWidth="3" strokeLinecap="round" />
+              <text x="143" y="58" style={{ fontSize: '10px', fill: '#A85A66' }}>~28 j</text>
+            </svg>
+          ) : m.dots ? (
             <div className="flex gap-2 mb-6">
               {m.dots.map((c) => <span key={c} className="w-7 h-7 rounded-full" style={{ backgroundColor: c }} />)}
             </div>
