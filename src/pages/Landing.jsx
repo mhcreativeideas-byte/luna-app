@@ -293,6 +293,16 @@ export default function Landing() {
         <p className="text-xs text-luna-text-hint font-body mt-1">
           LUNA — Comprends ton cycle. Adapte ta vie.
         </p>
+        <div className="flex items-center justify-center gap-4 mt-5 text-xs font-body">
+          <Link to="/confidentialite" className="text-luna-text-muted hover:text-luna-rose transition-colors">
+            Confidentialité
+          </Link>
+          <span className="text-luna-text-hint">·</span>
+          <Link to="/conditions" className="text-luna-text-muted hover:text-luna-rose transition-colors">
+            Conditions
+          </Link>
+        </div>
+        <p className="text-[11px] text-luna-text-hint font-body mt-4">© 2026 LUNA</p>
       </footer>
     </main>
   );

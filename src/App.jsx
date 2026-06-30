@@ -61,6 +61,18 @@ function HomeRedirect() {
   return <Landing />;
 }
 
+// Mise en page simple pour les pages légales, accessibles sans connexion
+// (Apple exige une politique de confidentialité publiquement accessible).
+function LegalPage({ children }) {
+  return (
+    <div className="min-h-screen bg-luna-bg">
+      <div className="max-w-4xl mx-auto px-4 pt-[calc(env(safe-area-inset-top)+1.5rem)] pb-[calc(env(safe-area-inset-bottom)+2rem)]">
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <ErrorBoundary>
@@ -73,6 +85,8 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/conditions" element={<LegalPage><CGU /></LegalPage>} />
+            <Route path="/confidentialite" element={<LegalPage><Privacy /></LegalPage>} />
             <Route
               element={
                 <ProtectedRoute>
@@ -95,8 +109,6 @@ function App() {
               <Route path="/calendrier" element={<Calendar />} />
               <Route path="/plus" element={<Extras />} />
               <Route path="/parametres" element={<Settings />} />
-              <Route path="/conditions" element={<CGU />} />
-              <Route path="/confidentialite" element={<Privacy />} />
             </Route>
             {/* Legacy routes redirect */}
             <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
