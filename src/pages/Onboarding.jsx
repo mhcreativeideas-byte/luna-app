@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES, getPhaseForDay } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
@@ -11,6 +11,49 @@ const PHASE_MOODS = {
   follicular: 'Énergie qui remonte',
   ovulatory: 'Rayonnement',
   luteal: 'Cocooning',
+};
+
+// Écrans-miroir « problème → solution », semés entre les questions.
+// fromStep = l'étape après laquelle le miroir apparaît (Continuer → miroir → étape suivante).
+const MIRRORS = {
+  cycle: {
+    fromStep: 1,
+    bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)',
+    accent: '#A85A66',
+    dots: ['#D4727F', '#7BAE7F', '#E8A87C', '#B09ACB'],
+    titleMain: '4 phases,',
+    titleItalic: '4 besoins.',
+    text: 'À chaque phase, ton corps réclame d\'autres aliments. LUNA adapte ton assiette à chacune.',
+  },
+  promise: {
+    fromStep: 3,
+    bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)',
+    accent: '#7E6597',
+    Icon: Sparkles,
+    titleMain: 'Tes symptômes ont une',
+    titleItalic: 'logique.',
+    text: 'La plupart des femmes repèrent leur rythme dès le premier mois avec LUNA. On va te montrer le tien.',
+  },
+  menu: {
+    fromStep: 4,
+    bg: 'linear-gradient(180deg, #FFF3EB 0%, #FAF7F5 100%)',
+    accent: '#C2683F',
+    icons: [UtensilsCrossed, Refrigerator],
+    iconColor: '#D4846A',
+    titleMain: 'Fini la',
+    titleItalic: 'page blanche.',
+    text: 'Ton menu du jour t\'attend chaque matin, adapté à ta phase. Et Mon Frigo cuisine avec ce que tu as déjà.',
+  },
+  filter: {
+    fromStep: 5,
+    bg: 'linear-gradient(180deg, #EDF5ED 0%, #FAF7F5 100%)',
+    accent: '#4E7A52',
+    Icon: ShieldCheck,
+    iconColor: '#4E7A52',
+    titleMain: 'Zéro recette qui ne te',
+    titleItalic: 'convient pas.',
+    text: 'Végé, sans gluten, allergies… on filtre tout automatiquement. Tu ne vois que ce que tu peux manger.',
+  },
 };
 import Paywall from '../components/Paywall';
 
@@ -124,7 +167,7 @@ export default function Onboarding() {
 
   const [step, setStep] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
-  const [showPromise, setShowPromise] = useState(false);
+  const [mirror, setMirror] = useState(null);
   const [showPaywall, setShowPaywall] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
@@ -320,13 +363,15 @@ export default function Onboarding() {
     );
   }
 
-  // Écran-promesse (effet miroir) — après la question Santé
-  if (showPromise) {
+  // Écrans-miroir « problème → solution » (génériques) semés entre les questions
+  if (mirror && MIRRORS[mirror]) {
+    const m = MIRRORS[mirror];
+    const MIcon = m.Icon;
     return (
       <div
         className="h-[100dvh] overflow-y-auto px-6 flex flex-col"
         style={{
-          background: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)',
+          background: m.bg,
           paddingTop: 'calc(env(safe-area-inset-top) + 2.5rem)',
           paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)',
           WebkitOverflowScrolling: 'touch',
@@ -339,20 +384,34 @@ export default function Onboarding() {
           transition={{ duration: 0.5 }}
           className="w-full max-w-md mx-auto"
         >
-          <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6" style={{ boxShadow: '0 4px 16px rgba(176,154,203,0.20)' }}>
-            <Sparkles size={26} style={{ color: '#7E6597' }} />
-          </div>
+          {m.dots ? (
+            <div className="flex gap-2 mb-6">
+              {m.dots.map((c) => <span key={c} className="w-7 h-7 rounded-full" style={{ backgroundColor: c }} />)}
+            </div>
+          ) : m.icons ? (
+            <div className="flex gap-2.5 mb-6">
+              {m.icons.map((Ic, i) => (
+                <div key={i} className="w-12 h-12 rounded-[15px] bg-white flex items-center justify-center" style={{ boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}>
+                  <Ic size={22} style={{ color: m.iconColor }} />
+                </div>
+              ))}
+            </div>
+          ) : MIcon ? (
+            <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6" style={{ boxShadow: '0 4px 16px rgba(45,34,38,0.10)' }}>
+              <MIcon size={26} style={{ color: m.iconColor || m.accent }} />
+            </div>
+          ) : null}
           <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-[1.2]">
-            Tes symptômes ont une <em className="not-italic" style={{ fontStyle: 'italic', color: '#7E6597' }}>logique.</em>
+            {m.titleMain} <em className="not-italic" style={{ fontStyle: 'italic', color: m.accent }}>{m.titleItalic}</em>
           </h1>
           <p className="text-base font-body text-luna-text-body mt-4 leading-relaxed max-w-xs">
-            La plupart des femmes repèrent leur rythme dès le premier mois avec LUNA. On va te montrer le tien.
+            {m.text}
           </p>
         </motion.div>
         <div className="flex-1" />
         <div className="w-full max-w-md mx-auto">
           <button
-            onClick={() => { setShowPromise(false); setStep(4); }}
+            onClick={() => { setStep(m.fromStep + 1); setMirror(null); }}
             className="btn-luna w-full justify-center text-base py-4"
           >
             Continuer
@@ -961,7 +1020,8 @@ export default function Onboarding() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => {
-                if (step === 3) setShowPromise(true);
+                const mid = Object.keys(MIRRORS).find((k) => MIRRORS[k].fromStep === step);
+                if (mid) setMirror(mid);
                 else setStep((s) => s + 1);
               }}
               disabled={!canNext()}
