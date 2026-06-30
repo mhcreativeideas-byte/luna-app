@@ -172,7 +172,7 @@ export default function CheckIn() {
               </div>
             </div>
 
-            <button onClick={() => setStep(1)} className="btn-luna w-full justify-center">
+            <button onClick={() => setStep(1)} className="btn-luna w-full justify-center" style={{ background: phaseColor }}>
               Continuer
             </button>
           </motion.div>
@@ -319,7 +319,7 @@ export default function CheckIn() {
       {/* Sticky save button */}
       {step === 1 && (
         <div className="fixed left-0 right-0 px-4 bottom-[calc(env(safe-area-inset-bottom)+5rem)] lg:bottom-4 lg:left-64">
-          <button onClick={save} className="btn-luna w-full justify-center text-base py-4">
+          <button onClick={save} className="btn-luna w-full justify-center text-base py-4" style={{ background: phaseColor }}>
             <Check size={18} />
             C'est noté
           </button>

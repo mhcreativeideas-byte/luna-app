@@ -274,7 +274,7 @@ export default function Dashboard() {
               return (
                 <div key={seg.key} className="flex flex-col items-center" style={{ width: `${seg.width}%` }}>
                   <Icon size={11} style={{ color: pd.color }} />
-                  <span className="text-[8px] font-body text-luna-text-hint mt-0.5 leading-none">
+                  <span className="text-[10px] font-body text-luna-text-hint mt-1 leading-none">
                     {pd.shortName.split(' ')[0]}
                   </span>
                 </div>

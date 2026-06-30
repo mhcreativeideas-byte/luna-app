@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Sparkles, Filter, Heart, RotateCcw } from 'lucide-react';
+import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
@@ -73,6 +73,7 @@ export default function RecipesList() {
   const [selectedTime, setSelectedTime] = useState(cookingTime || '');
   const [selectedCuisines, setSelectedCuisines] = useState([]);
   const [selectedCalories, setSelectedCalories] = useState(null);
+  const [search, setSearch] = useState('');
 
   const toggleFavorite = (recipeName) => {
     if (!favorites.includes(recipeName)) toast('Ajouté à tes favoris ❤️');
@@ -125,7 +126,11 @@ export default function RecipesList() {
 
   const isFavMode = selectedMeal === 'favorites';
   const recipesLoading = isFavMode ? !favRecipes : !recipes;
-  const displayedRecipes = isFavMode ? (favRecipes || []).filter((r) => isFavorite(r.name)) : allRecipes;
+  const baseRecipes = isFavMode ? (favRecipes || []).filter((r) => isFavorite(r.name)) : allRecipes;
+  const searchQuery = search.trim().toLowerCase();
+  const displayedRecipes = searchQuery
+    ? baseRecipes.filter((r) => (r.name || '').toLowerCase().includes(searchQuery) || (r.description || '').toLowerCase().includes(searchQuery))
+    : baseRecipes;
   const openRecipeData = openRecipe !== null ? displayedRecipes[openRecipe] : null;
 
   const hasActiveFilters = selectedPhase !== 'current' || selectedLevel !== 'avance' || (selectedTime && selectedTime !== '60min+') || selectedCuisines.length > 0 || selectedCalories;
@@ -163,6 +168,25 @@ export default function RecipesList() {
               <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white" style={{ backgroundColor: phaseData.color }} />
             )}
           </button>
+        </div>
+      </motion.div>
+
+      {/* Barre de recherche */}
+      <motion.div variants={item}>
+        <div className="flex items-center gap-3 bg-white rounded-[18px] px-4 py-3" style={{ boxShadow: '0 4px 16px rgba(45,34,38,0.05)' }}>
+          <Search size={18} className="text-luna-text-hint flex-shrink-0" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setOpenRecipe(null); }}
+            placeholder="Rechercher une recette…"
+            className="flex-1 bg-transparent text-sm font-body text-luna-text outline-none placeholder:text-luna-text-hint"
+          />
+          {search && (
+            <button onClick={() => setSearch('')} aria-label="Effacer" className="text-luna-text-hint flex-shrink-0">
+              <X size={16} />
+            </button>
+          )}
         </div>
       </motion.div>
 

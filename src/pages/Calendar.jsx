@@ -91,27 +91,27 @@ export default function Calendar() {
 
         {/* Legend pills */}
         <div className="flex items-center gap-2 mb-4 overflow-x-auto hide-scrollbar pb-1">
-          <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+          <span className="flex items-center gap-1.5 text-[11px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.menstrual.color }} />
             Confirmé
           </span>
-          <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+          <span className="flex items-center gap-1.5 text-[11px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.menstrual.color, opacity: 0.45 }} />
             Estimé
           </span>
-          <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+          <span className="flex items-center gap-1.5 text-[11px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.follicular.color }} />
             Folliculaire
           </span>
-          <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+          <span className="flex items-center gap-1.5 text-[11px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.ovulatory.color }} />
             Ovulation
           </span>
-          <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+          <span className="flex items-center gap-1.5 text-[11px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: PHASES.luteal.color }} />
             Lutéale
           </span>
-          <span className="flex items-center gap-1.5 text-[10px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
+          <span className="flex items-center gap-1.5 text-[11px] font-body text-luna-text-muted whitespace-nowrap px-2.5 py-1 rounded-pill bg-gray-50">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#C4727F', opacity: 0.6 }} />
             Spotting
           </span>
@@ -120,7 +120,7 @@ export default function Calendar() {
         {/* Weekday headers */}
         <div className="grid grid-cols-7 gap-1.5 mb-2">
           {WEEKDAYS.map((wd, i) => (
-            <span key={i} className="text-center text-[10px] font-body font-semibold text-luna-text-hint uppercase tracking-wider py-1">
+            <span key={i} className="text-center text-[11px] font-body font-semibold text-luna-text-hint uppercase tracking-wider py-1">
               {wd}
             </span>
           ))}

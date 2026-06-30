@@ -216,9 +216,9 @@ export default function DailyMenu() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-[9px] font-body font-bold uppercase tracking-wider" style={{ color: phaseData.color }}>{m.time}</span>
-                        <span className="text-[9px] font-body text-luna-text-hint">·</span>
-                        <span className="text-[9px] font-body text-luna-text-hint">{m.recipe.prepTime}</span>
+                        <span className="text-[10px] font-body font-bold uppercase tracking-wider" style={{ color: phaseData.color }}>{m.time}</span>
+                        <span className="text-[10px] font-body text-luna-text-hint">·</span>
+                        <span className="text-[10px] font-body text-luna-text-hint">{m.recipe.prepTime}</span>
                       </div>
                       <p className="text-sm font-body font-semibold text-luna-text leading-snug line-clamp-2">{m.recipe.name}</p>
                       {m.drink && (

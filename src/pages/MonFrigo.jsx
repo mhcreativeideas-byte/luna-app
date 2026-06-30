@@ -7,6 +7,7 @@ import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import BackButton from '../components/ui/BackButton';
+import PhaseHero from '../components/food/PhaseHero';
 
 const container = {
   hidden: { opacity: 0 },
@@ -292,23 +293,15 @@ export default function MonFrigo() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <BackButton />
 
-      {/* Header */}
+      {/* Header — composant partagé compact */}
       <motion.div variants={item}>
-        <div
-          className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
-          style={{ backgroundColor: phaseData.bgColor, boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
-        >
-          🧊
-        </div>
-        <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
-          {phaseData.shortName} · Mon frigo
-        </p>
-        <h1 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
-          Qu'est-ce qu'on <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>cuisine</em> ?
-        </h1>
-        <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
-          Dis-nous ce que tu as, on te dit quoi cuisiner.
-        </p>
+        <PhaseHero
+          phaseData={phaseData}
+          section="Mon frigo"
+          titleMain="Qu'est-ce qu'on"
+          titleItalic="cuisine ?"
+          intro="Dis-nous ce que tu as, on te dit quoi cuisiner."
+        />
       </motion.div>
 
       {/* Search input */}
