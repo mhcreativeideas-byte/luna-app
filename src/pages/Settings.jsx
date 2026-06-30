@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, X, LogOut, RotateCcw, Trash2 } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ChevronRight, LogOut, RotateCcw, Trash2 } from 'lucide-react';
 import ConfirmDialog from '../components/ui/ConfirmDialog';
+import BottomSheet from '../components/ui/BottomSheet';
 import { useCycle } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -369,33 +370,8 @@ export default function Settings() {
       />
 
       {/* Goals Modal */}
-      <AnimatePresence>
-        {showGoals && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowGoals(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Mes objectifs</h3>
-                <button
-                  onClick={() => setShowGoals(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showGoals} onClose={() => setShowGoals(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">Mes objectifs</h3>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
                 Sélectionne ou retire des objectifs selon tes besoins.
@@ -428,38 +404,11 @@ export default function Settings() {
               >
                 Enregistrer ({editedGoals.length} objectif{editedGoals.length > 1 ? 's' : ''})
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
 
       {/* Diet Modal */}
-      <AnimatePresence>
-        {showDiet && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowDiet(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Mon alimentation</h3>
-                <button
-                  onClick={() => setShowDiet(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showDiet} onClose={() => setShowDiet(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">Mon alimentation</h3>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
                 Modifie tes préférences alimentaires. Tes recommandations s'adapteront automatiquement.
@@ -489,38 +438,11 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
 
       {/* Health Modal */}
-      <AnimatePresence>
-        {showHealth && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowHealth(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Santé hormonale</h3>
-                <button
-                  onClick={() => setShowHealth(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showHealth} onClose={() => setShowHealth(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">Santé hormonale</h3>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
                 Indique tes soucis hormonaux pour des conseils personnalisés. Tu peux tout désélectionner si aucun ne te concerne.
@@ -555,38 +477,11 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
 
       {/* Allergies Modal */}
-      <AnimatePresence>
-        {showAllergies && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowAllergies(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Mes allergies</h3>
-                <button
-                  onClick={() => setShowAllergies(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showAllergies} onClose={() => setShowAllergies(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">Mes allergies</h3>
 
               <p className="text-sm text-luna-text-muted font-body mb-4">
                 Sélectionne tes allergies pour filtrer les recettes automatiquement.
@@ -616,38 +511,11 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
 
       {/* Cooking Modal */}
-      <AnimatePresence>
-        {showCooking && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowCooking(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">En cuisine</h3>
-                <button
-                  onClick={() => setShowCooking(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showCooking} onClose={() => setShowCooking(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">En cuisine</h3>
 
               <div className="space-y-5 mb-6">
                 <div>
@@ -707,38 +575,11 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
 
       {/* Cycle Length Modal */}
-      <AnimatePresence>
-        {showCycleLength && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowCycleLength(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Durée du cycle</h3>
-                <button
-                  onClick={() => setShowCycleLength(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showCycleLength} onClose={() => setShowCycleLength(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">Durée du cycle</h3>
 
               <div className="mb-6">
                 <div className="flex items-center gap-4">
@@ -775,38 +616,11 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
 
       {/* Period Length Modal */}
-      <AnimatePresence>
-        {showPeriodLength && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/40 backdrop-blur-sm px-4 pb-4"
-            onClick={(e) => { if (e.target === e.currentTarget) setShowPeriodLength(false); }}
-          >
-            <motion.div
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ type: 'spring', damping: 25 }}
-              className="bg-white rounded-[24px] w-full max-w-md p-6 max-h-[88vh] overflow-y-auto"
-              style={{ boxShadow: '0 8px 40px rgba(45, 34, 38, 0.15)' }}
-            >
-              <div className="flex items-center justify-between mb-5">
-                <h3 className="font-display text-lg text-luna-text">Durée des règles</h3>
-                <button
-                  onClick={() => setShowPeriodLength(false)}
-                  className="w-8 h-8 rounded-full bg-luna-cream flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
-                >
-                  <X size={16} />
-                </button>
-              </div>
+      <BottomSheet open={showPeriodLength} onClose={() => setShowPeriodLength(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-4">Durée des règles</h3>
 
               <div className="mb-6">
                 <div className="flex items-center gap-4">
@@ -843,10 +657,7 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </BottomSheet>
     </div>
   );
 }
