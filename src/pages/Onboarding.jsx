@@ -198,6 +198,17 @@ function getPersonalizedTip(form, phase) {
   return tips[0];
 }
 
+// Conseil basé sur la question « fringales » (pour montrer qu'on en a tenu compte)
+function getCravingTip(cravings) {
+  if (!cravings || !cravings.length) return null;
+  if (cravings.includes('sucre')) return 'Envies de sucre avant les règles ? On a les en-cas qui les apaisent — sans frustration.';
+  if (cravings.includes('ballonnements')) return 'Ballonnements ? On met en avant les aliments qui aident à dégonfler.';
+  if (cravings.includes('faim')) return 'Faim accrue ? Des recettes rassasiantes, pile au bon moment du cycle.';
+  if (cravings.includes('grignotage')) return 'Grignotage émotionnel ? On t\'aide à le calmer en douceur.';
+  if (cravings.includes('appetit')) return 'Moins d\'appétit pendant tes règles ? Des recettes légères et réconfortantes.';
+  return null;
+}
+
 export default function Onboarding() {
   const navigate = useNavigate();
   const { dispatch, user, saveProfileToSupabase, onboardingComplete } = useCycle();
@@ -1011,6 +1022,14 @@ export default function Onboarding() {
 
                   {/* Personalized badges */}
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
+                    {form.goals.map((g) => {
+                      const go = goalOptions.find((o) => o.id === g);
+                      return go ? (
+                        <span key={g} className="text-xs font-body font-semibold px-3 py-1 rounded-pill" style={{ backgroundColor: '#FDE8EB', color: '#A85A66', border: '1px solid #F4C0D1' }}>
+                          {go.icon} {go.label}
+                        </span>
+                      ) : null;
+                    })}
                     {form.dietPreferences.filter(d => d !== 'Omnivore').map((d) => (
                       <span key={d} className="text-xs font-body font-semibold px-3 py-1 rounded-pill bg-green-50 text-green-700 border border-green-200">
                         🌱 {d}
@@ -1047,6 +1066,16 @@ export default function Onboarding() {
                       {getPersonalizedTip(form, info.phase)}
                     </p>
                   </div>
+
+                  {/* Conseil fringales (montre qu'on a tenu compte de cette réponse) */}
+                  {getCravingTip(form.cravings) && (
+                    <div className="rounded-[16px] p-4 text-left mt-3 flex items-start gap-2.5" style={{ backgroundColor: '#FDE8EB' }}>
+                      <span className="text-base flex-shrink-0">🍫</span>
+                      <p className="text-sm font-body leading-relaxed" style={{ color: '#A85A66' }}>
+                        {getCravingTip(form.cravings)}
+                      </p>
+                    </div>
+                  )}
                 </>
               ) : (
                 <p className="text-sm text-luna-text-muted font-body italic">
