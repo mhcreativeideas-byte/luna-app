@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
-import { PHASES } from '../data/phases';
+import { PHASES, getPhaseForDay } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
+
+const PHASE_MOODS = {
+  menstrual: 'Repos & douceur',
+  follicular: 'Énergie qui remonte',
+  ovulatory: 'Rayonnement',
+  luteal: 'Cocooning',
+};
 import Paywall from '../components/Paywall';
 
 const TOTAL_STEPS = 8;
@@ -117,6 +124,7 @@ export default function Onboarding() {
 
   const [step, setStep] = useState(0);
   const [showIntro, setShowIntro] = useState(true);
+  const [showPromise, setShowPromise] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
@@ -305,6 +313,49 @@ export default function Onboarding() {
             className="btn-luna w-full justify-center text-base py-4"
           >
             Commencer
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Écran-promesse (effet miroir) — après la question Santé
+  if (showPromise) {
+    return (
+      <div
+        className="h-[100dvh] overflow-y-auto px-6 flex flex-col"
+        style={{
+          background: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)',
+          paddingTop: 'calc(env(safe-area-inset-top) + 2.5rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        <div className="flex-1" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md mx-auto"
+        >
+          <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6" style={{ boxShadow: '0 4px 16px rgba(176,154,203,0.20)' }}>
+            <Sparkles size={26} style={{ color: '#7E6597' }} />
+          </div>
+          <h1 className="font-display text-[30px] md:text-4xl text-luna-text leading-[1.2]">
+            Tes symptômes ont une <em className="not-italic" style={{ fontStyle: 'italic', color: '#7E6597' }}>logique.</em>
+          </h1>
+          <p className="text-base font-body text-luna-text-body mt-4 leading-relaxed max-w-xs">
+            La plupart des femmes repèrent leur rythme dès le premier mois avec LUNA. On va te montrer le tien.
+          </p>
+        </motion.div>
+        <div className="flex-1" />
+        <div className="w-full max-w-md mx-auto">
+          <button
+            onClick={() => { setShowPromise(false); setStep(4); }}
+            className="btn-luna w-full justify-center text-base py-4"
+          >
+            Continuer
             <ArrowRight size={16} />
           </button>
         </div>
@@ -783,10 +834,10 @@ export default function Onboarding() {
                 ✨
               </motion.span>
               <h2 className="font-display text-2xl text-luna-text mb-2">
-                {form.name}, tout est prêt
+                {form.name}, voici <em className="not-italic" style={{ fontStyle: 'italic', color: info ? PHASES[info.phase].colorDark : '#A85A66' }}>ta semaine</em>
               </h2>
               <p className="text-luna-text-muted font-body text-sm mb-6">
-                Voici ce que ton corps nous dit aujourd'hui.
+                On a déjà tout adapté à ton cycle.
               </p>
 
               {info ? (
@@ -819,6 +870,28 @@ export default function Onboarding() {
                         <span className="text-sm font-body text-luna-text-body">Prochaines règles</span>
                         <span className="text-sm font-semibold font-body" style={{ color: PHASES[info.phase].colorDark }}>dans {info.daysUntilPeriod} jours</span>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Tes prochains jours */}
+                  <div className="mb-4 text-left">
+                    <p className="text-xs font-semibold text-luna-text-hint uppercase tracking-wider mb-2">Tes prochains jours</p>
+                    <div className="space-y-2">
+                      {[0, 1, 2].map((offset) => {
+                        const cd = ((info.currentDay - 1 + offset) % form.cycleLength) + 1;
+                        const ph = getPhaseForDay(cd, form.cycleLength, form.periodLength);
+                        const pd = PHASES[ph];
+                        const dayLabel = offset === 0 ? "Aujourd'hui" : offset === 1 ? 'Demain' : 'Après-demain';
+                        return (
+                          <div key={offset} className="flex items-center gap-3 rounded-[14px] p-3" style={{ backgroundColor: pd.bgColor }}>
+                            <span className="text-xl flex-shrink-0">{pd.icon}</span>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs font-body font-bold" style={{ color: pd.colorDark }}>{dayLabel}</p>
+                              <p className="text-[11px] font-body text-luna-text-muted">{pd.shortName} · {PHASE_MOODS[ph]}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -887,7 +960,10 @@ export default function Onboarding() {
           {step < 7 ? (
             <motion.button
               whileTap={{ scale: 0.95 }}
-              onClick={() => setStep((s) => s + 1)}
+              onClick={() => {
+                if (step === 3) setShowPromise(true);
+                else setStep((s) => s + 1);
+              }}
               disabled={!canNext()}
               className="btn-luna disabled:opacity-40"
             >
