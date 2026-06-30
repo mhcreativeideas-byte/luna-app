@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search } from 'lucide-react';
+import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search, Zap, Sprout, Leaf, ChefHat, Flame } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
@@ -43,13 +43,13 @@ const CALORIE_OPTIONS = [
 ];
 
 const CUISINES = [
-  { id: 'francais', label: 'Français', icon: '🇫🇷' },
-  { id: 'italien', label: 'Italien', icon: '🇮🇹' },
-  { id: 'asiatique', label: 'Asiatique', icon: '🥢' },
-  { id: 'mediterraneen', label: 'Médit.', icon: '🫒' },
-  { id: 'indien', label: 'Indien', icon: '🍛' },
-  { id: 'mexicain', label: 'Mexicain', icon: '🌮' },
-  { id: 'fusion', label: 'Healthy', icon: '🥗' },
+  { id: 'francais', label: 'Français' },
+  { id: 'italien', label: 'Italien' },
+  { id: 'asiatique', label: 'Asiatique' },
+  { id: 'mediterraneen', label: 'Médit.' },
+  { id: 'indien', label: 'Indien' },
+  { id: 'mexicain', label: 'Mexicain' },
+  { id: 'fusion', label: 'Healthy' },
 ];
 
 const mealLabels = {
@@ -288,12 +288,13 @@ export default function RecipesList() {
                   <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Temps</p>
                   <div className="flex gap-1.5 flex-wrap">
                     {[
-                      { id: '15min', label: '15\'', icon: '⚡' },
-                      { id: '30min', label: '30\'', icon: '🕐' },
-                      { id: '45min', label: '45\'', icon: '🕑' },
-                      { id: '60min+', label: '∞', icon: '' },
+                      { id: '15min', label: '15\'', Icon: Zap },
+                      { id: '30min', label: '30\'', Icon: Clock },
+                      { id: '45min', label: '45\'', Icon: Clock },
+                      { id: '60min+', label: '∞', Icon: null },
                     ].map((t) => {
                       const isActive = selectedTime === t.id || (!selectedTime && t.id === '60min+');
+                      const TIcon = t.Icon;
                       return (
                         <button
                           key={t.id}
@@ -301,7 +302,7 @@ export default function RecipesList() {
                           className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
                           style={isActive ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
                         >
-                          {t.icon && <span className="text-[10px]">{t.icon}</span>}
+                          {TIcon && <TIcon size={12} className="flex-shrink-0" />}
                           {t.label}
                         </button>
                       );
@@ -312,20 +313,23 @@ export default function RecipesList() {
                   <p className="text-[11px] font-body font-semibold text-luna-text uppercase tracking-wider mb-2">Niveau</p>
                   <div className="flex gap-1.5 flex-wrap">
                     {[
-                      { id: 'debutant', label: 'Facile', icon: '🌱' },
-                      { id: 'intermediaire', label: 'Moyen', icon: '🌿' },
-                      { id: 'avance', label: 'Tout', icon: '👩‍🍳' },
-                    ].map((lvl) => (
-                      <button
-                        key={lvl.id}
-                        onClick={() => setSelectedLevel(lvl.id)}
-                        className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
-                        style={selectedLevel === lvl.id ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
-                      >
-                        <span className="text-[10px]">{lvl.icon}</span>
-                        {lvl.label}
-                      </button>
-                    ))}
+                      { id: 'debutant', label: 'Facile', Icon: Sprout },
+                      { id: 'intermediaire', label: 'Moyen', Icon: Leaf },
+                      { id: 'avance', label: 'Tout', Icon: ChefHat },
+                    ].map((lvl) => {
+                      const LIcon = lvl.Icon;
+                      return (
+                        <button
+                          key={lvl.id}
+                          onClick={() => setSelectedLevel(lvl.id)}
+                          className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
+                          style={selectedLevel === lvl.id ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
+                        >
+                          <LIcon size={12} className="flex-shrink-0" />
+                          {lvl.label}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -341,7 +345,7 @@ export default function RecipesList() {
                       className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
                       style={selectedCalories === c.id ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
                     >
-                      <span className="text-[10px]">🔥</span>
+                      <Flame size={12} className="flex-shrink-0" />
                       {c.label}
                     </button>
                   ))}
@@ -368,7 +372,6 @@ export default function RecipesList() {
                         className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
                         style={isActive ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
                       >
-                        <span className="text-[10px]">{c.icon}</span>
                         {c.label}
                       </button>
                     );
