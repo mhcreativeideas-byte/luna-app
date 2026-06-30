@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Clock, Sparkles, UtensilsCrossed } from 'lucide-react';
+import { X, Clock, Sparkles, UtensilsCrossed, Sunrise, Sun, Cookie, Moon } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 import { PHASES } from '../../data/phases';
 import { RECIPE_LOADERS } from '../../data/recipeLoaders';
@@ -20,10 +20,10 @@ const getDaySeed = () => {
 };
 
 const MEAL_SLOTS = [
-  { key: 'breakfast', time: 'Matin', icon: '🌅' },
-  { key: 'lunch', time: 'Midi', icon: '☀️' },
-  { key: 'snack', time: 'Snack', icon: '🍪' },
-  { key: 'dinner', time: 'Soir', icon: '🌙' },
+  { key: 'breakfast', time: 'Matin', Icon: Sunrise },
+  { key: 'lunch', time: 'Midi', Icon: Sun },
+  { key: 'snack', time: 'Snack', Icon: Cookie },
+  { key: 'dinner', time: 'Soir', Icon: Moon },
 ];
 
 const DRINK_ICONS = {
@@ -196,7 +196,9 @@ export default function DailyMenu() {
               </div>
             ) : (
               <div className="space-y-2">
-                {dailyMenu.map((m, i) => (
+                {dailyMenu.map((m, i) => {
+                  const MealIcon = m.Icon;
+                  return (
                   <motion.div
                     key={m.key}
                     initial={{ opacity: 0, x: -8 }}
@@ -210,7 +212,7 @@ export default function DailyMenu() {
                       className="w-14 h-14 rounded-[16px] flex items-center justify-center flex-shrink-0"
                       style={{ backgroundColor: phaseData.bgColor }}
                     >
-                      <span className="text-[26px]">{m.recipe.emoji || m.icon}</span>
+                      <MealIcon size={24} style={{ color: phaseData.colorDark }} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
@@ -218,7 +220,7 @@ export default function DailyMenu() {
                         <span className="text-[9px] font-body text-luna-text-hint">·</span>
                         <span className="text-[9px] font-body text-luna-text-hint">{m.recipe.prepTime}</span>
                       </div>
-                      <p className="text-sm font-body font-semibold text-luna-text leading-snug truncate">{m.recipe.name}</p>
+                      <p className="text-sm font-body font-semibold text-luna-text leading-snug line-clamp-2">{m.recipe.name}</p>
                       {m.drink && (
                         <div className="flex items-center gap-1.5 mt-1">
                           <span className="text-[10px]">{m.drinkIcon}</span>
@@ -235,7 +237,8 @@ export default function DailyMenu() {
                       </span>
                     </div>
                   </motion.div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
