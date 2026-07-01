@@ -33,3 +33,6 @@ App-Store-LUNA/captures/
 *.njsproj
 *.sln
 *.sw?
+
+# Apple Sign In private key
+*.p8

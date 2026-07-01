@@ -198,25 +198,16 @@ export default function Auth() {
 
   return (
     <div
-      className="h-[100dvh] overflow-y-auto bg-luna-bg px-4"
+      className="h-[100dvh] overflow-y-auto bg-luna-bg px-6"
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       <div
-        className="w-full max-w-md mx-auto min-h-full flex flex-col justify-center"
+        className="w-full max-w-md mx-auto min-h-full flex flex-col"
         style={{
-          paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
+          paddingTop: '1rem',
           paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
         }}
       >
-        {/* Back to landing */}
-        <button
-          onClick={() => navigate('/')}
-          className="flex items-center gap-1 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body mb-6"
-        >
-          <ChevronLeft size={16} />
-          Retour
-        </button>
-
         <AnimatePresence mode="wait">
           <motion.div
             key={mode}
@@ -225,13 +216,23 @@ export default function Auth() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
+            {/* Back */}
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-1 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body mb-6"
+              style={{ marginTop: 'env(safe-area-inset-top)' }}
+            >
+              <ChevronLeft size={16} />
+              Retour
+            </button>
+
             {/* Logo */}
             <div className="text-center mb-8">
-              <img src="/logo-luna.png" alt="LUNA" className="w-28 mx-auto mb-4" />
+              <img src="/logo-luna.png" alt="LUNA" className="h-[22px] w-auto mx-auto mb-4" />
               <h1 className="font-display text-2xl text-luna-text">
                 {resetMode ? 'Mot de passe oublié ?' : mode === 'signup' ? 'Crée ton espace LUNA' : 'Bon retour'}
               </h1>
-              <p className="text-luna-text-muted font-body text-sm mt-1">
+              <p className="text-luna-text-muted font-body text-sm mt-1 px-4">
                 {resetMode
                   ? 'Entre ton email, on t\'envoie un lien pour le réinitialiser.'
                   : mode === 'signup'

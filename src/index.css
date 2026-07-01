@@ -151,7 +151,7 @@ input[type="range"] {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 2.2rem;
-  background: linear-gradient(135deg, #C4727F 0%, #D4846A 100%);
+  background: #C4727F;
   color: white;
   border-radius: 50px;
   font-family: var(--font-body);
