@@ -6,7 +6,8 @@ import {
   LogOut, RefreshCw, Search,
   ChevronDown, ChevronUp, Calendar, Dumbbell,
   Utensils, Moon, Brain, BookOpen, Flame,
-  ArrowLeft, Trash2, X, AlertTriangle, CreditCard
+  ArrowLeft, Trash2, X, AlertTriangle, CreditCard,
+  Download, Mail, Inbox
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -105,6 +106,12 @@ export default function Admin() {
   const [deleting, setDeleting] = useState(false);
   const [selectedUsers, setSelectedUsers] = useState(new Set());
 
+  // Onglets : 'users' (app) | 'waitlist' (liste d'attente vitrine web)
+  const [activeTab, setActiveTab] = useState('users');
+  const [waitlist, setWaitlist] = useState([]);
+  const [waitlistLoading, setWaitlistLoading] = useState(false);
+  const [waitlistDeleteConfirm, setWaitlistDeleteConfirm] = useState(null); // entry object
+
   const toggleSelectUser = (userId, e) => {
     e.stopPropagation();
     setSelectedUsers((prev) => {
@@ -186,6 +193,7 @@ export default function Admin() {
         if (email && ADMIN_EMAILS.includes(email)) {
           setAuthState('admin');
           fetchUsers();
+          fetchWaitlist();
         } else if (email) {
           setAuthState('denied');
         } else {
@@ -220,6 +228,7 @@ export default function Admin() {
     if (email && ADMIN_EMAILS.includes(email)) {
       setAuthState('admin');
       fetchUsers();
+      fetchWaitlist();
     } else {
       // compte valide mais pas admin → on déconnecte pour ne pas rester loggué dans l'app
       await supabase.auth.signOut();
@@ -244,6 +253,58 @@ export default function Admin() {
     if (data) setUsers(data);
     if (error) console.error('Fetch error:', error);
     setLoading(false);
+  };
+
+  // ---- Liste d'attente (inscrits à la vitrine web) ----
+  const fetchWaitlist = async () => {
+    setWaitlistLoading(true);
+    const { data, error } = await supabase
+      .from('waitlist')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (data) setWaitlist(data);
+    if (error) console.error('Fetch waitlist error:', error);
+    setWaitlistLoading(false);
+  };
+
+  // Exporte la liste d'attente en CSV (importable dans Brevo, Mailchimp…)
+  const exportWaitlistCsv = () => {
+    if (waitlist.length === 0) return;
+    const rows = [
+      ['email', 'source', 'date_inscription'],
+      ...waitlist.map((w) => [
+        w.email || '',
+        w.source || '',
+        w.created_at ? new Date(w.created_at).toLocaleDateString('fr-FR') : '',
+      ]),
+    ];
+    const csv = rows
+      .map((r) => r.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      .join('\n');
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `liste-attente-luna-${today}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDeleteWaitlist = async (entry) => {
+    setDeleting(true);
+    try {
+      const { error } = await supabase.from('waitlist').delete().eq('id', entry.id);
+      if (error) throw error;
+      setWaitlist((prev) => prev.filter((w) => w.id !== entry.id));
+      setWaitlistDeleteConfirm(null);
+      toast('Inscription supprimée ✓');
+    } catch (err) {
+      console.error('Erreur suppression waitlist:', err);
+      toast('Erreur lors de la suppression : ' + err.message, 'error');
+    }
+    setDeleting(false);
   };
 
   const toggleSort = (field) => {
@@ -511,6 +572,27 @@ export default function Admin() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+        {/* Onglets */}
+        <div className="flex gap-2 bg-white rounded-2xl p-1.5 shadow-sm border border-gray-100 w-full sm:w-fit">
+          <button
+            onClick={() => setActiveTab('users')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-body font-semibold transition-all ${activeTab === 'users' ? 'bg-luna-rose text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}
+          >
+            <Users size={16} />
+            Utilisatrices
+            <span className={`text-xs px-1.5 py-0.5 rounded-full ${activeTab === 'users' ? 'bg-white/25' : 'bg-gray-100'}`}>{totalUsers}</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('waitlist')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-body font-semibold transition-all ${activeTab === 'waitlist' ? 'bg-luna-rose text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}
+          >
+            <Inbox size={16} />
+            Liste d'attente
+            <span className={`text-xs px-1.5 py-0.5 rounded-full ${activeTab === 'waitlist' ? 'bg-white/25' : 'bg-gray-100'}`}>{waitlist.length}</span>
+          </button>
+        </div>
+
+        {activeTab === 'users' && (<>
         {/* KPI Cards */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           <KPICard
@@ -921,6 +1003,109 @@ export default function Admin() {
             </div>
           )}
         </motion.div>
+        </>)}
+
+        {activeTab === 'waitlist' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+          >
+            <div className="p-5 border-b border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <h3 className="font-display text-lg text-gray-800">Liste d'attente</h3>
+                <p className="text-xs text-gray-400 font-body mt-0.5">
+                  {waitlist.length} inscrite{waitlist.length > 1 ? 's' : ''} à la vitrine · à importer dans ton outil d'emailing au lancement
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={fetchWaitlist}
+                  disabled={waitlistLoading}
+                  className="flex items-center gap-2 px-3 py-2 text-sm bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-all font-body"
+                >
+                  <RefreshCw size={14} className={waitlistLoading ? 'animate-spin' : ''} />
+                  Actualiser
+                </button>
+                <button
+                  onClick={exportWaitlistCsv}
+                  disabled={waitlist.length === 0}
+                  className="flex items-center gap-2 px-4 py-2 text-sm bg-luna-rose text-white rounded-xl hover:bg-luna-rose-dark transition-all font-body font-semibold disabled:opacity-50"
+                >
+                  <Download size={14} />
+                  Exporter CSV
+                </button>
+              </div>
+            </div>
+
+            {waitlistLoading ? (
+              <div className="p-12 text-center">
+                <RefreshCw className="animate-spin mx-auto text-luna-rose mb-3" size={24} />
+                <p className="text-sm text-gray-400 font-body">Chargement...</p>
+              </div>
+            ) : waitlist.length === 0 ? (
+              <div className="p-12 text-center">
+                <Inbox className="mx-auto text-gray-300 mb-3" size={40} />
+                <p className="text-gray-400 font-body">Aucune inscription pour le moment</p>
+                <p className="text-xs text-gray-300 font-body mt-1">
+                  Les emails récupérés sur la vitrine apparaîtront ici
+                </p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 text-gray-500 font-body">
+                      <th className="text-left px-5 py-3 font-semibold">Email</th>
+                      <th className="text-left px-5 py-3 font-semibold hidden sm:table-cell">Source</th>
+                      <th className="text-left px-5 py-3 font-semibold">Inscription</th>
+                      <th className="w-16 px-3 py-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {waitlist.map((w) => (
+                      <motion.tr
+                        key={w.id}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors"
+                      >
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-7 h-7 rounded-full bg-luna-rose/10 flex items-center justify-center text-luna-rose flex-shrink-0">
+                              <Mail size={13} />
+                            </div>
+                            <span className="font-body text-gray-800">{w.email}</span>
+                          </div>
+                        </td>
+                        <td className="px-5 py-3 hidden sm:table-cell">
+                          <span className="text-xs text-gray-400 font-body bg-gray-50 px-2 py-1 rounded-lg">{w.source || '—'}</span>
+                        </td>
+                        <td className="px-5 py-3">
+                          <div className="flex items-center gap-1.5 text-gray-500">
+                            <Calendar size={12} />
+                            <span className="font-body text-xs">
+                              {new Date(w.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-3 py-3 text-right">
+                          <button
+                            onClick={() => setWaitlistDeleteConfirm(w)}
+                            className="p-2 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                            title="Supprimer"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                        </td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </motion.div>
+        )}
       </div>
 
       {/* Modal de confirmation de suppression */}
@@ -988,6 +1173,50 @@ export default function Admin() {
                   <Trash2 size={14} />
                 )}
                 Supprimer{deleteConfirm === 'bulk' ? ` (${selectedUsers.size})` : ''}
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Modal de confirmation — suppression liste d'attente */}
+      {waitlistDeleteConfirm && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center px-4" onClick={() => setWaitlistDeleteConfirm(null)}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center">
+                <AlertTriangle className="text-red-500" size={20} />
+              </div>
+              <h3 className="font-display text-lg text-gray-800">Retirer de la liste ?</h3>
+            </div>
+            <div className="bg-gray-50 rounded-xl p-4 mb-4">
+              <p className="text-sm font-semibold text-gray-700 font-body">{waitlistDeleteConfirm.email}</p>
+              <p className="text-xs text-gray-400 font-body mt-1">
+                Inscrite le {new Date(waitlistDeleteConfirm.created_at).toLocaleDateString('fr-FR')}
+              </p>
+            </div>
+            <p className="text-sm text-gray-500 font-body mb-5">
+              Cette adresse sera retirée de ta liste d'attente. Action irréversible.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setWaitlistDeleteConfirm(null)}
+                className="flex-1 py-2.5 bg-gray-100 text-gray-600 rounded-xl text-sm font-body font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={() => handleDeleteWaitlist(waitlistDeleteConfirm)}
+                disabled={deleting}
+                className="flex-1 py-2.5 bg-red-500 text-white rounded-xl text-sm font-body font-semibold hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
+              >
+                {deleting ? <RefreshCw size={14} className="animate-spin" /> : <Trash2 size={14} />}
+                Supprimer
               </button>
             </div>
           </motion.div>

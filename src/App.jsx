@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { CycleProvider, useCycle } from './contexts/CycleContext';
 import AppLayout from './components/layout/AppLayout';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -73,6 +74,66 @@ function LegalPage({ children }) {
   );
 }
 
+// Sur le WEB, l'app est « murée » : seule la vitrine (liste d'attente), l'admin
+// et les pages légales sont accessibles. Toute autre URL renvoie vers la vitrine.
+// Rien n'est supprimé — l'app native iPhone (Capacitor) garde TOUTES ses routes.
+const IS_NATIVE = Capacitor.isNativePlatform();
+
+function WebRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/conditions" element={<LegalPage><CGU /></LegalPage>} />
+      <Route path="/confidentialite" element={<LegalPage><Privacy /></LegalPage>} />
+      {/* Tout le reste (app, auth, onboarding…) est fermé sur le web → vitrine */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
+function NativeRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomeRedirect />} />
+      <Route path="/auth" element={<Auth />} />
+      <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/conditions" element={<LegalPage><CGU /></LegalPage>} />
+      <Route path="/confidentialite" element={<LegalPage><Privacy /></LegalPage>} />
+      <Route
+        element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/sport" element={<Sport />} />
+        <Route path="/alimentation" element={<Alimentation />} />
+        <Route path="/recettes" element={<Recettes />} />
+        <Route path="/recettes-liste" element={<RecipesList />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/mon-frigo" element={<MonFrigo />} />
+        <Route path="/sommeil" element={<Sommeil />} />
+        <Route path="/journal" element={<Journal />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route path="/checkin" element={<CheckIn />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/calendrier" element={<Calendar />} />
+        <Route path="/plus" element={<Extras />} />
+        <Route path="/parametres" element={<Settings />} />
+      </Route>
+      {/* Legacy routes redirect */}
+      <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
+      <Route path="/explorer" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/food" element={<Navigate to="/alimentation" replace />} />
+      <Route path="/sleep" element={<Navigate to="/plus" replace />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
+
 function App() {
   return (
     <ErrorBoundary>
@@ -80,43 +141,7 @@ function App() {
         <CycleProvider>
           <Toaster />
           <Suspense fallback={<PageLoader />}>
-            <Routes>
-            <Route path="/" element={<HomeRedirect />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/conditions" element={<LegalPage><CGU /></LegalPage>} />
-            <Route path="/confidentialite" element={<LegalPage><Privacy /></LegalPage>} />
-            <Route
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/sport" element={<Sport />} />
-              <Route path="/alimentation" element={<Alimentation />} />
-              <Route path="/recettes" element={<Recettes />} />
-              <Route path="/recettes-liste" element={<RecipesList />} />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/mon-frigo" element={<MonFrigo />} />
-              <Route path="/sommeil" element={<Sommeil />} />
-              <Route path="/journal" element={<Journal />} />
-              <Route path="/profil" element={<Profil />} />
-              <Route path="/checkin" element={<CheckIn />} />
-              <Route path="/chat" element={<Chat />} />
-              <Route path="/calendrier" element={<Calendar />} />
-              <Route path="/plus" element={<Extras />} />
-              <Route path="/parametres" element={<Settings />} />
-            </Route>
-            {/* Legacy routes redirect */}
-            <Route path="/conseils" element={<Navigate to="/alimentation" replace />} />
-            <Route path="/explorer" element={<Navigate to="/dashboard" replace />} />
-            <Route path="/food" element={<Navigate to="/alimentation" replace />} />
-            <Route path="/sleep" element={<Navigate to="/plus" replace />} />
-            <Route path="*" element={<NotFound />} />
-            </Routes>
+            {IS_NATIVE ? <NativeRoutes /> : <WebRoutes />}
           </Suspense>
         </CycleProvider>
       </BrowserRouter>
