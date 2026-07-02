@@ -43,7 +43,7 @@ const APP_STORE_URL = 'https://apps.apple.com/app/idXXXXXXXXX'; // ← à rempli
 // Tableau « Sans LUNA / Avec LUNA » — repris de l'onboarding (même ton émotionnel).
 const comparisons = [
   { sans: "Tu t'emportes sans comprendre pourquoi", avec: "Tu sais que c'est ta phase, pas toi", emojiSans: '😢', emojiAvec: '🌙' },
-  { sans: "Tu dévores du chocolat à 23h et tu t'en veux", avec: "Tes envies sont normales — et on les apaise", emojiSans: '🍫', emojiAvec: '🌿' },
+  { sans: "Tu dévores du chocolat à 23h et tu t'en veux", avec: "Tes envies sont normales, et on les apaise", emojiSans: '🍫', emojiAvec: '🌿' },
   { sans: "Tu te réveilles déjà crevée certains matins", avec: "Tu sais quand ralentir, et pourquoi", emojiSans: '💀', emojiAvec: '⚡' },
   { sans: "Ventre en feu, tu serres les dents", avec: "Tu manges ce qui calme tes douleurs", emojiSans: '🤯', emojiAvec: '🌸' },
   { sans: "Tu te sens gonflée, rien ne te va", avec: "Tu dégonfles avec les bons aliments", emojiSans: '👖', emojiAvec: '☀️' },
@@ -349,24 +349,24 @@ export default function Landing() {
       </section>
 
       {/* ══ TABLEAU SANS / AVEC LUNA ═════════════════════════════════════════ */}
-      <section className="px-5 py-16 bg-luna-bg">
-        <div className="max-w-md mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="font-display text-[26px] md:text-3xl text-luna-text leading-tight">
+      <section className="px-5 py-20 bg-luna-bg">
+        <div className="max-w-xl mx-auto">
+          <div className="text-center mb-9">
+            <h2 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
               Aujourd'hui, tu subis.
             </h2>
-            <p className="font-display text-[26px] md:text-3xl leading-tight mt-0.5" style={{ color: '#C4727F', fontStyle: 'italic' }}>
+            <p className="font-display text-[28px] md:text-4xl leading-tight mt-0.5" style={{ color: '#C4727F', fontStyle: 'italic' }}>
               Demain, tu comprends.
             </p>
           </div>
 
-          <div className="rounded-[20px] overflow-hidden" style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}>
+          <div className="rounded-[24px] overflow-hidden" style={{ boxShadow: '0 6px 30px rgba(45,34,38,0.10)' }}>
             <div className="grid grid-cols-2">
-              <div className="bg-gray-50 py-3 px-4">
-                <p className="text-[11px] font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans LUNA</p>
+              <div className="bg-gray-50 py-4 px-5">
+                <p className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans LUNA</p>
               </div>
-              <div className="py-3 px-4" style={{ backgroundColor: '#FDE8EB' }}>
-                <p className="text-[11px] font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec LUNA</p>
+              <div className="py-4 px-5" style={{ backgroundColor: '#FDE8EB' }}>
+                <p className="text-xs font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec LUNA</p>
               </div>
             </div>
             {comparisons.map((c, i) => (
@@ -378,19 +378,19 @@ export default function Landing() {
                 transition={{ delay: i * 0.06 }}
                 className="grid grid-cols-2 border-t border-gray-100"
               >
-                <div className="bg-gray-50 px-4 py-3.5 flex items-start gap-2.5">
-                  <span className="text-base flex-shrink-0 mt-0.5 grayscale opacity-60">{c.emojiSans}</span>
-                  <p className="text-[13px] font-body text-luna-text-muted leading-snug">{c.sans}</p>
+                <div className="bg-gray-50 px-5 py-5 flex items-start gap-3">
+                  <span className="text-xl flex-shrink-0 grayscale opacity-60">{c.emojiSans}</span>
+                  <p className="text-[15px] font-body text-luna-text-muted leading-snug">{c.sans}</p>
                 </div>
-                <div className="px-4 py-3.5 flex items-start gap-2.5" style={{ backgroundColor: '#FFFBFC' }}>
-                  <span className="text-base flex-shrink-0 mt-0.5">{c.emojiAvec}</span>
-                  <p className="text-[13px] font-body font-semibold text-luna-text leading-snug">{c.avec}</p>
+                <div className="px-5 py-5 flex items-start gap-3" style={{ backgroundColor: '#FFFBFC' }}>
+                  <span className="text-xl flex-shrink-0">{c.emojiAvec}</span>
+                  <p className="text-[15px] font-body font-semibold text-luna-text leading-snug">{c.avec}</p>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <p className="font-display text-lg text-center mt-8" style={{ color: '#A85A66', fontStyle: 'italic' }}>
+          <p className="font-display text-xl text-center mt-10" style={{ color: '#A85A66', fontStyle: 'italic' }}>
             Et si tu arrêtais de te battre contre toi-même ?
           </p>
         </div>
