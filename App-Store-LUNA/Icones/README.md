@@ -1,14 +1,26 @@
 # Icônes de l'app LUNA
 
-Icône = le **U du logo LUNA** (son trait épais forme un croissant de lune) au centre de **l'anneau du cycle** (les 4 phases en dégradé fluide). Version aérée.
+Base commune : le **U du logo LUNA** (son trait épais forme un croissant de lune). Deux familles proposées.
 
-## Les 3 variantes
+## Famille « anneau » — U + anneau du cycle
+
+Le U au centre de **l'anneau des 4 phases** (dégradé fluide, version aérée).
 
 | Préfixe | Fond | U | Usage |
 |---|---|---|---|
-| `icon-rose-*` | rose pâle `#FDE8EB` | rose `#C4727F` | **Icône principale** (installée, mode clair) |
-| `icon-prune-*` | prune nuit `#33283B` | crème `#FDF1F0` | **Mode sombre** (iOS 26 / natif) |
-| `icon-fonce-*` | rose foncé `#A85A66` | blanc | Alternative plus « punchy » (non utilisée) |
+| `icon-rose-*` | rose pâle `#FDE8EB` | rose `#C4727F` | mode clair |
+| `icon-prune-*` | prune nuit `#33283B` | crème `#FDF1F0` | mode sombre |
+| `icon-fonce-*` | rose foncé `#A85A66` | blanc | alternative « punchy » |
+
+## Famille « lettre » — le U seul
+
+Juste le U, sans anneau. Plus sobre et épuré.
+
+| Préfixe | Fond | U | Usage |
+|---|---|---|---|
+| `icon-lettre-rose-*` | rose pâle `#FDE8EB` | rose `#C4727F` | **préférée (ton sur ton)** |
+| `icon-lettre-prune-*` | prune nuit `#33283B` | crème `#FDF1F0` | mode sombre |
+| `icon-lettre-fonce-*` | rose foncé `#A85A66` | blanc | alternative « punchy » |
 
 ## Les tailles
 
