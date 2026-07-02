@@ -5,6 +5,7 @@ import { Capacitor } from '@capacitor/core';
 import { Heart, Gift, Check, Apple, Mail, User, ArrowRight, ChevronDown } from 'lucide-react';
 import { BrandSymbol, Divider } from '../components/illustrations/LunaIllustrations';
 import IntroCarousel from '../components/IntroCarousel';
+import { PHASES, PHASE_ORDER } from '../data/phases';
 
 const LEAD_MAGNET_PATH = '/LUNA-Guide-Manger-au-rythme-de-ton-cycle.pdf';
 
@@ -49,6 +50,9 @@ const comparisons = [
   { sans: "Tu te sens gonflée, rien ne te va", avec: "Tu dégonfles avec les bons aliments", emojiSans: '👖', emojiAvec: '☀️' },
   { sans: "20h, rien de prévu, encore un Uber Eats", avec: "Ton menu t'attend, prêt chaque matin", emojiSans: '🥡', emojiAvec: '🍽️' },
 ];
+
+// Les 4 phases du cycle (données partagées avec l'app)
+const phases = PHASE_ORDER.map((key) => ({ key, ...PHASES[key] }));
 
 // Aperçu de l'app (vraies captures)
 const appShots = [
@@ -307,7 +311,7 @@ export default function Landing() {
             className="text-luna-text-muted text-base md:text-lg font-body max-w-md mx-auto mb-7 leading-relaxed"
           >
             {APP_LAUNCHED
-              ? "L'app qui adapte ton assiette à chaque phase — pour retrouver ton énergie, sans culpabiliser."
+              ? "L'app qui adapte ton assiette à chaque phase, pour retrouver ton énergie sans culpabiliser."
               : "L'app qui adapte ton assiette à chaque phase. Inscris-toi et reçois ton guide offert."}
           </motion.p>
 
@@ -330,21 +334,43 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ══ LE PROBLÈME — photo d'ambiance en bandeau + texte sur crème ═══════ */}
-      <section className="bg-luna-bg">
-        <div className="relative">
-          <img src="/ambiance-cuisine.jpg" alt="" className="w-full h-[320px] md:h-[420px] object-cover object-top" />
-          {/* fondu vers le crème pour une transition douce */}
-          <div className="absolute bottom-0 inset-x-0 h-28" style={{ background: 'linear-gradient(180deg, rgba(250,247,245,0) 0%, #FAF7F5 100%)' }} />
-        </div>
-        <div className="px-6 pt-4 pb-14 max-w-xl mx-auto text-center">
+      {/* ══ LE PROBLÈME + LES 4 PHASES ═══════════════════════════════════════ */}
+      <section className="bg-luna-bg px-5 py-16 md:py-20">
+        <div className="max-w-xl mx-auto text-center mb-10">
           <h2 className="font-display text-[27px] md:text-4xl text-luna-text leading-tight mb-3">
             Ton corps te parle chaque jour.<br />
             <em style={{ fontStyle: 'italic', color: '#A85A66' }}>Et si tu l'écoutais ?</em>
           </h2>
-          <p className="text-luna-text-muted font-body text-sm md:text-base leading-relaxed max-w-sm mx-auto">
-            Chaque phase de ton cycle a ses besoins. Personne ne t'a appris à les nourrir. LUNA, si.
+          <p className="text-luna-text-muted font-body text-sm md:text-base leading-relaxed max-w-md mx-auto">
+            Ton cycle a 4 phases. Chacune a ses besoins, et personne ne t'a appris à les nourrir. LUNA, si.
           </p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto">
+          {phases.map((p, i) => (
+            <motion.div
+              key={p.key}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="rounded-[22px] px-4 py-6 text-center"
+              style={{ backgroundColor: p.bgColor }}
+            >
+              <span className="block text-4xl md:text-5xl mb-3">{p.icon}</span>
+              <h3 className="font-display text-lg md:text-xl leading-tight" style={{ color: p.colorDark }}>
+                {p.shortName}
+              </h3>
+              <p className="text-[11px] font-body font-bold uppercase tracking-widest mt-1.5" style={{ color: p.color }}>
+                Jours {p.days}
+              </p>
+              <span
+                className="inline-block mt-3 px-3 py-1 rounded-pill text-[11px] font-body font-semibold text-white"
+                style={{ backgroundColor: p.color }}
+              >
+                {p.keyword}
+              </span>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -484,7 +510,7 @@ export default function Landing() {
           Conçu avec <Heart size={13} className="text-luna-primary fill-luna-primary" /> par des femmes, pour des femmes.
         </p>
         <p className="text-xs text-luna-text-hint font-body mt-1">
-          LUNA — Comprends ton cycle. Adapte ton assiette.
+          LUNA · Comprends ton cycle. Adapte ton assiette.
         </p>
         <div className="flex items-center justify-center gap-4 mt-5 text-xs font-body">
           <Link to="/confidentialite" className="text-luna-text-muted hover:text-luna-rose transition-colors">Confidentialité</Link>
