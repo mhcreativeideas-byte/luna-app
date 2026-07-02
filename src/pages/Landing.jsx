@@ -152,7 +152,7 @@ function WaitlistForm({ source = 'landing' }) {
           {prenom ? `Bienvenue ${prenom} 🌙` : 'Tu es sur la liste 🌙'}
         </h3>
         <p className="text-sm text-luna-text-muted font-body leading-relaxed mb-6">
-          Ton guide <strong className="text-luna-text">« Quoi manger à chaque phase »</strong> se télécharge.
+          Ton guide <strong className="text-luna-text">« Manger au rythme de ton cycle »</strong> se télécharge.
           Tu seras parmi les premières prévenues au lancement, avec ta réduction fondatrice.
         </p>
 
@@ -439,13 +439,13 @@ export default function Landing() {
             >
               <img
                 src="/guide-cover.png"
-                alt="Guide LUNA — Quoi manger à chaque phase"
+                alt="Guide LUNA : Manger au rythme de ton cycle"
                 className="w-[220px] md:w-[260px] rounded-[14px]"
                 style={{ boxShadow: '0 24px 60px rgba(45,34,38,0.28)' }}
               />
             </motion.div>
             <h2 className="font-display text-[26px] md:text-3xl text-luna-text leading-tight mb-3">
-              Ton guide offert :<br /><em style={{ fontStyle: 'italic', color: '#A85A66' }}>« Quoi manger à chaque phase »</em>
+              Ton guide offert :<br /><em style={{ fontStyle: 'italic', color: '#A85A66' }}>« Manger au rythme de ton cycle »</em>
             </h2>
             <p className="text-luna-text-muted font-body text-sm md:text-base leading-relaxed max-w-sm mb-6">
               Les aliments qui soutiennent ton corps à chaque moment de ton cycle. Reçois-le tout de suite en t'inscrivant.
