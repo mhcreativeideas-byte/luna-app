@@ -1,0 +1,21 @@
+/* ── LUNA lead magnet — base commune (A4 96dpi = 794 × 1123) ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 794px; height: 1123px; }
+:root{
+  --rose:#C4727F; --rose-deep:#A85A66; --rose-light:#E8A5AE; --rose-bg:#FDE8EB;
+  --men:#D4727F; --men-bg:#FDE8EB;
+  --fol:#7BAE7F; --fol-bg:#EDF5ED;
+  --ovu:#E8A87C; --ovu-bg:#FFF3EB;
+  --lut:#B09ACB; --lut-bg:#F3EEF8;
+  --cream:#FAF7F5; --card:#F5F1EE; --white:#FFFFFF;
+  --ink:#2D2226; --body:#4A3F43; --muted:#756568; --hint:#7A6D70; --taupe:#A89B91;
+  --display:'Playfair Display',Georgia,serif;
+  --font:'DM Sans',-apple-system,sans-serif;
+}
+.page{ position:relative; width:794px; height:1123px; overflow:hidden;
+  font-family:var(--font); color:var(--body); -webkit-font-smoothing:antialiased; }
+.eyebrow{ font-family:var(--font); font-size:13px; font-weight:700; letter-spacing:3.5px;
+  text-transform:uppercase; color:var(--taupe); }
+.display{ font-family:var(--display); color:var(--ink); }
+.footer{ position:absolute; left:0; right:0; bottom:38px; text-align:center;
+  font-family:var(--font); font-size:12.5px; letter-spacing:.4px; color:var(--taupe); }

@@ -1,0 +1,83 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+  .page{ background:var(--cream); padding:74px 70px 0;
+    display:flex; flex-direction:column; align-items:center; }
+  .eyebrow{ text-align:center; }
+  h1{ font-family:var(--display); font-weight:500; text-align:center;
+    font-size:38px; line-height:1.22; margin-top:20px; color:var(--ink); }
+  h1 .accent{ font-style:italic; color:var(--rose); }
+
+  .tbl{ width:100%; margin-top:44px; border-radius:24px; overflow:hidden;
+    box-shadow:0 6px 30px rgba(45,34,38,.09); background:#fff; }
+  .row{ display:grid; grid-template-columns:1fr 1fr; }
+  .cell{ padding:0 26px; display:flex; align-items:center; gap:13px; }
+  .cell.sans{ background:#F7F5F4; }
+  .cell.avec{ background:#FFFBFC; }
+  /* head */
+  .head .cell{ height:60px; justify-content:center; padding:0; }
+  .head .sans{ background:#F1EEEC; }
+  .head .avec{ background:var(--men-bg); }
+  .head .lab{ font-size:13px; font-weight:700; letter-spacing:2.6px;
+    text-transform:uppercase; }
+  .head .sans .lab{ color:var(--taupe); }
+  .head .avec .lab{ color:var(--rose-deep); }
+  /* body rows */
+  .body .row{ border-top:1px solid #EFEBE9; }
+  .body .cell{ min-height:104px; }
+  .emo{ font-size:23px; flex-shrink:0;
+    font-family:'Apple Color Emoji','Segoe UI Emoji',sans-serif; line-height:1; }
+  .emo.g{ filter:grayscale(1); opacity:.55; }
+  .txt{ font-size:16px; line-height:1.42; }
+  .sans .txt{ color:var(--muted); }
+  .avec .txt{ color:var(--ink); font-weight:600; }
+
+  .closing{ font-family:var(--display); font-style:italic; font-size:23px;
+    color:var(--rose-deep); text-align:center; margin-top:40px; }
+</style></head>
+<body>
+<div class="page">
+  <div class="eyebrow">Pourquoi LUNA</div>
+  <h1>Aujourd'hui, tu subis.<br><span class="accent">Demain, tu comprends.</span></h1>
+
+  <div class="tbl">
+    <div class="row head">
+      <div class="cell sans"><span class="lab">Sans LUNA</span></div>
+      <div class="cell avec"><span class="lab">Avec LUNA</span></div>
+    </div>
+    <div class="body">
+      <div class="row">
+        <div class="cell sans"><span class="emo g">😢</span><span class="txt">Tu t'emportes sans comprendre pourquoi</span></div>
+        <div class="cell avec"><span class="emo">🌙</span><span class="txt">Tu sais que c'est ta phase, pas toi</span></div>
+      </div>
+      <div class="row">
+        <div class="cell sans"><span class="emo g">🍫</span><span class="txt">Tu dévores du chocolat à 23h et tu t'en veux</span></div>
+        <div class="cell avec"><span class="emo">🌿</span><span class="txt">Tes envies sont normales — et on les apaise</span></div>
+      </div>
+      <div class="row">
+        <div class="cell sans"><span class="emo g">💀</span><span class="txt">Tu te réveilles déjà crevée certains matins</span></div>
+        <div class="cell avec"><span class="emo">⚡</span><span class="txt">Tu sais quand ralentir, et pourquoi</span></div>
+      </div>
+      <div class="row">
+        <div class="cell sans"><span class="emo g">🤯</span><span class="txt">Ventre en feu, tu serres les dents</span></div>
+        <div class="cell avec"><span class="emo">🌸</span><span class="txt">Tu manges ce qui calme tes douleurs</span></div>
+      </div>
+      <div class="row">
+        <div class="cell sans"><span class="emo g">👖</span><span class="txt">Tu te sens gonflée, rien ne te va</span></div>
+        <div class="cell avec"><span class="emo">☀️</span><span class="txt">Tu dégonfles avec les bons aliments</span></div>
+      </div>
+      <div class="row">
+        <div class="cell sans"><span class="emo g">🥡</span><span class="txt">20h, rien de prévu, encore un Uber Eats</span></div>
+        <div class="cell avec"><span class="emo">🍽️</span><span class="txt">Ton menu t'attend, prêt chaque matin</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="closing">Et si tu arrêtais de te battre contre toi-même ?</p>
+
+  <div class="footer">@luna.cyclesfood&nbsp;&nbsp;·&nbsp;&nbsp;lunawellness.app</div>
+</div>
+</body></html>

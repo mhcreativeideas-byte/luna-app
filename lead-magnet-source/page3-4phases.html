@@ -1,0 +1,80 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+  .page{ background:var(--cream); padding:56px 74px 0;
+    display:flex; flex-direction:column; align-items:center; }
+  .eyebrow{ text-align:center; }
+  h1{ font-family:var(--display); font-weight:500; text-align:center; color:var(--ink);
+    font-size:38px; line-height:1.2; margin-top:16px; }
+  .lede{ text-align:center; font-size:15.5px; line-height:1.55; color:var(--muted);
+    max-width:470px; margin-top:14px; }
+
+  /* 4 phases */
+  .phases{ margin-top:34px; width:100%;
+    display:grid; grid-template-columns:1fr 1fr; gap:30px 34px; }
+  .phase{ display:flex; flex-direction:column; align-items:center; }
+  .tile{ width:100%; height:172px; border-radius:28px;
+    display:flex; align-items:center; justify-content:center; }
+  .tile img{ width:132px; height:132px; }
+  .t-men{ background:var(--men-bg);} .t-fol{ background:var(--fol-bg);}
+  .t-ovu{ background:var(--ovu-bg);} .t-lut{ background:var(--lut-bg);}
+  .pname{ font-family:var(--font); font-size:19px; font-weight:700; margin-top:14px; }
+  .pdays{ font-family:var(--font); font-size:12px; font-weight:600; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--taupe); margin-top:4px; }
+  .pstate{ font-family:var(--display); font-style:italic; font-size:16px; margin-top:5px; }
+  .n-men{ color:#B5606D;} .s-men{ color:#C4727F;}
+  .n-fol{ color:#5E9463;} .s-fol{ color:#7BAE7F;}
+  .n-ovu{ color:#C88A5A;} .s-ovu{ color:#E0975F;}
+  .n-lut{ color:#8E77A9;} .s-lut{ color:#B09ACB;}
+
+  /* le secret — redesign */
+  .secret{ margin-top:46px; width:100%; text-align:center; padding:26px 30px;
+    border-radius:26px; position:relative;
+    background:linear-gradient(180deg,#FDECEF 0%, #FBE6EA 100%);
+    box-shadow:0 8px 26px rgba(196,114,127,.12); }
+  .secret .eb{ display:inline-block; font-family:var(--font); font-size:12px; font-weight:700;
+    letter-spacing:3px; text-transform:uppercase; color:var(--rose); }
+  .secret .line{ font-family:var(--display); font-size:23px; font-weight:500;
+    color:var(--ink); margin-top:8px; }
+  .secret .line em{ font-style:italic; color:var(--rose-deep); }
+
+  .closing{ font-family:var(--display); font-style:italic; font-size:20px;
+    color:var(--rose-deep); text-align:center; line-height:1.4; margin-top:30px; }
+</style></head>
+<body>
+<div class="page">
+  <div class="eyebrow">Ton cycle, en 4 saisons</div>
+  <h1>Ton corps vit 4 phases.<br>Chacune a ses besoins.</h1>
+  <p class="lede">Apprends à les écouter, et tout change :<br>ton énergie, ton humeur, ta peau, tes douleurs.</p>
+
+  <div class="phases">
+    <div class="phase">
+      <div class="tile t-men"><img src="assets/picto-menstruelle.png"></div>
+      <div class="pname n-men">Menstruelle</div><div class="pdays">Jours 1 à 5</div><div class="pstate s-men">Repos</div>
+    </div>
+    <div class="phase">
+      <div class="tile t-fol"><img src="assets/picto-folliculaire.png"></div>
+      <div class="pname n-fol">Folliculaire</div><div class="pdays">Jours 6 à 13</div><div class="pstate s-fol">Élan</div>
+    </div>
+    <div class="phase">
+      <div class="tile t-ovu"><img src="assets/picto-ovulatoire.png"></div>
+      <div class="pname n-ovu">Ovulatoire</div><div class="pdays">Jours 14 à 16</div><div class="pstate s-ovu">Rayonnement</div>
+    </div>
+    <div class="phase">
+      <div class="tile t-lut"><img src="assets/picto-luteale.png"></div>
+      <div class="pname n-lut">Lutéale</div><div class="pdays">Jours 17 à 28</div><div class="pstate s-lut">Cocooning</div>
+    </div>
+  </div>
+
+  <div class="secret">
+    <span class="eb">Le secret</span>
+    <p class="line">Adapte ton assiette à <em>chaque phase</em>.</p>
+  </div>
+
+  <p class="closing">Découvre, phase après phase,<br>ce qui te fait vraiment du bien.</p>
+
+  <div class="footer">@luna.cyclesfood&nbsp;&nbsp;·&nbsp;&nbsp;lunawellness.app</div>
+</div>
+</body></html>

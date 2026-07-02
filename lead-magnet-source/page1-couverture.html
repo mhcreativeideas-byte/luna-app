@@ -1,0 +1,67 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+  .page{ background:var(--cream); padding:64px 74px 0;
+    display:flex; flex-direction:column; align-items:center; }
+  .logo img{ width:116px; height:auto; display:block; }
+  h1{ font-family:var(--display); font-weight:500; color:var(--ink);
+    font-size:44px; line-height:1.14; text-align:center; margin-top:22px; }
+  h1 .accent{ font-style:italic; color:var(--rose); }
+
+  .grid{ margin-top:54px; width:100%;
+    display:grid; grid-template-columns:1fr 1fr; gap:44px 34px; }
+  .card{ position:relative; height:270px; border-radius:30px;
+    display:flex; align-items:center; justify-content:center; }
+  .card img.food{ width:196px; height:196px; object-fit:contain;
+    filter:drop-shadow(0 8px 14px rgba(45,34,38,.12)); }
+  .badge{ position:absolute; top:-34px; left:50%; transform:translateX(-50%);
+    width:68px; height:68px; border-radius:50%; background:#fff;
+    box-shadow:0 6px 16px rgba(45,34,38,.12);
+    display:flex; align-items:center; justify-content:center; }
+  .badge img{ width:54px; height:54px; }
+  .lbl{ position:absolute; bottom:16px; left:0; right:0; text-align:center;
+    font-family:var(--font); font-size:12px; font-weight:700; letter-spacing:2px;
+    text-transform:uppercase; }
+  .c-men{ background:var(--men-bg);} .c-men .lbl{ color:#9E4F5A;}
+  .c-fol{ background:var(--fol-bg);} .c-fol .lbl{ color:#4D7A50;}
+  .c-ovu{ background:var(--ovu-bg);} .c-ovu .lbl{ color:#C07A4A;}
+  .c-lut{ background:var(--lut-bg);} .c-lut .lbl{ color:#7D6A96;}
+
+  .sub{ text-align:center; font-size:19.5px; line-height:1.5; color:var(--muted);
+    max-width:520px; margin-top:38px; }
+  .sub b{ color:var(--body); font-weight:600; }
+</style></head>
+<body>
+<div class="page">
+  <div class="logo"><img src="assets/logo-luna.png" alt="LUNA"></div>
+  <h1>Ton cycle a 4 phases.<br><span class="accent">Ton assiette aussi.</span></h1>
+
+  <div class="grid">
+    <div class="card c-men">
+      <div class="badge"><img src="assets/picto-menstruelle.png"></div>
+      <img class="food" src="assets/foodhd-men.png">
+      <div class="lbl">Menstruelle</div>
+    </div>
+    <div class="card c-fol">
+      <div class="badge"><img src="assets/picto-folliculaire.png"></div>
+      <img class="food" src="assets/foodhd-fol.png">
+      <div class="lbl">Folliculaire</div>
+    </div>
+    <div class="card c-ovu">
+      <div class="badge"><img src="assets/picto-ovulatoire.png"></div>
+      <img class="food" src="assets/foodhd-ovu.png">
+      <div class="lbl">Ovulatoire</div>
+    </div>
+    <div class="card c-lut">
+      <div class="badge"><img src="assets/picto-luteale.png"></div>
+      <img class="food" src="assets/foodhd-lut.png">
+      <div class="lbl">Lutéale</div>
+    </div>
+  </div>
+
+  <p class="sub"><b>6 aliments par phase</b> pour des règles plus douces,<br>plus d'énergie et un SPM apaisé.</p>
+  <div class="footer">lunawellness.app&nbsp;&nbsp;·&nbsp;&nbsp;@luna.cyclesfood</div>
+</div>
+</body></html>

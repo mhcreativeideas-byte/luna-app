@@ -1,0 +1,88 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css">
+<style>
+  .page{ background:var(--cream); padding:46px 74px 0;
+    display:flex; flex-direction:column; align-items:center; }
+  .eyebrow{ text-align:center; }
+  h1{ font-family:var(--display); font-weight:500; text-align:center; color:var(--ink);
+    font-size:36px; line-height:1.18; margin-top:12px; }
+  h1 .accent{ font-style:italic; color:var(--rose); }
+  .lede{ text-align:center; font-size:15px; line-height:1.55; color:var(--muted);
+    max-width:500px; margin-top:13px; }
+
+  /* graph card */
+  .gcard{ width:100%; margin-top:22px; background:#fff; border-radius:24px;
+    box-shadow:0 6px 26px rgba(45,34,38,.07); padding:20px 30px; }
+  .gcard svg{ width:100%; height:auto; display:block; }
+  .glab{ font-family:var(--font); font-size:13px; fill:#9A8A8E; font-weight:500; }
+  .glabf{ font-family:var(--font); font-size:13px; fill:#A85A66; font-weight:700; }
+  .gitalic{ font-family:var(--display); font-style:italic; font-size:14px; fill:#A85A66; }
+
+  /* good news */
+  .news{ width:100%; margin-top:16px; background:#F5F1EE; border-radius:20px;
+    text-align:center; padding:15px 24px; }
+  .news h2{ font-family:var(--display); font-size:20px; color:var(--ink); font-weight:600; }
+  .news p{ font-family:var(--font); font-size:15px; color:var(--muted); margin-top:4px; }
+
+  /* benefits — redesign */
+  .benefits{ width:100%; margin-top:16px; display:flex; flex-direction:column; gap:12px; }
+  .bcard{ display:flex; align-items:center; gap:18px; padding:15px 22px; border-radius:22px; }
+  .b-rose{ background:var(--men-bg); } .b-peach{ background:var(--ovu-bg); } .b-lav{ background:var(--lut-bg); }
+  .ic{ width:52px; height:52px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; }
+  .i-rose{ background:#D4727F; } .i-peach{ background:#E8A87C; } .i-lav{ background:#B09ACB; }
+  .ic svg{ width:25px; height:25px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .bt h3{ font-family:var(--font); font-size:19px; font-weight:700; color:var(--ink); }
+  .bt p{ font-family:var(--font); font-size:14.5px; color:var(--muted); margin-top:2px; line-height:1.4; }
+
+  .closing{ font-family:var(--display); font-style:italic; font-size:20px;
+    color:var(--rose-deep); text-align:center; line-height:1.35; margin-top:18px; }
+</style></head>
+<body>
+<div class="page">
+  <div class="eyebrow">Pourquoi ce guide</div>
+  <h1>Ton énergie n'est pas<br>la même chaque jour.<br><span class="accent">C'est normal.</span></h1>
+  <p class="lede">Ton cycle menstruel dure environ 28 jours. Pendant ce temps, tes hormones changent sans cesse, et avec elles ton énergie, ton humeur, ta peau et tes douleurs.</p>
+
+  <div class="gcard">
+
+
+    <svg viewBox="0 0 640 200" role="img" aria-label="Hormones masculines stables vs feminines cycliques">
+      <text x="14" y="30" class="glab">Hormones masculines</text>
+      <line x1="14" y1="46" x2="452" y2="46" stroke="#CBBFC2" stroke-width="3.5" stroke-linecap="round"/>
+      <text x="466" y="51" class="glab">24 h &#183; stables</text>
+      <text x="14" y="108" class="glabf">Hormones f&#233;minines</text>
+      <path d="M14 150 Q 90 95 166 150 T 318 150 T 470 150 T 626 150"
+            fill="none" stroke="#C4727F" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="512" y="112" class="glabf">28 jours</text>
+    </svg>
+  
+  </div>
+
+  <div class="news">
+    <h2>La bonne nouvelle ?</h2>
+    <p>Ton alimentation peut tout changer.</p>
+  </div>
+
+  <div class="benefits">
+    <div class="bcard b-rose">
+      <div class="ic i-rose"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+      <div class="bt"><h3>Moins de douleurs</h3><p>Les bons nutriments calment l'inflammation et les crampes.</p></div>
+    </div>
+    <div class="bcard b-peach">
+      <div class="ic i-peach"><svg viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></div>
+      <div class="bt"><h3>Plus d'énergie</h3><p>Compenser le fer perdu et nourrir tes hormones.</p></div>
+    </div>
+    <div class="bcard b-lav">
+      <div class="ic i-lav"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></div>
+      <div class="bt"><h3>Un SPM apaisé</h3><p>Le magnésium et les oméga-3 stabilisent ton humeur.</p></div>
+    </div>
+  </div>
+
+  <p class="closing">Voici exactement quoi manger,<br>phase par phase.</p>
+
+  <div class="footer">@luna.cyclesfood&nbsp;&nbsp;·&nbsp;&nbsp;lunawellness.app</div>
+</div>
+</body></html>
