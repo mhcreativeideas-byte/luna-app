@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
+import ContentCalendar from '../components/admin/ContentCalendar';
 
 const ADMIN_EMAILS = ['mhcreative.ideas@gmail.com'];
 
@@ -662,7 +663,16 @@ export default function Admin() {
             Liste d'attente
             <span className={`text-xs px-1.5 py-0.5 rounded-full ${activeTab === 'waitlist' ? 'bg-white/25' : 'bg-gray-100'}`}>{waitlist.length}</span>
           </button>
+          <button
+            onClick={() => setActiveTab('calendar')}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-body font-semibold transition-all ${activeTab === 'calendar' ? 'bg-luna-rose text-white shadow-sm' : 'text-gray-500 hover:bg-gray-50'}`}
+          >
+            <Calendar size={16} />
+            Calendrier
+          </button>
         </div>
+
+        {activeTab === 'calendar' && <ContentCalendar />}
 
         {activeTab === 'users' && (<>
         {/* KPI Cards */}
