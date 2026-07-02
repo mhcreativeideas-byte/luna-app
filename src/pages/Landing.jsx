@@ -5,9 +5,14 @@ import { Capacitor } from '@capacitor/core';
 import { Heart, Gift, Check, Apple, Mail, User, ArrowRight, ChevronDown } from 'lucide-react';
 import { BrandSymbol, Divider } from '../components/illustrations/LunaIllustrations';
 import IntroCarousel from '../components/IntroCarousel';
-import { supabase } from '../lib/supabase';
 
 const LEAD_MAGNET_PATH = '/LUNA-Guide-Quoi-manger-a-chaque-phase.pdf';
+
+// Vitrine = inscription ANONYME. On enregistre par un appel REST direct plutôt
+// que par supabase-js, pour éviter le bug de verrou d'auth ("Lock ... was stolen")
+// qui survient avec plusieurs onglets ouverts. Cet appel est celui qui marche à 100 %.
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // ┌─────────────────────────────────────────────────────────────────────────┐
 // │ LANCEMENT DE L'APP — un seul interrupteur à changer le jour J.           │
@@ -86,11 +91,28 @@ function WaitlistForm({ source = 'landing' }) {
     setStatus('loading');
     setErrorMsg('');
 
-    const { error } = await supabase.from('waitlist').insert({ email: clean, prenom: cleanPrenom, source });
-
-    // 23505 = email déjà inscrit → succès quand même, on redonne le guide.
-    if (error && error.code !== '23505') {
-      console.error('Waitlist insert error:', error);
+    // Appel REST direct (contourne le verrou d'auth de supabase-js). 409 = email
+    // déjà inscrit (contrainte unique) → on considère ça comme un succès.
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+        method: 'POST',
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal',
+        },
+        body: JSON.stringify({ email: clean, prenom: cleanPrenom, source }),
+      });
+      if (!res.ok && res.status !== 409) {
+        const detail = await res.text().catch(() => '');
+        console.error('Waitlist insert error:', res.status, detail);
+        setErrorMsg('Un souci est survenu. Réessaie dans un instant.');
+        setStatus('error');
+        return;
+      }
+    } catch (err) {
+      console.error('Waitlist insert network error:', err);
       setErrorMsg('Un souci est survenu. Réessaie dans un instant.');
       setStatus('error');
       return;
