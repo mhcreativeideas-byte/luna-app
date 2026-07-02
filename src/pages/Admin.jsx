@@ -37,6 +37,44 @@ const goalLabels = {
   strength: { label: 'Force', icon: <Flame size={14} /> },
 };
 
+// Ordre fixe des tranches d'âge (pour un affichage cohérent)
+const ageOrder = ['18-24', '25-34', '35-44', '45+', 'unknown'];
+const ageLabels = {
+  '18-24': '18-24 ans 🌱',
+  '25-34': '25-34 ans 🌿',
+  '35-44': '35-44 ans 🌺',
+  '45+': '45 ans et + ✨',
+  unknown: 'Non renseigné',
+};
+
+// Comment elles nous ont connue (canal d'acquisition)
+const discoveryLabels = {
+  instagram: 'Instagram 📸',
+  tiktok: 'TikTok 🎵',
+  bouche: 'Bouche-à-oreille 🗣️',
+  recherche: 'Recherche web 🔍',
+  pub: 'Publicité 📣',
+  autre: 'Autre ✨',
+  unknown: 'Non renseigné',
+};
+
+const cravingLabels = {
+  sucre: 'Sucre',
+  faim: 'Grande faim',
+  ballonnements: 'Ballonnements',
+  appetit: "Perte d'appétit",
+  grignotage: 'Grignotage',
+  rien: 'Rien de spécial',
+};
+
+const barrierLabels = {
+  temps: 'Manque de temps',
+  idees: "Manque d'idées",
+  quoi: 'Ne sait pas quoi manger',
+  gaspillage: 'Gaspillage',
+  budget: 'Budget',
+};
+
 function KPICard({ icon, label, value, sub, color }) {
   return (
     <motion.div
@@ -271,8 +309,9 @@ export default function Admin() {
   const exportWaitlistCsv = () => {
     if (waitlist.length === 0) return;
     const rows = [
-      ['email', 'source', 'date_inscription'],
+      ['prenom', 'email', 'source', 'date_inscription'],
       ...waitlist.map((w) => [
+        w.prenom || '',
         w.email || '',
         w.source || '',
         w.created_at ? new Date(w.created_at).toLocaleDateString('fr-FR') : '',
@@ -442,6 +481,39 @@ export default function Admin() {
     });
   });
   const sortedDiets = Object.entries(dietCounts).sort((a, b) => b[1] - a[1]);
+
+  // Répartition par tranche d'âge (persona)
+  const ageDistribution = users.reduce((acc, u) => {
+    const a = u.age || 'unknown';
+    acc[a] = (acc[a] || 0) + 1;
+    return acc;
+  }, {});
+
+  // Canal d'acquisition : comment elles nous ont connue (persona / marketing)
+  const discoveryCounts = {};
+  users.forEach((u) => {
+    const s = u.discovery_source || 'unknown';
+    discoveryCounts[s] = (discoveryCounts[s] || 0) + 1;
+  });
+  const sortedDiscovery = Object.entries(discoveryCounts).sort((a, b) => b[1] - a[1]);
+
+  // Fringales les plus fréquentes
+  const cravingCounts = {};
+  users.forEach((u) => {
+    (u.cravings || []).forEach((c) => {
+      cravingCounts[c] = (cravingCounts[c] || 0) + 1;
+    });
+  });
+  const sortedCravings = Object.entries(cravingCounts).sort((a, b) => b[1] - a[1]);
+
+  // Freins en cuisine
+  const barrierCounts = {};
+  users.forEach((u) => {
+    (u.barriers || []).forEach((b) => {
+      barrierCounts[b] = (barrierCounts[b] || 0) + 1;
+    });
+  });
+  const sortedBarriers = Object.entries(barrierCounts).sort((a, b) => b[1] - a[1]);
 
   if (authState === 'loading') {
     return (
@@ -817,6 +889,133 @@ export default function Admin() {
           </motion.div>
         </div>
 
+        {/* Persona : âge + acquisition */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Répartition par âge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          >
+            <h3 className="font-display text-lg text-gray-800 mb-1">Répartition par âge</h3>
+            <p className="text-xs text-gray-400 font-body mb-4">Qui est ta cliente type ?</p>
+            <div className="space-y-3">
+              {ageOrder
+                .filter((a) => ageDistribution[a])
+                .map((age) => {
+                  const count = ageDistribution[age];
+                  const pct = totalUsers > 0 ? Math.round((count / totalUsers) * 100) : 0;
+                  return (
+                    <div key={age} className="flex items-center gap-3">
+                      <span className="text-sm text-gray-600 font-body w-28">{ageLabels[age] || age}</span>
+                      <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${pct}%` }}
+                          transition={{ duration: 0.8 }}
+                          className="h-full rounded-full bg-luna-rose/70"
+                        />
+                      </div>
+                      <span className="text-sm font-accent font-bold text-gray-700 w-16 text-right">
+                        {count} ({pct}%)
+                      </span>
+                    </div>
+                  );
+                })}
+              {Object.keys(ageDistribution).length === 0 && (
+                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Canal d'acquisition */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          >
+            <h3 className="font-display text-lg text-gray-800 mb-1">Comment elles nous ont connue</h3>
+            <p className="text-xs text-gray-400 font-body mb-4">Ton canal de recrutement n°1</p>
+            <div className="space-y-3">
+              {sortedDiscovery.map(([source, count]) => {
+                const pct = totalUsers > 0 ? Math.round((count / totalUsers) * 100) : 0;
+                return (
+                  <div key={source} className="flex items-center gap-3">
+                    <span className="text-sm text-gray-600 font-body w-36">{discoveryLabels[source] || source}</span>
+                    <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${pct}%` }}
+                        transition={{ duration: 0.8 }}
+                        className="h-full rounded-full bg-luna-lavender/70"
+                      />
+                    </div>
+                    <span className="text-sm font-accent font-bold text-gray-700 w-16 text-right">
+                      {count} ({pct}%)
+                    </span>
+                  </div>
+                );
+              })}
+              {sortedDiscovery.length === 0 && (
+                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+              )}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Fringales + freins en cuisine */}
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Fringales */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          >
+            <h3 className="font-display text-lg text-gray-800 mb-1">Fringales & symptômes</h3>
+            <p className="text-xs text-gray-400 font-body mb-4">Pour ton discours produit</p>
+            <div className="flex flex-wrap gap-2">
+              {sortedCravings.map(([craving, count]) => (
+                <span
+                  key={craving}
+                  className="px-3 py-1.5 bg-luna-rose/10 text-luna-rose-deep rounded-full text-sm font-body font-semibold"
+                >
+                  {cravingLabels[craving] || craving} <span className="font-accent">({count})</span>
+                </span>
+              ))}
+              {sortedCravings.length === 0 && (
+                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Freins en cuisine */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          >
+            <h3 className="font-display text-lg text-gray-800 mb-1">Freins en cuisine</h3>
+            <p className="text-xs text-gray-400 font-body mb-4">Les blocages à lever pour vendre</p>
+            <div className="flex flex-wrap gap-2">
+              {sortedBarriers.map(([barrier, count]) => (
+                <span
+                  key={barrier}
+                  className="px-3 py-1.5 bg-luna-sage/15 text-gray-700 rounded-full text-sm font-body font-semibold"
+                >
+                  {barrierLabels[barrier] || barrier} <span className="font-accent">({count})</span>
+                </span>
+              ))}
+              {sortedBarriers.length === 0 && (
+                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+              )}
+            </div>
+          </motion.div>
+        </div>
+
         {/* Users Table */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1056,6 +1255,7 @@ export default function Admin() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 text-gray-500 font-body">
+                      <th className="text-left px-5 py-3 font-semibold">Prénom</th>
                       <th className="text-left px-5 py-3 font-semibold">Email</th>
                       <th className="text-left px-5 py-3 font-semibold hidden sm:table-cell">Source</th>
                       <th className="text-left px-5 py-3 font-semibold">Inscription</th>
@@ -1070,6 +1270,9 @@ export default function Admin() {
                         animate={{ opacity: 1 }}
                         className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors"
                       >
+                        <td className="px-5 py-3">
+                          <span className="font-body text-gray-800">{w.prenom || '—'}</span>
+                        </td>
                         <td className="px-5 py-3">
                           <div className="flex items-center gap-2.5">
                             <div className="w-7 h-7 rounded-full bg-luna-rose/10 flex items-center justify-center text-luna-rose flex-shrink-0">

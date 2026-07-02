@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Capacitor } from '@capacitor/core';
-import { Heart, Gift, Check, Apple, Mail, ArrowRight, ChevronDown } from 'lucide-react';
+import { Heart, Gift, Check, Apple, Mail, User, ArrowRight, ChevronDown } from 'lucide-react';
 import { BrandSymbol, Divider } from '../components/illustrations/LunaIllustrations';
 import IntroCarousel from '../components/IntroCarousel';
 import { supabase } from '../lib/supabase';
@@ -53,6 +53,7 @@ function PhoneFrame({ src, className = '', style }) {
 // téléchargement du guide offert (lead magnet). Une inscription déjà existante
 // est traitée comme un succès (on redonne quand même le guide).
 function WaitlistForm({ source = 'landing' }) {
+  const [prenom, setPrenom] = useState('');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
   const [errorMsg, setErrorMsg] = useState('');
@@ -68,7 +69,15 @@ function WaitlistForm({ source = 'landing' }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Prénom : on met une majuscule à l'initiale pour un joli rendu en newsletter.
+    const raw = prenom.trim();
+    const cleanPrenom = raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : '';
     const clean = email.trim().toLowerCase();
+    if (!cleanPrenom) {
+      setErrorMsg('Ajoute ton prénom, on aime bien te parler par ton nom 🌙');
+      setStatus('error');
+      return;
+    }
     if (!clean || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean)) {
       setErrorMsg('Oups, cette adresse email semble incorrecte.');
       setStatus('error');
@@ -77,7 +86,7 @@ function WaitlistForm({ source = 'landing' }) {
     setStatus('loading');
     setErrorMsg('');
 
-    const { error } = await supabase.from('waitlist').insert({ email: clean, source });
+    const { error } = await supabase.from('waitlist').insert({ email: clean, prenom: cleanPrenom, source });
 
     // 23505 = email déjà inscrit → succès quand même, on redonne le guide.
     if (error && error.code !== '23505') {
@@ -87,6 +96,7 @@ function WaitlistForm({ source = 'landing' }) {
       return;
     }
 
+    setPrenom(cleanPrenom); // affiche le prénom avec la majuscule dans le message de bienvenue
     setStatus('success');
     triggerDownload();
   };
@@ -103,7 +113,9 @@ function WaitlistForm({ source = 'landing' }) {
           style={{ background: 'linear-gradient(135deg, #C4727F 0%, #E8A87C 100%)' }}>
           <Check className="text-white" size={28} strokeWidth={2.5} />
         </div>
-        <h3 className="font-display text-xl text-luna-text mb-2">Tu es sur la liste 🌙</h3>
+        <h3 className="font-display text-xl text-luna-text mb-2">
+          {prenom ? `Bienvenue ${prenom} 🌙` : 'Tu es sur la liste 🌙'}
+        </h3>
         <p className="text-sm text-luna-text-muted font-body leading-relaxed mb-4">
           Ton guide <strong className="text-luna-text">« Quoi manger à chaque phase »</strong> se télécharge.
           Tu seras parmi les premières prévenues au lancement — avec ta réduction fondatrice.
@@ -122,6 +134,17 @@ function WaitlistForm({ source = 'landing' }) {
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
       <div className="flex flex-col gap-3">
+        <div className="relative">
+          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" size={18} />
+          <input
+            type="text"
+            value={prenom}
+            onChange={(e) => { setPrenom(e.target.value); if (status === 'error') setStatus('idle'); }}
+            placeholder="Ton prénom"
+            autoComplete="given-name"
+            className="w-full pl-11 pr-4 py-4 rounded-[18px] border border-luna-primary/20 bg-white text-base font-body text-luna-text placeholder:text-luna-text-hint focus:outline-none focus:border-luna-primary focus:ring-2 focus:ring-luna-primary/20 transition-all"
+          />
+        </div>
         <div className="relative">
           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-luna-text-hint" size={18} />
           <input
