@@ -1,99 +1,87 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { UtensilsCrossed, CalendarDays, Apple } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
-const leftItems = [
+const navItems = [
   { to: '/recettes', icon: UtensilsCrossed, label: 'Manger' },
+  { to: '/dashboard', icon: CalendarDays, label: 'Mon cycle' },
+  { to: '/alimentation', icon: Apple, label: 'Aliments' },
 ];
-
-const rightItems = [
-  { to: '/alimentation', icon: Apple, label: 'Mes aliments' },
-];
-
-const centerItem = { to: '/dashboard', icon: CalendarDays, label: 'Mon cycle' };
-
-function NavItem({ to, icon: Icon, label, phaseData }) {
-  return (
-    <NavLink
-      key={to}
-      to={to}
-      className="flex flex-col items-center gap-0.5 flex-1 py-1.5 transition-all duration-300 relative"
-    >
-      {({ isActive }) => (
-        <>
-          {isActive && (
-            <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[3px] rounded-full"
-              style={{ backgroundColor: phaseData.color }}
-            />
-          )}
-          {/* Icône estompée quand inactive (hiérarchie visuelle) */}
-          <div
-            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${isActive ? '' : 'opacity-40 group-hover:opacity-60'}`}
-            style={isActive ? { backgroundColor: phaseData.bgColor, color: phaseData.color } : { color: '#2D2226' }}
-          >
-            <Icon size={18} strokeWidth={isActive ? 2 : 1.5} />
-          </div>
-          {/* Label en couleur pleine lisible (WCAG) — pas d'opacity sur le texte */}
-          <span
-            className="text-[11px] font-semibold font-body leading-none tracking-tight"
-            style={{ color: isActive ? phaseData.color : '#756568' }}
-          >
-            {label}
-          </span>
-        </>
-      )}
-    </NavLink>
-  );
-}
 
 export default function BottomNav() {
   const { cycleInfo } = useCycle();
+  const location = useLocation();
   const phaseData = cycleInfo?.phaseData || { color: '#B0A5AA', colorDark: '#6B5E62', bgColor: '#F5F2F0' };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 z-50 lg:hidden pb-[env(safe-area-inset-bottom)]">
-      <div className="flex items-end justify-around px-1 h-[68px] relative">
-        {/* Left items */}
-        {leftItems.map((item) => (
-          <NavItem key={item.to} {...item} phaseData={phaseData} />
-        ))}
+    <nav
+      className="fixed bottom-0 left-0 right-0 z-50 lg:hidden"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+    >
+      {/* Glass background */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(255, 255, 255, 0.4)',
+          backdropFilter: 'blur(30px)',
+          WebkitBackdropFilter: 'blur(30px)',
+          borderTop: '0.5px solid rgba(255, 255, 255, 0.5)',
+        }}
+      />
 
-        {/* Center — Cycle hero button */}
-        <NavLink
-          to={centerItem.to}
-          aria-label={centerItem.label}
-          className="flex flex-col items-center flex-1 -mt-5 relative"
-        >
-          {({ isActive }) => (
-            <>
-              <div
-                className="w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
+      <div className="relative flex items-center justify-around" style={{ height: 64, padding: '0 8px' }}>
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.to;
+          const Icon = item.icon;
+
+          return (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className="flex flex-col items-center gap-[3px] flex-1 relative"
+              style={{ paddingTop: 12, paddingBottom: 8 }}
+            >
+              {/* Glow line */}
+              {isActive && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: -1,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: 44,
+                    height: 3,
+                    borderRadius: '0 0 3px 3px',
+                    backgroundColor: phaseData.color,
+                    boxShadow: `0 2px 14px ${phaseData.color}80, 0 0 6px ${phaseData.color}4D`,
+                  }}
+                />
+              )}
+
+              <Icon
+                size={22}
+                strokeWidth={isActive ? 1.5 : 1.5}
+                fill={isActive ? phaseData.color : 'none'}
+                stroke={isActive ? phaseData.color : 'rgba(45, 34, 38, 0.28)'}
+                className="transition-all duration-300"
+              />
+
+              <span
+                className="font-body leading-none"
                 style={{
-                  background: isActive
-                    ? `linear-gradient(145deg, ${phaseData.color} 0%, ${phaseData.colorDark} 100%)`
-                    : `linear-gradient(145deg, ${phaseData.bgColor} 0%, ${phaseData.bgColor} 100%)`,
-                  boxShadow: isActive
-                    ? `0 4px 16px ${phaseData.color}66`
-                    : `0 2px 10px ${phaseData.color}26`,
+                  fontSize: 10,
+                  fontWeight: isActive ? 600 : 500,
+                  color: isActive ? phaseData.color : 'rgba(45, 34, 38, 0.3)',
+                  letterSpacing: '-0.01em',
+                  transition: 'color 0.3s, font-weight 0.3s',
                 }}
               >
-                <CalendarDays size={22} strokeWidth={2} className="text-white" />
-              </div>
-              <span
-                className="text-[11px] font-semibold font-body leading-none tracking-tight mt-1"
-                style={{ color: isActive ? phaseData.color : '#756568' }}
-              >
-                {centerItem.label}
+                {item.label}
               </span>
-            </>
-          )}
-        </NavLink>
-
-        {/* Right items */}
-        {rightItems.map((item) => (
-          <NavItem key={item.to} {...item} phaseData={phaseData} />
-        ))}
+            </NavLink>
+          );
+        })}
       </div>
     </nav>
   );
