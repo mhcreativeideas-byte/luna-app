@@ -14,6 +14,19 @@ const LEAD_MAGNET_PATH = '/LUNA-Guide-Quoi-manger-a-chaque-phase.pdf';
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+const INSTAGRAM_URL = 'https://www.instagram.com/luna.cyclesfood/';
+
+// Glyphe Instagram (lucide-react ne fournit plus l'icône de marque)
+function InstagramGlyph({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
 // ┌─────────────────────────────────────────────────────────────────────────┐
 // │ LANCEMENT DE L'APP — un seul interrupteur à changer le jour J.           │
 // │                                                                           │
@@ -76,7 +89,8 @@ function WaitlistForm({ source = 'landing' }) {
     e.preventDefault();
     // Prénom : on met une majuscule à l'initiale pour un joli rendu en newsletter.
     const raw = prenom.trim();
-    const cleanPrenom = raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : '';
+    // Jolie casse : "MARGAUX" ou "margaux" → "Margaux"
+    const cleanPrenom = raw ? raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase() : '';
     const clean = email.trim().toLowerCase();
     if (!cleanPrenom) {
       setErrorMsg('Ajoute ton prénom, on aime bien te parler par ton nom 🌙');
@@ -128,26 +142,42 @@ function WaitlistForm({ source = 'landing' }) {
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-md mx-auto rounded-[24px] bg-white p-6 text-center"
-        style={{ boxShadow: '0 8px 32px rgba(196,114,127,0.18)' }}
+        className="w-full max-w-md mx-auto rounded-[28px] bg-white p-7 text-center"
+        style={{ boxShadow: '0 10px 40px rgba(196,114,127,0.16)' }}
       >
-        <div className="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center"
-          style={{ background: 'linear-gradient(135deg, #C4727F 0%, #E8A87C 100%)' }}>
-          <Check className="text-white" size={28} strokeWidth={2.5} />
+        <div className="w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center bg-luna-primary/10">
+          <Check className="text-luna-primary" size={30} strokeWidth={2.75} />
         </div>
-        <h3 className="font-display text-xl text-luna-text mb-2">
+        <h3 className="font-display text-2xl text-luna-text mb-2">
           {prenom ? `Bienvenue ${prenom} 🌙` : 'Tu es sur la liste 🌙'}
         </h3>
-        <p className="text-sm text-luna-text-muted font-body leading-relaxed mb-4">
+        <p className="text-sm text-luna-text-muted font-body leading-relaxed mb-6">
           Ton guide <strong className="text-luna-text">« Quoi manger à chaque phase »</strong> se télécharge.
-          Tu seras parmi les premières prévenues au lancement — avec ta réduction fondatrice.
+          Tu seras parmi les premières prévenues au lancement, avec ta réduction fondatrice.
         </p>
+
+        {/* Renvoi Instagram */}
+        <div className="pt-5 border-t border-luna-primary/10">
+          <p className="text-sm text-luna-text-muted font-body mb-3">
+            En attendant, suis l'aventure LUNA 🌙
+          </p>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-[18px] font-body font-bold text-white bg-luna-primary hover:bg-luna-primary-dark transition-colors"
+          >
+            <InstagramGlyph size={18} />
+            Nous suivre sur Instagram
+          </a>
+        </div>
+
         <button
           onClick={triggerDownload}
-          className="inline-flex items-center gap-2 text-sm font-body font-semibold text-luna-primary hover:text-luna-primary-dark transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-body text-luna-text-hint hover:text-luna-primary transition-colors mt-5"
         >
-          <Gift size={16} />
-          Le téléchargement n'a pas démarré ? Clique ici
+          <Gift size={13} />
+          Le guide ne s'est pas téléchargé ? Clique ici
         </button>
       </motion.div>
     );
