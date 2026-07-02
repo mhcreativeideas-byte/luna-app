@@ -7,7 +7,8 @@ import {
   ChevronDown, ChevronUp, Calendar, Dumbbell,
   Utensils, Moon, Brain, BookOpen, Flame,
   ArrowLeft, Trash2, X, AlertTriangle, CreditCard,
-  Download, Mail, Inbox, BarChart3
+  Download, Mail, Inbox, BarChart3,
+  Megaphone, Cookie, KeyRound
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -96,6 +97,32 @@ function KPICard({ icon, label, value, sub, color }) {
       <p className="text-3xl font-bold font-accent text-gray-800">{value}</p>
       {sub && <p className="text-xs text-gray-400 mt-1 font-body">{sub}</p>}
     </motion.div>
+  );
+}
+
+// En-tête de carte cohérent (icône colorée + titre + sous-titre).
+function CardHeader({ icon, color, title, subtitle }) {
+  return (
+    <div className="flex items-center gap-3 mb-4">
+      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: color + '20', color }}>
+        {icon}
+      </div>
+      <div>
+        <h3 className="font-display text-lg text-gray-800 leading-tight">{title}</h3>
+        {subtitle && <p className="text-xs text-gray-400 font-body">{subtitle}</p>}
+      </div>
+    </div>
+  );
+}
+
+// État vide doux et cohérent (au lieu d'un « Aucune donnée » sec).
+function EmptyState({ icon, text, hint }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-8 text-center">
+      <div className="text-gray-200 mb-2">{icon}</div>
+      <p className="text-sm text-gray-400 font-body">{text}</p>
+      {hint && <p className="text-xs text-gray-300 font-body mt-1">{hint}</p>}
+    </div>
   );
 }
 
@@ -918,14 +945,14 @@ export default function Admin() {
             transition={{ delay: 0.15 }}
             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
           >
-            <h3 className="font-display text-lg text-gray-800 mb-1">Répartition par âge</h3>
-            <p className="text-xs text-gray-400 font-body mb-4">Qui est ta cliente type ?</p>
+            <CardHeader icon={<Users size={20} />} color="#C4727F" title="Répartition par âge" subtitle="Qui est ta cliente type ?" />
             <div className="space-y-3">
               {ageOrder
                 .filter((a) => ageDistribution[a])
                 .map((age) => {
                   const count = ageDistribution[age];
                   const pct = totalUsers > 0 ? Math.round((count / totalUsers) * 100) : 0;
+                  const isUnknown = age === 'unknown';
                   return (
                     <div key={age} className="flex items-center gap-3">
                       <span className="text-sm text-gray-600 font-body w-28">{ageLabels[age] || age}</span>
@@ -934,7 +961,7 @@ export default function Admin() {
                           initial={{ width: 0 }}
                           animate={{ width: `${pct}%` }}
                           transition={{ duration: 0.8 }}
-                          className="h-full rounded-full bg-luna-rose/70"
+                          className={`h-full rounded-full ${isUnknown ? 'bg-gray-300' : 'bg-luna-rose/70'}`}
                         />
                       </div>
                       <span className="text-sm font-accent font-bold text-gray-700 w-16 text-right">
@@ -944,7 +971,7 @@ export default function Admin() {
                   );
                 })}
               {Object.keys(ageDistribution).length === 0 && (
-                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+                <EmptyState icon={<Users size={32} />} text="Pas encore de données" hint="L'âge de tes utilisatrices s'affichera ici" />
               )}
             </div>
           </motion.div>
@@ -956,11 +983,11 @@ export default function Admin() {
             transition={{ delay: 0.2 }}
             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
           >
-            <h3 className="font-display text-lg text-gray-800 mb-1">Comment elles nous ont connue</h3>
-            <p className="text-xs text-gray-400 font-body mb-4">Ton canal de recrutement n°1</p>
+            <CardHeader icon={<Megaphone size={20} />} color="#B09ACB" title="Comment elles nous ont connue" subtitle="Ton canal de recrutement n°1" />
             <div className="space-y-3">
               {sortedDiscovery.map(([source, count]) => {
                 const pct = totalUsers > 0 ? Math.round((count / totalUsers) * 100) : 0;
+                const isUnknown = source === 'unknown';
                 return (
                   <div key={source} className="flex items-center gap-3">
                     <span className="text-sm text-gray-600 font-body w-36">{discoveryLabels[source] || source}</span>
@@ -969,7 +996,7 @@ export default function Admin() {
                         initial={{ width: 0 }}
                         animate={{ width: `${pct}%` }}
                         transition={{ duration: 0.8 }}
-                        className="h-full rounded-full bg-luna-lavender/70"
+                        className={`h-full rounded-full ${isUnknown ? 'bg-gray-300' : 'bg-luna-lavender/70'}`}
                       />
                     </div>
                     <span className="text-sm font-accent font-bold text-gray-700 w-16 text-right">
@@ -979,7 +1006,7 @@ export default function Admin() {
                 );
               })}
               {sortedDiscovery.length === 0 && (
-                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+                <EmptyState icon={<Megaphone size={32} />} text="Pas encore de données" hint="Le canal d'acquisition s'affichera ici" />
               )}
             </div>
           </motion.div>
@@ -994,8 +1021,7 @@ export default function Admin() {
             transition={{ delay: 0.25 }}
             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
           >
-            <h3 className="font-display text-lg text-gray-800 mb-1">Fringales & symptômes</h3>
-            <p className="text-xs text-gray-400 font-body mb-4">Pour ton discours produit</p>
+            <CardHeader icon={<Cookie size={20} />} color="#E8A87C" title="Fringales & symptômes" subtitle="Pour ton discours produit" />
             <div className="flex flex-wrap gap-2">
               {sortedCravings.map(([craving, count]) => (
                 <span
@@ -1006,7 +1032,7 @@ export default function Admin() {
                 </span>
               ))}
               {sortedCravings.length === 0 && (
-                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+                <EmptyState icon={<Cookie size={32} />} text="Pas encore de données" hint="Les fringales les plus citées s'afficheront ici" />
               )}
             </div>
           </motion.div>
@@ -1018,8 +1044,7 @@ export default function Admin() {
             transition={{ delay: 0.3 }}
             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
           >
-            <h3 className="font-display text-lg text-gray-800 mb-1">Freins en cuisine</h3>
-            <p className="text-xs text-gray-400 font-body mb-4">Les blocages à lever pour vendre</p>
+            <CardHeader icon={<KeyRound size={20} />} color="#7BAE7F" title="Freins en cuisine" subtitle="Les blocages à lever pour vendre" />
             <div className="flex flex-wrap gap-2">
               {sortedBarriers.map(([barrier, count]) => (
                 <span
@@ -1030,7 +1055,7 @@ export default function Admin() {
                 </span>
               ))}
               {sortedBarriers.length === 0 && (
-                <p className="text-sm text-gray-400 font-body">Aucune donnée</p>
+                <EmptyState icon={<KeyRound size={32} />} text="Pas encore de données" hint="Les blocages les plus cités s'afficheront ici" />
               )}
             </div>
           </motion.div>
