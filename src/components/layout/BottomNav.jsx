@@ -61,8 +61,8 @@ export default function BottomNav() {
 
               <Icon
                 size={22}
-                strokeWidth={isActive ? 1.5 : 1.5}
-                fill={isActive ? phaseData.color : 'none'}
+                strokeWidth={isActive ? 2 : 1.5}
+                fill="none"
                 stroke={isActive ? phaseData.color : 'rgba(45, 34, 38, 0.28)'}
                 className="transition-all duration-300"
               />
