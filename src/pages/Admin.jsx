@@ -7,7 +7,7 @@ import {
   ChevronDown, ChevronUp, Calendar, Dumbbell,
   Utensils, Moon, Brain, BookOpen, Flame,
   ArrowLeft, Trash2, X, AlertTriangle, CreditCard,
-  Download, Mail, Inbox
+  Download, Mail, Inbox, Camera, Eye, Heart
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
@@ -672,7 +672,35 @@ export default function Admin() {
           </button>
         </div>
 
-        {activeTab === 'calendar' && <ContentCalendar />}
+        {activeTab === 'calendar' && (<>
+          {/* Statistiques Instagram — emplacement, se remplira une fois Instagram connecté */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+          >
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <h3 className="font-display text-lg text-gray-800 flex items-center gap-2">
+                <Camera size={18} className="text-luna-rose" />
+                Statistiques Instagram
+              </h3>
+              <span className="text-xs font-body text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full">
+                📸 S'activera une fois Instagram connecté
+              </span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <KPICard icon={<Camera size={20} />} label="Abonnés" value="—" sub="Total du compte" color="#C4727F" />
+              <KPICard icon={<TrendingUp size={20} />} label="Nouveaux abonnés" value="—" sub="Sur 30 jours" color="#7BAE7F" />
+              <KPICard icon={<Eye size={20} />} label="Portée" value="—" sub="Comptes touchés (30j)" color="#E8A87C" />
+              <KPICard icon={<Heart size={20} />} label="Engagement" value="—" sub="Likes + commentaires" color="#B09ACB" />
+            </div>
+            <p className="text-xs text-gray-400 font-body mt-4">
+              Ces chiffres se mettront à jour automatiquement une fois le compte Instagram connecté (API Meta). En attendant, tu peux suivre tes stats dans Instagram ou Meta Business Suite.
+            </p>
+          </motion.div>
+
+          <ContentCalendar />
+        </>)}
 
         {activeTab === 'users' && (<>
         {/* KPI Cards */}
