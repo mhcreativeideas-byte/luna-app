@@ -6,7 +6,7 @@ import { Heart, Gift, Check, Apple, Mail, User, ArrowRight, ChevronDown } from '
 import { BrandSymbol, Divider } from '../components/illustrations/LunaIllustrations';
 import IntroCarousel from '../components/IntroCarousel';
 
-const LEAD_MAGNET_PATH = '/LUNA-Guide-Quoi-manger-a-chaque-phase.pdf';
+const LEAD_MAGNET_PATH = '/LUNA-Guide-Manger-au-rythme-de-ton-cycle.pdf';
 
 // Vitrine = inscription ANONYME. On enregistre par un appel REST direct plutôt
 // que par supabase-js, pour éviter le bug de verrou d'auth ("Lock ... was stolen")
@@ -79,7 +79,7 @@ function WaitlistForm({ source = 'landing' }) {
   const triggerDownload = () => {
     const link = document.createElement('a');
     link.href = LEAD_MAGNET_PATH;
-    link.download = 'LUNA-Guide-Quoi-manger-a-chaque-phase.pdf';
+    link.download = 'Guide LUNA - Manger au rythme de ton cycle.pdf';
     document.body.appendChild(link);
     link.click();
     link.remove();
