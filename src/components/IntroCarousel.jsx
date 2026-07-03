@@ -100,7 +100,7 @@ export default function IntroCarousel() {
     >
       {/* Header : logo + Passer */}
       <div className="flex justify-between items-center h-10">
-        <img src="/logo-luna.png" alt="LUNA" className="h-[22px] w-auto" />
+        <img src="/logo-luna.svg" alt="LUNA" className="h-[22px] w-auto" />
         {!isLast && (
           <button
             onClick={() => navigate('/auth?mode=signup')}

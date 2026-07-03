@@ -436,7 +436,7 @@ export default function RecipesList() {
       <motion.div variants={item}>
         {recipesLoading ? (
           <div className="text-center py-12">
-            <img src="/logo-luna.png" alt="" className="w-16 mx-auto opacity-30 animate-pulse" />
+            <img src="/logo-luna.svg" alt="" className="w-16 mx-auto opacity-30 animate-pulse" />
           </div>
         ) : displayedRecipes.length === 0 ? (
           <div className="text-center py-12">

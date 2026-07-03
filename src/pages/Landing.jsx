@@ -318,7 +318,7 @@ export default function Landing() {
         <div className="relative px-5 pt-[calc(env(safe-area-inset-top)+3rem)] pb-14 text-center max-w-xl mx-auto">
           <motion.img
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            src="/logo-luna.png" alt="LUNA" className="w-36 md:w-44 mx-auto mb-5"
+            src="/logo-luna.svg" alt="LUNA" className="w-36 md:w-44 mx-auto mb-5"
           />
 
           <motion.div

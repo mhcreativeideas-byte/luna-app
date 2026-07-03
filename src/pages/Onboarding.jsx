@@ -330,7 +330,7 @@ export default function Onboarding() {
           animate={{ opacity: 1, scale: 1 }}
           className="w-full max-w-sm text-center"
         >
-          <img src="/logo-luna.png" alt="LUNA" className="w-24 mx-auto mb-8" />
+          <img src="/logo-luna.svg" alt="LUNA" className="w-24 mx-auto mb-8" />
           <div className="space-y-4">
             {loadingSteps.map((label, i) => (
               <motion.div
@@ -507,7 +507,7 @@ export default function Onboarding() {
           transition={{ duration: 0.6 }}
           className="w-full max-w-md mx-auto"
         >
-          <img src="/logo-luna.png" alt="LUNA" className="h-[22px] w-auto mb-8" />
+          <img src="/logo-luna.svg" alt="LUNA" className="h-[22px] w-auto mb-8" />
           <h1 className="font-display text-[26px] text-luna-text leading-[1.25]">
             {"C'est le début"}<br />{"d'un nouveau cycle."}<br /><em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>Le tien.</em>
           </h1>

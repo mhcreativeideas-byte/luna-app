@@ -228,7 +228,7 @@ export default function Auth() {
 
             {/* Logo */}
             <div className="text-center mb-8">
-              <img src="/logo-luna.png" alt="LUNA" className="h-[22px] w-auto mx-auto mb-4" />
+              <img src="/logo-luna.svg" alt="LUNA" className="h-[22px] w-auto mx-auto mb-4" />
               <h1 className="font-display text-2xl text-luna-text">
                 {resetMode ? 'Mot de passe oublié ?' : mode === 'signup' ? 'Crée ton espace LUNA' : 'Bon retour'}
               </h1>
