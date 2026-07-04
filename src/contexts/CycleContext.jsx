@@ -18,6 +18,10 @@ const initialState = {
   allergies: [],
   cookingLevel: '',
   cookingTime: '',
+  age: '',
+  cravings: [],
+  barriers: [],
+  discoverySource: '',
   onboardingComplete: false,
   journalEntries: [],
   sportSessions: [],
@@ -409,6 +413,10 @@ export function CycleProvider({ children }) {
             allergies: data.allergies || [],
             cookingLevel: data.cooking_level || '',
             cookingTime: data.cooking_time || '',
+            age: data.age || '',
+            cravings: data.cravings || [],
+            barriers: data.barriers || [],
+            discoverySource: data.discovery_source || '',
           },
         });
         if (data.onboarding_complete) {
@@ -526,6 +534,10 @@ export function CycleProvider({ children }) {
         allergies: state.allergies,
         cooking_level: state.cookingLevel,
         cooking_time: state.cookingTime,
+        age: state.age,
+        cravings: state.cravings,
+        barriers: state.barriers,
+        discovery_source: state.discoverySource,
         onboarding_complete: state.onboardingComplete,
         current_phase: cycleInfo?.phase || 'unknown',
       }, { onConflict: 'auth_id' });
@@ -553,6 +565,10 @@ export function CycleProvider({ children }) {
     state.allergies,
     state.cookingLevel,
     state.cookingTime,
+    state.age,
+    state.cravings,
+    state.barriers,
+    state.discoverySource,
     state.lastPeriodDate,
     state.onboardingComplete,
   ]);

@@ -126,6 +126,56 @@ const FOOD_EMOJI_FALLBACK = {
   'Eau de coco': '🥥',
 };
 
+// Scale individuel par image pour harmoniser les tailles dans les cercles
+// (calculé à partir de la taille réelle du contenu visible de chaque PNG)
+// Cible : ~70% du cercle rempli. <1 = réduire, >1 = agrandir.
+const FOOD_SCALE = {
+  // --- Très petits dans leur image → agrandir beaucoup ---
+  'Kéfir': 1.55, 'Figues sèches': 1.55, 'Kimchi': 1.55,
+  'Yaourt nature': 1.5, 'Avocat': 1.45, 'Bananes': 1.4,
+  'Haricots': 1.4, 'Choucroute': 1.35, 'Œufs': 1.35,
+  'Crevettes': 1.35, 'Framboises': 1.35, 'Pistaches': 1.35,
+  'Sardines': 1.3, 'Edamame': 1.25, 'Graines de courge': 1.25,
+  'Pommes de terre': 1.25, 'Poulet': 1.25, 'Chou kale': 1.2,
+  'Tempeh': 1.2, 'Dattes': 1.2, 'Fromage': 1.15,
+  'Graines de tournesol': 1.15, 'Pruneaux': 1.15,
+  'Champignons': 1.12, 'Haricots noirs': 1.12, 'Miso': 1.12,
+  'Bœuf': 1.1, 'Graines de chia': 1.1, 'Huîtres': 1.1,
+  'Poivrons': 1.1, 'Spiruline': 1.1, 'Tofu': 1.1,
+  'Viande rouge': 1.1, 'Noix de cajou': 1.08, 'Quinoa': 1.08,
+  'Pain complet': 1.05, 'Patate douce': 1.05, 'Yaourt grec': 1.05,
+  'Cornichons lacto': 1.03, 'Céréales complètes': 1.03, 'Maquereau': 1.03,
+  // --- Taille correcte (70-80%) → pas de changement ---
+  // amandes, pâtes complètes, dinde, pois chiches, sarrasin, etc.
+  // --- Remplissent beaucoup leur image → réduire ---
+  'Rhubarbe': 0.88, 'Panais': 0.87, 'Prune': 0.87, 'Raisin': 0.87,
+  'Radis': 0.85, 'Topinambour': 0.85,
+  'Clémentine': 0.84, 'Fraises': 0.84,
+  'Abricot': 0.83,
+  'Betterave': 0.82, 'Melon': 0.82, 'Navet': 0.82,
+  'Brocoli': 0.8,
+  'Courgette': 0.81, 'Noix': 0.81, 'Pamplemousse': 0.81,
+  'Chou-fleur': 0.8,
+  'Concombre': 0.79,
+  'Blette': 0.78, 'Céleri': 0.78, 'Épinards': 0.78, 'Poireau': 0.78, 'Tomates': 0.78,
+  'Aubergine': 0.77, 'Cerise': 0.77, 'Cresson': 0.77, 'Endive': 0.77, 'Kiwi': 0.77,
+  'Artichauts': 0.77, 'Asperges': 0.77, 'Groseille': 0.77, 'Mûre': 0.77, 'Petit pois': 0.77,
+  'Carotte': 0.76, 'Cassis': 0.76, 'Myrtilles': 0.76,
+  'Chou': 0.75, 'Citron': 0.75, 'Laitue': 0.75, 'Mâche': 0.75,
+  'Poires': 0.75, 'Pommes': 0.75,
+  'Mandarine': 0.75, 'Oranges': 0.75,
+  'Châtaigne': 0.75, 'Chou de Bruxelles': 0.75, 'Courge': 0.75,
+  'Fenouil': 0.75, 'Figue': 0.75, 'Framboise': 0.75,
+  'Haricot vert': 0.75, 'Maïs': 0.75, 'Mirabelle': 0.75,
+  'Nectarine': 0.75, 'Pêche': 0.75, 'Poivron': 0.75, 'Potiron': 0.75,
+  // --- Moyens (légèrement réduire) ---
+  'Cacao cru': 0.91, 'Chocolat noir': 0.91, 'Chocolat noir 70%': 0.91,
+  'Graines de lin': 0.91, 'Lentilles': 0.88, 'Tahini': 0.91,
+  'Graines de sésame': 0.92, 'Riz complet': 0.92,
+  'Légumineuses': 0.9, 'Pastèque': 0.95, 'Saumon': 0.9,
+  'Avoine': 0.97, 'Grenades': 0.97, 'Mangue': 0.97,
+};
+
 // ——— Mapping santé : nutriments & superaliments par condition ———
 const HEALTH_NUTRIENT_MAP = {
   'SPM sévère': ['Magnésium', 'Vitamine B6', 'Calcium', 'Oméga-3'],
@@ -314,7 +364,7 @@ export default function Alimentation() {
                     </div>
                   )}
 
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden mb-2.5 bg-white"
+                  <div className="w-[76px] h-[76px] rounded-full overflow-hidden mb-2.5 bg-white flex items-center justify-center"
                     style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.06)' }}
                   >
                     {imgSrc ? (
@@ -322,14 +372,15 @@ export default function Alimentation() {
                         src={imgSrc}
                         alt={food.name}
                         loading="lazy"
-                        className="w-12 h-12 object-contain"
+                        className="object-contain"
+                        style={{ width: `${60 * (FOOD_SCALE[food.name] || 1)}px`, height: `${60 * (FOOD_SCALE[food.name] || 1)}px` }}
                         onError={(e) => {
                           e.target.style.display = 'none';
                           if (e.target.nextSibling) e.target.nextSibling.style.display = 'block';
                         }}
                       />
                     ) : null}
-                    <span className="text-2xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
+                    <span className="text-3xl" style={{ display: imgSrc ? 'none' : 'block' }}>{emoji}</span>
                   </div>
 
                   <span className="text-[13px] font-body font-bold text-luna-text leading-tight">
@@ -362,7 +413,7 @@ export default function Alimentation() {
         </div>
       </motion.div>
 
-      {/* ===== DÉTAIL ALIMENT (bottom sheet simplifié) ===== */}
+      {/* ===== DÉTAIL ALIMENT (bottom sheet) ===== */}
       <AnimatePresence>
         {selectedFood && (() => {
           const food = flatFoods.find(f => f.name === selectedFood);
@@ -371,51 +422,80 @@ export default function Alimentation() {
           const emoji = food.emoji || FOOD_EMOJI_FALLBACK[food.name] || '🍽️';
           return (
             <motion.div
-              key={selectedFood}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="overflow-hidden"
+              key="food-sheet-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/25 z-[60] flex items-end justify-center"
+              onClick={() => setSelectedFood(null)}
             >
-              <div
-                className="rounded-[22px] p-4 flex items-start gap-4"
-                style={{ backgroundColor: `${phaseData.color}08`, border: `1px solid ${phaseData.color}18` }}
+              <motion.div
+                key={selectedFood}
+                initial={{ y: '100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: '100%' }}
+                transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white rounded-t-[28px] w-full max-w-md"
+                style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)' }}
               >
-                <div className="w-14 h-14 rounded-full flex items-center justify-center overflow-hidden bg-white flex-shrink-0"
-                  style={{ boxShadow: '0 2px 8px rgba(45,34,38,0.06)' }}
-                >
-                  {imgSrc ? (
-                    <img src={imgSrc} alt={food.name} className="w-10 h-10 object-contain" />
-                  ) : (
-                    <span className="text-xl">{emoji}</span>
-                  )}
+                {/* Poignée */}
+                <div className="flex justify-center pt-3 pb-2">
+                  <div className="w-10 h-1 rounded-full bg-gray-200" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-display text-base text-luna-text">{food.name}</h3>
-                    <span className="text-[9px] font-body font-semibold px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: `${phaseData.color}18`, color: phaseData.colorDark }}
+
+                <div className="px-5 pb-4">
+                  {/* En-tête : photo + nom + nutriments */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-[76px] h-[76px] rounded-full overflow-hidden bg-luna-cream flex-shrink-0 flex items-center justify-center"
+                      style={{ boxShadow: '0 2px 10px rgba(45,34,38,0.08)' }}
                     >
-                      {food.nutrients.join(' · ')}
-                    </span>
+                      {imgSrc ? (
+                        <img src={imgSrc} alt={food.name} className="object-contain"
+                          style={{ width: `${60 * (FOOD_SCALE[food.name] || 1)}px`, height: `${60 * (FOOD_SCALE[food.name] || 1)}px` }} />
+                      ) : (
+                        <span className="text-3xl">{emoji}</span>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display text-lg text-luna-text">{food.name}</h3>
+                      <span
+                        className="text-[11px] font-body font-semibold"
+                        style={{ color: phaseData.color }}
+                      >
+                        {food.nutrients.join(' · ')}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => setSelectedFood(null)}
+                      className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0"
+                    >
+                      <X size={14} className="text-luna-text-muted" />
+                    </button>
                   </div>
-                  <p className="text-xs font-body text-luna-text-body leading-relaxed">
+
+                  {/* Explication */}
+                  <p className="text-[13px] font-body text-luna-text-body leading-relaxed mb-4">
                     {food.why}
                   </p>
+
+                  {/* Lien recettes */}
                   {food.nutrients.length > 0 && (
                     <Link
                       to={`/recettes-liste?nutrient=${encodeURIComponent(food.nutrients[0])}`}
-                      className="inline-flex items-center gap-1.5 mt-2.5 text-[11px] font-body font-bold"
-                      style={{ color: phaseData.colorDark }}
+                      className="flex items-center justify-center gap-2 py-3.5 rounded-[16px] transition-all active:scale-[0.98]"
+                      style={{ backgroundColor: phaseData.bgColor }}
                     >
-                      <UtensilsCrossed size={11} />
-                      Voir les recettes
-                      <ChevronRight size={11} />
+                      <UtensilsCrossed size={14} style={{ color: phaseData.colorDark }} />
+                      <span className="text-[13px] font-body font-bold" style={{ color: phaseData.colorDark }}>
+                        Voir les recettes
+                      </span>
+                      <ChevronRight size={14} style={{ color: phaseData.colorDark }} />
                     </Link>
                   )}
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           );
         })()}
