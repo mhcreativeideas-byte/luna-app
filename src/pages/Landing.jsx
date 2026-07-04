@@ -41,7 +41,7 @@ function InstagramGlyph({ size = 18 }) {
 const APP_LAUNCHED = false;
 const APP_STORE_URL = 'https://apps.apple.com/app/idXXXXXXXXX'; // ← à remplir au lancement
 
-// Tableau « Sans LUNA / Avec LUNA » — repris de l'onboarding (même ton émotionnel).
+// Tableau « Sans luna / Avec luna » — repris de l'onboarding (même ton émotionnel).
 const comparisons = [
   { sans: "Tu t'emportes sans comprendre pourquoi", avec: "Tu sais que c'est ta phase, pas toi", emojiSans: '😢', emojiAvec: '🌙' },
   { sans: "Tu dévores du chocolat à 23h et tu t'en veux", avec: "Tes envies sont normales, et on les apaise", emojiSans: '🍫', emojiAvec: '🌿' },
@@ -98,7 +98,7 @@ const appShots = [
 function PhoneFrame({ src, className = '', style }) {
   return (
     <div className={`rounded-[2.4rem] bg-[#1a1416] p-[7px] ${className}`} style={{ boxShadow: '0 22px 55px rgba(45,34,38,0.28)', ...style }}>
-      <img src={src} alt="Aperçu de l'app LUNA" className="w-full rounded-[1.9rem] block" />
+      <img src={src} alt="Aperçu de l'app luna" className="w-full rounded-[1.9rem] block" />
     </div>
   );
 }
@@ -116,7 +116,7 @@ function WaitlistForm({ source = 'landing' }) {
   const triggerDownload = () => {
     const link = document.createElement('a');
     link.href = LEAD_MAGNET_PATH;
-    link.download = 'Guide LUNA - Manger au rythme de ton cycle.pdf';
+    link.download = 'Guide luna - Manger au rythme de ton cycle.pdf';
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -196,7 +196,7 @@ function WaitlistForm({ source = 'landing' }) {
         {/* Renvoi Instagram */}
         <div className="pt-5 border-t border-luna-primary/10">
           <p className="text-sm text-luna-text-muted font-body mb-3">
-            En attendant, suis l'aventure LUNA 🌙
+            En attendant, suis l'aventure luna 🌙
           </p>
           <a
             href={INSTAGRAM_URL}
@@ -318,7 +318,7 @@ export default function Landing() {
         <div className="relative px-5 pt-[calc(env(safe-area-inset-top)+3rem)] pb-14 text-center max-w-xl mx-auto">
           <motion.img
             initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            src="/logo-luna.svg" alt="LUNA" className="w-36 md:w-44 mx-auto mb-5"
+            src="/logo-luna.svg" alt="luna" className="w-36 md:w-44 mx-auto mb-5"
           />
 
           <motion.div
@@ -375,7 +375,7 @@ export default function Landing() {
             <em style={{ fontStyle: 'italic', color: '#A85A66' }}>Et si tu l'écoutais ?</em>
           </h2>
           <p className="text-luna-text-muted font-body text-sm md:text-base leading-relaxed max-w-md mx-auto">
-            Ton cycle a 4 phases. Chacune a ses besoins, et personne ne t'a appris à les nourrir. LUNA, si.
+            Ton cycle a 4 phases. Chacune a ses besoins, et personne ne t'a appris à les nourrir. luna, si.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto">
@@ -409,7 +409,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ══ TABLEAU SANS / AVEC LUNA ═════════════════════════════════════════ */}
+      {/* ══ TABLEAU SANS / AVEC luna ═════════════════════════════════════════ */}
       <section className="px-5 py-20 bg-luna-bg">
         <div className="max-w-xl mx-auto">
           <div className="text-center mb-9">
@@ -424,10 +424,10 @@ export default function Landing() {
           <div className="rounded-[24px] overflow-hidden" style={{ boxShadow: '0 6px 30px rgba(45,34,38,0.10)' }}>
             <div className="grid grid-cols-2">
               <div className="bg-gray-50 py-4 px-5">
-                <p className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans LUNA</p>
+                <p className="text-xs font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans luna</p>
               </div>
               <div className="py-4 px-5" style={{ backgroundColor: '#FDE8EB' }}>
-                <p className="text-xs font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec LUNA</p>
+                <p className="text-xs font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec luna</p>
               </div>
             </div>
             {comparisons.map((c, i) => (
@@ -461,7 +461,7 @@ export default function Landing() {
       <section className="py-16 bg-white overflow-hidden">
         <div className="px-5 max-w-xl mx-auto text-center mb-9">
           <h2 className="font-display text-[26px] md:text-3xl text-luna-text leading-tight mb-2">
-            Voici ton quotidien<br />avec LUNA
+            Voici ton quotidien<br />avec luna
           </h2>
           <p className="text-luna-text-muted font-body text-sm">
             Une app pensée comme une amie qui s'y connaît.
@@ -500,7 +500,7 @@ export default function Landing() {
             >
               <img
                 src="/guide-cover.png?v=2"
-                alt="Guide LUNA : Manger au rythme de ton cycle"
+                alt="Guide luna : Manger au rythme de ton cycle"
                 className="w-[220px] md:w-[260px] rounded-[14px]"
                 style={{ boxShadow: '0 24px 60px rgba(45,34,38,0.28)' }}
               />
@@ -531,7 +531,7 @@ export default function Landing() {
           <p className="text-luna-text-muted font-body mb-8 text-sm md:text-base max-w-sm mx-auto">
             {APP_LAUNCHED
               ? 'Rejoins les femmes qui ont arrêté de subir leur cycle et ont commencé à s\'en servir.'
-              : 'Ton guide offert + ta réduction fondatrice t\'attendent. Sois prévenue dès la sortie de LUNA.'}
+              : 'Ton guide offert + ta réduction fondatrice t\'attendent. Sois prévenue dès la sortie de luna.'}
           </p>
           <CtaBlock source="cta-final" />
           <Divider className="mx-auto mt-12" />
@@ -545,14 +545,14 @@ export default function Landing() {
           Conçu avec <Heart size={13} className="text-luna-primary fill-luna-primary" /> par des femmes, pour des femmes.
         </p>
         <p className="text-xs text-luna-text-hint font-body mt-1">
-          LUNA · Comprends ton cycle. Adapte ton assiette.
+          luna · Comprends ton cycle. Adapte ton assiette.
         </p>
         <div className="flex items-center justify-center gap-4 mt-5 text-xs font-body">
           <Link to="/confidentialite" className="text-luna-text-muted hover:text-luna-rose transition-colors">Confidentialité</Link>
           <span className="text-luna-text-hint">·</span>
           <Link to="/conditions" className="text-luna-text-muted hover:text-luna-rose transition-colors">Conditions</Link>
         </div>
-        <p className="text-[11px] text-luna-text-hint font-body mt-4">© 2026 LUNA</p>
+        <p className="text-[11px] text-luna-text-hint font-body mt-4">© 2026 luna</p>
       </footer>
     </main>
   );

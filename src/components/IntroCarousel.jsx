@@ -12,7 +12,7 @@ const SLIDES = [
   {
     key: 'eat',
     title: "Imagine savoir exactement quoi manger, chaque jour, sans y penser.",
-    subtitle: "LUNA synchronise ton assiette avec ton cycle. Recettes, menu du jour, conseils\u202f: tout est l\u00e0, pr\u00eat pour toi.",
+    subtitle: "luna synchronise ton assiette avec ton cycle. Recettes, menu du jour, conseils\u202f: tout est l\u00e0, pr\u00eat pour toi.",
   },
   {
     key: 'gentle',
@@ -100,7 +100,7 @@ export default function IntroCarousel() {
     >
       {/* Header : logo + Passer */}
       <div className="flex justify-between items-center h-10">
-        <img src="/logo-luna.svg" alt="LUNA" className="h-[22px] w-auto" />
+        <img src="/logo-luna.svg" alt="luna" className="h-[22px] w-auto" />
         {!isLast && (
           <button
             onClick={() => navigate('/auth?mode=signup')}

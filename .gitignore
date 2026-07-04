@@ -36,3 +36,4 @@ App-Store-LUNA/captures/
 
 # Apple Sign In private key
 *.p8
+ios/DerivedData-test/

@@ -1,6 +1,6 @@
 {
-  "name": "LUNA — Ton cycle, ta force",
-  "short_name": "LUNA",
+  "name": "luna — Ton cycle, ta force",
+  "short_name": "luna",
   "description": "Comprends ton cycle et adapte ton alimentation à chaque phase : recettes, menu du jour et conseils nutrition, sans culpabilité.",
   "start_url": "/",
   "display": "standalone",

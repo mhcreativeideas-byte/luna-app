@@ -192,7 +192,7 @@ export default function DailyMenu() {
           <div className="bg-white px-4 py-3">
             {dailyMenu.length === 0 ? (
               <div className="flex items-center justify-center py-10">
-                <img src="/logo-luna.svg" alt="LUNA" className="w-14 opacity-40 animate-pulse" />
+                <img src="/logo-luna.svg" alt="luna" className="w-14 opacity-40 animate-pulse" />
               </div>
             ) : (
               <div className="space-y-2">

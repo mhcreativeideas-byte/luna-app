@@ -36,7 +36,7 @@ function PageLoader() {
       className="min-h-screen flex items-center justify-center"
       style={{ background: 'linear-gradient(180deg,#F0C4C9 0%,#EDC4B3 50%,#FAF8F5 100%)' }}
     >
-      <img src="/logo-luna.svg" alt="LUNA" className="w-24 opacity-90 animate-pulse" />
+      <img src="/logo-luna.svg" alt="luna" className="w-24 opacity-90 animate-pulse" />
     </div>
   );
 }

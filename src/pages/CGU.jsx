@@ -16,31 +16,31 @@ export default function CGU() {
 
         <Section title="1. Présentation du service">
           <p>
-            LUNA est une application web de suivi du cycle menstruel accessible à l'adresse{' '}
+            luna est une application web de suivi du cycle menstruel accessible à l'adresse{' '}
             <a href="https://lunawellness.app" className="text-luna-rose underline">lunawellness.app</a>.
             Elle propose des conseils nutrition personnalisés, des recettes et un menu du jour,
             adaptés aux différentes phases du cycle menstruel.
           </p>
           <p className="mt-2">
-            LUNA est éditée par MH Creative Ideas.
+            luna est éditée par MH Creative Ideas.
             Contact : <a href="mailto:hello@lunawellness.app" className="text-luna-rose underline">hello@lunawellness.app</a>
           </p>
         </Section>
 
         <Section title="2. Acceptation des conditions">
           <p>
-            En créant un compte sur LUNA, l'utilisatrice accepte sans réserve les présentes Conditions Générales
+            En créant un compte sur luna, l'utilisatrice accepte sans réserve les présentes Conditions Générales
             d'Utilisation (CGU). Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le service.
           </p>
           <p className="mt-2">
-            LUNA se réserve le droit de modifier les présentes CGU à tout moment. Les utilisatrices seront informées
+            luna se réserve le droit de modifier les présentes CGU à tout moment. Les utilisatrices seront informées
             de toute modification substantielle. La poursuite de l'utilisation du service après modification
             vaut acceptation des nouvelles conditions.
           </p>
         </Section>
 
         <Section title="3. Inscription et compte utilisateur">
-          <p>Pour utiliser LUNA, l'utilisatrice doit :</p>
+          <p>Pour utiliser luna, l'utilisatrice doit :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>Être âgée d'au moins 16 ans (ou disposer de l'autorisation d'un représentant légal)</li>
             <li>Créer un compte avec une adresse email valide et un mot de passe sécurisé</li>
@@ -57,7 +57,7 @@ export default function CGU() {
         </Section>
 
         <Section title="4. Description du service">
-          <p>LUNA offre les fonctionnalités suivantes :</p>
+          <p>luna offre les fonctionnalités suivantes :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>Suivi du cycle menstruel et identification de la phase en cours</li>
             <li>Menu du jour adapté à ta phase</li>
@@ -69,18 +69,18 @@ export default function CGU() {
             <li>Gestion de ton frigo et idées de recettes (Mon Frigo)</li>
           </ul>
           <p className="mt-2">
-            LUNA se réserve le droit de modifier, suspendre ou interrompre tout ou partie du service
+            luna se réserve le droit de modifier, suspendre ou interrompre tout ou partie du service
             à tout moment, avec ou sans préavis, sans que cela n'ouvre droit à une quelconque indemnisation.
           </p>
         </Section>
 
         <Section title="5. Avertissement médical">
           <p className="font-semibold text-luna-text">
-            ⚠️ LUNA ne constitue en aucun cas un dispositif médical, un outil de diagnostic ou un substitut
+            ⚠️ luna ne constitue en aucun cas un dispositif médical, un outil de diagnostic ou un substitut
             à un avis médical professionnel.
           </p>
           <p className="mt-2">
-            Les informations et conseils fournis par LUNA (alimentation, sport, sommeil, bien-être) sont
+            Les informations et conseils fournis par luna (alimentation, sport, sommeil, bien-être) sont
             donnés à titre purement informatif et éducatif. Ils ne sauraient remplacer une consultation
             médicale, un diagnostic ou un traitement prescrit par un professionnel de santé.
           </p>
@@ -90,16 +90,16 @@ export default function CGU() {
             de pathologie gynécologique ou de tout autre problème de santé.
           </p>
           <p className="mt-2">
-            LUNA ne saurait être tenue responsable des décisions prises par l'utilisatrice sur la base
+            luna ne saurait être tenue responsable des décisions prises par l'utilisatrice sur la base
             des informations fournies par l'application.
           </p>
           <p className="mt-2">
-            LUNA ne doit pas être utilisée comme méthode de contraception.
+            luna ne doit pas être utilisée comme méthode de contraception.
           </p>
         </Section>
 
         <Section title="6. Données personnelles">
-          <p>Dans le cadre de l'utilisation du service, LUNA collecte les données suivantes :</p>
+          <p>Dans le cadre de l'utilisation du service, luna collecte les données suivantes :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li><strong>Données d'identification :</strong> prénom, adresse email</li>
             <li><strong>Données de cycle :</strong> date des dernières règles, durée du cycle, durée des règles</li>
@@ -111,7 +111,7 @@ export default function CGU() {
             Elles sont utilisées exclusivement pour le fonctionnement du service et la personnalisation de l'expérience utilisatrice.
           </p>
           <p className="mt-2 font-semibold">
-            LUNA ne vend, ne loue et ne partage jamais les données personnelles de ses utilisatrices
+            luna ne vend, ne loue et ne partage jamais les données personnelles de ses utilisatrices
             avec des tiers à des fins commerciales ou publicitaires.
           </p>
           <p className="mt-2">
@@ -141,7 +141,7 @@ export default function CGU() {
 
         <Section title="8. Cookies et stockage local">
           <p>
-            LUNA utilise le stockage local du navigateur (localStorage) pour sauvegarder les préférences
+            luna utilise le stockage local du navigateur (localStorage) pour sauvegarder les préférences
             de l'utilisatrice et améliorer l'expérience d'utilisation. Aucun cookie de traçage publicitaire
             n'est utilisé.
           </p>
@@ -153,8 +153,8 @@ export default function CGU() {
 
         <Section title="9. Propriété intellectuelle">
           <p>
-            L'ensemble des contenus présents sur LUNA (textes, conseils, recettes, illustrations, design,
-            logo, nom « LUNA », code source) sont la propriété exclusive de MH Creative Ideas et sont
+            L'ensemble des contenus présents sur luna (textes, conseils, recettes, illustrations, design,
+            logo, nom « luna », code source) sont la propriété exclusive de MH Creative Ideas et sont
             protégés par le droit de la propriété intellectuelle.
           </p>
           <p className="mt-2">
@@ -171,12 +171,12 @@ export default function CGU() {
 
         <Section title="10. Responsabilité">
           <p>
-            LUNA s'engage à mettre en œuvre tous les moyens raisonnables pour assurer la disponibilité
-            et le bon fonctionnement du service. Toutefois, LUNA ne garantit pas un accès ininterrompu
+            luna s'engage à mettre en œuvre tous les moyens raisonnables pour assurer la disponibilité
+            et le bon fonctionnement du service. Toutefois, luna ne garantit pas un accès ininterrompu
             ou exempt d'erreurs.
           </p>
           <p className="mt-2">
-            LUNA ne saurait être tenue responsable :
+            luna ne saurait être tenue responsable :
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li>Des interruptions temporaires du service pour maintenance ou mise à jour</li>
@@ -196,14 +196,14 @@ export default function CGU() {
             <li>Ne pas utiliser le service à des fins illicites ou contraires aux bonnes mœurs</li>
           </ul>
           <p className="mt-2">
-            En cas de manquement, LUNA se réserve le droit de suspendre ou supprimer le compte
+            En cas de manquement, luna se réserve le droit de suspendre ou supprimer le compte
             de l'utilisatrice, sans préavis ni indemnisation.
           </p>
         </Section>
 
         <Section title="12. Gratuité du service">
           <p>
-            L'utilisation de LUNA est actuellement gratuite. LUNA se réserve le droit de proposer
+            L'utilisation de luna est actuellement gratuite. luna se réserve le droit de proposer
             ultérieurement des fonctionnalités payantes (abonnement premium), sans que cela n'affecte
             l'accès aux fonctionnalités gratuites existantes au moment de l'inscription.
           </p>
@@ -211,8 +211,8 @@ export default function CGU() {
 
         <Section title="13. Liens externes">
           <p>
-            LUNA peut contenir des liens vers des sites ou services tiers (Instagram, etc.).
-            LUNA n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur
+            luna peut contenir des liens vers des sites ou services tiers (Instagram, etc.).
+            luna n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur
             contenu ou leurs pratiques en matière de protection des données.
           </p>
         </Section>
@@ -229,7 +229,7 @@ export default function CGU() {
 
         <Section title="15. Contact">
           <p>
-            Pour toute question relative aux présentes CGU ou au fonctionnement de LUNA, contactez-nous :
+            Pour toute question relative aux présentes CGU ou au fonctionnement de luna, contactez-nous :
           </p>
           <ul className="list-none mt-2 space-y-1">
             <li>📧 Email : <a href="mailto:hello@lunawellness.app" className="text-luna-rose underline">hello@lunawellness.app</a></li>

@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Fenêtre de confirmation façon iOS (centrée), dans la charte LUNA.
+// Fenêtre de confirmation façon iOS (centrée), dans la charte luna.
 // Remplace les window.confirm() génériques du navigateur.
 // danger=true → action rouge (suppression, perte de données).
 export default function ConfirmDialog({

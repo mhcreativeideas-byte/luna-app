@@ -1,6 +1,6 @@
 // Boucle « symptôme → alimentation » : relie un ressenti noté au check-in
 // à un nutriment clé + des aliments qui aident. C'est le cœur de la promesse
-// de LUNA (gérer son cycle par l'assiette).
+// de luna (gérer son cycle par l'assiette).
 // Les `nutrient` correspondent à des tags réels de recettes (Fer, Magnésium,
 // Zinc, Oméga-3, Fibres) pour que le lien « Voir les recettes » fonctionne.
 

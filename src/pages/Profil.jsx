@@ -508,12 +508,12 @@ function generateShareCanvas(cycleInfo, userName, sections) {
     curY += 10;
   }
 
-  // ─── LUNA branding ───
+  // ─── luna branding ───
   const brandY = Math.max(curY + 30, H - 40);
   ctx.font = 'bold 12px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = colors.bg + '60';
   ctx.textAlign = 'center';
-  ctx.fillText('LUNA 🌙', W / 2, brandY);
+  ctx.fillText('luna 🌙', W / 2, brandY);
   ctx.font = '10px system-ui, -apple-system, sans-serif';
   ctx.fillStyle = '#8A7B7F50';
   ctx.fillText('Vis en harmonie avec ton cycle', W / 2, brandY + 15);
@@ -686,7 +686,7 @@ function SharePartnerCard({ cycleInfo, name }) {
       const file = new File([blob], 'luna-phase.png', { type: 'image/png' });
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
-          title: `LUNA — ${phaseData.name}`,
+          title: `luna — ${phaseData.name}`,
           text: `Je suis en ${phaseData.name} (jour ${cycleInfo.currentDay}/${cycleInfo.cycleLength}). Mon énergie est à ${cycleInfo.energyLevel}%.`,
           files: [file],
         });

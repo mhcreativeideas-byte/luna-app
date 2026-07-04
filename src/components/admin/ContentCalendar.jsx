@@ -7,7 +7,7 @@ import {
 import { supabase } from '../../lib/supabase';
 import { toast } from '../../lib/toast';
 
-// ── Référentiels (couleurs = charte LUNA, cf. CLAUDE.md) ────────────────────
+// ── Référentiels (couleurs = charte luna, cf. CLAUDE.md) ────────────────────
 // Phase du cycle ciblée par le post → teinte le fond du jour.
 const PHASES = {
   menstrual:  { label: 'Menstruelle',  bg: '#FDE8EB', border: '#F3D2D8', dot: '#D4727F' },

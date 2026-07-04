@@ -76,7 +76,7 @@ export default function ResetPassword() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
           {/* Logo */}
           <div className="text-center mb-8">
-            <img src="/logo-luna.svg" alt="LUNA" className="h-[22px] w-auto mx-auto mb-4" />
+            <img src="/logo-luna.svg" alt="luna" className="h-[22px] w-auto mx-auto mb-4" />
             <h1 className="font-display text-2xl text-luna-text">
               {done ? 'C\'est fait !' : 'Nouveau mot de passe'}
             </h1>
@@ -92,7 +92,7 @@ export default function ResetPassword() {
               <div className="text-center space-y-4">
                 <CheckCircle size={40} className="text-green-500 mx-auto" />
                 <p className="font-body text-sm text-luna-text-body">
-                  Ton mot de passe a bien été changé. Retourne dans l'app LUNA
+                  Ton mot de passe a bien été changé. Retourne dans l'app luna
                   et connecte-toi avec ton nouveau mot de passe.
                 </p>
               </div>
@@ -103,7 +103,7 @@ export default function ResetPassword() {
             ) : hasSession === false ? (
               <p className="font-body text-sm text-luna-text-body text-center py-2">
                 Ce lien n'est plus valide (il a peut-être expiré).
-                Retourne dans l'app LUNA et refais « Mot de passe oublié »
+                Retourne dans l'app luna et refais « Mot de passe oublié »
                 pour recevoir un nouveau lien.
               </p>
             ) : (

@@ -17,7 +17,7 @@ export default function Privacy() {
         <Section title="1. Responsable du traitement">
           <p>
             Le responsable du traitement des données personnelles est MH Creative Ideas,
-            éditrice de l'application LUNA, accessible à l'adresse{' '}
+            éditrice de l'application luna, accessible à l'adresse{' '}
             <a href="https://lunawellness.app" className="text-luna-rose underline">lunawellness.app</a>.
           </p>
           <p className="mt-2">
@@ -26,7 +26,7 @@ export default function Privacy() {
         </Section>
 
         <Section title="2. Données collectées">
-          <p>LUNA collecte les catégories de données suivantes :</p>
+          <p>luna collecte les catégories de données suivantes :</p>
 
           <h3 className="font-semibold text-luna-text mt-3 mb-1">Données fournies par l'utilisatrice :</h3>
           <ul className="list-disc pl-5 space-y-1">
@@ -47,7 +47,7 @@ export default function Privacy() {
             <li>Entrées du journal de bord</li>
             <li>Sessions sportives enregistrées</li>
             <li>Check-ins quotidiens (humeur, énergie, symptômes)</li>
-            <li>Conversations avec l'assistant LUNA</li>
+            <li>Conversations avec l'assistant luna</li>
             <li>Phase du cycle calculée</li>
             <li>Date de dernière visite</li>
           </ul>
@@ -114,7 +114,7 @@ export default function Privacy() {
 
         <Section title="6. Partage des données">
           <p>
-            LUNA ne partage les données personnelles avec aucun tiers, à l'exception des sous-traitants
+            luna ne partage les données personnelles avec aucun tiers, à l'exception des sous-traitants
             techniques nécessaires au fonctionnement du service :
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
@@ -129,7 +129,7 @@ export default function Privacy() {
 
           <h3 className="font-semibold text-luna-text mt-3 mb-1">Accès interne aux données</h3>
           <p>
-            Seules les personnes habilitées de l'équipe LUNA peuvent accéder aux données personnelles,
+            Seules les personnes habilitées de l'équipe luna peuvent accéder aux données personnelles,
             strictement dans la mesure nécessaire pour fournir, sécuriser et améliorer le service.
             L'accès aux données de santé (cycle) est limité au strict nécessaire et soumis à une
             obligation de confidentialité.
@@ -169,13 +169,13 @@ export default function Privacy() {
         </Section>
 
         <Section title="9. Cookies et stockage local">
-          <p>LUNA utilise :</p>
+          <p>luna utilise :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
             <li><strong>localStorage</strong> — pour sauvegarder les préférences locales et améliorer la navigation</li>
             <li><strong>Cookies de session Supabase</strong> — strictement nécessaires à l'authentification</li>
           </ul>
           <p className="mt-2 font-semibold">
-            LUNA n'utilise aucun cookie publicitaire, de traçage ou d'analyse comportementale.
+            luna n'utilise aucun cookie publicitaire, de traçage ou d'analyse comportementale.
           </p>
           <p className="mt-2">
             Aucun outil d'analytics tiers (Google Analytics, Facebook Pixel, etc.) n'est utilisé.
@@ -184,7 +184,7 @@ export default function Privacy() {
 
         <Section title="10. Mineurs">
           <p>
-            LUNA est destinée aux personnes âgées de 16 ans et plus. Les personnes de moins de 16 ans
+            luna est destinée aux personnes âgées de 16 ans et plus. Les personnes de moins de 16 ans
             doivent obtenir le consentement d'un parent ou représentant légal avant de créer un compte.
           </p>
           <p className="mt-2">
@@ -204,7 +204,7 @@ export default function Privacy() {
 
         <Section title="12. Modification de la politique">
           <p>
-            LUNA se réserve le droit de modifier la présente politique de confidentialité.
+            luna se réserve le droit de modifier la présente politique de confidentialité.
             En cas de modification substantielle, les utilisatrices seront informées via l'application
             ou par email.
           </p>

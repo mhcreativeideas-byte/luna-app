@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>LUNA</string>
+        <string>luna</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -48,9 +48,9 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>
-	<string>LUNA utilise l’appareil photo uniquement si tu choisis de prendre une photo pour ta photo de profil.</string>
+	<string>luna utilise l’appareil photo uniquement si tu choisis de prendre une photo pour ta photo de profil.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>LUNA accède à tes photos uniquement pour te laisser choisir ta photo de profil.</string>
+	<string>luna accède à tes photos uniquement pour te laisser choisir ta photo de profil.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

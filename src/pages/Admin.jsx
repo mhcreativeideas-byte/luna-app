@@ -565,7 +565,7 @@ export default function Admin() {
               <Shield className="text-red-400" size={32} />
             </div>
             <h1 className="font-display text-2xl text-gray-800 mb-1">Espace administrateur</h1>
-            <p className="text-sm text-gray-500 font-body">Accès réservé aux analyses de LUNA</p>
+            <p className="text-sm text-gray-500 font-body">Accès réservé aux analyses de luna</p>
           </div>
 
           {authState === 'denied' ? (
@@ -648,7 +648,7 @@ export default function Admin() {
               <Shield className="text-luna-rose" size={20} />
             </div>
             <div>
-              <h1 className="font-display text-xl text-gray-800">Admin LUNA</h1>
+              <h1 className="font-display text-xl text-gray-800">Admin luna</h1>
               <p className="text-xs text-gray-400 font-body">{totalUsers} utilisatrice{totalUsers > 1 ? 's' : ''} inscrite{totalUsers > 1 ? 's' : ''}</p>
             </div>
           </div>

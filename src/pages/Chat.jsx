@@ -191,7 +191,7 @@ export default function Chat() {
     return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
   };
 
-  // Rendu d'un message LUNA avec formatage
+  // Rendu d'un message luna avec formatage
   const renderLunaContent = (content) => {
     const lines = content.split('\n');
     return lines.map((line, i) => {
@@ -233,7 +233,7 @@ export default function Chat() {
             <Sparkles size={15} className="text-white" />
           </div>
           <div>
-            <h1 className="font-display text-lg text-luna-text leading-none">LUNA</h1>
+            <h1 className="font-display text-lg text-luna-text leading-none">luna</h1>
             <p className="text-[10px] font-body" style={{ color: phaseData.color }}>
               {phaseData.shortName} · J{cycleInfo?.currentDay || 1}
             </p>
@@ -609,7 +609,7 @@ export default function Chat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && input.trim() && handleSend()}
-          placeholder="Pose ta question à LUNA..."
+          placeholder="Pose ta question à luna..."
           className="flex-1 px-5 py-3.5 rounded-[18px] bg-white border border-gray-100 text-sm font-body text-luna-text focus:outline-none focus:ring-2 focus:border-transparent"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.04)', '--tw-ring-color': `${phaseData.color}30` }}
         />

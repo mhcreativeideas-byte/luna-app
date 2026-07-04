@@ -81,10 +81,10 @@ export default function Dashboard() {
         </p>
       </motion.div>
 
-      {/* Cycle Circle — Phase-colored ring with LUNA logo */}
+      {/* Cycle Circle — Phase-colored ring with luna logo */}
       <motion.div variants={item} className="flex flex-col items-center bg-white rounded-[32px] px-5 py-7" style={{ boxShadow: `0 14px 38px ${phaseData.color}2B` }}>
         <div className="relative w-56 h-56">
-          {/* LUNA logo watermark */}
+          {/* luna logo watermark */}
           <img
             src="/luna-moon.png"
             alt=""

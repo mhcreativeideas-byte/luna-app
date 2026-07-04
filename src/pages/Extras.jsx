@@ -162,7 +162,7 @@ export default function Extras() {
           Aller <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>plus loin</em>
         </h1>
         <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
-          Ton journal, ton sport, ton sommeil et ton assistante LUNA — tout est réuni ici.
+          Ton journal, ton sport, ton sommeil et ton assistante luna — tout est réuni ici.
         </p>
       </motion.div>
 
@@ -267,7 +267,7 @@ export default function Extras() {
         </Link>
       </motion.div>
 
-      {/* LUNA chat Card */}
+      {/* luna chat Card */}
       <motion.div variants={item}>
         <Link
           to="/chat"
@@ -280,7 +280,7 @@ export default function Extras() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between">
-                <h2 className="font-display text-lg text-luna-text">Discute avec LUNA</h2>
+                <h2 className="font-display text-lg text-luna-text">Discute avec luna</h2>
                 <ChevronRight size={18} className="text-luna-text-hint group-hover:translate-x-1 transition-transform" />
               </div>
               <p className="text-sm font-body text-luna-text-muted mt-1 leading-relaxed">
