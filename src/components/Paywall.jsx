@@ -105,7 +105,7 @@ export default function Paywall({ onSubscribe, onLater, onRestore }) {
           onClick={onSubscribe}
           className="btn-luna w-full justify-center text-base py-4"
         >
-          Essai gratuit de 3 jours
+          Essai gratuit de 7 jours
         </button>
         <p className="text-[11px] font-body text-luna-text-hint text-center mt-2.5">
           Annulable à tout moment · puis {selected.price}{selected.period}

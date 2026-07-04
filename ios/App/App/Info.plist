@@ -47,6 +47,10 @@
 	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>LUNA utilise l’appareil photo uniquement si tu choisis de prendre une photo pour ta photo de profil.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LUNA accède à tes photos uniquement pour te laisser choisir ta photo de profil.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

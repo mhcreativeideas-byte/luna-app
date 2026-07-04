@@ -4,7 +4,7 @@
   "description": "Comprends ton cycle et adapte ton alimentation à chaque phase : recettes, menu du jour et conseils nutrition, sans culpabilité.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FAF8F5",
+  "background_color": "#FAF7F5",
   "theme_color": "#C4727F",
   "orientation": "portrait",
   "icons": [
