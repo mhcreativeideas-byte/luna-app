@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "sync:ios": "vite build && cap sync ios",
+    "sync:ios": "vite build && rm -f dist/LUNA-Guide-*.pdf && cap sync ios",
     "open:ios": "cap open ios"
   },
   "dependencies": {
