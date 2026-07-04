@@ -279,14 +279,17 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
 
   let phase, phaseDay, phaseDuration;
 
+  // Fenêtre ovulatoire = 3 jours (ovulatoryStart, ovulation, ovulatoryEnd),
+  // d'où le < strict pour la folliculaire — cohérent avec getPhaseForDay
+  // (phases.js) et les segments d'anneau/barre du Dashboard.
   if (currentDay <= periodLength) {
     phase = 'menstrual';
     phaseDay = currentDay;
     phaseDuration = periodLength;
-  } else if (currentDay <= ovulatoryStart) {
+  } else if (currentDay < ovulatoryStart) {
     phase = 'follicular';
     phaseDay = currentDay - periodLength;
-    phaseDuration = ovulatoryStart - periodLength;
+    phaseDuration = ovulatoryStart - 1 - periodLength;
   } else if (currentDay <= ovulatoryEnd) {
     phase = 'ovulatory';
     phaseDay = currentDay - ovulatoryStart + 1;

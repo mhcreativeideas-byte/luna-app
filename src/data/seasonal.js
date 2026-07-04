@@ -64,7 +64,7 @@ export const FOOD_IMAGES = {
   'Asperge': '/foods/asperge.png',
   'Radis': '/foods/radis.png',
   'Artichaut': '/foods/artichaut.png',
-  // 'Chou de Bruxelles' retiré : fichier image manquant → emoji 🥬
+  // 'Chou de Bruxelles' retiré : image jugée pas assez belle → emoji 🥬 (source dans design-sources/foods/)
   'Aubergine': '/foods/aubergine.png',
   'Concombre': '/foods/concombre.png',
   'Courgette': '/foods/courgette.png',
@@ -73,7 +73,7 @@ export const FOOD_IMAGES = {
   'Cresson': '/foods/cresson.png',
   'Blette': '/foods/blette.png',
   // 'Fenouil' retiré : l'image était un sachet de graines → emoji 🌿
-  // 'Haricot vert' retiré : fichier image manquant → emoji 🫛
+  // 'Haricot vert' retiré : image jugée pas assez belle → emoji 🫛 (source dans design-sources/foods/)
   // 'Poivron' retiré : l'image était un moulin à poivre noir → emoji 🫑
   'Tomate': '/foods/tomate.png',
   // 'Maïs' retiré : l'image était une boîte de conserve → emoji 🌽

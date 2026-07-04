@@ -10,9 +10,13 @@
 create table if not exists public.waitlist (
   id         uuid primary key default gen_random_uuid(),
   email      text not null unique,          -- un email ne peut s'inscrire qu'une fois
+  prenom     text,                          -- prénom saisi sur la vitrine (optionnel)
   source     text,                          -- d'où vient l'inscription (hero, cta-final…)
   created_at timestamptz not null default now()
 );
+
+-- Si la table existait déjà sans la colonne prénom (ajoutée en 2026-07) :
+alter table public.waitlist add column if not exists prenom text;
 
 -- Active la sécurité au niveau des lignes
 alter table public.waitlist enable row level security;

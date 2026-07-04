@@ -51,10 +51,12 @@ export default function Dashboard() {
   const ovulatoryStart = ovulationDay - 1;
   const ovulatoryEnd = ovulationDay + 1;
 
-  // Segments de la barre linéaire des 4 phases (sous l'anneau)
+  // Segments de la barre linéaire des 4 phases (sous l'anneau).
+  // Somme = 100 % : menstruelle (periodLength j) + folliculaire + ovulatoire (3 j
+  // centrés sur l'ovulation) + lutéale = cycleLength jours.
   const phaseSegments = [
     { key: 'menstrual', width: (periodLength / cycleLength) * 100 },
-    { key: 'follicular', width: ((ovulationDay - 1 - periodLength) / cycleLength) * 100 },
+    { key: 'follicular', width: ((ovulationDay - 2 - periodLength) / cycleLength) * 100 },
     { key: 'ovulatory', width: (3 / cycleLength) * 100 },
     { key: 'luteal', width: ((cycleLength - ovulationDay - 1) / cycleLength) * 100 },
   ];
@@ -108,10 +110,12 @@ export default function Dashboard() {
               const cDark = phaseData.colorDark || phaseData.color;
               const cLight = lighten(phaseData.color, 0.42);
 
+              // Bornes en fractions de cycle : le segment [start, end] couvre les
+              // jours start+1..end — l'ovulatoire (3 j) commence donc à ovulatoryStart-1.
               const phases = [
                 { name: 'menstrual', start: 0, end: periodLength / cycleLength, color: '#D4727F' },
-                { name: 'follicular', start: periodLength / cycleLength, end: ovulatoryStart / cycleLength, color: '#7BAE7F' },
-                { name: 'ovulatory', start: ovulatoryStart / cycleLength, end: ovulatoryEnd / cycleLength, color: '#E8A87C' },
+                { name: 'follicular', start: periodLength / cycleLength, end: (ovulatoryStart - 1) / cycleLength, color: '#7BAE7F' },
+                { name: 'ovulatory', start: (ovulatoryStart - 1) / cycleLength, end: ovulatoryEnd / cycleLength, color: '#E8A87C' },
                 { name: 'luteal', start: ovulatoryEnd / cycleLength, end: 1, color: '#B09ACB' },
               ];
 

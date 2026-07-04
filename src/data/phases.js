@@ -480,8 +480,10 @@ export function getPhaseForDay(day, cycleLength, periodLength) {
   const ovulatoryStart = ovulationDay - 1;
   const ovulatoryEnd = ovulationDay + 1;
 
+  // La fenêtre ovulatoire couvre 3 jours : ovulatoryStart, ovulation, ovulatoryEnd
+  // (d'où le < strict : ovulatoryStart appartient à l'ovulatoire, pas à la folliculaire).
   if (day <= periodLength) return 'menstrual';
-  if (day <= ovulatoryStart) return 'follicular';
+  if (day < ovulatoryStart) return 'follicular';
   if (day <= ovulatoryEnd) return 'ovulatory';
   return 'luteal';
 }

@@ -5,7 +5,6 @@ import { ChevronLeft, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { SYMPTOM_CATEGORIES, TAG_COLORS } from '../data/symptoms';
-import BackButton from '../components/ui/BackButton';
 
 function CustomTagPill({ onAdd, color }) {
   const [open, setOpen] = useState(false);
