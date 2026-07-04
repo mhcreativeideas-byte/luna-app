@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Sparkles } from 'lucide-react';
+import { purchase, restorePurchases, isIAPAvailable } from '../lib/purchases';
+import { toast } from '../lib/toast';
 
-// Écran d'abonnement (le VISUEL). Le vrai paiement passera par Apple In-App
-// Purchase plus tard (App Store Connect + plugin) — pour l'instant les boutons
-// mènent simplement à l'app via les callbacks.
+// Écran d'abonnement, branché sur src/lib/purchases.js (abstraction IAP).
+// Tant que IAP_ENABLED y est false, le paywall reste VISUEL : les boutons
+// mènent simplement à l'app via les callbacks, comme avant.
 const PLANS = {
   annual: { id: 'annual', label: 'Annuel', price: '59,99 €', period: '/an', sub: 'soit 5 €/mois', badge: '-50 %' },
   monthly: { id: 'monthly', label: 'Mensuel', price: '9,99 €', period: '/mois', sub: null, badge: null },
@@ -19,7 +21,36 @@ const BENEFITS = [
 
 export default function Paywall({ onSubscribe, onLater, onRestore }) {
   const [plan, setPlan] = useState('annual');
+  const [buying, setBuying] = useState(false);
   const selected = PLANS[plan];
+
+  const handleSubscribe = async () => {
+    if (buying) return;
+    setBuying(true);
+    const res = await purchase(plan);
+    setBuying(false);
+    if (res.ok) {
+      onSubscribe();
+    } else if (!res.cancelled) {
+      toast('Le paiement n\'a pas abouti. Réessaie dans un instant 🌙', 'error');
+    }
+  };
+
+  const handleRestore = async () => {
+    if (buying) return;
+    if (!isIAPAvailable()) {
+      onRestore?.();
+      return;
+    }
+    setBuying(true);
+    const res = await restorePurchases();
+    setBuying(false);
+    if (res.ok) {
+      onSubscribe();
+    } else if (res.none) {
+      toast('Aucun abonnement à restaurer sur ce compte.', 'error');
+    }
+  };
 
   return (
     <div
@@ -41,7 +72,7 @@ export default function Paywall({ onSubscribe, onLater, onRestore }) {
             <Sparkles size={26} style={{ color: '#C4727F' }} />
           </div>
           <h1 className="font-display text-[26px] text-luna-text leading-tight">
-            Débloque tout <em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>LUNA</em>
+            Débloque tout <em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>luna</em>
           </h1>
           <p className="text-sm font-body text-luna-text-muted mt-2">
             Tout ce qu'il te faut pour vivre ton cycle en douceur.
@@ -102,10 +133,11 @@ export default function Paywall({ onSubscribe, onLater, onRestore }) {
 
         {/* CTA */}
         <button
-          onClick={onSubscribe}
-          className="btn-luna w-full justify-center text-base py-4"
+          onClick={handleSubscribe}
+          disabled={buying}
+          className="btn-luna w-full justify-center text-base py-4 disabled:opacity-60"
         >
-          Essai gratuit de 7 jours
+          {buying ? 'Un instant…' : 'Essai gratuit de 7 jours'}
         </button>
         <p className="text-[11px] font-body text-luna-text-hint text-center mt-2.5">
           Annulable à tout moment · puis {selected.price}{selected.period}
@@ -118,7 +150,7 @@ export default function Paywall({ onSubscribe, onLater, onRestore }) {
           {onRestore && (
             <>
               <span className="text-luna-text-hint">·</span>
-              <button onClick={onRestore} className="text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors">
+              <button onClick={handleRestore} className="text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors">
                 Restaurer
               </button>
             </>

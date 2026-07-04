@@ -137,6 +137,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* App mobile : la page ne doit JAMAIS défiler horizontalement.
+   Sans ça, la WebView iOS peut rester « coincée » décalée de quelques
+   pixels après l'ouverture du clavier (contenu rogné sur un bord). */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 input[type="range"] {
   accent-color: #C4727F;
 }

@@ -42,7 +42,7 @@ const MIRRORS = {
     phaseImages: ['/phase-menstruelle.png', '/phase-folliculaire.png', '/phase-ovulatoire.png', '/phase-luteale.png'],
     titleMain: '4 phases,',
     titleItalic: '4 besoins.',
-    text: 'Chaque phase a ses propres besoins. LUNA adapte ton alimentation, phase après phase.',
+    text: 'Chaque phase a ses propres besoins. luna adapte ton alimentation, phase après phase.',
   },
   promise: {
     after: 3,
@@ -51,7 +51,7 @@ const MIRRORS = {
     Icon: Sparkles,
     titleMain: 'Tes symptômes ont une',
     titleItalic: 'logique.',
-    text: 'La plupart des femmes repèrent leur rythme dès le premier mois avec LUNA. On va te montrer le tien.',
+    text: 'La plupart des femmes repèrent leur rythme dès le premier mois avec luna. On va te montrer le tien.',
   },
   menu: {
     after: 9,
@@ -289,7 +289,7 @@ export default function Onboarding() {
           animate={{ opacity: 1, scale: 1 }}
           className="w-full max-w-sm text-center"
         >
-          <img src="/logo-luna.svg" alt="LUNA" className="w-24 mx-auto mb-8" />
+          <img src="/logo-luna.svg" alt="luna" className="w-24 mx-auto mb-8" />
           <div className="space-y-4">
             {loadingSteps.map((label, i) => (
               <motion.div
@@ -398,10 +398,10 @@ export default function Onboarding() {
             {/* En-tête */}
             <div className="grid grid-cols-2">
               <div className="bg-gray-50 py-3 px-4">
-                <p className="text-[11px] font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans LUNA</p>
+                <p className="text-[11px] font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans luna</p>
               </div>
               <div className="py-3 px-4" style={{ backgroundColor: '#FDE8EB' }}>
-                <p className="text-[11px] font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec LUNA</p>
+                <p className="text-[11px] font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec luna</p>
               </div>
             </div>
 
@@ -439,7 +439,7 @@ export default function Onboarding() {
             onClick={() => setShowPaywall(true)}
             className="btn-luna w-full justify-center text-base py-4"
           >
-            Découvrir LUNA
+            Découvrir luna
             <ArrowRight size={16} />
           </motion.button>
         </motion.div>
@@ -466,12 +466,12 @@ export default function Onboarding() {
           transition={{ duration: 0.6 }}
           className="w-full max-w-md mx-auto"
         >
-          <img src="/logo-luna.svg" alt="LUNA" className="h-[22px] w-auto mb-8" />
+          <img src="/logo-luna.svg" alt="luna" className="h-[22px] w-auto mb-8" />
           <h1 className="font-display text-[26px] text-luna-text leading-[1.25]">
             {"C'est le début"}<br />{"d'un nouveau cycle."}<br /><em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>Le tien.</em>
           </h1>
           <p className="text-[15px] font-body text-luna-text-body mt-4 leading-relaxed max-w-[280px]">
-            En quelques questions, LUNA va apprendre à te connaître pour s'adapter à toi. Rien qu'à toi.
+            En quelques questions, luna va apprendre à te connaître pour s'adapter à toi. Rien qu'à toi.
           </p>
         </motion.div>
         <div className="flex-1" />
@@ -548,9 +548,9 @@ export default function Onboarding() {
             <div className="grid grid-cols-2 gap-3 mb-6">
               {[
                 { src: '/phase-menstruelle.png', name: 'Menstruelle', days: 'Jours 1 \u00e0 5', mood: 'Repos', color: '#D4727F' },
-                { src: '/phase-folliculaire.png', name: 'Folliculaire', days: 'Jours 6 \u00e0 13', mood: '\u00c9lan', color: '#7BAE7F' },
-                { src: '/phase-ovulatoire.png', name: 'Ovulatoire', days: 'Jours 14 \u00e0 16', mood: '\u00c9clat', color: '#E8A87C' },
-                { src: '/phase-luteale.png', name: 'Lut\u00e9ale', days: 'Jours 17 \u00e0 28', mood: 'Cocon', color: '#B09ACB' },
+                { src: '/phase-folliculaire.png', name: 'Folliculaire', days: 'Jours 6 \u00e0 12', mood: '\u00c9lan', color: '#7BAE7F' },
+                { src: '/phase-ovulatoire.png', name: 'Ovulatoire', days: 'Jours 13 \u00e0 15', mood: '\u00c9clat', color: '#E8A87C' },
+                { src: '/phase-luteale.png', name: 'Lut\u00e9ale', days: 'Jours 16 \u00e0 28', mood: 'Cocon', color: '#B09ACB' },
               ].map((p, i) => (
                 <motion.div
                   key={p.name}

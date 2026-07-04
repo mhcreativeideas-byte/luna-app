@@ -366,17 +366,24 @@ export function CycleProvider({ children }) {
   // Au changement de compte sur un même appareil : si le cache local
   // appartient à quelqu'un d'autre, on repart de zéro plutôt que d'afficher
   // (et de risquer de sauvegarder) les données de la personne précédente.
-  const resetIfCacheFromOtherUser = (userId) => {
-    if (cacheOwnerRef.current && cacheOwnerRef.current !== userId) {
+  const resetIfCacheFromOtherUser = (userId, { freshLogin = false } = {}) => {
+    const owner = cacheOwnerRef.current;
+    const hasCache = Boolean(localStorage.getItem('luna-profile'));
+    // Deux cas où le cache local est écarté :
+    // 1. il appartient à un autre compte ;
+    // 2. connexion fraîche avec un cache « legacy » sans propriétaire
+    //    (créé avant le marquage _cacheAuthId) — impossible de savoir à qui
+    //    il est, et le serveur va de toute façon recharger les données.
+    if ((owner && owner !== userId) || (freshLogin && !owner && hasCache)) {
       localStorage.removeItem('luna-profile');
       dispatch({ type: 'RESET' });
     }
     cacheOwnerRef.current = userId;
   };
 
-  const loadUserData = async (userId) => {
+  const loadUserData = async (userId, { freshLogin = false } = {}) => {
     trackingLoadedRef.current = false;
-    resetIfCacheFromOtherUser(userId);
+    resetIfCacheFromOtherUser(userId, { freshLogin });
     await Promise.all([
       loadProfileFromSupabase(userId),
       loadTrackingFromSupabase(userId),
@@ -406,7 +413,7 @@ export function CycleProvider({ children }) {
         if (event === 'SIGNED_IN' && session?.user) {
           setAuthLoading(true);
           setUser(session.user);
-          await loadUserData(session.user.id);
+          await loadUserData(session.user.id, { freshLogin: true });
           setAuthLoading(false);
           return;
         }
