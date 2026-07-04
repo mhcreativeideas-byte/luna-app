@@ -2,8 +2,17 @@ import { createContext, useContext, useReducer, useEffect, useState, useRef } fr
 import { Capacitor } from '@capacitor/core';
 import { PHASES } from '../data/phases';
 import { supabase } from '../lib/supabase';
+import { toast } from '../lib/toast';
 
 const CycleContext = createContext();
+
+// Parse une date « YYYY-MM-DD » en heure LOCALE (minuit chez l'utilisatrice).
+// `new Date('2026-07-04')` serait interprété minuit UTC : en France, entre
+// minuit et 2 h du matin, le calcul du jour de cycle serait décalé d'un jour.
+function parseLocalDate(dateStr) {
+  const [y, m, d] = String(dateStr).split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
 
 const initialState = {
   name: '',
@@ -139,18 +148,21 @@ function cycleReducer(state, action) {
       const newLogs = state.periodLogs.includes(date)
         ? state.periodLogs
         : [...state.periodLogs, date].sort();
-      // Recalculate cycle length if we have a previous period start
+      // Recalcule la longueur du cycle seulement si le nouveau départ est
+      // POSTÉRIEUR au précédent (comparaison de chaînes YYYY-MM-DD valide).
+      // Marquer rétroactivement une date antérieure ne doit ni reculer
+      // lastPeriodDate ni fausser cycleLength.
       const prevStart = state.lastPeriodDate;
       let newCycleLength = state.cycleLength;
-      if (prevStart && prevStart !== date) {
-        const diff = Math.abs(Math.floor((new Date(date) - new Date(prevStart)) / (1000 * 60 * 60 * 24)));
+      if (prevStart && date > prevStart) {
+        const diff = Math.round((parseLocalDate(date) - parseLocalDate(prevStart)) / (1000 * 60 * 60 * 24));
         if (diff > 15 && diff < 50) {
           newCycleLength = diff;
         }
       }
       return {
         ...state,
-        lastPeriodDate: date,
+        lastPeriodDate: prevStart && date < prevStart ? prevStart : date,
         cycleLength: newCycleLength,
         periodLogs: newLogs,
       };
@@ -251,10 +263,15 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
   if (!lastPeriodDate) return null;
 
   const today = new Date();
-  const lastPeriod = new Date(lastPeriodDate);
+  today.setHours(0, 0, 0, 0);
+  const lastPeriod = parseLocalDate(lastPeriodDate);
   const diffTime = today.getTime() - lastPeriod.getTime();
-  const daysSinceLastPeriod = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  const currentDay = ((daysSinceLastPeriod % cycleLength) + cycleLength) % cycleLength + 1;
+  // Math.round : les deux dates sont à minuit local, mais un changement
+  // d'heure été/hiver dans l'intervalle décalerait un Math.floor.
+  // Math.max(0, …) : une date future (donnée corrompue) affiche « jour 1 »
+  // plutôt qu'une phase absurde calculée sur un nombre négatif.
+  const daysSinceLastPeriod = Math.max(0, Math.round(diffTime / (1000 * 60 * 60 * 24)));
+  const currentDay = (daysSinceLastPeriod % cycleLength) + 1;
 
   const ovulationDay = cycleLength - 14;
   const ovulatoryStart = ovulationDay - 1;
@@ -312,6 +329,21 @@ export function CycleProvider({ children }) {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const signedOutRef = useRef(false);
+  // Verrou anti-écrasement : tant que le suivi serveur (journal, règles,
+  // favoris…) n'a pas été chargé, AUCUNE sauvegarde de suivi ne doit partir,
+  // sinon un état local vide écraserait tout l'historique en base.
+  const trackingLoadedRef = useRef(false);
+  // Propriétaire du cache local, lu une seule fois au démarrage (avant que la
+  // session soit connue) puis tenu à jour — sinon le premier passage de
+  // l'effet de persistance (user encore null) effacerait cette information.
+  const [bootCacheOwner] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem('luna-profile'))?._cacheAuthId ?? null;
+    } catch {
+      return null;
+    }
+  });
+  const cacheOwnerRef = useRef(bootCacheOwner);
 
   const [state, dispatch] = useReducer(cycleReducer, initialState, (init) => {
     try {
@@ -328,43 +360,67 @@ export function CycleProvider({ children }) {
     }
   });
 
+  // Au changement de compte sur un même appareil : si le cache local
+  // appartient à quelqu'un d'autre, on repart de zéro plutôt que d'afficher
+  // (et de risquer de sauvegarder) les données de la personne précédente.
+  const resetIfCacheFromOtherUser = (userId) => {
+    if (cacheOwnerRef.current && cacheOwnerRef.current !== userId) {
+      localStorage.removeItem('luna-profile');
+      dispatch({ type: 'RESET' });
+    }
+    cacheOwnerRef.current = userId;
+  };
+
+  const loadUserData = async (userId) => {
+    trackingLoadedRef.current = false;
+    resetIfCacheFromOtherUser(userId);
+    await Promise.all([
+      loadProfileFromSupabase(userId),
+      loadTrackingFromSupabase(userId),
+    ]);
+    loadAvatarFromSupabase(userId);
+  };
+
   // Listen to Supabase auth changes
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       setUser(session?.user ?? null);
       if (session?.user) {
-        await loadProfileFromSupabase(session.user.id);
-        loadTrackingFromSupabase(session.user.id);
-        loadAvatarFromSupabase(session.user.id);
+        await loadUserData(session.user.id);
       }
       setAuthLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      // INITIAL_SESSION is handled by getSession above — skip to avoid
-      // prematurely setting authLoading=false before OAuth hash is processed
-      if (event === 'INITIAL_SESSION') return;
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      // setTimeout : la doc supabase-js déconseille d'attendre d'autres appels
+      // Supabase directement dans ce callback (verrou interne d'auth →
+      // risque de blocage au rafraîchissement de session).
+      setTimeout(async () => {
+        // INITIAL_SESSION is handled by getSession above — skip to avoid
+        // prematurely setting authLoading=false before OAuth hash is processed
+        if (event === 'INITIAL_SESSION') return;
 
-      if (event === 'SIGNED_IN' && session?.user) {
-        setAuthLoading(true);
-        setUser(session.user);
-        await loadProfileFromSupabase(session.user.id);
-        loadTrackingFromSupabase(session.user.id);
-        loadAvatarFromSupabase(session.user.id);
-        setAuthLoading(false);
-        return;
-      }
+        if (event === 'SIGNED_IN' && session?.user) {
+          setAuthLoading(true);
+          setUser(session.user);
+          await loadUserData(session.user.id);
+          setAuthLoading(false);
+          return;
+        }
 
-      if (event === 'SIGNED_OUT') {
-        setUser(null);
-        return;
-      }
+        if (event === 'SIGNED_OUT') {
+          setUser(null);
+          return;
+        }
 
-      // TOKEN_REFRESHED, USER_UPDATED — just sync the user object
-      setUser(session?.user ?? null);
+        // TOKEN_REFRESHED, USER_UPDATED — just sync the user object
+        setUser(session?.user ?? null);
+      }, 0);
     });
 
     return () => subscription.unsubscribe();
+    // Écouteur d'auth monté une seule fois, volontairement.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Natif : capte le retour de la connexion Google (deep-link) et échange le
@@ -430,13 +486,19 @@ export function CycleProvider({ children }) {
 
   const loadTrackingFromSupabase = async (userId) => {
     try {
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from('user_tracking')
         .select('*')
         .eq('auth_id', userId)
         .maybeSingle();
 
       if (signedOutRef.current) return;
+      if (error) {
+        // Échec de lecture : on laisse le verrou fermé (pas de sauvegarde
+        // possible) plutôt que de risquer d'écraser l'historique en base.
+        console.error('Load tracking error:', error);
+        return;
+      }
       if (data) {
         dispatch({
           type: 'SET_PROFILE',
@@ -462,6 +524,9 @@ export function CycleProvider({ children }) {
           },
         });
       }
+      // Chargé (ligne existante ou compte tout neuf sans ligne) :
+      // les sauvegardes peuvent reprendre sans risque d'écrasement.
+      trackingLoadedRef.current = true;
     } catch (e) {
       console.error('Load tracking error:', e);
     }
@@ -483,8 +548,12 @@ export function CycleProvider({ children }) {
   };
 
   useEffect(() => {
-    localStorage.setItem('luna-profile', JSON.stringify(state));
-  }, [state]);
+    // _cacheAuthId marque à qui appartient ce cache : au prochain démarrage,
+    // si un autre compte se connecte sur le même appareil, on l'écarte
+    // (voir resetIfCacheFromOtherUser). Clé ignorée à l'hydratation.
+    if (user?.id) cacheOwnerRef.current = user.id;
+    localStorage.setItem('luna-profile', JSON.stringify({ ...state, _cacheAuthId: cacheOwnerRef.current }));
+  }, [state, user]);
 
   // One-time migration: move favorites/fridge from old localStorage keys into context
   useEffect(() => {
@@ -520,7 +589,7 @@ export function CycleProvider({ children }) {
   const saveProfileToSupabase = async () => {
     if (!user || !state.onboardingComplete) return;
     try {
-      await supabase.from('users').upsert({
+      const { error } = await supabase.from('users').upsert({
         auth_id: user.id,
         name: state.name,
         email: state.email || user.email,
@@ -541,6 +610,12 @@ export function CycleProvider({ children }) {
         onboarding_complete: state.onboardingComplete,
         current_phase: cycleInfo?.phase || 'unknown',
       }, { onConflict: 'auth_id' });
+      if (error) {
+        // supabase-js ne lève pas d'exception : sans cette lecture, un refus
+        // du serveur (colonne manquante, policy…) passerait inaperçu.
+        console.error('Save profile error:', error);
+        toast('Ton profil n\'a pas pu être sauvegardé. Réessaie dans un instant 🌙', 'error');
+      }
     } catch (e) {
       console.error('Save profile error:', e);
     }
@@ -574,9 +649,11 @@ export function CycleProvider({ children }) {
   ]);
 
   const saveTrackingToSupabase = async () => {
-    if (!user || !state.onboardingComplete) return;
+    // trackingLoadedRef : jamais de sauvegarde avant d'avoir chargé le suivi
+    // serveur, sinon un état local vide écraserait tout l'historique.
+    if (!user || !state.onboardingComplete || !trackingLoadedRef.current) return;
     try {
-      await supabase.from('user_tracking').upsert({
+      const { error } = await supabase.from('user_tracking').upsert({
         auth_id: user.id,
         journal_entries: state.journalEntries,
         sport_sessions: state.sportSessions,
@@ -598,6 +675,10 @@ export function CycleProvider({ children }) {
         },
         updated_at: new Date().toISOString(),
       }, { onConflict: 'auth_id' });
+      if (error) {
+        console.error('Save tracking error:', error);
+        toast('Tes données n\'ont pas pu être sauvegardées. Réessaie dans un instant 🌙', 'error');
+      }
     } catch (e) {
       console.error('Save tracking error:', e);
     }
@@ -673,6 +754,8 @@ export function CycleProvider({ children }) {
 
   const signOut = async () => {
     signedOutRef.current = true;
+    trackingLoadedRef.current = false;
+    cacheOwnerRef.current = null;
     await supabase.auth.signOut();
     setUser(null);
     localStorage.removeItem('luna-profile');
