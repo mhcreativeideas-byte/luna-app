@@ -499,7 +499,7 @@ export default function Landing() {
               className="mb-7"
             >
               <img
-                src="/guide-cover.png"
+                src="/guide-cover.png?v=2"
                 alt="Guide LUNA : Manger au rythme de ton cycle"
                 className="w-[220px] md:w-[260px] rounded-[14px]"
                 style={{ boxShadow: '0 24px 60px rgba(45,34,38,0.28)' }}
