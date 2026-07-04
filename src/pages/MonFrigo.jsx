@@ -151,6 +151,8 @@ function containsAllergen(recipe, allergyList) {
   });
 }
 
+const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
+
 export default function MonFrigo() {
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, favorites, fridgeItems, dispatch } = useCycle();
   const [searchQuery, setSearchQuery] = useState('');
@@ -161,16 +163,19 @@ export default function MonFrigo() {
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
-  const [phaseRecipes, setPhaseRecipes] = useState(null);
+  // Recettes chargées, étiquetées par phase : tant que la phase affichée ne
+  // correspond pas, `phaseRecipes` vaut null (état de chargement) sans reset manuel.
+  const [loadedRecipes, setLoadedRecipes] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
-    setPhaseRecipes(null);
     RECIPE_LOADERS[phase]().then(data => {
-      if (!cancelled) setPhaseRecipes(data);
+      if (!cancelled) setLoadedRecipes({ phase, data });
     });
     return () => { cancelled = true; };
   }, [phase]);
+
+  const phaseRecipes = loadedRecipes?.phase === phase ? loadedRecipes.data : null;
 
   const setFridgeItems = (updater) => {
     const newItems = typeof updater === 'function' ? updater(fridgeItems) : updater;
@@ -242,7 +247,6 @@ export default function MonFrigo() {
   })();
 
   // Niveau max
-  const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
   const maxLevel = LEVEL_ORDER[cookingLevel] || 3;
 
   // Calculer les recettes matchées, triées par score

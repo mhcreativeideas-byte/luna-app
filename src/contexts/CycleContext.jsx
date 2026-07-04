@@ -700,6 +700,7 @@ export function CycleProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- hook du contexte, exporté avec son Provider par convention
 export function useCycle() {
   const context = useContext(CycleContext);
   if (!context) {
@@ -708,4 +709,5 @@ export function useCycle() {
   return context;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- utilisé par l'Onboarding pour prévisualiser la phase avant enregistrement
 export { getCycleInfo };

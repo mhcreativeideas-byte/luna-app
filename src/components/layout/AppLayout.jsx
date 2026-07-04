@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { X, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,21 +8,14 @@ import Sidebar from './Sidebar';
 
 function EmailBanner() {
   const { user } = useCycle();
-  const [show, setShow] = useState(false);
+  const [dismissed, setDismissed] = useState(() => Boolean(localStorage.getItem('luna-email-banner-dismissed')));
+  const [justSignedUp] = useState(() => Boolean(localStorage.getItem('luna-email-unverified')));
 
-  useEffect(() => {
-    // Afficher si l'email n'est pas confirmé OU si on vient de s'inscrire
-    const justSignedUp = localStorage.getItem('luna-email-unverified');
-    const dismissed = localStorage.getItem('luna-email-banner-dismissed');
-    const emailNotConfirmed = user && !user.email_confirmed_at;
-
-    if ((justSignedUp || emailNotConfirmed) && !dismissed) {
-      setShow(true);
-    }
-  }, [user]);
+  // Afficher si l'email n'est pas confirmé OU si on vient de s'inscrire
+  const show = !dismissed && (justSignedUp || (user && !user.email_confirmed_at));
 
   const dismiss = () => {
-    setShow(false);
+    setDismissed(true);
     localStorage.setItem('luna-email-banner-dismissed', 'true');
     localStorage.removeItem('luna-email-unverified');
   };

@@ -160,6 +160,7 @@ export function Divider({ className = '' }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- catalogue d'illustrations, pas un composant
 export const ILLUSTRATIONS = {
   sport: SportIcon,
   food: FoodIcon,

@@ -84,16 +84,19 @@ export default function RecipesList() {
   const currentPhase = cycleInfo?.phase || 'follicular';
   const activePhase = selectedPhase === 'current' ? currentPhase : selectedPhase;
   const phaseData = PHASES[activePhase];
-  const [recipes, setRecipes] = useState(null);
+  // Recettes chargées, étiquetées par phase : tant que la phase affichée ne
+  // correspond pas, `recipes` vaut null (état de chargement) sans reset manuel.
+  const [loadedRecipes, setLoadedRecipes] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
-    setRecipes(null);
     RECIPE_LOADERS[activePhase]().then((data) => {
-      if (!cancelled) setRecipes(data);
+      if (!cancelled) setLoadedRecipes({ phase: activePhase, data });
     });
     return () => { cancelled = true; };
   }, [activePhase]);
+
+  const recipes = loadedRecipes?.phase === activePhase ? loadedRecipes.data : null;
 
   // Favoris inter-phases : charge toutes les phases une fois, quand on ouvre
   // « Mes favoris », pour montrer un favori quelle que soit sa phase d'origine.

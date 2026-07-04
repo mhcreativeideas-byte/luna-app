@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator, Feather, Sunrise, Sun, Moon, CalendarDays, Droplet } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
-import { PHASES, getPhaseForDay } from '../data/phases';
+import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
 
 const PHASE_MOODS = {
@@ -185,47 +185,6 @@ const STEP_COLORS = [
 // Ordre de visite des écrans (les ids = numéro de step). Les questions sont
 // rangées pour armer les bons miroirs : fringales→santé→promesse, frein→menu.
 const ORDER = [0, 1, 8, 3, 2, 5, 4, 9, 6, 10, 7];
-
-// Personalized message based on health/diet
-function getPersonalizedTip(form, phase) {
-  const tips = [];
-  if (form.healthIssues.includes('SOPK')) {
-    tips.push('Tes recommandations sont adaptées au SOPK : index glycémique bas, anti-inflammatoires naturels.');
-  }
-  if (form.healthIssues.includes('Endométriose')) {
-    tips.push('On privilégie les aliments anti-inflammatoires et riches en oméga-3 pour toi.');
-  }
-  if (form.healthIssues.includes('SPM sévère')) {
-    tips.push('Magnésium, B6 et calcium seront tes alliés. On les met en avant pour toi.');
-  }
-  if (form.healthIssues.includes('Anti-inflammatoire')) {
-    tips.push('On met en avant les recettes riches en oméga-3, curcuma et antioxydants pour toi.');
-  }
-  if (form.dietPreferences.includes('Végane') || form.dietPreferences.includes('Végétarienne')) {
-    tips.push('Toutes les recettes et aliments sont adaptés à ton régime alimentaire.');
-  }
-  if (!tips.length) {
-    const phaseMsg = {
-      menstrual: 'C\'est le moment de prendre soin de toi. On te guide pas à pas.',
-      follicular: 'Ton énergie remonte ! On va en profiter ensemble.',
-      ovulatory: 'Tu es au sommet de ton cycle. Profite de cette énergie.',
-      luteal: 'Ton corps se prépare. On adapte tout pour toi.',
-    };
-    tips.push(phaseMsg[phase] || 'On est là pour t\'accompagner chaque jour.');
-  }
-  return tips[0];
-}
-
-// Conseil basé sur la question « fringales » (pour montrer qu'on en a tenu compte)
-function getCravingTip(cravings) {
-  if (!cravings || !cravings.length) return null;
-  if (cravings.includes('sucre')) return 'Envies de sucre avant les règles ? On a les en-cas qui les apaisent — sans frustration.';
-  if (cravings.includes('ballonnements')) return 'Ballonnements ? On met en avant les aliments qui aident à dégonfler.';
-  if (cravings.includes('faim')) return 'Faim accrue ? Des recettes rassasiantes, pile au bon moment du cycle.';
-  if (cravings.includes('grignotage')) return 'Grignotage émotionnel ? On t\'aide à le calmer en douceur.';
-  if (cravings.includes('appetit')) return 'Moins d\'appétit pendant tes règles ? Des recettes légères et réconfortantes.';
-  return null;
-}
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -469,7 +428,7 @@ export default function Onboarding() {
 
           {/* Phrase de clôture */}
           <p className="font-display text-lg text-center mb-6" style={{ color: '#A85A66', fontStyle: 'italic' }}>
-            Et si tu arrêtais de te battre contre toi-même ?
+            Et si tu arrêtais de te battre contre toi-même&#8239;?
           </p>
 
           <div className="flex-1" />
@@ -1414,7 +1373,7 @@ export default function Onboarding() {
                   💜
                 </motion.span>
                 <h2 className="font-display text-2xl text-luna-text mb-2">
-                  Comment tu nous as trouvée ?
+                  Comment tu nous as trouvée&#8239;?
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
                   Juste par curiosité, pour qu’on puisse aider d’autres femmes.

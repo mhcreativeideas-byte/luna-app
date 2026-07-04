@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Send, Sparkles, ChevronDown, Plus, Clock, Trash2, Archive, X } from 'lucide-react';
@@ -90,30 +90,9 @@ export default function Chat() {
 
   // Conversation active
   const activeConversation = (conversations || []).find((c) => c.id === activeConversationId);
-  const messages = activeConversation?.messages || [];
+  const messages = useMemo(() => activeConversation?.messages || [], [activeConversation]);
   const visibleConversations = (conversations || []).filter((c) => !c.archived);
   const archivedConversations = (conversations || []).filter((c) => c.archived);
-
-  // Au chargement : crée ou reprend une conversation
-  useEffect(() => {
-    if (!conversations || conversations.length === 0) {
-      // Première visite : créer une conversation
-      createNewConversation();
-    } else if (!activeConversationId) {
-      // Pas de conversation active : prendre la plus récente non archivée
-      const latest = visibleConversations[0];
-      if (latest) {
-        dispatch({ type: 'SET_ACTIVE_CONVERSATION', payload: { id: latest.id } });
-      } else {
-        createNewConversation();
-      }
-    }
-    // Gérer le paramètre ?q=
-    const q = searchParams.get('q');
-    if (q) {
-      setTimeout(() => handleSend(q), 300);
-    }
-  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -163,6 +142,30 @@ export default function Chat() {
       setTyping(false);
     }, 600 + Math.random() * 800);
   };
+
+  // Au chargement : crée ou reprend une conversation
+  useEffect(() => {
+    if (!conversations || conversations.length === 0) {
+      // Première visite : créer une conversation
+      createNewConversation();
+    } else if (!activeConversationId) {
+      // Pas de conversation active : prendre la plus récente non archivée
+      const latest = visibleConversations[0];
+      if (latest) {
+        dispatch({ type: 'SET_ACTIVE_CONVERSATION', payload: { id: latest.id } });
+      } else {
+        createNewConversation();
+      }
+    }
+    // Gérer le paramètre ?q=
+    const q = searchParams.get('q');
+    if (q) {
+      setTimeout(() => handleSend(q), 300);
+    }
+    // Effet de montage uniquement : rejouer ce bloc à chaque changement de
+    // conversation recréerait des conversations en boucle.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Swipe handlers pour l'historique
   const handleTouchStart = (e) => {

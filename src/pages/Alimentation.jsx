@@ -193,7 +193,9 @@ const HEALTH_SUPERFOODS = {
 
 export default function Alimentation() {
   const { cycleInfo, dietPreferences, healthIssues } = useCycle();
-  const [selectedFood, setSelectedFood] = useState(null);
+  // Sélection étiquetée par phase : un changement de phase invalide la
+  // sélection sans avoir besoin d'un effet de remise à zéro.
+  const [selected, setSelected] = useState(null);
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
   const [allRecipes, setAllRecipes] = useState(null);
   const [expandedBadDrink, setExpandedBadDrink] = useState(null);
@@ -201,7 +203,10 @@ export default function Alimentation() {
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
   const titles = PHASE_FOOD_TITLES[phase];
-  const nutrientsFull = phaseData.nutrientsFull || {};
+  const nutrientsFull = useMemo(() => phaseData.nutrientsFull || {}, [phaseData]);
+
+  const selectedFood = selected?.phase === phase ? selected.name : null;
+  const setSelectedFood = (name) => setSelected(name ? { phase, name } : null);
 
   useEffect(() => {
     let cancelled = false;
@@ -212,10 +217,6 @@ export default function Alimentation() {
     });
     return () => { cancelled = true; };
   }, []);
-
-  useEffect(() => {
-    setSelectedFood(null);
-  }, [phase]);
 
   // ——— Filtrage alimentaire selon le profil ———
   const requiredTags = (() => {

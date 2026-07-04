@@ -38,16 +38,19 @@ export default function Recettes() {
 
   const currentPhase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[currentPhase];
-  const [recipes, setRecipes] = useState(null);
+  // Recettes chargées, étiquetées par phase : tant que la phase affichée ne
+  // correspond pas, `recipes` vaut null (état de chargement) sans reset manuel.
+  const [loadedRecipes, setLoadedRecipes] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
-    setRecipes(null);
     RECIPE_LOADERS[currentPhase]().then((data) => {
-      if (!cancelled) setRecipes(data);
+      if (!cancelled) setLoadedRecipes({ phase: currentPhase, data });
     });
     return () => { cancelled = true; };
   }, [currentPhase]);
+
+  const recipes = loadedRecipes?.phase === currentPhase ? loadedRecipes.data : null;
 
   // Compte des recettes adaptées (pour la carte) — mêmes filtres que la liste,
   // avec les réglages par défaut du profil.
