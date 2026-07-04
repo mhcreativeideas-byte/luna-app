@@ -76,6 +76,83 @@ const MIRRORS = {
 };
 import Paywall from '../components/Paywall';
 
+// ——— Écran révélation (le « moment aha ») ———
+// Juste avant le paywall : on renvoie à l'utilisatrice SES réponses,
+// décodées et datées. Signal principal = sa fringale déclarée (ou, à
+// défaut, sa condition santé), + ce qu'elle vit dans sa phase actuelle.
+// Les textes reprennent les explications déjà validées ailleurs dans
+// l'app (chat, miroirs, page Nutrition) — pas de nouvelle allégation santé.
+const CRAVING_SIGNALS = {
+  sucre: {
+    icon: '🍫',
+    title: 'Tes envies de sucre',
+    text: 'Quand la progestérone et la sérotonine chutent, surtout avant tes règles, ton corps réclame de l\'énergie rapide. C\'est hormonal — et ça s\'apaise dans l\'assiette, sans te priver.',
+  },
+  faim: {
+    icon: '🍽️',
+    title: 'Ta faim plus forte certains jours',
+    text: 'En phase lutéale, ton métabolisme brûle davantage : avoir plus faim est physiologique. On nourrit, on ne restreint pas.',
+  },
+  ballonnements: {
+    icon: '🎈',
+    title: 'Tes ballonnements',
+    text: 'La progestérone ralentit la digestion en deuxième partie de cycle. Les bons aliments t\'aident à dégonfler.',
+  },
+  appetit: {
+    icon: '😶',
+    title: 'Ton appétit en berne',
+    text: 'Pendant les règles, c\'est courant. Des repas légers et riches en fer nourrissent sans peser.',
+  },
+  grignotage: {
+    icon: '🍪',
+    title: 'Ton grignotage émotionnel',
+    text: 'Quand la sérotonine baisse, ton corps cherche du réconfort. On l\'apaise en douceur — jamais avec de la culpabilité.',
+  },
+};
+
+const HEALTH_SIGNALS = {
+  'SOPK': {
+    icon: '💜',
+    title: 'Ton SOPK',
+    text: 'Tes recommandations sont déjà filtrées pour lui : index glycémique bas et anti-inflammatoires naturels.',
+  },
+  'Endométriose': {
+    icon: '💜',
+    title: 'Ton endométriose',
+    text: 'On met en avant les aliments anti-inflammatoires et riches en oméga-3, à chaque phase.',
+  },
+  'SPM sévère': {
+    icon: '💜',
+    title: 'Ton SPM',
+    text: 'Magnésium, B6 et calcium seront tes alliés — on les glisse dans tes menus au bon moment.',
+  },
+};
+
+// Ce qu'elle vit probablement en ce moment, selon sa phase du jour.
+// Aliments alignés sur la page Nutrition (aliments clés par phase).
+const PHASE_NOW_SIGNALS = {
+  menstrual: {
+    icon: '🌙',
+    title: 'Ton énergie au plus bas',
+    text: 'Normal : tes hormones sont au plancher pendant les règles. Tes alliés du moment : lentilles, épinards, chocolat noir.',
+  },
+  follicular: {
+    icon: '🌿',
+    title: 'Ton énergie qui remonte',
+    text: 'L\'œstrogène grimpe de jour en jour — ton corps construit. Tes alliés du moment : œufs, brocoli, agrumes.',
+  },
+  ovulatory: {
+    icon: '☀️',
+    title: 'Ton pic de forme',
+    text: 'Tu es au sommet hormonal de ton cycle. Tes alliés du moment : légumes colorés, baies, saumon.',
+  },
+  luteal: {
+    icon: '🍂',
+    title: 'Ta fatigue de fin de journée',
+    text: 'Classique en phase lutéale : la progestérone apaise… et fatigue. Tes alliés du moment : chocolat noir, amandes, patate douce.',
+  },
+};
+
 
 const goalOptions = [
   { id: 'energy', label: 'Plus d\'énergie', icon: '⚡' },
@@ -201,6 +278,7 @@ export default function Onboarding() {
   const [mirror, setMirror] = useState(null);
   const [showPaywall, setShowPaywall] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
+  const [showRevelation, setShowRevelation] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [form, setForm] = useState({
@@ -357,6 +435,143 @@ export default function Onboarding() {
     return <Paywall onSubscribe={handleFinish} onLater={handleFinish} />;
   }
 
+  // Écran révélation — le « moment aha », juste avant le paywall :
+  // on décode SES réponses (fringales, santé) et on date ses prochaines
+  // étapes de cycle. La prédiction sera tenue par les notifications.
+  if (showRevelation && info) {
+    const ph = PHASES[info.phase];
+
+    // Signal principal : sa fringale déclarée, sinon sa condition santé.
+    const cravingId = (form.cravings || []).find((c) => CRAVING_SIGNALS[c]);
+    const healthId = (form.healthIssues || []).find((h) => HEALTH_SIGNALS[h]);
+    const mainSignal = cravingId ? CRAVING_SIGNALS[cravingId] : (healthId ? HEALTH_SIGNALS[healthId] : null);
+    const phaseSignal = PHASE_NOW_SIGNALS[info.phase];
+
+    // Dates réelles, calculées depuis son cycle (jamais de date passée).
+    const fmtIn = (days) => {
+      const d = new Date();
+      d.setDate(d.getDate() + Math.max(0, days));
+      return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+    };
+    const predictionsByPhase = {
+      menstrual: [
+        `Vers le ${fmtIn(form.periodLength - info.currentDay + 1)}, ton énergie va remonter — tes assiettes revitalisantes seront prêtes.`,
+        `Et autour du ${fmtIn(info.ovulationDay - 1 - info.currentDay)}, tu atteindras ton pic de forme. Tu verras.`,
+      ],
+      follicular: [
+        `Ton pic d'énergie arrivera vers le ${fmtIn(info.ovulationDay - 1 - info.currentDay)} — on te proposera des assiettes légères et colorées.`,
+        `Tes prochaines règles sont attendues vers le ${fmtIn(info.daysUntilPeriod)} : on les anticipera ensemble. Tu verras.`,
+      ],
+      ovulatory: [
+        `Vers le ${fmtIn(info.ovulationDay + 2 - info.currentDay)}, ton corps ralentira doucement — on adaptera tes assiettes pour t'apaiser.`,
+        `Tes prochaines règles sont attendues vers le ${fmtIn(info.daysUntilPeriod)}. Tu verras.`,
+      ],
+      luteal: [
+        `Tes règles arriveront vers le ${fmtIn(info.daysUntilPeriod)} — tes recettes riches en fer seront prêtes.`,
+        `Et vers le ${fmtIn(info.daysUntilPeriod + form.periodLength)}, ton énergie remontera. Tu verras.`,
+      ],
+    };
+    const predictions = predictionsByPhase[info.phase];
+
+    return (
+      <div
+        className="h-[100dvh] overflow-y-auto px-5"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          background: `linear-gradient(180deg, ${ph.bgColor} 0%, #FAF7F5 45%)`,
+          paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)',
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md mx-auto min-h-full flex flex-col"
+        >
+          {/* Badge phase */}
+          <p className="text-[11px] font-body font-bold uppercase tracking-widest text-center mb-2" style={{ color: ph.colorDark }}>
+            Jour {info.currentDay} · {ph.name}
+          </p>
+
+          {/* Titre */}
+          <div className="text-center mb-6">
+            <h1 className="font-display text-[24px] text-luna-text leading-tight">
+              {form.name}, ton corps t'envoie des signaux.
+            </h1>
+            <p className="font-display text-[24px] leading-tight mt-1" style={{ color: ph.colorDark, fontStyle: 'italic' }}>
+              luna les a décodés.
+            </p>
+          </div>
+
+          {/* Signal principal (fringale ou santé) */}
+          {mainSignal && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
+              className="bg-white rounded-[20px] px-5 py-4 mb-3"
+              style={{ boxShadow: '0 4px 18px rgba(45,34,38,0.06)' }}
+            >
+              <p className="text-[14px] font-body font-bold text-luna-text mb-1">
+                <span className="mr-1.5">{mainSignal.icon}</span>{mainSignal.title}
+              </p>
+              <p className="text-[13px] font-body text-luna-text-body leading-relaxed">{mainSignal.text}</p>
+            </motion.div>
+          )}
+
+          {/* Ce qu'elle vit en ce moment (phase) */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+            className="bg-white rounded-[20px] px-5 py-4 mb-3"
+            style={{ boxShadow: '0 4px 18px rgba(45,34,38,0.06)' }}
+          >
+            <p className="text-[14px] font-body font-bold text-luna-text mb-1">
+              <span className="mr-1.5">{phaseSignal.icon}</span>{phaseSignal.title}
+            </p>
+            <p className="text-[13px] font-body text-luna-text-body leading-relaxed">{phaseSignal.text}</p>
+          </motion.div>
+
+          {/* Prédictions datées */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65 }}
+            className="rounded-[20px] px-5 py-4 mb-6"
+            style={{ backgroundColor: ph.bgColor }}
+          >
+            <p className="text-[14px] font-body font-bold mb-1" style={{ color: ph.colorDark }}>
+              <CalendarDays size={15} className="inline mr-1.5 -mt-0.5" />Et voici ce qui t'attend
+            </p>
+            <p className="text-[13px] font-body leading-relaxed" style={{ color: ph.colorDark }}>
+              {predictions[0]}
+            </p>
+            <p className="text-[13px] font-body leading-relaxed mt-1.5" style={{ color: ph.colorDark }}>
+              {predictions[1]}
+            </p>
+          </motion.div>
+
+          <div className="flex-1" />
+
+          {/* CTA */}
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={() => setShowPaywall(true)}
+            className="btn-luna w-full justify-center text-base py-4"
+          >
+            Découvrir mon programme
+            <ArrowRight size={16} />
+          </motion.button>
+          <p className="text-[11px] font-body text-luna-text-hint text-center mt-2.5">
+            Basé sur tes réponses · modifiable à tout moment
+          </p>
+        </motion.div>
+      </div>
+    );
+  }
+
   // Écran comparatif émotionnel — juste avant le paywall
   if (showComparison) {
         const comparisons = [
@@ -433,10 +648,11 @@ export default function Onboarding() {
 
           <div className="flex-1" />
 
-          {/* CTA */}
+          {/* CTA — vers la révélation personnalisée (ou le paywall si,
+              cas improbable, le calcul de cycle n'est pas disponible) */}
           <motion.button
             whileTap={{ scale: 0.97 }}
-            onClick={() => setShowPaywall(true)}
+            onClick={() => (info ? setShowRevelation(true) : setShowPaywall(true))}
             className="btn-luna w-full justify-center text-base py-4"
           >
             Découvrir luna
