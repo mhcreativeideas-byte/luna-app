@@ -760,7 +760,15 @@ export default function Onboarding() {
                       id="date-picker-hidden"
                       type="date"
                       value={form.lastPeriodDate}
-                      onChange={(e) => updateForm('lastPeriodDate', e.target.value)}
+                      max={new Date().toLocaleDateString('fr-CA')}
+                      onChange={(e) => {
+                        // Une date de règles dans le futur n'a pas de sens et
+                        // fausserait le calcul de phase : on plafonne à aujourd'hui
+                        // (max ci-dessus n'est pas garanti par tous les claviers).
+                        const v = e.target.value;
+                        const today = new Date().toLocaleDateString('fr-CA');
+                        updateForm('lastPeriodDate', v && v > today ? today : v);
+                      }}
                       className="absolute inset-0 opacity-0 w-full h-full cursor-pointer"
                       style={{ WebkitAppearance: 'none' }}
                     />

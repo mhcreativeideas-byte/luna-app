@@ -75,7 +75,14 @@ export default function Auth() {
         } else {
           // Marquer comme nouveau compte pour afficher la bannière de rappel
           localStorage.setItem('luna-email-unverified', 'true');
-          // La redirection se fait automatiquement via onAuthStateChange
+          if (data?.session) {
+            // Session immédiate : la redirection se fait via onAuthStateChange
+          } else {
+            // Confirmation d'email exigée par Supabase : pas de session tout
+            // de suite — sans ce message, l'écran resterait muet.
+            setSuccessMessage('Ton compte est créé ! Vérifie ta boîte mail pour confirmer ton adresse, puis connecte-toi.');
+            setMode('login');
+          }
         }
       } else {
         const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -112,8 +119,15 @@ export default function Auth() {
     }
     setLoading(true);
     try {
+      // Le lien s'ouvre dans le navigateur (jamais dans l'app native, dont
+      // l'origine capacitor:// n'est pas joignable depuis un email) : on
+      // pointe vers la page /reset-password du site.
+      // ⚠️ Cette URL doit être autorisée dans Supabase → Auth → Redirect URLs.
+      const resetRedirect = Capacitor.isNativePlatform()
+        ? 'https://lunawellness.app/reset-password'
+        : `${window.location.origin}/reset-password`;
       const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth?mode=login`,
+        redirectTo: resetRedirect,
       });
       if (resetError) throw resetError;
       setSuccessMessage('Un email de réinitialisation t\'a été envoyé. Vérifie ta boîte mail.');

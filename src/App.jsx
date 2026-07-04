@@ -8,6 +8,7 @@ import Toaster from './components/Toaster';
 import Landing from './pages/Landing';
 
 const Auth = lazy(() => import('./pages/Auth'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const Onboarding = lazy(() => import('./pages/Onboarding'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const Calendar = lazy(() => import('./pages/Calendar'));
@@ -41,22 +42,25 @@ function PageLoader() {
 }
 
 function ProtectedRoute({ children }) {
-  const { onboardingComplete, authLoading } = useCycle();
-  if (authLoading) return null;
+  const { user, onboardingComplete, authLoading } = useCycle();
+  if (authLoading) return <PageLoader />;
+  // Session absente ou expirée : sans ce test, l'app resterait utilisable
+  // via le cache local mais plus rien ne serait sauvegardé.
+  if (!user) return <Navigate to="/auth" replace />;
   if (!onboardingComplete) return <Navigate to="/" replace />;
   return children;
 }
 
 function AuthGuard({ children }) {
   const { user, authLoading } = useCycle();
-  if (authLoading) return null;
+  if (authLoading) return <PageLoader />;
   if (!user) return <Navigate to="/auth" replace />;
   return children;
 }
 
 function HomeRedirect() {
   const { onboardingComplete, user, authLoading } = useCycle();
-  if (authLoading) return null;
+  if (authLoading) return <PageLoader />;
   if (user && onboardingComplete) return <Navigate to="/dashboard" replace />;
   if (user && !onboardingComplete) return <Navigate to="/onboarding" replace />;
   return <Landing />;
@@ -86,6 +90,9 @@ function WebRoutes() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/conditions" element={<LegalPage><CGU /></LegalPage>} />
       <Route path="/confidentialite" element={<LegalPage><Privacy /></LegalPage>} />
+      {/* Le lien « mot de passe oublié » reçu par email s'ouvre dans le
+          navigateur : cette page doit donc rester accessible sur le web. */}
+      <Route path="/reset-password" element={<ResetPassword />} />
       {/* Tout le reste (app, auth, onboarding…) est fermé sur le web → vitrine */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
@@ -97,6 +104,7 @@ function NativeRoutes() {
     <Routes>
       <Route path="/" element={<HomeRedirect />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/onboarding" element={<AuthGuard><Onboarding /></AuthGuard>} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/conditions" element={<LegalPage><CGU /></LegalPage>} />
