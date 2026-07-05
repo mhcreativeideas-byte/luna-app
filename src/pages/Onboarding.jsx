@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator, Feather, Sunrise, Sun, Moon, CalendarDays, Droplet } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator, Feather, Sunrise, Sun, Moon, CalendarDays, Droplet, Bell } from 'lucide-react';
+import { Capacitor } from '@capacitor/core';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { getCycleInfo } from '../contexts/CycleContext';
@@ -279,6 +280,7 @@ export default function Onboarding() {
   const [showPaywall, setShowPaywall] = useState(false);
   const [showComparison, setShowComparison] = useState(false);
   const [showRevelation, setShowRevelation] = useState(false);
+  const [showNotifPrimer, setShowNotifPrimer] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [form, setForm] = useState({
@@ -430,9 +432,99 @@ export default function Onboarding() {
   };
 
 
+  // Après le paywall (natif) : proposer les rappels doux avant d'entrer
+  // dans l'app. La pop-up iOS ne part que sur le geste « Activer ».
+  const handlePaywallDone = () => {
+    if (Capacitor.isNativePlatform()) setShowNotifPrimer(true);
+    else handleFinish();
+  };
+
+  const activateNotifs = async () => {
+    try {
+      const { requestNotifPermission } = await import('../lib/notifications');
+      await requestNotifPermission();
+    } catch { /* la permission pourra être redemandée depuis les Paramètres */ }
+    handleFinish();
+  };
+
+  // Écran d'explication des rappels — affiché après le paywall (natif)
+  if (showNotifPrimer) {
+    const previews = [
+      { icon: '🌿', text: 'Nouvelle phase : folliculaire — ton énergie remonte.' },
+      { icon: '🌙', text: 'Tes règles approchent — magnésium et douceur au menu.' },
+      { icon: '🍽️', text: 'Ton menu du jour est prêt, pensé pour ta phase.' },
+    ];
+    return (
+      <div
+        className="h-[100dvh] overflow-y-auto bg-luna-bg px-6 flex flex-col"
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          paddingTop: 'calc(env(safe-area-inset-top) + 2.5rem)',
+          paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)',
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md mx-auto min-h-full flex flex-col"
+        >
+          <div className="text-center mb-6">
+            <div className="w-14 h-14 rounded-[18px] flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#FDE8EB' }}>
+              <Bell size={26} style={{ color: '#C4727F' }} />
+            </div>
+            <h1 className="font-display text-[26px] text-luna-text leading-tight">
+              Tes rappels <em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>doux</em>
+            </h1>
+            <p className="text-sm font-body text-luna-text-muted mt-2 px-2">
+              luna te préviendra aux moments qui comptent — jamais plus d'une fois par jour, jamais la nuit.
+            </p>
+          </div>
+
+          <div className="space-y-2.5 mb-6">
+            {previews.map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + i * 0.12 }}
+                className="bg-white rounded-[16px] px-4 py-3 flex items-center gap-3"
+                style={{ boxShadow: '0 2px 12px rgba(45,34,38,0.05)' }}
+              >
+                <span className="text-xl flex-shrink-0">{p.icon}</span>
+                <p className="text-[13px] font-body text-luna-text-body leading-snug">{p.text}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <p className="text-[12px] font-body text-luna-text-hint text-center px-4">
+            Chaque rappel est désactivable dans les Paramètres. Zéro pression, promis.
+          </p>
+
+          <div className="flex-1" />
+
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            onClick={activateNotifs}
+            className="btn-luna w-full justify-center text-base py-4"
+          >
+            Activer mes rappels
+            <ArrowRight size={16} />
+          </motion.button>
+          <button
+            onClick={handleFinish}
+            className="w-full text-center text-sm font-body font-semibold text-luna-text-muted mt-4 py-2"
+          >
+            Plus tard
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
+
   // Écran d'abonnement (après le récap, avant d'entrer dans l'app)
   if (showPaywall) {
-    return <Paywall onSubscribe={handleFinish} onLater={handleFinish} />;
+    return <Paywall onSubscribe={handlePaywallDone} onLater={handlePaywallDone} />;
   }
 
   // Écran révélation — le « moment aha », juste avant le paywall :

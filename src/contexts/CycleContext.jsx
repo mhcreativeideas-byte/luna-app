@@ -3,6 +3,7 @@ import { Capacitor } from '@capacitor/core';
 import { PHASES } from '../data/phases';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
+import { DEFAULT_NOTIF_PREFS } from '../lib/notificationPlan';
 
 const CycleContext = createContext();
 
@@ -43,6 +44,7 @@ const initialState = {
   conversations: [],
   activeConversationId: null,
   notifications: true,
+  notifPrefs: DEFAULT_NOTIF_PREFS,
   language: 'fr',
   smartTracking: false,
   calendarStartDay: 'monday',
@@ -525,6 +527,7 @@ export function CycleProvider({ children }) {
             partnerCode: data.partner_code || null,
             ...(data.settings ? {
               notifications: data.settings.notifications ?? true,
+              notifPrefs: { ...DEFAULT_NOTIF_PREFS, ...(data.settings.notifPrefs || {}) },
               language: data.settings.language || 'fr',
               smartTracking: data.settings.smartTracking ?? false,
               calendarStartDay: data.settings.calendarStartDay || 'monday',
@@ -677,6 +680,7 @@ export function CycleProvider({ children }) {
         partner_code: state.partnerCode,
         settings: {
           notifications: state.notifications,
+          notifPrefs: state.notifPrefs,
           language: state.language,
           smartTracking: state.smartTracking,
           calendarStartDay: state.calendarStartDay,
@@ -713,6 +717,7 @@ export function CycleProvider({ children }) {
     state.conversations,
     state.partnerCode,
     state.notifications,
+    state.notifPrefs,
     state.language,
     state.smartTracking,
     state.calendarStartDay,
@@ -743,6 +748,49 @@ export function CycleProvider({ children }) {
       window.removeEventListener('pagehide', flushNow);
     };
   }, []);
+
+  // ——— Notifications locales (natif uniquement) ———
+  // Reprogramme le plan à chaque ouverture et quand le profil change :
+  // fenêtre glissante + notification « retrouvailles » repoussée de 7 j.
+  const todayCheckInDone = Boolean(
+    state.checkIns.find((c) => {
+      const n = new Date();
+      const key = `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, '0')}-${String(n.getDate()).padStart(2, '0')}`;
+      return c.date === key;
+    })
+  );
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    if (!user || !state.onboardingComplete) return;
+    const timer = setTimeout(() => {
+      import('../lib/notifications').then(({ syncNotifications }) =>
+        syncNotifications({
+          name: state.name,
+          lastPeriodDate: state.lastPeriodDate,
+          cycleLength: state.cycleLength,
+          periodLength: state.periodLength,
+          healthIssues: state.healthIssues,
+          cravings: state.cravings,
+          notifications: state.notifications,
+          notifPrefs: state.notifPrefs,
+          todayCheckInDone,
+        })
+      );
+    }, 1500); // laisse l'ouverture de l'app respirer
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    user,
+    state.onboardingComplete,
+    state.lastPeriodDate,
+    state.cycleLength,
+    state.periodLength,
+    state.healthIssues,
+    state.cravings,
+    state.notifications,
+    state.notifPrefs,
+    todayCheckInDone,
+  ]);
 
   const hour = new Date().getHours();
   const isEvening = hour >= 18;
