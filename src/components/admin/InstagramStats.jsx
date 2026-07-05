@@ -160,7 +160,7 @@ export default function InstagramStats() {
           </div>
         </div>
         <p className="text-xs text-gray-400 font-body mt-4 text-center">
-          Les likes restent suivis, mais en secondaire — pour ton compte, enregistrements et partages comptent davantage.
+          Les likes restent suivis, mais en secondaire : pour ton compte, enregistrements et partages comptent davantage.
         </p>
       </div>
     </motion.div>

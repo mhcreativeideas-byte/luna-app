@@ -155,7 +155,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
         push(
           NOTIF_IDS.rules + k,
           'Tes règles approchent 🌙',
-          'D\'ici 2 jours environ. Magnésium et douceur au menu — on t\'a tout préparé.',
+          'D\'ici 2 jours environ. Magnésium et douceur au menu, on t\'a tout préparé.',
           at(cycleStart, base + cycleLength - 2, 19),
         );
       }

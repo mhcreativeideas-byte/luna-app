@@ -1585,7 +1585,7 @@ export default function Admin() {
 
             <p className="text-sm text-gray-500 font-body mb-5">
               {waitlistDeleteConfirm === 'all'
-                ? 'Toutes les adresses seront retirées de ta liste d\'attente. Action irréversible — pense à exporter le CSV avant.'
+                ? 'Toutes les adresses seront retirées de ta liste d\'attente. Action irréversible : pense à exporter le CSV avant.'
                 : 'Cette action est irréversible.'
               }
             </p>

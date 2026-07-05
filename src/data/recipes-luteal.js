@@ -496,7 +496,7 @@ breakfast: [
       'Ajoute le chocolat blanc, mélange jusqu\'à fondre.',
       'Garnis de framboises et vanille.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Tartine de beurre de cajou, miel et graines de chia',
@@ -520,7 +520,7 @@ breakfast: [
       'Tartine de beurre de cajou.',
       'Ajoute banane, chia et miel.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Smoothie réconfort poire-vanille-amande',
@@ -545,7 +545,7 @@ breakfast: [
       'Mixe 30 secondes.',
       'Déguste immédiatement.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Crumble de flocons d\'avoine aux pommes',
@@ -571,7 +571,7 @@ breakfast: [
       'Verse les pommes dans un plat, ajoute le crumble.',
       'Enfourne 15 min à 180°C.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Bowl de yaourt au caramel de dattes',
@@ -597,7 +597,7 @@ breakfast: [
       'Nappe de caramel de dattes.',
       'Ajoute le granola.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Mugcake au chocolat et banane (2 min)',
@@ -623,7 +623,7 @@ breakfast: [
       'Micro-ondes 90 secondes.',
       'Déguste tiède.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Açaí bowl au beurre de cacahuète et granola',
@@ -648,7 +648,7 @@ breakfast: [
       'Verse dans un bol.',
       'Garnis de beurre de cacahuète, granola et pépites.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'French toast roulé banane-chocolat',
@@ -675,7 +675,7 @@ breakfast: [
       'Trempe dans le mélange œuf + lait + cannelle.',
       'Cuis au beurre 2 min par face.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Bol de semoule au lait, amandes et fleur d\'oranger',
@@ -701,7 +701,7 @@ breakfast: [
       'Ajoute fleur d\'oranger, miel et cannelle.',
       'Garnis d\'amandes.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Smoothie bowl chocolat-noisette-banane',
@@ -726,7 +726,7 @@ breakfast: [
       'Verse dans un bol.',
       'Garnis de noisettes et granola.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Brioche perdue à la compote et cannelle',
@@ -752,7 +752,7 @@ breakfast: [
       'Cuis au beurre 2 min par face.',
       'Sers avec la compote.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
   {
     name: 'Porridge de sarrasin aux poires et noix de pécan',
@@ -778,7 +778,7 @@ breakfast: [
       'Garnis de poire, noix de pécan et cannelle.',
       'Filet de sirop d\'érable.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles 200-300 calories de plus par jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu brûles un peu plus d\'énergie chaque jour. Les envies de sucre sont normales. Ce petit-déjeuner réconfortant nourrit ton corps sans culpabilité.',
   },
 
   {
@@ -1079,7 +1079,7 @@ lunch: [
       'Ajoute les épinards en fin de cuisson.',
       'Sers sur du riz basmati.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Gratin de légumes au fromage et herbes',
@@ -1108,7 +1108,7 @@ lunch: [
       'Recouvre de gruyère râpé.',
       'Enfourne 30 min à 190°C.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Soupe veloutée de butternut au lait de coco et graines',
@@ -1136,7 +1136,7 @@ lunch: [
       'Cuis 20 min, mixe avec le lait de coco et la muscade.',
       'Sers avec des graines de courge et un filet d\'huile.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Spaghetti complètes sauce tomate maison et champignons',
@@ -1165,7 +1165,7 @@ lunch: [
       'Mélange pâtes et sauce.',
       'Saupoudre de parmesan.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Bol de riz, poulet teriyaki et brocoli vapeur',
@@ -1193,7 +1193,7 @@ lunch: [
       'Assemble dans un bol.',
       'Saupoudre de sésame.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Quiche lorraine allégée aux épinards',
@@ -1221,7 +1221,7 @@ lunch: [
       'Verse le mélange, saupoudre de gruyère.',
       'Enfourne 30 min à 180°C.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Dahl de lentilles corail au lait de coco',
@@ -1251,7 +1251,7 @@ lunch: [
       'Verse le lait de coco, mélange.',
       'Sers sur du riz avec la coriandre.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Mac and cheese au chou-fleur',
@@ -1279,7 +1279,7 @@ lunch: [
       'Verse dans un plat, saupoudre de chapelure.',
       'Gratine 10 min sous le grill.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Risotto crémeux aux champignons et parmesan',
@@ -1307,7 +1307,7 @@ lunch: [
       'Verse le bouillon louche par louche en remuant.',
       'Ajoute les champignons et le parmesan en fin de cuisson.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Bol mexicain haricots rouges, riz et guacamole',
@@ -1338,7 +1338,7 @@ lunch: [
       'Assemble tout dans un bol.',
       'Ajoute une cuillère de crème fraîche.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Soupe de tomates rôties et pain grillé',
@@ -1366,7 +1366,7 @@ lunch: [
       'Mixe avec le bouillon et le basilic.',
       'Sers avec le pain grillé et une cuillère de crème.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Tajine de légumes aux amandes et abricots',
@@ -1398,7 +1398,7 @@ lunch: [
       'Cuis la semoule.',
       'Sers le tajine sur la semoule.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Lasagnes aux légumes et béchamel légère',
@@ -1428,7 +1428,7 @@ lunch: [
       'Termine par le parmesan.',
       'Enfourne 35 min à 180°C.',
     ],
-    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle 200-300 calories de plus par jour — nourris-le.',
+    whyThisPhase: 'En phase lutéale, ton métabolisme augmente et tu as besoin de glucides complexes et de magnésium. Ton corps brûle un peu plus d\'énergie chaque jour : nourris-le.',
   },
   {
     name: 'Soupe de patate douce et lentilles au garam masala',
@@ -1821,7 +1821,7 @@ lunch: [
   },
   {
     name: 'Bol de riz au curry japonais anti-inflammatoire',
-    description: 'Le curry japonais contient curcuma, gingembre et ail — trois anti-inflammatoires puissants. Les caro.',
+    description: 'Le curry japonais contient curcuma, gingembre et ail : trois anti-inflammatoires puissants. Les caro.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -1847,7 +1847,7 @@ lunch: [
     'Cuis 20 min.',
     'Sers sur du riz.',
     ],
-    whyThisPhase: 'Le curry japonais contient curcuma, gingembre et ail — trois anti-inflammatoires puissants. Les carottes du bêta-carotène. Réconfortant pour la phase pré-menstruelle.',
+    whyThisPhase: 'Le curry japonais contient curcuma, gingembre et ail : trois anti-inflammatoires puissants. Les carottes du bêta-carotène. Réconfortant pour la phase pré-menstruelle.',
   },
   {
     name: 'Dahl de lentilles jaunes au tamarin et coriandre',
@@ -2122,7 +2122,7 @@ dinner: [
       'Ajoute le fromage et la crème, mélange.',
       'Assaisonne de muscade, sel et poivre.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Pâtes au pesto, tomates cerises et mozzarella',
@@ -2149,7 +2149,7 @@ dinner: [
       'Ajoute les tomates coupées en deux et la mozzarella en morceaux.',
       'Garnis de basilic, pignons et un filet d\'huile.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Poulet rôti au miel et patate douce',
@@ -2176,7 +2176,7 @@ dinner: [
       'Dispose le tout dans un plat à four.',
       'Enfourne 35 min à 200°C.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Gratin dauphinois allégé',
@@ -2203,7 +2203,7 @@ dinner: [
       'Saupoudre de gruyère.',
       'Enfourne 45 min à 180°C.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Bol de riz sauté aux légumes et œuf',
@@ -2232,7 +2232,7 @@ dinner: [
       'Ajoute le riz froid, la sauce soja et le sésame.',
       'Mélange bien, garnis d\'oignon vert.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Pizza maison pâte complète, champignons et roquette',
@@ -2259,7 +2259,7 @@ dinner: [
       'Enfourne 12-15 min à 220°C.',
       'Ajoute roquette et parmesan à la sortie du four.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Croque-monsieur au jambon et béchamel légère',
@@ -2286,7 +2286,7 @@ dinner: [
       'Nappe de béchamel et fromage râpé.',
       'Enfourne 10 min à 200°C jusqu\'à gratinage.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Soupe de lentilles au cumin et citron',
@@ -2315,7 +2315,7 @@ dinner: [
       'Assaisonne de citron et huile d\'olive.',
       'Garnis de coriandre.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Tortilla espagnole aux pommes de terre et oignons',
@@ -2341,7 +2341,7 @@ dinner: [
       'Cuis 5 min puis retourne la tortilla.',
       'Cuis encore 3 min. Sers tiède.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Nouilles udon au bouillon miso et légumes',
@@ -2370,7 +2370,7 @@ dinner: [
       'Ajoute les nouilles et le tofu en cubes.',
       'Garnis de gingembre râpé et oignon vert.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Aubergines farcies au quinoa et feta',
@@ -2399,7 +2399,7 @@ dinner: [
       'Enfourne à nouveau 15 min.',
       'Garnis de basilic et pignons.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'Bol de riz thaï au lait de coco et basilic',
@@ -2428,7 +2428,7 @@ dinner: [
       'Ajoute le basilic en fin de cuisson.',
       'Sers sur le riz avec un quartier de citron vert.',
     ],
-    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur — ne le prive pas.',
+    whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
   },
   {
     name: 'One pot pasta tomate-basilic-mozzarella',
@@ -2456,7 +2456,7 @@ dinner: [
       'Quand les pâtes sont al dente, ajoute la mozzarella en morceaux.',
       'Garnis de basilic frais.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Poulet au citron et olives à la marocaine',
@@ -2485,7 +2485,7 @@ dinner: [
       'Ajoute citron confit et olives, cuis 10 min.',
       'Sers sur du riz avec la coriandre.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Soupe de nouilles au poulet et gingembre',
@@ -2513,7 +2513,7 @@ dinner: [
       'Cuis les nouilles et les carottes dans le bouillon.',
       'Assemble et garnis d\'oignon vert et sésame.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Gratin de courgettes à la mozzarella',
@@ -2540,7 +2540,7 @@ dinner: [
       'Ajoute mozzarella en tranches.',
       'Saupoudre de parmesan, enfourne 25 min à 190°C.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Dhal de butternut et pois chiches',
@@ -2568,7 +2568,7 @@ dinner: [
       'Verse lait de coco et un verre d\'eau, cuis 20 min.',
       'Ajoute les épinards. Sers sur du riz.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Tourte au poulet et légumes (chicken pot pie)',
@@ -2597,7 +2597,7 @@ dinner: [
       'Verse dans un plat, couvre de pâte feuilletée.',
       'Dore à l\'œuf, enfourne 25 min à 200°C.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Riz pilaf aux raisins secs et amandes',
@@ -2625,7 +2625,7 @@ dinner: [
       'Verse le bouillon, couvre, cuis 15 min.',
       'Ajoute amandes et raisins secs. Laisse reposer 5 min.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Soupe pho au bœuf (version simplifiée)',
@@ -2656,7 +2656,7 @@ dinner: [
       'Dispose les nouilles dans un bol, verse le bouillon filtré.',
       'Ajoute le bœuf cru (il cuit dans le bouillon), garnis de pousses, basilic, citron et oignon.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Patate douce farcie aux haricots noirs et guacamole',
@@ -2683,7 +2683,7 @@ dinner: [
       'Prépare le guacamole.',
       'Ouvre les patates, farcis de haricots et guacamole, garnis de coriandre.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Risotto à la citrouille et sauge',
@@ -2711,7 +2711,7 @@ dinner: [
       'Verse le bouillon louche par louche.',
       'Ajoute citrouille, parmesan, beurre et sauge.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Bol de riz thaï au curry massaman',
@@ -2740,7 +2740,7 @@ dinner: [
       'Verse le lait de coco, mijote 20 min.',
       'Sers sur du riz avec cacahuètes, basilic et citron vert.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
   {
     name: 'Gratin de penne aux épinards et quatre fromages',
@@ -2768,7 +2768,7 @@ dinner: [
       'Mélange pâtes, épinards et sauce fromagère.',
       'Enfourne 15 min à 190°C.',
     ],
-    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur — glucides complexes, magnésium et plaisir sont au menu.',
+    whyThisPhase: 'Le soir en lutéale, offre-toi du réconfort. Ton corps travaille dur : glucides complexes, magnésium et plaisir sont au menu.',
   },
 
   {
@@ -3258,7 +3258,7 @@ snack: [
       'Enfourne 20 min à 180°C.',
       'Arrose de miel.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
   {
     name: 'Nice cream vanille-cookie (glace maison)',
@@ -3281,7 +3281,7 @@ snack: [
       'Verse dans un bol.',
       'Saupoudre de speculoos ou granola.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
   {
     name: 'Truffes au chocolat noir et fleur de sel',
@@ -3305,7 +3305,7 @@ snack: [
       'Place au frigo 1h.',
       'Forme des boules, roule dans le cacao.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
   {
     name: 'Tartine de confiture et beurre d\'amande',
@@ -3327,7 +3327,7 @@ snack: [
       'Tartine de beurre d\'amande.',
       'Ajoute la confiture.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
   {
     name: 'Barre de chocolat maison aux flocons d\'avoine',
@@ -3352,7 +3352,7 @@ snack: [
       'Verse sur du papier sulfurisé, saupoudre de sel.',
       'Congèle 30 min, casse en morceaux.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
   {
     name: 'Mug de porridge express au micro-ondes',
@@ -3376,7 +3376,7 @@ snack: [
       'Micro-ondes 2 min.',
       'Ajoute banane écrasée, cannelle et miel.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
   {
     name: 'Mousse au chocolat express à l\'aquafaba',
@@ -3400,7 +3400,7 @@ snack: [
       'Incorpore délicatement le chocolat.',
       'Place au frigo 2h minimum.',
     ],
-    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente — nourris-le avec du réconfort sain.',
+    whyThisPhase: 'Les envies de sucre en lutéale sont normales et biologiques. Ton métabolisme augmente : nourris-le avec du réconfort sain.',
   },
 
   {

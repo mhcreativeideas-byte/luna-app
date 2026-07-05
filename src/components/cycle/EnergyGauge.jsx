@@ -38,7 +38,7 @@ export default function EnergyGauge() {
         </span>
       </div>
       <p className="text-xs text-luna-text-secondary mt-2 font-body">
-        {getEnergyLabel(energy)} — {phaseData.keyword}
+        {getEnergyLabel(energy)} : {phaseData.keyword}
       </p>
     </div>
   );

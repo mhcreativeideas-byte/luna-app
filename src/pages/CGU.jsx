@@ -135,7 +135,7 @@ export default function CGU() {
           </p>
           <p className="mt-2">
             En cas de litige, l'utilisatrice peut introduire une réclamation auprès de la CNIL
-            (Commission Nationale de l'Informatique et des Libertés) — <a href="https://www.cnil.fr" className="text-luna-rose underline" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.
+            (Commission Nationale de l'Informatique et des Libertés) : <a href="https://www.cnil.fr" className="text-luna-rose underline" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>.
           </p>
         </Section>
 
@@ -182,7 +182,7 @@ export default function CGU() {
             <li>Des interruptions temporaires du service pour maintenance ou mise à jour</li>
             <li>Des dommages résultant de l'utilisation ou de l'impossibilité d'utiliser le service</li>
             <li>De l'exactitude des calculs de cycle (chaque femme est unique)</li>
-            <li>Des conséquences liées aux conseils fournis (voir article 5 — Avertissement médical)</li>
+            <li>Des conséquences liées aux conseils fournis (voir article 5, Avertissement médical)</li>
             <li>De la perte de données due à un cas de force majeure</li>
           </ul>
         </Section>

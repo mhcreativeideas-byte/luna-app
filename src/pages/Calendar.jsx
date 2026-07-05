@@ -506,7 +506,7 @@ export default function Calendar() {
                   <div className="rounded-[14px] p-4" style={{ backgroundColor: PHASES.menstrual.bgColor, border: `1.5px solid ${PHASES.menstrual.color}40` }}>
                     <p className="text-sm font-body text-luna-text font-semibold mb-1">Marquer comme jour de règles ?</p>
                     <p className="text-xs font-body text-luna-text-muted mb-3">
-                      Le {selectedDay.date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })} — ce jour n'était pas prévu dans l'estimation.
+                      Le {selectedDay.date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })}, ce jour n'était pas prévu dans l'estimation.
                     </p>
                     <div className="flex gap-2">
                       <button

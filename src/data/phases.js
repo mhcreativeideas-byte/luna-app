@@ -11,7 +11,7 @@ export const PHASES = {
     days: '1-5',
     energy: 30,
     encouragement: 'Ton corps travaille dur pour toi. Accorde-lui le repos qu\'il mérite. 💜',
-    bodyToday: 'Œstrogène et progestérone au plus bas. Fatigue, crampes, baisse d\'énergie — c\'est physiologique. Ton corps élimine la muqueuse utérine. Priorité : fer, magnésium, repos.',
+    bodyToday: 'Œstrogène et progestérone au plus bas. Fatigue, crampes, baisse d\'énergie, c\'est physiologique. Ton corps élimine la muqueuse utérine. Priorité : fer, magnésium, repos.',
     summary: 'Hormones au plus bas. Énergie réduite, récupération en cours. Le corps élimine et se prépare au cycle suivant.',
     mindset: 'Journaling & introspection',
     nutrients: ['Fer', 'Oméga-3', 'Magnésium', 'Vitamine C'],
@@ -111,7 +111,7 @@ export const PHASES = {
     ],
     journalPrompt: 'Qu\'est-ce que ton corps t\'a appris aujourd\'hui ?',
     affirmation: 'Je m\'autorise à ralentir. Mon repos est productif.',
-    fact: 'Pendant tes règles, ton taux d\'hormones est au plus bas. C\'est pour ça que tu te sens fatiguée — c\'est physiologique, pas un manque de volonté.',
+    fact: 'Pendant tes règles, ton taux d\'hormones est au plus bas. C\'est pour ça que tu te sens fatiguée, c\'est physiologique, pas un manque de volonté.',
   },
 
   follicular: {
@@ -222,7 +222,7 @@ export const PHASES = {
     sleepTips: [
       'Profite de cette phase pour recaler ton rythme circadien',
       'Lève-toi tôt et expose-toi à la lumière naturelle',
-      'L\'énergie est là — couche-toi à heure fixe pour en profiter',
+      'L\'énergie est là, couche-toi à heure fixe pour en profiter',
     ],
     journalPrompt: 'Quels projets t\'excitent en ce moment ?',
     affirmation: 'Je suis capable de grandes choses. Mon énergie est ma force.',
@@ -355,7 +355,7 @@ export const PHASES = {
     days: '17-28',
     energy: 45,
     encouragement: 'Ton corps se prépare. Écoute-le, nourris-le, et sois douce avec toi-même. 🍂',
-    bodyToday: 'La progestérone domine. Métabolisme +10-20% (besoin de plus de calories), énergie en baisse, sérotonine réduite (envies de sucre). Adapte l\'intensité progressivement.',
+    bodyToday: 'La progestérone domine. Métabolisme légèrement en hausse (environ 5 %, un peu plus de calories), énergie en baisse, sérotonine réduite (envies de sucre). Adapte l\'intensité progressivement.',
     summary: 'La progestérone domine. Métabolisme en hausse, énergie en baisse. Envies de sucre normales (sérotonine réduite).',
     mindset: 'Organisation & cocooning',
     nutrients: ['Magnésium', 'Vitamine B6', 'Calcium', 'Glucides complexes'],
@@ -415,7 +415,7 @@ export const PHASES = {
         tip: 'Si tu ne consommes pas de produits laitiers, les amandes et le tofu sont d\'excellentes sources de calcium.',
       },
       'Glucides complexes': {
-        why: 'Ton métabolisme augmente de 10 à 20% en phase lutéale. Ton corps brûle plus de calories et ta sérotonine baisse, d\'où les envies de sucre. Les glucides complexes stabilisent ta glycémie et nourrissent ton cerveau sans pic ni crash.',
+        why: 'Ton métabolisme augmente un peu (environ 5 %) en phase lutéale. Ton corps brûle un peu plus de calories et ta sérotonine baisse, d\'où les envies de sucre. Les glucides complexes stabilisent ta glycémie et nourrissent ton cerveau sans pic ni crash.',
         foods: [
           { name: 'Patate douce', emoji: '🍠', why: 'La patate douce a un IG modéré + bêta-carotène + B6. Elle nourrit la sérotonine sans provoquer de pic glycémique.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
           { name: 'Avoine', emoji: '🌾', why: '100g de flocons d\'avoine = 60g de glucides lents + magnésium + fibres. Stabilise ta glycémie toute la matinée.', tags: ['vegan','vegetarien','sans_lactose','sopk_friendly'] },
@@ -423,10 +423,10 @@ export const PHASES = {
           { name: 'Quinoa', emoji: '🌾', why: '200g de quinoa = 40g de glucides + 8g de protéines + fer. Un féculent complet qui soutient le métabolisme accéléré.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
           { name: 'Pain complet', emoji: '🍞', why: 'Le pain complet libère ses glucides lentement et contient des vitamines B. Il calme les fringales de sucre sans crash.', tags: ['vegan','vegetarien','sans_lactose','sopk_friendly'] },
           { name: 'Lentilles', emoji: '🫘', why: '200g de lentilles = 40g de glucides + 18g de protéines. Leur IG bas évite les pics de glycémie qui amplifient le SPM.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
-          { name: 'Pâtes complètes', emoji: '🍝', why: 'Les pâtes complètes boostent la production de sérotonine via le tryptophane. Ton métabolisme +10-20% brûle ces glucides facilement.', tags: ['vegan','vegetarien','sans_lactose','sopk_friendly'] },
+          { name: 'Pâtes complètes', emoji: '🍝', why: 'Les pâtes complètes boostent la production de sérotonine via le tryptophane. Ton métabolisme un peu plus élevé brûle ces glucides facilement.', tags: ['vegan','vegetarien','sans_lactose','sopk_friendly'] },
           { name: 'Sarrasin', emoji: '🌾', why: 'Le sarrasin est riche en rutine (anti-inflammatoire) + magnésium + glucides lents. Sans gluten et parfait pour les intestins sensibles.', tags: ['vegan','vegetarien','sans_gluten','sans_lactose','sopk_friendly'] },
         ],
-        tip: 'Tu as besoin de 200-300 calories de plus par jour. La patate douce rôtie est le snack parfait de cette phase.',
+        tip: 'Tu as besoin d\'un peu plus d\'énergie chaque jour. La patate douce rôtie est le snack parfait de cette phase.',
       },
     },
     drinks: {
@@ -454,12 +454,12 @@ export const PHASES = {
     sleepQuality: 'La progestérone te rend somnolente mais peut fragmenter le sommeil',
     sleepTips: [
       'La progestérone te rend somnolente mais peut fragmenter le sommeil',
-      'Routine stricte recommandée — même heure chaque soir',
+      'Routine stricte recommandée : même heure chaque soir',
       'Évite les écrans 1h avant le coucher',
     ],
     journalPrompt: 'De quoi as-tu besoin pour te sentir bien ?',
     affirmation: 'Je m\'écoute sans culpabilité. Mes besoins sont valides.',
-    fact: 'En phase lutéale, ton métabolisme augmente de 10-20%. Manger plus est NORMAL et nécessaire.',
+    fact: 'En phase lutéale, ton métabolisme augmente un peu (environ 5 %). Manger un peu plus est normal et nécessaire.',
     sugarCravings: {
       explanation: 'Ton métabolisme est plus élevé en phase lutéale. La progestérone fait baisser ta sérotonine, ce qui crée des envies de glucides. C\'est de la biologie, pas de la faiblesse !',
       alternatives: [

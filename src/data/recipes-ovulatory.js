@@ -390,7 +390,7 @@ breakfast: [
       'Cuis les crêpes fines.',
       'Garnis de fruits et miel.',
     ],
-    whyThisPhase: 'Des crêpes légères à la farine complète — plus de fibres et de nutriments que les crêpes blanches. Garnies de fruits frais pour un max de vitamines.',
+    whyThisPhase: 'Des crêpes légères à la farine complète : plus de fibres et de nutriments que les crêpes blanches. Garnies de fruits frais pour un max de vitamines.',
   },
   {
     name: 'Bol de cottage cheese aux pêches et amandes',
@@ -1061,7 +1061,7 @@ lunch: [
       'Ajoute oignon émincé, suprêmes d\'orange, piment et coriandre.',
       'Sers avec de l\'avocat tranché.',
     ],
-    whyThisPhase: 'Le poisson blanc est ultra-protéiné et léger — exactement ce qu\'il faut quand ton énergie est au max. Le citron vert apporte de la vitamine C, la coriandre aide à détoxifier les métaux lourds.',
+    whyThisPhase: 'Le poisson blanc est ultra-protéiné et léger : exactement ce qu\'il faut quand ton énergie est au max. Le citron vert apporte de la vitamine C, la coriandre aide à détoxifier les métaux lourds.',
   },
   {
     name: 'Buddha bowl quinoa, falafels et sauce tahini',
@@ -1388,7 +1388,7 @@ lunch: [
       'Assemble quinoa, roquette, avocat, mangue et crevettes.',
       'Assaisonne de citron vert, huile et coriandre.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Salade de poulpe grillé aux agrumes et roquette',
@@ -1416,7 +1416,7 @@ lunch: [
       'Assemble roquette, poulpe, agrumes et oignon émincé.',
       'Assaisonne d\'huile, citron et persil.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Bol de nouilles de riz froides au concombre et sauce sésame',
@@ -1446,7 +1446,7 @@ lunch: [
       'Prépare la sauce : soja + tahini + citron + gingembre.',
       'Assemble et garnis de sésame et menthe.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Tartare de betterave et avocat aux noix',
@@ -1474,7 +1474,7 @@ lunch: [
       'Assaisonne de sel et poivre.',
       'Dresse en cercle, garnis de noix et ciboulette.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Bol poké végétarien au tofu croustillant',
@@ -1503,7 +1503,7 @@ lunch: [
       'Assemble riz, tofu, edamame, concombre, avocat, mangue.',
       'Assaisonne de soja et sésame.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Salade fattoush aux herbes fraîches',
@@ -1533,7 +1533,7 @@ lunch: [
       'Hache menthe et persil.',
       'Mélange tout avec citron, huile et sumac.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Bol de riz brun, sashimi de saumon et avocat',
@@ -1561,7 +1561,7 @@ lunch: [
       'Assemble riz, saumon, avocat et concombre.',
       'Sers avec soja, gingembre et wasabi.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Salade de pastèque, feta et menthe',
@@ -1588,7 +1588,7 @@ lunch: [
       'Mélange pastèque, feta, olives et oignon émincé.',
       'Assaisonne d\'huile, citron vert et menthe ciselée.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Bol de lentilles beluga, grenade et sauce tahini',
@@ -1616,7 +1616,7 @@ lunch: [
       'Assemble lentilles, concombre et grenade.',
       'Nappe de sauce tahini et menthe.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Wrap de houmous, falafels et taboulé',
@@ -1643,7 +1643,7 @@ lunch: [
       'Garnis de tomate, roquette et sauce tahini.',
       'Roule serré.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Salade de haricots blancs aux tomates séchées et basilic',
@@ -1669,7 +1669,7 @@ lunch: [
       'Assaisonne d\'ail, citron et huile d\'olive.',
       'Parsème de basilic ciselé.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Bol de couscous perlé aux légumes grillés et feta',
@@ -1697,7 +1697,7 @@ lunch: [
       'Assemble couscous et légumes grillés.',
       'Émiette la feta, ajoute citron, huile et menthe.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
   {
     name: 'Gaspacho vert aux concombre, avocat et herbes',
@@ -1724,7 +1724,7 @@ lunch: [
       'Place au frigo 1h.',
       'Sers bien frais.',
     ],
-    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet — nourris-le avec des antioxydants et des protéines de qualité.',
+    whyThisPhase: 'En ovulation, privilégie le frais, le léger et le coloré. Ton corps est au sommet : nourris-le avec des antioxydants et des protéines de qualité.',
   },
 
   {
@@ -2358,7 +2358,7 @@ dinner: [
       'Sers sur du riz.',
       'Saupoudre de graines de sésame.',
     ],
-    whyThisPhase: 'Les crevettes apportent zinc, sélénium et protéines. Les légumes croquants conservent leurs vitamines. Le wok est rapide — parfait quand ton énergie est au max et que tu veux profiter de ta soirée.',
+    whyThisPhase: 'Les crevettes apportent zinc, sélénium et protéines. Les légumes croquants conservent leurs vitamines. Le wok est rapide : parfait quand ton énergie est au max et que tu veux profiter de ta soirée.',
   },
   {
     name: 'Aubergines grillées au tahini et grenade',
@@ -3262,7 +3262,7 @@ snack: [
       'Ajoute un morceau de saumon et de l\'aneth.',
       'Presse du citron.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
   {
     name: 'Tartare de mangue à la coriandre et citron vert',
@@ -3286,7 +3286,7 @@ snack: [
       'Place au frigo 15 min.',
       'Déguste frais.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
   {
     name: 'Œufs durs farcis au houmous',
@@ -3310,7 +3310,7 @@ snack: [
       'Garnis chaque moitié de houmous.',
       'Saupoudre de paprika et huile d\'olive.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
   {
     name: 'Carpaccio de fraises au basilic et vinaigre balsamique',
@@ -3333,7 +3333,7 @@ snack: [
       'Dispose en rosace dans une assiette.',
       'Arrose de balsamique, poivre et basilic ciselé.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
   {
     name: 'Energy balls matcha-coco-cajou',
@@ -3358,7 +3358,7 @@ snack: [
       'Forme des boules.',
       'Conserve au frigo.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
   {
     name: 'Verrines de gaspacho de tomates cerises',
@@ -3383,7 +3383,7 @@ snack: [
       'Verse dans des verrines.',
       'Place au frigo 30 min.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
   {
     name: 'Brochettes de melon, jambon cru et menthe',
@@ -3407,7 +3407,7 @@ snack: [
       'Pique sur des brochettes avec la menthe.',
       'Poivre et déguste.',
     ],
-    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute — pas besoin de lourd.',
+    whyThisPhase: 'Un snack léger et antioxydant pour ta phase la plus rayonnante. Ton énergie est naturellement haute, pas besoin de lourd.',
   },
 
   {
@@ -3700,7 +3700,7 @@ drink: [
       'Verse sur des glaçons.',
       'Déguste immédiatement.',
     ],
-    whyThisPhase: 'La pastèque est riche en lycopène et en eau — ultra-hydratante. La menthe rafraîchit et aide la digestion. Un smoothie naturellement sucré sans sucre ajouté.',
+    whyThisPhase: 'La pastèque est riche en lycopène et en eau : ultra-hydratante. La menthe rafraîchit et aide la digestion. Un smoothie naturellement sucré sans sucre ajouté.',
   },
   {
     name: 'Limonade maison au curcuma',
@@ -3776,7 +3776,7 @@ drink: [
       'Filtre si souhaité.',
       'Verse sur des glaçons avec la menthe.',
     ],
-    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute — ces boissons soutiennent sans surcharger.',
+    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute : ces boissons soutiennent sans surcharger.',
   },
   {
     name: 'Limonade rose à la framboise',
@@ -3800,7 +3800,7 @@ drink: [
       'Mélange avec le jus de citron, le miel et l\'eau.',
       'Sers sur des glaçons.',
     ],
-    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute — ces boissons soutiennent sans surcharger.',
+    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute : ces boissons soutiennent sans surcharger.',
   },
   {
     name: 'Thé glacé pêche-gingembre',
@@ -3826,7 +3826,7 @@ ingredients: [
       'Ajoute la pêche en tranches.',
       'Sers avec des glaçons.',
     ],
-    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute — ces boissons soutiennent sans surcharger.',
+    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute : ces boissons soutiennent sans surcharger.',
   },
   {
     name: 'Jus vert concombre-pomme-celeri-citron',
@@ -3849,7 +3849,7 @@ ingredients: [
       'Passe tout à l\'extracteur de jus.',
       'Déguste immédiatement.',
     ],
-    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute — ces boissons soutiennent sans surcharger.',
+    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute : ces boissons soutiennent sans surcharger.',
   },
   {
     name: 'Eau infusée fraise-basilic',
@@ -3873,7 +3873,7 @@ ingredients: [
       'Laisse infuser 1h au frigo.',
       'Sers avec des glaçons.',
     ],
-    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute — ces boissons soutiennent sans surcharger.',
+    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute : ces boissons soutiennent sans surcharger.',
   },
   {
     name: 'Lassi à la mangue (sans sucre ajouté)',
@@ -3897,7 +3897,7 @@ ingredients: [
       'Ajoute la cardamome.',
       'Verse sur des glaçons.',
     ],
-    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute — ces boissons soutiennent sans surcharger.',
+    whyThisPhase: 'Hydratation et fraîcheur pour ta phase la plus rayonnante. Ton énergie est naturellement haute : ces boissons soutiennent sans surcharger.',
   },
 
   {

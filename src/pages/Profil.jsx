@@ -151,7 +151,7 @@ export default function Profil() {
         <h2 className="font-display text-xl text-luna-text">{name}</h2>
         {cycleInfo && (
           <p className="text-xs font-body text-luna-text-hint mt-1">
-            {cycleInfo.phaseData.icon} {cycleInfo.phaseData.name} — Jour {cycleInfo.currentDay}
+            {cycleInfo.phaseData.icon} {cycleInfo.phaseData.name}, jour {cycleInfo.currentDay}
           </p>
         )}
       </motion.div>

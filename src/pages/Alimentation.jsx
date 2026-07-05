@@ -29,14 +29,45 @@ const PHASE_FOOD_INTROS = {
   menstrual: 'Pendant tes règles, concentre-toi sur les aliments riches en fer et anti-inflammatoires pour compenser les pertes.',
   follicular: 'L\'œstrogène remonte. Ton corps est en mode construction. Protéines, zinc et probiotiques sont tes alliés.',
   ovulatory: 'Pic hormonal : privilégie les fibres pour éliminer l\'excès d\'œstrogène et les antioxydants pour protéger tes cellules.',
-  luteal: 'Ton métabolisme augmente de 10-20%. Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
+  luteal: 'Ton métabolisme augmente un peu (environ 5 %). Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
 };
 
+// Plusieurs insights par phase : un est choisi chaque jour (stable dans la
+// journée) via un tirage basé sur la date. Faits vérifiés sur sources
+// scientifiques (revues systématiques, PubMed/PMC).
 const PHASE_INSIGHTS = {
-  menstrual: 'Savais-tu que ton métabolisme de repos augmente légèrement pendant cette phase ?',
-  follicular: 'L\'œstrogène améliore la plasticité cérébrale — tu apprends plus vite en cette phase.',
-  ovulatory: 'Ta voix change légèrement pendant l\'ovulation. Elle devient plus mélodieuse.',
-  luteal: 'Ton métabolisme augmente de 10-20%. Manger plus est normal et nécessaire.',
+  menstrual: [
+    'Pendant tes règles, tes hormones sont au plus bas : ta fatigue est physiologique, pas un manque de volonté.',
+    'Tu perds du fer à chaque cycle. Les aliments riches en fer (lentilles, épinards, légumineuses) aident à retrouver ton énergie.',
+    'Les crampes viennent des prostaglandines, des molécules inflammatoires. Les oméga-3 et le magnésium agissent comme anti-inflammatoires naturels.',
+    'Ton métabolisme de repos est plutôt à son point le plus bas en ce moment. Il remontera en fin de cycle.',
+  ],
+  follicular: [
+    'L\'œstrogène remonte : c\'est souvent le retour de l\'énergie et d\'une meilleure humeur.',
+    'Ta sensibilité à l\'insuline est meilleure en début de cycle : ton corps gère bien les glucides.',
+    'Belle fenêtre pour bouger : certaines études suggèrent de meilleurs gains de force quand l\'œstrogène est haut.',
+    'L\'œstrogène soutient le collagène : beaucoup de femmes trouvent leur peau plus belle en cette phase.',
+  ],
+  ovulatory: [
+    'Pic d\'œstrogène, de LH et de testostérone : souvent le moment où tu te sens la plus énergique et sociable.',
+    'Ta température corporelle va légèrement monter juste après l\'ovulation, sous l\'effet de la progestérone.',
+    'Le savais-tu ? Ta voix peut devenir légèrement plus mélodieuse autour de l\'ovulation.',
+    'Un bon moment pour les échanges importants : tes capacités verbales et sociales sont au top.',
+  ],
+  luteal: [
+    'Ton métabolisme augmente un peu en fin de cycle (~5 %) : avoir un peu plus faim est normal.',
+    'La progestérone fait monter ta température de 0,3 à 0,5 °C, tu peux donc avoir plus chaud que d\'habitude.',
+    'Les envies de sucre viennent d\'une baisse de sérotonine. Les glucides complexes et le chocolat noir aident en douceur.',
+    'La progestérone a un effet apaisant : si tu te sens ralentie, c\'est ton corps qui te parle.',
+  ],
+};
+
+// Choisit un insight du jour, stable dans la journée et différent chaque jour.
+const getDailyInsight = (phase) => {
+  const list = PHASE_INSIGHTS[phase] || PHASE_INSIGHTS.follicular;
+  const d = new Date();
+  const daySeed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  return list[daySeed % list.length];
 };
 
 // Nom d'aliment → chemin image dans public/foods/
@@ -316,7 +347,7 @@ export default function Alimentation() {
               Insight du jour
             </p>
             <p className="text-[13px] font-body text-luna-text-body leading-relaxed italic">
-              {PHASE_INSIGHTS[phase]}
+              {getDailyInsight(phase)}
             </p>
           </div>
         </div>
@@ -560,7 +591,7 @@ export default function Alimentation() {
                     <span className="font-bold" style={{ color: '#A3555F' }}>
                       {phaseData.drinks.bad[expandedBadDrink].name}
                     </span>{' '}
-                    — {phaseData.drinks.bad[expandedBadDrink].why}
+                    : {phaseData.drinks.bad[expandedBadDrink].why}
                   </div>
                 </motion.div>
               )}

@@ -31,7 +31,7 @@ export default function CycleTimeline() {
                 color: isToday ? 'white' : phaseData.colorDark,
                 ringColor: isToday ? phaseData.colorDark : undefined,
               }}
-              title={`Jour ${day} — ${phaseData.shortName}`}
+              title={`Jour ${day} : ${phaseData.shortName}`}
             >
               {day}
             </div>

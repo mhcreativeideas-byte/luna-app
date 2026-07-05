@@ -31,7 +31,7 @@ export const AFFIRMATIONS = {
 
 export const DAILY_FACTS = {
   menstrual: [
-    'Pendant tes règles, ton taux d\'hormones est au plus bas. C\'est pour ça que tu te sens fatiguée — c\'est physiologique, pas un manque de volonté.',
+    'Pendant tes règles, ton taux d\'hormones est au plus bas. C\'est pour ça que tu te sens fatiguée, c\'est physiologique, pas un manque de volonté.',
     'Les crampes menstruelles sont causées par les prostaglandines, des substances inflammatoires. Les oméga-3 et le magnésium sont des anti-inflammatoires naturels.',
     'Ton cerveau est en mode "introspection" pendant les règles. C\'est un excellent moment pour la réflexion et les décisions importantes.',
     'Savais-tu que le repos pendant les règles améliore ta performance dans les phases suivantes ? C\'est un investissement, pas du temps perdu.',
@@ -39,7 +39,7 @@ export const DAILY_FACTS = {
   ],
   follicular: [
     'En phase folliculaire, ton taux d\'œstrogène remonte. C\'est pour ça que tu te sens plus motivée et énergique !',
-    'L\'œstrogène améliore la plasticité cérébrale — tu apprends plus vite en cette phase. Parfait pour commencer un nouveau cours ou skill.',
+    'L\'œstrogène améliore la plasticité cérébrale, tu apprends plus vite en cette phase. Parfait pour commencer un nouveau cours ou skill.',
     'Ta peau est souvent au top en phase folliculaire grâce à l\'œstrogène. Profites-en !',
     'Les études montrent que les femmes sont plus créatives en phase folliculaire. Ton cerveau fait de nouvelles connexions plus facilement.',
     'L\'œstrogène favorise la synthèse des protéines musculaires. C\'est LE moment pour gagner en force.',
@@ -52,8 +52,8 @@ export const DAILY_FACTS = {
     'Ta coordination et ton temps de réaction sont optimaux. Si tu fais du sport de compétition, planifie tes épreuves en cette phase !',
   ],
   luteal: [
-    'En phase lutéale, ton métabolisme augmente de 10-20%. Manger plus est NORMAL et nécessaire.',
-    'La progestérone est un relaxant naturel. Si tu te sens somnolente, c\'est normal — ton corps te dit de ralentir.',
+    'En phase lutéale, ton métabolisme augmente un peu (environ 5 %). Manger un peu plus est normal et nécessaire.',
+    'La progestérone est un relaxant naturel. Si tu te sens somnolente, c\'est normal, ton corps te dit de ralentir.',
     'Les envies de sucre en phase lutéale viennent de la baisse de sérotonine. Le chocolat noir est une excellente réponse.',
     'Ta température corporelle augmente de 0.3-0.5°C en phase lutéale. C\'est pour ça que tu peux avoir plus chaud que d\'habitude.',
     'Le SPM n\'est pas "dans ta tête". C\'est une réponse réelle de ton corps aux fluctuations hormonales. Sois douce avec toi.',

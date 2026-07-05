@@ -72,7 +72,7 @@ const CRAVING_SIGNALS = {
   sucre: {
     icon: '🍫',
     title: 'Tes envies de sucre',
-    text: 'Quand la progestérone et la sérotonine chutent, surtout avant tes règles, ton corps réclame de l\'énergie rapide. C\'est hormonal — et ça s\'apaise dans l\'assiette, sans te priver.',
+    text: 'Quand la progestérone et la sérotonine chutent, surtout avant tes règles, ton corps réclame de l\'énergie rapide. C\'est hormonal, et ça s\'apaise dans l\'assiette, sans te priver.',
   },
   faim: {
     icon: '🍽️',
@@ -92,7 +92,7 @@ const CRAVING_SIGNALS = {
   grignotage: {
     icon: '🍪',
     title: 'Ton grignotage émotionnel',
-    text: 'Quand la sérotonine baisse, ton corps cherche du réconfort. On l\'apaise en douceur — jamais avec de la culpabilité.',
+    text: 'Quand la sérotonine baisse, ton corps cherche du réconfort. On l\'apaise en douceur, jamais avec de la culpabilité.',
   },
 };
 
@@ -110,7 +110,7 @@ const HEALTH_SIGNALS = {
   'SPM sévère': {
     icon: '💜',
     title: 'Ton SPM',
-    text: 'Magnésium, B6 et calcium seront tes alliés — on les glisse dans tes menus au bon moment.',
+    text: 'Magnésium, B6 et calcium seront tes alliés, on les glisse dans tes menus au bon moment.',
   },
 };
 
@@ -125,7 +125,7 @@ const PHASE_NOW_SIGNALS = {
   follicular: {
     icon: '🌿',
     title: 'Ton énergie qui remonte',
-    text: 'L\'œstrogène grimpe de jour en jour — ton corps construit. Tes alliés du moment : œufs, brocoli, agrumes.',
+    text: 'L\'œstrogène grimpe de jour en jour, ton corps construit. Tes alliés du moment : œufs, brocoli, agrumes.',
   },
   ovulatory: {
     icon: '☀️',
@@ -448,8 +448,8 @@ export default function Onboarding() {
   // Écran d'explication des rappels — affiché après le paywall (natif)
   if (showNotifPrimer) {
     const previews = [
-      { icon: '🌿', text: 'Nouvelle phase : folliculaire — ton énergie remonte.' },
-      { icon: '🌙', text: 'Tes règles approchent — magnésium et douceur au menu.' },
+      { icon: '🌿', text: 'Nouvelle phase : folliculaire, ton énergie remonte.' },
+      { icon: '🌙', text: 'Tes règles approchent : magnésium et douceur au menu.' },
       { icon: '🍽️', text: 'Ton menu du jour est prêt, pensé pour ta phase.' },
     ];
     return (
@@ -475,7 +475,7 @@ export default function Onboarding() {
               Tes rappels <em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>doux</em>
             </h1>
             <p className="text-sm font-body text-luna-text-muted mt-2 px-2">
-              On vient de te donner des dates — tes rappels les tiendront. Jamais plus d'une fois par jour, jamais la nuit.
+              On vient de te donner des dates, tes rappels les tiendront. Jamais plus d'une fois par jour, jamais la nuit.
             </p>
           </div>
 
@@ -545,19 +545,19 @@ export default function Onboarding() {
     };
     const predictionsByPhase = {
       menstrual: [
-        `Vers le ${fmtIn(form.periodLength - info.currentDay + 1)}, ton énergie va remonter — tes assiettes revitalisantes seront prêtes.`,
+        `Vers le ${fmtIn(form.periodLength - info.currentDay + 1)}, ton énergie va remonter, tes assiettes revitalisantes seront prêtes.`,
         `Et autour du ${fmtIn(info.ovulationDay - 1 - info.currentDay)}, tu atteindras ton pic de forme. Tu verras.`,
       ],
       follicular: [
-        `Ton pic d'énergie arrivera vers le ${fmtIn(info.ovulationDay - 1 - info.currentDay)} — on te proposera des assiettes légères et colorées.`,
+        `Ton pic d'énergie arrivera vers le ${fmtIn(info.ovulationDay - 1 - info.currentDay)}, on te proposera des assiettes légères et colorées.`,
         `Tes prochaines règles sont attendues vers le ${fmtIn(info.daysUntilPeriod)} : on les anticipera ensemble. Tu verras.`,
       ],
       ovulatory: [
-        `Vers le ${fmtIn(info.ovulationDay + 2 - info.currentDay)}, ton corps ralentira doucement — on adaptera tes assiettes pour t'apaiser.`,
+        `Vers le ${fmtIn(info.ovulationDay + 2 - info.currentDay)}, ton corps ralentira doucement, on adaptera tes assiettes pour t'apaiser.`,
         `Tes prochaines règles sont attendues vers le ${fmtIn(info.daysUntilPeriod)}. Tu verras.`,
       ],
       luteal: [
-        `Tes règles arriveront vers le ${fmtIn(info.daysUntilPeriod)} — tes recettes riches en fer seront prêtes.`,
+        `Tes règles arriveront vers le ${fmtIn(info.daysUntilPeriod)}, tes recettes riches en fer seront prêtes.`,
         `Et vers le ${fmtIn(info.daysUntilPeriod + form.periodLength)}, ton énergie remontera. Tu verras.`,
       ],
     };
@@ -1154,7 +1154,7 @@ export default function Onboarding() {
                   Une condition à connaître ?
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Optionnel — pour des conseils encore plus justes.
+                  Optionnel : pour des conseils encore plus justes.
                 </p>
               </div>
               <div className="space-y-2">
@@ -1303,7 +1303,7 @@ export default function Onboarding() {
                   Des allergies ?
                 </h2>
                 <p className="text-luna-text-muted font-body text-sm">
-                  Optionnel — on écartera ces ingrédients de tes recettes.
+                  Optionnel : on écartera ces ingrédients de tes recettes.
                 </p>
               </div>
               <div className="flex flex-wrap justify-center gap-2">

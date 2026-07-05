@@ -249,7 +249,7 @@ breakfast: [
       'Verse dans un bol.',
       'Garnis de granola, fruits et graines de courge.',
     ],
-    whyThisPhase: 'L\'açaí est l\'un des fruits les plus riches en antioxydants. En phase folliculaire, ton corps reconstruit — ces antioxydants protègent les nouvelles cellules.',
+    whyThisPhase: 'L\'açaí est l\'un des fruits les plus riches en antioxydants. En phase folliculaire, ton corps reconstruit, ces antioxydants protègent les nouvelles cellules.',
   },
   {
     name: 'Galettes de sarrasin aux champignons et fromage',
@@ -585,7 +585,7 @@ breakfast: [
       'Mixe 30 secondes.',
       'Déguste immédiatement.',
     ],
-    whyThisPhase: 'Les graines de chanvre contiennent les 9 acides aminés essentiels — une protéine complète végétale. La mangue apporte de la vitamine C et des enzymes. Les épinards du fer.',
+    whyThisPhase: 'Les graines de chanvre contiennent les 9 acides aminés essentiels, une protéine complète végétale. La mangue apporte de la vitamine C et des enzymes. Les épinards du fer.',
   },
   {
     name: 'Muesli bircher aux pommes et graines de tournesol',
@@ -740,7 +740,7 @@ breakfast: [
       'Forme des galettes.',
       'Cuis 3 min par face à la poêle.',
     ],
-    whyThisPhase: 'Les lentilles corail apportent protéines, fer et zinc — trois nutriments essentiels en phase folliculaire. Le cumin stimule la digestion. Un petit-déj salé et protéiné.',
+    whyThisPhase: 'Les lentilles corail apportent protéines, fer et zinc, trois nutriments essentiels en phase folliculaire. Le cumin stimule la digestion. Un petit-déj salé et protéiné.',
   },
   {
     name: 'Bol de ricotta, pêche et pistaches',
@@ -1008,7 +1008,7 @@ lunch: [
       'Assemble dans un bol.',
       'Assaisonne de citron et huile d\'olive, ajoute les graines.',
     ],
-    whyThisPhase: 'Protéines maigres du poulet + protéines complètes du quinoa + vitamine C du brocoli. Ton corps reconstruit en folliculaire — il a besoin de blocs de construction.',
+    whyThisPhase: 'Protéines maigres du poulet + protéines complètes du quinoa + vitamine C du brocoli. Ton corps reconstruit en folliculaire, il a besoin de blocs de construction.',
   },
   {
     name: 'Wrap poulet-avocat-roquette',
@@ -1739,7 +1739,7 @@ lunch: [
   },
   {
     name: 'Soupe de brocoli au gingembre et amandes',
-    description: 'Le brocoli est le roi du sulforaphane — il active les voies Nrf2 qui réduisent l\'inflammation cellul.',
+    description: 'Le brocoli est le roi du sulforaphane, il active les voies Nrf2 qui réduisent l\'inflammation cellul.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'francais',
@@ -1763,11 +1763,11 @@ lunch: [
     'Mixe avec les amandes.',
     'Sers avec un filet de citron.',
     ],
-    whyThisPhase: 'Le brocoli est le roi du sulforaphane — il active les voies Nrf2 qui réduisent l\'inflammation cellulaire. Les amandes apportent de la vitamine E anti-oxydante. Le gingembre amplifie.',
+    whyThisPhase: 'Le brocoli est le roi du sulforaphane, il active les voies Nrf2 qui réduisent l\'inflammation cellulaire. Les amandes apportent de la vitamine E anti-oxydante. Le gingembre amplifie.',
   },
   {
     name: 'Bol de riz noir aux edamame et avocat',
-    description: 'Le riz noir contient des anthocyanines — les mêmes pigments anti-inflammatoires que les myrtilles. L.',
+    description: 'Le riz noir contient des anthocyanines, les mêmes pigments anti-inflammatoires que les myrtilles. L.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
@@ -1791,7 +1791,7 @@ lunch: [
     'Assemble riz, edamame, avocat et concombre.',
     'Assaisonne de soja, sésame et gingembre.',
     ],
-    whyThisPhase: 'Le riz noir contient des anthocyanines — les mêmes pigments anti-inflammatoires que les myrtilles. Les edamame apportent des isoflavones. L\'avocat des oméga-9.',
+    whyThisPhase: 'Le riz noir contient des anthocyanines, les mêmes pigments anti-inflammatoires que les myrtilles. Les edamame apportent des isoflavones. L\'avocat des oméga-9.',
   },
   {
     name: 'Taboulé de chou-fleur cru au persil et grenade',
@@ -2764,7 +2764,7 @@ dinner: [
   },
   {
     name: 'Curry vert thaï aux légumes et lait de coco',
-    description: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï — trois anti-inflammatoires trad.',
+    description: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï, trois anti-inflammatoires trad.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
@@ -2789,7 +2789,7 @@ dinner: [
     'Cuis 15 min à feu doux.',
     'Ajoute le basilic thaï. Sers sur du riz. Citron vert.',
     ],
-    whyThisPhase: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï — trois anti-inflammatoires traditionnels. Le lait de coco apporte de l\'acide laurique. Les légumes des polyphénols.',
+    whyThisPhase: 'La pâte de curry vert contient citronnelle, galanga et basilic thaï, trois anti-inflammatoires traditionnels. Le lait de coco apporte de l\'acide laurique. Les légumes des polyphénols.',
   },
   {
     name: 'Poulet grillé au romarin et patate douce rôtie',
@@ -3425,7 +3425,7 @@ snack: [
   },
   {
     name: 'Crumble de fruits rouges au curcuma et flocons d\'avoine',
-    description: 'Les fruits rouges sont un cocktail d\'anthocyanines, d\'acide ellagique et de resvératrol — trois fami.',
+    description: 'Les fruits rouges sont un cocktail d\'anthocyanines, d\'acide ellagique et de resvératrol, trois fami.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -3449,7 +3449,7 @@ snack: [
     'Verse le crumble sur les fruits.',
     'Enfourne 20 min à 180°C.',
     ],
-    whyThisPhase: 'Les fruits rouges sont un cocktail d\'anthocyanines, d\'acide ellagique et de resvératrol — trois familles anti-inflammatoires. Le curcuma dans le crumble est une touche originale.',
+    whyThisPhase: 'Les fruits rouges sont un cocktail d\'anthocyanines, d\'acide ellagique et de resvératrol, trois familles anti-inflammatoires. Le curcuma dans le crumble est une touche originale.',
   },
 ],
 drink: [
@@ -3858,7 +3858,7 @@ drink: [
   },
   {
     name: 'Thé vert sencha au citron et menthe',
-    description: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2 — deux voies pro-inflammatoires.',
+    description: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2, deux voies pro-inflammatoires.',
     prepTime: '3 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -3878,7 +3878,7 @@ drink: [
     'Filtre.',
     'Ajoute citron, menthe et miel.',
     ],
-    whyThisPhase: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2 — deux voies pro-inflammatoires majeures. Le citron booste l\'absorption des catéchines de 80%.',
+    whyThisPhase: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2, deux voies pro-inflammatoires majeures. Le citron booste l\'absorption des catéchines de 80%.',
   },
   {
     name: 'Smoothie anti-inflammatoire ananas-curcuma-poivre noir',

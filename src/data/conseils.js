@@ -1,7 +1,7 @@
 export const CONSEILS = {
   menstrual: {
     alimentation: [
-      { name: 'Chocolat noir', emoji: '🍫', detail: 'Riche en magnésium, il réduit les crampes et booste la sérotonine. Ton corps te réclame du réconfort — écoute-le.', tips: ['Choisis 70% cacao minimum', 'Un à deux carrés après le repas suffisent'] },
+      { name: 'Chocolat noir', emoji: '🍫', detail: 'Riche en magnésium, il réduit les crampes et booste la sérotonine. Ton corps te réclame du réconfort. Écoute-le.', tips: ['Choisis 70% cacao minimum', 'Un à deux carrés après le repas suffisent'] },
       { name: 'Épinards', emoji: '🥬', detail: 'Source de fer non-héminique qui compense les pertes menstruelles. Associe-les à de la vitamine C pour une meilleure absorption.', tips: ['En salade avec du citron', 'Sautés avec de l\'ail et de l\'huile d\'olive'] },
       { name: 'Lentilles', emoji: '🫘', detail: 'Fer, protéines végétales et fibres. Parfaites pour stabiliser l\'énergie quand tes hormones sont au plus bas.', tips: ['En soupe réconfortante', 'En bowl avec des légumes rôtis'] },
       { name: 'Saumon', emoji: '🐟', detail: 'Les oméga-3 sont de puissants anti-inflammatoires naturels qui soulagent les crampes menstruelles.', tips: ['Grillé ou en papillote', 'En bowl avec du riz et de l\'avocat'] },
@@ -56,7 +56,7 @@ export const CONSEILS = {
       { name: 'Course à pied', emoji: '👟', detail: 'Ton endurance est en hausse. C\'est le moment de travailler ta vitesse ou ta distance.', tips: ['Augmente progressivement', 'Alterne course et récupération'] },
       { name: 'Danse cardio', emoji: '💃', detail: 'L\'énergie montante et la coordination améliorée rendent le mouvement joyeux et fluide.', tips: ['Cours en groupe pour l\'énergie collective', 'Zumba, danse contemporaine, hip-hop'] },
       { name: 'HIIT modéré', emoji: '🔥', detail: 'Ton corps récupère mieux en cette phase. Les intervalles high-intensity sont efficaces et bien tolérés.', tips: ['20-30 minutes', '40s effort / 20s repos'] },
-      { name: 'Escalade', emoji: '🧗', detail: 'Force, coordination, focus mental — tout est au rendez-vous en phase folliculaire.', tips: ['En salle pour débuter', 'Challenge-toi sur de nouvelles voies'] },
+      { name: 'Escalade', emoji: '🧗', detail: 'Force, coordination, focus mental, tout est au rendez-vous en phase folliculaire.', tips: ['En salle pour débuter', 'Challenge-toi sur de nouvelles voies'] },
       { name: 'CrossFit light', emoji: '🏋️', detail: 'Les WOD modérés profitent de ta récupération musculaire optimisée par l\'œstrogène.', tips: ['Focus technique', 'Pas de PR encore, garde-ça pour l\'ovulation'] },
     ],
     activites: [
@@ -65,7 +65,7 @@ export const CONSEILS = {
       { name: 'Brainstorming', emoji: '💡', detail: 'La plasticité cérébrale est améliorée. Tu fais des connexions plus rapides et plus créatives.', tips: ['Seule ou en groupe', 'Note tout, trie après'] },
       { name: 'Networking', emoji: '🤝', detail: 'Ton énergie et ta confiance sont en hausse. C\'est plus facile de créer des connexions.', tips: ['Café avec un contact pro', 'Événement de networking'] },
       { name: 'Essayer quelque chose de nouveau', emoji: '✨', detail: 'L\'œstrogène réduit l\'aversion au risque et augmente la curiosité. Go !', tips: ['Nouveau cours, nouvelle recette, nouvelle activité', 'Sors de ta zone de confort'] },
-      { name: 'Sortie culturelle', emoji: '🎨', detail: 'Ton cerveau absorbe plus facilement. Musée, expo, spectacle — tout te nourrit.', tips: ['Expo, concert, théâtre', 'Seule ou entre amies'] },
+      { name: 'Sortie culturelle', emoji: '🎨', detail: 'Ton cerveau absorbe plus facilement. Musée, expo, spectacle, tout te nourrit.', tips: ['Expo, concert, théâtre', 'Seule ou entre amies'] },
       { name: 'Cours en ligne', emoji: '💻', detail: 'La plasticité neuronale est à son max. Tu apprends plus vite et retiens mieux.', tips: ['Nouvelle compétence ou approfondissement', 'Sessions courtes et régulières'] },
       { name: 'Organiser son espace', emoji: '🏠', detail: 'L\'énergie montante + la clarté mentale = le combo parfait pour désencombrer et réorganiser.', tips: ['Une pièce ou un tiroir à la fois', 'Musique motivante en fond'] },
     ],
@@ -86,7 +86,7 @@ export const CONSEILS = {
     fitness: [
       { name: 'Entraînement intense', emoji: '💪', detail: 'Pic de force et d\'endurance grâce à l\'œstrogène et la testostérone au max. C\'est LE moment pour les PR !', tips: ['Augmente les charges', 'Focus compound movements'] },
       { name: 'HIIT', emoji: '🔥', detail: 'Ton corps récupère incroyablement vite. Les intervalles haute intensité sont ultra-efficaces.', tips: ['30-40 minutes max', 'Donne tout sur chaque intervalle'] },
-      { name: 'Danse', emoji: '💃', detail: 'Coordination, grâce, énergie — tout est au sommet. La danse connecte le corps et l\'esprit.', tips: ['Cours collectif haute énergie', 'Essaie un nouveau style'] },
+      { name: 'Danse', emoji: '💃', detail: 'Coordination, grâce, énergie, tout est au sommet. La danse connecte le corps et l\'esprit.', tips: ['Cours collectif haute énergie', 'Essaie un nouveau style'] },
       { name: 'Sports collectifs', emoji: '⚽', detail: 'Tes capacités sociales et sportives sont au max. Le jeu d\'équipe est naturel et fluide.', tips: ['Foot, basket, volley', 'L\'énergie du groupe te porte'] },
       { name: 'Boxe', emoji: '🥊', detail: 'Coordination, réflexes et puissance maximale. Excellent pour canaliser ton énergie débordante.', tips: ['Cours d\'initiation ou sac de frappe', 'Focus technique et cardio'] },
       { name: 'Course à pied', emoji: '🏃‍♀️', detail: 'Ton endurance est maximale. Si tu as un record à battre, c\'est maintenant.', tips: ['Tempo run ou fartlek', 'Écoute ton corps malgré l\'euphorie'] },
@@ -106,7 +106,7 @@ export const CONSEILS = {
   },
   luteal: {
     alimentation: [
-      { name: 'Chocolat noir', emoji: '🍫', detail: 'Magnésium, fer et sérotonine. Tes envies de chocolat ont une raison biologique — honore-les.', tips: ['70% cacao minimum', 'Un à deux carrés quand l\'envie vient'] },
+      { name: 'Chocolat noir', emoji: '🍫', detail: 'Magnésium, fer et sérotonine. Tes envies de chocolat ont une raison biologique. Honore-les.', tips: ['70% cacao minimum', 'Un à deux carrés quand l\'envie vient'] },
       { name: 'Patate douce', emoji: '🍠', detail: 'Glucides complexes qui stabilisent la glycémie et l\'humeur sans pic de sucre.', tips: ['Rôtie, en purée ou en frites', 'Excellent dîner réconfortant'] },
       { name: 'Graines de chia', emoji: '🌱', detail: 'Oméga-3, fibres et calcium. Combattent l\'inflammation et la rétention d\'eau.', tips: ['En pudding overnight', 'Dans un smoothie'] },
       { name: 'Graines de sésame', emoji: '🫘', detail: 'Zinc et calcium qui soutiennent la progestérone et réduisent le SPM.', tips: ['En tahini', 'Parsemées sur les plats'] },

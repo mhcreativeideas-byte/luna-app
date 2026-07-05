@@ -55,7 +55,7 @@ export const EXERCISES = {
     icon: '💪',
     exercises: [
       {
-        name: 'Circuit HIIT — 4 rounds',
+        name: 'Circuit HIIT, 4 rounds',
         duration: '20 min',
         sets: '40s effort / 20s repos',
         icon: '🔥',
@@ -85,7 +85,7 @@ export const EXERCISES = {
     ],
     avoid: [
       { name: 'Rester sédentaire', reason: 'Meilleur moment du cycle pour progresser. Ne gâche pas cette fenêtre !' },
-      { name: 'Sous-alimenter l\'entraînement', reason: 'Ton corps construit du muscle — il a besoin de protéines et glucides.' },
+      { name: 'Sous-alimenter l\'entraînement', reason: 'Ton corps construit du muscle, il a besoin de protéines et glucides.' },
     ],
     whyThisSport: 'L\'œstrogène favorise la synthèse des protéines musculaires → meilleure récupération → tu peux aller plus fort. La tolérance à la douleur est aussi plus élevée. C\'est LE moment pour gagner en force.',
   },
@@ -95,8 +95,8 @@ export const EXERCISES = {
     duration: '45-60 min',
     intensity: 4,
     intensityLabel: 'Maximale',
-    message: 'Pic de force et d\'endurance ! Teste tes limites. Attention à bien t\'échauffer — laxité ligamentaire plus élevée.',
-    intro: 'Tu es au sommet de ta forme ! Force, endurance, coordination — tout est au max.',
+    message: 'Pic de force et d\'endurance ! Teste tes limites. Attention à bien t\'échauffer : laxité ligamentaire plus élevée.',
+    intro: 'Tu es au sommet de ta forme ! Force, endurance, coordination, tout est au max.',
     icon: '⚡',
     exercises: [
       {
@@ -141,7 +141,7 @@ export const EXERCISES = {
     intensity: 2,
     intensityLabel: 'Modérée à Basse',
     message: 'Ton métabolisme augmente, tu brûles plus au repos. Baisse l\'intensité progressivement.',
-    intro: 'L\'énergie redescend. Adapte l\'intensité au fil des jours — plus forte au début, plus douce à la fin.',
+    intro: 'L\'énergie redescend. Adapte l\'intensité au fil des jours : plus forte au début, plus douce à la fin.',
     icon: '🌙',
     exercises: [
       {
@@ -174,7 +174,7 @@ export const EXERCISES = {
       },
     ],
     avoid: [
-      { name: 'HIIT intense en fin de phase', reason: 'Cortisol déjà élevé — l\'intensité aggrave irritabilité et insomnie.' },
+      { name: 'HIIT intense en fin de phase', reason: 'Cortisol déjà élevé : l\'intensité aggrave irritabilité et insomnie.' },
       { name: 'Se forcer', reason: 'Les jours pré-menstruels, le repos est plus bénéfique qu\'un entraînement forcé.' },
       { name: 'Exercices à fort impact', reason: 'Sensibilité de poitrine et rétention d\'eau rendent les impacts inconfortables.' },
     ],

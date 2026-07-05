@@ -95,7 +95,7 @@ export default function Aujourdhui() {
           style={{ backgroundColor: phaseData.color, boxShadow: `0 10px 26px ${phaseData.color}40` }}
         >
           {todayCheckIn ? <Check size={18} /> : <Heart size={18} />}
-          {todayCheckIn ? 'Check-in fait — le modifier' : 'Comment te sens-tu ?'}
+          {todayCheckIn ? 'Check-in fait, le modifier' : 'Comment te sens-tu ?'}
         </button>
       </motion.div>
 

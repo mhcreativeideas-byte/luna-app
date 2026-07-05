@@ -59,14 +59,14 @@ const DID_YOU_KNOW = {
   ],
   luteal: [
     'La progestérone est un anxiolytique naturel. Le yoga et la méditation sont particulièrement efficaces en phase lutéale.',
-    'Ton métabolisme augmente de 10 à 20% en phase lutéale. Tu as réellement besoin de 200 à 300 calories de plus par jour.',
+    'Ton métabolisme augmente un peu (environ 5 %) en phase lutéale. Tu as réellement besoin d\'un peu plus d\'énergie chaque jour.',
     'La progestérone augmente ta température corporelle de 0.3 à 0.6°C, ce qui peut perturber ton sommeil.',
     'Les envies de sucre en phase lutéale sont causées par la baisse de sérotonine. Les glucides complexes la remontent sans le crash.',
     'La progestérone a un effet sédatif similaire aux benzodiazépines. C\'est pour ça que tu es plus fatiguée.',
     'Les ballonnements pré-menstruels sont causés par la progestérone qui ralentit le transit intestinal. Le gingembre et le fenouil aident.',
     'Le magnésium est le minéral le plus important en phase lutéale : il réduit irritabilité, crampes, insomnie et fringales.',
     'Ton corps utilise davantage les graisses comme carburant en phase lutéale. Le cardio modéré est particulièrement efficace.',
-    'La rétention d\'eau pré-menstruelle peut représenter 1 à 3 kg. C\'est de l\'eau, pas du gras — ça part en début de règles.',
+    'La rétention d\'eau pré-menstruelle peut représenter 1 à 3 kg. C\'est de l\'eau, pas du gras, ça part en début de règles.',
     'L\'acné pré-menstruelle est causée par la chute d\'œstrogène qui ne protège plus ta peau face à la testostérone résiduelle.',
   ],
 };
@@ -162,7 +162,7 @@ export default function Extras() {
           Aller <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>plus loin</em>
         </h1>
         <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
-          Ton journal, ton sport, ton sommeil et ton assistante luna — tout est réuni ici.
+          Ton journal, ton sport, ton sommeil et ton assistante luna, tout est réuni ici.
         </p>
       </motion.div>
 

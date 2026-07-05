@@ -114,10 +114,8 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, notifPrefs, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user } = useCycle();
 
-  const setNotifPref = (key, val) =>
-    dispatch({ type: 'UPDATE_SETTINGS', payload: { notifPrefs: { ...notifPrefs, [key]: val } } });
   const [confirm, setConfirm] = useState(null);
   const [showGoals, setShowGoals] = useState(false);
   const [editedGoals, setEditedGoals] = useState(goals || []);
@@ -249,21 +247,13 @@ export default function Settings() {
 
       <Section title="Notifications">
         <SettingToggle
-          label="Toutes les notifications"
+          label="Rappels doux"
           checked={notifications}
           onChange={(val) => dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } })}
         />
-        {notifications && (
-          <>
-            <SettingToggle label="Changement de phase" checked={notifPrefs?.phase ?? true} onChange={(v) => setNotifPref('phase', v)} />
-            <SettingToggle label="Règles qui approchent" checked={notifPrefs?.rules ?? true} onChange={(v) => setNotifPref('rules', v)} />
-            <SettingToggle label="Confirmation du jour 1" checked={notifPrefs?.day1 ?? true} onChange={(v) => setNotifPref('day1', v)} />
-            <SettingToggle label="Menu du jour" checked={notifPrefs?.menu ?? true} onChange={(v) => setNotifPref('menu', v)} />
-            <SettingToggle label="Check-in du soir" checked={notifPrefs?.checkin ?? true} onChange={(v) => setNotifPref('checkin', v)} />
-            <SettingToggle label="Semaine douceur (SPM)" checked={notifPrefs?.softweek ?? true} onChange={(v) => setNotifPref('softweek', v)} />
-            <SettingToggle label="Retrouvailles" checked={notifPrefs?.comeback ?? true} onChange={(v) => setNotifPref('comeback', v)} />
-          </>
-        )}
+        <p className="px-5 py-3 text-xs font-body text-luna-text-hint leading-relaxed">
+          Quelques rappels bienveillants au fil de ton cycle : changement de phase, règles qui approchent, menu du jour et check-in du soir.
+        </p>
       </Section>
 
       <Section title="App">

@@ -1,6 +1,6 @@
 export const ARTICLES = {
   menstrual: [
-    { title: 'Tout ce que tu devrais savoir sur ton flux', emoji: '🩸', summary: 'Couleur, abondance, durée — ton flux te parle. Apprends à l\'écouter.' },
+    { title: 'Tout ce que tu devrais savoir sur ton flux', emoji: '🩸', summary: 'Couleur, abondance, durée, ton flux te parle. Apprends à l\'écouter.' },
     { title: 'Le fer : ton allié numéro 1 pendant les règles', emoji: '💪', summary: 'Pourquoi tu es fatiguée et comment y remédier naturellement.' },
     { title: '5 postures de yoga pour soulager les crampes', emoji: '🧘', summary: 'Ces postures ciblent directement les zones de tension menstruelle.' },
     { title: 'Pourquoi tu as le droit de tout annuler', emoji: '🛋️', summary: 'La science derrière le besoin de repos menstruel.' },

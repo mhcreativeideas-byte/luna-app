@@ -86,7 +86,7 @@ export default function MonthlyReport() {
       else msgs.push('Ton énergie est restée stable par rapport au mois dernier.');
     }
     if (currentStats.totalEntries > 0) msgs.push(`Tu as fait ${currentStats.totalEntries} check-in${currentStats.totalEntries > 1 ? 's' : ''} ce mois.`);
-    if (currentStats.avgEnergyByPhase.follicular > 70) msgs.push('Ton énergie en phase folliculaire est excellente — tu en profites bien !');
+    if (currentStats.avgEnergyByPhase.follicular > 70) msgs.push('Ton énergie en phase folliculaire est excellente, tu en profites bien !');
     if (currentStats.topSymptoms.length > 0) { const top = currentStats.topSymptoms[0]; msgs.push(`"${top[0]}" est ton ressenti le plus fréquent ce mois (${top[1]}x).`); }
     return msgs;
   }, [currentStats, prevStats]);

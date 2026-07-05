@@ -30,13 +30,13 @@ const routineSteps = {
   ],
   follicular: [
     { icon: '☀️', title: 'Lumière naturelle', desc: 'Expose-toi à la lumière dès le réveil pour recaler ton rythme circadien.' },
-    { icon: '⏰', title: 'Rythme régulier', desc: 'Coucher à heure fixe — l\'énergie est là, profites-en pour créer de bonnes habitudes.' },
+    { icon: '⏰', title: 'Rythme régulier', desc: 'Coucher à heure fixe : l\'énergie est là, profites-en pour créer de bonnes habitudes.' },
     { icon: '🧘', title: 'Étirements doux', desc: '5 min d\'étirements avant le coucher pour relâcher les tensions de la journée.' },
   ],
   ovulatory: [
     { icon: '🧘', title: 'Méditation', desc: 'Méditation courte pour canaliser l\'énergie avant le sommeil. Tu as naturellement plus d\'énergie.' },
     { icon: '💧', title: 'Hydratation', desc: 'Eau détox concombre-menthe. Garde un verre d\'eau près du lit.' },
-    { icon: '📵', title: 'Déconnexion', desc: 'Pas d\'écran 1h avant. Ton énergie est haute — protège ton sommeil.' },
+    { icon: '📵', title: 'Déconnexion', desc: 'Pas d\'écran 1h avant. Ton énergie est haute, protège ton sommeil.' },
   ],
   luteal: [
     { icon: '🍵', title: 'Tisane & Magnésium', desc: 'Tisane camomille 45 min avant. Si tu as du magnésium en complément, prends-le au coucher.' },

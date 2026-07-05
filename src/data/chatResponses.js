@@ -87,229 +87,229 @@ export const QUICK_SUGGESTIONS = [
 const RESPONSES = {
   menstrual: {
     fatigue: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, à J${ctx.currentDay} c'est totalement normal d'être à plat — tes hormones sont au plus bas en ce moment.\n\nCe qui va vraiment t'aider : du chocolat noir et des amandes pour le magnésium, des lentilles ou des épinards pour le fer, et surtout te coucher tôt. 8-9h de sommeil c'est pas du luxe cette semaine, c'est un vrai besoin.\n\nTa fatigue va remonter dans 2-3 jours quand l'œstrogène reprend. Patience 🌱`,
-      `${ctx.name}, J${ctx.currentDay} et fatiguée ? C'est clairement tes hormones — œstrogène et progestérone sont au plancher.\n\nMise sur le magnésium (amandes, chocolat noir, banane) et le fer (lentilles, épinards). Bois beaucoup d'eau et accorde-toi une vraie nuit longue ce soir.\n\nC'est pas un coup de mou, c'est ton corps qui se régénère. Ça passe dans quelques jours 💛`,
+      `${ctx.name}, à J${ctx.currentDay} c'est totalement normal d'être à plat, tes hormones sont au plus bas en ce moment.\n\nCe qui va vraiment t'aider : du chocolat noir et des amandes pour le magnésium, des lentilles ou des épinards pour le fer, et surtout te coucher tôt. 8-9h de sommeil c'est pas du luxe cette semaine, c'est un vrai besoin.\n\nTa fatigue va remonter dans 2-3 jours quand l'œstrogène reprend. Patience 🌱`,
+      `${ctx.name}, J${ctx.currentDay} et fatiguée ? C'est clairement tes hormones : œstrogène et progestérone sont au plancher.\n\nMise sur le magnésium (amandes, chocolat noir, banane) et le fer (lentilles, épinards). Bois beaucoup d'eau et accorde-toi une vraie nuit longue ce soir.\n\nC'est pas un coup de mou, c'est ton corps qui se régénère. Ça passe dans quelques jours 💛`,
     ]), ctx),
 
     normal: (ctx) => pickOne([
-      `${ctx.name}, oui, tout ce que tu ressens est normal pour J${ctx.currentDay}. Tes hormones sont au plus bas, et ça peut donner : fatigue, crampes, envie de rester au chaud, sensibilité émotionnelle, ballonnements...\n\nTon corps élimine la muqueuse utérine — c'est un vrai travail interne. Sois douce avec toi, c'est pas le moment de tout donner. Ça remonte bientôt 💜`,
-      `${ctx.name}, ce que tu ressens à J${ctx.currentDay} est complètement logique. Phase menstruelle = hormones au plancher. Fatigue, crampes, émotions à fleur de peau — c'est le package.\n\nRien d'inquiétant, ton corps fait son job. Prends soin de toi et ne te mets pas la pression. La remontée arrive vite 🌸`,
+      `${ctx.name}, oui, tout ce que tu ressens est normal pour J${ctx.currentDay}. Tes hormones sont au plus bas, et ça peut donner : fatigue, crampes, envie de rester au chaud, sensibilité émotionnelle, ballonnements...\n\nTon corps élimine la muqueuse utérine : c'est un vrai travail interne. Sois douce avec toi, c'est pas le moment de tout donner. Ça remonte bientôt 💜`,
+      `${ctx.name}, ce que tu ressens à J${ctx.currentDay} est complètement logique. Phase menstruelle = hormones au plancher. Fatigue, crampes, émotions à fleur de peau : c'est le package.\n\nRien d'inquiétant, ton corps fait son job. Prends soin de toi et ne te mets pas la pression. La remontée arrive vite 🌸`,
     ]),
 
-    ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${Math.max(0, ctx.cycleLength - 14)}, soit dans environ ${Math.max(0, ctx.cycleLength - 14 - ctx.currentDay)} jours.\n\nTu le sentiras sûrement : montée d'énergie, meilleure humeur, parfois une petite douleur d'un côté du ventre. En attendant, repose-toi — la phase folliculaire va te redonner de l'élan ✨`,
+    ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${Math.max(0, ctx.cycleLength - 14)}, soit dans environ ${Math.max(0, ctx.cycleLength - 14 - ctx.currentDay)} jours.\n\nTu le sentiras sûrement : montée d'énergie, meilleure humeur, parfois une petite douleur d'un côté du ventre. En attendant, repose-toi : la phase folliculaire va te redonner de l'élan ✨`,
 
     regles: (ctx) => pickOne([
-      `${ctx.name}, tu es à J${ctx.currentDay} en phase menstruelle — tes règles sont là. Ton cycle fait ${ctx.cycleLength} jours, donc les prochaines arriveront dans environ ${ctx.daysUntilPeriod} jours.\n\nSi t'as des douleurs : bouillotte sur le ventre, tisane gingembre ou curcuma, et du magnésium (amandes, chocolat noir). Prends soin de toi cette semaine 🌙`,
-      `${ctx.name}, J${ctx.currentDay} — tu es dans tes règles. Prochaines dans environ ${ctx.daysUntilPeriod} jours (cycle de ${ctx.cycleLength} jours).\n\nPour soulager les douleurs, le combo curcuma + gingembre + bouillotte, c'est simple mais tellement efficace. Et le magnésium au coucher aide aussi les crampes 💜`,
+      `${ctx.name}, tu es à J${ctx.currentDay} en phase menstruelle : tes règles sont là. Ton cycle fait ${ctx.cycleLength} jours, donc les prochaines arriveront dans environ ${ctx.daysUntilPeriod} jours.\n\nSi t'as des douleurs : bouillotte sur le ventre, tisane gingembre ou curcuma, et du magnésium (amandes, chocolat noir). Prends soin de toi cette semaine 🌙`,
+      `${ctx.name}, J${ctx.currentDay} : tu es dans tes règles. Prochaines dans environ ${ctx.daysUntilPeriod} jours (cycle de ${ctx.cycleLength} jours).\n\nPour soulager les douleurs, le combo curcuma + gingembre + bouillotte, c'est simple mais tellement efficace. Et le magnésium au coucher aide aussi les crampes 💜`,
     ]),
 
     manger: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, pendant tes règles ton corps perd du fer — c'est la priorité numéro 1.\n\nMise sur les lentilles, épinards, tofu, et combine toujours avec de la vitamine C (citron, kiwi, poivron) pour mieux absorber le fer. Le curcuma et le gingembre sont top en anti-inflammatoire, et le chocolat noir 70%+ c'est ton meilleur ami pour le magnésium.\n\nÀ limiter : le café (il bloque le fer) et l'alcool (amplifie l'inflammation). Mais si t'as envie de chocolat, fonce — ton corps réclame du magnésium 🍫`,
+      `${ctx.name}, pendant tes règles ton corps perd du fer : c'est la priorité numéro 1.\n\nMise sur les lentilles, épinards, tofu, et combine toujours avec de la vitamine C (citron, kiwi, poivron) pour mieux absorber le fer. Le curcuma et le gingembre sont top en anti-inflammatoire, et le chocolat noir 70%+ c'est ton meilleur ami pour le magnésium.\n\nÀ limiter : le café (il bloque le fer) et l'alcool (amplifie l'inflammation). Mais si t'as envie de chocolat, fonce : ton corps réclame du magnésium 🍫`,
       `${ctx.name}, en phase menstruelle, pense fer + anti-inflammatoire.\n\nConcrètement : lentilles, épinards, saumon ou sardines, et des épices comme le curcuma et le gingembre. Ajoute du citron sur tes plats pour mieux absorber le fer.\n\nÉvite de trop forcer sur le café (mauvais pour l'absorption du fer) et privilégie les repas chauds et réconfortants. Ton corps a besoin de douceur 🌿`,
     ]), ctx),
 
     sport: (ctx) => pickOne([
-      `${ctx.name}, à J${ctx.currentDay} pas de pression sur le sport. Ton énergie est au plus bas et c'est normal.\n\nCe qui fait du bien : yoga doux, marche tranquille, stretching, natation douce. Même 10 minutes de marche ça compte.\n\nLe HIIT, la muscu lourde, le cardio intense — garde ça pour la phase folliculaire. Là tu vas tout déchirer. Pour l'instant, on est en mode récupération 💪`,
-      `${ctx.name}, écoute ton corps à J${ctx.currentDay}. C'est le moment du yoga restauratif, de la marche douce, du stretching.\n\nPas besoin de forcer — bouger un peu suffit. L'intensité, ça revient naturellement en phase folliculaire. Ton corps récupère, laisse-le faire 🧘‍♀️`,
+      `${ctx.name}, à J${ctx.currentDay} pas de pression sur le sport. Ton énergie est au plus bas et c'est normal.\n\nCe qui fait du bien : yoga doux, marche tranquille, stretching, natation douce. Même 10 minutes de marche ça compte.\n\nLe HIIT, la muscu lourde, le cardio intense, garde ça pour la phase folliculaire. Là tu vas tout déchirer. Pour l'instant, on est en mode récupération 💪`,
+      `${ctx.name}, écoute ton corps à J${ctx.currentDay}. C'est le moment du yoga restauratif, de la marche douce, du stretching.\n\nPas besoin de forcer : bouger un peu suffit. L'intensité, ça revient naturellement en phase folliculaire. Ton corps récupère, laisse-le faire 🧘‍♀️`,
     ]),
 
     dormir: (ctx) => pickOne([
-      `${ctx.name}, le sommeil en phase menstruelle peut être perturbé par les douleurs. Bouillotte sur le ventre au coucher, tisane camomille, chambre à 18-19°C.\n\nMagnésium le soir + dernier repas léger 2h avant. Vise 8-9h — ton corps en a besoin 🌙`,
-      `${ctx.name}, bien dormir pendant tes règles c'est possible ! Tisane camomille + bouillotte + chambre fraîche.\n\nSi les douleurs te réveillent, magnésium au coucher. Accorde-toi des nuits longues cette semaine — 8-9h idéalement 😴`,
+      `${ctx.name}, le sommeil en phase menstruelle peut être perturbé par les douleurs. Bouillotte sur le ventre au coucher, tisane camomille, chambre à 18-19°C.\n\nMagnésium le soir + dernier repas léger 2h avant. Vise 8-9h : ton corps en a besoin 🌙`,
+      `${ctx.name}, bien dormir pendant tes règles c'est possible ! Tisane camomille + bouillotte + chambre fraîche.\n\nSi les douleurs te réveillent, magnésium au coucher. Accorde-toi des nuits longues cette semaine : 8-9h idéalement 😴`,
     ]),
 
     sucre: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, les envies de sucre pendant les règles c'est 100% hormonal — ta sérotonine est basse et ton cerveau cherche du sucre rapide pour la remonter.\n\nL'astuce : chocolat noir 70%+, banane avec du beurre de cacahuète, porridge avoine-miel-cannelle, ou dattes + amandes. Ça nourrit le besoin sans le pic glycémique.\n\nZéro culpabilité — c'est de la biochimie, pas un manque de volonté 💛`,
-      `${ctx.name}, envie de sucre ? Totalement normal en phase menstruelle — c'est ta sérotonine qui est basse.\n\nAu lieu de craquer sur du sucre raffiné, essaie le chocolat noir 70%+ (magnésium + plaisir), des dattes avec des amandes, ou une banane avec du beurre de cacahuète. Même effet réconfortant, sans le crash après.\n\nTon corps te parle, écoute-le intelligemment 🍫`,
+      `${ctx.name}, les envies de sucre pendant les règles c'est 100% hormonal : ta sérotonine est basse et ton cerveau cherche du sucre rapide pour la remonter.\n\nL'astuce : chocolat noir 70%+, banane avec du beurre de cacahuète, porridge avoine-miel-cannelle, ou dattes + amandes. Ça nourrit le besoin sans le pic glycémique.\n\nZéro culpabilité : c'est de la biochimie, pas un manque de volonté 💛`,
+      `${ctx.name}, envie de sucre ? Totalement normal en phase menstruelle : c'est ta sérotonine qui est basse.\n\nAu lieu de craquer sur du sucre raffiné, essaie le chocolat noir 70%+ (magnésium + plaisir), des dattes avec des amandes, ou une banane avec du beurre de cacahuète. Même effet réconfortant, sans le crash après.\n\nTon corps te parle, écoute-le intelligemment 🍫`,
     ]), ctx),
 
-    ballonnements: (ctx) => adaptFoodText(`${ctx.name}, les ballonnements pendant les règles sont causés par les prostaglandines — les mêmes qui provoquent les crampes.\n\nCe qui aide vraiment : tisane de gingembre ou de fenouil, manger lentement en petites portions, marcher un peu après les repas. Évite les boissons gazeuses et les chewing-gums.\n\nÇa s'améliore après tes règles, promis 🌿`, ctx),
+    ballonnements: (ctx) => adaptFoodText(`${ctx.name}, les ballonnements pendant les règles sont causés par les prostaglandines : les mêmes qui provoquent les crampes.\n\nCe qui aide vraiment : tisane de gingembre ou de fenouil, manger lentement en petites portions, marcher un peu après les repas. Évite les boissons gazeuses et les chewing-gums.\n\nÇa s'améliore après tes règles, promis 🌿`, ctx),
 
-    irritabilite: (ctx) => `${ctx.name}, l'irritabilité pendant les règles c'est hormonal — tes œstrogènes et ta sérotonine sont au plancher.\n\nCe qui aide : la respiration 4-7-8 (inspire 4s, retiens 7s, expire 8s), du magnésium, une marche en extérieur pour la sérotonine naturelle. Et évite le café qui peut amplifier l'anxiété.\n\nC'est pas toi le problème, ce sont tes hormones. Et ça passe 💜`,
+    irritabilite: (ctx) => `${ctx.name}, l'irritabilité pendant les règles c'est hormonal : tes œstrogènes et ta sérotonine sont au plancher.\n\nCe qui aide : la respiration 4-7-8 (inspire 4s, retiens 7s, expire 8s), du magnésium, une marche en extérieur pour la sérotonine naturelle. Et évite le café qui peut amplifier l'anxiété.\n\nC'est pas toi le problème, ce sont tes hormones. Et ça passe 💜`,
 
-    acne: (ctx) => adaptFoodText(`${ctx.name}, l'acné autour des règles c'est la chute d'œstrogène qui ne protège plus ta peau.\n\nMise sur le zinc (graines de courge, pois chiches) et les oméga-3 (saumon, noix, graines de lin). Bois beaucoup d'eau et nettoyage doux — surtout pas de décapage.\n\nTa peau va s'améliorer en phase folliculaire quand l'œstrogène remonte 🌸`, ctx),
+    acne: (ctx) => adaptFoodText(`${ctx.name}, l'acné autour des règles c'est la chute d'œstrogène qui ne protège plus ta peau.\n\nMise sur le zinc (graines de courge, pois chiches) et les oméga-3 (saumon, noix, graines de lin). Bois beaucoup d'eau et nettoyage doux : surtout pas de décapage.\n\nTa peau va s'améliorer en phase folliculaire quand l'œstrogène remonte 🌸`, ctx),
 
-    pleurer: (ctx) => `${ctx.name}, avoir envie de pleurer pendant les règles c'est complètement normal. Tes hormones sont au plancher.\n\nSi t'as besoin de pleurer, pleure — ça libère du cortisol et ça fait du bien. Accorde-toi du cocooning : couverture, tisane, série réconfortante. Parle à quelqu'un si tu en ressens le besoin.\n\nDans 2-3 jours l'œstrogène remonte et tu te sentiras déjà mieux 🌱`,
+    pleurer: (ctx) => `${ctx.name}, avoir envie de pleurer pendant les règles c'est complètement normal. Tes hormones sont au plancher.\n\nSi t'as besoin de pleurer, pleure : ça libère du cortisol et ça fait du bien. Accorde-toi du cocooning : couverture, tisane, série réconfortante. Parle à quelqu'un si tu en ressens le besoin.\n\nDans 2-3 jours l'œstrogène remonte et tu te sentiras déjà mieux 🌱`,
 
     stress: (ctx) => `${ctx.name}, le stress est amplifié pendant les règles parce que tes hormones régulatrices sont basses.\n\nEssaie la respiration 4-7-8 (3 cycles minimum), mange des amandes ou du chocolat noir pour le magnésium, et va marcher même 15 minutes. Limite le café et les écrans si tu peux.\n\nTon seuil de tolérance est naturellement plus bas en ce moment. C'est hormonal, pas de la fragilité 💆‍♀️`,
 
-    confiance: (ctx) => `${ctx.name}, c'est normal de se sentir moins confiante pendant les règles — la chute d'œstrogène impacte directement l'estime de soi.\n\nRappelle-toi que c'est temporaire (2-3 jours). Ton corps fait un travail incroyable et tu n'as rien à prouver à personne cette semaine.\n\nDans quelques jours, l'œstrogène remonte et ta confiance avec. En attendant, sois ta meilleure amie ✨`,
+    confiance: (ctx) => `${ctx.name}, c'est normal de se sentir moins confiante pendant les règles : la chute d'œstrogène impacte directement l'estime de soi.\n\nRappelle-toi que c'est temporaire (2-3 jours). Ton corps fait un travail incroyable et tu n'as rien à prouver à personne cette semaine.\n\nDans quelques jours, l'œstrogène remonte et ta confiance avec. En attendant, sois ta meilleure amie ✨`,
 
-    retention: (ctx) => `${ctx.name}, la rétention d'eau pendant les règles c'est hormonal. Paradoxalement, boire plus d'eau aide à la réduire.\n\nRéduis le sel, mise sur le potassium (banane, avocat, patate douce) et marche un peu pour activer la circulation. La tisane de pissenlit est aussi un bon drainant naturel.\n\nLes 1-2 kg en plus c'est de l'eau, pas du gras — ça part après les règles 💧`,
+    retention: (ctx) => `${ctx.name}, la rétention d'eau pendant les règles c'est hormonal. Paradoxalement, boire plus d'eau aide à la réduire.\n\nRéduis le sel, mise sur le potassium (banane, avocat, patate douce) et marche un peu pour activer la circulation. La tisane de pissenlit est aussi un bon drainant naturel.\n\nLes 1-2 kg en plus c'est de l'eau, pas du gras : ça part après les règles 💧`,
 
     snack: (ctx) => adaptFoodText(`${ctx.name}, en phase menstruelle les meilleurs snacks c'est ceux qui apportent du fer et du magnésium.\n\nMes favoris : chocolat noir 70% + amandes, banane + beurre de cacahuète, dattes fourrées aux noix, ou un petit energy ball chocolat-dattes.\n\nVa voir la section Recettes > Snacks pour plus d'idées adaptées à ta phase 🍪`, ctx),
 
     boisson: (ctx) => adaptFoodText(`${ctx.name}, les meilleures boissons pour tes règles :\n\nGolden milk au curcuma (anti-inflammatoire), infusion gingembre-citron (aide les crampes), tisane de camomille (relaxante). Et beaucoup d'eau !\n\nÀ limiter : le café qui réduit l'absorption du fer, et l'alcool qui amplifie l'inflammation 🌿`, ctx),
 
     douleur: (ctx) => pickOne([
-      `${ctx.name}, les crampes et douleurs à J${ctx.currentDay} c'est les prostaglandines — des molécules inflammatoires qui font contracter l'utérus.\n\nCe qui aide concrètement : bouillotte sur le ventre (ça détend les muscles), tisane gingembre ou curcuma (anti-inflammatoire naturel), magnésium (amandes, chocolat noir). Le gingembre est aussi efficace qu'un ibuprofène dans certaines études.\n\nSi les douleurs sont très intenses ou inhabituelles, n'hésite pas à en parler à ton médecin 💜`,
-      `${ctx.name}, j'ai mal pour toi 💜 Les douleurs menstruelles c'est ultra fréquent et c'est hormonal.\n\nMes meilleures armes : bouillotte sur le bas-ventre, tisane gingembre-curcuma, magnésium, et la position fœtale si ça tire beaucoup. Évite le café qui peut aggraver les crampes.\n\nSi ça ne passe pas ou que c'est invalidant, parle-en à ton médecin — tu ne dois pas souffrir en silence.`,
+      `${ctx.name}, les crampes et douleurs à J${ctx.currentDay} c'est les prostaglandines : des molécules inflammatoires qui font contracter l'utérus.\n\nCe qui aide concrètement : bouillotte sur le ventre (ça détend les muscles), tisane gingembre ou curcuma (anti-inflammatoire naturel), magnésium (amandes, chocolat noir). Le gingembre est aussi efficace qu'un ibuprofène dans certaines études.\n\nSi les douleurs sont très intenses ou inhabituelles, n'hésite pas à en parler à ton médecin 💜`,
+      `${ctx.name}, j'ai mal pour toi 💜 Les douleurs menstruelles c'est ultra fréquent et c'est hormonal.\n\nMes meilleures armes : bouillotte sur le bas-ventre, tisane gingembre-curcuma, magnésium, et la position fœtale si ça tire beaucoup. Évite le café qui peut aggraver les crampes.\n\nSi ça ne passe pas ou que c'est invalidant, parle-en à ton médecin : tu ne dois pas souffrir en silence.`,
     ]),
 
-    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! Tu y entres tes ingrédients et je te propose des recettes adaptées à ta phase menstruelle.\n\nEn ce moment, priorise les ingrédients riches en fer (lentilles, épinards, tofu) et en magnésium (amandes, chocolat noir). Le gingembre et le curcuma sont tes alliés anti-douleur 🧊`,
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans l'onglet Manger ! Tu y entres tes ingrédients et je te propose des recettes adaptées à ta phase menstruelle.\n\nEn ce moment, priorise les ingrédients riches en fer (lentilles, épinards, tofu) et en magnésium (amandes, chocolat noir). Le gingembre et le curcuma sont tes alliés anti-douleur 🧊`,
 
     default: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, tu es à J${ctx.currentDay} en phase menstruelle. Tes hormones sont au plus bas — c'est le moment de ralentir.\n\nLes priorités : fer + vitamine C, magnésium, sport doux, beaucoup de sommeil et d'eau. Ton corps se régénère, il a besoin de douceur.\n\nTout va remonter en phase folliculaire. Dis-moi si tu veux des conseils plus précis sur la nutrition, le sport ou le bien-être 🌱`,
-      `${ctx.name}, J${ctx.currentDay} — phase menstruelle. Ton corps travaille en coulisses.\n\nRepose-toi, mange bien (fer, magnésium), bouge doucement. C'est pas le moment de te pousser, c'est le moment de prendre soin de toi.\n\nSur quoi tu veux que je t'aide ? Nutrition, sport, sommeil, humeur ? 💜`,
+      `${ctx.name}, tu es à J${ctx.currentDay} en phase menstruelle. Tes hormones sont au plus bas : c'est le moment de ralentir.\n\nLes priorités : fer + vitamine C, magnésium, sport doux, beaucoup de sommeil et d'eau. Ton corps se régénère, il a besoin de douceur.\n\nTout va remonter en phase folliculaire. Dis-moi si tu veux des conseils plus précis sur la nutrition, le sport ou le bien-être 🌱`,
+      `${ctx.name}, J${ctx.currentDay} : phase menstruelle. Ton corps travaille en coulisses.\n\nRepose-toi, mange bien (fer, magnésium), bouge doucement. C'est pas le moment de te pousser, c'est le moment de prendre soin de toi.\n\nSur quoi tu veux que je t'aide ? Nutrition, sport, sommeil, humeur ? 💜`,
     ]), ctx),
   },
 
   follicular: {
     fatigue: (ctx) => pickOne([
-      `${ctx.name}, encore fatiguée à J${ctx.currentDay} ? C'est normal — l'œstrogène remonte mais elle est pas encore à son pic.\n\nCe qui va accélérer les choses : lumière naturelle le matin (15 min dehors), des protéines au petit-déj (œufs, yaourt grec), et un peu de mouvement même léger.\n\nTon énergie monte chaque jour. D'ici quelques jours tu vas te sentir en pleine forme 🚀`,
+      `${ctx.name}, encore fatiguée à J${ctx.currentDay} ? C'est normal : l'œstrogène remonte mais elle est pas encore à son pic.\n\nCe qui va accélérer les choses : lumière naturelle le matin (15 min dehors), des protéines au petit-déj (œufs, yaourt grec), et un peu de mouvement même léger.\n\nTon énergie monte chaque jour. D'ici quelques jours tu vas te sentir en pleine forme 🚀`,
       `${ctx.name}, à J${ctx.currentDay} l'énergie revient progressivement. Si t'es encore un peu à plat, c'est que l'œstrogène monte doucement.\n\nBouge un peu, mange protéiné le matin, et expose-toi à la lumière naturelle. Le déclic arrive bientôt 💪`,
     ]),
 
-    normal: (ctx) => `${ctx.name}, en phase folliculaire (J${ctx.currentDay}) c'est ta phase de renouveau ! L'œstrogène remonte et avec elle : plus d'énergie, meilleure humeur, créativité en hausse, peau plus lumineuse.\n\nTon corps se prépare à l'ovulation — c'est le moment idéal pour lancer des projets, essayer des choses nouvelles, te dépasser au sport. Profites-en 💫`,
+    normal: (ctx) => `${ctx.name}, en phase folliculaire (J${ctx.currentDay}) c'est ta phase de renouveau ! L'œstrogène remonte et avec elle : plus d'énergie, meilleure humeur, créativité en hausse, peau plus lumineuse.\n\nTon corps se prépare à l'ovulation : c'est le moment idéal pour lancer des projets, essayer des choses nouvelles, te dépasser au sport. Profites-en 💫`,
 
     ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${ctx.cycleLength - 14}, soit dans environ ${Math.max(0, ctx.cycleLength - 14 - ctx.currentDay)} jours.\n\nTu le sentiras : pic d'énergie, meilleure humeur, parfois une légère douleur d'un côté du ventre, glaire cervicale type "blanc d'œuf".\n\nC'est ta période la plus fertile du cycle ✨`,
 
     manger: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, l'œstrogène remonte et ton corps est en mode construction — il a besoin de protéines et de zinc.\n\nMise sur le poulet, les œufs, le quinoa, les graines de courge, les pois chiches. Ajoute des probiotiques (yaourt, kéfir, kimchi) et des légumes variés et colorés.\n\nC'est le moment des repas riches et variés — ta digestion est au top 🌿`,
+      `${ctx.name}, l'œstrogène remonte et ton corps est en mode construction : il a besoin de protéines et de zinc.\n\nMise sur le poulet, les œufs, le quinoa, les graines de courge, les pois chiches. Ajoute des probiotiques (yaourt, kéfir, kimchi) et des légumes variés et colorés.\n\nC'est le moment des repas riches et variés : ta digestion est au top 🌿`,
       `${ctx.name}, ta phase folliculaire c'est le moment de manger varié et protéiné. Ton corps construit, il a besoin de briques.\n\nŒufs, quinoa, légumineuses, graines de courge pour le zinc, légumes colorés, probiotiques. Et ton métabolisme est efficace, donc profites-en 🌱`,
     ]), ctx),
 
     sport: (ctx) => pickOne([
-      `${ctx.name}, c'est TA meilleure phase pour le sport ! L'œstrogène booste ta récupération musculaire.\n\nHIIT, musculation, cardio, course, danse, boxe — c'est maintenant que tu peux tout donner. Ton corps récupère plus vite qu'à n'importe quel autre moment du cycle.\n\nProfite de cette fenêtre pour progresser 💪🔥`,
+      `${ctx.name}, c'est TA meilleure phase pour le sport ! L'œstrogène booste ta récupération musculaire.\n\nHIIT, musculation, cardio, course, danse, boxe : c'est maintenant que tu peux tout donner. Ton corps récupère plus vite qu'à n'importe quel autre moment du cycle.\n\nProfite de cette fenêtre pour progresser 💪🔥`,
       `${ctx.name}, fonce ! Phase folliculaire = meilleure récupération musculaire. C'est le moment de te dépasser : HIIT, muscu, cardio intense, tout est permis.\n\nTon corps en tirera le maximum de bénéfices. Vas-y à fond 🔥`,
     ]),
 
     dormir: (ctx) => pickOne([
-      `${ctx.name}, bonne nouvelle — ton sommeil s'améliore naturellement avec la montée d'œstrogène !\n\nRecale ton rythme : coucher fixe, lever tôt avec la lumière naturelle, sport le matin. 7-8h suffisent.\n\nC'est le moment idéal pour poser de bonnes habitudes de sommeil 😴`,
+      `${ctx.name}, bonne nouvelle : ton sommeil s'améliore naturellement avec la montée d'œstrogène !\n\nRecale ton rythme : coucher fixe, lever tôt avec la lumière naturelle, sport le matin. 7-8h suffisent.\n\nC'est le moment idéal pour poser de bonnes habitudes de sommeil 😴`,
       `${ctx.name}, l'œstrogène remonte et ton sommeil aussi ! Profite pour installer une routine solide.\n\nLumière naturelle le matin, sport en journée, pas d'écran avant le coucher. 7-8h c'est parfait en phase folliculaire 🌅`,
     ]),
 
-    sucre: (ctx) => adaptFoodText(`${ctx.name}, en phase folliculaire les envies de sucre devraient diminuer car l'œstrogène et la sérotonine remontent.\n\nSi tu en as encore, vérifie ton sommeil et ton petit-déj — un petit-déj pas assez protéiné peut provoquer des fringales. Essaie œufs + avocat + pain complet le matin.\n\nTon corps gère mieux le sucre en ce moment — c'est la meilleure phase pour réduire les envies 🍎`, ctx),
+    sucre: (ctx) => adaptFoodText(`${ctx.name}, en phase folliculaire les envies de sucre devraient diminuer car l'œstrogène et la sérotonine remontent.\n\nSi tu en as encore, vérifie ton sommeil et ton petit-déj : un petit-déj pas assez protéiné peut provoquer des fringales. Essaie œufs + avocat + pain complet le matin.\n\nTon corps gère mieux le sucre en ce moment : c'est la meilleure phase pour réduire les envies 🍎`, ctx),
 
-    irritabilite: (ctx) => `${ctx.name}, irritable en phase folliculaire c'est moins courant — ça peut venir d'autre chose.\n\nVérifie ton sommeil, ton stress, ton alimentation, ton hydratation. 5 minutes de respiration profonde ou une marche en extérieur peuvent aider rapidement.\n\nTon œstrogène devrait améliorer ton humeur dans les prochains jours 🌸`,
+    irritabilite: (ctx) => `${ctx.name}, irritable en phase folliculaire c'est moins courant : ça peut venir d'autre chose.\n\nVérifie ton sommeil, ton stress, ton alimentation, ton hydratation. 5 minutes de respiration profonde ou une marche en extérieur peuvent aider rapidement.\n\nTon œstrogène devrait améliorer ton humeur dans les prochains jours 🌸`,
 
     acne: (ctx) => adaptFoodText(`${ctx.name}, ta peau devrait s'améliorer ! L'œstrogène qui remonte la protège.\n\nPour accélérer : zinc (graines de courge, fruits de mer), vitamine A (patate douce, carottes), beaucoup d'eau, et un nettoyage doux matin et soir.\n\nSi l'acné persiste, c'est peut-être plus lié au stress ou à l'alimentation 🌿`, ctx),
 
-    confiance: (ctx) => `${ctx.name}, ta confiance remonte naturellement avec l'œstrogène ! Profite de cette phase pour planifier tes meetings importants, prendre la parole, lancer un projet qui te tient à cœur.\n\nTa communication et ta créativité sont en hausse — utilise cette fenêtre ✨`,
+    confiance: (ctx) => `${ctx.name}, ta confiance remonte naturellement avec l'œstrogène ! Profite de cette phase pour planifier tes meetings importants, prendre la parole, lancer un projet qui te tient à cœur.\n\nTa communication et ta créativité sont en hausse : utilise cette fenêtre ✨`,
 
-    snack: (ctx) => adaptFoodText(`${ctx.name}, pour ta phase folliculaire mise sur les snacks protéinés :\n\nGranola maison, crackers + houmous, œuf dur + graines de courge, yaourt grec + fruits, pomme + beurre d'amande.\n\nL'œstrogène remonte, ton corps construit — les protéines et le zinc sont tes alliés ! Va voir Recettes > Snacks pour plus d'idées 🍪`, ctx),
+    snack: (ctx) => adaptFoodText(`${ctx.name}, pour ta phase folliculaire mise sur les snacks protéinés :\n\nGranola maison, crackers + houmous, œuf dur + graines de courge, yaourt grec + fruits, pomme + beurre d'amande.\n\nL'œstrogène remonte, ton corps construit : les protéines et le zinc sont tes alliés ! Va voir Recettes > Snacks pour plus d'idées 🍪`, ctx),
 
-    boisson: (ctx) => adaptFoodText(`${ctx.name}, en phase folliculaire les meilleures boissons :\n\nSmoothie vert énergie (épinards, banane, spiruline), matcha latte pour une énergie longue durée, eau de coco citronnée, thé vert.\n\nLe matcha c'est top en ce moment — la L-théanine donne une énergie calme et concentrée ☕`, ctx),
+    boisson: (ctx) => adaptFoodText(`${ctx.name}, en phase folliculaire les meilleures boissons :\n\nSmoothie vert énergie (épinards, banane, spiruline), matcha latte pour une énergie longue durée, eau de coco citronnée, thé vert.\n\nLe matcha c'est top en ce moment : la L-théanine donne une énergie calme et concentrée ☕`, ctx),
 
     douleur: (ctx) => `${ctx.name}, des douleurs en phase folliculaire c'est moins courant. Si ça vient de la fin de tes règles, ça devrait s'améliorer rapidement avec la montée d'œstrogène.\n\nSi ça persiste : tisane gingembre, bouillotte, et magnésium. Et si c'est inhabituel, n'hésite pas à consulter 💛`,
 
-    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! Entre tes ingrédients et je te propose des recettes adaptées à ta phase folliculaire.\n\nEn ce moment, priorise les protéines (poulet, œufs, quinoa), le zinc (graines de courge, pois chiches) et les probiotiques (yaourt, kéfir). Ton corps est en mode construction 🌿`,
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans l'onglet Manger ! Entre tes ingrédients et je te propose des recettes adaptées à ta phase folliculaire.\n\nEn ce moment, priorise les protéines (poulet, œufs, quinoa), le zinc (graines de courge, pois chiches) et les probiotiques (yaourt, kéfir). Ton corps est en mode construction 🌿`,
 
     default: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, J${ctx.currentDay} en phase folliculaire — ton œstrogène remonte et c'est que du bon !\n\nC'est ta phase de renouveau : sport intense, nouveaux projets, alimentation variée et protéinée. Ta communication est au top, ton énergie monte chaque jour.\n\nSur quoi tu veux que je t'aide ? 🚀`,
-      `${ctx.name}, phase folliculaire à J${ctx.currentDay} — tu montes en puissance !\n\nProfite pour te dépasser au sport, manger varié et protéiné, et lancer des projets. C'est ta fenêtre de croissance.\n\nDis-moi ce dont tu as besoin 💫`,
+      `${ctx.name}, J${ctx.currentDay} en phase folliculaire : ton œstrogène remonte et c'est que du bon !\n\nC'est ta phase de renouveau : sport intense, nouveaux projets, alimentation variée et protéinée. Ta communication est au top, ton énergie monte chaque jour.\n\nSur quoi tu veux que je t'aide ? 🚀`,
+      `${ctx.name}, phase folliculaire à J${ctx.currentDay} : tu montes en puissance !\n\nProfite pour te dépasser au sport, manger varié et protéiné, et lancer des projets. C'est ta fenêtre de croissance.\n\nDis-moi ce dont tu as besoin 💫`,
     ]), ctx),
   },
 
   ovulatory: {
     fatigue: (ctx) => pickOne([
-      `${ctx.name}, fatiguée en phase ovulatoire ? C'est inhabituel — tes hormones sont à leur pic.\n\nVérifie ton sommeil des derniers jours, ton hydratation, un éventuel surentraînement ou un stress important. Si tout est OK, écoute ton corps — même au pic on peut avoir besoin de repos.\n\nAccorde-toi une journée douce 💛`,
-      `${ctx.name}, c'est surprenant d'être fatiguée à J${ctx.currentDay} en phase ovulatoire. T'as bien dormi ? Assez bu d'eau ? Pas trop poussé au sport ?\n\nSi c'est un jour off, c'est OK — écoute ton corps. Sinon, une marche et un bon repas protéiné devraient relancer la machine 💪`,
+      `${ctx.name}, fatiguée en phase ovulatoire ? C'est inhabituel : tes hormones sont à leur pic.\n\nVérifie ton sommeil des derniers jours, ton hydratation, un éventuel surentraînement ou un stress important. Si tout est OK, écoute ton corps : même au pic on peut avoir besoin de repos.\n\nAccorde-toi une journée douce 💛`,
+      `${ctx.name}, c'est surprenant d'être fatiguée à J${ctx.currentDay} en phase ovulatoire. T'as bien dormi ? Assez bu d'eau ? Pas trop poussé au sport ?\n\nSi c'est un jour off, c'est OK : écoute ton corps. Sinon, une marche et un bon repas protéiné devraient relancer la machine 💪`,
     ]),
 
-    normal: (ctx) => `${ctx.name}, phase ovulatoire à J${ctx.currentDay} — c'est ton pic hormonal ! Énergie et endurance au sommet, confiance boostée, peau éclatante, libido plus élevée.\n\nC'est ta fenêtre de 2-3 jours pour briller — présentations, dates, records sportifs. Fonce ✨`,
+    normal: (ctx) => `${ctx.name}, phase ovulatoire à J${ctx.currentDay} : c'est ton pic hormonal ! Énergie et endurance au sommet, confiance boostée, peau éclatante, libido plus élevée.\n\nC'est ta fenêtre de 2-3 jours pour briller : présentations, dates, records sportifs. Fonce ✨`,
 
-    ovulation: (ctx) => `${ctx.name}, tu es en plein dedans ! J${ctx.currentDay}, c'est ta fenêtre ovulatoire.\n\nLes signes typiques : glaire cervicale transparente et élastique, légère douleur d'un côté du ventre, pic de libido, température basale qui monte légèrement.\n\nC'est ta période la plus fertile — cette fenêtre dure environ 24-48h 🌟`,
+    ovulation: (ctx) => `${ctx.name}, tu es en plein dedans ! J${ctx.currentDay}, c'est ta fenêtre ovulatoire.\n\nLes signes typiques : glaire cervicale transparente et élastique, légère douleur d'un côté du ventre, pic de libido, température basale qui monte légèrement.\n\nC'est ta période la plus fertile : cette fenêtre dure environ 24-48h 🌟`,
 
-    manger: (ctx) => adaptFoodText(`${ctx.name}, ton œstrogène est au max — ton corps a besoin de fibres pour éliminer l'excès.\n\nMise sur les légumes verts, les crucifères (brocoli, chou-fleur), les fruits rouges pour les antioxydants, et les céréales complètes. Mange frais et léger.\n\nIdée : un poke bowl saumon-avocat-edamame-quinoa. Parfait pour cette phase 🐟`, ctx),
+    manger: (ctx) => adaptFoodText(`${ctx.name}, ton œstrogène est au max : ton corps a besoin de fibres pour éliminer l'excès.\n\nMise sur les légumes verts, les crucifères (brocoli, chou-fleur), les fruits rouges pour les antioxydants, et les céréales complètes. Mange frais et léger.\n\nIdée : un poke bowl saumon-avocat-edamame-quinoa. Parfait pour cette phase 🐟`, ctx),
 
     sport: (ctx) => pickOne([
-      `${ctx.name}, c'est ton PEAK ! Ton corps est à son maximum de performance.\n\nHIIT, sprint, boxe, muscu lourde — c'est maintenant que tu bats tes records. Sports d'équipe aussi, ta coordination est au top.\n\nJuste une chose : échauffe-toi bien, tes ligaments sont plus lâches avec l'œstrogène au max 💪🔥`,
+      `${ctx.name}, c'est ton PEAK ! Ton corps est à son maximum de performance.\n\nHIIT, sprint, boxe, muscu lourde : c'est maintenant que tu bats tes records. Sports d'équipe aussi, ta coordination est au top.\n\nJuste une chose : échauffe-toi bien, tes ligaments sont plus lâches avec l'œstrogène au max 💪🔥`,
       `${ctx.name}, phase ovulatoire = performance maximale. Fonce sur tout ce qui est intense : HIIT, musculation, cardio, boxe. Ton corps est prêt.\n\nPense à bien t'échauffer (ligaments plus lâches) et vas-y à fond 🔥`,
     ]),
 
     dormir: (ctx) => pickOne([
-      `${ctx.name}, t'as beaucoup d'énergie mais ne néglige pas le sommeil ! 7-8h restent nécessaires.\n\nMéditation 10 min pour redescendre, pas d'écran 30 min avant. La phase lutéale arrive bientôt — fais des réserves 😴`,
+      `${ctx.name}, t'as beaucoup d'énergie mais ne néglige pas le sommeil ! 7-8h restent nécessaires.\n\nMéditation 10 min pour redescendre, pas d'écran 30 min avant. La phase lutéale arrive bientôt : fais des réserves 😴`,
       `${ctx.name}, même si t'es au top en phase ovulatoire, le sommeil reste la base. 7-8h minimum.\n\nPas d'écran avant de dormir, une petite routine calme. Stock de bon sommeil avant la phase lutéale 🌙`,
     ]),
 
     confiance: (ctx) => `${ctx.name}, ta confiance est naturellement au MAX ! L'œstrogène + la testostérone = combo gagnant.\n\nC'est LE moment pour les négociations, entretiens, first dates, conversations difficiles, proposer tes idées. Tes capacités verbales et ton charisme sont à leur sommet.\n\nProfite de ces 2-3 jours 👑`,
 
-    snack: (ctx) => adaptFoodText(`${ctx.name}, pour ton pic ovulatoire, mise sur les snacks légers et antioxydants :\n\nSalade de fruits (baies, kiwi, grenade), edamame, crudités au tzatziki, tartine pain complet + avocat, ou un mix noix-baies.\n\nTon œstrogène est au max — les fibres et antioxydants aident ton corps à tout gérer 🌟`, ctx),
+    snack: (ctx) => adaptFoodText(`${ctx.name}, pour ton pic ovulatoire, mise sur les snacks légers et antioxydants :\n\nSalade de fruits (baies, kiwi, grenade), edamame, crudités au tzatziki, tartine pain complet + avocat, ou un mix noix-baies.\n\nTon œstrogène est au max : les fibres et antioxydants aident ton corps à tout gérer 🌟`, ctx),
 
     boisson: (ctx) => adaptFoodText(`${ctx.name}, en phase ovulatoire les boissons parfaites :\n\nEau infusée détox (concombre, citron, menthe), jus betterave-pomme-gingembre, thé vert glacé, kombucha, smoothie aux fruits rouges.\n\nLes antioxydants et les fibres aident ton foie à éliminer l'excès d'œstrogène ✨`, ctx),
 
-    douleur: (ctx) => `${ctx.name}, une légère douleur d'un côté du bas-ventre en phase ovulatoire c'est classique — ça s'appelle le "mittelschmerz". C'est l'ovule qui est libéré.\n\nSi c'est supportable, pas d'inquiétude. Un peu de chaleur sur le ventre aide. Si c'est vraiment douloureux ou que ça dure, consulte ton médecin 🌸`,
+    douleur: (ctx) => `${ctx.name}, une légère douleur d'un côté du bas-ventre en phase ovulatoire c'est classique : ça s'appelle le "mittelschmerz". C'est l'ovule qui est libéré.\n\nSi c'est supportable, pas d'inquiétude. Un peu de chaleur sur le ventre aide. Si c'est vraiment douloureux ou que ça dure, consulte ton médecin 🌸`,
 
-    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! Entre tes ingrédients et je te propose des recettes adaptées à ta phase ovulatoire.\n\nEn ce moment, priorise les fibres (légumes verts, céréales complètes), les antioxydants (fruits rouges) et les crucifères (brocoli, chou-fleur) 🌟`,
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans l'onglet Manger ! Entre tes ingrédients et je te propose des recettes adaptées à ta phase ovulatoire.\n\nEn ce moment, priorise les fibres (légumes verts, céréales complètes), les antioxydants (fruits rouges) et les crucifères (brocoli, chou-fleur) 🌟`,
 
     default: (ctx) => pickOne([
-      `${ctx.name}, J${ctx.currentDay} — pic ovulatoire ! Tes hormones sont au sommet : performances physiques au max, communication boostée, énergie débordante, peau lumineuse.\n\nC'est ta fenêtre de 2-3 jours pour tout donner. Sur quoi tu veux que je t'aide ? 🌟`,
-      `${ctx.name}, phase ovulatoire à J${ctx.currentDay} — tu es à ton maximum ! Sport intense, projets ambitieux, socialisation... tout est aligné.\n\nDis-moi ce dont tu as besoin et je t'aide à en profiter au max ✨`,
+      `${ctx.name}, J${ctx.currentDay} : pic ovulatoire ! Tes hormones sont au sommet : performances physiques au max, communication boostée, énergie débordante, peau lumineuse.\n\nC'est ta fenêtre de 2-3 jours pour tout donner. Sur quoi tu veux que je t'aide ? 🌟`,
+      `${ctx.name}, phase ovulatoire à J${ctx.currentDay} : tu es à ton maximum ! Sport intense, projets ambitieux, socialisation... tout est aligné.\n\nDis-moi ce dont tu as besoin et je t'aide à en profiter au max ✨`,
     ]),
   },
 
   luteal: {
     fatigue: (ctx) => pickOne([
-      `${ctx.name}, la fatigue en phase lutéale à J${ctx.currentDay} c'est 100% normal — la progestérone a un effet sédatif naturel.\n\nCe qui aide : magnésium le soir (amandes ou complément), pas de café après 14h, des glucides complexes (patate douce, avoine), et te coucher 30 min plus tôt.\n\nC'est pas un manque de volonté — c'est de la biochimie. Ton corps se prépare 🌙`,
-      `${ctx.name}, J${ctx.currentDay} en phase lutéale — normal d'être fatiguée, c'est la progestérone qui fait ça.\n\nMagnésium au coucher, glucides complexes dans l'assiette, et accorde-toi une sieste de 20 min si tu peux. Le café après 14h c'est non par contre.\n\nÇa passera en début de cycle prochain 💛`,
+      `${ctx.name}, la fatigue en phase lutéale à J${ctx.currentDay} c'est 100% normal : la progestérone a un effet sédatif naturel.\n\nCe qui aide : magnésium le soir (amandes ou complément), pas de café après 14h, des glucides complexes (patate douce, avoine), et te coucher 30 min plus tôt.\n\nC'est pas un manque de volonté : c'est de la biochimie. Ton corps se prépare 🌙`,
+      `${ctx.name}, J${ctx.currentDay} en phase lutéale : normal d'être fatiguée, c'est la progestérone qui fait ça.\n\nMagnésium au coucher, glucides complexes dans l'assiette, et accorde-toi une sieste de 20 min si tu peux. Le café après 14h c'est non par contre.\n\nÇa passera en début de cycle prochain 💛`,
     ]),
 
-    normal: (ctx) => `${ctx.name}, en phase lutéale (J${ctx.currentDay}) tu peux ressentir : fatigue, envies de sucre, sensibilité émotionnelle, ballonnements, seins sensibles, sommeil perturbé...\n\nC'est la progestérone qui fait tout ça. Et ton métabolisme augmente de 10-20% — tu as réellement besoin de manger plus. C'est pas de la faiblesse, c'est ta biologie 💜`,
+    normal: (ctx) => `${ctx.name}, en phase lutéale (J${ctx.currentDay}) tu peux ressentir : fatigue, envies de sucre, sensibilité émotionnelle, ballonnements, seins sensibles, sommeil perturbé...\n\nC'est la progestérone qui fait tout ça. Et ton métabolisme augmente un peu (environ 5 %) : tu as réellement besoin de manger un peu plus. C'est pas de la faiblesse, c'est ta biologie 💜`,
 
-    ovulation: (ctx) => `${ctx.name}, ton ovulation est passée ! Tu es maintenant en phase lutéale à J${ctx.currentDay}.\n\nProchaines règles estimées dans environ ${ctx.daysUntilPeriod} jours. L'énergie va baisser progressivement — adapte le sport, mange plus de glucides complexes, et installe une bonne routine de sommeil 🌸`,
+    ovulation: (ctx) => `${ctx.name}, ton ovulation est passée ! Tu es maintenant en phase lutéale à J${ctx.currentDay}.\n\nProchaines règles estimées dans environ ${ctx.daysUntilPeriod} jours. L'énergie va baisser progressivement : adapte le sport, mange plus de glucides complexes, et installe une bonne routine de sommeil 🌸`,
 
-    regles: (ctx) => `${ctx.name}, tes prochaines règles sont estimées dans environ ${ctx.daysUntilPeriod} jours.\n\nPrépare-toi : stock de chocolat noir et d'amandes (magnésium), tisanes camomille et gingembre, bouillotte prête. Et planifie des journées un peu plus calmes si possible.\n\nSi tes règles sont irrégulières, note bien quand elles arrivent — ça m'aide à mieux estimer 📅`,
+    regles: (ctx) => `${ctx.name}, tes prochaines règles sont estimées dans environ ${ctx.daysUntilPeriod} jours.\n\nPrépare-toi : stock de chocolat noir et d'amandes (magnésium), tisanes camomille et gingembre, bouillotte prête. Et planifie des journées un peu plus calmes si possible.\n\nSi tes règles sont irrégulières, note bien quand elles arrivent : ça m'aide à mieux estimer 📅`,
 
     manger: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, ton métabolisme augmente de 10-20% en phase lutéale — tu as VRAIMENT besoin de 200-300 cal de plus par jour. Ne te restreins pas.\n\nMise sur les glucides complexes (patate douce, avoine, riz complet), le magnésium (chocolat noir, amandes), la vitamine B6 (banane, avocat) et le tryptophane pour la sérotonine (dinde, œufs, graines de courge).\n\nLes envies de sucre ? C'est ta sérotonine qui baisse. Les glucides complexes la remontent sans le crash 💛`,
-      `${ctx.name}, en phase lutéale, mange plus — c'est un besoin réel. Ton métabolisme tourne plus vite.\n\nPatate douce, avoine, chocolat noir, amandes, banane, avocat. Tout ce qui est réconfortant ET nourrissant. Le tryptophane (dinde, œufs) aide aussi ta sérotonine.\n\nZéro culpabilité sur les quantités, ton corps en a besoin 🍫`,
+      `${ctx.name}, ton métabolisme augmente un peu (environ 5 %) en phase lutéale : tu as vraiment besoin d'un peu plus d'énergie chaque jour. Ne te restreins pas.\n\nMise sur les glucides complexes (patate douce, avoine, riz complet), le magnésium (chocolat noir, amandes), la vitamine B6 (banane, avocat) et le tryptophane pour la sérotonine (dinde, œufs, graines de courge).\n\nLes envies de sucre ? C'est ta sérotonine qui baisse. Les glucides complexes la remontent sans le crash 💛`,
+      `${ctx.name}, en phase lutéale, mange plus : c'est un besoin réel. Ton métabolisme tourne plus vite.\n\nPatate douce, avoine, chocolat noir, amandes, banane, avocat. Tout ce qui est réconfortant ET nourrissant. Le tryptophane (dinde, œufs) aide aussi ta sérotonine.\n\nZéro culpabilité sur les quantités, ton corps en a besoin 🍫`,
     ]), ctx),
 
     sport: (ctx) => pickOne([
       `${ctx.name}, à J${ctx.currentDay} adapte l'intensité.\n\n${ctx.currentDay <= ctx.cycleLength - 7
-        ? 'Début de phase lutéale : muscu modérée, natation, vélo, Pilates — c\'est encore OK de pousser un peu.'
+        ? 'Début de phase lutéale : muscu modérée, natation, vélo, Pilates : c\'est encore OK de pousser un peu.'
         : 'Fin de phase lutéale : yoga doux, marche, stretching, Pilates léger. Ton corps récupère moins bien.'}\n\nLe foam rolling est ton meilleur ami en ce moment. Garde le HIIT pour la phase folliculaire 🧘‍♀️`,
-      `${ctx.name}, phase lutéale à J${ctx.currentDay} — baisse l'intensité progressivement.\n\n${ctx.currentDay <= ctx.cycleLength - 7
+      `${ctx.name}, phase lutéale à J${ctx.currentDay} : baisse l'intensité progressivement.\n\n${ctx.currentDay <= ctx.cycleLength - 7
         ? 'Tu peux encore faire de la muscu modérée, du vélo, de la natation.'
         : 'Privilégie le yoga, la marche, le stretching. Ton corps a besoin de douceur.'}\n\nTu reprendras à fond en phase folliculaire 💪`,
     ]),
 
     dormir: (ctx) => pickOne([
-      `${ctx.name}, la progestérone te rend somnolente MAIS peut fragmenter ton sommeil — c'est le paradoxe lutéal.\n\nMagnésium au coucher, tisane camomille 45 min avant, chambre à 18-19°C (ta température corporelle monte), pas de café après 14h.\n\nVise 8-9h en phase lutéale 😴`,
-      `${ctx.name}, sommeil compliqué en phase lutéale ? C'est fréquent — la progestérone endort mais fragmente les nuits.\n\nMon combo : magnésium le soir, tisane, chambre fraîche (18-19°C), et surtout routine fixe. Couche-toi à la même heure, même le week-end.\n\nTon sommeil va se stabiliser après les règles 🌙`,
+      `${ctx.name}, la progestérone te rend somnolente MAIS peut fragmenter ton sommeil : c'est le paradoxe lutéal.\n\nMagnésium au coucher, tisane camomille 45 min avant, chambre à 18-19°C (ta température corporelle monte), pas de café après 14h.\n\nVise 8-9h en phase lutéale 😴`,
+      `${ctx.name}, sommeil compliqué en phase lutéale ? C'est fréquent : la progestérone endort mais fragmente les nuits.\n\nMon combo : magnésium le soir, tisane, chambre fraîche (18-19°C), et surtout routine fixe. Couche-toi à la même heure, même le week-end.\n\nTon sommeil va se stabiliser après les règles 🌙`,
     ]),
 
     sucre: (ctx) => adaptFoodText(pickOne([
       `${ctx.name}, les envies de sucre en phase lutéale sont 100% biologiques ! Ta sérotonine baisse, ton métabolisme augmente, ton corps demande du carburant.\n\nAlternatives malignes : chocolat noir 70%+, porridge avoine-banane-cannelle, dattes + beurre de cacahuète, patate douce rôtie au miel, smoothie banane-cacao.\n\nMange. Nourris. Ton. Corps. C'est de la biologie, pas de la faiblesse 💛`,
-      `${ctx.name}, envie de sucre ? Ton corps te le demande pour de bonnes raisons — sérotonine basse + métabolisme en hausse.\n\nFais-toi plaisir intelligemment : chocolat noir, dattes + amandes, banane + beurre de cacahuète, porridge chaud. Ça nourrit le besoin sans le crash.\n\nAucune culpabilité à avoir 🍫`,
+      `${ctx.name}, envie de sucre ? Ton corps te le demande pour de bonnes raisons : sérotonine basse + métabolisme en hausse.\n\nFais-toi plaisir intelligemment : chocolat noir, dattes + amandes, banane + beurre de cacahuète, porridge chaud. Ça nourrit le besoin sans le crash.\n\nAucune culpabilité à avoir 🍫`,
     ]), ctx),
 
     ballonnements: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, les ballonnements en phase lutéale c'est la progestérone qui ralentit ta digestion.\n\nMange lentement, portions plus petites, tisane gingembre ou fenouil après les repas. Évite sodas et chewing-gums.\n\nC'est temporaire — ça s'améliore après les règles 🌿`,
-      `${ctx.name}, la progestérone ralentit ta digestion en ce moment — d'où les ballonnements.\n\nMes astuces : une petite marche de 15 min après manger, tisane fenouil, et évite de manger trop vite. Les crucifères crus peuvent aggraver.\n\nÇa passe en début de cycle, promis 💚`,
+      `${ctx.name}, les ballonnements en phase lutéale c'est la progestérone qui ralentit ta digestion.\n\nMange lentement, portions plus petites, tisane gingembre ou fenouil après les repas. Évite sodas et chewing-gums.\n\nC'est temporaire : ça s'améliore après les règles 🌿`,
+      `${ctx.name}, la progestérone ralentit ta digestion en ce moment : d'où les ballonnements.\n\nMes astuces : une petite marche de 15 min après manger, tisane fenouil, et évite de manger trop vite. Les crucifères crus peuvent aggraver.\n\nÇa passe en début de cycle, promis 💚`,
     ]), ctx),
 
     irritabilite: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, l'irritabilité en phase lutéale c'est ultra fréquent — la chute d'œstrogène + la progestérone impactent directement la sérotonine.\n\nMagnésium (amandes, chocolat noir), oméga-3 (saumon, noix), respiration 4-7-8 quand ça monte. Limite le café et le sucre raffiné, et communique tes besoins à ton entourage.\n\nCe n'est PAS toi — ce sont tes hormones. Et c'est valide 💜`,
-      `${ctx.name}, si t'es à cran c'est hormonal — ta sérotonine chute en phase lutéale.\n\nDu magnésium, de la respiration profonde, et surtout dis à ton entourage que c'est pas le meilleur moment pour te chercher. Limite aussi le café.\n\nÇa passe en quelques jours, promis 💜`,
+      `${ctx.name}, l'irritabilité en phase lutéale c'est ultra fréquent : la chute d'œstrogène + la progestérone impactent directement la sérotonine.\n\nMagnésium (amandes, chocolat noir), oméga-3 (saumon, noix), respiration 4-7-8 quand ça monte. Limite le café et le sucre raffiné, et communique tes besoins à ton entourage.\n\nCe n'est PAS toi : ce sont tes hormones. Et c'est valide 💜`,
+      `${ctx.name}, si t'es à cran c'est hormonal : ta sérotonine chute en phase lutéale.\n\nDu magnésium, de la respiration profonde, et surtout dis à ton entourage que c'est pas le meilleur moment pour te chercher. Limite aussi le café.\n\nÇa passe en quelques jours, promis 💜`,
     ]), ctx),
 
     acne: (ctx) => adaptFoodText(`${ctx.name}, l'acné pré-menstruelle c'est la chute d'œstrogène et la montée relative de testostérone.\n\nZinc (graines de courge, pois chiches), oméga-3 (saumon, graines de lin), beaucoup d'eau, nettoyage doux. Si t'es sensible aux produits laitiers, essaie de les réduire cette semaine.\n\nZone T et mâchoire = typiquement hormonal. Ça s'améliore après les règles 🌸`, ctx),
 
-    pleurer: (ctx) => `${ctx.name}, l'envie de pleurer en phase lutéale c'est la chute de sérotonine et les fluctuations de progestérone. C'est valide, c'est hormonal, c'est pas de la faiblesse.\n\nPleure si t'en as besoin — ça libère le stress. Magnésium + B6 pour réguler l'humeur, mouvement doux pour les endorphines, et écris ce que tu ressens si ça t'aide.\n\nDans quelques jours ça passe 🌱`,
+    pleurer: (ctx) => `${ctx.name}, l'envie de pleurer en phase lutéale c'est la chute de sérotonine et les fluctuations de progestérone. C'est valide, c'est hormonal, c'est pas de la faiblesse.\n\nPleure si t'en as besoin : ça libère le stress. Magnésium + B6 pour réguler l'humeur, mouvement doux pour les endorphines, et écris ce que tu ressens si ça t'aide.\n\nDans quelques jours ça passe 🌱`,
 
-    stress: (ctx) => `${ctx.name}, ton seuil de stress est naturellement plus bas en phase lutéale — la progestérone amplifie tout.\n\nRespiration guidée, magnésium matin et soir, réduis ta to-do list, dis non plus souvent. Même 15 min en nature ça aide.\n\nTon corps est en mode "protection" — respecte ça. Tu seras en mode "action" dans quelques jours 💆‍♀️`,
+    stress: (ctx) => `${ctx.name}, ton seuil de stress est naturellement plus bas en phase lutéale : la progestérone amplifie tout.\n\nRespiration guidée, magnésium matin et soir, réduis ta to-do list, dis non plus souvent. Même 15 min en nature ça aide.\n\nTon corps est en mode "protection" : respecte ça. Tu seras en mode "action" dans quelques jours 💆‍♀️`,
 
-    confiance: (ctx) => `${ctx.name}, la confiance peut baisser en phase lutéale — c'est l'œstrogène qui chute.\n\nC'est TEMPORAIRE. Ta valeur ne dépend pas de ton énergie. Réduis les comparaisons, limite les réseaux sociaux, fais des choses qui te font du bien.\n\nLa phase folliculaire ramène la confiance naturellement. En attendant, sois douce avec toi ✨`,
+    confiance: (ctx) => `${ctx.name}, la confiance peut baisser en phase lutéale : c'est l'œstrogène qui chute.\n\nC'est TEMPORAIRE. Ta valeur ne dépend pas de ton énergie. Réduis les comparaisons, limite les réseaux sociaux, fais des choses qui te font du bien.\n\nLa phase folliculaire ramène la confiance naturellement. En attendant, sois douce avec toi ✨`,
 
     retention: (ctx) => `${ctx.name}, la rétention d'eau en phase lutéale c'est la progestérone.\n\nBois plus d'eau (oui, paradoxalement), réduis le sel, mise sur le potassium (banane, avocat, patate douce), marche un peu chaque jour. La tisane de pissenlit est un bon drainant naturel.\n\nLes 1-3 kg en plus c'est de l'eau, pas du gras. Ça part en début de règles 💛`,
 
-    hiit: (ctx) => `${ctx.name}, le HIIT en phase lutéale c'est déconseillé — surtout en fin de phase.\n\n${ctx.currentDay <= ctx.cycleLength - 7
-      ? 'Tu es en début de phase lutéale — tu peux encore faire du cardio modéré, de la muscu légère. Mais écoute ton corps.'
-      : 'Tu es en fin de phase — privilégie yoga, marche, Pilates.'}\n\nTon cortisol est déjà élevé, le HIIT en rajoute et la récupération est moins bonne. Garde ça pour la phase folliculaire 💪`,
+    hiit: (ctx) => `${ctx.name}, le HIIT en phase lutéale c'est déconseillé : surtout en fin de phase.\n\n${ctx.currentDay <= ctx.cycleLength - 7
+      ? 'Tu es en début de phase lutéale : tu peux encore faire du cardio modéré, de la muscu légère. Mais écoute ton corps.'
+      : 'Tu es en fin de phase : privilégie yoga, marche, Pilates.'}\n\nTon cortisol est déjà élevé, le HIIT en rajoute et la récupération est moins bonne. Garde ça pour la phase folliculaire 💪`,
 
-    snack: (ctx) => adaptFoodText(`${ctx.name}, en phase lutéale mise sur les snacks réconfortants :\n\nPudding de chia au chocolat, muffins banane-noix, tartine beurre de cacahuète + banane, chocolat noir 70% + amandes, dattes + noix de cajou.\n\nTon métabolisme augmente de 10-20% — ces snacks nourrissent le besoin sans le crash. Va voir Recettes > Snacks pour les recettes complètes 🍪`, ctx),
+    snack: (ctx) => adaptFoodText(`${ctx.name}, en phase lutéale mise sur les snacks réconfortants :\n\nPudding de chia au chocolat, muffins banane-noix, tartine beurre de cacahuète + banane, chocolat noir 70% + amandes, dattes + noix de cajou.\n\nTon métabolisme augmente un peu (environ 5 %) : ces snacks nourrissent le besoin sans le crash. Va voir Recettes > Snacks pour les recettes complètes 🍪`, ctx),
 
-    boisson: (ctx) => adaptFoodText(`${ctx.name}, les meilleures boissons pour ta phase lutéale :\n\nChocolat chaud au lait d'amande (magnésium + réconfort), tisane camomille-lavande (apaisante), moon milk à l'ashwagandha, tisane gingembre (anti-ballonnements), rooibos.\n\nLimite le café après 14h — la progestérone te rend plus sensible à la caféine 🌙`, ctx),
+    boisson: (ctx) => adaptFoodText(`${ctx.name}, les meilleures boissons pour ta phase lutéale :\n\nChocolat chaud au lait d'amande (magnésium + réconfort), tisane camomille-lavande (apaisante), moon milk à l'ashwagandha, tisane gingembre (anti-ballonnements), rooibos.\n\nLimite le café après 14h : la progestérone te rend plus sensible à la caféine 🌙`, ctx),
 
-    douleur: (ctx) => `${ctx.name}, des douleurs en phase lutéale c'est souvent le syndrome prémenstruel — la progestérone peut provoquer crampes, douleurs dans le bas-ventre, seins sensibles.\n\nBouillotte sur le ventre, magnésium (amandes, chocolat noir), tisane gingembre. Si c'est très intense à chaque cycle, parle-en à ton médecin — tu ne dois pas subir 💜`,
+    douleur: (ctx) => `${ctx.name}, des douleurs en phase lutéale c'est souvent le syndrome prémenstruel : la progestérone peut provoquer crampes, douleurs dans le bas-ventre, seins sensibles.\n\nBouillotte sur le ventre, magnésium (amandes, chocolat noir), tisane gingembre. Si c'est très intense à chaque cycle, parle-en à ton médecin : tu ne dois pas subir 💜`,
 
-    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans la section Alimentation ! Entre tes ingrédients et je te propose des recettes adaptées à ta phase lutéale.\n\nEn ce moment, priorise les glucides complexes (patate douce, avoine), le magnésium (chocolat noir, amandes) et le tryptophane (dinde, banane, graines de courge) 💛`,
+    frigo: (ctx) => `${ctx.name}, va sur "Mon Frigo" dans l'onglet Manger ! Entre tes ingrédients et je te propose des recettes adaptées à ta phase lutéale.\n\nEn ce moment, priorise les glucides complexes (patate douce, avoine), le magnésium (chocolat noir, amandes) et le tryptophane (dinde, banane, graines de courge) 💛`,
 
     default: (ctx) => adaptFoodText(pickOne([
-      `${ctx.name}, J${ctx.currentDay} en phase lutéale — la progestérone domine.\n\nMange plus (+200-300 cal/jour, glucides complexes), adapte le sport (modéré puis doux), dors 8-9h, magnésium +++.\n\nEncore ${ctx.daysUntilPeriod} jours avant tes règles. Les envies, la fatigue, les émotions — c'est hormonal, pas personnel. Sur quoi tu veux que je t'aide ? 💜`,
-      `${ctx.name}, phase lutéale à J${ctx.currentDay}. Ton corps ralentit et c'est normal.\n\nPrends soin de toi : mange bien, dors plus, bouge doucement. C'est pas le moment de te pousser.\n\nDis-moi ce dont tu as besoin — nutrition, sport, sommeil, humeur ? 🌙`,
+      `${ctx.name}, J${ctx.currentDay} en phase lutéale : la progestérone domine.\n\nMange un peu plus (glucides complexes), adapte le sport (modéré puis doux), dors 8-9h, magnésium +++.\n\nEncore ${ctx.daysUntilPeriod} jours avant tes règles. Les envies, la fatigue, les émotions : c'est hormonal, pas personnel. Sur quoi tu veux que je t'aide ? 💜`,
+      `${ctx.name}, phase lutéale à J${ctx.currentDay}. Ton corps ralentit et c'est normal.\n\nPrends soin de toi : mange bien, dors plus, bouge doucement. C'est pas le moment de te pousser.\n\nDis-moi ce dont tu as besoin : nutrition, sport, sommeil, humeur ? 🌙`,
     ]), ctx),
   },
 };
@@ -379,21 +379,21 @@ const FOOD_ADVICE = {
     good: ['poulet', 'œufs', 'quinoa', 'légumineuses', 'graines de courge', 'pois chiches', 'yaourt', 'kéfir', 'kimchi', 'avocat', 'brocoli', 'épinards', 'saumon', 'légumes colorés', 'graines germées', 'noix', 'amandes', 'fruits frais', 'tofu', 'lentilles', 'patate douce', 'riz complet', 'haricots', 'crevettes', 'thon'],
     ok: ['viande rouge', 'pâtes', 'pain', 'fromage', 'chocolat', 'riz', 'pomme de terre', 'crème', 'beurre', 'miel', 'café', 'concombre', 'tomate', 'carotte', 'mangue', 'ananas', 'banane'],
     limit: ['alcool', 'alcool en excès', 'vin', 'vin rouge', 'vin blanc', 'bière', 'sodas', 'fast food', 'sucre raffiné en excès'],
-    why_good: 'L\'œstrogène remonte — ton corps est en mode construction et récupération.',
+    why_good: 'L\'œstrogène remonte : ton corps est en mode construction et récupération.',
     why_limit: 'Ton corps est efficace, pas la peine de le charger inutilement.',
   },
   ovulatory: {
     good: ['légumes verts', 'brocoli', 'chou-fleur', 'chou', 'fruits rouges', 'quinoa', 'graines', 'saumon', 'avocat', 'concombre', 'tomate', 'radis', 'céréales complètes', 'légumineuses', 'kéfir', 'kombucha', 'edamame', 'spiruline'],
     ok: ['poulet', 'œufs', 'viande rouge', 'pâtes', 'riz', 'pain', 'fromage', 'pomme de terre', 'chocolat', 'café', 'fruits', 'noix', 'amandes', 'tofu', 'poisson', 'patate douce', 'banane'],
     limit: ['alcool', 'vin', 'vin rouge', 'vin blanc', 'bière', 'sodas', 'fritures', 'sucre raffiné', 'plats très lourds'],
-    why_good: 'Ton œstrogène est au max — les fibres et crucifères aident ton foie à éliminer l\'excès.',
+    why_good: 'Ton œstrogène est au max : les fibres et crucifères aident ton foie à éliminer l\'excès.',
     why_limit: 'Ton corps est au top, pas besoin de le ralentir.',
   },
   luteal: {
     good: ['patate douce', 'avoine', 'riz complet', 'chocolat noir', 'amandes', 'noix', 'banane', 'avocat', 'dinde', 'poulet', 'œufs', 'graines de courge', 'saumon', 'épinards', 'lentilles', 'quinoa', 'yaourt', 'dattes', 'cannelle', 'gingembre', 'camomille'],
     ok: ['viande rouge', 'pâtes', 'pain', 'riz', 'fromage', 'pomme de terre', 'tofu', 'fruits', 'légumes', 'beurre de cacahuète', 'miel', 'crème', 'concombre', 'tomate'],
     limit: ['café après 14h', 'alcool', 'vin', 'vin rouge', 'vin blanc', 'bière', 'sucre raffiné', 'sel en excès', 'sodas', 'fritures', 'aliments ultra-transformés'],
-    why_good: 'Ton métabolisme augmente de 10-20% et ta sérotonine baisse — les glucides complexes et le magnésium sont tes meilleurs alliés.',
+    why_good: 'Ton métabolisme augmente un peu et ta sérotonine baisse : les glucides complexes et le magnésium sont tes meilleurs alliés.',
     why_limit: 'Ça peut aggraver les ballonnements, l\'irritabilité et les troubles du sommeil.',
   },
 };
@@ -404,7 +404,7 @@ const SPORT_ADVICE = {
     great: ['yoga', 'yoga restauratif', 'yin yoga', 'stretching', 'marche', 'marche douce', 'natation douce', 'pilates doux', 'tai chi', 'méditation'],
     ok: ['natation', 'pilates', 'vélo léger', 'danse douce', 'aquagym'],
     caution: ['hiit', 'crossfit', 'sprint', 'musculation lourde', 'boxe', 'running intense', 'cardio intense', 'muscu', 'course intensive', 'marathon'],
-    why: 'Tes hormones sont au plus bas — ton corps récupère. L\'objectif c\'est de bouger en douceur.',
+    why: 'Tes hormones sont au plus bas : ton corps récupère. L\'objectif c\'est de bouger en douceur.',
   },
   follicular: {
     great: ['hiit', 'musculation', 'muscu', 'cardio', 'course', 'running', 'sprint', 'danse', 'boxe', 'escalade', 'crossfit', 'natation', 'vélo', 'tennis', 'football', 'basketball', 'handball'],
@@ -422,7 +422,7 @@ const SPORT_ADVICE = {
     great: ['yoga', 'pilates', 'marche', 'natation', 'stretching', 'foam rolling', 'yin yoga', 'tai chi', 'vélo doux'],
     ok: ['musculation modérée', 'muscu légère', 'natation', 'vélo', 'danse', 'randonnée calme', 'aquagym'],
     caution: ['hiit', 'crossfit', 'sprint', 'cardio intense', 'musculation lourde', 'boxe', 'running intense', 'marathon'],
-    why: 'La progestérone augmente, le cortisol aussi — ton corps récupère moins bien. Baisse l\'intensité progressivement.',
+    why: 'La progestérone augmente, le cortisol aussi : ton corps récupère moins bien. Baisse l\'intensité progressivement.',
   },
 };
 
@@ -492,7 +492,7 @@ const RECIPES = {
         name: 'Smoothie fer & vitalité',
         ingredients: ['épinards', 'banane', 'beurre de cacahuète', 'cacao cru', 'lait d\'amande', 'miel'],
         instructions: 'Mixe tout ensemble jusqu\'à consistance lisse. Ajoute des glaçons si tu veux.',
-        why: 'Les épinards apportent du fer, le cacao du magnésium, la banane du potassium — tout ce que ton corps perd pendant les règles.',
+        why: 'Les épinards apportent du fer, le cacao du magnésium, la banane du potassium : tout ce que ton corps perd pendant les règles.',
         tags: ['vegetarien', 'vegan_possible', 'sans_gluten', 'rapide'],
         time: '5 min',
       },
@@ -856,7 +856,7 @@ const PHASE_NUTRIENTS = {
     priority: ['magnésium', 'vitamine B6', 'tryptophane', 'glucides complexes', 'calcium'],
     why: 'La progestérone monte + sérotonine baisse. Le magnésium et B6 régulent l\'humeur. Le tryptophane booste la sérotonine. Les glucides complexes évitent les fringales.',
     hormones: 'Progestérone dominante → somnolence, envies de sucre, irritabilité, rétention d\'eau.',
-    metabolism: 'Ton métabolisme augmente de 10-20%. Tu as BESOIN de 200-300 cal de plus par jour. Ne te restreins pas.',
+    metabolism: 'Ton métabolisme augmente un peu (environ 5 %). Tu as besoin d\'un peu plus d\'énergie chaque jour. Ne te restreins pas.',
   },
 };
 
@@ -1081,7 +1081,7 @@ function generateRecipeResponse(phase, mealType, diet, ctx) {
         return `J'ai une idée pour toi${dietLabel} :\n\n👩‍🍳 ${recipe.name}\n⏱️ ${recipe.time}\n\n📝 Ingrédients :\n${recipe.ingredients.map((i) => `• ${i}`).join('\n')}\n\n👉 ${recipe.instructions}\n\n💡 ${recipe.why}\n\nEn phase ${phaseName}, ton corps a surtout besoin de ${nutrients.priority.slice(0, 3).join(', ')}.`;
       }
       if (recipe.name && recipe.why) {
-        return `Un snack parfait pour toi en ce moment :\n\n✨ ${recipe.name}\n💡 ${recipe.why}\n\nAutres idées :\n${phaseRecipes.snack.filter((s) => s.name !== recipe.name).slice(0, 2).map((s) => `• ${s.name} — ${s.why}`).join('\n')}`;
+        return `Un snack parfait pour toi en ce moment :\n\n✨ ${recipe.name}\n💡 ${recipe.why}\n\nAutres idées :\n${phaseRecipes.snack.filter((s) => s.name !== recipe.name).slice(0, 2).map((s) => `• ${s.name} : ${s.why}`).join('\n')}`;
       }
     }
   }
@@ -1205,7 +1205,7 @@ function generateNutrientResponse(nutrient, phase) {
     },
     vitamineb6: {
       foods: ['banane', 'avocat', 'dinde', 'poulet', 'saumon', 'patate douce', 'graines de tournesol', 'pistaches'],
-      tip: 'Cruciale en phase lutéale — elle aide à convertir le tryptophane en sérotonine.',
+      tip: 'Cruciale en phase lutéale : elle aide à convertir le tryptophane en sérotonine.',
       why: 'La vitamine B6 réduit l\'irritabilité, la rétention d\'eau et les sautes d\'humeur du PMS.',
     },
     antioxydants: {
@@ -1345,7 +1345,7 @@ function generateFoodResponse(food, phase, ctx) {
     return `Oui, ${food} c'est tout à fait OK ! C'est pas ${isDrinkItem(food) ? 'la boisson la plus stratégique' : 'l\'aliment le plus stratégique'} en phase ${phaseName}, mais y'a aucun souci.\n\nPour optimiser, combine avec des aliments riches en ${phase === 'menstrual' ? 'fer et magnésium' : phase === 'luteal' ? 'magnésium et vitamine B6' : phase === 'ovulatory' ? 'fibres et antioxydants' : 'protéines et zinc'} 🌱`;
   }
 
-  return `Bien sûr que tu peux ${verb} ${food} ! Rien n'est interdit — l'important c'est l'équilibre.\n\nEn phase ${phaseName}, ton corps a surtout besoin de :\n• ${filteredGood.slice(0, 3).join('\n• ')}\n\n${advice.why_good}\n\nFais-toi plaisir 💛`;
+  return `Bien sûr que tu peux ${verb} ${food} ! Rien n'est interdit : l'important c'est l'équilibre.\n\nEn phase ${phaseName}, ton corps a surtout besoin de :\n• ${filteredGood.slice(0, 3).join('\n• ')}\n\n${advice.why_good}\n\nFais-toi plaisir 💛`;
 }
 
 // Génère une réponse dynamique pour "puis-je faire X sport ?"
@@ -1382,7 +1382,7 @@ function generateSportResponse(sport, phase, ctx) {
     return `Oui, ${sport} c'est faisable en phase ${phaseName} ! ${advice.why}\n\nÉcoute ton corps et adapte l'intensité si besoin 🌟`;
   }
 
-  return `${sport.charAt(0).toUpperCase() + sport.slice(1)} en phase ${phaseName} ? Ça dépend de l'intensité !\n\nTon énergie est ${PHASE_ENERGY[phase]} à J${ctx.currentDay}. ${advice.why}\n\nCe qui est top en ce moment : ${advice.great.slice(0, 3).join(', ')}.\n\nÉcoute ton corps — le meilleur sport c'est celui que tu fais avec plaisir 💛`;
+  return `${sport.charAt(0).toUpperCase() + sport.slice(1)} en phase ${phaseName} ? Ça dépend de l'intensité !\n\nTon énergie est ${PHASE_ENERGY[phase]} à J${ctx.currentDay}. ${advice.why}\n\nCe qui est top en ce moment : ${advice.great.slice(0, 3).join(', ')}.\n\nÉcoute ton corps : le meilleur sport c'est celui que tu fais avec plaisir 💛`;
 }
 
 // ===== GESTION DES SALUTATIONS, REMERCIEMENTS, SMALL TALK =====
@@ -1583,7 +1583,7 @@ function naturalizeResponse(text, name) {
     case 1: return `Alors, ${rest}`;
     case 2: return `Hey ! ${capitalized}`;
     case 3: return capitalized; // Direct, pas de prénom
-    case 4: return `${name} — ${rest}`;
+    case 4: return `${name}, ${rest}`;
     case 5: return `Bon, ${rest}`;
     case 6: return capitalized; // Direct
     case 7: return `Écoute, ${rest}`;
@@ -1610,7 +1610,7 @@ const SYMPTOM_MICRO_TIPS = {
   'Seins douloureux': '💜 Pour la sensibilité des seins : soutien-gorge confort + onagre si tu en as.',
   'Fringales': '🍫 Pour les fringales : snack protéiné (amandes, yaourt) plutôt que sucré.',
   'Rétention d\'eau': '💧 Contre la rétention : bois plus d\'eau (paradoxal mais ça marche), réduis le sel.',
-  'Sautes d\'humeur': '🌊 Les sautes d\'humeur c\'est hormonal — sois douce avec toi.',
+  'Sautes d\'humeur': '🌊 Les sautes d\'humeur c\'est hormonal : sois douce avec toi.',
   'Diarrhée': '🫖 Tisane de menthe poivrée + riz blanc, ça apaise la digestion.',
   'Constipation': '🥝 Kiwi le matin + eau tiède citron + fibres douces (flocons d\'avoine).',
   'Vertiges': '⚡ Mange quelque chose rapidement (banane, poignée d\'amandes) et hydrate-toi.',
@@ -1650,7 +1650,7 @@ function enrichWithCheckIn(response, userContext) {
   if (energy && energy <= 30) {
     // Très basse énergie : ajouter un message doux au début
     const lowEnergyPrefixes = [
-      'Je sais que t\'es pas au top aujourd\'hui — ',
+      'Je sais que t\'es pas au top aujourd\'hui, ',
       'Avec ton énergie basse aujourd\'hui, vas-y doucement. ',
       'Prends soin de toi aujourd\'hui 💛 ',
     ];
@@ -1704,7 +1704,7 @@ function _getLunaResponseCore(question, phase, userContext = {}, conversationHis
   // Détresse / mal-être
   if (qOriginal.match(/en peux plus|en ai plus|aide.?moi|je vais pas bien|je vais mal|envie de mourir|suicid|je suis perdue|sais plus quoi faire|a bout|à bout|j.?arrive plus|au bout du rouleau|je craque/i)) {
     return pickOne([
-      `${ctx.name}, je t'entends. Ce que tu ressens est valide et tu n'es pas seule 💜\n\nSi tu traverses un moment très difficile, parle à quelqu'un de confiance. Et si tu en as besoin, le 3114 (numéro national de prévention du suicide) est disponible 24h/24.\n\nJe suis là pour t'aider avec ton cycle, ta nutrition, ton bien-être — mais un vrai humain sera toujours mieux que moi pour les moments durs. Prends soin de toi ❤️`,
+      `${ctx.name}, je t'entends. Ce que tu ressens est valide et tu n'es pas seule 💜\n\nSi tu traverses un moment très difficile, parle à quelqu'un de confiance. Et si tu en as besoin, le 3114 (numéro national de prévention du suicide) est disponible 24h/24.\n\nJe suis là pour t'aider avec ton cycle, ta nutrition, ton bien-être, mais un vrai humain sera toujours mieux que moi pour les moments durs. Prends soin de toi ❤️`,
       `${ctx.name}, je suis là 💜 Tes émotions sont valides, et les fluctuations hormonales peuvent amplifier tout ce que tu ressens.\n\nN'hésite pas à en parler à quelqu'un de confiance. Et si ça va vraiment pas : 3114 (ligne d'écoute gratuite, 24h/24).\n\nMoi je peux t'aider sur ton cycle, ta nutrition, ton sport. Mais pour les moments difficiles, un humain sera toujours mieux. Tu comptes ❤️`,
     ]);
   }
@@ -1904,7 +1904,7 @@ function _getLunaResponseCore(question, phase, userContext = {}, conversationHis
     const libidoResponse = phase === 'ovulatory'
       ? `Ta libido est naturellement au plus haut en phase ovulatoire ! L'œstrogène + la testostérone boostent le désir. Profite de cette énergie ✨`
       : phase === 'menstrual'
-      ? `En phase menstruelle, la libido est souvent plus basse — c'est hormonal. Mais certaines femmes ont quand même du désir (les orgasmes peuvent même soulager les crampes !). Écoute ton corps 💜`
+      ? `En phase menstruelle, la libido est souvent plus basse : c'est hormonal. Mais certaines femmes ont quand même du désir (les orgasmes peuvent même soulager les crampes !). Écoute ton corps 💜`
       : phase === 'follicular'
       ? `Ta libido remonte progressivement avec l'œstrogène en phase folliculaire. Le désir va augmenter jusqu'à l'ovulation. Ton corps se prépare 🌸`
       : `En phase lutéale, la libido peut baisser à cause de la progestérone. C'est physiologique, pas un problème. Ça reviendra en phase folliculaire 💛`;
@@ -1913,11 +1913,11 @@ function _getLunaResponseCore(question, phase, userContext = {}, conversationHis
 
   if (qOriginal.match(/travail|boulot|productiv|concentr|m[eé]moire|cerveau|cr[eé]ativ|r[eé]union|pr[eé]sentation|examen/)) {
     const workResponse = phase === 'ovulatory'
-      ? `Tu es en phase ovulatoire — c'est ton PIC de productivité ! Capacités verbales, mémoire, confiance au sommet. C'est LE moment pour les présentations, brainstormings, négociations. Profite de cette fenêtre 👑`
+      ? `Tu es en phase ovulatoire : c'est ton PIC de productivité ! Capacités verbales, mémoire, confiance au sommet. C'est LE moment pour les présentations, brainstormings, négociations. Profite de cette fenêtre 👑`
       : phase === 'follicular'
       ? `Phase folliculaire = créativité et motivation en hausse ! Parfait pour lancer de nouveaux projets, apprendre, planifier. Ton cerveau est en mode construction 🧠✨`
       : phase === 'menstrual'
-      ? `En phase menstruelle, ta concentration peut être réduite — c'est normal. Privilégie les tâches simples, sessions courtes (25 min + pause), introspection et bilan. C'est le moment de réfléchir plutôt que d'agir 🌱`
+      ? `En phase menstruelle, ta concentration peut être réduite : c'est normal. Privilégie les tâches simples, sessions courtes (25 min + pause), introspection et bilan. C'est le moment de réfléchir plutôt que d'agir 🌱`
       : `En phase lutéale, la concentration fluctue avec la progestérone. Travaille sur tes forces, sessions courtes avec pauses, finis ce que t'as commencé plutôt que de commencer du neuf. Garde les gros projets pour la phase folliculaire 📋`;
     return naturalizeResponse(`${ctx.name}, ${workResponse}`, name);
   }

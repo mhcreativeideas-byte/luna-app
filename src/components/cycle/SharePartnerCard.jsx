@@ -43,9 +43,9 @@ const PHASE_COLORS = {
 };
 
 const ENERGY_LABELS = {
-  low: 'Énergie basse — elle a besoin de calme et de douceur',
-  medium: 'Énergie moyenne — un rythme tranquille lui convient',
-  high: 'Pleine d\'énergie — elle est partante pour des activités !',
+  low: 'Énergie basse : elle a besoin de calme et de douceur',
+  medium: 'Énergie moyenne : un rythme tranquille lui convient',
+  high: 'Pleine d\'énergie : elle est partante pour des activités !',
 };
 const getEnergyLabel = (level) => level <= 35 ? ENERGY_LABELS.low : level <= 65 ? ENERGY_LABELS.medium : ENERGY_LABELS.high;
 
@@ -424,7 +424,7 @@ export default function SharePartnerCard({ cycleInfo, name }) {
       const file = new File([blob], 'luna-phase.png', { type: 'image/png' });
       if (navigator.share && navigator.canShare?.({ files: [file] })) {
         await navigator.share({
-          title: `luna — ${phaseData.name}`,
+          title: `luna : ${phaseData.name}`,
           text: `Je suis en ${phaseData.name} (jour ${cycleInfo.currentDay}/${cycleInfo.cycleLength}). Mon énergie est à ${cycleInfo.energyLevel}%.`,
           files: [file],
         });

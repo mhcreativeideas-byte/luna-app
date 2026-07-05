@@ -90,14 +90,14 @@ export default function Privacy() {
           <p>Les données sont hébergées par :</p>
           <ul className="list-none mt-2 space-y-2">
             <li>
-              <strong>Supabase Inc.</strong> — Base de données et authentification
+              <strong>Supabase Inc.</strong> : base de données et authentification
               <br />
               <span className="text-luna-text-hint">Hébergement : AWS (Amazon Web Services), région EU</span>
               <br />
               <span className="text-luna-text-hint">Conformité : SOC 2 Type II, RGPD</span>
             </li>
             <li>
-              <strong>Vercel Inc.</strong> — Hébergement de l'application web
+              <strong>Vercel Inc.</strong> : hébergement de l'application web
               <br />
               <span className="text-luna-text-hint">Conformité : RGPD, Privacy Shield</span>
             </li>
@@ -118,10 +118,10 @@ export default function Privacy() {
             techniques nécessaires au fonctionnement du service :
           </p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Supabase</strong> — Hébergement base de données et authentification</li>
-            <li><strong>Vercel</strong> — Hébergement de l'application</li>
-            <li><strong>Resend</strong> — Envoi d'emails transactionnels (email de bienvenue)</li>
-            <li><strong>Google</strong> — Authentification « Se connecter avec Google » (uniquement si l'utilisatrice choisit ce mode de connexion)</li>
+            <li><strong>Supabase</strong> : hébergement base de données et authentification</li>
+            <li><strong>Vercel</strong> : hébergement de l'application</li>
+            <li><strong>Resend</strong> : envoi d'emails transactionnels (email de bienvenue)</li>
+            <li><strong>Google</strong> : authentification « Se connecter avec Google » (uniquement si l'utilisatrice choisit ce mode de connexion)</li>
           </ul>
           <p className="mt-2">
             Ces sous-traitants sont soumis à des obligations de confidentialité et de sécurité conformes au RGPD.
@@ -139,8 +139,8 @@ export default function Privacy() {
         <Section title="7. Durée de conservation">
           <p>Les données sont conservées :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>Pendant la durée d'utilisation du compte</strong> — tant que le compte est actif</li>
-            <li><strong>Suppression immédiate</strong> — dès que l'utilisatrice supprime son compte, toutes les données sont effacées de manière définitive et irréversible</li>
+            <li><strong>Pendant la durée d'utilisation du compte</strong> : tant que le compte est actif</li>
+            <li><strong>Suppression immédiate</strong> : dès que l'utilisatrice supprime son compte, toutes les données sont effacées de manière définitive et irréversible</li>
           </ul>
           <p className="mt-2">
             Aucune donnée n'est conservée après la suppression du compte. Il n'existe aucune sauvegarde
@@ -171,8 +171,8 @@ export default function Privacy() {
         <Section title="9. Cookies et stockage local">
           <p>luna utilise :</p>
           <ul className="list-disc pl-5 mt-2 space-y-1">
-            <li><strong>localStorage</strong> — pour sauvegarder les préférences locales et améliorer la navigation</li>
-            <li><strong>Cookies de session Supabase</strong> — strictement nécessaires à l'authentification</li>
+            <li><strong>localStorage</strong> : pour sauvegarder les préférences locales et améliorer la navigation</li>
+            <li><strong>Cookies de session Supabase</strong> : strictement nécessaires à l'authentification</li>
           </ul>
           <p className="mt-2 font-semibold">
             luna n'utilise aucun cookie publicitaire, de traçage ou d'analyse comportementale.

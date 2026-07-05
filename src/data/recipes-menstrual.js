@@ -2228,7 +2228,7 @@ dinner: [
       'Émiette le chèvre par-dessus.',
       'Enfourne 35 min à 190°C.',
     ],
-    whyThisPhase: 'Les légumes racines réchauffent et nourrissent. Le chèvre apporte calcium et protéines. Un plat réconfortant qui demande peu d\'effort actif — parfait quand l\'énergie est basse.',
+    whyThisPhase: 'Les légumes racines réchauffent et nourrissent. Le chèvre apporte calcium et protéines. Un plat réconfortant qui demande peu d\'effort actif, parfait quand l\'énergie est basse.',
   },
   {
     name: 'Boulettes de bœuf sauce tomate aux herbes',
@@ -2256,7 +2256,7 @@ dinner: [
       'Ajoute tomates, ail et basilic, mijote 15 min.',
       'Sers sur des pâtes ou du riz.',
     ],
-    whyThisPhase: 'La viande de bœuf est la source la plus biodisponible de fer héminique — celui que ton corps absorbe le mieux. Les tomates ajoutent de la vitamine C pour encore mieux absorber ce fer.',
+    whyThisPhase: 'La viande de bœuf est la source la plus biodisponible de fer héminique, celui que ton corps absorbe le mieux. Les tomates ajoutent de la vitamine C pour encore mieux absorber ce fer.',
   },
   {
     name: 'Poêlée de tofu aux légumes et sésame',
@@ -2760,7 +2760,7 @@ dinner: [
   },
   {
     name: 'Sardines grillées au citron et salade de fenouil',
-    description: 'Les sardines ont un ratio oméga-3/oméga-6 exceptionnel — le meilleur de tous les poissons. Le fenoui.',
+    description: 'Les sardines ont un ratio oméga-3/oméga-6 exceptionnel, le meilleur de tous les poissons. Le fenoui.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -2783,7 +2783,7 @@ dinner: [
     'Assaisonne le fenouil de citron, huile et persil.',
     'Sers les sardines sur le fenouil.',
     ],
-    whyThisPhase: 'Les sardines ont un ratio oméga-3/oméga-6 exceptionnel — le meilleur de tous les poissons. Le fenouil contient de l\'anéthol, un anti-inflammatoire et antispasmodique naturel.',
+    whyThisPhase: 'Les sardines ont un ratio oméga-3/oméga-6 exceptionnel, le meilleur de tous les poissons. Le fenouil contient de l\'anéthol, un anti-inflammatoire et antispasmodique naturel.',
   },
   {
     name: 'Velouté de betterave au gingembre et coco',
@@ -3188,7 +3188,7 @@ snack: [
       'Laisse reposer 30 min au frigo (ou toute la nuit).',
       'Ajoute la mangue en dés avant de déguster.',
     ],
-    whyThisPhase: 'Les graines de chia absorbent 10x leur poids en eau — elles hydratent et rassasient. Riches en oméga-3 et en fer. La mangue apporte vitamine C pour mieux absorber le fer.',
+    whyThisPhase: 'Les graines de chia absorbent 10x leur poids en eau, elles hydratent et rassasient. Riches en oméga-3 et en fer. La mangue apporte vitamine C pour mieux absorber le fer.',
   },
   {
     name: 'Mix de fruits secs et chocolat noir',
