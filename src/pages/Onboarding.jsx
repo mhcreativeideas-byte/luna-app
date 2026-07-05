@@ -5,6 +5,7 @@ import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldChe
 import { Capacitor } from '@capacitor/core';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
+import PhaseRing from '../components/cycle/PhaseRing';
 import { getCycleInfo } from '../contexts/CycleContext';
 
 const PHASE_MOODS = {
@@ -853,26 +854,41 @@ export default function Onboarding() {
               >~28 j</motion.text>
             </svg>
           ) : m.phaseImages ? (
-            <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="grid grid-cols-2 gap-3 mb-6 w-full">
               {[
-                { src: '/phase-menstruelle.png', name: 'Menstruelle', days: 'Jours 1 \u00e0 5', mood: 'Repos', color: '#D4727F' },
-                { src: '/phase-folliculaire.png', name: 'Folliculaire', days: 'Jours 6 \u00e0 12', mood: '\u00c9lan', color: '#7BAE7F' },
-                { src: '/phase-ovulatoire.png', name: 'Ovulatoire', days: 'Jours 13 \u00e0 15', mood: '\u00c9clat', color: '#E8A87C' },
-                { src: '/phase-luteale.png', name: 'Lut\u00e9ale', days: 'Jours 16 \u00e0 28', mood: 'Cocon', color: '#B09ACB' },
-              ].map((p, i) => (
-                <motion.div
-                  key={p.name}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.15 + i * 0.1, type: 'spring' }}
-                  className="flex flex-col items-center text-center py-2"
-                >
-                  <img src={p.src} alt={p.name} className="w-32 h-32 object-contain -mb-2" />
-                  <p className="text-sm font-display font-semibold" style={{ color: p.color }}>{p.name}</p>
-                  <p className="text-[10px] font-body text-luna-text-hint uppercase tracking-wider mt-0.5">{p.days}</p>
-                  <p className="text-xs font-display italic mt-0.5" style={{ color: p.color }}>{p.mood}</p>
-                </motion.div>
-              ))}
+                { key: 'menstrual', name: 'Menstruelle', days: 'Jours 1 \u00e0 5', mood: 'Repos' },
+                { key: 'follicular', name: 'Folliculaire', days: 'Jours 6 \u00e0 12', mood: '\u00c9lan' },
+                { key: 'ovulatory', name: 'Ovulatoire', days: 'Jours 13 \u00e0 15', mood: '\u00c9clat' },
+                { key: 'luteal', name: 'Lut\u00e9ale', days: 'Jours 16 \u00e0 28', mood: 'Cocon' },
+              ].map((p, i) => {
+                const pd = PHASES[p.key];
+                return (
+                  <motion.div
+                    key={p.key}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 + i * 0.08 }}
+                    className="rounded-[22px] px-3 py-5 text-center"
+                    style={{ backgroundColor: pd.bgColor }}
+                  >
+                    <div className="mb-3">
+                      <PhaseRing phase={p.key} size={64} />
+                    </div>
+                    <h3 className="font-display text-base leading-tight" style={{ color: pd.colorDark }}>
+                      {p.name}
+                    </h3>
+                    <p className="text-[10px] font-body font-bold uppercase tracking-widest mt-1" style={{ color: pd.color }}>
+                      {p.days}
+                    </p>
+                    <span
+                      className="inline-block mt-2.5 px-3 py-1 rounded-pill text-[11px] font-body font-semibold text-white"
+                      style={{ backgroundColor: pd.color }}
+                    >
+                      {p.mood}
+                    </span>
+                  </motion.div>
+                );
+              })}
             </div>
           ) : m.icons ? (
             <div className="flex gap-2.5 mb-6">

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Capacitor } from '@capacitor/core';
-import { Heart, Gift, Check, Apple, Mail, User, ArrowRight, ChevronDown, Flame, Sun, Sparkles, Moon } from 'lucide-react';
+import { Heart, Gift, Check, Apple, Mail, User, ArrowRight, ChevronDown } from 'lucide-react';
+import PhaseRing from '../components/cycle/PhaseRing';
 import { BrandSymbol, Divider } from '../components/illustrations/LunaIllustrations';
 import IntroCarousel from '../components/IntroCarousel';
 import { PHASES, PHASE_ORDER } from '../data/phases';
@@ -53,39 +54,6 @@ const comparisons = [
 
 // Les 4 phases du cycle (données partagées avec l'app)
 const phases = PHASE_ORDER.map((key) => ({ key, ...PHASES[key] }));
-
-// Icône + progression de l'anneau par phase (comme l'anneau de cycle de l'app)
-const PHASE_RING = {
-  menstrual: { Icon: Flame, progress: 0.11 },
-  follicular: { Icon: Sun, progress: 0.34 },
-  ovulatory: { Icon: Sparkles, progress: 0.54 },
-  luteal: { Icon: Moon, progress: 0.80 },
-};
-
-// ── Anneau de phase (arc coloré + point de progression + icône lucide centrée) ──
-function PhaseRing({ color, colorDark, icon: Icon, progress, size = 76 }) {
-  const R = 42, C = 2 * Math.PI * R;
-  const dash = progress * C;
-  const ang = progress * 2 * Math.PI;
-  const dotX = 50 + R * Math.sin(ang);
-  const dotY = 50 - R * Math.cos(ang);
-  return (
-    <div className="relative mx-auto" style={{ width: size, height: size }}>
-      <svg viewBox="0 0 100 100" className="w-full h-full">
-        <circle cx="50" cy="50" r={R} fill="none" stroke={color} strokeWidth="6.5" opacity="0.16" />
-        <circle
-          cx="50" cy="50" r={R} fill="none" stroke={color} strokeWidth="6.5" strokeLinecap="round"
-          strokeDasharray={`${dash} ${C}`} transform="rotate(-90 50 50)"
-        />
-        <circle cx={dotX} cy={dotY} r="7.5" fill="#FFFFFF" stroke={color} strokeWidth="3" />
-        <circle cx={dotX} cy={dotY} r="2.4" fill={colorDark} />
-      </svg>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Icon size={size * 0.34} strokeWidth={1.9} style={{ color: colorDark }} />
-      </div>
-    </div>
-  );
-}
 
 // Aperçu de l'app (vraies captures)
 const appShots = [
@@ -390,7 +358,7 @@ export default function Landing() {
               style={{ backgroundColor: p.bgColor }}
             >
               <div className="mb-4">
-                <PhaseRing color={p.color} colorDark={p.colorDark} icon={PHASE_RING[p.key].Icon} progress={PHASE_RING[p.key].progress} />
+                <PhaseRing phase={p.key} />
               </div>
               <h3 className="font-display text-lg md:text-xl leading-tight" style={{ color: p.colorDark }}>
                 {p.shortName}
