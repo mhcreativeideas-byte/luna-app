@@ -116,14 +116,20 @@ const FOOD_IMG = {
   'Pruneaux': '/foods/pruneaux.png',
   'Fromage': '/foods/fromage.png',
   'Bœuf': '/foods/boeuf.png',
-  'Eau de coco': '/foods/noix.png',
+  'Eau de coco': '/foods/eau-de-coco.png',
+  'Eau de coco fraîche': '/foods/eau-de-coco.png',
+  'Huile d\'olive': '/foods/huile-olive.png',
+  'Huile de chanvre': '/foods/huile-chanvre.png',
+  'Kombucha': '/foods/kombucha.png',
+  'Lait d\'amande': '/foods/lait-amande.png',
 };
 
-// Emoji de repli pour les aliments sans photo
+// Emoji de secours si la photo ne charge pas
 const FOOD_EMOJI_FALLBACK = {
   'Huile d\'olive': '🫒',
   'Huile de chanvre': '🌱',
   'Eau de coco': '🥥',
+  'Eau de coco fraîche': '🥥',
 };
 
 // Scale individuel par image pour harmoniser les tailles dans les cercles
@@ -168,6 +174,9 @@ const FOOD_SCALE = {
   'Fenouil': 0.75, 'Figue': 0.75, 'Framboise': 0.75,
   'Haricot vert': 0.75, 'Maïs': 0.75, 'Mirabelle': 0.75,
   'Nectarine': 0.75, 'Pêche': 0.75, 'Poivron': 0.75, 'Potiron': 0.75,
+  // --- Bouteilles et verres (hauts et étroits → légèrement agrandir) ---
+  'Huile d\'olive': 1.12, 'Huile de chanvre': 1.12,
+  'Kombucha': 1.08, 'Lait d\'amande': 1.08,
   // --- Moyens (légèrement réduire) ---
   'Cacao cru': 0.91, 'Chocolat noir': 0.91, 'Chocolat noir 70%': 0.91,
   'Graines de lin': 0.91, 'Lentilles': 0.88, 'Tahini': 0.91,
