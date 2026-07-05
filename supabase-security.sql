@@ -56,7 +56,11 @@ alter table public.users add column if not exists discovery_source text;
 
 -- ---------- 4) Suppression de compte sécurisée ----------
 -- SECURITY DEFINER (nécessaire pour supprimer dans auth.users),
--- MAIS avec garde-fou : on ne peut supprimer que SON propre compte.
+-- MAIS avec garde-fou : on peut supprimer SON propre compte...
+-- ...OU n'importe quel compte SI on est l'admin (pour l'espace /admin).
+-- MàJ 2026-07-05 : ajout de l'exception admin (avant, l'admin ne
+-- pouvait supprimer que son propre compte → suppression impossible
+-- depuis /admin pour les utilisatrices).
 -- Efface aussi le suivi (journal, règles…) → conformité RGPD.
 create or replace function public.delete_user_completely(user_auth_id uuid)
 returns void
@@ -65,7 +69,12 @@ security definer
 set search_path = public
 as $$
 begin
-  if auth.uid() is null or auth.uid() <> user_auth_id then
+  if auth.uid() is null then
+    raise exception 'Suppression refusee : non authentifie.';
+  end if;
+  -- Autorisee si : (a) c'est ton propre compte, OU (b) tu es l'admin.
+  if auth.uid() <> user_auth_id
+     and coalesce(auth.jwt() ->> 'email', '') <> 'mhcreative.ideas@gmail.com' then
     raise exception 'Suppression refusee : ce compte ne t appartient pas.';
   end if;
   delete from public.user_tracking where auth_id = user_auth_id;

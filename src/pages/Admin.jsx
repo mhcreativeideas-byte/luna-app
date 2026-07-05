@@ -177,7 +177,9 @@ export default function Admin() {
   const [activeTab, setActiveTab] = useState('users');
   const [waitlist, setWaitlist] = useState([]);
   const [waitlistLoading, setWaitlistLoading] = useState(false);
-  const [waitlistDeleteConfirm, setWaitlistDeleteConfirm] = useState(null); // entry object
+  const [waitlistDeleteConfirm, setWaitlistDeleteConfirm] = useState(null); // entry object | 'bulk' | 'all'
+  const [waitlistSearch, setWaitlistSearch] = useState('');
+  const [selectedWaitlist, setSelectedWaitlist] = useState(new Set());
 
   const toggleSelectUser = (userId, e) => {
     e.stopPropagation();
@@ -370,6 +372,54 @@ export default function Admin() {
       toast('Inscription supprimée ✓');
     } catch (err) {
       console.error('Erreur suppression waitlist:', err);
+      toast('Erreur lors de la suppression : ' + err.message, 'error');
+    }
+    setDeleting(false);
+  };
+
+  // Recherche sur la liste d'attente (prénom, email, source)
+  const filteredWaitlist = waitlist.filter((w) => {
+    const q = waitlistSearch.toLowerCase();
+    return (
+      w.prenom?.toLowerCase().includes(q) ||
+      w.email?.toLowerCase().includes(q) ||
+      w.source?.toLowerCase().includes(q)
+    );
+  });
+
+  const toggleSelectWaitlist = (id, e) => {
+    e.stopPropagation();
+    setSelectedWaitlist((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleSelectAllWaitlist = () => {
+    if (filteredWaitlist.length > 0 && selectedWaitlist.size === filteredWaitlist.length) {
+      setSelectedWaitlist(new Set());
+    } else {
+      setSelectedWaitlist(new Set(filteredWaitlist.map((w) => w.id)));
+    }
+  };
+
+  // Suppression groupée : la sélection ('bulk') ou toute la liste ('all')
+  const handleBulkDeleteWaitlist = async (mode) => {
+    const ids = mode === 'all' ? waitlist.map((w) => w.id) : [...selectedWaitlist];
+    if (ids.length === 0) return;
+    setDeleting(true);
+    try {
+      const { error } = await supabase.from('waitlist').delete().in('id', ids);
+      if (error) throw error;
+      const idSet = new Set(ids);
+      setWaitlist((prev) => prev.filter((w) => !idSet.has(w.id)));
+      setSelectedWaitlist(new Set());
+      setWaitlistDeleteConfirm(null);
+      toast(`${ids.length} inscription${ids.length > 1 ? 's' : ''} supprimée${ids.length > 1 ? 's' : ''} ✓`);
+    } catch (err) {
+      console.error('Erreur suppression groupée waitlist:', err);
       toast('Erreur lors de la suppression : ' + err.message, 'error');
     }
     setDeleting(false);
@@ -1262,7 +1312,7 @@ export default function Admin() {
                   {waitlist.length} inscrite{waitlist.length > 1 ? 's' : ''} à la vitrine · à importer dans ton outil d'emailing au lancement
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <button
                   onClick={fetchWaitlist}
                   disabled={waitlistLoading}
@@ -1270,6 +1320,14 @@ export default function Admin() {
                 >
                   <RefreshCw size={14} className={waitlistLoading ? 'animate-spin' : ''} />
                   Actualiser
+                </button>
+                <button
+                  onClick={() => setWaitlistDeleteConfirm('all')}
+                  disabled={waitlist.length === 0}
+                  className="flex items-center gap-2 px-3 py-2 text-sm bg-red-50 text-red-500 rounded-xl hover:bg-red-100 transition-all font-body font-semibold disabled:opacity-40"
+                >
+                  <Trash2 size={14} />
+                  Tout supprimer
                 </button>
                 <button
                   onClick={exportWaitlistCsv}
@@ -1281,6 +1339,33 @@ export default function Admin() {
                 </button>
               </div>
             </div>
+
+            {/* Barre d'action : recherche + suppression de la sélection */}
+            {waitlist.length > 0 && (
+              <div className="px-5 py-3 border-b border-gray-100 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  {selectedWaitlist.size > 0 && (
+                    <button
+                      onClick={() => setWaitlistDeleteConfirm('bulk')}
+                      className="flex items-center gap-2 px-3 py-2 text-xs bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all font-body font-semibold"
+                    >
+                      <Trash2 size={12} />
+                      Supprimer ({selectedWaitlist.size})
+                    </button>
+                  )}
+                </div>
+                <div className="relative w-full sm:w-64">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <input
+                    type="text"
+                    value={waitlistSearch}
+                    onChange={(e) => setWaitlistSearch(e.target.value)}
+                    placeholder="Rechercher un prénom, email..."
+                    className="w-full pl-9 pr-4 py-2 text-sm bg-gray-50 border border-gray-200 rounded-xl font-body focus:outline-none focus:ring-2 focus:ring-luna-rose/30"
+                  />
+                </div>
+              </div>
+            )}
 
             {waitlistLoading ? (
               <div className="p-12 text-center">
@@ -1295,11 +1380,27 @@ export default function Admin() {
                   Les emails récupérés sur la vitrine apparaîtront ici
                 </p>
               </div>
+            ) : filteredWaitlist.length === 0 ? (
+              <div className="p-12 text-center">
+                <Search className="mx-auto text-gray-300 mb-3" size={40} />
+                <p className="text-gray-400 font-body">Aucun résultat pour « {waitlistSearch} »</p>
+                <p className="text-xs text-gray-300 font-body mt-1">
+                  Essaie un autre prénom ou une autre adresse email
+                </p>
+              </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 text-gray-500 font-body">
+                      <th className="w-12 px-3 py-3">
+                        <input
+                          type="checkbox"
+                          checked={filteredWaitlist.length > 0 && selectedWaitlist.size === filteredWaitlist.length}
+                          onChange={toggleSelectAllWaitlist}
+                          className="w-4 h-4 rounded border-gray-300 text-luna-rose focus:ring-luna-rose/30 cursor-pointer"
+                        />
+                      </th>
                       <th className="text-left px-5 py-3 font-semibold">Prénom</th>
                       <th className="text-left px-5 py-3 font-semibold">Email</th>
                       <th className="text-left px-5 py-3 font-semibold hidden sm:table-cell">Source</th>
@@ -1308,13 +1409,21 @@ export default function Admin() {
                     </tr>
                   </thead>
                   <tbody>
-                    {waitlist.map((w) => (
+                    {filteredWaitlist.map((w) => (
                       <motion.tr
                         key={w.id}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="border-t border-gray-50 hover:bg-gray-50/50 transition-colors"
+                        className={`border-t border-gray-50 hover:bg-gray-50/50 transition-colors ${selectedWaitlist.has(w.id) ? 'bg-red-50/50' : ''}`}
                       >
+                        <td className="px-3 py-3">
+                          <input
+                            type="checkbox"
+                            checked={selectedWaitlist.has(w.id)}
+                            onChange={(e) => toggleSelectWaitlist(w.id, e)}
+                            className="w-4 h-4 rounded border-gray-300 text-luna-rose focus:ring-luna-rose/30 cursor-pointer"
+                          />
+                        </td>
                         <td className="px-5 py-3">
                           <span className="font-body text-gray-800">{w.prenom || '—'}</span>
                         </td>
@@ -1440,16 +1549,45 @@ export default function Admin() {
               <div className="w-10 h-10 bg-red-50 rounded-xl flex items-center justify-center">
                 <AlertTriangle className="text-red-500" size={20} />
               </div>
-              <h3 className="font-display text-lg text-gray-800">Retirer de la liste ?</h3>
+              <h3 className="font-display text-lg text-gray-800">
+                {waitlistDeleteConfirm === 'all'
+                  ? `Vider toute la liste (${waitlist.length}) ?`
+                  : waitlistDeleteConfirm === 'bulk'
+                    ? `Supprimer ${selectedWaitlist.size} inscription${selectedWaitlist.size > 1 ? 's' : ''} ?`
+                    : 'Retirer de la liste ?'
+                }
+              </h3>
             </div>
-            <div className="bg-gray-50 rounded-xl p-4 mb-4">
-              <p className="text-sm font-semibold text-gray-700 font-body">{waitlistDeleteConfirm.email}</p>
-              <p className="text-xs text-gray-400 font-body mt-1">
-                Inscrite le {new Date(waitlistDeleteConfirm.created_at).toLocaleDateString('fr-FR')}
-              </p>
-            </div>
+
+            {waitlistDeleteConfirm === 'all' || waitlistDeleteConfirm === 'bulk' ? (
+              <div className="bg-gray-50 rounded-xl p-4 mb-4 max-h-40 overflow-y-auto space-y-2">
+                {(waitlistDeleteConfirm === 'all'
+                  ? waitlist
+                  : waitlist.filter((w) => selectedWaitlist.has(w.id))
+                ).map((w) => (
+                  <div key={w.id} className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-red-500 flex-shrink-0">
+                      <Mail size={11} />
+                    </div>
+                    <span className="text-xs text-gray-600 font-body truncate">{w.email}</span>
+                    {w.prenom && <span className="text-xs text-gray-400 font-body">— {w.prenom}</span>}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-gray-50 rounded-xl p-4 mb-4">
+                <p className="text-sm font-semibold text-gray-700 font-body">{waitlistDeleteConfirm.email}</p>
+                <p className="text-xs text-gray-400 font-body mt-1">
+                  Inscrite le {new Date(waitlistDeleteConfirm.created_at).toLocaleDateString('fr-FR')}
+                </p>
+              </div>
+            )}
+
             <p className="text-sm text-gray-500 font-body mb-5">
-              Cette adresse sera retirée de ta liste d'attente. Action irréversible.
+              {waitlistDeleteConfirm === 'all'
+                ? 'Toutes les adresses seront retirées de ta liste d\'attente. Action irréversible — pense à exporter le CSV avant.'
+                : 'Cette action est irréversible.'
+              }
             </p>
             <div className="flex gap-3">
               <button
@@ -1459,9 +1597,13 @@ export default function Admin() {
                 Annuler
               </button>
               <button
-                onClick={() => handleDeleteWaitlist(waitlistDeleteConfirm)}
+                onClick={() => {
+                  if (waitlistDeleteConfirm === 'all') handleBulkDeleteWaitlist('all');
+                  else if (waitlistDeleteConfirm === 'bulk') handleBulkDeleteWaitlist('bulk');
+                  else handleDeleteWaitlist(waitlistDeleteConfirm);
+                }}
                 disabled={deleting}
-                className="flex-1 py-2.5 bg-red-500 text-white rounded-xl text-sm font-body font-semibold hover:bg-red-600 transition-colors flex items-center justify-center gap-2"
+                className="flex-1 py-2.5 bg-red-500 text-white rounded-xl text-sm font-body font-semibold hover:bg-red-600 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {deleting ? <RefreshCw size={14} className="animate-spin" /> : <Trash2 size={14} />}
                 Supprimer
