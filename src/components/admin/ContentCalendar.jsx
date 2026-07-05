@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronLeft, ChevronRight, Plus, X, Trash2,
@@ -106,8 +106,55 @@ export default function ContentCalendar() {
   const [draft, setDraft] = useState(null);   // post en cours d'édition/création
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef(null);
 
   const todayKey = dateKey(now.getFullYear(), now.getMonth(), now.getDate());
+
+  // Envoi d'un visuel : on redimensionne (max 600px) puis on stocke dans le
+  // bucket Supabase "content" (public) et on garde l'URL dans draft.visuel.
+  const handleVisuelFile = (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = ''; // permet de re-choisir le même fichier ensuite
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      const img = new window.Image();
+      img.onload = async () => {
+        const canvas = document.createElement('canvas');
+        const maxSize = 600;
+        let width = img.width;
+        let height = img.height;
+        if (width > height) {
+          if (width > maxSize) { height = Math.round(height * maxSize / width); width = maxSize; }
+        } else {
+          if (height > maxSize) { width = Math.round(width * maxSize / height); height = maxSize; }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        setUploading(true);
+        canvas.toBlob(async (blob) => {
+          try {
+            const path = `${draft.date}-${Date.now()}.jpg`;
+            const { error: upErr } = await supabase.storage
+              .from('content')
+              .upload(path, blob, { upsert: true, contentType: 'image/jpeg' });
+            if (upErr) throw upErr;
+            const { data } = supabase.storage.from('content').getPublicUrl(path);
+            setDraft((d) => (d ? { ...d, visuel: `${data.publicUrl}?t=${Date.now()}` } : d));
+            toast('Visuel ajouté ✓');
+          } catch (err) {
+            console.error('Upload visuel error:', err);
+            toast('Erreur envoi : ' + (err.message || 'réessaie'), 'error');
+          }
+          setUploading(false);
+        }, 'image/jpeg', 0.82);
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
   const fetchPosts = useCallback(async () => {
     setLoading(true);
@@ -311,6 +358,9 @@ export default function ContentCalendar() {
                           <span className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ background: phase.dot }} />
                           <span className="text-[9px] font-semibold font-body leading-none ml-auto" style={{ color: st.color }}>{st.label}</span>
                         </div>
+                        {p.visuel && (
+                          <img src={p.visuel} alt="" loading="lazy" className="w-full h-12 object-cover rounded-md" />
+                        )}
                         <div className="flex flex-wrap gap-1">
                           <span className="inline-flex items-center gap-1 text-[8.5px] font-medium font-body px-1.5 py-0.5 rounded-full bg-white border border-gray-200 text-gray-500">
                             <Icon size={9} />{fmt.label}
@@ -489,8 +539,24 @@ export default function ContentCalendar() {
                 </Field>
 
                 {/* Visuel */}
-                <Field label="Lien du visuel (optionnel)">
-                  <input type="text" value={draft.visuel || ''} onChange={(e) => setDraft({ ...draft, visuel: e.target.value })} placeholder="URL de l'image / du carrousel" className={inputCls} />
+                <Field label="Visuel (optionnel)">
+                  {draft.visuel ? (
+                    <div className="flex items-center gap-3">
+                      <img src={draft.visuel} alt="Aperçu du visuel" className="w-16 h-16 rounded-xl object-cover border border-gray-200" />
+                      <div className="flex gap-2">
+                        <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading} className="px-3 py-2 text-xs bg-gray-100 text-gray-600 rounded-lg font-semibold hover:bg-gray-200 transition-colors disabled:opacity-50">
+                          {uploading ? 'Envoi…' : 'Remplacer'}
+                        </button>
+                        <button type="button" onClick={() => setDraft({ ...draft, visuel: '' })} className="px-3 py-2 text-xs text-red-500 hover:bg-red-50 rounded-lg font-semibold transition-colors">Retirer</button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading} className="w-full flex items-center justify-center gap-2 px-3 py-3 rounded-xl border-2 border-dashed border-gray-200 text-sm text-gray-500 font-semibold hover:border-luna-rose/40 hover:text-luna-rose transition-colors disabled:opacity-50">
+                      {uploading ? <RefreshCw size={16} className="animate-spin" /> : <Image size={16} />}
+                      {uploading ? 'Envoi…' : 'Choisir une image'}
+                    </button>
+                  )}
+                  <input ref={fileRef} type="file" accept="image/*" onChange={handleVisuelFile} className="hidden" />
                 </Field>
               </div>
 
