@@ -36,7 +36,7 @@ const PHASE_FOOD_IDEAS = {
 };
 
 const PHASE_COLORS = {
-  menstrual: { bg: '#D4727F', bgLight: '#FDE8EB', accent: '#A85566' },
+  menstrual: { bg: '#D4727F', bgLight: '#FDE8EB', accent: '#A85A66' },
   follicular: { bg: '#7BAE7F', bgLight: '#EDF5ED', accent: '#4D7A50' },
   ovulatory: { bg: '#E8A87C', bgLight: '#FFF3EB', accent: '#C47A4A' },
   luteal: { bg: '#B09ACB', bgLight: '#F3EEF8', accent: '#7D6A96' },
@@ -334,11 +334,11 @@ function SectionToggle({ label, emoji, enabled, onToggle, items, onUpdateItems, 
                   ) : (
                     <>
                       <span className="text-xs font-body text-luna-text-body flex-1">• {item}</span>
-                      <button onClick={() => startEdit(i)} className="p-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Pencil size={11} className="text-luna-text-hint" />
+                      <button onClick={() => startEdit(i)} className="p-1.5 -m-1">
+                        <Pencil size={12} className="text-luna-text-hint" />
                       </button>
-                      <button onClick={() => removeItem(i)} className="p-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <X size={11} className="text-luna-text-hint" />
+                      <button onClick={() => removeItem(i)} className="p-1.5 -m-1">
+                        <X size={12} className="text-luna-text-hint" />
                       </button>
                     </>
                   )}

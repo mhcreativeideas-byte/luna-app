@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Leaf } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import { useCycle } from '../contexts/CycleContext';
-import { SEASONAL_FOODS, FOOD_IMAGES, FOOD_EMOJIS } from '../data/seasonal';
+import { SEASONAL_FOODS, FOOD_IMAGES, FOOD_EMOJIS, SEASONAL_MONTH_NAMES } from '../data/seasonal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -12,8 +12,6 @@ const item = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
-
-const MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
 function FoodBubble({ name }) {
   const img = FOOD_IMAGES[name];
@@ -41,7 +39,7 @@ export default function DeSaison() {
   const phaseData = cycleInfo?.phaseData || { color: '#C4727F', colorDark: '#A85A66', bgColor: '#FDE8EB' };
 
   const month = new Date().getMonth() + 1;
-  const monthName = MONTH_NAMES[month - 1];
+  const monthName = SEASONAL_MONTH_NAMES[month - 1];
   const { fruits = [], legumes = [] } = SEASONAL_FOODS[month] || {};
 
   return (

@@ -7,6 +7,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { buildRequiredTags, filterRecipes } from '../data/recipeFilters';
+import { SEASONAL_MONTH_NAMES } from '../data/seasonal';
 
 const container = {
   hidden: { opacity: 0 },
@@ -16,8 +17,6 @@ const item = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
-
-const MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
 // Tuile du sommaire « Manger » : grande, tactile, un mot + un sous-titre court.
 // Couleurs fixes de la charte luna (rose, pêche, menthe, sauge) — pas de thème
@@ -69,7 +68,7 @@ export default function Recettes() {
     selectedTime: cookingTime || '',
   }).length;
 
-  const monthName = MONTH_NAMES[new Date().getMonth()];
+  const monthName = SEASONAL_MONTH_NAMES[new Date().getMonth()];
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
@@ -102,23 +101,23 @@ export default function Recettes() {
         <Tile
           to="/alimentation"
           bg="#FFF3EB"
-          iconColor="#C47A4A"
+          iconColor="#C07A4A"
           Icon={Apple}
           label="Aliments"
           sub="Les alliés de ta phase"
         />
         <Tile
           to="/mon-frigo"
-          bg="#EAF1F4"
-          iconColor="#5E8296"
+          bg="#EDF5F8"
+          iconColor="#7BAAB8"
           Icon={Refrigerator}
           label="Mon frigo"
           sub="Cuisine avec ce que tu as"
         />
         <Tile
           to="/de-saison"
-          bg="#EDF2EA"
-          iconColor="#71805F"
+          bg="#EDF5ED"
+          iconColor="#4D7A50"
           Icon={Leaf}
           label="De saison"
           sub={`En ${monthName}`}

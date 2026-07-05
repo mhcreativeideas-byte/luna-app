@@ -20,9 +20,9 @@ const PHASE_MENU_INTROS = {
   luteal: 'Un menu réconfortant et équilibré : glucides complexes et magnésium contre les fringales.',
 };
 
-// Page « Menu du jour » — conservée dans le code (route /menu) mais plus
-// affichée dans la navigation. Le menu du jour vit désormais en haut de
-// l'onglet « Manger ». Réutilise le même composant DailyMenu.
+// Page « Menu du jour » (route /menu) : la version complète du menu, ouverte
+// par « Tout voir » depuis l'accueil Aujourd'hui (qui affiche l'aperçu en
+// carrousel). Réutilise le même composant DailyMenu.
 export default function Menu() {
   const { cycleInfo } = useCycle();
   const phase = cycleInfo?.phase || 'follicular';

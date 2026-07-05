@@ -81,6 +81,9 @@ export const FOOD_IMAGES = {
   'Courge': '/foods/courge.png',
 };
 
+// Noms de mois en minuscules pour l'affichage saisonnier (« en juillet »)
+export const SEASONAL_MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
 export const SEASONAL_FOODS = {
   1: { // Janvier
     fruits: ['Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Pomme', 'Poire'],
