@@ -48,7 +48,7 @@ export default function Auth() {
     if (authLoading) return;
     if (user) {
       if (onboardingComplete) {
-        navigate('/dashboard', { replace: true });
+        navigate('/aujourdhui', { replace: true });
       } else {
         navigate('/onboarding', { replace: true });
       }

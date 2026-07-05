@@ -10,7 +10,10 @@ import Landing from './pages/Landing';
 const Auth = lazy(() => import('./pages/Auth'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 const Onboarding = lazy(() => import('./pages/Onboarding'));
+const Aujourdhui = lazy(() => import('./pages/Aujourdhui'));
 const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Bilan = lazy(() => import('./pages/Bilan'));
+const DeSaison = lazy(() => import('./pages/DeSaison'));
 const Calendar = lazy(() => import('./pages/Calendar'));
 const Sport = lazy(() => import('./pages/Sport'));
 const Alimentation = lazy(() => import('./pages/Alimentation'));
@@ -61,7 +64,7 @@ function AuthGuard({ children }) {
 function HomeRedirect() {
   const { onboardingComplete, user, authLoading } = useCycle();
   if (authLoading) return <PageLoader />;
-  if (user && onboardingComplete) return <Navigate to="/dashboard" replace />;
+  if (user && onboardingComplete) return <Navigate to="/aujourdhui" replace />;
   if (user && !onboardingComplete) return <Navigate to="/onboarding" replace />;
   return <Landing />;
 }
@@ -81,7 +84,16 @@ function LegalPage({ children }) {
 // Sur le WEB, l'app est « murée » : seule la vitrine (liste d'attente), l'admin
 // et les pages légales sont accessibles. Toute autre URL renvoie vers la vitrine.
 // Rien n'est supprimé — l'app native iPhone (Capacitor) garde TOUTES ses routes.
-const IS_NATIVE = Capacitor.isNativePlatform();
+
+// Mode aperçu (⚠️ À RETIRER AVANT LE LANCEMENT) : ouvrir lunawellness.app/apercu-mh26
+// sur un téléphone débloque l'app complète dans le navigateur, pour tester à
+// distance sans passer par Xcode. Le déblocage est mémorisé sur l'appareil.
+if (typeof window !== 'undefined' && window.location.pathname === '/apercu-mh26') {
+  localStorage.setItem('luna-apercu', '1');
+  window.location.replace('/auth');
+}
+const IS_APERCU = typeof localStorage !== 'undefined' && localStorage.getItem('luna-apercu') === '1';
+const IS_NATIVE = Capacitor.isNativePlatform() || IS_APERCU;
 
 function WebRoutes() {
   return (
@@ -116,7 +128,10 @@ function NativeRoutes() {
           </ProtectedRoute>
         }
       >
+        <Route path="/aujourdhui" element={<Aujourdhui />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/bilan" element={<Bilan />} />
+        <Route path="/de-saison" element={<DeSaison />} />
         <Route path="/sport" element={<Sport />} />
         <Route path="/alimentation" element={<Alimentation />} />
         <Route path="/recettes" element={<Recettes />} />

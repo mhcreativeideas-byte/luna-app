@@ -126,8 +126,10 @@ const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [],
 };
 
 // Bloc « Ta journée idéale » : le menu du jour adapté à la phase.
-// Réutilisable — affiché en haut de l'onglet Manger (et de la page Menu dormante).
-export default function DailyMenu() {
+// Deux affichages : variant="full" (carte détaillée, page Menu) et
+// variant="carousel" (cartes horizontales compactes, accueil Aujourd'hui).
+// Même chargement, même fenêtre de détail dans les deux cas.
+export default function DailyMenu({ variant = 'full' }) {
   const { cycleInfo, dietPreferences, healthIssues, allergies } = useCycle();
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
 
@@ -160,6 +162,53 @@ export default function DailyMenu() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, recipes, dietPreferences, healthIssues, allergies]);
+
+  if (variant === 'carousel') {
+    return (
+      <>
+        {dailyMenu.length === 0 ? (
+          <div className="flex items-center justify-center py-8 bg-white rounded-[20px]">
+            <img src="/logo-luna.svg" alt="luna" className="w-12 opacity-40 animate-pulse" />
+          </div>
+        ) : (
+          <div
+            className="flex gap-3 overflow-x-auto -mx-4 px-4 pb-1"
+            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', scrollSnapType: 'x mandatory' }}
+          >
+            {dailyMenu.map((m, i) => {
+              const MealIcon = m.Icon;
+              return (
+                <motion.button
+                  key={m.key}
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.06 * i, duration: 0.3 }}
+                  onClick={() => setOpenDailyRecipe(m.recipe)}
+                  className="flex-none w-[132px] bg-white rounded-[20px] p-3.5 text-left active:scale-[0.97] transition-transform"
+                  style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)', scrollSnapAlign: 'start' }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-[13px] flex items-center justify-center mb-2.5"
+                    style={{ backgroundColor: phaseData.bgColor }}
+                  >
+                    <MealIcon size={18} style={{ color: phaseData.colorDark }} />
+                  </div>
+                  <p className="text-[10px] font-body font-bold uppercase tracking-wider mb-1" style={{ color: phaseData.color }}>
+                    {m.time}
+                  </p>
+                  <p className="text-[13px] font-body font-semibold text-luna-text leading-snug line-clamp-2 min-h-[34px]">
+                    {m.recipe.name}
+                  </p>
+                  <p className="text-[11px] font-body text-luna-text-hint mt-1.5">{m.recipe.prepTime}</p>
+                </motion.button>
+              );
+            })}
+          </div>
+        )}
+        <RecipeSheet recipe={openDailyRecipe} onClose={() => setOpenDailyRecipe(null)} phaseData={phaseData} />
+      </>
+    );
+  }
 
   return (
     <>
@@ -246,7 +295,16 @@ export default function DailyMenu() {
         </div>
       </motion.div>
 
-      {/* ===== RECIPE DETAIL MODAL ===== */}
+      <RecipeSheet recipe={openDailyRecipe} onClose={() => setOpenDailyRecipe(null)} phaseData={phaseData} />
+    </>
+  );
+}
+
+// ===== Fenêtre du bas : détail d'une recette du menu du jour =====
+function RecipeSheet({ recipe, onClose, phaseData }) {
+  const openDailyRecipe = recipe;
+  return (
+    <>
       <AnimatePresence>
         {openDailyRecipe && (
           <motion.div
@@ -254,7 +312,7 @@ export default function DailyMenu() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[60] flex items-end justify-center"
-            onClick={() => setOpenDailyRecipe(null)}
+            onClick={onClose}
           >
             <motion.div
               initial={{ y: '100%' }}
@@ -271,7 +329,7 @@ export default function DailyMenu() {
               >
                 <span className="text-5xl">{openDailyRecipe.emoji || '🍽️'}</span>
                 <button
-                  onClick={() => setOpenDailyRecipe(null)}
+                  onClick={onClose}
                   className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
                 >
                   <X size={16} className="text-luna-text-muted" />

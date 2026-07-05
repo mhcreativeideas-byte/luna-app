@@ -218,7 +218,7 @@ export default function Chat() {
       {/* Header */}
       <div className="flex items-center gap-3 pb-3">
         <button
-          onClick={() => navigate('/dashboard')}
+          onClick={() => navigate('/aujourdhui')}
           aria-label="Retour"
           className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}

@@ -93,7 +93,7 @@ export default function CheckIn() {
       payload: { date: today, energy, symptoms, note, phase: cycleInfo?.phase },
     });
     toast('Check-in du jour enregistré ✓');
-    navigate('/dashboard');
+    navigate('/aujourdhui');
   };
 
   const blobSize = 80 + (energy / 100) * 80;

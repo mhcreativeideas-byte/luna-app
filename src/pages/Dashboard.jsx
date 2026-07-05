@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, Flame, ChevronRight, Heart, Apple, CalendarDays, Droplets, Sun, Moon } from 'lucide-react';
+import { Sparkles, ChevronRight, CalendarDays, Droplets, Sun, Moon, BarChart3, Users } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import BottomSheet from '../components/ui/BottomSheet';
+import SharePartnerCard from '../components/cycle/SharePartnerCard';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
-import { findSymptomFood } from '../data/symptomFoods';
 import { PHASES } from '../data/phases';
 
 const PHASE_ICONS = {
@@ -23,28 +25,16 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-const PHASE_SUBTITLES = {
-  menstrual: 'Ton corps est en phase de renouveau.\nAujourd\'hui, privilégie le repos et l\'écoute de soi.',
-  follicular: 'L\'énergie remonte. Ton corps est prêt\nà se dépasser et à créer.',
-  ovulatory: 'Tu es à ton pic. Performances,\nconfiance et communication au max.',
-  luteal: 'Ton corps se prépare. Écoute-le,\nnourris-le, et adapte ton rythme.',
-};
-
+// Onglet « Mon cycle » : l'anneau signature, le calendrier, le bilan mensuel
+// et l'espace partenaire. Le check-in et la salutation vivent sur Aujourd'hui.
 export default function Dashboard() {
-  const { cycleInfo, name, cycleLength, periodLength, todayCheckIn } = useCycle();
+  const { cycleInfo, name, cycleLength, periodLength } = useCycle();
   const navigate = useNavigate();
+  const [showPartnerSheet, setShowPartnerSheet] = useState(false);
 
   if (!cycleInfo) return <DashboardSkeleton />;
 
-  const { phase, phaseData, currentDay, energyLevel, daysUntilPeriod } = cycleInfo;
-
-  const hour = new Date().getHours();
-  const displayName = name || '';
-  const timeGreeting = hour < 12 ? 'Bonjour' : hour < 18 ? 'Bon après-midi' : 'Bonsoir';
-
-  const energyLabel = energyLevel >= 70 ? 'Haute' : energyLevel >= 45 ? 'Modérée' : 'Basse';
-  const PHASE_MOODS = { menstrual: 'Repos', follicular: 'Élan', ovulatory: 'Rayonnante', luteal: 'Cocooning' };
-  const moodLabel = PHASE_MOODS[phase] || 'Sereine';
+  const { phase, phaseData, currentDay, daysUntilPeriod } = cycleInfo;
 
   // Phase segments for cycle ring
   const ovulationDay = cycleLength - 14;
@@ -68,17 +58,10 @@ export default function Dashboard() {
         <TopMenu />
       </motion.div>
 
-      {/* Hero Greeting */}
+      {/* Titre */}
       <motion.div variants={item}>
-        <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
-          {phaseData.shortName} · Jour {currentDay}
-        </p>
-        <h1 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
-          {timeGreeting}, <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>{displayName}.</em>
-        </h1>
-        <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed whitespace-pre-line">
-          {PHASE_SUBTITLES[phase]}
-        </p>
+        <h1 className="font-display text-[28px] text-luna-text leading-tight">Mon cycle</h1>
+        <p className="text-sm font-body text-luna-text-muted mt-1">Suis, comprends, anticipe.</p>
       </motion.div>
 
       {/* Cycle Circle — Phase-colored ring with luna logo */}
@@ -288,83 +271,12 @@ export default function Dashboard() {
         </div>
       </motion.div>
 
-      {/* Stats du jour (Énergie · Humeur) */}
-      <motion.div variants={item} className="grid grid-cols-2 gap-3">
-        <div className="bg-white rounded-[20px] px-4 py-3.5 flex items-center gap-3" style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)' }}>
-          <Flame size={18} style={{ color: phaseData.color }} className="flex-shrink-0" />
-          <div className="min-w-0">
-            <p className="text-xs font-body text-luna-text-muted leading-tight">Énergie</p>
-            <p className="font-display text-base text-luna-text leading-tight">{energyLabel}</p>
-          </div>
-        </div>
-        <div className="bg-white rounded-[20px] px-4 py-3.5 flex items-center gap-3" style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)' }}>
-          <Sparkles size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
-          <div className="min-w-0">
-            <p className="text-xs font-body text-luna-text-muted leading-tight">Humeur</p>
-            <p className="font-display text-base text-luna-text leading-tight">{moodLabel}</p>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Check-in du jour — accessible depuis Mon cycle */}
-      <motion.div variants={item}>
-        <div
-          onClick={() => navigate('/checkin')}
-          className="rounded-[20px] p-4 flex items-center gap-3.5 cursor-pointer active:scale-[0.99] transition-transform bg-white"
-          style={{ boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
-        >
-          <div className="w-11 h-11 rounded-[14px] flex items-center justify-center flex-shrink-0" style={{ backgroundColor: phaseData.bgColor }}>
-            <Heart size={19} style={{ color: phaseData.colorDark }} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h2 className="font-display text-base text-luna-text leading-tight">Mon check-in du jour</h2>
-            <p className="text-xs font-body text-luna-text-muted mt-0.5">
-              {todayCheckIn ? 'Déjà noté aujourd\'hui ✓ — appuie pour modifier' : 'Comment tu te sens aujourd\'hui ?'}
-            </p>
-          </div>
-          <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
-        </div>
-      </motion.div>
-
-      {/* Boucle symptôme → aliment : conseil nutrition d'après le check-in */}
-      {(() => {
-        const symptoms = todayCheckIn?.symptoms ? Object.values(todayCheckIn.symptoms).flat() : [];
-        const advice = findSymptomFood(symptoms);
-        if (!advice) return null;
-        return (
-          <motion.div variants={item}>
-            <div
-              className="rounded-[26px] p-5"
-              style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <Apple size={15} style={{ color: phaseData.colorDark }} />
-                <p className="text-[10px] font-body font-bold uppercase tracking-widest" style={{ color: phaseData.color }}>
-                  {advice.title}
-                </p>
-              </div>
-              <p className="text-sm font-body text-luna-text-body leading-relaxed">
-                {advice.why} Pense à : <span className="font-semibold">{advice.foods.join(', ')}</span>.
-              </p>
-              <button
-                onClick={() => navigate(`/recettes-liste?nutrient=${encodeURIComponent(advice.nutrient)}`)}
-                className="mt-3 w-full flex items-center justify-center gap-2 py-3 rounded-[14px] text-[13px] font-body font-bold text-white transition-all active:scale-[0.99]"
-                style={{ backgroundColor: phaseData.color, boxShadow: `0 4px 14px ${phaseData.color}40` }}
-              >
-                Voir les recettes riches en {advice.nutrient.toLowerCase()}
-                <ChevronRight size={15} />
-              </button>
-            </div>
-          </motion.div>
-        );
-      })()}
-
       {/* Accès au calendrier complet */}
       <motion.div variants={item}>
         <button
           onClick={() => navigate('/calendrier')}
           className="w-full rounded-[26px] p-5 flex items-center gap-4 active:scale-[0.99] transition-transform text-white"
-          style={{ background: `linear-gradient(135deg, ${phaseData.color}, ${phaseData.colorDark})`, boxShadow: `0 10px 28px ${phaseData.color}40` }}
+          style={{ backgroundColor: phaseData.color, boxShadow: `0 10px 28px ${phaseData.color}40` }}
         >
           <div className="w-12 h-12 rounded-[16px] flex items-center justify-center flex-shrink-0 bg-white/20">
             <CalendarDays size={20} className="text-white" />
@@ -378,6 +290,36 @@ export default function Dashboard() {
           <ChevronRight size={18} className="flex-shrink-0 text-white/90" />
         </button>
       </motion.div>
+
+      {/* Mon bilan · Partenaire */}
+      <motion.div variants={item} className="grid grid-cols-2 gap-3">
+        <button
+          onClick={() => navigate('/bilan')}
+          className="flex flex-col justify-between rounded-[24px] p-5 min-h-[110px] bg-white text-left active:scale-[0.98] transition-transform"
+          style={{ boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}
+        >
+          <BarChart3 size={24} style={{ color: phaseData.colorDark }} />
+          <div>
+            <p className="font-display text-lg text-luna-text leading-tight">Mon bilan</p>
+            <p className="text-[11px] font-body text-luna-text-muted mt-0.5">Tes stats du mois</p>
+          </div>
+        </button>
+        <button
+          onClick={() => setShowPartnerSheet(true)}
+          className="flex flex-col justify-between rounded-[24px] p-5 min-h-[110px] text-left active:scale-[0.98] transition-transform"
+          style={{ backgroundColor: '#F3EEF8', boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}
+        >
+          <Users size={24} style={{ color: '#7D6A96' }} />
+          <div>
+            <p className="font-display text-lg text-luna-text leading-tight">Partenaire</p>
+            <p className="text-[11px] font-body text-luna-text-muted mt-0.5">Partage ta phase</p>
+          </div>
+        </button>
+      </motion.div>
+
+      <BottomSheet open={showPartnerSheet} onClose={() => setShowPartnerSheet(false)} title="Carte à partager">
+        <SharePartnerCard cycleInfo={cycleInfo} name={name} />
+      </BottomSheet>
 
       {/* Disclaimer */}
       <motion.div variants={item} className="text-center pt-4 pb-2">

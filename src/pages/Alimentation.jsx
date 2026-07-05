@@ -5,7 +5,7 @@ import { X, Cookie, ChevronRight, Clock, Sparkles, Lightbulb, Leaf, UtensilsCros
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import TopMenu from '../components/ui/TopMenu';
+import BackButton from '../components/ui/BackButton';
 import PhaseHero from '../components/food/PhaseHero';
 
 const container = {
@@ -290,7 +290,7 @@ export default function Alimentation() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
-      <TopMenu />
+      <BackButton />
 
       {/* ===== HERO ===== */}
       <motion.div variants={item}>

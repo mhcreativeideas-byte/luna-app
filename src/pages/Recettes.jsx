@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, Refrigerator, UtensilsCrossed } from 'lucide-react';
+import { BookOpen, Apple, Refrigerator, Leaf } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
-import DailyMenu from '../components/food/DailyMenu';
-import PhaseHero from '../components/food/PhaseHero';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import { buildRequiredTags, buildDietLabel, filterRecipes } from '../data/recipeFilters';
+import { buildRequiredTags, filterRecipes } from '../data/recipeFilters';
 
 const container = {
   hidden: { opacity: 0 },
@@ -19,20 +17,29 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-const MANGER_TITLES = {
-  menstrual: { main: 'Manger pour', italic: 'se régénérer' },
-  follicular: { main: 'Manger pour', italic: 's\'élancer' },
-  ovulatory: { main: 'Manger pour', italic: 'rayonner' },
-  luteal: { main: 'Manger pour', italic: 's\'apaiser' },
-};
+const MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
-const MANGER_INTROS = {
-  menstrual: 'Ton menu du jour et tes recettes, pensés pour reconstituer ton énergie pendant tes règles.',
-  follicular: 'Ton menu du jour et tes recettes, pour accompagner ton énergie qui remonte.',
-  ovulatory: 'Ton menu du jour et tes recettes, légers et colorés pour ton pic d\'énergie.',
-  luteal: 'Ton menu du jour et tes recettes, réconfortants et équilibrés pour cette phase.',
-};
+// Tuile du sommaire « Manger » : grande, tactile, un mot + un sous-titre court.
+// Couleurs fixes de la charte luna (rose, pêche, menthe, sauge) — pas de thème
+// par phase ici, c'est un sommaire.
+function Tile({ to, bg, iconColor, Icon, label, sub }) {
+  return (
+    <Link
+      to={to}
+      className="flex flex-col justify-between rounded-[24px] p-5 min-h-[122px] active:scale-[0.98] transition-transform"
+      style={{ backgroundColor: bg, boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}
+    >
+      <Icon size={24} style={{ color: iconColor }} />
+      <div>
+        <p className="font-display text-lg text-luna-text leading-tight">{label}</p>
+        {sub && <p className="text-[11px] font-body text-luna-text-muted mt-0.5">{sub}</p>}
+      </div>
+    </Link>
+  );
+}
 
+// Onglet « Manger » : le sommaire de tout l'alimentaire.
+// Le menu du jour vit désormais sur l'accueil Aujourd'hui.
 export default function Recettes() {
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies } = useCycle();
 
@@ -52,10 +59,9 @@ export default function Recettes() {
 
   const recipes = loadedRecipes?.phase === currentPhase ? loadedRecipes.data : null;
 
-  // Compte des recettes adaptées (pour la carte) — mêmes filtres que la liste,
+  // Compte des recettes adaptées (pour la tuile) — mêmes filtres que la liste,
   // avec les réglages par défaut du profil.
   const requiredTags = buildRequiredTags(dietPreferences, healthIssues);
-  const dietLabel = buildDietLabel(dietPreferences, healthIssues);
   const recipeCount = filterRecipes(recipes, {
     requiredTags,
     allergies,
@@ -63,61 +69,60 @@ export default function Recettes() {
     selectedTime: cookingTime || '',
   }).length;
 
+  const monthName = MONTH_NAMES[new Date().getMonth()];
+
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <TopMenu />
 
-      {/* En-tête « Manger » — composant partagé compact (même déco que Mes aliments) */}
+      {/* En-tête : titre + pastille de phase */}
       <motion.div variants={item}>
-        <PhaseHero
-          phaseData={phaseData}
-          section="Manger"
-          titleMain={MANGER_TITLES[currentPhase].main}
-          titleItalic={MANGER_TITLES[currentPhase].italic}
-          intro={MANGER_INTROS[currentPhase]}
-        />
-      </motion.div>
-
-      {/* Menu du jour — l'action du jour, en haut de « Manger » */}
-      <DailyMenu />
-
-      {/* Bandeau Mon frigo — cuisiner avec ce qu'on a déjà */}
-      <motion.div variants={item}>
-        <Link
-          to="/mon-frigo"
-          className="flex items-center gap-4 rounded-[24px] p-4 active:scale-[0.99] transition-transform"
-          style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
+        <h1 className="font-display text-[28px] text-luna-text leading-tight">Manger</h1>
+        <div
+          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mt-2"
+          style={{ backgroundColor: phaseData.bgColor }}
         >
-          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
-            <Refrigerator size={20} style={{ color: phaseData.colorDark }} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h2 className="font-display text-lg text-luna-text leading-tight">Mon frigo</h2>
-            <p className="text-xs font-body text-luna-text-muted mt-0.5">Cuisine avec ce que tu as déjà.</p>
-          </div>
-          <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
-        </Link>
+          <span className="text-sm leading-none">{phaseData.icon}</span>
+          <span className="text-xs font-body font-semibold" style={{ color: phaseData.colorDark }}>
+            {phaseData.shortName}
+          </span>
+        </div>
       </motion.div>
 
-      {/* Carte Toutes les recettes — ouvre la page dédiée */}
-      <motion.div variants={item}>
-        <Link
+      {/* Les 4 grandes tuiles */}
+      <motion.div variants={item} className="grid grid-cols-2 gap-3">
+        <Tile
           to="/recettes-liste"
-          className="flex items-center gap-4 rounded-[24px] p-4 active:scale-[0.99] transition-transform"
-          style={{ background: `linear-gradient(135deg, ${phaseData.bgColor}, ${phaseData.color}14)`, boxShadow: '0 8px 26px rgba(45,34,38,0.06)' }}
-        >
-          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
-            <UtensilsCrossed size={20} style={{ color: phaseData.colorDark }} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h2 className="font-display text-lg text-luna-text leading-tight">Toutes les recettes</h2>
-            <p className="text-xs font-body text-luna-text-muted mt-0.5">
-              {recipes ? `${recipeCount} recette${recipeCount > 1 ? 's' : ''} adaptées à ta phase` : 'Recettes adaptées à ta phase'}
-              {dietLabel && <span> · 🌱 {dietLabel}</span>}
-            </p>
-          </div>
-          <ChevronRight size={18} style={{ color: phaseData.colorDark }} className="flex-shrink-0" />
-        </Link>
+          bg="#FDE8EB"
+          iconColor="#C4727F"
+          Icon={BookOpen}
+          label="Recettes"
+          sub={recipes ? `${recipeCount} adaptées à toi` : 'Adaptées à ta phase'}
+        />
+        <Tile
+          to="/alimentation"
+          bg="#FFF3EB"
+          iconColor="#C47A4A"
+          Icon={Apple}
+          label="Aliments"
+          sub="Les alliés de ta phase"
+        />
+        <Tile
+          to="/mon-frigo"
+          bg="#EAF1F4"
+          iconColor="#5E8296"
+          Icon={Refrigerator}
+          label="Mon frigo"
+          sub="Cuisine avec ce que tu as"
+        />
+        <Tile
+          to="/de-saison"
+          bg="#EDF2EA"
+          iconColor="#71805F"
+          Icon={Leaf}
+          label="De saison"
+          sub={`En ${monthName}`}
+        />
       </motion.div>
     </motion.div>
   );

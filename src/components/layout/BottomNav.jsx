@@ -1,11 +1,11 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { UtensilsCrossed, CalendarDays, Apple } from 'lucide-react';
+import { UtensilsCrossed, Sun, Moon } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 
 const navItems = [
   { to: '/recettes', icon: UtensilsCrossed, label: 'Manger' },
-  { to: '/dashboard', icon: CalendarDays, label: 'Mon cycle' },
-  { to: '/alimentation', icon: Apple, label: 'Aliments' },
+  { to: '/aujourdhui', icon: Sun, label: 'Aujourd\'hui' },
+  { to: '/dashboard', icon: Moon, label: 'Mon cycle' },
 ];
 
 export default function BottomNav() {

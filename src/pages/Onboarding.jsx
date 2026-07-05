@@ -270,7 +270,7 @@ export default function Onboarding() {
 
   useEffect(() => {
     if (onboardingComplete) {
-      navigate('/dashboard', { replace: true });
+      navigate('/aujourdhui', { replace: true });
     }
   }, [onboardingComplete, navigate]);
 
@@ -428,7 +428,7 @@ export default function Onboarding() {
   }
 
   const handleFinish = () => {
-    finish().then(() => navigate('/dashboard'));
+    finish().then(() => navigate('/aujourdhui'));
   };
 
 
