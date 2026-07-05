@@ -45,6 +45,31 @@ const THEMES = [
 ];
 const themeMap = Object.fromEntries(THEMES.map((t) => [t.value, t]));
 
+// Icônes de marque (lucide ne les fournit plus) — SVG maison, size réglable.
+function IgIcon({ size = 12 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+function FbIcon({ size = 12 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z" />
+    </svg>
+  );
+}
+
+// Réseaux où le post a été publié → petits pictos sur la carte du jour.
+const NETWORKS = {
+  instagram: { label: 'Instagram', Icon: IgIcon, color: '#C4727F' },
+  facebook:  { label: 'Facebook',  Icon: FbIcon, color: '#3B6BB0' },
+};
+const NETWORK_KEYS = ['instagram', 'facebook'];
+
 const WEEKDAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
 const MONTHS = [
   'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
@@ -68,6 +93,7 @@ const emptyDraft = (date) => ({
   statut: 'draft',
   heure: '',
   visuel: '',
+  reseaux: [],
 });
 
 export default function ContentCalendar() {
@@ -134,6 +160,7 @@ export default function ContentCalendar() {
       statut: draft.statut,
       heure: draft.heure || null,
       visuel: draft.visuel || null,
+      reseaux: draft.reseaux || [],
     };
     try {
       let error;
@@ -293,6 +320,16 @@ export default function ContentCalendar() {
                               {thm.label}
                             </span>
                           )}
+                          {(p.reseaux || []).map((n) => {
+                            const net = NETWORKS[n];
+                            if (!net) return null;
+                            const NIcon = net.Icon;
+                            return (
+                              <span key={n} className="inline-flex items-center" style={{ color: net.color }} title={net.label}>
+                                <NIcon size={11} />
+                              </span>
+                            );
+                          })}
                         </div>
                         <p className="text-[10px] font-semibold text-gray-800 font-body leading-tight line-clamp-2">{p.titre}</p>
                       </div>
@@ -338,6 +375,14 @@ export default function ContentCalendar() {
                 {THEMES.map((t) => (
                   <span key={t.value} className="text-[11px] font-medium font-body px-2 py-0.5 rounded-full" style={{ background: t.bg, color: t.color }}>{t.label}</span>
                 ))}
+                {NETWORK_KEYS.map((k) => {
+                  const NIcon = NETWORKS[k].Icon;
+                  return (
+                    <span key={k} className="inline-flex items-center gap-1 text-[11px] font-medium font-body px-2 py-0.5 rounded-full bg-white border border-gray-200" style={{ color: NETWORKS[k].color }}>
+                      <NIcon size={11} />{NETWORKS[k].label}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -406,6 +451,32 @@ export default function ContentCalendar() {
                     </select>
                   </Field>
                 </div>
+
+                {/* Réseaux */}
+                <Field label="Publié sur">
+                  <div className="flex gap-2">
+                    {NETWORK_KEYS.map((k) => {
+                      const net = NETWORKS[k];
+                      const NIcon = net.Icon;
+                      const active = (draft.reseaux || []).includes(k);
+                      return (
+                        <button
+                          key={k}
+                          type="button"
+                          onClick={() => {
+                            const cur = draft.reseaux || [];
+                            const next = cur.includes(k) ? cur.filter((n) => n !== k) : [...cur, k];
+                            setDraft({ ...draft, reseaux: next });
+                          }}
+                          className={`flex-1 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border text-sm font-semibold transition-all ${active ? 'text-white border-transparent shadow-sm' : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'}`}
+                          style={active ? { background: net.color } : undefined}
+                        >
+                          <NIcon size={16} />{net.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </Field>
 
                 {/* Légende */}
                 <Field label="Légende (texte de la publication)">
