@@ -8,6 +8,7 @@ import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { buildRequiredTags, buildDietLabel, filterRecipes, timeToMaxMinutes } from '../data/recipeFilters';
+import AddToListBanner from '../components/food/AddToListBanner';
 
 const container = {
   hidden: { opacity: 0 },
@@ -570,6 +571,8 @@ export default function RecipesList() {
                     </span>
                   ))}
                 </div>
+
+                <AddToListBanner recipe={openRecipeData} />
 
                 <div>
                   <h4 className="text-sm font-body font-bold text-luna-text mb-2">Ingrédients</h4>

@@ -26,6 +26,7 @@ const Settings = lazy(() => import('./pages/Settings'));
 const Profil = lazy(() => import('./pages/Profil'));
 const Recettes = lazy(() => import('./pages/Recettes'));
 const RecipesList = lazy(() => import('./pages/RecipesList'));
+const Courses = lazy(() => import('./pages/Courses'));
 const Menu = lazy(() => import('./pages/Menu'));
 const MonFrigo = lazy(() => import('./pages/MonFrigo'));
 const Admin = lazy(() => import('./pages/Admin'));
@@ -136,6 +137,7 @@ function NativeRoutes() {
         <Route path="/alimentation" element={<Alimentation />} />
         <Route path="/recettes" element={<Recettes />} />
         <Route path="/recettes-liste" element={<RecipesList />} />
+        <Route path="/courses" element={<Courses />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/mon-frigo" element={<MonFrigo />} />
         <Route path="/sommeil" element={<Sommeil />} />

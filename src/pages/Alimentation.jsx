@@ -7,6 +7,7 @@ import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import BackButton from '../components/ui/BackButton';
 import PhaseHero from '../components/food/PhaseHero';
+import AddToListBanner from '../components/food/AddToListBanner';
 
 const container = {
   hidden: { opacity: 0 },
@@ -716,6 +717,8 @@ export default function Alimentation() {
                     </span>
                   ))}
                 </div>
+
+                <AddToListBanner recipe={openDailyRecipe} />
 
                 {openDailyRecipe.ingredients && (
                   <div>

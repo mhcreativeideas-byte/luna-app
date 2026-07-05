@@ -52,6 +52,7 @@ const initialState = {
   partnerCode: null,
   favorites: [],
   fridgeItems: [],
+  shoppingList: [],
 };
 
 function cycleReducer(state, action) {
@@ -252,6 +253,58 @@ function cycleReducer(state, action) {
     }
     case 'SET_FRIDGE_ITEMS':
       return { ...state, fridgeItems: action.payload };
+
+    // ——— Liste de courses (organisée par recette) ———
+    // Bloc : { id, name, source: 'recette'|'menu'|'ajouts', items: [{ name, checked }] }
+    case 'ADD_SHOPPING_RECIPE': {
+      const { name, ingredients, source, emoji } = action.payload;
+      if (state.shoppingList.some((b) => b.id !== 'ajouts' && b.name === name)) return state;
+      const block = {
+        id: `r-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        name,
+        emoji: emoji || null,
+        source: source || 'recette',
+        items: (ingredients || []).map((ing) => ({ name: ing, checked: false })),
+      };
+      return { ...state, shoppingList: [...state.shoppingList, block] };
+    }
+    case 'REMOVE_SHOPPING_RECIPE':
+      return { ...state, shoppingList: state.shoppingList.filter((b) => b.id !== action.payload && b.name !== action.payload) };
+    case 'TOGGLE_SHOPPING_ITEM': {
+      const { blockId, index } = action.payload;
+      return {
+        ...state,
+        shoppingList: state.shoppingList.map((b) =>
+          b.id === blockId
+            ? { ...b, items: b.items.map((it, i) => i === index ? { ...it, checked: !it.checked } : it) }
+            : b
+        ),
+      };
+    }
+    case 'ADD_SHOPPING_CUSTOM_ITEM': {
+      const name = action.payload.trim();
+      if (!name) return state;
+      const existing = state.shoppingList.find((b) => b.id === 'ajouts');
+      if (existing) {
+        return {
+          ...state,
+          shoppingList: state.shoppingList.map((b) =>
+            b.id === 'ajouts' ? { ...b, items: [...b.items, { name, checked: false }] } : b
+          ),
+        };
+      }
+      return {
+        ...state,
+        shoppingList: [...state.shoppingList, { id: 'ajouts', name: 'Mes ajouts', source: 'ajouts', items: [{ name, checked: false }] }],
+      };
+    }
+    case 'CLEAR_CHECKED_SHOPPING': {
+      const cleaned = state.shoppingList
+        .map((b) => ({ ...b, items: b.items.filter((it) => !it.checked) }))
+        .filter((b) => b.items.length > 0);
+      return { ...state, shoppingList: cleaned };
+    }
+
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };
     case 'RESET':
@@ -533,6 +586,7 @@ export function CycleProvider({ children }) {
               calendarStartDay: data.settings.calendarStartDay || 'monday',
               favorites: data.settings.favorites || [],
               fridgeItems: data.settings.fridgeItems || [],
+              shoppingList: data.settings.shoppingList || [],
             } : {}),
           },
         });
@@ -686,6 +740,7 @@ export function CycleProvider({ children }) {
           calendarStartDay: state.calendarStartDay,
           favorites: state.favorites,
           fridgeItems: state.fridgeItems,
+          shoppingList: state.shoppingList,
         },
         updated_at: new Date().toISOString(),
       }, { onConflict: 'auth_id' });
@@ -723,6 +778,7 @@ export function CycleProvider({ children }) {
     state.calendarStartDay,
     state.favorites,
     state.fridgeItems,
+    state.shoppingList,
   ]);
 
   // Flush pending saves immediately when the app is backgrounded or closed,

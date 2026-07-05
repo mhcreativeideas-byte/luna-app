@@ -1,129 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Clock, Sparkles, UtensilsCrossed, Sunrise, Sun, Cookie, Moon } from 'lucide-react';
+import { X, Clock, Sparkles, UtensilsCrossed } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 import { PHASES } from '../../data/phases';
 import { RECIPE_LOADERS } from '../../data/recipeLoaders';
+import { buildDailyMenu } from '../../data/dailyMenu';
+import AddToListBanner from './AddToListBanner';
 
-// Pseudo-random basé sur la date du jour (stable dans la journée)
-const seededRandom = (seed) => {
-  let s = seed;
-  return () => {
-    s = (s * 16807) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
-};
-
-const getDaySeed = () => {
-  const d = new Date();
-  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-};
-
-const MEAL_SLOTS = [
-  { key: 'breakfast', time: 'Matin', Icon: Sunrise },
-  { key: 'lunch', time: 'Midi', Icon: Sun },
-  { key: 'snack', time: 'Snack', Icon: Cookie },
-  { key: 'dinner', time: 'Soir', Icon: Moon },
-];
-
-const DRINK_ICONS = {
-  'tisane': '🍵', 'infusion': '🍵', 'thé': '🍵', 'matcha': '🍵',
-  'lait': '🥛', 'golden': '🥛', 'smoothie': '🥤', 'jus': '🥤',
-  'eau': '💧', 'kéfir': '🥛', 'kombucha': '🍵', 'chocolat': '☕',
-  'cacao': '☕', 'bouillon': '🍲', 'limonade': '🍋', 'grenade': '🥤',
-  'hibiscus': '🌺',
-};
-
-const getDrinkIcon = (drinkName) => {
-  const lower = drinkName.toLowerCase();
-  for (const [keyword, icon] of Object.entries(DRINK_ICONS)) {
-    if (lower.includes(keyword)) return icon;
-  }
-  return '🍵';
-};
-
-const ALLERGEN_KEYWORDS = {
-  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin'],
-  'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
-  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari'],
-  'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
-  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'poisson'],
-  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
-  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'feta', 'mascarpone'],
-  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'couscous', 'boulgour', 'semoule', 'tortilla', 'wrap'],
-  'Sésame': ['sésame', 'tahini', 'tahin'],
-  'Céleri': ['céleri', 'celeri'],
-  'Moutarde': ['moutarde'],
-};
-
-const containsAllergen = (recipe, allergyList) => {
-  if (!allergyList || allergyList.length === 0) return false;
-  const fullText = ((recipe.ingredients || []).join(' ') + ' ' + (recipe.name || '')).toLowerCase();
-  return allergyList.some((allergy) => {
-    const keywords = ALLERGEN_KEYWORDS[allergy] || [];
-    return keywords.some((kw) => fullText.includes(kw.toLowerCase()));
-  });
-};
-
-const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
-  if (!recipes) return [];
-  const rand = seededRandom(getDaySeed() + phaseData.shortName.charCodeAt(0));
-  const goodDrinks = phaseData.drinks?.good || [];
-
-  const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
-  const maxLevel = LEVEL_ORDER[cookingLevel] || 3;
-
-  const maxTime = (() => {
-    if (!cookingTime || cookingTime === '60min+') return null;
-    if (cookingTime === '15min') return 15;
-    if (cookingTime === '30min') return 30;
-    if (cookingTime === '45min') return 45;
-    return null;
-  })();
-
-  const parseMinutes = (prepTime) => {
-    if (!prepTime) return 999;
-    const str = prepTime.toLowerCase().replace(/\s/g, '');
-    const hMatch = str.match(/(\d+)\s*h/);
-    const mMatch = str.match(/(\d+)\s*min/);
-    let total = 0;
-    if (hMatch) total += parseInt(hMatch[1]) * 60;
-    if (mMatch) total += parseInt(mMatch[1]);
-    if (!hMatch && !mMatch) { const num = parseInt(str); total = isNaN(num) ? 999 : num; }
-    return total;
-  };
-
-  const shuffledDrinks = [...goodDrinks];
-  for (let i = shuffledDrinks.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [shuffledDrinks[i], shuffledDrinks[j]] = [shuffledDrinks[j], shuffledDrinks[i]];
-  }
-  let drinkIndex = 0;
-
-  return MEAL_SLOTS.map((slot) => {
-    const pool = recipes[slot.key];
-    if (!pool || pool.length === 0) return null;
-    const filtered = pool.filter((recipe) => {
-      if (requiredTags.length > 0 && !requiredTags.every((tag) => (recipe.tags || []).includes(tag))) return false;
-      if (containsAllergen(recipe, allergies)) return false;
-      const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
-      if (recipeLevel > maxLevel) return false;
-      if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return false;
-      return true;
-    });
-    const available = filtered.length > 0 ? filtered : pool;
-    const idx = Math.floor(rand() * available.length);
-    const recipe = available[idx];
-    const drink = shuffledDrinks[drinkIndex % shuffledDrinks.length] || null;
-    drinkIndex++;
-    return {
-      ...slot,
-      recipe,
-      drink: drink?.name || '',
-      drinkIcon: drink ? getDrinkIcon(drink.name) : '🍵',
-    };
-  }).filter(Boolean);
-};
 
 // Bloc « Ta journée idéale » : le menu du jour adapté à la phase.
 // Deux affichages : variant="full" (carte détaillée, page Menu) et
@@ -171,21 +54,18 @@ export default function DailyMenu({ variant = 'full' }) {
             <img src="/logo-luna.svg" alt="luna" className="w-12 opacity-40 animate-pulse" />
           </div>
         ) : (
-          <div
-            className="flex gap-3 overflow-x-auto -mx-4 px-4 pb-1"
-            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch', scrollSnapType: 'x mandatory' }}
-          >
+          <div className="grid grid-cols-2 gap-3">
             {dailyMenu.map((m, i) => {
               const MealIcon = m.Icon;
               return (
                 <motion.button
                   key={m.key}
-                  initial={{ opacity: 0, x: 12 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.06 * i, duration: 0.3 }}
                   onClick={() => setOpenDailyRecipe(m.recipe)}
-                  className="flex-none w-[132px] bg-white rounded-[20px] p-3.5 text-left active:scale-[0.97] transition-transform"
-                  style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)', scrollSnapAlign: 'start' }}
+                  className="bg-white rounded-[20px] p-3.5 text-left active:scale-[0.97] transition-transform"
+                  style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.06)' }}
                 >
                   <div
                     className="w-10 h-10 rounded-[13px] flex items-center justify-center mb-2.5"
@@ -372,6 +252,8 @@ function RecipeSheet({ recipe: openDailyRecipe, onClose, phaseData }) {
                     </span>
                   ))}
                 </div>
+
+                <AddToListBanner recipe={openDailyRecipe} source="menu" />
 
                 {openDailyRecipe.ingredients && (
                   <div>
