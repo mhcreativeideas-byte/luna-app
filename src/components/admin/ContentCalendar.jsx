@@ -108,6 +108,7 @@ export default function ContentCalendar() {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [view, setView] = useState('month'); // 'month' | 'list'
+  const [dayView, setDayView] = useState(null); // date 'YYYY-MM-DD' du jour ouvert en détail
   const fileRef = useRef(null);
 
   const todayKey = dateKey(now.getFullYear(), now.getMonth(), now.getDate());
@@ -368,7 +369,7 @@ export default function ContentCalendar() {
               return (
                 <div
                   key={i}
-                  onClick={() => { setDraft(emptyDraft(c.key)); setConfirmDelete(false); }}
+                  onClick={() => setDayView(c.key)}
                   className="min-h-[104px] rounded-xl bg-white border border-gray-100 p-1.5 flex flex-col gap-1 cursor-pointer hover:border-luna-rose/40 transition-colors"
                   style={isToday ? { boxShadow: 'inset 0 0 0 2px #E8A5AE' } : undefined}
                 >
@@ -379,23 +380,22 @@ export default function ContentCalendar() {
                     const st = STATUSES[p.statut] || STATUSES.draft;
                     const Icon = fmt.Icon;
                     return (
-                      <button
+                      <div
                         key={p.id}
-                        onClick={(e) => { e.stopPropagation(); openPost(p); }}
-                        className="w-full flex items-center gap-1.5 rounded-md px-1.5 py-1 hover:brightness-[0.97] transition-all"
+                        className="w-full flex items-center gap-1.5 rounded-md px-1.5 py-1"
                         style={{ background: phase.bg }}
                         title={`${p.titre} · ${st.label}`}
                       >
-                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: st.color }} title={st.label} />
+                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: st.color }} />
                         <Icon size={10} className="flex-shrink-0" style={{ color: phase.dot }} />
-                        <span className="text-[10px] font-semibold font-body truncate text-left flex-1" style={{ color: phase.text }}>{p.titre}</span>
+                        <span className="text-[10px] font-semibold font-body truncate flex-1" style={{ color: phase.text }}>{p.titre}</span>
                         {(p.reseaux || []).map((n) => {
                           const net = NETWORKS[n];
                           if (!net) return null;
                           const NIcon = net.Icon;
                           return <span key={n} className="flex-shrink-0" style={{ color: net.color }}><NIcon size={9} /></span>;
                         })}
-                      </button>
+                      </div>
                     );
                   })}
                 </div>
@@ -509,6 +509,92 @@ export default function ContentCalendar() {
           )}
         </div>
       )}
+
+      {/* ── Détail d'un jour (fenêtre qui monte du bas) ───────────────────── */}
+      <AnimatePresence>
+        {dayView && (
+          <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center" onClick={() => setDayView(null)}>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full sm:max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-xl max-h-[92vh] overflow-y-auto"
+              style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+            >
+              <div className="sticky top-0 bg-white/95 backdrop-blur px-5 pt-5 pb-3 flex items-center justify-between border-b border-gray-100">
+                <h3 className="font-display text-lg text-gray-800 capitalize">
+                  {new Date(`${dayView}T00:00:00`).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                </h3>
+                <button onClick={() => setDayView(null)} className="p-2 rounded-xl hover:bg-gray-100 text-gray-400"><X size={18} /></button>
+              </div>
+
+              <div className="px-5 py-4">
+                {(() => {
+                  const dayPosts = (postsByDate[dayView] || []).slice().sort((a, b) => (a.heure || '').localeCompare(b.heure || ''));
+                  if (dayPosts.length === 0) {
+                    return (
+                      <div className="py-8 text-center">
+                        <CalendarHeart className="mx-auto text-gray-300 mb-3" size={36} />
+                        <p className="text-gray-400 font-body text-sm">Aucun post ce jour-là</p>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div className="space-y-2">
+                      {dayPosts.map((p) => {
+                        const phase = PHASES[p.phase] || PHASES.follicular;
+                        const fmt = FORMATS[p.format] || FORMATS.post;
+                        const st = STATUSES[p.statut] || STATUSES.draft;
+                        const thm = themeMap[p.thematique];
+                        const Icon = fmt.Icon;
+                        return (
+                          <button
+                            key={p.id}
+                            onClick={() => openPost(p)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 text-left rounded-2xl border border-gray-100 hover:border-luna-rose/40 hover:bg-gray-50/60 transition-colors"
+                          >
+                            <div className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center overflow-hidden" style={{ background: phase.bg, color: phase.dot }}>
+                              {p.visuel ? <img src={p.visuel} alt="" loading="lazy" className="w-full h-full object-cover" /> : <Icon size={18} />}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-gray-800 font-body truncate">{p.titre || 'Sans titre'}</p>
+                              <p className="text-xs text-gray-400 font-body truncate">
+                                {fmt.label}{thm ? ` · ${thm.label}` : ''}{p.heure ? ` · ${p.heure}` : ''}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              {(p.reseaux || []).map((n) => {
+                                const net = NETWORKS[n];
+                                if (!net) return null;
+                                const NIcon = net.Icon;
+                                return <span key={n} style={{ color: net.color }}><NIcon size={13} /></span>;
+                              })}
+                              <span className="text-[11px] font-semibold font-body whitespace-nowrap" style={{ color: st.color }}>{st.label}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              <div className="sticky bottom-0 bg-white border-t border-gray-100 px-5 py-4">
+                <button
+                  onClick={() => { setDraft(emptyDraft(dayView)); setConfirmDelete(false); }}
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-luna-rose text-white rounded-xl text-sm font-body font-semibold hover:bg-luna-rose-dark transition-colors"
+                >
+                  <Plus size={16} />
+                  Ajouter un post ce jour-là
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* ── Fiche d'un post (fenêtre qui monte du bas) ────────────────────── */}
       <AnimatePresence>
