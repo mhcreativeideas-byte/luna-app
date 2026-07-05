@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Check, ArrowRight, Lock, Sparkles, ShieldCheck, UtensilsCrossed, Refrigerator, Feather, Sunrise, Sun, Moon, CalendarDays, Droplet, Bell } from 'lucide-react';
+import { ChevronLeft, Check, ArrowRight, Lock, ShieldCheck, UtensilsCrossed, Refrigerator, Sunrise, Sun, Moon, CalendarDays, Bell } from 'lucide-react';
 import { Capacitor } from '@capacitor/core';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
@@ -27,16 +27,9 @@ const MIRRORS = {
     titleItalic: 'Pas 24 heures.',
     text: 'Les conseils nutrition classiques ignorent les hormones féminines. Ton métabolisme change chaque semaine, il mérite une approche pensée pour toi.',
   },
-  volonte: {
-    after: 8,
-    bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)',
-    accent: '#A85A66',
-    Icon: Feather,
-    iconColor: '#C4727F',
-    titleMain: 'Ce n\'est pas un manque de',
-    titleItalic: 'volonté.',
-    text: 'Tes envies de sucre avant les règles sont hormonales, la sérotonine chute. Pas un défaut. Les bons aliments les apaisent, sans te priver.',
-  },
+  // Les pauses « volonté » (après fringales) et « promesse » (après santé)
+  // ont été retirées : la révélation personnalisée dit la même chose, en
+  // mieux, avec SES réponses. Moins d'écrans = plus de momentum.
   cycle: {
     after: 1,
     bg: 'linear-gradient(180deg, #FDE8EB 0%, #FAF7F5 100%)',
@@ -45,15 +38,6 @@ const MIRRORS = {
     titleMain: '4 phases,',
     titleItalic: '4 besoins.',
     text: 'Chaque phase a ses propres besoins. luna adapte ton alimentation, phase après phase.',
-  },
-  promise: {
-    after: 3,
-    bg: 'linear-gradient(180deg, #F3EEF8 0%, #FAF7F5 100%)',
-    accent: '#7E6597',
-    Icon: Sparkles,
-    titleMain: 'Tes symptômes ont une',
-    titleItalic: 'logique.',
-    text: 'La plupart des femmes repèrent leur rythme dès le premier mois avec luna. On va te montrer le tien.',
   },
   menu: {
     after: 9,
@@ -262,8 +246,10 @@ const STEP_COLORS = [
 ];
 
 // Ordre de visite des écrans (les ids = numéro de step). Les questions sont
-// rangées pour armer les bons miroirs : fringales→santé→promesse, frein→menu.
-const ORDER = [0, 1, 8, 3, 2, 5, 4, 9, 6, 10, 7];
+// rangées pour armer les bons miroirs : fringales→santé, frein→menu.
+// La question « découverte » (ex-step 10) vit désormais sur l'écran prénom.
+// Le récap (7) arrive APRÈS l'analyse et la révélation, juste avant le paywall.
+const ORDER = [0, 1, 8, 3, 2, 5, 4, 9, 6, 7];
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -279,10 +265,9 @@ export default function Onboarding() {
   const [showIntro, setShowIntro] = useState(true);
   const [mirror, setMirror] = useState(null);
   const [showPaywall, setShowPaywall] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
   const [showRevelation, setShowRevelation] = useState(false);
   const [showNotifPrimer, setShowNotifPrimer] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [analyzing, setAnalyzing] = useState(false);
   const [loadingStep, setLoadingStep] = useState(0);
   const [form, setForm] = useState({
     name: '',
@@ -318,16 +303,9 @@ export default function Onboarding() {
     return true;
   };
 
+  // Enregistre le profil et termine — instantané : le temps « d'analyse »
+  // vit désormais AVANT la révélation (startAnalysis), pas après le paywall.
   const finish = async () => {
-    setLoading(true);
-
-    for (let i = 1; i <= 3; i++) {
-      await new Promise((r) => setTimeout(r, 800));
-      setLoadingStep(i);
-    }
-
-    await new Promise((r) => setTimeout(r, 500));
-
     // Set email from auth if available
     const finalForm = {
       ...form,
@@ -341,8 +319,21 @@ export default function Onboarding() {
     setTimeout(() => {
       saveProfileToSupabase?.();
     }, 500);
+  };
 
-    setLoading(false);
+  // Faux temps d'analyse après la dernière question : crée l'attente juste
+  // avant la révélation personnalisée (le moment où il a le plus de valeur).
+  const startAnalysis = async () => {
+    setLoadingStep(0);
+    setAnalyzing(true);
+    for (let i = 1; i <= 3; i++) {
+      await new Promise((r) => setTimeout(r, 800));
+      setLoadingStep(i);
+    }
+    await new Promise((r) => setTimeout(r, 500));
+    setAnalyzing(false);
+    if (form.lastPeriodDate) setShowRevelation(true);
+    else setStep(7);
   };
 
   const info = form.lastPeriodDate
@@ -355,12 +346,12 @@ export default function Onboarding() {
     exit: { x: -80, opacity: 0 },
   };
 
-  // Loading screen
-  if (loading) {
+  // Écran d'analyse — après la dernière question, avant la révélation
+  if (analyzing) {
     const loadingSteps = [
-      'On analyse ton cycle...',
-      'On prépare ton profil...',
-      'On sélectionne tes recommandations...',
+      'On analyse tes réponses...',
+      'On décode ton cycle...',
+      'On prépare ton programme...',
     ];
 
     return (
@@ -443,7 +434,13 @@ export default function Onboarding() {
   const activateNotifs = async () => {
     try {
       const { requestNotifPermission } = await import('../lib/notifications');
-      await requestNotifPermission();
+      // Garde-fou : si la popup système ne répond pas sous 10 s, on continue
+      // quand même — ce bouton ne peut jamais rester bloqué. La permission
+      // reste redemandable depuis les Paramètres.
+      await Promise.race([
+        requestNotifPermission(),
+        new Promise((r) => setTimeout(r, 10000)),
+      ]);
     } catch { /* la permission pourra être redemandée depuis les Paramètres */ }
     handleFinish();
   };
@@ -478,7 +475,7 @@ export default function Onboarding() {
               Tes rappels <em className="not-italic" style={{ fontStyle: 'italic', color: '#A85A66' }}>doux</em>
             </h1>
             <p className="text-sm font-body text-luna-text-muted mt-2 px-2">
-              luna te préviendra aux moments qui comptent — jamais plus d'une fois par jour, jamais la nuit.
+              On vient de te donner des dates — tes rappels les tiendront. Jamais plus d'une fois par jour, jamais la nuit.
             </p>
           </div>
 
@@ -648,10 +645,10 @@ export default function Onboarding() {
 
           <div className="flex-1" />
 
-          {/* CTA */}
+          {/* CTA — vers le récap « tout est prêt », puis le paywall */}
           <motion.button
             whileTap={{ scale: 0.97 }}
-            onClick={() => setShowPaywall(true)}
+            onClick={() => { setShowRevelation(false); setStep(7); }}
             className="btn-luna w-full justify-center text-base py-4"
           >
             Découvrir mon programme
@@ -660,97 +657,6 @@ export default function Onboarding() {
           <p className="text-[11px] font-body text-luna-text-hint text-center mt-2.5">
             Basé sur tes réponses · modifiable à tout moment
           </p>
-        </motion.div>
-      </div>
-    );
-  }
-
-  // Écran comparatif émotionnel — juste avant le paywall
-  if (showComparison) {
-        const comparisons = [
-      { sans: "Tu t'emportes contre ton mec sans comprendre pourquoi", avec: "Tu sais que c'est ta phase, pas toi", emojiSans: '😢', emojiAvec: '🌙' },
-      { sans: "Tu dévores du chocolat à 23h et tu t'en veux", avec: "Tes envies sont normales \u2014 et on les apaise", emojiSans: '🍫', emojiAvec: '🌿' },
-      { sans: "Tu te réveilles déjà crevée certains matins", avec: "Tu sais quand ralentir (et pourquoi)", emojiSans: '💀', emojiAvec: '\u26a1' },
-      { sans: "Tu gères boulot/maison avec un ventre en feu", avec: "Tu manges ce qui calme tes douleurs", emojiSans: '🤯', emojiAvec: '🌸' },
-      { sans: "Tu te sens gonflée, rien ne te va", avec: "Tu dégonfles avec les bons aliments", emojiSans: '👖', emojiAvec: '\u2600\ufe0f' },
-      { sans: "20h, t'as rien prévu, encore un Uber Eats", avec: "Ton menu t'attend, pr\u00eat chaque matin", emojiSans: '🥡', emojiAvec: '🍽\ufe0f' },
-    ];
-
-    return (
-      <div
-        className="h-[100dvh] overflow-y-auto bg-luna-bg px-5"
-        style={{
-          WebkitOverflowScrolling: 'touch',
-          paddingTop: 'calc(env(safe-area-inset-top) + 2rem)',
-          paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)',
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md mx-auto min-h-full flex flex-col"
-        >
-          {/* Titre */}
-          <div className="text-center mb-6">
-            <h1 className="font-display text-[24px] text-luna-text leading-tight">
-              Aujourd'hui, tu subis.
-            </h1>
-            <p className="font-display text-[24px] leading-tight mt-1" style={{ color: '#C4727F', fontStyle: 'italic' }}>
-              Demain, tu comprends.
-            </p>
-          </div>
-
-          {/* Tableau comparatif */}
-          <div className="rounded-[20px] overflow-hidden mb-6" style={{ boxShadow: '0 4px 24px rgba(45,34,38,0.08)' }}>
-            {/* En-tête */}
-            <div className="grid grid-cols-2">
-              <div className="bg-gray-50 py-3 px-4">
-                <p className="text-[11px] font-body font-bold text-luna-text-hint uppercase tracking-widest text-center">Sans luna</p>
-              </div>
-              <div className="py-3 px-4" style={{ backgroundColor: '#FDE8EB' }}>
-                <p className="text-[11px] font-body font-bold uppercase tracking-widest text-center" style={{ color: '#A85A66' }}>Avec luna</p>
-              </div>
-            </div>
-
-            {/* Lignes */}
-            {comparisons.map((c, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 + i * 0.1 }}
-                className="grid grid-cols-2 border-t border-gray-100"
-              >
-                <div className="bg-gray-50 px-4 py-3.5 flex items-start gap-2.5">
-                  <span className="text-base flex-shrink-0 mt-0.5 grayscale opacity-60">{c.emojiSans}</span>
-                  <p className="text-[13px] font-body text-luna-text-muted leading-snug">{c.sans}</p>
-                </div>
-                <div className="bg-white px-4 py-3.5 flex items-start gap-2.5" style={{ backgroundColor: '#FFFBFC' }}>
-                  <span className="text-base flex-shrink-0 mt-0.5">{c.emojiAvec}</span>
-                  <p className="text-[13px] font-body font-semibold text-luna-text leading-snug">{c.avec}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Phrase de clôture */}
-          <p className="font-display text-lg text-center mb-6" style={{ color: '#A85A66', fontStyle: 'italic' }}>
-            Et si tu arrêtais de te battre contre toi-même&#8239;?
-          </p>
-
-          <div className="flex-1" />
-
-          {/* CTA — vers la révélation personnalisée (ou le paywall si,
-              cas improbable, le calcul de cycle n'est pas disponible) */}
-          <motion.button
-            whileTap={{ scale: 0.97 }}
-            onClick={() => (info ? setShowRevelation(true) : setShowPaywall(true))}
-            className="btn-luna w-full justify-center text-base py-4"
-          >
-            Découvrir luna
-            <ArrowRight size={16} />
-          </motion.button>
         </motion.div>
       </div>
     );
@@ -784,10 +690,10 @@ export default function Onboarding() {
           </p>
         </motion.div>
         <div className="flex-1" />
-        <div className="w-full max-w-md mx-auto flex justify-center">
+        <div className="w-full max-w-md mx-auto">
           <button
             onClick={() => setShowIntro(false)}
-            className="btn-luna justify-center text-base px-12 py-3.5"
+            className="btn-luna w-full justify-center text-base py-4"
           >
             Commencer
             <ArrowRight size={16} />
@@ -914,7 +820,7 @@ export default function Onboarding() {
         <div className="w-full max-w-md mx-auto flex justify-center">
           <button
             onClick={() => { setStep(ORDER[ORDER.indexOf(m.after) + 1]); setMirror(null); }}
-            className="btn-luna justify-center text-base px-12 py-3.5"
+            className="btn-luna w-full justify-center text-base py-4"
           >
             Continuer
             <ArrowRight size={16} />
@@ -941,23 +847,34 @@ export default function Onboarding() {
           paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)',
         }}
       >
-        {/* Progress dots — suivent l'ordre de visite */}
-        <div className="flex justify-center gap-2 mb-6">
-          {ORDER.map((sid, i) => {
-            const pos = ORDER.indexOf(step);
-            const accent = step === 7 ? (info ? PHASES[info.phase].color : '#C4727F') : (stepColor?.accent || '#C4727F');
-            return (
-              <motion.div
-                key={sid}
-                animate={{
-                  width: i === pos ? 24 : 8,
-                  backgroundColor: i <= pos ? accent : '#E0D5D8',
-                }}
-                className="h-2 rounded-full"
-                transition={{ duration: 0.3 }}
-              />
-            );
-          })}
+        {/* Retour (en haut à gauche, place fixe) + progress dots */}
+        <div className="relative mb-6" style={{ minHeight: 44 }}>
+          {ORDER.indexOf(step) > 0 && step !== 7 && (
+            <button
+              onClick={() => setStep(ORDER[ORDER.indexOf(step) - 1])}
+              aria-label="Retour"
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-11 h-11 -ml-2 rounded-full flex items-center justify-center text-luna-text-muted active:scale-95 transition-transform"
+            >
+              <ChevronLeft size={22} />
+            </button>
+          )}
+          <div className="flex justify-center gap-2 h-full items-center" style={{ minHeight: 44 }}>
+            {ORDER.map((sid, i) => {
+              const pos = ORDER.indexOf(step);
+              const accent = step === 7 ? (info ? PHASES[info.phase].color : '#C4727F') : (stepColor?.accent || '#C4727F');
+              return (
+                <motion.div
+                  key={sid}
+                  animate={{
+                    width: i === pos ? 24 : 8,
+                    backgroundColor: i <= pos ? accent : '#E0D5D8',
+                  }}
+                  className="h-2 rounded-full"
+                  transition={{ duration: 0.3 }}
+                />
+              );
+            })}
+          </div>
         </div>
 
         <AnimatePresence mode="wait">
@@ -1011,6 +928,31 @@ export default function Onboarding() {
                       onClick={() => updateForm('age', id)}
                       className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
                         form.age === id
+                          ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
+                          : 'border-gray-100 bg-white text-luna-text-muted'
+                      }`}
+                    >
+                      <span className="text-sm">{icon}</span>
+                      {label}
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Canal de découverte (ex-écran dédié, remonté ici : question
+                  marketing, elle ne doit pas casser le momentum de la fin) */}
+              <div className="mt-5">
+                <label className="block text-xs font-semibold text-luna-text-hint mb-2.5 font-body uppercase tracking-wider text-center">
+                  Comment tu nous as connues&#8239;?
+                </label>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {discoveryOptions.map(({ id, label, icon }) => (
+                    <motion.button
+                      key={id}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => updateForm('discoverySource', id)}
+                      className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-pill text-sm font-body font-semibold transition-all border-2 ${
+                        form.discoverySource === id
                           ? 'border-luna-rose bg-luna-rose-bg text-luna-rose-deep'
                           : 'border-gray-100 bg-white text-luna-text-muted'
                       }`}
@@ -1683,104 +1625,24 @@ export default function Onboarding() {
             </motion.div>
           )}
 
-          {/* Step 10: Comment nous as-tu trouvée ? */}
-          {step === 10 && (
-            <motion.div
-              key="step10"
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-[24px] p-6"
-              style={{ boxShadow: '0 2px 20px rgba(45, 34, 38, 0.06)' }}
-            >
-              <div className="text-center mb-5">
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', delay: 0.2 }}
-                  className="text-4xl block mb-3"
-                >
-                  💜
-                </motion.span>
-                <h2 className="font-display text-2xl text-luna-text mb-2">
-                  Comment tu nous as trouvée&#8239;?
-                </h2>
-                <p className="text-luna-text-muted font-body text-sm">
-                  Juste par curiosité, pour qu’on puisse aider d’autres femmes.
-                </p>
-              </div>
-              <div className="space-y-2.5">
-                {discoveryOptions.map(({ id, label, icon }) => (
-                  <motion.button
-                    key={id}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => updateForm('discoverySource', id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-[16px] text-left transition-all border-2 ${
-                      form.discoverySource === id
-                        ? 'border-luna-lavender bg-luna-lavender/10'
-                        : 'border-gray-100 bg-white'
-                    }`}
-                  >
-                    <span className="text-xl flex-shrink-0">{icon}</span>
-                    <span className={`text-sm font-body font-semibold ${form.discoverySource === id ? 'text-luna-lavender-dark' : 'text-luna-text'}`}>{label}</span>
-                    {form.discoverySource === id && (
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="ml-auto flex-shrink-0 w-5 h-5 rounded-full bg-luna-lavender flex items-center justify-center"
-                      >
-                        <Check size={12} className="text-white" />
-                      </motion.div>
-                    )}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
         </AnimatePresence>
 
-        {/* Navigation buttons */}
-        <div className="flex justify-between mt-6">
-          {ORDER.indexOf(step) > 0 ? (
-            <button
-              onClick={() => setStep(ORDER[ORDER.indexOf(step) - 1])}
-              className="flex items-center gap-1 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body"
-            >
-              <ChevronLeft size={16} />
-              Retour
-            </button>
-          ) : (
-            <div />
-          )}
-
-          {step !== 7 ? (
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                const mid = Object.keys(MIRRORS).find((k) => MIRRORS[k].after === step);
-                if (mid) setMirror(mid);
-                else setStep(ORDER[ORDER.indexOf(step) + 1]);
-              }}
-              disabled={!canNext()}
-              className="btn-luna disabled:opacity-40"
-            >
-              {step === 0 ? `Enchantée ${form.name ? form.name : ''} !` : 'Continuer'}
-              <ChevronRight size={16} />
-            </motion.button>
-          ) : (
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setShowComparison(true)}
-              className="btn-luna"
-            >
-              Continuer
-              <ArrowRight size={16} />
-            </motion.button>
-          )}
-        </div>
+        {/* Bouton principal — pleine largeur, toujours en bas, même place partout */}
+        <motion.button
+          whileTap={{ scale: 0.97 }}
+          onClick={() => {
+            if (step === 7) { setShowPaywall(true); return; }
+            const mid = Object.keys(MIRRORS).find((k) => MIRRORS[k].after === step);
+            if (mid) setMirror(mid);
+            else if (ORDER[ORDER.indexOf(step) + 1] === 7) startAnalysis();
+            else setStep(ORDER[ORDER.indexOf(step) + 1]);
+          }}
+          disabled={!canNext()}
+          className="btn-luna w-full justify-center text-base py-4 mt-6 disabled:opacity-40"
+        >
+          {step === 0 ? `Enchantée ${form.name ? form.name : ''} !` : 'Continuer'}
+          <ArrowRight size={16} />
+        </motion.button>
       </div>
     </div>
   );
