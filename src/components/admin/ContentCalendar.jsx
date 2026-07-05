@@ -10,10 +10,10 @@ import { toast } from '../../lib/toast';
 // ── Référentiels (couleurs = charte luna, cf. CLAUDE.md) ────────────────────
 // Phase du cycle ciblée par le post → teinte le fond du jour.
 const PHASES = {
-  menstrual:  { label: 'Menstruelle',  bg: '#FDE8EB', border: '#F3D2D8', dot: '#D4727F' },
-  follicular: { label: 'Folliculaire', bg: '#EDF5ED', border: '#D8E8D8', dot: '#7BAE7F' },
-  ovulatory:  { label: 'Ovulatoire',   bg: '#FFF3EB', border: '#F5E0CD', dot: '#E8A87C' },
-  luteal:     { label: 'Lutéale',      bg: '#F3EEF8', border: '#E4D9EE', dot: '#B09ACB' },
+  menstrual:  { label: 'Menstruelle',  bg: '#FDE8EB', border: '#F3D2D8', dot: '#D4727F', text: '#A85A66' },
+  follicular: { label: 'Folliculaire', bg: '#EDF5ED', border: '#D8E8D8', dot: '#7BAE7F', text: '#4C7A50' },
+  ovulatory:  { label: 'Ovulatoire',   bg: '#FFF3EB', border: '#F5E0CD', dot: '#E8A87C', text: '#B5661F' },
+  luteal:     { label: 'Lutéale',      bg: '#F3EEF8', border: '#E4D9EE', dot: '#B09ACB', text: '#7A5E9E' },
 };
 const PHASE_KEYS = ['menstrual', 'follicular', 'ovulatory', 'luteal'];
 
@@ -107,9 +107,13 @@ export default function ContentCalendar() {
   const [saving, setSaving] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [view, setView] = useState('month'); // 'month' | 'list'
   const fileRef = useRef(null);
 
   const todayKey = dateKey(now.getFullYear(), now.getMonth(), now.getDate());
+
+  // Ouvre la fiche d'un post existant (réutilisé par la vue mois et la vue liste).
+  const openPost = (p) => { setDraft({ ...emptyDraft(p.date), ...p }); setConfirmDelete(false); };
 
   // Envoi d'un visuel : on redimensionne (max 600px) puis on stocke dans le
   // bucket Supabase "content" (public) et on garde l'URL dans draft.visuel.
@@ -179,6 +183,18 @@ export default function ContentCalendar() {
   const postsByDate = {};
   for (const p of posts) {
     (postsByDate[p.date] ||= []).push(p);
+  }
+
+  // Vue liste : posts du mois affiché, triés par date puis heure, groupés par jour.
+  const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+  const monthPosts = posts
+    .filter((p) => p.date?.startsWith(monthPrefix))
+    .sort((a, b) => (a.date === b.date ? (a.heure || '').localeCompare(b.heure || '') : a.date.localeCompare(b.date)));
+  const listGroups = [];
+  for (const p of monthPosts) {
+    let g = listGroups[listGroups.length - 1];
+    if (!g || g.date !== p.date) { g = { date: p.date, items: [] }; listGroups.push(g); }
+    g.items.push(p);
   }
 
   const goMonth = (delta) => {
@@ -318,6 +334,22 @@ export default function ContentCalendar() {
             </button>
           </div>
 
+          {/* Bascule Mois / Liste */}
+          <div className="flex justify-center mb-4">
+            <div className="inline-flex bg-gray-100 rounded-xl p-0.5">
+              {[['month', 'Mois'], ['list', 'Liste']].map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => setView(v)}
+                  className={`px-5 py-1.5 rounded-lg text-sm font-body font-semibold transition-all ${view === v ? 'bg-white text-luna-rose shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {view === 'month' && (<>
           {/* Jours de la semaine */}
           <div className="grid grid-cols-7 gap-1.5 mb-1.5">
             {WEEKDAYS.map((d) => (
@@ -345,58 +377,96 @@ export default function ContentCalendar() {
                     const phase = PHASES[p.phase] || PHASES.follicular;
                     const fmt = FORMATS[p.format] || FORMATS.post;
                     const st = STATUSES[p.statut] || STATUSES.draft;
-                    const thm = themeMap[p.thematique];
                     const Icon = fmt.Icon;
                     return (
-                      <div
+                      <button
                         key={p.id}
-                        onClick={(e) => { e.stopPropagation(); setDraft({ ...emptyDraft(p.date), ...p }); setConfirmDelete(false); }}
-                        className="rounded-lg p-1.5 flex flex-col gap-1.5 hover:brightness-[0.98] transition-all"
-                        style={{ background: phase.bg, border: `0.5px solid ${phase.border}` }}
+                        onClick={(e) => { e.stopPropagation(); openPost(p); }}
+                        className="w-full flex items-center gap-1.5 rounded-md px-1.5 py-1 hover:brightness-[0.97] transition-all"
+                        style={{ background: phase.bg }}
+                        title={`${p.titre} · ${st.label}`}
                       >
-                        <div className="flex items-start justify-between gap-1">
-                          <span className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ background: phase.dot }} />
-                          <span className="text-[9px] font-semibold font-body leading-none ml-auto" style={{ color: st.color }}>{st.label}</span>
-                        </div>
-                        {p.visuel && (
-                          <img src={p.visuel} alt="" loading="lazy" className="w-full h-12 object-cover rounded-md" />
-                        )}
-                        <div className="flex flex-wrap gap-1">
-                          <span className="inline-flex items-center gap-1 text-[8.5px] font-medium font-body px-1.5 py-0.5 rounded-full bg-white border border-gray-200 text-gray-500">
-                            <Icon size={9} />{fmt.label}
-                          </span>
-                          {thm && (
-                            <span className="text-[8.5px] font-medium font-body px-1.5 py-0.5 rounded-full" style={{ background: thm.bg, color: thm.color }}>
-                              {thm.label}
-                            </span>
-                          )}
-                          {(p.reseaux || []).map((n) => {
-                            const net = NETWORKS[n];
-                            if (!net) return null;
-                            const NIcon = net.Icon;
-                            return (
-                              <span key={n} className="inline-flex items-center" style={{ color: net.color }} title={net.label}>
-                                <NIcon size={11} />
-                              </span>
-                            );
-                          })}
-                        </div>
-                        <p className="text-[10px] font-semibold text-gray-800 font-body leading-tight line-clamp-2">{p.titre}</p>
-                      </div>
+                        <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: st.color }} title={st.label} />
+                        <Icon size={10} className="flex-shrink-0" style={{ color: phase.dot }} />
+                        <span className="text-[10px] font-semibold font-body truncate text-left flex-1" style={{ color: phase.text }}>{p.titre}</span>
+                        {(p.reseaux || []).map((n) => {
+                          const net = NETWORKS[n];
+                          if (!net) return null;
+                          const NIcon = net.Icon;
+                          return <span key={n} className="flex-shrink-0" style={{ color: net.color }}><NIcon size={9} /></span>;
+                        })}
+                      </button>
                     );
                   })}
                 </div>
               );
             })}
           </div>
+          </>)}
 
-          {/* Légendes */}
+          {view === 'list' && (
+            monthPosts.length === 0 ? (
+              <div className="py-12 text-center">
+                <CalendarHeart className="mx-auto text-gray-300 mb-3" size={40} />
+                <p className="text-gray-400 font-body">Aucun post en {MONTHS[month].toLowerCase()}</p>
+                <p className="text-xs text-gray-300 font-body mt-1">Clique sur « Nouveau post » pour commencer</p>
+              </div>
+            ) : (
+              <div className="space-y-5">
+                {listGroups.map((g) => (
+                  <div key={g.date}>
+                    <p className="text-xs font-semibold font-body mb-2 capitalize" style={{ color: '#756568' }}>
+                      {new Date(`${g.date}T00:00:00`).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                    </p>
+                    <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                      {g.items.map((p) => {
+                        const phase = PHASES[p.phase] || PHASES.follicular;
+                        const fmt = FORMATS[p.format] || FORMATS.post;
+                        const st = STATUSES[p.statut] || STATUSES.draft;
+                        const thm = themeMap[p.thematique];
+                        const Icon = fmt.Icon;
+                        return (
+                          <button
+                            key={p.id}
+                            onClick={() => openPost(p)}
+                            className="w-full flex items-center gap-3 px-3 py-2.5 text-left border-t border-gray-50 first:border-t-0 hover:bg-gray-50/60 transition-colors"
+                          >
+                            <div className="w-11 h-11 rounded-xl flex-shrink-0 flex items-center justify-center overflow-hidden" style={{ background: phase.bg, color: phase.dot }}>
+                              {p.visuel ? <img src={p.visuel} alt="" loading="lazy" className="w-full h-full object-cover" /> : <Icon size={18} />}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-semibold text-gray-800 font-body truncate">{p.titre || 'Sans titre'}</p>
+                              <p className="text-xs text-gray-400 font-body truncate">
+                                {fmt.label}{thm ? ` · ${thm.label}` : ''}{p.heure ? ` · ${p.heure}` : ''}
+                              </p>
+                            </div>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              {(p.reseaux || []).map((n) => {
+                                const net = NETWORKS[n];
+                                if (!net) return null;
+                                const NIcon = net.Icon;
+                                return <span key={n} style={{ color: net.color }}><NIcon size={13} /></span>;
+                              })}
+                              <span className="text-[11px] font-semibold font-body whitespace-nowrap" style={{ color: st.color }}>{st.label}</span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )
+          )}
+
+          {/* Légendes (vue mois uniquement) */}
+          {view === 'month' && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-4 border-t border-gray-100">
             <div>
-              <p className="text-[11px] font-semibold text-gray-400 font-body mb-2 tracking-wide">FOND = PHASE</p>
+              <p className="text-[11px] font-semibold text-gray-400 font-body mb-2 tracking-wide">COULEUR = PHASE</p>
               <div className="flex flex-col gap-1.5">
                 {PHASE_KEYS.map((k) => (
-                  <span key={k} className="flex items-center gap-2 text-xs text-gray-600 font-body">
+                  <span key={k} className="flex items-center gap-2 text-xs font-body" style={{ color: PHASES[k].text }}>
                     <span className="w-4 h-3 rounded" style={{ background: PHASES[k].bg, border: `0.5px solid ${PHASES[k].border}` }} />
                     {PHASES[k].label}
                   </span>
@@ -404,15 +474,18 @@ export default function ContentCalendar() {
               </div>
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-gray-400 font-body mb-2 tracking-wide">STATUT (en haut à droite)</p>
+              <p className="text-[11px] font-semibold text-gray-400 font-body mb-2 tracking-wide">POINT À GAUCHE = STATUT</p>
               <div className="flex flex-col gap-1.5">
                 {STATUS_KEYS.map((k) => (
-                  <span key={k} className="text-xs font-semibold font-body" style={{ color: STATUSES[k].color }}>{STATUSES[k].label}</span>
+                  <span key={k} className="flex items-center gap-2 text-xs font-semibold font-body" style={{ color: STATUSES[k].color }}>
+                    <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: STATUSES[k].color }} />
+                    {STATUSES[k].label}
+                  </span>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-gray-400 font-body mb-2 tracking-wide">PASTILLES</p>
+              <p className="text-[11px] font-semibold text-gray-400 font-body mb-2 tracking-wide">ICÔNES</p>
               <div className="flex flex-wrap gap-1.5">
                 {FORMAT_KEYS.map((k) => {
                   const Icon = FORMATS[k].Icon;
@@ -422,9 +495,6 @@ export default function ContentCalendar() {
                     </span>
                   );
                 })}
-                {THEMES.map((t) => (
-                  <span key={t.value} className="text-[11px] font-medium font-body px-2 py-0.5 rounded-full" style={{ background: t.bg, color: t.color }}>{t.label}</span>
-                ))}
                 {NETWORK_KEYS.map((k) => {
                   const NIcon = NETWORKS[k].Icon;
                   return (
@@ -436,6 +506,7 @@ export default function ContentCalendar() {
               </div>
             </div>
           </div>
+          )}
         </div>
       )}
 
