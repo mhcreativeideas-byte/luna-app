@@ -28,6 +28,7 @@ const Recettes = lazy(() => import('./pages/Recettes'));
 const RecipesList = lazy(() => import('./pages/RecipesList'));
 const Courses = lazy(() => import('./pages/Courses'));
 const Menu = lazy(() => import('./pages/Menu'));
+const MenuSemaine = lazy(() => import('./pages/MenuSemaine'));
 const MonFrigo = lazy(() => import('./pages/MonFrigo'));
 const Admin = lazy(() => import('./pages/Admin'));
 const CGU = lazy(() => import('./pages/CGU'));
@@ -139,6 +140,7 @@ function NativeRoutes() {
         <Route path="/recettes-liste" element={<RecipesList />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/menu" element={<Menu />} />
+        <Route path="/menu-semaine" element={<MenuSemaine />} />
         <Route path="/mon-frigo" element={<MonFrigo />} />
         <Route path="/sommeil" element={<Sommeil />} />
         <Route path="/journal" element={<Journal />} />

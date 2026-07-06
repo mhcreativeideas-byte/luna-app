@@ -132,11 +132,11 @@ export default function Aujourdhui() {
         <div className="flex items-baseline justify-between mb-3 px-1">
           <h2 className="font-display text-lg text-luna-text">Ton menu du jour</h2>
           <Link
-            to="/menu"
+            to="/menu-semaine"
             className="text-xs font-body font-bold"
             style={{ color: phaseData.colorDark }}
           >
-            Tout voir
+            Voir ma semaine
           </Link>
         </div>
         <DailyMenu variant="carousel" />

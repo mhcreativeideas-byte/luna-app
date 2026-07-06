@@ -181,7 +181,7 @@ export default function DailyMenu({ variant = 'full' }) {
 }
 
 // ===== Fenêtre du bas : détail d'une recette du menu du jour =====
-function RecipeSheet({ recipe: openDailyRecipe, onClose, phaseData }) {
+export function RecipeSheet({ recipe: openDailyRecipe, onClose, phaseData }) {
   return (
     <>
       <AnimatePresence>

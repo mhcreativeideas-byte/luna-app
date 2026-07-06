@@ -4,7 +4,8 @@ import { Sunrise, Sun, Cookie, Moon } from 'lucide-react';
 // Extrait de DailyMenu.jsx pour être partagé avec la page Mes courses
 // (« Générer depuis mon menu »). Le tirage est stable toute la journée.
 
-// Pseudo-random basé sur la date du jour (stable dans la journée)
+// Pseudo-random basé sur la date (stable toute la journée donnée) —
+// permet aussi de générer le menu d'un jour futur (menu de la semaine).
 const seededRandom = (seed) => {
   let s = seed;
   return () => {
@@ -13,10 +14,7 @@ const seededRandom = (seed) => {
   };
 };
 
-const getDaySeed = () => {
-  const d = new Date();
-  return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-};
+const getDaySeed = (d = new Date()) => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
 
 export const MEAL_SLOTS = [
   { key: 'breakfast', time: 'Matin', Icon: Sunrise },
@@ -64,9 +62,9 @@ const containsAllergen = (recipe, allergyList) => {
   });
 };
 
-export const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime } = {}) => {
+export const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime, date } = {}) => {
   if (!recipes) return [];
-  const rand = seededRandom(getDaySeed() + phaseData.shortName.charCodeAt(0));
+  const rand = seededRandom(getDaySeed(date) + phaseData.shortName.charCodeAt(0));
   const goodDrinks = phaseData.drinks?.good || [];
 
   const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
