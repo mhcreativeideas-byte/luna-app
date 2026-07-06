@@ -30,9 +30,25 @@ async function verifyAdmin(req) {
   }
 }
 
+// Jeton actif de la requête (rangé dans Supabase, repli sur Vercel).
+let ACTIVE_TOKEN = '';
+
+// Va chercher le jeton dans Supabase (là où le robot le rafraîchit).
+async function getStoredToken() {
+  const url = process.env.VITE_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return null;
+  try {
+    const r = await fetch(`${url}/rest/v1/meta_tokens?id=eq.instagram&select=access_token`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+    });
+    const rows = await r.json();
+    return (Array.isArray(rows) && rows[0]?.access_token) || null;
+  } catch { return null; }
+}
+
 async function gget(path, params) {
-  const token = (process.env.META_ACCESS_TOKEN || '').trim();
-  const qs = new URLSearchParams({ ...params, access_token: token }).toString();
+  const qs = new URLSearchParams({ ...params, access_token: ACTIVE_TOKEN }).toString();
   const r = await fetch(`${GRAPH}/${path}?${qs}`);
   const j = await r.json();
   if (j.error) throw new Error(j.error.message);
@@ -42,9 +58,10 @@ async function gget(path, params) {
 export default async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
-  const TOKEN = process.env.META_ACCESS_TOKEN;
+  // Jeton : d'abord Supabase (renouvelé auto), sinon la variable Vercel (transition).
+  ACTIVE_TOKEN = (await getStoredToken()) || (process.env.META_ACCESS_TOKEN || '').trim();
   const IG = process.env.IG_USER_ID;
-  if (!TOKEN || !IG) {
+  if (!ACTIVE_TOKEN || !IG) {
     return res.status(200).json({ connected: false, reason: 'not_configured' });
   }
 

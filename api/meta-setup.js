@@ -99,23 +99,42 @@ export default async function handler(req, res) {
     if (llData.error) throw new Error(llData.error.message);
     const longToken = llData.access_token || shortToken;
 
+    // Enregistre automatiquement le jeton dans Supabase (si configuré).
+    let saved = false;
+    const sbUrl = process.env.VITE_SUPABASE_URL;
+    const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (sbUrl && sbKey) {
+      try {
+        const sr = await fetch(`${sbUrl}/rest/v1/meta_tokens`, {
+          method: 'POST',
+          headers: {
+            apikey: sbKey, Authorization: `Bearer ${sbKey}`,
+            'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal',
+          },
+          body: JSON.stringify({ id: 'instagram', access_token: longToken, updated_at: new Date().toISOString() }),
+        });
+        saved = sr.ok;
+      } catch { saved = false; }
+    }
+
+    if (saved) {
+      return res.status(200).send(page(`
+        <h1>✅ Connexion enregistrée !</h1>
+        <p>C'est <b>tout bon</b> : ta clé Instagram a été rangée automatiquement et sera <b>renouvelée toute seule</b>. Tu n'as <b>rien</b> à copier ni à coller. 🎉</p>
+        <p>Ouvre l'onglet <b>Statistiques</b> dans l'admin (recharge la page) : tes chiffres sont à jour.</p>
+        <p style="color:#756568;font-size:13px">Tu peux fermer cette page.</p>
+      `));
+    }
+
     return res.status(200).send(page(`
       <h1>✅ C'est bon, ta connexion Instagram est prête !</h1>
-      <p>Copie les <b>2 valeurs</b> ci-dessous et colle-les dans <b>Vercel</b> (Settings → Environment Variables → Add) :</p>
+      <p>Copie la valeur ci-dessous et colle-la dans <b>Vercel</b> (variable <span class="k">META_ACCESS_TOKEN</span>) :</p>
 
-      <label>1. Variable <span class="k">META_ACCESS_TOKEN</span></label>
       <div class="val" id="tok">${longToken}</div>
       <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('tok').textContent.trim()).then(()=>{this.textContent='Copié ✓'})" style="background:#C4727F;color:#fff;border:0;border-radius:10px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;margin:-8px 0 16px">Copier le jeton</button>
 
-      <label>2. Variable <span class="k">IG_USER_ID</span></label>
-      <div class="val">${userId}</div>
-
-      <ol>
-        <li>Crée ces 2 variables dans Vercel avec exactement ces noms (environnement Production).</li>
-        <li>Redéploie l'app (Deployments → Redeploy).</li>
-        <li>Ouvre l'onglet <b>Statistiques</b> dans l'admin : tes vrais chiffres s'affichent.</li>
-      </ol>
-      <p style="color:#756568;font-size:13px">Cette clé dure 60 jours (renouvelable automatiquement plus tard). Garde cette page privée puis ferme-la.</p>
+      <p style="color:#756568;font-size:13px">(Astuce : ajoute la clé <span class="k">SUPABASE_SERVICE_ROLE_KEY</span> dans Vercel pour que ce jeton s'enregistre et se renouvelle tout seul à l'avenir.)</p>
+      <p style="color:#756568;font-size:13px">Cette clé dure 60 jours. Garde cette page privée puis ferme-la.</p>
     `));
   } catch (err) {
     return res.status(200).send(connectPage(req, 'Erreur : ' + (err.message || 'réessaie') + '.'));
