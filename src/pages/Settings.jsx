@@ -4,9 +4,11 @@ import { motion } from 'framer-motion';
 import { ChevronRight, LogOut, RotateCcw, Trash2 } from 'lucide-react';
 import ConfirmDialog from '../components/ui/ConfirmDialog';
 import BottomSheet from '../components/ui/BottomSheet';
+import { Capacitor } from '@capacitor/core';
 import { useCycle } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
+import { restorePurchases } from '../lib/purchases';
 import BackButton from '../components/ui/BackButton';
 
 const goalOptions = [
@@ -117,6 +119,24 @@ export default function Settings() {
   const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user } = useCycle();
 
   const [confirm, setConfirm] = useState(null);
+
+  // Gérer / résilier : Apple impose que ça se fasse dans les Réglages iOS.
+  // On ouvre simplement la page « Abonnements » du compte Apple.
+  const openManageSubscription = () => {
+    const url = Capacitor.isNativePlatform()
+      ? 'itms-apps://apps.apple.com/account/subscriptions'
+      : 'https://apps.apple.com/account/subscriptions';
+    window.open(url, '_blank');
+  };
+
+  // « Restaurer mes achats » : obligatoire pour Apple (nouvel iPhone, réinstall).
+  const handleRestore = async () => {
+    const res = await restorePurchases();
+    if (res.ok) toast('Ton abonnement a été restauré 💛', 'success');
+    else if (res.none) toast('Aucun achat à restaurer pour le moment.', 'info');
+    else toast('Restauration impossible : ' + (res.error || 'réessaie plus tard'), 'error');
+  };
+
   const [showGoals, setShowGoals] = useState(false);
   const [editedGoals, setEditedGoals] = useState(goals || []);
   const [showDiet, setShowDiet] = useState(false);
@@ -245,15 +265,17 @@ export default function Settings() {
         />
       </Section>
 
+      <Section title="Abonnement">
+        <SettingRow label="Gérer mon abonnement" onClick={openManageSubscription} />
+        <SettingRow label="Restaurer mes achats" onClick={handleRestore} />
+      </Section>
+
       <Section title="Notifications">
         <SettingToggle
-          label="Rappels doux"
+          label="Activer les notifications"
           checked={notifications}
           onChange={(val) => dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } })}
         />
-        <p className="px-5 py-3 text-xs font-body text-luna-text-hint leading-relaxed">
-          Quelques rappels bienveillants au fil de ton cycle : changement de phase, règles qui approchent, menu du jour et check-in du soir.
-        </p>
       </Section>
 
       <Section title="App">
