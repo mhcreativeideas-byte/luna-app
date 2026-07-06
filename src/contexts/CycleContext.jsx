@@ -310,6 +310,8 @@ function cycleReducer(state, action) {
         .filter((b) => b.items.length > 0);
       return { ...state, shoppingList: cleaned };
     }
+    case 'CLEAR_ALL_SHOPPING':
+      return { ...state, shoppingList: [] };
 
     case 'UPDATE_SETTINGS':
       return { ...state, ...action.payload };

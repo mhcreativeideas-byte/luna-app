@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Sparkles, X, Check, Plus, PencilLine } from 'lucide-react';
+import { ShoppingCart, Sparkles, X, Check, Plus, PencilLine, Trash2 } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
+import ConfirmDialog from '../components/ui/ConfirmDialog';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
@@ -26,6 +27,7 @@ export default function Courses() {
   const { shoppingList, dispatch, cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
   const [newItem, setNewItem] = useState('');
   const [generating, setGenerating] = useState(false);
+  const [confirmClear, setConfirmClear] = useState(false);
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
@@ -230,17 +232,41 @@ export default function Courses() {
         </motion.div>
       )}
 
-      {/* Vider les articles cochés */}
-      {hasChecked && (
-        <motion.div variants={item} className="text-center pt-1">
+      {/* Actions bas de page : vider les cochés / tout effacer */}
+      {shoppingList.length > 0 && (
+        <motion.div variants={item} className="flex flex-col items-center gap-0.5 pt-1">
+          {hasChecked && (
+            <button
+              onClick={() => dispatch({ type: 'CLEAR_CHECKED_SHOPPING' })}
+              className="text-[13px] font-body font-semibold text-luna-text-muted py-2 px-4"
+            >
+              Vider les articles cochés
+            </button>
+          )}
           <button
-            onClick={() => dispatch({ type: 'CLEAR_CHECKED_SHOPPING' })}
-            className="text-[13px] font-body font-semibold text-luna-text-muted py-2 px-4"
+            onClick={() => setConfirmClear(true)}
+            className="flex items-center gap-1.5 text-[13px] font-body font-semibold text-red-400 py-2 px-4 active:scale-95 transition-transform"
           >
-            Vider les articles cochés
+            <Trash2 size={14} /> Tout effacer
           </button>
         </motion.div>
       )}
+
+      <ConfirmDialog
+        open={confirmClear}
+        title="Vider toute la liste ?"
+        message="Toutes tes recettes et articles seront retirés de ta liste de courses. Cette action est définitive."
+        confirmLabel="Tout effacer"
+        cancelLabel="Annuler"
+        danger
+        Icon={Trash2}
+        onConfirm={() => {
+          dispatch({ type: 'CLEAR_ALL_SHOPPING' });
+          setConfirmClear(false);
+          toast('Ta liste de courses a été vidée');
+        }}
+        onCancel={() => setConfirmClear(false)}
+      />
     </motion.div>
   );
 }
