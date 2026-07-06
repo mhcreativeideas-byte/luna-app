@@ -23,7 +23,7 @@ const item = {
 // « Mes ajouts » accueille les articles libres ; « Générer depuis mon menu »
 // ajoute d'un coup les repas du menu du jour.
 export default function Courses() {
-  const { shoppingList, dispatch, cycleInfo, dietPreferences, healthIssues, allergies } = useCycle();
+  const { shoppingList, dispatch, cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
   const [newItem, setNewItem] = useState('');
   const [generating, setGenerating] = useState(false);
 
@@ -47,6 +47,8 @@ export default function Courses() {
       const menu = buildDailyMenu(recipes, phaseData, {
         requiredTags: buildRequiredTags(dietPreferences, healthIssues),
         allergies: allergies || [],
+        cookingLevel,
+        cookingTime,
       });
       let added = 0;
       menu.forEach((m) => {

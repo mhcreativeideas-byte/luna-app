@@ -5,6 +5,7 @@ import { useCycle } from '../../contexts/CycleContext';
 import { PHASES } from '../../data/phases';
 import { RECIPE_LOADERS } from '../../data/recipeLoaders';
 import { buildDailyMenu } from '../../data/dailyMenu';
+import { buildRequiredTags } from '../../data/recipeFilters';
 import AddToListBanner from './AddToListBanner';
 
 
@@ -13,7 +14,7 @@ import AddToListBanner from './AddToListBanner';
 // variant="carousel" (cartes horizontales compactes, accueil Aujourd'hui).
 // Même chargement, même fenêtre de détail dans les deux cas.
 export default function DailyMenu({ variant = 'full' }) {
-  const { cycleInfo, dietPreferences, healthIssues, allergies } = useCycle();
+  const { cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
   const [openDailyRecipe, setOpenDailyRecipe] = useState(null);
 
   const phase = cycleInfo?.phase || 'follicular';
@@ -31,20 +32,17 @@ export default function DailyMenu({ variant = 'full' }) {
 
   const dailyMenu = useMemo(() => {
     if (!recipes) return [];
-    const tags = [];
-    const prefs = dietPreferences || ['omnivore'];
-    const issues = healthIssues || [];
-    if (prefs.includes('Végane')) tags.push('vegan');
-    else if (prefs.includes('Végétarienne')) tags.push('vegetarien');
-    if (prefs.includes('Sans gluten')) tags.push('sans_gluten');
-    if (prefs.includes('Sans lactose')) tags.push('sans_lactose');
-    if (issues.includes('SOPK')) tags.push('sopk_friendly');
+    // Mêmes filtres que Ma semaine et Mes courses (buildRequiredTags + niveau
+    // et temps de cuisine), pour que le menu du jour soit IDENTIQUE partout :
+    // Aujourd'hui, Ma semaine, Courses.
     return buildDailyMenu(recipes, phaseData, {
-      requiredTags: tags,
+      requiredTags: buildRequiredTags(dietPreferences, healthIssues),
       allergies: allergies || [],
+      cookingLevel,
+      cookingTime,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, recipes, dietPreferences, healthIssues, allergies]);
+  }, [phase, recipes, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime]);
 
   if (variant === 'carousel') {
     return (

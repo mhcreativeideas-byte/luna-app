@@ -1,4 +1,5 @@
 import { Sunrise, Sun, Cookie, Moon } from 'lucide-react';
+import { containsAllergen } from './recipeFilters';
 
 // Construction du menu du jour (4 repas adaptés à la phase + préférences).
 // Extrait de DailyMenu.jsx pour être partagé avec la page Mes courses
@@ -37,29 +38,6 @@ const getDrinkIcon = (drinkName) => {
     if (lower.includes(keyword)) return icon;
   }
   return '🍵';
-};
-
-const ALLERGEN_KEYWORDS = {
-  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin'],
-  'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
-  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari'],
-  'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
-  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'poisson'],
-  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
-  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'feta', 'mascarpone'],
-  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'couscous', 'boulgour', 'semoule', 'tortilla', 'wrap'],
-  'Sésame': ['sésame', 'tahini', 'tahin'],
-  'Céleri': ['céleri', 'celeri'],
-  'Moutarde': ['moutarde'],
-};
-
-const containsAllergen = (recipe, allergyList) => {
-  if (!allergyList || allergyList.length === 0) return false;
-  const fullText = ((recipe.ingredients || []).join(' ') + ' ' + (recipe.name || '')).toLowerCase();
-  return allergyList.some((allergy) => {
-    const keywords = ALLERGEN_KEYWORDS[allergy] || [];
-    return keywords.some((kw) => fullText.includes(kw.toLowerCase()));
-  });
 };
 
 export const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergies = [], cookingLevel, cookingTime, date } = {}) => {

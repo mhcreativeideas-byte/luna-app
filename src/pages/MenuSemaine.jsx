@@ -26,7 +26,7 @@ const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 // phase de jeudi). Ouverte via « Tout voir » depuis l'accueil Aujourd'hui.
 // Un bouton envoie toute la semaine dans la liste de courses.
 export default function MenuSemaine() {
-  const { lastPeriodDate, cycleLength, periodLength, dietPreferences, healthIssues, allergies, shoppingList, dispatch } = useCycle();
+  const { lastPeriodDate, cycleLength, periodLength, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, shoppingList, dispatch } = useCycle();
   const [openRecipe, setOpenRecipe] = useState(null); // { recipe, phaseData }
   const [recipesByPhase, setRecipesByPhase] = useState({});
   const [addedWeek, setAddedWeek] = useState(false);
@@ -64,12 +64,12 @@ export default function MenuSemaine() {
     return days.map((d) => {
       const recipes = recipesByPhase[d.phase];
       const menu = recipes
-        ? buildDailyMenu(recipes, PHASES[d.phase], { requiredTags, allergies: allergies || [], date: d.date })
+        ? buildDailyMenu(recipes, PHASES[d.phase], { requiredTags, allergies: allergies || [], cookingLevel, cookingTime, date: d.date })
         : [];
       return { ...d, menu };
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [days, recipesByPhase, dietPreferences, healthIssues, allergies]);
+  }, [days, recipesByPhase, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime]);
 
   const ready = weekMenus.length > 0 && weekMenus.every((d) => d.menu.length > 0);
 

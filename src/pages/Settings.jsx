@@ -34,6 +34,7 @@ const healthOptions = [
   { id: 'Endométriose', icon: '🩺', desc: 'Diagnostiquée ou suspectée' },
   { id: 'SOPK', icon: '🔬', desc: 'Syndrome des ovaires polykystiques' },
   { id: 'Cycles irréguliers', icon: '📅', desc: 'Cycles de durée variable' },
+  { id: 'Anti-inflammatoire', icon: '🍃', desc: 'Privilégier une alimentation anti-inflammatoire' },
 ];
 
 const allergyOptions = [
