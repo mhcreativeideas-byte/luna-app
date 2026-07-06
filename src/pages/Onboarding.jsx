@@ -6,6 +6,7 @@ import { Capacitor } from '@capacitor/core';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import PhaseRing from '../components/cycle/PhaseRing';
+import AnalysisScreen from '../components/onboarding/AnalysisScreen';
 import { getCycleInfo } from '../contexts/CycleContext';
 
 const PHASE_MOODS = {
@@ -268,7 +269,6 @@ export default function Onboarding() {
   const [showRevelation, setShowRevelation] = useState(false);
   const [showNotifPrimer, setShowNotifPrimer] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
-  const [loadingStep, setLoadingStep] = useState(0);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -323,14 +323,10 @@ export default function Onboarding() {
 
   // Faux temps d'analyse après la dernière question : crée l'attente juste
   // avant la révélation personnalisée (le moment où il a le plus de valeur).
+  // Durée calée sur l'animation de l'anneau (~2,6 s) + une petite pause.
   const startAnalysis = async () => {
-    setLoadingStep(0);
     setAnalyzing(true);
-    for (let i = 1; i <= 3; i++) {
-      await new Promise((r) => setTimeout(r, 800));
-      setLoadingStep(i);
-    }
-    await new Promise((r) => setTimeout(r, 500));
+    await new Promise((r) => setTimeout(r, 3000));
     setAnalyzing(false);
     if (form.lastPeriodDate) setShowRevelation(true);
     else setStep(7);
@@ -346,77 +342,21 @@ export default function Onboarding() {
     exit: { x: -80, opacity: 0 },
   };
 
-  // Écran d'analyse — après la dernière question, avant la révélation
+  // Écran d'analyse — anneau signature qui se remplit + les vraies réponses
+  // qui s'allument une par une (mix A+B validé). Les puces reprennent SES
+  // réponses pour l'effet « l'app m'a vraiment écoutée ».
   if (analyzing) {
-    const loadingSteps = [
-      'On analyse tes réponses...',
-      'On décode ton cycle...',
-      'On prépare ton programme...',
-    ];
-
-    return (
-      <div className="min-h-screen bg-luna-bg flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-sm text-center"
-        >
-          <img src="/logo-luna.svg" alt="luna" className="w-24 mx-auto mb-8" />
-          <div className="space-y-4">
-            {loadingSteps.map((label, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.3 }}
-                className="flex items-center gap-3"
-              >
-                <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-500 ${
-                  loadingStep > i
-                    ? 'bg-luna-rose text-white'
-                    : loadingStep === i
-                      ? 'bg-luna-rose/20 border-2 border-luna-rose'
-                      : 'bg-luna-cream-card'
-                }`}>
-                  {loadingStep > i && <Check size={14} />}
-                </div>
-                <span className={`text-sm font-body transition-colors ${
-                  loadingStep > i ? 'text-luna-text font-semibold' : 'text-luna-text-muted'
-                }`}>
-                  {label}
-                </span>
-                {loadingStep > i && (
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-luna-rose ml-auto"
-                  >
-                    ✓
-                  </motion.span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-          {loadingStep >= 3 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-8"
-            >
-              <div className="h-1 bg-luna-cream-card rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 0.5 }}
-                  className="h-full bg-luna-rose rounded-full"
-                />
-              </div>
-            </motion.div>
-          )}
-        </motion.div>
-      </div>
-    );
+    const chips = [];
+    chips.push({ icon: '🌙', label: `Cycle de ${form.cycleLength} jours` });
+    const craving = (form.cravings || []).find((c) => c !== 'rien');
+    const co = craving && cravingOptions.find((o) => o.id === craving);
+    if (co) chips.push({ icon: co.icon, label: co.label });
+    const diet = (form.dietPreferences || []).find((d) => d && d !== 'Omnivore');
+    if (diet) chips.push({ icon: dietOptions.find((o) => o.id === diet)?.icon || '🍽️', label: diet });
+    const health = (form.healthIssues || [])[0];
+    if (health) chips.push({ icon: healthOptions.find((o) => o.id === health)?.icon || '💜', label: health });
+    if ((form.goals || []).length) chips.push({ icon: '🎯', label: `Tes ${form.goals.length} objectif${form.goals.length > 1 ? 's' : ''}` });
+    return <AnalysisScreen name={form.name} chips={chips.slice(0, 4)} />;
   }
 
   const handleFinish = () => {
