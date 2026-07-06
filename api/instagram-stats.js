@@ -97,27 +97,19 @@ export default async function handler(req, res) {
     out.byFormat = fmt;
   }
 
-  // 3) Portée sur ~30 jours (métrique parfois capricieuse -> on protège)
+  // 3) Portée sur ~30 jours. API Instagram Login : metric_type=total_value requis.
   try {
     const until = Math.floor(Date.now() / 1000);
     const since = until - 30 * 24 * 3600;
     const ins = await gget(`${IG}/insights`, {
-      metric: 'reach', period: 'day', since: String(since), until: String(until),
+      metric: 'reach', period: 'day', metric_type: 'total_value',
+      since: String(since), until: String(until),
     });
-    const vals = ins.data?.[0]?.values || [];
-    out.reach30 = vals.reduce((s, v) => s + (v.value || 0), 0) || null;
+    out.reach30 = ins.data?.[0]?.total_value?.value ?? null;
   } catch (e) { errors.push('reach: ' + e.message); }
 
-  // 4) Nouveaux abonnés sur ~30 jours (différence début/fin, si dispo)
-  try {
-    const until = Math.floor(Date.now() / 1000);
-    const since = until - 30 * 24 * 3600;
-    const ins = await gget(`${IG}/insights`, {
-      metric: 'follower_count', period: 'day', since: String(since), until: String(until),
-    });
-    const vals = ins.data?.[0]?.values || [];
-    out.new30 = vals.reduce((s, v) => s + (v.value || 0), 0) || null;
-  } catch (e) { errors.push('new_followers: ' + e.message); }
+  // 4) Nouveaux abonnés : la métrique follower_count n'est PAS fournie par Meta
+  // pour les comptes de moins de 100 abonnés -> on n'appelle pas (reste « — »).
 
   out.errors = errors;
   return res.status(200).json(out);
