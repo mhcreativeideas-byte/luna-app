@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
-import TopMenu from '../components/ui/TopMenu';
+import BackButton from '../components/ui/BackButton';
 import DailyMenu from '../components/food/DailyMenu';
 
 const container = {
@@ -30,7 +30,7 @@ export default function Menu() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
-      <TopMenu />
+      <BackButton />
 
       {/* Header */}
       <motion.div variants={item}>

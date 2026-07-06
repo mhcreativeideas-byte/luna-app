@@ -103,7 +103,7 @@ export default function Courses() {
       {shoppingList.length === 0 && (
         <motion.div variants={item} className="bg-white rounded-[24px] px-6 py-10 text-center" style={{ boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}>
           <div className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: '#F3EEF8' }}>
-            <ShoppingCart size={24} style={{ color: '#8B76A8' }} />
+            <ShoppingCart size={24} style={{ color: '#7D6A96' }} />
           </div>
           <p className="text-sm font-body text-luna-text-body leading-relaxed">
             Ajoute une recette depuis sa fiche,<br />ou génère ta liste depuis ton menu du jour.
@@ -159,8 +159,8 @@ export default function Courses() {
               {block.items.map((it, i) => (
                 <button
                   key={`${it.name}-${i}`}
-                  onClick={() => dispatch({ type: 'TOGGLE_SHOPPING_ITEM', payload: { blockId: block.id, index: i } })}
-                  className="w-full flex items-center gap-3 py-2.5 text-left"
+                  onClick={() => dispatch({ type: 'TOGGLE_SHOPPING_ITEM', payload: { blockId: block.id, index: i, itemName: it.name } })}
+                  className="w-full flex items-center gap-3 py-3 text-left"
                   style={{ borderTop: '0.5px solid #F5EEF0' }}
                 >
                   {it.checked ? (

@@ -271,14 +271,20 @@ function cycleReducer(state, action) {
     case 'REMOVE_SHOPPING_RECIPE':
       return { ...state, shoppingList: state.shoppingList.filter((b) => b.id !== action.payload && b.name !== action.payload) };
     case 'TOGGLE_SHOPPING_ITEM': {
-      const { blockId, index } = action.payload;
+      const { blockId, index, itemName } = action.payload;
       return {
         ...state,
-        shoppingList: state.shoppingList.map((b) =>
-          b.id === blockId
-            ? { ...b, items: b.items.map((it, i) => i === index ? { ...it, checked: !it.checked } : it) }
-            : b
-        ),
+        shoppingList: state.shoppingList.map((b) => {
+          if (b.id !== blockId) return b;
+          // Garde-fou : si la liste a bougé entre l'affichage et le tap
+          // (ex. « Vider les cochés »), on retrouve l'article par son nom
+          // plutôt que de cocher la mauvaise ligne.
+          const target = itemName && b.items[index]?.name !== itemName
+            ? b.items.findIndex((it) => it.name === itemName)
+            : index;
+          if (target < 0) return b;
+          return { ...b, items: b.items.map((it, i) => i === target ? { ...it, checked: !it.checked } : it) };
+        }),
       };
     }
     case 'ADD_SHOPPING_CUSTOM_ITEM': {

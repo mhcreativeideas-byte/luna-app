@@ -53,14 +53,18 @@ Le but est une **vraie app iPhone native**, emballée avec **Capacitor** — **P
 - `npm run build` — build de production (toujours vérifier que ça passe avant de pousser)
 - `npm run lint` — ESLint
 
-## Navigation (barre du bas, mobile)
-Centrée sur l'alimentation : **Recettes · Frigo · Cycle (centre) · Nutrition · Menu**.
-- **Menu** (`/menu`, `Menu.jsx`) = le **menu du jour** (« Ta journée idéale »), déplacé hors de la page Nutrition.
-- ⚠️ L'onglet **« Plus »** (`/plus`, `Extras.jsx`) a été **retiré de la barre** mais **rien n'est supprimé** : la page et ses contenus (**Journal, Sport, Sommeil, chat LUNA**) existent toujours et restent accessibles par URL. Pour **le réafficher** : remettre `{ to: '/plus', icon: LayoutGrid, label: 'Plus' }` dans `rightItems` de `BottomNav.jsx` (et réimporter `LayoutGrid`). Les routes `/journal`, `/sport`, `/sommeil`, `/chat`, `/plus` sont intactes dans `App.jsx`.
+## Navigation (barre du bas, mobile) — refonte 2026-07-05
+3 onglets : **Manger** (`/recettes`, `Recettes.jsx`) · **Aujourd'hui** (`/aujourdhui`, `Aujourdhui.jsx`, **accueil au centre**) · **Mon cycle** (`/dashboard`, `Dashboard.jsx`).
+- **Aujourd'hui** = accueil : salutation, carte de phase compacte, check-in, conseil symptôme→aliment (après check-in), menu du jour (aperçu ; « Tout voir » → `/menu`).
+- **Manger** = sommaire : Recettes en bandeau vedette (→ `/recettes-liste`) + grille 2×2 : Aliments (→ `/alimentation`), Mon frigo (→ `/mon-frigo`), Courses (→ `/courses`, pastille compteur), De saison (→ `/de-saison`).
+- **Mon cycle** = anneau signature + calendrier (→ `/calendrier`) + tuiles Mon bilan (→ `/bilan`) et Partenaire (carte à partager en fenêtre du bas).
+- **Liste de courses** (`Courses.jsx`) : organisée **par recette** ; bannière « Ajouter aux courses » (`AddToListBanner.jsx`) dans les fiches recette ; « Générer depuis mon menu » ; état `shoppingList` dans CycleContext, persisté dans `user_tracking.settings` (pas de migration).
+- ⚠️ Pages **cachées mais gardées** (accessibles par URL, rien n'est supprimé) : `/journal`, `/sport`, `/sommeil`, `/chat`, `/plus` (Extras). L'ancien onglet « Aliments » est devenu une entrée de Manger.
+- ⚠️ **Mode aperçu web** : `lunawellness.app/apercu-mh26` débloque l'app dans le navigateur (test à distance) — **à retirer avant le lancement** (bloc « Mode aperçu » dans `App.jsx`).
 
 ## Structure
-- `src/pages/` — les écrans : Landing, Auth, Onboarding, Dashboard, Sport, Alimentation, Recettes, MonFrigo, Sommeil, Journal, CheckIn, Chat, Menu, Profil, Settings, Extras, Calendar, Admin, CGU, Privacy, NotFound
-- `src/contexts/CycleContext.jsx` — **état global** (profil, cycle, journal, favoris, frigo…) + sync Supabase + calcul des phases
+- `src/pages/` — les écrans : Landing, Auth, Onboarding, Aujourdhui, Dashboard, Courses, Bilan, DeSaison, Sport, Alimentation, Recettes, RecipesList, MonFrigo, Sommeil, Journal, CheckIn, Chat, Menu, Profil, Settings, Extras, Calendar, Admin, CGU, Privacy, NotFound
+- `src/contexts/CycleContext.jsx` — **état global** (profil, cycle, journal, favoris, frigo, liste de courses…) + sync Supabase + calcul des phases
 - `src/data/` — contenus : recettes par phase (`recipes-*.js`), `seasonal.js` (fruits/légumes de saison + images `public/foods/`), `phases.js`, `exercises.js`, `chatResponses.js` (le chat est **local/règles**, pas d'IA externe)
 - `App-Store-LUNA/` — tous les documents de soumission App Store (fiche, checklist, confidentialité, âge, icône, évolutions futures)
 

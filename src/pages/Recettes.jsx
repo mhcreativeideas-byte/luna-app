@@ -138,7 +138,7 @@ export default function Recettes() {
         <Tile
           to="/courses"
           bg="#F3EEF8"
-          iconColor="#8B76A8"
+          iconColor="#7D6A96"
           Icon={ShoppingCart}
           label="Courses"
           sub={shoppingRemaining > 0 ? `${shoppingRemaining} article${shoppingRemaining > 1 ? 's' : ''} restant${shoppingRemaining > 1 ? 's' : ''}` : 'Ta liste par recette'}
