@@ -15,8 +15,8 @@
 const IG_AUTH = 'https://www.instagram.com/oauth/authorize';
 const IG_TOKEN = 'https://api.instagram.com/oauth/access_token';
 const IG_GRAPH = 'https://graph.instagram.com';
-// Scope minimal et sûr pour lire profil + médias (abonnés, posts, likes/comm.).
-const SCOPES = 'instagram_business_basic';
+// Scopes : profil + médias (abonnés, posts, likes) + insights (portée, nouveaux abonnés).
+const SCOPES = 'instagram_business_basic,instagram_business_manage_insights';
 
 function redirectUri(req) {
   const host = req.headers['x-forwarded-host'] || req.headers.host;
