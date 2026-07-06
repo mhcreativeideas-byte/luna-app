@@ -4,16 +4,17 @@ import { Check } from 'lucide-react';
 
 // Écran d'analyse de l'onboarding (le « moment magique » avant la révélation).
 // Mix A+B validé par Margaux : l'anneau signature de luna se remplit (0→100 %)
-// pendant que SES vraies réponses s'allument une par une. Durée ~2,6 s, calée
-// sur startAnalysis() dans Onboarding.jsx.
-const DURATION = 2.6;
+// pendant que SES vraies réponses s'allument une par une. L'anneau met 3,2 s à
+// se remplir, puis startAnalysis() garde l'écran ~1,1 s de plus (total ~4,3 s)
+// pour laisser le temps de lire les réponses et voir le 100 % se poser.
+const DURATION = 3.2;
 const EASE = [0.4, 0, 0.2, 1];
 const R = 42;
 const C = 2 * Math.PI * R;
 
 export default function AnalysisScreen({ name, chips }) {
   const pct = useMotionValue(0);
-  const label = useTransform(pct, (v) => `${Math.round(v)}%`);
+  const num = useTransform(pct, (v) => `${Math.round(v)}`);
 
   useEffect(() => {
     const controls = animate(pct, 100, { duration: DURATION, ease: EASE });
@@ -60,12 +61,18 @@ export default function AnalysisScreen({ name, chips }) {
           <div style={{ position: 'absolute', top: 5, left: '50%', width: 12, height: 12, marginLeft: -6, borderRadius: '50%', background: '#fff', border: '2.5px solid #C4727F', boxShadow: '0 0 10px rgba(196,114,127,0.5)' }} />
         </motion.div>
 
-        {/* Pourcentage animé au centre */}
+        {/* Pourcentage animé au centre — chiffre en vedette, « % » discret */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <motion.span className="font-display font-bold leading-none" style={{ fontSize: '2rem', color: '#A85A66' }}>
-            {label}
-          </motion.span>
-          <span style={{ fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#A99CA0', marginTop: 3 }}>
+          <div className="flex items-baseline justify-center">
+            <motion.span
+              className="font-display font-bold leading-none"
+              style={{ fontSize: '2.1rem', color: '#A85A66', fontVariantNumeric: 'tabular-nums' }}
+            >
+              {num}
+            </motion.span>
+            <span className="font-display leading-none" style={{ fontSize: '1rem', fontWeight: 500, color: '#C99AA0', marginLeft: 2 }}>%</span>
+          </div>
+          <span style={{ fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#A99CA0', marginTop: 5 }}>
             analyse
           </span>
         </div>

@@ -323,10 +323,10 @@ export default function Onboarding() {
 
   // Faux temps d'analyse après la dernière question : crée l'attente juste
   // avant la révélation personnalisée (le moment où il a le plus de valeur).
-  // Durée calée sur l'animation de l'anneau (~2,6 s) + une petite pause.
+  // ~4,3 s = l'anneau se remplit (3,2 s) + une pause pour lire les réponses.
   const startAnalysis = async () => {
     setAnalyzing(true);
-    await new Promise((r) => setTimeout(r, 3000));
+    await new Promise((r) => setTimeout(r, 4300));
     setAnalyzing(false);
     if (form.lastPeriodDate) setShowRevelation(true);
     else setStep(7);
