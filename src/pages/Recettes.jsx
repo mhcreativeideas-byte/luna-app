@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Apple, Refrigerator, Leaf, ShoppingCart, ChevronRight } from 'lucide-react';
+import { BookOpen, Apple, Refrigerator, ShoppingCart, ChevronRight, Lightbulb } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { buildRequiredTags, filterRecipes } from '../data/recipeFilters';
-import { SEASONAL_MONTH_NAMES } from '../data/seasonal';
+import { getDailyInsight } from '../data/insights';
 
 const container = {
   hidden: { opacity: 0 },
@@ -18,35 +18,45 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-// Tuile du sommaire « Manger » : grande, tactile, un mot + un sous-titre court.
-// Couleurs fixes de la charte luna (rose, pêche, menthe, sauge) — pas de thème
-// par phase ici, c'est un sommaire.
-function Tile({ to, bg, iconColor, Icon, label, sub, badge }) {
+// Ligne de l'onglet « Manger » : grande, tactile, une action par ligne
+// (icône ronde colorée + titre + sous-titre). Couleurs fixes de la charte
+// luna (pêche, menthe, lavande) — pas de thème par phase ici, c'est un sommaire.
+function Row({ to, iconBg, iconColor, Icon, label, sub, badge }) {
   return (
     <Link
       to={to}
-      className="relative flex flex-col justify-between rounded-[24px] p-5 min-h-[122px] active:scale-[0.98] transition-transform"
-      style={{ backgroundColor: bg, boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}
+      className="flex items-center gap-3.5 bg-white rounded-[20px] p-4 active:scale-[0.99] transition-transform"
+      style={{ boxShadow: '0 6px 20px rgba(45,34,38,0.05)' }}
     >
-      {badge != null && (
+      <div
+        className="w-11 h-11 rounded-[15px] flex items-center justify-center flex-shrink-0"
+        style={{ backgroundColor: iconBg }}
+      >
+        <Icon size={22} style={{ color: iconColor }} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-display text-lg text-luna-text leading-tight">{label}</p>
+        {sub && <p className="text-[11px] font-body text-luna-text-muted mt-0.5">{sub}</p>}
+      </div>
+      {badge != null ? (
         <span
-          className="absolute top-3 right-3 min-w-[22px] h-[22px] px-1.5 rounded-full flex items-center justify-center text-[11px] font-body font-bold text-white"
+          className="min-w-[22px] h-[22px] px-1.5 rounded-full flex items-center justify-center text-[11px] font-body font-bold text-white flex-shrink-0"
           style={{ backgroundColor: iconColor }}
         >
           {badge}
         </span>
+      ) : (
+        <ChevronRight size={18} className="flex-shrink-0" style={{ color: '#C9BCB0' }} />
       )}
-      <Icon size={24} style={{ color: iconColor }} />
-      <div>
-        <p className="font-display text-lg text-luna-text leading-tight">{label}</p>
-        {sub && <p className="text-[11px] font-body text-luna-text-muted mt-0.5">{sub}</p>}
-      </div>
     </Link>
   );
 }
 
-// Onglet « Manger » : le sommaire de tout l'alimentaire — Recettes en vedette
-// (bandeau pleine largeur), puis la grille 2×2. Le menu du jour vit sur Aujourd'hui.
+// Onglet « Manger » : accueil de tout l'alimentaire, en lignes empilées.
+// Recettes en vedette, puis Mon frigo / Aliments / Courses, et l'Insight du
+// jour en clôture (déplacé depuis la page Aliments, même design). Le menu du
+// jour vit sur Aujourd'hui. « De saison » reste dans le code (route
+// /de-saison) mais n'est plus affiché ici.
 export default function Recettes() {
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, shoppingList } = useCycle();
 
@@ -66,8 +76,8 @@ export default function Recettes() {
 
   const recipes = loadedRecipes?.phase === currentPhase ? loadedRecipes.data : null;
 
-  // Compte des recettes adaptées (pour la tuile) — mêmes filtres que la liste,
-  // avec les réglages par défaut du profil.
+  // Compte des recettes adaptées (pour la vedette) — mêmes filtres que la
+  // liste, avec les réglages par défaut du profil.
   const requiredTags = buildRequiredTags(dietPreferences, healthIssues);
   const recipeCount = filterRecipes(recipes, {
     requiredTags,
@@ -76,7 +86,6 @@ export default function Recettes() {
     selectedTime: cookingTime || '',
   }).length;
 
-  const monthName = SEASONAL_MONTH_NAMES[new Date().getMonth()];
   const shoppingRemaining = (shoppingList || []).reduce((n, b) => n + b.items.filter((it) => !it.checked).length, 0);
 
   return (
@@ -104,8 +113,8 @@ export default function Recettes() {
           className="flex items-center gap-3.5 rounded-[24px] p-5 active:scale-[0.99] transition-transform"
           style={{ backgroundColor: '#FDE8EB', boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}
         >
-          <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-            <BookOpen size={21} style={{ color: '#C4727F' }} />
+          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
+            <BookOpen size={22} style={{ color: '#C4727F' }} />
           </div>
           <div className="flex-1 min-w-0">
             <p className="font-display text-xl text-luna-text leading-tight">Recettes</p>
@@ -117,41 +126,51 @@ export default function Recettes() {
         </Link>
       </motion.div>
 
-      {/* La grille 2×2 */}
-      <motion.div variants={item} className="grid grid-cols-2 gap-3">
-        <Tile
-          to="/alimentation"
-          bg="#FFF3EB"
-          iconColor="#C07A4A"
-          Icon={Apple}
-          label="Aliments"
-          sub="Les alliés de ta phase"
-        />
-        <Tile
+      {/* Les accès, en lignes empilées : Mon frigo, Aliments, Courses */}
+      <motion.div variants={item} className="space-y-3">
+        <Row
           to="/mon-frigo"
-          bg="#EDF5F8"
+          iconBg="#EDF5F8"
           iconColor="#7BAAB8"
           Icon={Refrigerator}
           label="Mon frigo"
           sub="Cuisine avec ce que tu as"
         />
-        <Tile
+        <Row
+          to="/alimentation"
+          iconBg="#FFF3EB"
+          iconColor="#C07A4A"
+          Icon={Apple}
+          label="Aliments"
+          sub="Les alliés de ta phase"
+        />
+        <Row
           to="/courses"
-          bg="#F3EEF8"
+          iconBg="#F3EEF8"
           iconColor="#7D6A96"
           Icon={ShoppingCart}
           label="Courses"
           sub={shoppingRemaining > 0 ? `${shoppingRemaining} article${shoppingRemaining > 1 ? 's' : ''} restant${shoppingRemaining > 1 ? 's' : ''}` : 'Ta liste par recette'}
           badge={shoppingRemaining > 0 ? shoppingRemaining : null}
         />
-        <Tile
-          to="/de-saison"
-          bg="#EDF5ED"
-          iconColor="#4D7A50"
-          Icon={Leaf}
-          label="De saison"
-          sub={`En ${monthName}`}
-        />
+      </motion.div>
+
+      {/* Insight du jour — déplacé depuis Aliments, même design */}
+      <motion.div variants={item}>
+        <div
+          className="rounded-[18px] px-4 py-3.5 flex items-start gap-3"
+          style={{ backgroundColor: `${phaseData.color}0D`, border: `1px solid ${phaseData.color}1F` }}
+        >
+          <Lightbulb size={15} className="flex-shrink-0 mt-0.5" style={{ color: phaseData.color }} />
+          <div>
+            <p className="text-[11px] font-body font-semibold text-luna-text-muted mb-0.5">
+              Insight du jour
+            </p>
+            <p className="text-[13px] font-body text-luna-text-body leading-relaxed italic">
+              {getDailyInsight(currentPhase)}
+            </p>
+          </div>
+        </div>
       </motion.div>
     </motion.div>
   );
