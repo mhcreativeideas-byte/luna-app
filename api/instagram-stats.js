@@ -6,7 +6,9 @@
 // Variables Vercel nécessaires : META_ACCESS_TOKEN, IG_USER_ID
 // (+ VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, déjà présentes, pour la sécurité).
 
-const GRAPH = 'https://graph.facebook.com/v21.0';
+// Système « Instagram Login » : les appels passent par graph.instagram.com
+// (non versionné), avec le jeton Instagram longue durée (META_ACCESS_TOKEN).
+const GRAPH = 'https://graph.instagram.com';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'mhcreative.ideas@gmail.com';
 
 async function verifyAdmin(req) {
