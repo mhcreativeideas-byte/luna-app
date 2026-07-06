@@ -31,7 +31,8 @@ async function verifyAdmin(req) {
 }
 
 async function gget(path, params) {
-  const qs = new URLSearchParams({ ...params, access_token: process.env.META_ACCESS_TOKEN }).toString();
+  const token = (process.env.META_ACCESS_TOKEN || '').trim();
+  const qs = new URLSearchParams({ ...params, access_token: token }).toString();
   const r = await fetch(`${GRAPH}/${path}?${qs}`);
   const j = await r.json();
   if (j.error) throw new Error(j.error.message);

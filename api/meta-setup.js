@@ -104,7 +104,8 @@ export default async function handler(req, res) {
       <p>Copie les <b>2 valeurs</b> ci-dessous et colle-les dans <b>Vercel</b> (Settings → Environment Variables → Add) :</p>
 
       <label>1. Variable <span class="k">META_ACCESS_TOKEN</span></label>
-      <div class="val">${longToken}</div>
+      <div class="val" id="tok">${longToken}</div>
+      <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('tok').textContent.trim()).then(()=>{this.textContent='Copié ✓'})" style="background:#C4727F;color:#fff;border:0;border-radius:10px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer;margin:-8px 0 16px">Copier le jeton</button>
 
       <label>2. Variable <span class="k">IG_USER_ID</span></label>
       <div class="val">${userId}</div>
