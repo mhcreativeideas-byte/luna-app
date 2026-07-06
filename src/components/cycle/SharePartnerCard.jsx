@@ -480,7 +480,6 @@ export default function SharePartnerCard({ cycleInfo, name }) {
   const pools = POOLS[phase] || POOLS.menstrual;
 
   const [shared, setShared] = useState(false);
-  const [sending, setSending] = useState(false);
   const [editing, setEditing] = useState(false);
 
   const [headline, setHeadline] = useState(moods[0].headline);
@@ -506,37 +505,43 @@ export default function SharePartnerCard({ cycleInfo, name }) {
   const changeSection = (key, items) =>
     setSections((prev) => ({ ...prev, [key]: { ...prev[key], items } }));
 
-  const handleShare = async () => {
-    setSending(true);
+  // iOS exige que navigator.share parte dans le même geste que le tap, sans
+  // await préalable. On prépare donc l'image de façon synchrone (dataURL →
+  // File), puis on lance le partage immédiatement.
+  const handleShare = () => {
+    let dataUrl;
+    let file;
     try {
-      if (document.fonts?.ready) await document.fonts.ready;
       const canvas = generateShareCanvas(cycleInfo, name, state);
-      const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
-      const file = new File([blob], 'luna-phase.png', { type: 'image/png' });
-      if (navigator.share && navigator.canShare?.({ files: [file] })) {
-        await navigator.share({
+      dataUrl = canvas.toDataURL('image/png');
+      const bin = atob(dataUrl.split(',')[1]);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      file = new File([bytes], 'luna-phase.png', { type: 'image/png' });
+    } catch {
+      return;
+    }
+
+    const confirmSent = () => { setShared(true); setTimeout(() => setShared(false), 3000); };
+    const download = () => {
+      const link = document.createElement('a');
+      link.download = 'luna-phase.png';
+      link.href = dataUrl;
+      link.click();
+      confirmSent();
+    };
+
+    if (navigator.share && navigator.canShare?.({ files: [file] })) {
+      navigator
+        .share({
           title: `luna : ${cycleInfo.phaseData.name}`,
           text: `${headline}. Voici ma carte du jour 💜`,
           files: [file],
-        });
-      } else {
-        const link = document.createElement('a');
-        link.download = 'luna-phase.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      }
-      setShared(true);
-      setTimeout(() => setShared(false), 3000);
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        const canvas = generateShareCanvas(cycleInfo, name, state);
-        const link = document.createElement('a');
-        link.download = 'luna-phase.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      }
-    } finally {
-      setSending(false);
+        })
+        .then(confirmSent)
+        .catch((err) => { if (err.name !== 'AbortError') download(); });
+    } else {
+      download();
     }
   };
 
@@ -700,12 +705,11 @@ export default function SharePartnerCard({ cycleInfo, name }) {
       {/* Envoyer */}
       <button
         onClick={handleShare}
-        disabled={sending}
-        className="flex items-center justify-center gap-2 w-full mt-4 py-3.5 rounded-[16px] text-sm font-body font-semibold text-white transition-all active:scale-[0.98] disabled:opacity-70"
+        className="flex items-center justify-center gap-2 w-full mt-4 py-3.5 rounded-[16px] text-sm font-body font-semibold text-white transition-all active:scale-[0.98]"
         style={{ backgroundColor: colors.bg }}
       >
         {shared ? <Check size={16} /> : <Send size={16} />}
-        {shared ? 'Envoyé !' : sending ? 'Préparation...' : 'Envoyer la carte'}
+        {shared ? 'Envoyé !' : 'Envoyer la carte'}
       </button>
     </div>
   );
