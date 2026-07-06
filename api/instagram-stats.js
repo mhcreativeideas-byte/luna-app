@@ -54,9 +54,9 @@ export default async function handler(req, res) {
   const errors = [];
   const out = { connected: true };
 
-  // 1) Profil : abonnés + nombre de posts (fiable)
+  // 1) Profil : abonnés + nombre de posts (fiable). `me` = le compte du jeton.
   try {
-    const p = await gget(`${IG}`, { fields: 'followers_count,media_count,username' });
+    const p = await gget(`me`, { fields: 'followers_count,media_count,username' });
     out.username = p.username;
     out.followers = p.followers_count ?? null;
     out.mediaCount = p.media_count ?? null;
@@ -65,7 +65,7 @@ export default async function handler(req, res) {
   // 2) Posts récents (jusqu'à 30) : sert au top/flop et à l'engagement
   let media = [];
   try {
-    const m = await gget(`${IG}/media`, {
+    const m = await gget(`me/media`, {
       fields: 'id,caption,media_type,thumbnail_url,media_url,permalink,timestamp,like_count,comments_count',
       limit: '30',
     });
