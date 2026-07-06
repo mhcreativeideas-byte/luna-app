@@ -101,7 +101,7 @@ export default async function handler(req, res) {
   try {
     const until = Math.floor(Date.now() / 1000);
     const since = until - 30 * 24 * 3600;
-    const ins = await gget(`${IG}/insights`, {
+    const ins = await gget(`me/insights`, {
       metric: 'reach', period: 'day', metric_type: 'total_value',
       since: String(since), until: String(until),
     });
