@@ -320,6 +320,23 @@ function cycleReducer(state, action) {
   }
 }
 
+// Retire les caractères de contrôle (dont le caractère nul \u0000) que Postgres
+// refuse dans une colonne JSON : une seule note/symptôme contenant un tel
+// caractère faisait échouer TOUTE la sauvegarde du suivi (erreur 22P05).
+function sanitizeForJson(value) {
+  if (typeof value === 'string') {
+    // eslint-disable-next-line no-control-regex
+    return value.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '');
+  }
+  if (Array.isArray(value)) return value.map(sanitizeForJson);
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const k of Object.keys(value)) out[k] = sanitizeForJson(value[k]);
+    return out;
+  }
+  return value;
+}
+
 function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
   if (!lastPeriodDate) return null;
 
@@ -658,6 +675,31 @@ export function CycleProvider({ children }) {
     state.periodLength
   );
 
+  // Gère un échec d'écriture Supabase de façon non alarmante :
+  //  - si la session n'est plus valide (compte de test supprimé, jeton
+  //    orphelin), on déconnecte proprement plutôt que de réafficher l'erreur
+  //    « Réessaie » à chaque tentative → la personne revient à l'écran de
+  //    connexion au lieu de voir des messages rouges en boucle ;
+  //  - sinon (souci réseau passager, souci ponctuel), on montre le message.
+  const reportSaveError = async (error, message) => {
+    console.error('Save error:', error);
+    let sessionDead = false;
+    try {
+      const { error: authErr } = await supabase.auth.getUser();
+      // 401/403 = le serveur rejette le jeton (compte supprimé / session
+      // expirée). Une simple coupure réseau n'a pas ce statut → pas de
+      // déconnexion intempestive dans ce cas.
+      if (authErr && (authErr.status === 401 || authErr.status === 403)) sessionDead = true;
+    } catch {
+      // getUser injoignable (réseau) : on garde la session, on ne déconnecte pas.
+    }
+    if (sessionDead) {
+      await signOut();
+      return;
+    }
+    toast(message, 'error');
+  };
+
   // Save profile to Supabase when state changes (if logged in)
   const saveProfileToSupabase = async () => {
     if (!user || !state.onboardingComplete) return;
@@ -666,7 +708,9 @@ export function CycleProvider({ children }) {
         auth_id: user.id,
         name: state.name,
         email: state.email || user.email,
-        last_period_date: state.lastPeriodDate,
+        // Colonne de type date : une chaîne vide provoque l'erreur Postgres
+        // 22007 (« invalid input syntax for type date »). On envoie null.
+        last_period_date: state.lastPeriodDate || null,
         cycle_length: state.cycleLength,
         period_length: state.periodLength,
         goals: state.goals,
@@ -686,8 +730,7 @@ export function CycleProvider({ children }) {
       if (error) {
         // supabase-js ne lève pas d'exception : sans cette lecture, un refus
         // du serveur (colonne manquante, policy…) passerait inaperçu.
-        console.error('Save profile error:', error);
-        toast('Ton profil n\'a pas pu être sauvegardé. Réessaie dans un instant 🌙', 'error');
+        await reportSaveError(error, 'Ton profil n\'a pas pu être sauvegardé. Réessaie dans un instant 🌙');
       }
     } catch (e) {
       console.error('Save profile error:', e);
@@ -726,7 +769,9 @@ export function CycleProvider({ children }) {
     // serveur, sinon un état local vide écraserait tout l'historique.
     if (!user || !state.onboardingComplete || !trackingLoadedRef.current) return;
     try {
-      const { error } = await supabase.from('user_tracking').upsert({
+      // sanitizeForJson : un caractère de contrôle (ex. collé dans une note)
+      // ferait rejeter tout le JSON par Postgres (erreur 22P05).
+      const { error } = await supabase.from('user_tracking').upsert(sanitizeForJson({
         auth_id: user.id,
         journal_entries: state.journalEntries,
         sport_sessions: state.sportSessions,
@@ -749,10 +794,9 @@ export function CycleProvider({ children }) {
           shoppingList: state.shoppingList,
         },
         updated_at: new Date().toISOString(),
-      }, { onConflict: 'auth_id' });
+      }), { onConflict: 'auth_id' });
       if (error) {
-        console.error('Save tracking error:', error);
-        toast('Tes données n\'ont pas pu être sauvegardées. Réessaie dans un instant 🌙', 'error');
+        await reportSaveError(error, 'Tes données n\'ont pas pu être sauvegardées. Réessaie dans un instant 🌙');
       }
     } catch (e) {
       console.error('Save tracking error:', e);
