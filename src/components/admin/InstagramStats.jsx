@@ -180,11 +180,6 @@ export default function InstagramStats() {
           <MetricCard icon={<Eye size={20} />} label="Portée (30j)" value={d ? show(d.reach30) : null} chipBg="#FFF3EB" chipColor="#E8A87C" />
           <MetricCard icon={<Heart size={20} />} label="Engagement" value={d?.engagementRate != null ? `${d.engagementRate}%` : null} chipBg="#F3EEF8" chipColor="#B09ACB" />
         </div>
-        {state.status === 'ok' && d?.errors?.length > 0 && (
-          <p className="mt-3 text-[11px] text-amber-700 bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 font-body">
-            Détail technique : {d.errors.join(' · ')}
-          </p>
-        )}
       </div>
 
       {/* ── Zone 2 : Top contenus ───────────────────────────────────────── */}
