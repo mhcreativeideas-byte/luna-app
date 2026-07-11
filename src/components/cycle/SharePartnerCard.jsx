@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Capacitor } from '@capacitor/core';
 import { Send, Check, Pencil, Plus, Sparkles } from 'lucide-react';
 import { SkeletonCard } from '../ui/SkeletonLoader';
 
@@ -505,15 +506,46 @@ export default function SharePartnerCard({ cycleInfo, name }) {
   const changeSection = (key, items) =>
     setSections((prev) => ({ ...prev, [key]: { ...prev[key], items } }));
 
-  // iOS exige que navigator.share parte dans le même geste que le tap, sans
-  // await préalable. On prépare donc l'image de façon synchrone (dataURL →
-  // File), puis on lance le partage immédiatement.
+  // Deux chemins de partage :
+  // - App native (Capacitor) : navigator.share n'existe pas dans la WebView.
+  //   On écrit le PNG dans le cache puis on ouvre la feuille de partage iOS
+  //   via le plugin Share.
+  // - Web (Safari) : navigator.share doit partir dans le même geste que le
+  //   tap, sans await préalable. On prépare donc l'image en synchrone.
   const handleShare = () => {
     let dataUrl;
-    let file;
     try {
       const canvas = generateShareCanvas(cycleInfo, name, state);
       dataUrl = canvas.toDataURL('image/png');
+    } catch {
+      return;
+    }
+
+    const confirmSent = () => { setShared(true); setTimeout(() => setShared(false), 3000); };
+
+    if (Capacitor.isNativePlatform()) {
+      (async () => {
+        try {
+          const [{ Filesystem, Directory }, { Share }] = await Promise.all([
+            import('@capacitor/filesystem'),
+            import('@capacitor/share'),
+          ]);
+          const { uri } = await Filesystem.writeFile({
+            path: 'luna-phase.png',
+            data: dataUrl.split(',')[1],
+            directory: Directory.Cache,
+          });
+          await Share.share({ title: `luna : ${cycleInfo.phaseData.name}`, files: [uri] });
+          confirmSent();
+        } catch {
+          // Partage annulé par l'utilisatrice : on ne fait rien.
+        }
+      })();
+      return;
+    }
+
+    let file;
+    try {
       const bin = atob(dataUrl.split(',')[1]);
       const bytes = new Uint8Array(bin.length);
       for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
@@ -521,8 +553,6 @@ export default function SharePartnerCard({ cycleInfo, name }) {
     } catch {
       return;
     }
-
-    const confirmSent = () => { setShared(true); setTimeout(() => setShared(false), 3000); };
     const download = () => {
       const link = document.createElement('a');
       link.download = 'luna-phase.png';
