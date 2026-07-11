@@ -6,7 +6,14 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist', 'ios', 'public/sw.js']),
+  globalIgnores(['dist', 'ios', 'public/sw.js', '.claude', '.vercel']),
+  {
+    // Fonctions serveur Vercel : environnement Node (process, etc.)
+    files: ['api/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
   {
     files: ['**/*.{js,jsx}'],
     plugins: { react },

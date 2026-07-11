@@ -1,3 +1,5 @@
+import { getOvulationDay } from './phases';
+
 // Le catalogue de recettes est chargé à la demande par la page Chat
 // (voir setCatalogForPhase) pour ne pas embarquer ~560 kB de données
 // recettes dans le bundle du Chat. Tant qu'une phase n'est pas chargée,
@@ -96,7 +98,7 @@ const RESPONSES = {
       `${ctx.name}, ce que tu ressens à J${ctx.currentDay} est complètement logique. Phase menstruelle = hormones au plancher. Fatigue, crampes, émotions à fleur de peau : c'est le package.\n\nRien d'inquiétant, ton corps fait son job. Prends soin de toi et ne te mets pas la pression. La remontée arrive vite 🌸`,
     ]),
 
-    ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${Math.max(0, ctx.cycleLength - 14)}, soit dans environ ${Math.max(0, ctx.cycleLength - 14 - ctx.currentDay)} jours.\n\nTu le sentiras sûrement : montée d'énergie, meilleure humeur, parfois une petite douleur d'un côté du ventre. En attendant, repose-toi : la phase folliculaire va te redonner de l'élan ✨`,
+    ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${getOvulationDay(ctx.cycleLength, ctx.periodLength)}, soit dans environ ${Math.max(0, getOvulationDay(ctx.cycleLength, ctx.periodLength) - ctx.currentDay)} jours.\n\nTu le sentiras sûrement : montée d'énergie, meilleure humeur, parfois une petite douleur d'un côté du ventre. En attendant, repose-toi : la phase folliculaire va te redonner de l'élan ✨`,
 
     regles: (ctx) => pickOne([
       `${ctx.name}, tu es à J${ctx.currentDay} en phase menstruelle : tes règles sont là. Ton cycle fait ${ctx.cycleLength} jours, donc les prochaines arriveront dans environ ${ctx.daysUntilPeriod} jours.\n\nSi t'as des douleurs : bouillotte sur le ventre, tisane gingembre ou curcuma, et du magnésium (amandes, chocolat noir). Prends soin de toi cette semaine 🌙`,
@@ -162,7 +164,7 @@ const RESPONSES = {
 
     normal: (ctx) => `${ctx.name}, en phase folliculaire (J${ctx.currentDay}) c'est ta phase de renouveau ! L'œstrogène remonte et avec elle : plus d'énergie, meilleure humeur, créativité en hausse, peau plus lumineuse.\n\nTon corps se prépare à l'ovulation : c'est le moment idéal pour lancer des projets, essayer des choses nouvelles, te dépasser au sport. Profites-en 💫`,
 
-    ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${ctx.cycleLength - 14}, soit dans environ ${Math.max(0, ctx.cycleLength - 14 - ctx.currentDay)} jours.\n\nTu le sentiras : pic d'énergie, meilleure humeur, parfois une légère douleur d'un côté du ventre, glaire cervicale type "blanc d'œuf".\n\nC'est ta période la plus fertile du cycle ✨`,
+    ovulation: (ctx) => `${ctx.name}, ton ovulation est estimée vers J${getOvulationDay(ctx.cycleLength, ctx.periodLength)}, soit dans environ ${Math.max(0, getOvulationDay(ctx.cycleLength, ctx.periodLength) - ctx.currentDay)} jours.\n\nTu le sentiras : pic d'énergie, meilleure humeur, parfois une légère douleur d'un côté du ventre, glaire cervicale type "blanc d'œuf".\n\nC'est ta période la plus fertile du cycle ✨`,
 
     manger: (ctx) => adaptFoodText(pickOne([
       `${ctx.name}, l'œstrogène remonte et ton corps est en mode construction : il a besoin de protéines et de zinc.\n\nMise sur le poulet, les œufs, le quinoa, les graines de courge, les pois chiches. Ajoute des probiotiques (yaourt, kéfir, kimchi) et des légumes variés et colorés.\n\nC'est le moment des repas riches et variés : ta digestion est au top 🌿`,

@@ -71,7 +71,7 @@ function SettingRow({ label, value, onClick, danger }) {
       onClick={onClick}
       className={`w-full flex items-center justify-between px-5 py-4 text-sm font-body transition-colors ${
         danger ? 'text-red-400' : 'text-luna-text-body'
-      } hover:bg-luna-cream/50`}
+      } hover:bg-luna-cream/50 active:bg-luna-cream/50`}
     >
       <span>{label}</span>
       <div className="flex items-center gap-2 text-luna-text-hint">
@@ -615,7 +615,7 @@ export default function Settings() {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setEditedCycleLength(prev => Math.max(20, prev - 1))}
-                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 active:bg-luna-sage/30 transition-colors"
                   >
                     −
                   </button>
@@ -625,7 +625,7 @@ export default function Settings() {
                   </div>
                   <button
                     onClick={() => setEditedCycleLength(prev => Math.min(45, prev + 1))}
-                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 active:bg-luna-sage/30 transition-colors"
                   >
                     +
                   </button>
@@ -656,7 +656,7 @@ export default function Settings() {
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setEditedPeriodLength(prev => Math.max(2, prev - 1))}
-                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 active:bg-luna-sage/30 transition-colors"
                   >
                     −
                   </button>
@@ -666,7 +666,7 @@ export default function Settings() {
                   </div>
                   <button
                     onClick={() => setEditedPeriodLength(prev => Math.min(10, prev + 1))}
-                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 transition-colors"
+                    className="w-10 h-10 rounded-full bg-luna-cream flex items-center justify-center text-luna-text font-bold text-lg hover:bg-luna-sage/30 active:bg-luna-sage/30 transition-colors"
                   >
                     +
                   </button>

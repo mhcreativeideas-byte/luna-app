@@ -107,7 +107,7 @@ export default function MonthlyReport() {
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <button onClick={navPrev} className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+          <button onClick={navPrev} className="w-9 h-9 rounded-full bg-white/60 flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors">
             <ChevronLeft size={16} />
           </button>
           <h3 className="font-display text-base text-luna-text">

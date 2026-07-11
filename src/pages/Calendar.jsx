@@ -4,9 +4,9 @@ import { ChevronLeft, ChevronRight, Droplets, Check, CircleDot, Thermometer, Tra
 import BackButton from '../components/ui/BackButton';
 import BottomSheet from '../components/ui/BottomSheet';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
-import { useCycle } from '../contexts/CycleContext';
+import { useCycle, parseLocalDate } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
-import { getPhaseForDay, PHASES } from '../data/phases';
+import { getPhaseForDay, getOvulationDay, PHASES } from '../data/phases';
 
 const MONTH_NAMES = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
 const WEEKDAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
@@ -29,21 +29,26 @@ export default function Calendar() {
   const { phaseData } = cycleInfo;
 
   const today = new Date();
-  const lastPeriod = new Date(lastPeriodDate);
+  // parseLocalDate : minuit LOCAL (new Date('YYYY-MM-DD') parserait en UTC
+  // et décalerait tout le calendrier d'un jour en France)
+  const lastPeriod = parseLocalDate(lastPeriodDate);
+  const ovulationDay = getOvulationDay(cycleLength, periodLength);
   const logs = periodLogs || [];
 
   const getDayInfo = (year, month, dayNum) => {
     const date = new Date(year, month, dayNum);
     const dateStr = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-    const diffDays = Math.floor((date - lastPeriod) / (1000 * 60 * 60 * 24));
+    // Math.round : les deux dates sont à minuit local, mais un changement
+    // d'heure été/hiver dans l'intervalle fausserait un Math.floor.
+    const diffDays = Math.round((date - lastPeriod) / (1000 * 60 * 60 * 24));
     const cycleDay = ((diffDays % cycleLength) + cycleLength) % cycleLength + 1;
     const dayPhase = getPhaseForDay(cycleDay, cycleLength, periodLength);
     const isToday = date.toDateString() === today.toDateString();
     const isPeriodEstimated = cycleDay <= periodLength;
     const isManualPeriod = logs.includes(dateStr);
     const isPeriod = isPeriodEstimated || isManualPeriod;
-    const isOvulation = cycleDay === cycleLength - 14;
-    const isFertileWindow = cycleDay >= cycleLength - 17 && cycleDay <= cycleLength - 12;
+    const isOvulation = cycleDay === ovulationDay;
+    const isFertileWindow = cycleDay >= ovulationDay - 3 && cycleDay <= ovulationDay + 2;
     return { cycleDay, phase: dayPhase, isToday, isPeriod, isPeriodEstimated, isManualPeriod, isOvulation, isFertileWindow, date, dateStr };
   };
 
@@ -78,13 +83,13 @@ export default function Calendar() {
       <div className="bg-white rounded-[24px] p-5" style={{ boxShadow: '0 2px 16px rgba(45,34,38,0.06)' }}>
         {/* Month nav */}
         <div className="flex items-center justify-between mb-5">
-          <button onClick={prevMonth} aria-label="Mois précédent" className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+          <button onClick={prevMonth} aria-label="Mois précédent" className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors">
             <ChevronLeft size={18} />
           </button>
           <h2 className="font-display text-lg text-luna-text">
             {MONTH_NAMES[month]} {year}
           </h2>
-          <button onClick={nextMonth} aria-label="Mois suivant" className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+          <button onClick={nextMonth} aria-label="Mois suivant" className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors">
             <ChevronRight size={18} />
           </button>
         </div>
@@ -397,7 +402,7 @@ export default function Calendar() {
                           </button>
                           <button
                             onClick={() => { setEditingTemp(false); setTempInput(''); setTempDirty(false); }}
-                            className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text transition-all"
+                            className="px-3 py-1.5 rounded-full text-xs font-body text-luna-text-muted hover:text-luna-text active:text-luna-text transition-all"
                           >
                             Annuler
                           </button>

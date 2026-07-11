@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, useState, useRef } from 'react';
 import { Capacitor } from '@capacitor/core';
-import { PHASES } from '../data/phases';
+import { PHASES, getOvulationDay } from '../data/phases';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
 import { DEFAULT_NOTIF_PREFS } from '../lib/notificationPlan';
@@ -342,9 +342,15 @@ function sanitizeForJson(value) {
 function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
   if (!lastPeriodDate) return null;
 
+  // Données corrompues (0, null, NaN…) → valeurs par défaut plutôt que
+  // des calculs en NaN qui se propagent dans toute l'app.
+  cycleLength = Number(cycleLength) > 0 ? Math.round(Number(cycleLength)) : 28;
+  periodLength = Number(periodLength) > 0 ? Math.round(Number(periodLength)) : 5;
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const lastPeriod = parseLocalDate(lastPeriodDate);
+  if (Number.isNaN(lastPeriod.getTime())) return null;
   const diffTime = today.getTime() - lastPeriod.getTime();
   // Math.round : les deux dates sont à minuit local, mais un changement
   // d'heure été/hiver dans l'intervalle décalerait un Math.floor.
@@ -353,7 +359,7 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
   const daysSinceLastPeriod = Math.max(0, Math.round(diffTime / (1000 * 60 * 60 * 24)));
   const currentDay = (daysSinceLastPeriod % cycleLength) + 1;
 
-  const ovulationDay = cycleLength - 14;
+  const ovulationDay = getOvulationDay(cycleLength, periodLength);
   const ovulatoryStart = ovulationDay - 1;
   const ovulatoryEnd = ovulationDay + 1;
 
@@ -959,4 +965,4 @@ export function useCycle() {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components -- utilisé par l'Onboarding pour prévisualiser la phase avant enregistrement
-export { getCycleInfo };
+export { getCycleInfo, parseLocalDate };

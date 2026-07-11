@@ -7,7 +7,7 @@ import BottomSheet from '../components/ui/BottomSheet';
 import SharePartnerCard from '../components/cycle/SharePartnerCard';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
-import { PHASES } from '../data/phases';
+import { PHASES, getOvulationDay } from '../data/phases';
 
 const PHASE_ICONS = {
   menstrual: Droplets,
@@ -37,7 +37,7 @@ export default function Dashboard() {
   const { phase, phaseData, currentDay, daysUntilPeriod } = cycleInfo;
 
   // Phase segments for cycle ring
-  const ovulationDay = cycleLength - 14;
+  const ovulationDay = getOvulationDay(cycleLength, periodLength);
   const ovulatoryStart = ovulationDay - 1;
   const ovulatoryEnd = ovulationDay + 1;
 

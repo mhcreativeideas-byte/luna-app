@@ -6,6 +6,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
+import { parseMinutes, containsAllergen } from '../data/recipeFilters';
 import BackButton from '../components/ui/BackButton';
 import PhaseHero from '../components/food/PhaseHero';
 
@@ -107,49 +108,8 @@ function getMatchScore(recipe, fridgeItems) {
   return { score, matched, missing };
 }
 
-// Extraire les minutes depuis le champ prepTime
-function parseMinutes(prepTime) {
-  if (!prepTime) return 999;
-  const str = prepTime.toLowerCase().replace(/\s/g, '');
-  const hMatch = str.match(/(\d+)\s*h/);
-  const mMatch = str.match(/(\d+)\s*min/);
-  let total = 0;
-  if (hMatch) total += parseInt(hMatch[1]) * 60;
-  if (mMatch) total += parseInt(mMatch[1]);
-  if (!hMatch && !mMatch) {
-    const num = parseInt(str);
-    if (!isNaN(num)) total = num;
-    else total = 999;
-  }
-  return total;
-}
-
-// Mots-clés allergènes
-const ALLERGEN_KEYWORDS = {
-  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin', 'fruits à coque'],
-  'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
-  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari', 'protéine de soja'],
-  'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
-  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'colin', 'merlu', 'poisson'],
-  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
-  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'yogourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'emmental', 'comté', 'chèvre', 'feta', 'mascarpone', 'crème entière'],
-  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'fusilli', 'couscous', 'boulgour', 'semoule', 'croûton', 'chapelure', 'tortilla', 'wrap'],
-  'Sésame': ['sésame', 'tahini', 'tahin', 'gomasio'],
-  'Céleri': ['céleri', 'celeri'],
-  'Moutarde': ['moutarde'],
-  'Sulfites': ['vin blanc', 'vin rouge', 'vin rosé', 'vinaigre balsamique', 'sulfite'],
-};
-
-function containsAllergen(recipe, allergyList) {
-  if (!allergyList || allergyList.length === 0) return false;
-  const ingredientsText = (recipe.ingredients || []).join(' ').toLowerCase();
-  const nameText = recipe.name?.toLowerCase() || '';
-  const fullText = ingredientsText + ' ' + nameText;
-  return allergyList.some((allergy) => {
-    const keywords = ALLERGEN_KEYWORDS[allergy] || [];
-    return keywords.some((kw) => fullText.includes(kw.toLowerCase()));
-  });
-}
+// parseMinutes, containsAllergen (et les mots-clés allergènes) viennent de
+// recipeFilters.js — source unique des filtres, ne pas les redéfinir ici.
 
 const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
 
@@ -355,7 +315,7 @@ export default function MonFrigo() {
                 <button
                   key={s}
                   onClick={() => addItem(s)}
-                  className="w-full text-left px-4 py-3 text-sm font-body text-luna-text-body hover:bg-luna-cream/50 transition-colors flex items-center gap-3 border-b border-gray-50 last:border-0"
+                  className="w-full text-left px-4 py-3 text-sm font-body text-luna-text-body hover:bg-luna-cream/50 active:bg-luna-cream/50 transition-colors flex items-center gap-3 border-b border-gray-50 last:border-0"
                 >
                   <Plus size={14} style={{ color: phaseData.color }} />
                   {s}
@@ -461,7 +421,7 @@ export default function MonFrigo() {
                 )}
                 <button
                   onClick={() => setFridgeItems([])}
-                  className="text-[10px] font-body text-luna-text-hint hover:text-red-400 transition-colors"
+                  className="text-[10px] font-body text-luna-text-hint hover:text-red-400 active:text-red-400 transition-colors"
                 >
                   Tout vider
                 </button>
@@ -480,7 +440,7 @@ export default function MonFrigo() {
                   {item}
                   <button
                     onClick={() => removeItem(item)}
-                    className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/50 transition-colors"
+                    className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/50 active:bg-white/50 transition-colors"
                   >
                     <X size={10} />
                   </button>
@@ -547,7 +507,7 @@ export default function MonFrigo() {
                       </span>
                       <button
                         onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
-                        className="ml-auto w-6 h-6 rounded-full flex items-center justify-center transition-all hover:scale-110"
+                        className="ml-auto w-6 h-6 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
                       >
                         <Heart
                           size={13}
@@ -615,7 +575,7 @@ export default function MonFrigo() {
                       <div className="absolute top-3 right-3 flex items-center gap-2">
                         <button
                           onClick={() => toggleFavorite(recipe.name)}
-                          className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                          className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white active:bg-white transition-colors"
                         >
                           <Heart
                             size={16}
@@ -624,7 +584,7 @@ export default function MonFrigo() {
                         </button>
                         <button
                           onClick={() => setOpenRecipe(null)}
-                          className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                          className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white active:bg-white transition-colors"
                         >
                           <X size={16} className="text-luna-text-muted" />
                         </button>

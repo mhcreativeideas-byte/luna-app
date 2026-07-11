@@ -132,7 +132,7 @@ function BreathingExercise({ phaseData, breathing }) {
           </div>
           <button
             onClick={() => setActive(true)}
-            className="px-6 py-3 rounded-[14px] text-white text-sm font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
+            className="px-6 py-3 rounded-[14px] text-white text-sm font-body font-bold uppercase tracking-wider transition-all hover:opacity-90 active:opacity-90"
             style={{ backgroundColor: phaseData.colorDark }}
           >
             Commencer la séance
@@ -160,7 +160,7 @@ function BreathingExercise({ phaseData, breathing }) {
           </p>
           <button
             onClick={stop}
-            className="text-sm text-luna-text-muted font-body hover:text-luna-text transition-colors"
+            className="text-sm text-luna-text-muted font-body hover:text-luna-text active:text-luna-text transition-colors"
           >
             Arrêter
           </button>

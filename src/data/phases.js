@@ -475,8 +475,16 @@ export const PHASES = {
 
 export const PHASE_ORDER = ['menstrual', 'follicular', 'ovulatory', 'luteal'];
 
+// Jour d'ovulation estimé (méthode calendaire : ~14 j avant les règles).
+// Source unique pour toute l'app (contexte, calendrier, notifications…).
+// Clampé pour les cas extrêmes (cycle court + règles longues) : la fenêtre
+// ovulatoire de 3 jours ne peut jamais chevaucher la phase menstruelle.
+export function getOvulationDay(cycleLength, periodLength) {
+  return Math.max(cycleLength - 14, periodLength + 2);
+}
+
 export function getPhaseForDay(day, cycleLength, periodLength) {
-  const ovulationDay = cycleLength - 14;
+  const ovulationDay = getOvulationDay(cycleLength, periodLength);
   const ovulatoryStart = ovulationDay - 1;
   const ovulatoryEnd = ovulationDay + 1;
 

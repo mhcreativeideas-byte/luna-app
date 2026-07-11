@@ -207,7 +207,7 @@ export function RecipeSheet({ recipe: openDailyRecipe, onClose, phaseData }) {
                 <span className="text-5xl">{openDailyRecipe.emoji || '🍽️'}</span>
                 <button
                   onClick={onClose}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white active:bg-white transition-colors"
                 >
                   <X size={16} className="text-luna-text-muted" />
                 </button>

@@ -220,7 +220,7 @@ export default function Chat() {
         <button
           onClick={() => navigate('/aujourdhui')}
           aria-label="Retour"
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
         >
           <ChevronLeft size={20} />
@@ -357,13 +357,13 @@ export default function Chat() {
                       >
                         <button
                           onClick={(e) => { e.stopPropagation(); archiveConversation(conv.id); }}
-                          className="w-7 h-7 rounded-full hover:bg-amber-50 flex items-center justify-center text-luna-text-hint hover:text-amber-500 transition-colors"
+                          className="w-7 h-7 rounded-full hover:bg-amber-50 active:bg-amber-50 flex items-center justify-center text-luna-text-hint hover:text-amber-500 active:text-amber-500 transition-colors"
                         >
                           <Archive size={13} />
                         </button>
                         <button
                           onClick={(e) => { e.stopPropagation(); deleteConversation(conv.id); }}
-                          className="w-7 h-7 rounded-full hover:bg-red-50 flex items-center justify-center text-luna-text-hint hover:text-red-400 transition-colors"
+                          className="w-7 h-7 rounded-full hover:bg-red-50 active:bg-red-50 flex items-center justify-center text-luna-text-hint hover:text-red-400 active:text-red-400 transition-colors"
                         >
                           <Trash2 size={13} />
                         </button>
@@ -387,14 +387,14 @@ export default function Chat() {
                             archiveConversation(conv.id); // un-archive
                             switchConversation(conv.id);
                           }}
-                          className="flex-1 text-left px-3 py-2 rounded-[12px] hover:bg-gray-50 transition-colors"
+                          className="flex-1 text-left px-3 py-2 rounded-[12px] hover:bg-gray-50 active:bg-gray-100 transition-colors"
                         >
                           <p className="text-xs font-body text-luna-text-hint truncate">{conv.title}</p>
                           <p className="text-[10px] font-body text-luna-text-hint">{formatDate(conv.createdAt)}</p>
                         </button>
                         <button
                           onClick={() => deleteConversation(conv.id)}
-                          className="w-7 h-7 rounded-full hover:bg-red-50 flex items-center justify-center text-luna-text-hint hover:text-red-400"
+                          className="w-7 h-7 rounded-full hover:bg-red-50 active:bg-red-50 flex items-center justify-center text-luna-text-hint hover:text-red-400 active:text-red-400"
                         >
                           <Trash2 size={12} />
                         </button>

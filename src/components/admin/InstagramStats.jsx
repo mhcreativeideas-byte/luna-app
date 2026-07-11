@@ -95,26 +95,38 @@ function PostCard({ post, kind }) {
 export default function InstagramStats() {
   const [state, setState] = useState({ status: 'loading', data: null });
 
-  const load = async () => {
-    setState({ status: 'loading', data: null });
-    try {
-      const { data: sess } = await supabase.auth.getSession();
-      const token = sess?.session?.access_token;
-      const r = await fetch('/api/instagram-stats', {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
-      const d = await r.json();
-      if (!d.connected) {
-        setState({ status: d.reason === 'unauthorized' ? 'unauthorized' : 'notconnected', data: null });
-      } else {
-        setState({ status: 'ok', data: d });
+  // Chargement au montage (et à chaque « Réessayer » via retryTick).
+  // L'état initial est déjà « loading » ; les setState n'arrivent qu'après
+  // les await (pas de rendu en cascade), et `cancelled` évite un setState
+  // après démontage.
+  const [retryTick, setRetryTick] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const { data: sess } = await supabase.auth.getSession();
+        const token = sess?.session?.access_token;
+        const r = await fetch('/api/instagram-stats', {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        });
+        const d = await r.json();
+        if (cancelled) return;
+        if (!d.connected) {
+          setState({ status: d.reason === 'unauthorized' ? 'unauthorized' : 'notconnected', data: null });
+        } else {
+          setState({ status: 'ok', data: d });
+        }
+      } catch {
+        if (!cancelled) setState({ status: 'notconnected', data: null });
       }
-    } catch {
-      setState({ status: 'notconnected', data: null });
-    }
-  };
+    })();
+    return () => { cancelled = true; };
+  }, [retryTick]);
 
-  useEffect(() => { load(); }, []);
+  const retry = () => {
+    setState({ status: 'loading', data: null });
+    setRetryTick((t) => t + 1);
+  };
 
   const d = state.data;
 
@@ -150,7 +162,7 @@ export default function InstagramStats() {
             </p>
           </div>
           {state.status !== 'loading' && (
-            <button onClick={load} className="flex items-center gap-2 px-3 py-2 text-xs bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-all font-body">
+            <button onClick={retry} className="flex items-center gap-2 px-3 py-2 text-xs bg-gray-100 text-gray-600 rounded-xl hover:bg-gray-200 transition-all font-body">
               <RefreshCw size={13} /> Réessayer
             </button>
           )}

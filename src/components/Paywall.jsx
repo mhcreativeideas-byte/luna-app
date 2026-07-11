@@ -144,13 +144,13 @@ export default function Paywall({ onSubscribe, onLater, onRestore }) {
         </p>
 
         <div className="flex items-center justify-center gap-5 mt-4">
-          <button onClick={onLater} className="text-sm font-body font-semibold text-luna-text-muted hover:text-luna-text transition-colors">
+          <button onClick={onLater} className="text-sm font-body font-semibold text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors">
             Plus tard
           </button>
           {onRestore && (
             <>
               <span className="text-luna-text-hint">·</span>
-              <button onClick={handleRestore} className="text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors">
+              <button onClick={handleRestore} className="text-sm font-body text-luna-text-hint hover:text-luna-text-muted active:text-luna-text-muted transition-colors">
                 Restaurer
               </button>
             </>

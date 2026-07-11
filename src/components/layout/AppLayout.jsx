@@ -38,7 +38,7 @@ function EmailBanner() {
           <button
             onClick={dismiss}
             aria-label="Fermer"
-            className="w-11 h-11 -my-2 -mr-3 flex items-center justify-center text-amber-400 hover:text-amber-600 transition-colors flex-shrink-0"
+            className="w-11 h-11 -my-2 -mr-3 flex items-center justify-center text-amber-400 hover:text-amber-600 active:text-amber-600 transition-colors flex-shrink-0"
           >
             <X size={16} />
           </button>

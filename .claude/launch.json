@@ -10,8 +10,8 @@
     {
       "name": "luna-preview",
       "runtimeExecutable": "/Users/margauxhattab/.nvm/versions/node/v24.14.1/bin/node",
-      "runtimeArgs": ["/Users/margauxhattab/App-Luna/node_modules/.bin/vite", "preview"],
-      "autoPort": true
+      "runtimeArgs": ["/Users/margauxhattab/App-Luna/node_modules/.bin/vite", "preview", "--port", "4173", "--strictPort"],
+      "port": 4173
     }
   ]
 }

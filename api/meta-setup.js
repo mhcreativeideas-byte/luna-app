@@ -44,7 +44,12 @@ function page(bodyHtml) {
 function connectPage(req, message) {
   const IG_APP_ID = process.env.IG_APP_ID;
   const redirect = redirectUri(req);
-  const dialog = `${IG_AUTH}?client_id=${IG_APP_ID}&redirect_uri=${encodeURIComponent(redirect)}&response_type=code&scope=${encodeURIComponent(SCOPES)}`;
+  // Le secret voyage dans « state » : Instagram nous le renvoie tel quel
+  // au retour OAuth (le redirect_uri, lui, doit rester identique à celui
+  // déclaré chez Meta).
+  const secret = process.env.META_SETUP_SECRET || '';
+  const statePart = secret ? `&state=${encodeURIComponent(secret)}` : '';
+  const dialog = `${IG_AUTH}?client_id=${IG_APP_ID}&redirect_uri=${encodeURIComponent(redirect)}&response_type=code&scope=${encodeURIComponent(SCOPES)}${statePart}`;
   return page(`
     <h1>🌙 Connexion Instagram de Luna</h1>
     <p>Clique sur le bouton ci-dessous, puis <b>approuve sur Instagram</b>. C'est tout : aucune case à cocher.</p>
@@ -64,6 +69,19 @@ export default async function handler(req, res) {
   }
 
   const url = new URL(req.url, `https://${req.headers['x-forwarded-host'] || req.headers.host}`);
+
+  // Protection : si META_SETUP_SECRET est définie dans Vercel, la page exige
+  // ?cle=<secret> (ou le « state » renvoyé par Instagram au retour OAuth).
+  // Sans la clé → 404, comme si la page n'existait pas. Si la variable n'est
+  // pas définie, le comportement reste inchangé.
+  const setupSecret = process.env.META_SETUP_SECRET || '';
+  if (setupSecret) {
+    const provided = url.searchParams.get('cle') || url.searchParams.get('state') || '';
+    if (provided !== setupSecret) {
+      return res.status(404).send(page('<h1>Page introuvable</h1><p>Il n\'y a rien ici.</p>'));
+    }
+  }
+
   const code = url.searchParams.get('code');
   const oauthErr = url.searchParams.get('error_description') || url.searchParams.get('error');
 
@@ -90,7 +108,6 @@ export default async function handler(req, res) {
     if (tData.error_message || tData.error) throw new Error(tData.error_message || tData.error_type || 'échange du code impossible');
     const first = Array.isArray(tData.data) ? tData.data[0] : tData;
     const shortToken = first.access_token;
-    const userId = first.user_id;
     if (!shortToken) throw new Error('jeton court introuvable dans la réponse');
 
     // 2) Passe le jeton en longue durée (60 jours).

@@ -170,7 +170,7 @@ function WaitlistForm({ source = 'landing' }) {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-[18px] font-body font-bold text-white bg-luna-primary hover:bg-luna-primary-dark transition-colors"
+            className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-[18px] font-body font-bold text-white bg-luna-primary hover:bg-luna-primary-dark active:bg-luna-primary-dark transition-colors"
           >
             <InstagramGlyph size={18} />
             Nous suivre sur Instagram
@@ -179,7 +179,7 @@ function WaitlistForm({ source = 'landing' }) {
 
         <button
           onClick={triggerDownload}
-          className="inline-flex items-center gap-1.5 text-xs font-body text-luna-text-hint hover:text-luna-primary transition-colors mt-5"
+          className="inline-flex items-center gap-1.5 text-xs font-body text-luna-text-hint hover:text-luna-primary active:text-luna-primary transition-colors mt-5"
         >
           <Gift size={13} />
           Le guide ne s'est pas téléchargé ? Clique ici
@@ -247,7 +247,7 @@ function AppStoreBadge({ className = '' }) {
       href={APP_STORE_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-3 bg-black text-white rounded-2xl pl-5 pr-7 py-3.5 hover:opacity-90 transition-opacity ${className}`}
+      className={`inline-flex items-center gap-3 bg-black text-white rounded-2xl pl-5 pr-7 py-3.5 hover:opacity-90 active:opacity-90 transition-opacity ${className}`}
     >
       <svg viewBox="0 0 384 512" width="26" height="26" fill="currentColor" aria-hidden="true">
         <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5c0 26.2 4.8 53.3 14.4 81.2 12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
@@ -479,7 +479,7 @@ export default function Landing() {
             <p className="text-luna-text-muted font-body text-sm md:text-base leading-relaxed max-w-sm mb-6">
               Les aliments qui soutiennent ton corps à chaque moment de ton cycle. Reçois-le tout de suite en t'inscrivant.
             </p>
-            <a href="#rejoindre" className="inline-flex items-center gap-2 text-sm font-body font-bold text-luna-primary hover:text-luna-primary-dark transition-colors">
+            <a href="#rejoindre" className="inline-flex items-center gap-2 text-sm font-body font-bold text-luna-primary hover:text-luna-primary-dark active:text-luna-primary-dark transition-colors">
               Je le veux
               <ArrowRight size={16} />
             </a>
@@ -516,9 +516,9 @@ export default function Landing() {
           luna · Comprends ton cycle. Adapte ton assiette.
         </p>
         <div className="flex items-center justify-center gap-4 mt-5 text-xs font-body">
-          <Link to="/confidentialite" className="text-luna-text-muted hover:text-luna-rose transition-colors">Confidentialité</Link>
+          <Link to="/confidentialite" className="text-luna-text-muted hover:text-luna-rose active:text-luna-rose transition-colors">Confidentialité</Link>
           <span className="text-luna-text-hint">·</span>
-          <Link to="/conditions" className="text-luna-text-muted hover:text-luna-rose transition-colors">Conditions</Link>
+          <Link to="/conditions" className="text-luna-text-muted hover:text-luna-rose active:text-luna-rose transition-colors">Conditions</Link>
         </div>
         <p className="text-[11px] text-luna-text-hint font-body mt-4">© 2026 luna</p>
       </footer>

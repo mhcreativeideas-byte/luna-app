@@ -78,19 +78,30 @@ function CustomTagInput({ onAdd, phaseColor }) {
         style={{ borderColor: phaseColor, width: '140px' }}
         maxLength={30}
       />
+      {/* Zone de tap 44px (règle Apple), cercle visuel compact inchangé */}
       <button
         onClick={submit}
-        className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs flex-shrink-0"
-        style={{ backgroundColor: phaseColor }}
+        aria-label="Ajouter le symptôme"
+        className="w-11 h-11 -m-2 flex items-center justify-center flex-shrink-0 active:scale-90 transition-transform"
       >
-        ✓
+        <span
+          className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs"
+          style={{ backgroundColor: phaseColor }}
+        >
+          ✓
+        </span>
       </button>
       <button
         onClick={() => { setOpen(false); setValue(''); }}
-        className="w-7 h-7 rounded-full flex items-center justify-center text-xs flex-shrink-0"
-        style={{ backgroundColor: '#F5F2F0', color: '#8A7B7F' }}
+        aria-label="Annuler"
+        className="w-11 h-11 -m-2 flex items-center justify-center flex-shrink-0 active:scale-90 transition-transform"
       >
-        ×
+        <span
+          className="w-7 h-7 rounded-full flex items-center justify-center text-xs"
+          style={{ backgroundColor: '#F5F2F0', color: '#8A7B7F' }}
+        >
+          ×
+        </span>
       </button>
     </div>
   );
@@ -185,7 +196,7 @@ function MiniBreathingExercise({ breathing, phaseData }) {
             <p className="text-xs font-body text-luna-text-muted leading-relaxed mb-2">{breathing?.description}</p>
             <button
               onClick={() => setActive(true)}
-              className="px-4 py-2 rounded-[10px] text-white text-[11px] font-body font-bold uppercase tracking-wider transition-all hover:opacity-90"
+              className="px-4 py-2 rounded-[10px] text-white text-[11px] font-body font-bold uppercase tracking-wider transition-all hover:opacity-90 active:opacity-90"
               style={{ backgroundColor: phaseData.colorDark }}
             >
               Commencer
@@ -215,7 +226,7 @@ function MiniBreathingExercise({ breathing, phaseData }) {
             </p>
             <button
               onClick={stop}
-              className="text-[11px] text-luna-text-muted font-body hover:text-luna-text transition-colors mt-1"
+              className="text-[11px] text-luna-text-muted font-body hover:text-luna-text active:text-luna-text transition-colors mt-1"
             >
               Arrêter
             </button>
@@ -417,7 +428,7 @@ export default function Journal() {
                   <button
                     key={m.label}
                     onClick={() => setMood(m.label)}
-                    className={`flex flex-col items-center gap-1.5 p-2 rounded-[14px] transition-all ${mood === m.label ? 'scale-110' : 'opacity-50 hover:opacity-70'}`}
+                    className={`flex flex-col items-center gap-1.5 p-2 rounded-[14px] transition-all ${mood === m.label ? 'scale-110' : 'opacity-50 hover:opacity-70 active:opacity-70'}`}
                     style={mood === m.label ? { backgroundColor: phaseData.bgColor } : {}}
                   >
                     <span className="text-2xl">{m.emoji}</span>
@@ -447,7 +458,7 @@ export default function Journal() {
                       {s}
                       {(customSymptoms || []).includes(s) && (
                         <span
-                          className="ml-1 inline-block opacity-40 hover:opacity-100"
+                          className="ml-1 inline-block opacity-40 hover:opacity-100 active:opacity-100"
                           onClick={(e) => { e.stopPropagation(); dispatch({ type: 'REMOVE_CUSTOM_SYMPTOM', payload: { label: s } }); setSelectedSymptoms((prev) => prev.filter((x) => x !== s)); }}
                         >
                           ×
@@ -486,7 +497,7 @@ export default function Journal() {
               <div className="flex justify-end mt-3">
                 <button
                   onClick={saveEntry}
-                  className="flex items-center gap-2 px-6 py-2.5 rounded-[12px] text-white text-sm font-body font-bold transition-all hover:opacity-90"
+                  className="flex items-center gap-2 px-6 py-2.5 rounded-[12px] text-white text-sm font-body font-bold transition-all hover:opacity-90 active:opacity-90"
                   style={{ backgroundColor: saved ? '#7BAE7F' : phaseData.color }}
                 >
                   {saved ? <>Sauvegardé ✓</> : <><Save size={16} />Sauvegarder</>}
@@ -510,7 +521,7 @@ export default function Journal() {
                 <div className="mt-4">
                   {/* Month navigation */}
                   <div className="flex items-center justify-between mb-4">
-                    <button onClick={navHistoryPrev} className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors">
+                    <button onClick={navHistoryPrev} className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors">
                       <ChevronLeft size={16} />
                     </button>
                     <span className="text-sm font-display font-semibold text-luna-text">

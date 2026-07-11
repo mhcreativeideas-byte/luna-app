@@ -55,7 +55,7 @@ export default function Sidebar() {
             to={to}
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-[14px] transition-all duration-300 text-sm font-body font-semibold ${
-                isActive ? '' : 'text-luna-text-muted hover:bg-gray-50'
+                isActive ? '' : 'text-luna-text-muted hover:bg-gray-50 active:bg-gray-100'
               }`
             }
             style={({ isActive }) => isActive ? { backgroundColor: phaseData.bgColor, color: phaseData.color } : {}}
@@ -69,7 +69,7 @@ export default function Sidebar() {
       {/* Settings & Reset */}
       <NavLink
         to="/parametres"
-        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body"
+        className="flex items-center gap-2 px-3 py-2 text-sm text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors font-body"
       >
         <Settings size={16} />
         Paramètres

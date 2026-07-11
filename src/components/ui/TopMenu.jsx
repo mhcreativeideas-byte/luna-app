@@ -36,14 +36,14 @@ export default function TopMenu() {
             >
               <button
                 onClick={() => { setMenuOpen(false); navigate('/profil'); }}
-                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 active:bg-gray-100 transition-colors"
               >
                 <User size={16} className="text-luna-text-muted" />
                 Mon profil
               </button>
               <button
                 onClick={() => { setMenuOpen(false); navigate('/parametres'); }}
-                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 active:bg-gray-100 transition-colors"
               >
                 <Settings size={16} className="text-luna-text-muted" />
                 Paramètres
@@ -51,7 +51,7 @@ export default function TopMenu() {
               <div className="border-t border-gray-100 my-1" />
               <button
                 onClick={() => { setMenuOpen(false); setConfirmLogout(true); }}
-                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-red-500 hover:bg-red-50 transition-colors"
+                className="w-full flex items-center gap-3 px-4 py-3 text-sm font-body text-red-500 hover:bg-red-50 active:bg-red-100 transition-colors"
               >
                 <LogOut size={16} />
                 Se déconnecter

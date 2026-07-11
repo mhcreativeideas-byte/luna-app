@@ -105,7 +105,7 @@ export default function CheckIn() {
       <div className="flex items-center gap-3">
         <button
           onClick={() => navigate(-1)}
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
         >
           <ChevronLeft size={20} />
@@ -258,7 +258,7 @@ export default function CheckIn() {
                       >
                         {label}
                         <span
-                          className="ml-1 opacity-40 hover:opacity-100"
+                          className="ml-1 opacity-40 hover:opacity-100 active:opacity-100"
                           onClick={(e) => { e.stopPropagation(); dispatch({ type: 'REMOVE_CUSTOM_SYMPTOM', payload: { label } }); }}
                         >
                           ×

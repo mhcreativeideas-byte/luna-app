@@ -37,7 +37,9 @@ export default async function handler(req, res) {
     // Demande un jeton frais (valable 60 j).
     const refRes = await fetch(`${IG_GRAPH}/refresh_access_token?grant_type=ig_refresh_token&access_token=${encodeURIComponent(row.access_token)}`);
     const refData = await refRes.json();
-    if (refData.error) return res.status(200).json({ ok: false, error: refData.error.message });
+    // 502 (et pas 200) : le cron Vercel marque alors l'exécution en échec,
+    // visible dans le tableau de bord — sinon l'erreur passerait inaperçue.
+    if (refData.error) return res.status(502).json({ ok: false, error: refData.error.message });
 
     // Range le nouveau jeton.
     await sb('meta_tokens', {
@@ -48,6 +50,6 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ ok: true, refreshed: true });
   } catch (e) {
-    return res.status(200).json({ ok: false, error: e.message });
+    return res.status(500).json({ ok: false, error: e.message });
   }
 }

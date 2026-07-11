@@ -230,7 +230,7 @@ export default function Sport() {
                     />
                     <button
                       onClick={saveSteps}
-                      className="px-3 h-9 rounded-[10px] text-white flex items-center justify-center gap-1.5 transition-all hover:opacity-90 flex-shrink-0 text-xs font-body font-semibold"
+                      className="px-3 h-9 rounded-[10px] text-white flex items-center justify-center gap-1.5 transition-all hover:opacity-90 active:opacity-90 flex-shrink-0 text-xs font-body font-semibold"
                       style={{ backgroundColor: stepsSaved ? '#7BAE7F' : phaseData.color }}
                     >
                       {stepsSaved ? <><Check size={14} /> Sauvé</> : <><Save size={14} /> Sauver</>}
@@ -400,7 +400,7 @@ export default function Sport() {
                         </div>
                         <button
                           onClick={() => removeActivity(i)}
-                          className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/60 transition-colors"
+                          className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white/60 active:bg-white/60 transition-colors"
                         >
                           <Trash2 size={13} className="text-luna-text-hint" />
                         </button>
@@ -567,7 +567,7 @@ export default function Sport() {
                 />
                 <button
                   onClick={() => setSelectedExercise(null)}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center hover:bg-white active:bg-white transition-colors"
                 >
                   <X size={16} className="text-luna-text-muted" />
                 </button>

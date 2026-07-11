@@ -73,7 +73,7 @@ export default function Profil() {
         <h1 className="font-display text-2xl text-luna-text">Profil</h1>
         <Link
           to="/parametres"
-          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-colors"
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors"
           style={{ boxShadow: '0 2px 8px rgba(45, 34, 38, 0.06)' }}
         >
           <Settings size={18} />
@@ -123,7 +123,7 @@ export default function Profil() {
               >
                 <button
                   onClick={() => { setShowPhotoMenu(false); fileInputRef.current?.click(); }}
-                  className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-luna-text hover:bg-gray-50 active:bg-gray-100 transition-colors"
                 >
                   <Pencil size={15} className="text-luna-text-muted" />
                   Modifier
@@ -131,7 +131,7 @@ export default function Profil() {
                 <div className="h-px bg-gray-100" />
                 <button
                   onClick={() => { setShowPhotoMenu(false); if (user) { supabase.storage.from('avatars').remove([`${user.id}/avatar.jpg`]); } dispatch({ type: 'SET_PROFILE', payload: { profileImage: null } }); }}
-                  className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-red-400 hover:bg-red-50 transition-colors"
+                  className="flex items-center gap-2.5 w-full px-4 py-3 text-sm font-body text-red-400 hover:bg-red-50 active:bg-red-50 transition-colors"
                 >
                   <Trash2 size={15} />
                   Supprimer

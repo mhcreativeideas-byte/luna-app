@@ -206,7 +206,7 @@ export default function RecipesList() {
             </div>
             <button
               onClick={() => setSearchParams({})}
-              className="flex items-center gap-1 text-[11px] font-body font-semibold px-2.5 py-1 rounded-full transition-all hover:opacity-70"
+              className="flex items-center gap-1 text-[11px] font-body font-semibold px-2.5 py-1 rounded-full transition-all hover:opacity-70 active:opacity-70"
               style={{ backgroundColor: 'white', color: phaseData.colorDark }}
             >
               Tout voir
@@ -259,7 +259,7 @@ export default function RecipesList() {
                         style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
                       >
                         {tag.label}
-                        <button onClick={tag.onRemove} className="hover:opacity-70">
+                        <button onClick={tag.onRemove} className="hover:opacity-70 active:opacity-70">
                           <X size={10} />
                         </button>
                       </span>
@@ -393,7 +393,7 @@ export default function RecipesList() {
                     setSelectedCuisines([]);
                     setSelectedCalories(null);
                   }}
-                  className="flex items-center gap-1.5 text-[11px] font-body font-semibold text-luna-text-hint hover:text-luna-text transition-colors"
+                  className="flex items-center gap-1.5 text-[11px] font-body font-semibold text-luna-text-hint hover:text-luna-text active:text-luna-text transition-colors"
                 >
                   <RotateCcw size={12} />
                   Réinitialiser
@@ -475,7 +475,7 @@ export default function RecipesList() {
                   </div>
                   <button
                     onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
-                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center transition-all hover:scale-110"
+                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center transition-all hover:scale-110 active:scale-95"
                   >
                     <Heart size={14} className={isFavorite(recipe.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-hint'} />
                   </button>
@@ -524,13 +524,13 @@ export default function RecipesList() {
                 <div className="absolute top-3 right-3 flex items-center gap-2">
                   <button
                     onClick={() => toggleFavorite(openRecipeData.name)}
-                    className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white active:bg-white transition-colors"
                   >
                     <Heart size={16} className={isFavorite(openRecipeData.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-muted'} />
                   </button>
                   <button
                     onClick={() => setOpenRecipe(null)}
-                    className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white transition-colors"
+                    className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white active:bg-white transition-colors"
                   >
                     <X size={16} className="text-luna-text-muted" />
                   </button>

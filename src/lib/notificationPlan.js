@@ -13,6 +13,8 @@
 // - Chaque type est désactivable individuellement (prefs).
 // ============================================================
 
+import { getOvulationDay } from '../data/phases';
+
 // Identifiants stables par type (pour annuler/reprogrammer proprement).
 export const NOTIF_IDS = {
   phase: 1000, // +i
@@ -77,7 +79,7 @@ const dayKey = (d) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
 
 // Phase d'un jour de cycle donné (mêmes frontières que getCycleInfo).
 function phaseForDay(day, cycleLength, periodLength) {
-  const ovulationDay = cycleLength - 14;
+  const ovulationDay = getOvulationDay(cycleLength, periodLength);
   if (day <= periodLength) return 'menstrual';
   if (day < ovulationDay - 1) return 'follicular';
   if (day <= ovulationDay + 1) return 'ovulatory';
@@ -133,7 +135,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
     const currentDay = (daysSince % cycleLength) + 1;
     // Début du cycle en cours (minuit local).
     const cycleStart = at(today, -(currentDay - 1), 0);
-    const ovulationDay = cycleLength - 14;
+    const ovulationDay = getOvulationDay(cycleLength, periodLength);
 
     // Frontières de phase des 5 prochaines semaines (cycle courant + suivant).
     // La menstruelle est couverte par « Confirmation du jour 1 » (day1).

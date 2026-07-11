@@ -104,7 +104,7 @@ export default function IntroCarousel() {
         {!isLast && (
           <button
             onClick={() => navigate('/auth?mode=signup')}
-            className="text-sm font-body text-luna-text-hint hover:text-luna-text-muted transition-colors"
+            className="text-sm font-body text-luna-text-hint hover:text-luna-text-muted active:text-luna-text-muted transition-colors"
           >
             Passer
           </button>
@@ -163,7 +163,7 @@ export default function IntroCarousel() {
         </button>
         <button
           onClick={() => navigate('/auth?mode=login')}
-          className="w-full text-center text-sm font-body font-semibold text-luna-text-muted hover:text-luna-text py-2 transition-colors"
+          className="w-full text-center text-sm font-body font-semibold text-luna-text-muted hover:text-luna-text active:text-luna-text py-2 transition-colors"
         >
           {"J'ai déjà un compte"}
         </button>

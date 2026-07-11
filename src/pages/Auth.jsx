@@ -101,8 +101,14 @@ export default function Auth() {
       } else if (msg.includes('already registered')) {
         setError('Ce compte existe déjà. Connecte-toi.');
         setMode('login');
+      } else if (msg.includes('rate limit') || msg.includes('Too many')) {
+        setError('Trop de tentatives. Réessaie dans quelques minutes.');
+      } else if (msg.includes('network') || msg.includes('fetch')) {
+        setError('Connexion impossible. Vérifie ton réseau et réessaie.');
       } else {
-        setError(msg);
+        // Jamais le message technique brut (anglais, parfois révélateur) :
+        // un message doux en français suffit.
+        setError('Une erreur est survenue. Réessaie dans un instant.');
       }
     } finally {
       setLoading(false);
@@ -233,7 +239,7 @@ export default function Auth() {
             {/* Back */}
             <button
               onClick={() => navigate('/')}
-              className="flex items-center gap-1 text-sm text-luna-text-muted hover:text-luna-text transition-colors font-body mb-6"
+              className="flex items-center gap-1 text-sm text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors font-body mb-6"
               style={{ marginTop: 'env(safe-area-inset-top)' }}
             >
               <ChevronLeft size={16} />
@@ -265,7 +271,7 @@ export default function Auth() {
                 <button
                   onClick={handleAppleAuth}
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-[16px] bg-black text-white font-body font-semibold text-sm hover:bg-black/90 transition-all disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-[16px] bg-black text-white font-body font-semibold text-sm hover:bg-black/90 active:bg-black/90 transition-all disabled:opacity-50"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.1-2.01-3.77-2.04-1.6-.16-3.13.94-3.94.94-.81 0-2.07-.92-3.4-.89-1.75.03-3.36 1.02-4.26 2.58-1.82 3.16-.46 7.83 1.3 10.39.86 1.25 1.89 2.66 3.23 2.61 1.3-.05 1.79-.84 3.36-.84 1.57 0 2.01.84 3.39.81 1.4-.02 2.28-1.28 3.13-2.54.99-1.45 1.39-2.86 1.42-2.93-.03-.01-2.72-1.04-2.75-4.13zM14.47 4.42c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-3 1.54-.66.76-1.24 1.97-1.09 3.13 1.14.09 2.31-.58 3.03-1.42z"/>
@@ -276,7 +282,7 @@ export default function Auth() {
                 <button
                   onClick={() => handleOAuth('google')}
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-[16px] border-2 border-gray-100 bg-white text-luna-text font-body font-semibold text-sm hover:border-luna-rose/30 transition-all disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-[16px] border-2 border-gray-100 bg-white text-luna-text font-body font-semibold text-sm hover:border-luna-rose/30 active:border-luna-rose/30 transition-all disabled:opacity-50"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -338,7 +344,7 @@ export default function Auth() {
                   <button
                     type="button"
                     onClick={() => { setResetMode(false); setError(''); setSuccessMessage(''); }}
-                    className="w-full text-center text-sm font-body text-luna-text-muted hover:text-luna-text transition-colors"
+                    className="w-full text-center text-sm font-body text-luna-text-muted hover:text-luna-text active:text-luna-text transition-colors"
                   >
                     Retour à la connexion
                   </button>
@@ -371,7 +377,7 @@ export default function Auth() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-luna-text-hint hover:text-luna-text transition-colors"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 w-11 h-11 flex items-center justify-center text-luna-text-hint hover:text-luna-text active:text-luna-text transition-colors"
                     >
                       {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                     </button>
@@ -383,7 +389,7 @@ export default function Auth() {
                       <button
                         type="button"
                         onClick={() => { setResetMode(true); setError(''); setSuccessMessage(''); }}
-                        className="text-xs font-body text-luna-rose hover:underline"
+                        className="text-xs font-body text-luna-rose hover:underline active:underline"
                       >
                         Mot de passe oublié ?
                       </button>
@@ -426,7 +432,7 @@ export default function Auth() {
                   Déjà un compte ?{' '}
                   <button
                     onClick={() => { setMode('login'); setError(''); setSuccessMessage(''); }}
-                    className="text-luna-rose font-semibold hover:underline"
+                    className="text-luna-rose font-semibold hover:underline active:underline"
                   >
                     Connecte-toi
                   </button>
@@ -436,7 +442,7 @@ export default function Auth() {
                   Pas encore de compte ?{' '}
                   <button
                     onClick={() => { setMode('signup'); setError(''); setSuccessMessage(''); }}
-                    className="text-luna-rose font-semibold hover:underline"
+                    className="text-luna-rose font-semibold hover:underline active:underline"
                   >
                     Créer mon espace
                   </button>
