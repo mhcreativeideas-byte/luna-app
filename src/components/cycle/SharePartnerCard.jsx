@@ -3,12 +3,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Capacitor } from '@capacitor/core';
 import { Send, Check, Pencil, Plus, Sparkles } from 'lucide-react';
 import { SkeletonCard } from '../ui/SkeletonLoader';
+import logoLuna from '../../assets/wordmark-luna-noir.png';
 
-// Carte « Ensemble » : la femme prépare une jolie carte de sa phase et
-// l'envoie à son partenaire (image PNG générée via canvas + partage natif).
-// Refonte 2026-07-06 : phrase d'humeur en héros, énergie en douceur (mot +
-// points, plus de %), sections en pastilles avec suggestions à taper, jour
-// du cycle optionnel, plus de compte à rebours des règles.
+// Carte « Partage ta phase » : la femme prépare une jolie carte de sa phase
+// et l'envoie à son partenaire (image PNG via canvas + partage natif).
+// Design validé 2026-07-11 : fond flouté doux aux couleurs officielles de la
+// phase, anneau du cycle avec point de progression posé SUR l'anneau selon
+// le jour, humeur en héros, étiquettes, liste d'actions « Tu peux : » écrite
+// pour lui, petit mot optionnel, wordmark luna en bas à droite.
+
+// Le wordmark est préchargé une fois pour pouvoir le dessiner en synchrone
+// dans le canvas (le partage web doit partir dans le geste du tap).
+const logoImg = typeof window !== 'undefined' ? new window.Image() : null;
+if (logoImg) logoImg.src = logoLuna;
+
+const PHASE_ORDER = ['menstrual', 'follicular', 'ovulatory', 'luteal'];
+
+// Couleurs officielles de la charte (src/index.css) : ne pas dévier.
+// blob = teinte du halo flouté secondaire (rose clair pour menstruelle).
+const PHASE_COLORS = {
+  menstrual: { bg: '#D4727F', bgLight: '#FDE8EB', accent: '#A85A66', blob: '#E8A5AE' },
+  follicular: { bg: '#7BAE7F', bgLight: '#EDF5ED', accent: '#4D7A50', blob: '#7BAE7F' },
+  ovulatory: { bg: '#E8A87C', bgLight: '#FFF3EB', accent: '#C47A4A', blob: '#E8A87C' },
+  luteal: { bg: '#B09ACB', bgLight: '#F3EEF8', accent: '#7D6A96', blob: '#B09ACB' },
+};
 
 // ─── Humeurs proposées par phase (le héros de la carte) ───
 const MOODS = {
@@ -38,50 +56,59 @@ const MOODS = {
   ],
 };
 
-// ─── Suggestions de pastilles par phase et par section ───
-const POOLS = {
-  menstrual: {
-    help: ['Patience', 'Un câlin', 'Du repos', 'De la douceur', 'De l\'écoute', 'De l\'espace'],
-    food: ['Chocolat chaud', 'Plat réconfortant', 'Tisane gingembre', 'Fruits rouges', 'Une bonne soupe'],
-    avoid: ['Les remarques sur ma fatigue', 'Me forcer à sortir', '« C\'est tes règles ? »'],
-  },
-  follicular: {
-    help: ['Ton encouragement', 'De la spontanéité', 'Partager mes idées', 'Une sortie', 'Ta bonne humeur'],
-    food: ['Salade colorée', 'Bowl protéiné', 'Un smoothie', 'Quelque chose de frais'],
-    avoid: ['Freiner mon élan', 'Annuler nos projets', 'Me surprotéger'],
-  },
-  ovulatory: {
-    help: ['De la complicité', 'Communiquer', 'Ta présence', 'Un moment à deux', 'Des projets'],
-    food: ['Un repas léger', 'À partager à deux', 'Un jus maison', 'Quelque chose de frais'],
-    avoid: ['Me laisser seule ce soir', 'Les conflits inutiles', 'Reporter nos discussions'],
-  },
-  luteal: {
-    help: ['De la patience', 'Un câlin', 'De la douceur', 'Pas de prise de tête', 'Du calme'],
-    food: ['Du chocolat', 'Patate douce', 'Un plat réconfortant', 'Infusion camomille'],
-    avoid: ['Les sujets stressants', '« Tu réagis trop »', 'Commenter ce que je mange'],
-  },
+// ─── Étiquettes (pastilles) par phase ───
+const TAG_POOLS = {
+  menstrual: ['Repos', 'Douceur', 'Patience', 'Câlins', 'Calme', 'Cocooning'],
+  follicular: ['Élan', 'Spontanéité', 'Projets', 'Énergie', 'Nouveautés', 'Motivation'],
+  ovulatory: ['Complicité', 'Échanges', 'Énergie', 'Sorties', 'Connexion', 'Confiance'],
+  luteal: ['Patience', 'Calme', 'Douceur', 'Cocon', 'Réconfort', 'Lenteur'],
 };
 
-const SECTION_META = {
-  help: { emoji: '💛', title: 'Ce qui m\'aide' },
-  food: { emoji: '🍽️', title: 'Ce qui me ferait plaisir' },
-  avoid: { emoji: '🚫', title: 'À éviter ce soir' },
+// ─── « Tu peux : » actions concrètes proposées au partenaire ───
+const ACTION_POOLS = {
+  menstrual: [
+    'Préparer un plat bien réconfortant',
+    'Apporter une boisson chaude',
+    'Un câlin sans rien dire',
+    'Prévoir une soirée cocooning',
+    'Une bouillotte, un plaid',
+    'Éviter les remarques sur ma fatigue',
+  ],
+  follicular: [
+    'Proposer une sortie spontanée',
+    'Encourager mes nouvelles idées',
+    'Tester un nouveau restaurant à deux',
+    'Planifier un week-end ensemble',
+    'Suivre mon rythme, il est rapide',
+  ],
+  ovulatory: [
+    'Organiser un vrai moment à deux',
+    'Lancer les grandes discussions',
+    'Prévoir une sortie où on se fait beaux',
+    'Un repas léger à partager',
+    'Me garder ta soirée',
+  ],
+  luteal: [
+    'Proposer un thé ou un chocolat chaud',
+    'Un plaid, un film, zéro programme',
+    'Éviter les sujets qui fâchent ce soir',
+    'Du chocolat, sans commentaire',
+    'Être patient si je suis à fleur de peau',
+  ],
 };
 
-const PHASE_COLORS = {
-  menstrual: { bg: '#D4727F', bgLight: '#FDE8EB', accent: '#A85A66' },
-  follicular: { bg: '#7BAE7F', bgLight: '#EDF5ED', accent: '#4D7A50' },
-  ovulatory: { bg: '#E8A87C', bgLight: '#FFF3EB', accent: '#C47A4A' },
-  luteal: { bg: '#B09ACB', bgLight: '#F3EEF8', accent: '#7D6A96' },
-};
-
-const SUBLINE = 'Voici où j\'en suis, et ce qui m\'aiderait.';
-
-// Énergie « douce » : un mot + un nombre de points (plus de pourcentage).
+// Énergie « douce » : un mot + des points (jamais de pourcentage).
 function getEnergy(level) {
   if (level <= 35) return { word: 'énergie douce', dots: 1 };
   if (level <= 65) return { word: 'énergie tranquille', dots: 2 };
   return { word: 'pleine énergie', dots: 3 };
+}
+
+// Position (en radians, sens horaire depuis le haut) du jour sur l'anneau.
+function cycleAngle(cycleInfo) {
+  const len = Math.max(1, cycleInfo.cycleLength || 28);
+  const day = Math.min(Math.max(1, cycleInfo.currentDay || 1), len);
+  return ((day - 1) / len) * Math.PI * 2;
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -104,167 +131,243 @@ function wrapText(ctx, text, maxW) {
   return lines;
 }
 
-// Mesure ou dessine une rangée de pastilles. Renvoie le y final.
-function chips(ctx, items, x, y, maxW, draw, colors) {
-  const padX = 13, gap = 7, h = 30, rowGap = 9;
-  ctx.font = '14px system-ui, -apple-system, sans-serif';
-  let cx = x, cy = y;
-  items.forEach((it) => {
-    const w = ctx.measureText(it).width + padX * 2;
-    if (cx + w > x + maxW && cx > x) { cx = x; cy += h + rowGap; }
-    if (draw) {
-      ctx.fillStyle = colors.bg + '20';
-      ctx.beginPath(); ctx.roundRect(cx, cy, w, h, 15); ctx.fill();
-      ctx.fillStyle = colors.accent;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(it, cx + padX, cy + h / 2 + 1);
-      ctx.textBaseline = 'alphabetic';
-    }
-    cx += w + gap;
-  });
-  return cy + h;
-}
-
 function generateShareCanvas(cycleInfo, userName, state) {
-  const colors = PHASE_COLORS[cycleInfo.phase] || PHASE_COLORS.menstrual;
+  const phase = cycleInfo.phase;
+  const colors = PHASE_COLORS[phase] || PHASE_COLORS.menstrual;
   const phaseData = cycleInfo.phaseData;
   const energy = getEnergy(cycleInfo.energyLevel);
-  const W = 600;
-  const PAD = 40;
-  const innerW = W - PAD * 2;
   const serif = '"Playfair Display", Georgia, serif';
+  const sans = 'system-ui, -apple-system, sans-serif';
+  const W = 600;
+  const PAD = 44;
+  const innerW = W - PAD * 2;
 
-  const activeSections = ['help', 'food', 'avoid'].filter(
-    (k) => state.sections[k].enabled && state.sections[k].items.length > 0
-  );
+  const tags = state.sections.tags.enabled ? state.sections.tags.items : [];
+  const actions = state.sections.actions.enabled ? state.sections.actions.items : [];
 
   const canvas = document.createElement('canvas');
   canvas.width = W;
   canvas.height = 10;
   const ctx = canvas.getContext('2d');
 
-  // ── Passe 1 : mesurer la hauteur ──
+  // Passe 1 : mesure la hauteur totale. Passe 2 : dessine.
   const layout = (drawing) => {
-    let y = 46;
+    const H = canvas.height;
 
     if (drawing) {
-      // Fond dégradé crème → teinte de phase
-      const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      grad.addColorStop(0, '#FBF8F6');
-      grad.addColorStop(1, colors.bgLight);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, canvas.height);
-      // Cercle décoratif
-      ctx.beginPath();
-      ctx.arc(W + 20, -20, 130, 0, Math.PI * 2);
-      ctx.fillStyle = colors.bg + '12';
-      ctx.fill();
+      // Fond : crème → teinte de phase, + halos floutés dans les couleurs
+      // officielles (effet « photo hors focus »).
+      const base = ctx.createLinearGradient(0, 0, 0, H);
+      base.addColorStop(0, '#FAF8F5');
+      base.addColorStop(0.65, colors.bgLight);
+      base.addColorStop(1, colors.bgLight);
+      ctx.fillStyle = base;
+      ctx.fillRect(0, 0, W, H);
+      const blob = (x, y, r, c, a) => {
+        const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+        g.addColorStop(0, c + a);
+        g.addColorStop(1, c + '00');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+      };
+      blob(W * 0.78, H * 0.12, 200, colors.bg, '66');
+      blob(W * 0.20, H * 0.38, 300, colors.blob, '59');
+      blob(W * 0.72, H * 0.88, 340, colors.bg, '4D');
     }
 
-    // Header : pastille emoji + nom de phase (+ jour optionnel) / énergie
+    // ── Anneau du cycle ──
+    const R = 142;
+    const cx = W / 2;
+    const cy = 46 + R;
     if (drawing) {
+      ctx.strokeStyle = colors.bg + '8C';
+      ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.arc(PAD + 24, y + 20, 24, 0, Math.PI * 2);
-      ctx.fillStyle = colors.bg + '22';
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Point de progression posé SUR l'anneau, à la position du jour.
+      const angle = cycleAngle(cycleInfo);
+      ctx.beginPath();
+      ctx.arc(cx + R * Math.sin(angle), cy - R * Math.cos(angle), 11, 0, Math.PI * 2);
+      ctx.fillStyle = colors.bg;
       ctx.fill();
-      ctx.font = '24px serif';
+
+      // Les 3 autres phases en petits points aux cardinaux (on saute le
+      // cardinal le plus proche du gros point pour ne pas le chevaucher).
+      const nearest = Math.round(angle / (Math.PI / 2)) % 4;
+      const others = PHASE_ORDER.filter((p) => p !== phase);
+      let oi = 0;
+      [0, 1, 2, 3].forEach((card) => {
+        if (card === nearest || oi >= others.length) return;
+        const a = (card * Math.PI) / 2;
+        ctx.beginPath();
+        ctx.arc(cx + R * Math.sin(a), cy - R * Math.cos(a), 5.5, 0, Math.PI * 2);
+        ctx.fillStyle = PHASE_COLORS[others[oi]].bg + '80';
+        ctx.fill();
+        oi += 1;
+      });
+
+      // Textes au centre de l'anneau
       ctx.textAlign = 'center';
-      ctx.fillText(phaseData.icon, PAD + 24, y + 29);
-
-      ctx.textAlign = 'left';
-      ctx.font = '600 15px system-ui, -apple-system, sans-serif';
       ctx.fillStyle = colors.accent;
-      ctx.fillText(phaseData.name, PAD + 60, y + (state.showCycleDay ? 12 : 24));
+      ctx.font = `600 12px ${sans}`;
+      ctx.letterSpacing = '4px';
+      ctx.fillText('PHASE', cx + 2, cy - 52);
+      ctx.letterSpacing = '0px';
+      ctx.font = `600 36px ${serif}`;
+      ctx.fillStyle = '#2D2226';
+      ctx.fillText(phaseData.shortName || phaseData.name, cx, cy - 12);
       if (state.showCycleDay) {
-        ctx.font = '13px system-ui, -apple-system, sans-serif';
-        ctx.fillStyle = '#75656899';
-        ctx.fillText(`jour ${cycleInfo.currentDay}`, PAD + 60, y + 32);
+        ctx.font = `14px ${sans}`;
+        ctx.fillStyle = '#756568';
+        ctx.fillText(`jour ${cycleInfo.currentDay}`, cx, cy + 16);
       }
-
-      // Énergie (mot + points), aligné à droite
-      ctx.textAlign = 'right';
-      ctx.font = '13px system-ui, -apple-system, sans-serif';
+      // Énergie : mot + 3 points
+      const ey = cy + (state.showCycleDay ? 46 : 34);
+      ctx.font = `13px ${sans}`;
+      const ew = ctx.measureText(energy.word).width;
+      const dotsW = 3 * 9 + 2 * 5;
+      const startX = cx - (ew + 10 + dotsW) / 2;
+      ctx.textAlign = 'left';
       ctx.fillStyle = colors.accent;
-      ctx.fillText(energy.word, W - PAD, y + 12);
+      ctx.fillText(energy.word, startX, ey + 4);
       for (let i = 0; i < 3; i++) {
         ctx.beginPath();
-        ctx.arc(W - PAD - 4 - i * 12, y + 28, 4, 0, Math.PI * 2);
+        ctx.arc(startX + ew + 10 + 4.5 + i * 14, ey, 4.5, 0, Math.PI * 2);
         ctx.fillStyle = i < energy.dots ? colors.bg : colors.bg + '40';
         ctx.fill();
       }
-      ctx.textAlign = 'left';
     }
-    y += 74;
 
-    // Héros : la phrase d'humeur
-    ctx.font = `600 34px ${serif}`;
-    const headlineLines = wrapText(ctx, state.headline || phaseData.name, innerW);
+    let y = 46 + 2 * R + 56;
+
+    // ── Humeur du jour (héros) ──
+    ctx.font = `italic 500 25px ${serif}`;
+    const hl = wrapText(ctx, `« ${state.headline} »`, innerW);
     if (drawing) {
       ctx.fillStyle = '#2D2226';
-      ctx.textAlign = 'left';
-      headlineLines.forEach((ln, i) => ctx.fillText(ln, PAD, y + 30 + i * 42));
+      ctx.textAlign = 'center';
+      hl.forEach((ln, i) => ctx.fillText(ln, W / 2, y + i * 33));
     }
-    y += headlineLines.length * 42 + 8;
+    y += (hl.length - 1) * 33 + 24;
 
-    // Sous-ligne
-    if (drawing) {
-      ctx.font = '15px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#4A3F43';
-      ctx.fillText(SUBLINE, PAD, y + 14);
+    // ── Étiquettes (pastilles blanches centrées) ──
+    if (tags.length) {
+      ctx.font = `500 15px ${sans}`;
+      const padX = 15, gap = 8, h = 32;
+      const rows = [];
+      let row = [], rw = 0;
+      tags.forEach((t) => {
+        const cw = ctx.measureText(t).width + padX * 2;
+        const need = cw + (row.length ? gap : 0);
+        if (rw + need > innerW && row.length) {
+          rows.push({ row, rw });
+          row = [];
+          rw = 0;
+        }
+        row.push({ t, cw });
+        rw += cw + (row.length > 1 ? gap : 0);
+      });
+      if (row.length) rows.push({ row, rw });
+      rows.forEach((r) => {
+        let x = (W - r.rw) / 2;
+        r.row.forEach(({ t, cw }) => {
+          if (drawing) {
+            ctx.fillStyle = 'rgba(255,255,255,0.72)';
+            ctx.beginPath(); ctx.roundRect(x, y, cw, h, 16); ctx.fill();
+            ctx.fillStyle = colors.accent;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(t, x + cw / 2, y + h / 2 + 1);
+            ctx.textBaseline = 'alphabetic';
+          }
+          x += cw + gap;
+        });
+        y += h + 9;
+      });
+      y += 12;
     }
-    y += 40;
 
-    // Sections
-    activeSections.forEach((key) => {
-      const meta = SECTION_META[key];
+    // ── « Tu peux : » liste d'actions pour lui ──
+    if (actions.length) {
       if (drawing) {
-        ctx.font = '13px serif';
-        ctx.textAlign = 'left';
-        ctx.fillText(meta.emoji, PAD, y + 12);
-        ctx.font = '600 13px system-ui, -apple-system, sans-serif';
+        ctx.strokeStyle = colors.bg + '40';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(PAD, y);
+        ctx.lineTo(W - PAD, y);
+        ctx.stroke();
+      }
+      y += 30;
+      if (drawing) {
+        ctx.font = `600 12px ${sans}`;
         ctx.fillStyle = colors.accent;
-        ctx.fillText(meta.title, PAD + 24, y + 11);
+        ctx.textAlign = 'left';
+        ctx.letterSpacing = '3px';
+        ctx.fillText('TU PEUX :', PAD, y);
+        ctx.letterSpacing = '0px';
       }
       y += 26;
-      y = chips(ctx, state.sections[key].items, PAD, y, innerW, drawing, colors);
-      y += 22;
-    });
+      ctx.font = `15px ${sans}`;
+      actions.forEach((item) => {
+        const lines = wrapText(ctx, item, innerW - 32);
+        if (drawing) {
+          ctx.strokeStyle = colors.bg;
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.arc(PAD + 8, y + 3, 8, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.fillStyle = '#4A3F43';
+          ctx.textAlign = 'left';
+          lines.forEach((ln, i) => ctx.fillText(ln, PAD + 28, y + 8 + i * 21));
+        }
+        y += lines.length * 21 + 12;
+      });
+      y += 8;
+    }
 
-    // Petit mot perso (encadré blanc)
+    // ── Petit mot perso (encadré blanc) ──
     if (state.personalEnabled && state.personalMsg.trim()) {
       ctx.font = `italic 15px ${serif}`;
-      const msgLines = wrapText(ctx, `« ${state.personalMsg.trim()} »`, innerW - 32);
-      const boxH = msgLines.length * 22 + 26;
+      const ml = wrapText(ctx, `« ${state.personalMsg.trim()} »`, innerW - 36);
+      const bh = ml.length * 22 + 26;
       if (drawing) {
-        ctx.fillStyle = '#FFFFFFCC';
-        ctx.beginPath(); ctx.roundRect(PAD, y, innerW, boxH, 14); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,0.78)';
+        ctx.beginPath(); ctx.roundRect(PAD, y, innerW, bh, 14); ctx.fill();
         ctx.fillStyle = colors.accent;
         ctx.textAlign = 'left';
-        msgLines.forEach((ln, i) => ctx.fillText(ln, PAD + 16, y + 26 + i * 22));
+        ml.forEach((ln, i) => ctx.fillText(ln, PAD + 18, y + 27 + i * 22));
       }
-      y += boxH + 22;
+      y += bh + 20;
     }
 
-    // Signature + branding luna
+    // ── Signature + wordmark luna (transparent, jamais de fond) ──
+    y += 6;
     if (drawing) {
-      ctx.font = `italic 15px ${serif}`;
+      ctx.font = `italic 16px ${serif}`;
       ctx.fillStyle = colors.accent;
       ctx.textAlign = 'left';
-      if (userName) ctx.fillText(`— ${userName}`, PAD, y + 12);
-      ctx.font = '12px system-ui, -apple-system, sans-serif';
-      ctx.fillStyle = '#75656899';
-      ctx.textAlign = 'right';
-      ctx.fillText('luna 🌙', W - PAD, y + 12);
-      ctx.textAlign = 'left';
+      if (userName) ctx.fillText(userName, PAD, y + 12);
+      if (logoImg && logoImg.complete && logoImg.naturalWidth) {
+        const lh = 17;
+        const lw = logoImg.naturalWidth * (lh / logoImg.naturalHeight);
+        ctx.globalAlpha = 0.85;
+        ctx.drawImage(logoImg, W - PAD - lw, y - 1, lw, lh);
+        ctx.globalAlpha = 1;
+      } else {
+        ctx.font = `600 13px ${sans}`;
+        ctx.fillStyle = '#756568';
+        ctx.textAlign = 'right';
+        ctx.fillText('luna', W - PAD, y + 12);
+      }
     }
-    y += 40;
+    y += 42;
 
     return y;
   };
 
-  const totalH = Math.max(560, layout(false));
-  canvas.height = totalH;
+  canvas.height = Math.max(720, layout(false));
   layout(true);
   return canvas;
 }
@@ -287,10 +390,9 @@ function Switch({ on, colors }) {
 }
 
 // Une section : interrupteur + pastilles à sélectionner + ajout perso.
-function ChipSection({ sectionKey, enabled, items, pool, onToggle, onChange, colors }) {
+function ChipSection({ label, emoji, enabled, items, pool, onToggle, onChange, colors }) {
   const [adding, setAdding] = useState(false);
   const [value, setValue] = useState('');
-  const meta = SECTION_META[sectionKey];
 
   const shown = [...pool, ...items.filter((i) => !pool.includes(i))];
 
@@ -308,7 +410,7 @@ function ChipSection({ sectionKey, enabled, items, pool, onToggle, onChange, col
     <div className="py-1">
       <button onClick={onToggle} className="flex items-center justify-between w-full py-1.5">
         <span className="font-body text-sm font-semibold text-luna-text">
-          {meta.emoji}&nbsp; {meta.title}
+          {emoji}&nbsp; {label}
         </span>
         <Switch on={enabled} colors={colors} />
       </button>
@@ -348,7 +450,7 @@ function ChipSection({ sectionKey, enabled, items, pool, onToggle, onChange, col
                     onChange={(e) => setValue(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && addCustom()}
                     placeholder="Écrire..."
-                    className="text-xs font-body bg-white border rounded-full px-3 py-1.5 outline-none w-28"
+                    className="text-xs font-body bg-white border rounded-full px-3 py-1.5 outline-none w-32"
                     style={{ borderColor: colors.bg }}
                     autoFocus
                   />
@@ -372,99 +474,135 @@ function ChipSection({ sectionKey, enabled, items, pool, onToggle, onChange, col
 }
 
 // ─────────────────────────────────────────────────────────────
-//  Aperçu live de la carte (HTML, WYSIWYG avec le PNG)
+//  Aperçu live de la carte (HTML, fidèle au PNG partagé)
 // ─────────────────────────────────────────────────────────────
 function PreviewCard({ cycleInfo, name, headline, sections, personalEnabled, personalMsg, showCycleDay, colors }) {
+  const phase = cycleInfo.phase;
   const phaseData = cycleInfo.phaseData;
   const energy = getEnergy(cycleInfo.energyLevel);
-  const active = ['help', 'food', 'avoid'].filter((k) => sections[k].enabled && sections[k].items.length > 0);
+  const tags = sections.tags.enabled ? sections.tags.items : [];
+  const actions = sections.actions.enabled ? sections.actions.items : [];
+
+  const RING = 200;
+  const R = RING / 2;
+  const angle = cycleAngle(cycleInfo);
+  const dotX = R + R * Math.sin(angle) - 6;
+  const dotY = R - R * Math.cos(angle) - 6;
+  const nearest = Math.round(angle / (Math.PI / 2)) % 4;
+  const others = PHASE_ORDER.filter((p) => p !== phase);
+  const smallDots = [0, 1, 2, 3]
+    .filter((c) => c !== nearest)
+    .map((c, i) => {
+      const a = (c * Math.PI) / 2;
+      return {
+        x: R + R * Math.sin(a) - 3,
+        y: R - R * Math.cos(a) - 3,
+        color: PHASE_COLORS[others[i]]?.bg,
+      };
+    });
 
   return (
     <div
-      className="rounded-[22px] p-5 relative overflow-hidden"
+      className="rounded-[26px] overflow-hidden relative"
       style={{
-        background: `linear-gradient(165deg, #FBF8F6 0%, ${colors.bgLight} 100%)`,
-        border: `0.5px solid ${colors.bg}22`,
+        background: `radial-gradient(110px 160px at 78% 12%, ${colors.bg}66 0%, transparent 70%), radial-gradient(180px 240px at 20% 38%, ${colors.blob}59 0%, transparent 70%), radial-gradient(220px 280px at 72% 88%, ${colors.bg}4D 0%, transparent 75%), linear-gradient(180deg, #FAF8F5 0%, ${colors.bgLight} 65%)`,
+        border: `0.5px solid ${colors.bg}30`,
       }}
     >
-      <div
-        className="absolute rounded-full"
-        style={{ top: -34, right: -34, width: 120, height: 120, background: `${colors.bg}12` }}
-      />
-      <div className="relative">
-        {/* Header */}
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-2.5">
+      <div className="px-6 pt-6 pb-5">
+        {/* Anneau du cycle */}
+        <div className="relative mx-auto" style={{ width: RING, height: RING }}>
+          <div className="absolute inset-0 rounded-full" style={{ border: `1.5px solid ${colors.bg}8C` }} />
+          <div
+            className="absolute rounded-full"
+            style={{ left: dotX, top: dotY, width: 12, height: 12, backgroundColor: colors.bg }}
+          />
+          {smallDots.map((d, i) => (
             <div
-              className="w-10 h-10 rounded-full flex items-center justify-center text-lg"
-              style={{ backgroundColor: `${colors.bg}22` }}
-            >
-              {phaseData.icon}
-            </div>
-            <div>
-              <p className="text-xs font-body font-semibold leading-tight" style={{ color: colors.accent }}>
-                {phaseData.name}
-              </p>
-              {showCycleDay && (
-                <p className="text-[11px] font-body text-luna-text-hint mt-0.5">jour {cycleInfo.currentDay}</p>
-              )}
-            </div>
-          </div>
-          <div className="text-right">
-            <p className="text-[11px] font-body mb-1" style={{ color: colors.accent }}>{energy.word}</p>
-            <div className="flex justify-end gap-1">
+              key={i}
+              className="absolute rounded-full"
+              style={{ left: d.x, top: d.y, width: 6, height: 6, backgroundColor: d.color, opacity: 0.5 }}
+            />
+          ))}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+            <p className="text-[10px] font-body font-semibold" style={{ color: colors.accent, letterSpacing: '2.5px' }}>
+              PHASE
+            </p>
+            <p className="font-display leading-tight mt-0.5" style={{ fontSize: 25, fontWeight: 600, color: '#2D2226' }}>
+              {phaseData.shortName || phaseData.name}
+            </p>
+            {showCycleDay && (
+              <p className="text-[11px] font-body mt-1" style={{ color: '#756568' }}>jour {cycleInfo.currentDay}</p>
+            )}
+            <div className="flex items-center gap-1.5 mt-2">
+              <span className="text-[11px] font-body" style={{ color: colors.accent }}>{energy.word}</span>
               {[0, 1, 2].map((i) => (
                 <span
                   key={i}
                   className="w-1.5 h-1.5 rounded-full inline-block"
-                  style={{ backgroundColor: i < energy.dots ? colors.bg : `${colors.bg}40` }}
+                  style={{ backgroundColor: colors.bg, opacity: i < energy.dots ? 1 : 0.25 }}
                 />
               ))}
             </div>
           </div>
         </div>
 
-        {/* Héros */}
-        <p className="font-display leading-tight mt-4 mb-2" style={{ fontSize: 24, color: '#2D2226' }}>
-          {headline}
+        {/* Humeur */}
+        <p className="font-display italic text-center mt-4" style={{ fontSize: 18, color: '#2D2226' }}>
+          « {headline} »
         </p>
-        <p className="text-xs font-body mb-4" style={{ color: '#4A3F43' }}>{SUBLINE}</p>
 
-        {/* Sections */}
-        {active.map((key) => (
-          <div key={key} className="mb-3">
-            <p className="text-[11px] font-body font-semibold mb-1.5" style={{ color: colors.accent }}>
-              {SECTION_META[key].emoji}&nbsp; {SECTION_META[key].title}
+        {/* Étiquettes */}
+        {tags.length > 0 && (
+          <div className="flex justify-center flex-wrap gap-1.5 mt-3">
+            {tags.map((t) => (
+              <span
+                key={t}
+                className="text-[11px] font-body font-medium px-3 py-1 rounded-full"
+                style={{ backgroundColor: 'rgba(255,255,255,0.72)', color: colors.accent }}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Tu peux : */}
+        {actions.length > 0 && (
+          <>
+            <div className="h-px mt-4 mb-3" style={{ backgroundColor: `${colors.bg}40` }} />
+            <p className="text-[10px] font-body font-semibold mb-2.5" style={{ color: colors.accent, letterSpacing: '2px' }}>
+              TU PEUX :
             </p>
-            <div className="flex flex-wrap gap-1.5">
-              {sections[key].items.map((it) => (
-                <span
-                  key={it}
-                  className="text-[11px] font-body font-medium px-2.5 py-1 rounded-full"
-                  style={{ backgroundColor: `${colors.bg}1c`, color: colors.accent }}
-                >
-                  {it}
-                </span>
+            <div className="flex flex-col gap-2.5">
+              {actions.map((it) => (
+                <div key={it} className="flex items-center gap-2.5">
+                  <span
+                    className="w-3.5 h-3.5 rounded-full flex-none"
+                    style={{ border: `1.2px solid ${colors.bg}` }}
+                  />
+                  <span className="text-xs font-body" style={{ color: '#4A3F43' }}>{it}</span>
+                </div>
               ))}
             </div>
-          </div>
-        ))}
+          </>
+        )}
 
         {/* Petit mot */}
         {personalEnabled && personalMsg.trim() && (
-          <div className="rounded-[13px] px-3 py-2.5 mb-3" style={{ backgroundColor: '#FFFFFFCC' }}>
+          <div className="rounded-[13px] px-3.5 py-2.5 mt-4" style={{ backgroundColor: 'rgba(255,255,255,0.78)' }}>
             <p className="font-display italic text-xs leading-snug" style={{ color: colors.accent }}>
               « {personalMsg.trim()} »
             </p>
           </div>
         )}
 
-        {/* Signature */}
-        <div className="flex items-center justify-between mt-3">
+        {/* Signature + logo */}
+        <div className="flex items-center justify-between mt-4">
           {name ? (
-            <p className="font-display italic text-sm" style={{ color: colors.accent }}>— {name}</p>
+            <p className="font-display italic text-sm" style={{ color: colors.accent }}>{name}</p>
           ) : <span />}
-          <p className="text-[11px] font-body text-luna-text-hint">luna 🌙</p>
+          <img src={logoLuna} alt="luna" className="h-[15px] w-auto opacity-80" />
         </div>
       </div>
     </div>
@@ -478,7 +616,8 @@ export default function SharePartnerCard({ cycleInfo, name }) {
   const phase = cycleInfo?.phase;
   const colors = PHASE_COLORS[phase] || PHASE_COLORS.menstrual;
   const moods = MOODS[phase] || MOODS.menstrual;
-  const pools = POOLS[phase] || POOLS.menstrual;
+  const tagPool = TAG_POOLS[phase] || TAG_POOLS.menstrual;
+  const actionPool = ACTION_POOLS[phase] || ACTION_POOLS.menstrual;
 
   const [shared, setShared] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -486,9 +625,8 @@ export default function SharePartnerCard({ cycleInfo, name }) {
   const [headline, setHeadline] = useState(moods[0].headline);
   const [customMood, setCustomMood] = useState(false);
   const [sections, setSections] = useState(() => ({
-    help: { enabled: true, items: pools.help.slice(0, 3) },
-    food: { enabled: true, items: pools.food.slice(0, 2) },
-    avoid: { enabled: true, items: pools.avoid.slice(0, 2) },
+    tags: { enabled: true, items: tagPool.slice(0, 3) },
+    actions: { enabled: true, items: actionPool.slice(0, 3) },
   }));
   const [personalEnabled, setPersonalEnabled] = useState(false);
   const [personalMsg, setPersonalMsg] = useState('');
@@ -553,6 +691,7 @@ export default function SharePartnerCard({ cycleInfo, name }) {
     } catch {
       return;
     }
+
     const download = () => {
       const link = document.createElement('a');
       link.download = 'luna-phase.png';
@@ -667,19 +806,29 @@ export default function SharePartnerCard({ cycleInfo, name }) {
 
               <div className="h-px my-3" style={{ backgroundColor: `${colors.bg}22` }} />
 
-              {/* Sections */}
-              {['help', 'food', 'avoid'].map((key) => (
-                <ChipSection
-                  key={key}
-                  sectionKey={key}
-                  enabled={sections[key].enabled}
-                  items={sections[key].items}
-                  pool={pools[key]}
-                  onToggle={() => toggleSection(key)}
-                  onChange={(items) => changeSection(key, items)}
-                  colors={colors}
-                />
-              ))}
+              {/* Étiquettes */}
+              <ChipSection
+                label="Mes besoins en quelques mots"
+                emoji="💜"
+                enabled={sections.tags.enabled}
+                items={sections.tags.items}
+                pool={tagPool}
+                onToggle={() => toggleSection('tags')}
+                onChange={(items) => changeSection('tags', items)}
+                colors={colors}
+              />
+
+              {/* Tu peux : */}
+              <ChipSection
+                label="« Tu peux » : des idées pour lui"
+                emoji="💛"
+                enabled={sections.actions.enabled}
+                items={sections.actions.items}
+                pool={actionPool}
+                onToggle={() => toggleSection('actions')}
+                onChange={(items) => changeSection('actions', items)}
+                colors={colors}
+              />
 
               {/* Petit mot perso */}
               <div className="py-1">
