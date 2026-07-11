@@ -84,53 +84,58 @@ export const FOOD_IMAGES = {
 // Noms de mois en minuscules pour l'affichage saisonnier (« en juillet »)
 export const SEASONAL_MONTH_NAMES = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
+// Source officielle : calendrier de saison Manger Bouger, vérifié le 2026-07-05
+// https://www.mangerbouger.fr/manger-mieux/bien-manger-sans-se-ruiner/calendrier-de-saison/les-fruits-et-legumes-de-[mois]
+// Chaque mois = liste officielle Manger Bouger, limitée aux aliments présents dans FOOD_EMOJIS.
+// Équivalences assumées : « Salade » (Manger Bouger) → 'Laitue' · « Pomelo » (janvier) → 'Pamplemousse'.
+// Retirés partout car absents du calendrier Manger Bouger : Châtaigne, Noix (fruits à coque non couverts).
 export const SEASONAL_FOODS = {
   1: { // Janvier
-    fruits: ['Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Pomme', 'Poire'],
-    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou-fleur', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron', 'Topinambour'],
+    fruits: ['Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Poire', 'Pomme'],
+    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Courge', 'Cresson', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron', 'Topinambour'],
   },
   2: { // Février
-    fruits: ['Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Pomme', 'Poire'],
-    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Topinambour'],
+    fruits: ['Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Poire', 'Pomme'],
+    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Cresson', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Topinambour'],
   },
   3: { // Mars
-    fruits: ['Citron', 'Kiwi', 'Orange', 'Pamplemousse', 'Pomme', 'Poire'],
-    legumes: ['Asperge', 'Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou-fleur', 'Endive', 'Épinard', 'Navet', 'Panais', 'Poireau', 'Radis', 'Topinambour'],
+    fruits: ['Kiwi', 'Orange', 'Pamplemousse', 'Poire', 'Pomme'],
+    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Cresson', 'Endive', 'Épinard', 'Navet', 'Panais', 'Poireau', 'Radis'],
   },
   4: { // Avril
-    fruits: ['Citron', 'Fraise', 'Kiwi', 'Pomme', 'Rhubarbe'],
-    legumes: ['Artichaut', 'Asperge', 'Betterave', 'Carotte', 'Chou-fleur', 'Cresson', 'Épinard', 'Laitue', 'Navet', 'Petit pois', 'Poireau', 'Radis'],
+    fruits: ['Pamplemousse', 'Pomme', 'Rhubarbe'],
+    legumes: ['Asperge', 'Betterave', 'Carotte', 'Cresson', 'Endive', 'Épinard', 'Fenouil', 'Laitue', 'Navet', 'Poireau', 'Radis'],
   },
   5: { // Mai
-    fruits: ['Cerise', 'Fraise', 'Rhubarbe', 'Pomme', 'Kiwi'],
-    legumes: ['Artichaut', 'Asperge', 'Aubergine', 'Betterave', 'Carotte', 'Chou-fleur', 'Concombre', 'Courgette', 'Épinard', 'Laitue', 'Petit pois', 'Radis'],
+    fruits: ['Fraise', 'Pamplemousse', 'Rhubarbe'],
+    legumes: ['Artichaut', 'Asperge', 'Carotte', 'Concombre', 'Courgette', 'Cresson', 'Épinard', 'Fenouil', 'Laitue', 'Navet', 'Petit pois', 'Radis'],
   },
   6: { // Juin
-    fruits: ['Abricot', 'Cerise', 'Fraise', 'Framboise', 'Melon', 'Nectarine', 'Pêche', 'Rhubarbe'],
-    legumes: ['Artichaut', 'Asperge', 'Aubergine', 'Betterave', 'Blette', 'Carotte', 'Concombre', 'Courgette', 'Fenouil', 'Haricot vert', 'Laitue', 'Petit pois', 'Poivron', 'Radis', 'Tomate'],
+    fruits: ['Abricot', 'Cassis', 'Cerise', 'Fraise', 'Framboise', 'Groseille', 'Melon', 'Pamplemousse', 'Pastèque', 'Pêche', 'Rhubarbe'],
+    legumes: ['Artichaut', 'Asperge', 'Aubergine', 'Blette', 'Carotte', 'Concombre', 'Courgette', 'Fenouil', 'Haricot vert', 'Laitue', 'Petit pois', 'Poivron', 'Radis', 'Tomate'],
   },
   7: { // Juillet
-    fruits: ['Abricot', 'Cassis', 'Cerise', 'Figue', 'Fraise', 'Framboise', 'Groseille', 'Melon', 'Myrtille', 'Nectarine', 'Pastèque', 'Pêche', 'Prune'],
-    legumes: ['Artichaut', 'Aubergine', 'Betterave', 'Blette', 'Carotte', 'Concombre', 'Courgette', 'Fenouil', 'Haricot vert', 'Laitue', 'Maïs', 'Poivron', 'Radis', 'Tomate'],
+    fruits: ['Abricot', 'Cassis', 'Cerise', 'Figue', 'Fraise', 'Framboise', 'Groseille', 'Melon', 'Myrtille', 'Pastèque', 'Pêche', 'Prune'],
+    legumes: ['Artichaut', 'Aubergine', 'Blette', 'Carotte', 'Concombre', 'Courgette', 'Fenouil', 'Haricot vert', 'Laitue', 'Maïs', 'Petit pois', 'Poivron', 'Radis', 'Tomate'],
   },
   8: { // Août
-    fruits: ['Abricot', 'Cassis', 'Figue', 'Framboise', 'Melon', 'Mirabelle', 'Mûre', 'Myrtille', 'Nectarine', 'Pastèque', 'Pêche', 'Poire', 'Prune', 'Raisin'],
-    legumes: ['Artichaut', 'Aubergine', 'Betterave', 'Blette', 'Carotte', 'Concombre', 'Courgette', 'Fenouil', 'Haricot vert', 'Laitue', 'Maïs', 'Poivron', 'Radis', 'Tomate'],
+    fruits: ['Abricot', 'Cassis', 'Figue', 'Framboise', 'Groseille', 'Melon', 'Mirabelle', 'Mûre', 'Myrtille', 'Nectarine', 'Pastèque', 'Pêche', 'Poire', 'Pomme', 'Prune'],
+    legumes: ['Artichaut', 'Aubergine', 'Blette', 'Carotte', 'Concombre', 'Courgette', 'Fenouil', 'Haricot vert', 'Laitue', 'Maïs', 'Poivron', 'Tomate'],
   },
   9: { // Septembre
-    fruits: ['Figue', 'Framboise', 'Melon', 'Mirabelle', 'Mûre', 'Myrtille', 'Pêche', 'Poire', 'Pomme', 'Prune', 'Raisin'],
-    legumes: ['Artichaut', 'Aubergine', 'Betterave', 'Blette', 'Brocoli', 'Carotte', 'Chou', 'Concombre', 'Courgette', 'Épinard', 'Fenouil', 'Haricot vert', 'Laitue', 'Poivron', 'Tomate'],
+    fruits: ['Figue', 'Melon', 'Mirabelle', 'Mûre', 'Myrtille', 'Nectarine', 'Pastèque', 'Pêche', 'Poire', 'Pomme', 'Prune', 'Raisin'],
+    legumes: ['Artichaut', 'Aubergine', 'Blette', 'Brocoli', 'Carotte', 'Chou-fleur', 'Concombre', 'Courge', 'Courgette', 'Cresson', 'Épinard', 'Fenouil', 'Haricot vert', 'Laitue', 'Maïs', 'Poireau', 'Poivron', 'Potiron', 'Tomate'],
   },
   10: { // Octobre
-    fruits: ['Châtaigne', 'Coing', 'Figue', 'Noix', 'Poire', 'Pomme', 'Raisin'],
-    legumes: ['Betterave', 'Brocoli', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Courge', 'Endive', 'Épinard', 'Fenouil', 'Navet', 'Panais', 'Poireau', 'Potiron'],
+    fruits: ['Coing', 'Figue', 'Poire', 'Pomme', 'Raisin'],
+    legumes: ['Betterave', 'Blette', 'Brocoli', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Concombre', 'Courge', 'Courgette', 'Cresson', 'Endive', 'Épinard', 'Fenouil', 'Haricot vert', 'Laitue', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron'],
   },
   11: { // Novembre
-    fruits: ['Châtaigne', 'Citron', 'Clémentine', 'Coing', 'Kiwi', 'Mandarine', 'Noix', 'Orange', 'Poire', 'Pomme'],
-    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Courge', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron', 'Topinambour'],
+    fruits: ['Clémentine', 'Kiwi', 'Mandarine', 'Poire', 'Pomme'],
+    legumes: ['Betterave', 'Blette', 'Brocoli', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Courge', 'Cresson', 'Endive', 'Épinard', 'Fenouil', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron', 'Topinambour'],
   },
   12: { // Décembre
-    fruits: ['Châtaigne', 'Citron', 'Clémentine', 'Kiwi', 'Mandarine', 'Orange', 'Pamplemousse', 'Pomme', 'Poire'],
-    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron', 'Topinambour'],
+    fruits: ['Clémentine', 'Kiwi', 'Mandarine', 'Poire', 'Pomme'],
+    legumes: ['Betterave', 'Carotte', 'Céleri', 'Chou', 'Chou de Bruxelles', 'Chou-fleur', 'Courge', 'Cresson', 'Endive', 'Épinard', 'Mâche', 'Navet', 'Panais', 'Poireau', 'Potiron', 'Topinambour'],
   },
 };
