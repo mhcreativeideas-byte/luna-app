@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { Leaf } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
-import { useCycle } from '../contexts/CycleContext';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import { SEASONAL_FOODS, FOOD_IMAGES, FOOD_EMOJIS, SEASONAL_MONTH_NAMES } from '../data/seasonal';
 
 const container = {
@@ -35,9 +34,6 @@ function FoodBubble({ name }) {
 // Page « De saison » : les fruits et légumes du mois (saisonnalité Manger
 // Bouger), avec les photos de public/foods/. Accessible depuis l'onglet Manger.
 export default function DeSaison() {
-  const { cycleInfo } = useCycle();
-  const phaseData = cycleInfo?.phaseData || { color: '#C4727F', colorDark: '#A85A66', bgColor: '#FDE8EB' };
-
   const month = new Date().getMonth() + 1;
   const monthName = SEASONAL_MONTH_NAMES[month - 1];
   const { fruits = [], legumes = [] } = SEASONAL_FOODS[month] || {};
@@ -46,21 +42,12 @@ export default function DeSaison() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-6 pb-6">
       <BackButton />
 
-      {/* En-tête */}
-      <motion.div variants={item}>
-        <div
-          className="w-12 h-12 rounded-[16px] flex items-center justify-center mb-4"
-          style={{ backgroundColor: phaseData.bgColor, boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
-        >
-          <Leaf size={22} style={{ color: phaseData.colorDark }} />
-        </div>
-        <h1 className="font-display text-[28px] text-luna-text leading-tight">
-          De saison <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>en {monthName}</em>
-        </h1>
-        <p className="text-sm font-body text-luna-text-muted mt-2 leading-relaxed">
-          Manger de saison, c'est plus de goût, plus de nutriments et moins cher. Voici ce que la nature t'offre ce mois-ci.
-        </p>
-      </motion.div>
+      {/* En-tête aurore */}
+      <AuroraHeader
+        title="De saison"
+        accent={`Le meilleur de ${monthName}`}
+        intro="Manger de saison, c'est plus de goût, plus de nutriments et moins cher. Voici ce que la nature t'offre ce mois-ci."
+      />
 
       {/* Fruits */}
       <motion.div variants={item}>

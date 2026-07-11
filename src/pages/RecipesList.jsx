@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search, Zap, Sprout, Leaf, ChefHat, Flame } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
@@ -141,18 +142,20 @@ export default function RecipesList() {
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
-      {/* En-tête */}
+      {/* En-tête aurore, avec le bouton filtres à droite du titre */}
       <motion.div variants={item}>
         <BackButton />
-        <div className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            <h1 className="font-display text-2xl text-luna-text leading-tight">Toutes les recettes</h1>
-            <p className="text-xs font-body text-luna-text-hint mt-0.5">
-              {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''} adaptées à ta phase
-              {dietLabel && <span> · 🌱 {dietLabel}</span>}
-              {maxTime && <span> · 🕐 ≤ {maxTime} min</span>}
-            </p>
-          </div>
+      </motion.div>
+      <AuroraHeader
+        title="Toutes les recettes"
+        intro={(
+          <>
+            {allRecipes.length} recette{allRecipes.length > 1 ? 's' : ''} adaptées à ta phase
+            {dietLabel && <span> · 🌱 {dietLabel}</span>}
+            {maxTime && <span> · 🕐 ≤ {maxTime} min</span>}
+          </>
+        )}
+        action={(
           <button
             onClick={() => setShowFilters(!showFilters)}
             aria-label="Filtres"
@@ -172,8 +175,8 @@ export default function RecipesList() {
               <span className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white" style={{ backgroundColor: phaseData.color }} />
             )}
           </button>
-        </div>
-      </motion.div>
+        )}
+      />
 
       {/* Barre de recherche */}
       <motion.div variants={item}>

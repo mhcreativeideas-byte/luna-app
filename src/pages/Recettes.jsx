@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, Apple, Refrigerator, ShoppingCart, ChevronRight, Lightbulb } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
+import { PHASE_FOOD_ACCENTS, PHASE_FOOD_INTROS } from '../data/phaseHeaders';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { buildRequiredTags, filterRecipes } from '../data/recipeFilters';
 import { getDailyInsight } from '../data/insights';
@@ -92,38 +94,23 @@ export default function Recettes() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <TopMenu />
 
-      {/* En-tête : titre + pastille de phase */}
-      <motion.div variants={item}>
-        <h1 className="font-display text-[28px] text-luna-text leading-tight">Manger</h1>
-        <div
-          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 mt-2"
-          style={{ backgroundColor: phaseData.bgColor }}
-        >
-          <span className="text-sm leading-none">{phaseData.icon}</span>
-          <span className="text-xs font-body font-semibold" style={{ color: phaseData.colorDark }}>
-            {phaseData.shortName}
-          </span>
-        </div>
-      </motion.div>
+      {/* En-tête aurore : phase · jour, titre, phrase de la phase */}
+      <AuroraHeader
+        title="Manger"
+        accent={PHASE_FOOD_ACCENTS[currentPhase]}
+        intro={PHASE_FOOD_INTROS[currentPhase]}
+      />
 
-      {/* Recettes en vedette — bandeau pleine largeur */}
+      {/* Recettes — même ligne que les autres, juste en tête de pile */}
       <motion.div variants={item}>
-        <Link
+        <Row
           to="/recettes-liste"
-          className="flex items-center gap-3.5 rounded-[24px] p-5 active:scale-[0.99] transition-transform"
-          style={{ backgroundColor: '#FDE8EB', boxShadow: '0 8px 26px rgba(45,34,38,0.05)' }}
-        >
-          <div className="w-12 h-12 rounded-[16px] bg-white flex items-center justify-center flex-shrink-0">
-            <BookOpen size={22} style={{ color: '#C4727F' }} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-display text-xl text-luna-text leading-tight">Recettes</p>
-            <p className="text-[11px] font-body text-luna-text-muted mt-0.5">
-              {recipes ? `${recipeCount} adaptées à toi` : 'Adaptées à ta phase'}
-            </p>
-          </div>
-          <ChevronRight size={18} style={{ color: '#C4727F' }} className="flex-shrink-0" />
-        </Link>
+          iconBg="#FDE8EB"
+          iconColor="#C4727F"
+          Icon={BookOpen}
+          label="Recettes"
+          sub={recipes ? `${recipeCount} adaptées à toi` : 'Adaptées à ta phase'}
+        />
       </motion.div>
 
       {/* Les accès, en lignes empilées : Mon frigo, Aliments, Courses */}

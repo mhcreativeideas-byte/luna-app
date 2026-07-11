@@ -8,7 +8,7 @@ import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { parseMinutes, containsAllergen } from '../data/recipeFilters';
 import BackButton from '../components/ui/BackButton';
-import PhaseHero from '../components/food/PhaseHero';
+import AuroraHeader from '../components/ui/AuroraHeader';
 
 const container = {
   hidden: { opacity: 0 },
@@ -257,16 +257,12 @@ export default function MonFrigo() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <BackButton />
 
-      {/* Header — composant partagé compact */}
-      <motion.div variants={item}>
-        <PhaseHero
-          phaseData={phaseData}
-          section="Mon frigo"
-          titleMain="Qu'est-ce qu'on"
-          titleItalic="cuisine ?"
-          intro="Dis-nous ce que tu as, on te dit quoi cuisiner."
-        />
-      </motion.div>
+      {/* En-tête aurore */}
+      <AuroraHeader
+        title="Mon frigo"
+        accent="Qu'est-ce qu'on cuisine ?"
+        intro="Dis-nous ce que tu as, on te dit quoi cuisiner."
+      />
 
       {/* Search input */}
       <motion.div variants={item} className="relative">

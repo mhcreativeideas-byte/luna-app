@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, ChevronRight, CalendarDays, Droplets, Sun, Moon, BarChart3, Users } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import BottomSheet from '../components/ui/BottomSheet';
 import SharePartnerCard from '../components/cycle/SharePartnerCard';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES, getOvulationDay } from '../data/phases';
+import { PHASE_CYCLE_ACCENTS } from '../data/phaseHeaders';
 
 const PHASE_ICONS = {
   menstrual: Droplets,
@@ -58,11 +60,12 @@ export default function Dashboard() {
         <TopMenu />
       </motion.div>
 
-      {/* Titre */}
-      <motion.div variants={item}>
-        <h1 className="font-display text-[28px] text-luna-text leading-tight">Mon cycle</h1>
-        <p className="text-sm font-body text-luna-text-muted mt-1">Suis, comprends, anticipe.</p>
-      </motion.div>
+      {/* En-tête aurore */}
+      <AuroraHeader
+        title="Mon cycle"
+        accent={PHASE_CYCLE_ACCENTS[phase]}
+        intro="Suis, comprends, anticipe."
+      />
 
       {/* Cycle Circle — Phase-colored ring with luna logo */}
       <motion.div variants={item} className="flex flex-col items-center bg-white rounded-[32px] px-5 py-7" style={{ boxShadow: `0 14px 38px ${phaseData.color}2B` }}>
@@ -282,7 +285,9 @@ export default function Dashboard() {
             <CalendarDays size={20} className="text-white" />
           </div>
           <div className="flex-1 min-w-0 text-left">
-            <h2 className="font-display text-lg leading-tight">Mon calendrier</h2>
+            {/* Blanc en style direct : la règle globale h2 (index.css, hors layer)
+                écrase les classes Tailwind comme text-white */}
+            <h2 className="font-display text-lg leading-tight" style={{ color: '#FFFFFF' }}>Mon calendrier</h2>
             <p className="text-xs font-body text-white/80 mt-0.5">
               Suivi du mois, température, règles et spotting
             </p>

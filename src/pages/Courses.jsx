@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Sparkles, X, Check, Plus, PencilLine, Trash2 } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import ConfirmDialog from '../components/ui/ConfirmDialog';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
@@ -81,15 +82,14 @@ export default function Courses() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-4 pb-6">
       <BackButton />
 
-      {/* En-tête */}
-      <motion.div variants={item}>
-        <h1 className="font-display text-[28px] text-luna-text leading-tight">Mes courses</h1>
-        <p className="text-sm font-body text-luna-text-muted mt-1">
-          {remaining === 0
-            ? (shoppingList.length === 0 ? 'Ta liste est vide pour l\'instant.' : 'Tout est dans le panier ✓')
-            : `${remaining} article${remaining > 1 ? 's' : ''} restant${remaining > 1 ? 's' : ''}`}
-        </p>
-      </motion.div>
+      {/* En-tête aurore */}
+      <AuroraHeader
+        title="Mes courses"
+        accent="Prête pour la semaine"
+        intro={remaining === 0
+          ? (shoppingList.length === 0 ? 'Ta liste est vide pour l\'instant.' : 'Tout est dans le panier ✓')
+          : `${remaining} article${remaining > 1 ? 's' : ''} restant${remaining > 1 ? 's' : ''}`}
+      />
 
       {/* Générer depuis le menu du jour */}
       <motion.div variants={item}>

@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, ChevronRight, Apple, Check } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import DailyMenu from '../components/food/DailyMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
@@ -48,13 +49,16 @@ export default function Aujourdhui() {
         <TopMenu />
       </motion.div>
 
-      {/* Salutation */}
-      <motion.div variants={item}>
-        <h1 className="font-display text-[28px] md:text-4xl text-luna-text leading-tight">
-          {timeGreeting}, <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>{name || ''}.</em>
-        </h1>
-        <p className="text-sm font-body text-luna-text-muted mt-1">{dateLabel}</p>
-      </motion.div>
+      {/* Salutation — en-tête aurore, la date en ligne repère
+          (la phase et le jour du cycle sont déjà sur la carte juste dessous) */}
+      <AuroraHeader
+        kicker={dateLabel}
+        title={(
+          <>
+            {timeGreeting}, <em className="not-italic" style={{ fontStyle: 'italic', color: phaseData.colorDark }}>{name || ''}.</em>
+          </>
+        )}
+      />
 
       {/* Carte de phase compacte — ouvre l'onglet Mon cycle */}
       <motion.div variants={item}>

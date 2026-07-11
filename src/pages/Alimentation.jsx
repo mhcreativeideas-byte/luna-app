@@ -6,8 +6,9 @@ import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import BackButton from '../components/ui/BackButton';
-import PhaseHero from '../components/food/PhaseHero';
+import AuroraHeader from '../components/ui/AuroraHeader';
 import AddToListBanner from '../components/food/AddToListBanner';
+import { PHASE_FOOD_ACCENTS, PHASE_FOOD_INTROS } from '../data/phaseHeaders';
 
 const container = {
   hidden: { opacity: 0 },
@@ -16,20 +17,6 @@ const container = {
 const item = {
   hidden: { opacity: 0, y: 12 },
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
-const PHASE_FOOD_TITLES = {
-  menstrual: { main: 'Nourrir &', italic: 'Réparer' },
-  follicular: { main: 'Construire &', italic: 'Énergiser' },
-  ovulatory: { main: 'L\'éclat de', italic: 'la Nutrition' },
-  luteal: { main: 'Réconfort &', italic: 'Équilibre' },
-};
-
-const PHASE_FOOD_INTROS = {
-  menstrual: 'Pendant tes règles, concentre-toi sur les aliments riches en fer et anti-inflammatoires pour compenser les pertes.',
-  follicular: 'L\'œstrogène remonte. Ton corps est en mode construction. Protéines, zinc et probiotiques sont tes alliés.',
-  ovulatory: 'Pic hormonal : privilégie les fibres pour éliminer l\'excès d\'œstrogène et les antioxydants pour protéger tes cellules.',
-  luteal: 'Ton métabolisme augmente un peu (environ 5 %). Nourris-le avec des glucides complexes et du magnésium. Les envies de sucre sont normales.',
 };
 
 // Nom d'aliment → chemin image dans public/foods/
@@ -205,7 +192,6 @@ export default function Alimentation() {
 
   const phase = cycleInfo?.phase || 'follicular';
   const phaseData = PHASES[phase];
-  const titles = PHASE_FOOD_TITLES[phase];
   const nutrientsFull = useMemo(() => phaseData.nutrientsFull || {}, [phaseData]);
 
   const selectedFood = selected?.phase === phase ? selected.name : null;
@@ -286,16 +272,12 @@ export default function Alimentation() {
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
       <BackButton />
 
-      {/* ===== HERO ===== */}
-      <motion.div variants={item}>
-        <PhaseHero
-          phaseData={phaseData}
-          section="Nutrition"
-          titleMain={titles.main}
-          titleItalic={titles.italic}
-          intro={PHASE_FOOD_INTROS[phase]}
-        />
-      </motion.div>
+      {/* En-tête aurore */}
+      <AuroraHeader
+        title="Aliments"
+        accent={PHASE_FOOD_ACCENTS[phase]}
+        intro={PHASE_FOOD_INTROS[phase]}
+      />
 
 
       {/* ===== ALIMENTS — grille 2 colonnes ===== */}
