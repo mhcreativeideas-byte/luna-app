@@ -275,7 +275,20 @@ export default function Settings() {
         <SettingToggle
           label="Activer les notifications"
           checked={notifications}
-          onChange={(val) => dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } })}
+          onChange={async (val) => {
+            // Sur iPhone, activer le réglage doit aussi obtenir la permission
+            // système : sans elle, aucun rappel ne part (l'onboarding est le
+            // seul autre endroit qui la demande, et les comptes créés avant
+            // ne sont jamais passés par cet écran).
+            if (val && Capacitor.isNativePlatform()) {
+              const { requestNotifPermission } = await import('../lib/notifications');
+              const ok = await requestNotifPermission();
+              if (!ok) {
+                toast('Autorise luna dans Réglages → Notifications de ton iPhone');
+              }
+            }
+            dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } });
+          }}
         />
       </Section>
 
