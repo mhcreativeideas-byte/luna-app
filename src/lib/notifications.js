@@ -6,22 +6,27 @@
 // La permission n'est JAMAIS demandée à froid : uniquement via
 // requestNotifPermission(), appelée depuis l'écran d'explication
 // après l'onboarding (ou depuis les Paramètres).
+//
+// ⚠️ PIÈGE (corrigé le 2026-07-12) : ne JAMAIS passer l'objet
+// LocalNotifications dans un `await` (ex. `await plugin()` où la
+// fonction renvoie l'objet). C'est un Proxy Capacitor : `await` lit
+// sa propriété `.then`, que le Proxy fabrique comme une pseudo-méthode
+// native… qui ne répond jamais. La promesse pend pour toujours, sans
+// erreur — les rappels n'ont jamais fonctionné en natif à cause de ça.
+// On importe donc le module statiquement et on appelle ses méthodes
+// directement : seule la promesse de la MÉTHODE est attendue.
 // ============================================================
 import { Capacitor } from '@capacitor/core';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import { buildNotificationPlan } from './notificationPlan';
 
 const isNative = () => Capacitor.isNativePlatform();
-
-async function plugin() {
-  const { LocalNotifications } = await import('@capacitor/local-notifications');
-  return LocalNotifications;
-}
 
 // Permission déjà accordée ? (sans rien déclencher)
 export async function hasNotifPermission() {
   if (!isNative()) return false;
   try {
-    const { display } = await (await plugin()).checkPermissions();
+    const { display } = await LocalNotifications.checkPermissions();
     return display === 'granted';
   } catch {
     return false;
@@ -33,7 +38,7 @@ export async function hasNotifPermission() {
 export async function requestNotifPermission() {
   if (!isNative()) return false;
   try {
-    const { display } = await (await plugin()).requestPermissions();
+    const { display } = await LocalNotifications.requestPermissions();
     return display === 'granted';
   } catch {
     return false;
@@ -46,18 +51,17 @@ export async function requestNotifPermission() {
 export async function syncNotifications(profile) {
   if (!isNative()) return;
   try {
-    const ln = await plugin();
     if (!(await hasNotifPermission())) return;
 
-    const { notifications: pending } = await ln.getPending();
+    const { notifications: pending } = await LocalNotifications.getPending();
     if (pending?.length) {
-      await ln.cancel({ notifications: pending.map((n) => ({ id: n.id })) });
+      await LocalNotifications.cancel({ notifications: pending.map((n) => ({ id: n.id })) });
     }
 
     const plan = buildNotificationPlan(profile);
     if (!plan.length) return;
 
-    await ln.schedule({
+    await LocalNotifications.schedule({
       notifications: plan.map((n) => ({
         id: n.id,
         title: n.title,

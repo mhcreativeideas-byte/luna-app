@@ -117,7 +117,7 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user, lastPeriodDate, cravings, notifPrefs, todayCheckIn } = useCycle();
 
   const [confirm, setConfirm] = useState(null);
 
@@ -276,18 +276,32 @@ export default function Settings() {
           label="Activer les notifications"
           checked={notifications}
           onChange={async (val) => {
-            // Sur iPhone, activer le réglage doit aussi obtenir la permission
-            // système : sans elle, aucun rappel ne part (l'onboarding est le
-            // seul autre endroit qui la demande, et les comptes créés avant
-            // ne sont jamais passés par cet écran).
+            // Le réglage bascule tout de suite : la demande de permission ne
+            // doit jamais bloquer l'interrupteur.
+            dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } });
             if (val && Capacitor.isNativePlatform()) {
-              const { requestNotifPermission } = await import('../lib/notifications');
+              const { requestNotifPermission, syncNotifications } = await import('../lib/notifications');
               const ok = await requestNotifPermission();
-              if (!ok) {
+              if (ok) {
+                // Programme les rappels tout de suite : la resync automatique
+                // du contexte est passée pendant que la pop-up était ouverte
+                // (permission pas encore accordée), sinon rien ne serait posé
+                // avant la prochaine ouverture de l'app.
+                syncNotifications({
+                  name,
+                  lastPeriodDate,
+                  cycleLength,
+                  periodLength,
+                  healthIssues,
+                  cravings,
+                  notifications: true,
+                  notifPrefs,
+                  todayCheckInDone: !!todayCheckIn,
+                });
+              } else {
                 toast('Autorise luna dans Réglages → Notifications de ton iPhone');
               }
             }
-            dispatch({ type: 'UPDATE_SETTINGS', payload: { notifications: val } });
           }}
         />
       </Section>
