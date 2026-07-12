@@ -6,6 +6,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { AFFIRMATIONS, MORNING_RITUALS } from '../data/affirmations';
 import { PHASES } from '../data/phases';
 import TopMenu from '../components/ui/TopMenu';
+import PhaseIcon from '../components/ui/PhaseIcon';
 
 const container = {
   hidden: { opacity: 0 },
@@ -594,7 +595,7 @@ export default function Journal() {
                             {/* Phase + mood preview */}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5">
-                                {entryPhase && <span className="text-xs">{entryPhase.icon}</span>}
+                                {entryPhase && <PhaseIcon phase={entry.phase} size={12} />}
                                 <span className="text-xs font-body font-semibold text-luna-text">{entryPhase?.shortName || '—'}</span>
                                 {daySport && <span className="text-[9px] px-1.5 py-0.5 rounded-pill font-body font-semibold" style={{ backgroundColor: `${entryPhase?.color || '#C4727F'}20`, color: entryPhase?.colorDark || '#8A4550' }}>🏃 {daySport.type}</span>}
                               </div>

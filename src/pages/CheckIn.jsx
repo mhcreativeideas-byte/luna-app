@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Check } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
+import { tapSuccess } from '../lib/haptics';
 import { SYMPTOM_CATEGORIES, TAG_COLORS } from '../data/symptoms';
 
 function CustomTagPill({ onAdd, color }) {
@@ -86,6 +87,7 @@ export default function CheckIn() {
   };
 
   const save = () => {
+    tapSuccess();
     const _n = new Date();
     const today = `${_n.getFullYear()}-${String(_n.getMonth() + 1).padStart(2, '0')}-${String(_n.getDate()).padStart(2, '0')}`;
     dispatch({

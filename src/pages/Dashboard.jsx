@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, ChevronRight, CalendarDays, Droplets, Sun, Moon, BarChart3, Users } from 'lucide-react';
+import { ChevronRight, CalendarDays, BarChart3, Users } from 'lucide-react';
+import { PHASE_ICONS } from '../data/phaseIcons';
 import TopMenu from '../components/ui/TopMenu';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import BottomSheet from '../components/ui/BottomSheet';
@@ -11,12 +12,6 @@ import { useCycle } from '../contexts/CycleContext';
 import { PHASES, getOvulationDay } from '../data/phases';
 import { PHASE_CYCLE_ACCENTS } from '../data/phaseHeaders';
 
-const PHASE_ICONS = {
-  menstrual: Droplets,
-  follicular: Sun,
-  ovulatory: Sparkles,
-  luteal: Moon,
-};
 
 const container = {
   hidden: { opacity: 0 },

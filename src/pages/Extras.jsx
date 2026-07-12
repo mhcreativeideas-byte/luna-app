@@ -4,6 +4,7 @@ import { Dumbbell, Moon, ChevronRight, Sparkles, BookOpen, MessageCircle } from 
 import { Link } from 'react-router-dom';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
+import PhaseIcon from '../components/ui/PhaseIcon';
 import BackButton from '../components/ui/BackButton';
 import { ExtrasSkeleton } from '../components/ui/SkeletonLoader';
 
@@ -150,10 +151,10 @@ export default function Extras() {
       {/* Header */}
       <motion.div variants={item}>
         <div
-          className="w-12 h-12 rounded-[16px] flex items-center justify-center text-2xl mb-4"
+          className="w-12 h-12 rounded-[16px] flex items-center justify-center mb-4"
           style={{ backgroundColor: phaseData.bgColor, boxShadow: '0 4px 14px rgba(45,34,38,0.06)' }}
         >
-          {phaseData.icon}
+          <PhaseIcon phase={phase} size={22} />
         </div>
         <p className="text-[11px] font-body text-luna-text-hint uppercase tracking-widest mb-2">
           {phaseData.shortName} · Bien-être

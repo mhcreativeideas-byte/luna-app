@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, ChevronRight, Apple, Check } from 'lucide-react';
 import TopMenu from '../components/ui/TopMenu';
+import PhaseIcon from '../components/ui/PhaseIcon';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import DailyMenu from '../components/food/DailyMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
@@ -17,16 +19,42 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
+// Compte doucement de 1 jusqu'au jour du cycle à l'ouverture de l'écran.
+// Le setTimeout final garantit la bonne valeur même si requestAnimationFrame
+// est suspendu (onglet en arrière-plan, navigateur d'aperçu).
+function useCountUp(target, duration = 700) {
+  const [value, setValue] = useState(target > 0 ? 1 : 0);
+  useEffect(() => {
+    if (!target || target <= 1) return undefined;
+    let raf;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setValue(Math.max(1, Math.round(eased * target)));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    const fallback = setTimeout(() => setValue(target), duration + 200);
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(fallback);
+    };
+  }, [target, duration]);
+  return target > 1 ? value : target;
+}
+
 // Écran d'accueil « Aujourd'hui » : où j'en suis dans mon cycle + que manger
 // aujourd'hui. Volontairement court (4 blocs) — le détail vit dans les onglets
 // Manger et Mon cycle.
 export default function Aujourdhui() {
   const { cycleInfo, name, cycleLength, todayCheckIn } = useCycle();
   const navigate = useNavigate();
+  const displayedDay = useCountUp(cycleInfo?.currentDay ?? 0);
 
   if (!cycleInfo) return <DashboardSkeleton />;
 
-  const { phaseData, currentDay, energyLevel, daysUntilPeriod } = cycleInfo;
+  const { phaseData, energyLevel, daysUntilPeriod } = cycleInfo;
 
   const hour = new Date().getHours();
   const timeGreeting = hour < 12 ? 'Bonjour' : hour < 18 ? 'Bon après-midi' : 'Bonsoir';
@@ -77,10 +105,10 @@ export default function Aujourdhui() {
             <span className="text-[11px] font-body font-bold uppercase tracking-widest" style={{ color: phaseData.colorDark }}>
               {phaseData.shortName}
             </span>
-            <span className="text-lg leading-none">{phaseData.icon}</span>
+            <PhaseIcon phase={cycleInfo.phase} size={18} />
           </div>
           <p className="font-display font-bold leading-none mb-1.5" style={{ color: phaseData.colorDark, fontSize: '2.1rem' }}>
-            Jour {currentDay}
+            Jour {displayedDay}
           </p>
           <p className="text-xs font-body text-luna-text-muted mb-4">
             sur {cycleLength} · {periodLabel}

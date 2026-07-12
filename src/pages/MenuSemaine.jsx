@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Check, ChevronDown } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
+import PhaseIcon from '../components/ui/PhaseIcon';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES, getPhaseForDay } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
@@ -154,7 +155,7 @@ export default function MenuSemaine() {
                   className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-body font-bold flex-shrink-0"
                   style={{ backgroundColor: pd.bgColor, color: pd.colorDark }}
                 >
-                  {pd.icon} {pd.shortName}
+                  <PhaseIcon phase={d.phase} size={11} style={{ color: pd.colorDark }} /> {pd.shortName}
                 </span>
                 <ChevronDown
                   size={17}

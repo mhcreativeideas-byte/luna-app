@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Droplets, Check, CircleDot, Thermometer, Trash2, Pencil } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import BottomSheet from '../components/ui/BottomSheet';
+import PhaseIcon from '../components/ui/PhaseIcon';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle, parseLocalDate } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
@@ -231,10 +232,10 @@ export default function Calendar() {
                   </h3>
                 </div>
                 <div
-                  className="w-12 h-12 rounded-full flex items-center justify-center text-xl"
+                  className="w-12 h-12 rounded-full flex items-center justify-center"
                   style={{ backgroundColor: `${PHASES[selectedDay.phase]?.color}20` }}
                 >
-                  {PHASES[selectedDay.phase]?.icon}
+                  <PhaseIcon phase={selectedDay.phase} size={20} />
                 </div>
               </div>
             </div>

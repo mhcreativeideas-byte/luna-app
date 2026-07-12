@@ -1,6 +1,7 @@
 import { ShoppingCart, Check, Plus } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 import { toast } from '../../lib/toast';
+import { tapLight } from '../../lib/haptics';
 
 // Bannière douce « Ajouter aux courses » — affichée dans les fiches recette,
 // entre la description et les ingrédients. Rose quand la recette n'est pas
@@ -12,6 +13,7 @@ export default function AddToListBanner({ recipe, source = 'recette' }) {
   const inList = shoppingList.some((b) => b.id !== 'ajouts' && b.name === recipe.name);
 
   const add = () => {
+    tapLight();
     dispatch({
       type: 'ADD_SHOPPING_RECIPE',
       payload: { name: recipe.name, ingredients: recipe.ingredients, emoji: recipe.emoji, source },

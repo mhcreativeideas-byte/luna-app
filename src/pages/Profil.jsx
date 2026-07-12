@@ -7,6 +7,7 @@ import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
 import BackButton from '../components/ui/BackButton';
 import BottomSheet from '../components/ui/BottomSheet';
+import PhaseIcon from '../components/ui/PhaseIcon';
 import SharePartnerCard from '../components/cycle/SharePartnerCard';
 
 const container = {
@@ -150,8 +151,9 @@ export default function Profil() {
         </div>
         <h2 className="font-display text-xl text-luna-text">{name}</h2>
         {cycleInfo && (
-          <p className="text-xs font-body text-luna-text-hint mt-1">
-            {cycleInfo.phaseData.icon} {cycleInfo.phaseData.name}, jour {cycleInfo.currentDay}
+          <p className="text-xs font-body text-luna-text-hint mt-1 flex items-center justify-center gap-1.5">
+            <PhaseIcon phase={cycleInfo.phase} size={12} />
+            {cycleInfo.phaseData.name}, jour {cycleInfo.currentDay}
           </p>
         )}
       </motion.div>

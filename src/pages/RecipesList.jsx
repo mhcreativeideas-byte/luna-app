@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search, Zap, Sprout, Leaf, ChefHat, Flame } from 'lucide-react';
+import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search, Zap, Sprout, Leaf, ChefHat, Flame, UtensilsCrossed, Sunrise, Sun, Moon, Cookie, CupSoda } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
+import PhaseIcon from '../components/ui/PhaseIcon';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
@@ -20,22 +21,24 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
+// Icônes en trait fin (mêmes familles que le menu du jour), plus d'émojis
+// système qui varient selon l'appareil.
 const MEAL_TYPES = [
-  { id: 'all', label: 'Tout', icon: '🍽️' },
-  { id: 'favorites', label: 'Favoris', icon: '❤️' },
-  { id: 'breakfast', label: 'Petit-déj', icon: '🌅' },
-  { id: 'lunch', label: 'Déjeuner', icon: '☀️' },
-  { id: 'dinner', label: 'Dîner', icon: '🌙' },
-  { id: 'snack', label: 'Snack', icon: '🍪' },
-  { id: 'drink', label: 'Boisson', icon: '🥤' },
+  { id: 'all', label: 'Tout', Icon: UtensilsCrossed },
+  { id: 'favorites', label: 'Favoris', Icon: Heart },
+  { id: 'breakfast', label: 'Petit-déj', Icon: Sunrise },
+  { id: 'lunch', label: 'Déjeuner', Icon: Sun },
+  { id: 'dinner', label: 'Dîner', Icon: Moon },
+  { id: 'snack', label: 'Snack', Icon: Cookie },
+  { id: 'drink', label: 'Boisson', Icon: CupSoda },
 ];
 
 const PHASE_FILTERS = [
   { id: 'current', label: 'Ma phase' },
-  { id: 'menstrual', label: 'Menstruelle', icon: '🌙' },
-  { id: 'follicular', label: 'Folliculaire', icon: '🌱' },
-  { id: 'ovulatory', label: 'Ovulatoire', icon: '☀️' },
-  { id: 'luteal', label: 'Lutéale', icon: '🍂' },
+  { id: 'menstrual', label: 'Menstruelle' },
+  { id: 'follicular', label: 'Folliculaire' },
+  { id: 'ovulatory', label: 'Ovulatoire' },
+  { id: 'luteal', label: 'Lutéale' },
 ];
 
 const CALORIE_OPTIONS = [
@@ -282,7 +285,13 @@ export default function RecipesList() {
                       className="flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-body font-semibold transition-all"
                       style={selectedPhase === pf.id ? { backgroundColor: phaseData.color, color: 'white' } : { backgroundColor: '#F5F3F1', color: '#8A7B7F' }}
                     >
-                      {pf.icon && <span className="text-[10px]">{pf.icon}</span>}
+                      {pf.id !== 'current' && (
+                        <PhaseIcon
+                          phase={pf.id}
+                          size={11}
+                          style={selectedPhase === pf.id ? { color: 'white' } : undefined}
+                        />
+                      )}
                       {pf.label}
                     </button>
                   ))}
@@ -432,7 +441,7 @@ export default function RecipesList() {
                 boxShadow: '0 1px 4px rgba(45,34,38,0.06)',
               }}
             >
-              <span>{mt.icon}</span>
+              <mt.Icon size={13} strokeWidth={2.2} />
               {mt.label}
             </button>
           ))}

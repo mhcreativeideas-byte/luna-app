@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { UtensilsCrossed, Sun, Moon, Settings, LogOut } from 'lucide-react';
 import { useCycle } from '../../contexts/CycleContext';
 import ConfirmDialog from '../ui/ConfirmDialog';
+import PhaseIcon from '../ui/PhaseIcon';
 
 const navItems = [
   { to: '/recettes', icon: UtensilsCrossed, label: 'Manger' },
@@ -34,7 +35,7 @@ export default function Sidebar() {
           style={{ backgroundColor: cycleInfo.phaseData.bgColor }}
         >
           <div className="flex items-center gap-3">
-            <span className="text-2xl">{cycleInfo.phaseData.icon}</span>
+            <PhaseIcon phase={cycleInfo.phase} size={24} />
             <div>
               <p className="text-sm font-semibold font-body" style={{ color: cycleInfo.phaseData.colorDark }}>
                 {cycleInfo.phaseData.shortName}
