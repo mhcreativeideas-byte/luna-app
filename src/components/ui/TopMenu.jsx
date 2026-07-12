@@ -17,8 +17,12 @@ export default function TopMenu() {
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Menu"
         aria-expanded={menuOpen}
-        className="w-11 h-11 rounded-full bg-white border border-gray-100 flex items-center justify-center text-luna-text-muted hover:text-luna-text hover:border-gray-200 transition-all active:scale-95"
-        style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
+        className="w-11 h-11 rounded-full flex items-center justify-center text-luna-text-muted hover:text-luna-text transition-all active:scale-95 backdrop-blur-[16px]"
+        style={{
+          backgroundColor: 'rgba(255,255,255,0.5)',
+          border: '1px solid rgba(255,255,255,0.7)',
+          boxShadow: '0 4px 14px rgba(45,34,38,0.05)',
+        }}
       >
         <MoreHorizontal size={18} />
       </button>
