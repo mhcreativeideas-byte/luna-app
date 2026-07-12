@@ -141,7 +141,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 420,
     nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane', 'Glutathion'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍳',
     ingredients: [
       '2 œufs',
@@ -402,13 +402,13 @@ breakfast: [
     cuisine: 'fusion',
     calories: 261,
     nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍫',
     ingredients: [
       '3 c. à soupe Graines de chia',
       '200ml Lait végétal',
       '1 c. à soupe Cacao en poudre',
-      '1 c. à soupe Sirop d\'érable',
+      '1 c. à soupe Sirop d\'érable (optionnel)',
       '1/2 Banane',
       '1 c. à soupe Noix de coco râpée',
     ],
@@ -762,14 +762,14 @@ breakfast: [
     cuisine: 'fusion',
     calories: 489,
     nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
       '50g Flocons de sarrasin',
       '200ml Lait végétal',
       '1 Poire',
       '15g Noix de pécan',
-      '1 c. à soupe Sirop d\'érable',
+      '1 c. à soupe Sirop d\'érable (optionnel)',
       '1/2 c. à café Cannelle',
     ],
     steps: [
@@ -842,7 +842,7 @@ breakfast: [
     cuisine: 'asiatique',
     calories: 310,
     nutrients: ['Lentinane', 'Acide rosmarinique', 'Choline', 'Allicine', 'Glutathion'],
-    tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍽️',
     ingredients: [
     '3 Œufs',
@@ -868,7 +868,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 395,
     nutrients: ['Rutine', 'Oméga-3', 'Oméga-9', 'Vitamine D', 'Glutathion'],
-    tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🐟',
     ingredients: [
     '80g Farine de sarrasin',
@@ -952,7 +952,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 450,
     nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales', 'Glutathion', 'Zinc'],
-    tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍠',
     ingredients: [
       '1 grosse patate douce',
@@ -979,7 +979,7 @@ lunch: [
     cuisine: 'francais',
     calories: 480,
     nutrients: ['Calcium', 'Glucides complexes', 'Vitamine B6', 'Magnésium'],
-    tags: ['vegetarien'],
+    tags: ['sopk_friendly', 'spm_friendly', 'vegetarien'],
     emoji: '🧀',
     ingredients: [
       '1 patate douce',
@@ -1060,7 +1060,7 @@ lunch: [
     cuisine: 'indien',
     calories: 626,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
       '1 grosse Patate douce',
@@ -1089,7 +1089,7 @@ lunch: [
     cuisine: 'francais',
     calories: 401,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧀',
     ingredients: [
       '2 Courgette',
@@ -1231,7 +1231,7 @@ lunch: [
     cuisine: 'indien',
     calories: 419,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
       '150g Lentilles corail',
@@ -1317,7 +1317,7 @@ lunch: [
     cuisine: 'mexicain',
     calories: 350,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
       '150g Riz complet',
@@ -1438,7 +1438,7 @@ lunch: [
     cuisine: 'indien',
     calories: 269,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
       '1 Patate douce',
@@ -1545,7 +1545,7 @@ lunch: [
     cuisine: 'indien',
     calories: 370,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
       '150g Lentilles jaunes (toor dal)',
@@ -1603,7 +1603,7 @@ lunch: [
     cuisine: 'francais',
     calories: 231,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
       '400g Tomates concassées',
@@ -1972,7 +1972,7 @@ dinner: [
     cuisine: 'francais',
     calories: 430,
     nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines', 'Glutathion'],
-    tags: ['sans_gluten', 'vegetarien'],
+    tags: ['sopk_friendly', 'spm_friendly', 'sans_gluten', 'vegetarien'],
     emoji: '🧀',
     ingredients: [
       '2 pommes de terre moyennes',
@@ -1998,7 +1998,7 @@ dinner: [
     cuisine: 'italien',
     calories: 450,
     nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6', 'Glutathion'],
-    tags: ['vegetarien', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sopk_friendly'],
     emoji: '🍝',
     ingredients: [
       '200 g de pâtes complètes',
@@ -2078,7 +2078,7 @@ dinner: [
     cuisine: 'italien',
     calories: 390,
     nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B', 'Glutathion'],
-    tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍄',
     ingredients: [
       '150 g de sarrasin (kasha)',
@@ -2105,7 +2105,7 @@ dinner: [
     cuisine: 'francais',
     calories: 251,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
       '300g Brocoli',
@@ -2296,7 +2296,7 @@ dinner: [
     cuisine: 'francais',
     calories: 291,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
       '150g Lentilles vertes',
@@ -2380,7 +2380,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 408,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍆',
     ingredients: [
       '2 Aubergines',
@@ -2550,7 +2550,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 584,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🎃',
     ingredients: [
       '1/2 Courge butternut',
@@ -2666,7 +2666,7 @@ dinner: [
     cuisine: 'mexicain',
     calories: 355,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍠',
     ingredients: [
       '2 Patate douce',
@@ -3005,7 +3005,7 @@ snack: [
     cuisine: 'francais',
     calories: 280,
     nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-    tags: ['vegetarien', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'vegetarien', 'sans_lactose'],
     emoji: '🥜',
     ingredients: [
       '1 tranche de pain complet',
@@ -3029,7 +3029,7 @@ snack: [
     cuisine: 'fusion',
     calories: 180,
     nutrients: ['Magnésium', 'Protéines végétales', 'Glucides complexes', 'Fer', 'Zinc'],
-    tags: ['vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['spm_friendly', 'vegan', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🥜',
     ingredients: [
       '100 g de flocons d\'avoine',
@@ -3128,7 +3128,7 @@ snack: [
     cuisine: 'fusion',
     calories: 196,
     nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
       '20g Chocolat noir 70%',
@@ -3515,7 +3515,7 @@ drink: [
     cuisine: 'fusion',
     calories: 5,
     nutrients: ['Antioxydants', 'Propriétés apaisantes'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍵',
     ingredients: [
       '1 c. à soupe de fleurs de camomille séchées',
@@ -3587,7 +3587,7 @@ drink: [
     cuisine: 'fusion',
     calories: 280,
     nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines', 'Zinc'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥤',
     ingredients: [
       '1 banane congelée',
@@ -3663,7 +3663,7 @@ drink: [
     cuisine: 'fusion',
     calories: 15,
     nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
       '10 feuilles Menthe fraîche',
@@ -3712,7 +3712,7 @@ drink: [
     cuisine: 'fusion',
     calories: 15,
     nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
       '2 c. à café Feuilles de framboisier séchées',
@@ -3811,7 +3811,7 @@ drink: [
     cuisine: 'fusion',
     calories: 310,
     nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort", 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
       '250ml Lait de coco',
@@ -3986,14 +3986,14 @@ drink: [
     cuisine: 'fusion',
     calories: 25,
     nutrients: ['Gingérol (inhibiteur COX-2)', 'Apigénine', 'Bisabolol', 'Acide rosmarinique'],
-    tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥤',
     ingredients: [
     '2 cm Gingembre frais',
     '1 c. à café Camomille',
     '1 c. à café Mélisse',
     '250ml Eau bouillante',
-    '1 c. à café Sirop d\'agave',
+    '1 c. à café Sirop d\'agave (optionnel)',
     '1/4 Citron',
     ],
     steps: [

@@ -8,7 +8,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 410,
     nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥣',
     ingredients: [
       '1 banane congelée',
@@ -32,7 +32,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 420,
     nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
-    tags: ['vegetarien', 'sans_gluten', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sopk_friendly'],
     emoji: '🥣',
     ingredients: [
       '1 banane congelée',
@@ -56,7 +56,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 390,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍳',
     ingredients: [
       '3 œufs',
@@ -180,7 +180,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 483,
     nutrients: ["Protéines complètes", "Vitamines B", "Antioxydants", "Fibres", 'Glutathion'],
-    tags: ['sans_lactose', "vegetarien", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', 'sans_lactose', "vegetarien", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
       '2 Œufs',
@@ -234,7 +234,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 455,
     nutrients: ["Antioxydants", "Zinc", "Vitamines", "Énergie", 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥣',
     ingredients: [
       '100g Purée d\'açaí surgelée',
@@ -259,7 +259,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 339,
     nutrients: ["Vitamines B", "Vitamine D", "Protéines", "Magnésium"],
-    tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+    tags: ['sopk_friendly', 'spm_friendly', "vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🥞',
     ingredients: [
       '100g Farine de sarrasin',
@@ -415,7 +415,7 @@ breakfast: [
     cuisine: 'mediterraneen',
     calories: 241,
     nutrients: ["Vitamine C", "Protéines", "Fer", "Antioxydants", 'Glutathion'],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
       '2 Œufs',
@@ -443,7 +443,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 173,
     nutrients: ["Protéines", "Glucides complexes", "Potassium", "Fibres", 'Zinc'],
-    tags: ["vegetarien", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', "vegetarien", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥞',
     ingredients: [
       '1 Banane mûre',
@@ -466,7 +466,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 495,
     nutrients: ["Folates", "Protéines", "Calcium", "Prébiotiques", 'Glutathion'],
-    tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
       '3 Œufs',
@@ -571,7 +571,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 656,
     nutrients: ["Protéines complètes", "Vitamine C", "Fer", "Oméga-3", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
       '1/2 Mangue',
@@ -648,7 +648,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 487,
     nutrients: ["Vitamines B", "Vitamine D", "Protéines", "Magnésium", 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+    tags: ['sopk_friendly', 'spm_friendly', "vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🍳',
     ingredients: [
       '50g Flocons d\'avoine sans gluten',
@@ -699,7 +699,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 503,
     nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥤',
     ingredients: [
       '1 Banane congelée',
@@ -832,7 +832,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 520,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🥦',
     ingredients: [
       '200g de tofu ferme',
@@ -858,7 +858,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 550,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['spm_friendly', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍗',
     ingredients: [
       '1 filet de poulet',
@@ -883,7 +883,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 420,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'sans_gluten', 'sans_lactose'],
     emoji: '🦐',
     ingredients: [
       '200g de crevettes décortiquées',
@@ -910,7 +910,7 @@ lunch: [
     cuisine: 'mexicain',
     calories: 480,
     nutrients: ['Protéines', 'Zinc', 'Probiotiques', 'Glutathion'],
-    tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🌮',
     ingredients: [
       '200g de haricots noirs cuits',
@@ -937,7 +937,7 @@ lunch: [
     cuisine: 'mediterraneen',
     calories: 430,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
-    tags: ['vegetarien', 'sans_gluten'],
+    tags: ['sopk_friendly', 'spm_friendly', 'vegetarien', 'sans_gluten'],
     emoji: '🥗',
     ingredients: [
       '100g de quinoa',
@@ -991,7 +991,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 423,
     nutrients: ["Protéines", "Zinc", "Vitamine C", "Fer", 'Glutathion', 'Zinc'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
       '100g Quinoa',
@@ -1018,7 +1018,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 342,
     nutrients: ["Protéines", "Oméga-9", "Vitamine K", "Probiotiques", 'Glutathion', 'Probiotiques'],
-    tags: ["anti_fatigue"],
+    tags: ['sopk_friendly', 'spm_friendly', "anti_fatigue"],
     emoji: '🌯',
     ingredients: [
       '2 Tortilla complète',
@@ -1100,7 +1100,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 423,
     nutrients: ["Zinc", "Sélénium", "Vitamine C", "Magnésium", 'Glutathion', 'Zinc'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🦐',
     ingredients: [
       '200g Crevettes',
@@ -1156,7 +1156,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 543,
     nutrients: ["Zinc", "Protéines", "Vitamines B", "Vitamine C"],
-    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', 'sans_lactose', "vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
     emoji: '🫘',
     ingredients: [
       '200g Nouilles de riz',
@@ -1265,7 +1265,7 @@ lunch: [
     cuisine: 'mexicain',
     calories: 530,
     nutrients: ["Protéines", "Sélénium", "Vitamine C", "Oméga-3", 'Glutathion'],
-    tags: ['sans_lactose', 'sans_gluten', "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', 'sans_lactose', 'sans_gluten', "anti_fatigue", "spm_friendly"],
     emoji: '🐟',
     ingredients: [
       '200g Filet de cabillaud',
@@ -1292,7 +1292,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 553,
     nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer", 'Glutathion', 'Probiotiques', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🥣',
     ingredients: [
       '150g Tempeh',
@@ -1319,7 +1319,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 383,
     nutrients: ["Fer héminique", "Zinc", "Vitamine C", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥩',
     ingredients: [
       '200g Bœuf émincé',
@@ -1346,7 +1346,7 @@ lunch: [
     cuisine: 'mediterraneen',
     calories: 417,
     nutrients: ["Protéines", "Calcium", "Polyphénols", "Zinc", 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🥗',
     ingredients: [
       '100g Quinoa',
@@ -1374,7 +1374,7 @@ lunch: [
     cuisine: 'francais',
     calories: 330,
     nutrients: ["Zinc", "Fer", "Protéines végétales", "Fibres", 'Glutathion'],
-    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', 'sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
     emoji: '🍲',
     ingredients: [
       '300g Haricots blancs',
@@ -1402,7 +1402,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 420,
     nutrients: ["Fer héminique", "Zinc", "Protéines", "Vitamines variées", 'Glutathion', 'Zinc'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥩',
     ingredients: [
       '150g Riz complet',
@@ -1432,7 +1432,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 368,
     nutrients: ["Vitamine K", "Vitamine C", "Zinc", "Calcium", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
       '150g Chou kale',
@@ -1488,7 +1488,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 298,
     nutrients: ["Protéines", "Zinc", "Magnésium", "Vitamines"],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue"],
+    tags: ['sopk_friendly', 'spm_friendly', "sans_gluten", "sans_lactose", "anti_fatigue"],
     emoji: '🌯',
     ingredients: [
       '8 Feuilles de laitue',
@@ -1517,7 +1517,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 416,
     nutrients: ["Probiotiques", "Protéines", "Choline", "Bonnes graisses", 'Glutathion', 'Probiotiques', 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', "vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🍳',
     ingredients: [
       '100g Riz complet',
@@ -1544,7 +1544,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 295,
     nutrients: ["Oméga-3", "Fer", "Zinc", "Protéines", 'Zinc'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
       '100g Saumon fumé',
@@ -1572,7 +1572,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 471,
     nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer", 'Glutathion', 'Probiotiques', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🫘',
     ingredients: [
       '200g Tempeh',
@@ -1600,7 +1600,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 221,
     nutrients: ["Probiotiques", "Protéines", "Iode", "Enzymes", 'Glutathion', 'Probiotiques'],
-    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', 'sans_lactose', "vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
     emoji: '🍲',
     ingredients: [
       '2 c. à soupe Pâte miso',
@@ -1745,7 +1745,7 @@ lunch: [
     cuisine: 'francais',
     calories: 195,
     nutrients: ['Sulforaphane', 'Vitamine E', 'Gingérol', 'Allicine', 'Glutathion', 'Zinc'],
-    tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
     '400g Brocoli',
@@ -1829,7 +1829,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 295,
     nutrients: ['Oméga-3', 'Bétalaïnes', 'Carvone', 'Lignanes'],
-    tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🐟',
     ingredients: [
     '100g Saumon fumé',
@@ -1887,7 +1887,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 265,
     nutrients: ['Saponines', 'Lycopène', 'Eugénol', 'Allicine', 'Glutathion'],
-    tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
     '200g Haricots blancs',
@@ -1916,7 +1916,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 440,
     nutrients: ['Protéines', 'Probiotiques', 'Vitamines B', 'Glutathion'],
-    tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥘',
     ingredients: [
       '200g de tofu ferme',
@@ -1942,7 +1942,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 520,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍗',
     ingredients: [
       '1 filet de poulet',
@@ -1968,7 +1968,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 460,
     nutrients: ['Protéines', 'Probiotiques', 'Zinc', 'Glutathion'],
-    tags: ['vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
+    tags: ['sopk_friendly', 'spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
     emoji: '🥘',
     ingredients: [
       '200g de tempeh',
@@ -1995,7 +1995,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 430,
     nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🐟',
     ingredients: [
       '1 filet de dorade',
@@ -2048,7 +2048,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 470,
     nutrients: ['Protéines', 'Vitamines B', 'Énergie', 'Glutathion'],
-    tags: ['vegan', 'sans_lactose', 'anti_inflammatoire'],
+    tags: ['spm_friendly', 'vegan', 'sans_lactose', 'anti_inflammatoire'],
     emoji: '🍜',
     ingredients: [
       '100g de nouilles soba (sarrasin)',
@@ -2075,7 +2075,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 307,
     nutrients: ["Protéines", "Zinc", "Phytoœstrogènes", "Vitamine C", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🫘',
     ingredients: [
       '200g Tofu ferme',
@@ -2160,7 +2160,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 424,
     nutrients: ["Oméga-3", "Zinc", "Sélénium", "Protéines", 'Zinc'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🐟',
     ingredients: [
       '2 Pavé de saumon',
@@ -2187,7 +2187,7 @@ dinner: [
     cuisine: 'indien',
     calories: 361,
     nutrients: ["Zinc", "Protéines", "Fer", "Anti-inflammatoires", 'Glutathion'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍛',
     ingredients: [
       '300g Blanc de poulet',
@@ -2214,7 +2214,7 @@ dinner: [
     cuisine: 'francais',
     calories: 200,
     nutrients: ["Protéines", "Calcium", "Vitamines B", "Fibres", 'Glutathion'],
-    tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🥧',
     ingredients: [
       '4 Œufs',
@@ -2241,7 +2241,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 403,
     nutrients: ["Protéines", "Zinc", "Vitamine C", "Oméga-9", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🍣',
     ingredients: [
       '150g Riz à sushi',
@@ -2270,7 +2270,7 @@ dinner: [
     cuisine: 'francais',
     calories: 242,
     nutrients: ["Protéines", "Fer", "Calcium", "Fibres", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
+    tags: ['sopk_friendly', 'spm_friendly', "vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🧀',
     ingredients: [
       '3 Courgettes',
@@ -2297,7 +2297,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 348,
     nutrients: ["Oméga-3", "Protéines", "Sélénium", "Vitamine C", 'Glutathion'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥗',
     ingredients: [
       '2 Steak de thon',
@@ -2324,7 +2324,7 @@ dinner: [
     cuisine: 'italien',
     calories: 203,
     nutrients: ["Fer", "Zinc", "Protéines végétales", "Vitamines", 'Glutathion'],
-    tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "anti_fatigue", "spm_friendly"],
     emoji: '🍲',
     ingredients: [
       '200g Haricots blancs',
@@ -2354,7 +2354,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 365,
     nutrients: ["Oméga-3", "Vitamine D", "Vitamine C", "Protéines"],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🐟',
     ingredients: [
       '2 Pavé de saumon',
@@ -2435,7 +2435,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 297,
     nutrients: ["Oméga-3", "Vitamine E", "Folates", "Protéines", 'Zinc'],
-    tags: ["sans_gluten", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🐟',
     ingredients: [
       '2 Filets de truite',
@@ -2516,7 +2516,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 248,
     nutrients: ["Vitamine D", "Vitamines B", "Zinc", "Protéines", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🥣',
     ingredients: [
       '150g Riz complet',
@@ -2544,7 +2544,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 424,
     nutrients: ["Fer", "Zinc", "Vitamine B12", "Bêta-carotène", 'Glutathion'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍠',
     ingredients: [
       '1 kg Moules',
@@ -2572,7 +2572,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 484,
     nutrients: ["Zinc", "Magnésium", "Protéines", "Calcium", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🫘',
     ingredients: [
       '200g Tofu ferme',
@@ -2602,7 +2602,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 360,
     nutrients: ["Protéines", "Sélénium", "Vitamine C", "Antioxydants"],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🐟',
     ingredients: [
       '2 Filet de daurade',
@@ -2886,7 +2886,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 265,
     nutrients: ['Citral', 'Gingérol', 'Sélénium', 'Protéines'],
-    tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
+    tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🍽️',
     ingredients: [
     '2 Filet de cabillaud',
@@ -2944,7 +2944,7 @@ snack: [
     cuisine: 'fusion',
     calories: 200,
     nutrients: ['Zinc', 'Protéines', 'Vitamines B', 'Glutathion'],
-    tags: ['sans_lactose', 'vegetarien', 'sopk_friendly'],
+    tags: ['spm_friendly', 'sans_lactose', 'vegetarien', 'sopk_friendly'],
     emoji: '🥜',
     ingredients: [
       '150g de flocons d\'avoine',
@@ -3060,7 +3060,7 @@ snack: [
     cuisine: 'mediterraneen',
     calories: 278,
     nutrients: ["Zinc", "Calcium", "Protéines", "Fibres", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🫘',
     ingredients: [
       '200g Pois chiches cuits',
@@ -3129,7 +3129,7 @@ snack: [
     cuisine: 'fusion',
     calories: 123,
     nutrients: ["Zinc", "Sélénium", "Protéines", "Bonnes graisses", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥜',
     ingredients: [
       '30g Amandes',
@@ -3153,7 +3153,7 @@ snack: [
     cuisine: 'fusion',
     calories: 186,
     nutrients: ["Fibres prébiotiques", "Magnésium", "Protéines", "Régulation glycémique", 'Zinc'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍎',
     ingredients: [
       '1 Pomme',
@@ -3308,7 +3308,7 @@ snack: [
     cuisine: 'francais',
     calories: 356,
     nutrients: ["Protéines", "Sélénium", "Oméga-3", "Graisses saines", 'Glutathion'],
-    tags: ['sans_lactose', "anti_fatigue"],
+    tags: ['sopk_friendly', 'spm_friendly', 'sans_lactose', "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
       '1 tranche Pain complet',
@@ -3529,7 +3529,7 @@ drink: [
     cuisine: 'fusion',
     calories: 90,
     nutrients: ['Vitamines B', 'Zinc', 'Énergie'],
-    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥬',
     ingredients: [
       '2 branches de céleri',
@@ -3601,7 +3601,7 @@ drink: [
     cuisine: 'fusion',
     calories: 171,
     nutrients: ["Fer", "Vitamine C", "Hydratation", "Chlorophylle", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
+    tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
       '40g Épinards',
@@ -3674,7 +3674,7 @@ drink: [
     cuisine: 'fusion',
     calories: 140,
     nutrients: ["Probiotiques", "Microbiote", "Digestion", "Détox œstrogènes", 'Probiotiques'],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
+    tags: ['spm_friendly', "vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🫧',
     ingredients: [
       '250ml Kombucha nature',
