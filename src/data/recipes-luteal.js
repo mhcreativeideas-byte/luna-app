@@ -8,7 +8,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 320,
     nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Potassium', 'Zinc'],
-    tags: ['sans_lactose', 'sopk_friendly'],
+    tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥞',
     ingredients: [
       '1 banane mûre',
@@ -63,7 +63,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 310,
     nutrients: ['Magnésium', 'Glucides complexes', 'Fibres', 'Fer', 'Zinc'],
-    tags: ['sans_lactose', 'sopk_friendly'],
+    tags: ['vegetarien', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍎',
     ingredients: [
       '80 g de flocons d\'avoine',
@@ -89,7 +89,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 340,
     nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-    tags: ['sans_lactose'],
+    tags: ['vegetarien', 'sans_lactose'],
     emoji: '🥜',
     ingredients: [
       '2 tranches de pain complet',
@@ -114,7 +114,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 380,
     nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes', 'Glutathion', 'Zinc'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥣',
     ingredients: [
       '80 g de quinoa',
@@ -141,7 +141,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 420,
     nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍳',
     ingredients: [
       '2 œufs',
@@ -196,7 +196,7 @@ breakfast: [
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
-      '50g Flocons d\'avoine',
+      '50g Flocons d\'avoine sans gluten',
       '1 Pomme',
       '200ml Lait végétal',
       '1 c. à café Cannelle',
@@ -224,7 +224,7 @@ breakfast: [
     emoji: '🥤',
     ingredients: [
       '1 Banane',
-      '2 c. à soupe Flocons d\'avoine',
+      '2 c. à soupe Flocons d\'avoine sans gluten',
       '1 c. à soupe Cacao en poudre',
       '1 c. à soupe Beurre de cacahuète',
       '250ml Lait végétal',
@@ -245,7 +245,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 227,
     nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
-    tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍞',
     ingredients: [
       '2 tranches Pain complet',
@@ -263,7 +263,7 @@ breakfast: [
     whyThisPhase: 'Simple, rapide, réconfortant. Le magnésium du beurre d\'amande + le potassium de la banane = combo anti-crampes et anti-ballonnements.',
   },
   {
-    name: 'Granola bowl au yaourt et compote',
+    name: 'Granola sans gluten bowl au yaourt et compote',
     description: 'Les graines de chia apportent oméga-3 et fibres. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour bien démarrer la journée.',
     prepTime: '5 min',
     difficulty: 'debutant',
@@ -274,7 +274,7 @@ breakfast: [
     emoji: '🍦',
     ingredients: [
       '150g Yaourt nature',
-      '3 c. à soupe Granola',
+      '3 c. à soupe Granola sans gluten',
       '3 c. à soupe Compote de pomme',
       '1 c. à café Graines de chia',
       '1 c. à café Miel',
@@ -298,7 +298,7 @@ breakfast: [
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
-      '40g Flocons d\'avoine',
+      '40g Flocons d\'avoine sans gluten',
       '150ml Lait de coco',
       '1 c. à soupe Graines de chia',
       '1/2 Mangue',
@@ -321,7 +321,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 401,
     nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧁',
     ingredients: [
       '3 Bananes très mûres',
@@ -463,7 +463,7 @@ breakfast: [
       '1 c. à soupe Cacao en poudre',
       '150ml Lait végétal',
       '1 c. à café Miel',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
       '1 c. à café Graines de chia',
     ],
     steps: [
@@ -485,7 +485,7 @@ breakfast: [
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
-      '50g Flocons d\'avoine',
+      '50g Flocons d\'avoine sans gluten',
       '200ml Lait',
       '15g Chocolat blanc',
       '80g Framboises',
@@ -506,7 +506,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 413,
     nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-    tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍞',
     ingredients: [
       '2 tranches Pain complet',
@@ -558,7 +558,7 @@ breakfast: [
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
   emoji: '🍎',
   ingredients: [
-      '60g Flocons d\'avoine',
+      '60g Flocons d\'avoine sans gluten',
       '2 Pomme',
       '15g Amandes effilées',
       '1 c. à soupe Beurre de coco',
@@ -588,7 +588,7 @@ breakfast: [
       '4 Dattes Medjool',
       '2 c. à soupe Lait',
       '1/4 c. à café Vanille',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
       '1 pincée Sel',
     ],
     steps: [
@@ -607,7 +607,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 286,
     nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
-    tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍫',
     ingredients: [
       '1/2 Banane mûre',
@@ -640,7 +640,7 @@ breakfast: [
       '1 Banane congelée',
       '50ml Lait végétal',
       '1 c. à soupe Beurre de cacahuète',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
       '1 c. à soupe Pépites de chocolat',
     ],
     steps: [
@@ -719,7 +719,7 @@ breakfast: [
       '1 c. à soupe Beurre de noisette',
       '100ml Lait végétal',
       '10g Noisettes concassées',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
     ],
     steps: [
       'Mixe banane, cacao, beurre de noisette et lait.',
@@ -792,7 +792,7 @@ breakfast: [
     tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
-    '50g Flocons d\'avoine',
+    '50g Flocons d\'avoine sans gluten',
     '200ml Lait de coco',
     '1 c. à soupe Cacao cru en poudre',
     '80g Cerises surgelées',
@@ -816,7 +816,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 420,
     nutrients: ['Vitamine E', 'Curcumine', 'Potassium', 'Cinnamaldéhyde', 'Zinc'],
-    tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
+    tags: ['sans_lactose', 'anti_inflammatoire', 'vegetarien', 'sans_gluten'],
     emoji: '🥑',
     ingredients: [
     '2 Tranches de patate douce rôties',
@@ -1033,7 +1033,7 @@ lunch: [
     cuisine: 'francais',
     calories: 350,
     nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6', 'Glutathion', 'Zinc'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
       '400 g de courge butternut',
@@ -1181,7 +1181,7 @@ lunch: [
       '150g Riz complet',
       '200g Blanc de poulet',
       '150g Brocoli',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à soupe Miel',
       '1 c. à café Gingembre',
       '1 c. à soupe Graines de sésame',
@@ -1376,7 +1376,7 @@ lunch: [
     cuisine: 'mediterraneen',
     calories: 523,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
+    tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
       '1 Courgette',
@@ -1575,7 +1575,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 484,
     nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
-    tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍜',
     ingredients: [
       '200g Nouilles de blé complet',
@@ -1665,7 +1665,7 @@ lunch: [
       '1 Œuf',
       '2 Oignon vert',
       '1 c. à soupe Huile de sésame',
-      '1 c. à soupe Sauce soja',
+      '1 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à soupe Graines de sésame',
     ],
     steps: [
@@ -1886,7 +1886,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 415,
     nutrients: ['Lycopène x3', 'Curcumine', 'Eugénol', 'Allicine', 'Glutathion'],
-    tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten'],
+    tags: ['sans_lactose', 'anti_inflammatoire', 'vegetarien', 'sans_gluten'],
     emoji: '🟡',
     ingredients: [
     '200g Nouilles de riz complet',
@@ -1972,7 +1972,7 @@ dinner: [
     cuisine: 'francais',
     calories: 430,
     nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines', 'Glutathion'],
-    tags: ['vegetarien'],
+    tags: ['sans_gluten', 'vegetarien'],
     emoji: '🧀',
     ingredients: [
       '2 pommes de terre moyennes',
@@ -2029,7 +2029,7 @@ dinner: [
     emoji: '🐟',
     ingredients: [
       '2 filets de saumon',
-      '1 c. à soupe de miso blanc',
+      '1 c. à soupe de miso blanc sans gluten',
       '1 c. à soupe de miel',
       '1 c. à café d\'huile de sésame',
       '150 g de riz complet',
@@ -2051,7 +2051,7 @@ dinner: [
     cuisine: 'indien',
     calories: 380,
     nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres', 'Glutathion', 'Zinc'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
       '200 g de lentilles corail',
@@ -2221,7 +2221,7 @@ dinner: [
       '1 Carottes',
       '50g Petits pois',
       '2 Oignon vert',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à soupe Huile de sésame',
       '1/2 c. à café Gingembre',
     ],
@@ -2229,7 +2229,7 @@ dinner: [
       'Cuis le riz, laisse refroidir.',
       'Fais sauter les légumes au wok.',
       'Pousse sur le côté, brouille les œufs.',
-      'Ajoute le riz froid, la sauce soja et le sésame.',
+      'Ajoute le riz froid, la sauce tamari (sans gluten) et le sésame.',
       'Mélange bien, garnis d\'oignon vert.',
     ],
     whyThisPhase: 'Le soir en lutéale, privilégie le réconfortant et le nourrissant. Ton corps travaille dur, ne le prive pas.',
@@ -2351,7 +2351,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 213,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Probiotiques'],
-    tags: ["vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍜',
     ingredients: [
       '200g Nouilles udon',
@@ -2418,12 +2418,12 @@ dinner: [
       '1 bouquet Basilic thaï',
       '2 gousses Ail',
       '1/2 c. à café Piment doux',
-      '1 c. à soupe Sauce soja',
+      '1 c. à soupe Sauce tamari (sans gluten)',
       '1 Citron vert',
     ],
     steps: [
       'Fais revenir ail et piment, ajoute le poulet/tofu en morceaux.',
-      'Verse le lait de coco et la sauce soja, mijote 15 min.',
+      'Verse le lait de coco et la sauce tamari (sans gluten), mijote 15 min.',
       'Cuis le riz.',
       'Ajoute le basilic en fin de cuisson.',
       'Sers sur le riz avec un quartier de citron vert.',
@@ -2495,7 +2495,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 296,
     nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
-    tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
+    tags: ['sans_lactose', "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
       '150g Nouilles de blé',
@@ -2644,7 +2644,7 @@ dinner: [
       '3 cm Gingembre',
       '2 Anis étoilé',
       '1 bâton Cannelle',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '2 Oignon vert',
       '1 Citron vert',
       '50g Pousses de soja',
@@ -2783,7 +2783,7 @@ dinner: [
     emoji: '🥣',
     ingredients: [
     '2 Pavé de saumon',
-    '2 c. à soupe Pâte miso',
+    '2 c. à soupe Pâte miso sans gluten',
     '1 c. à soupe Miel',
     '1 cm Gingembre',
     '200g Brocoli',
@@ -2963,10 +2963,10 @@ dinner: [
     steps: [
     'Fais sauter légumes, gingembre et ail à feu vif 3 min.',
     'Ajoute le riz froid et le curcuma.',
-    'Verse la sauce soja, mélange 2 min.',
+    'Verse la sauce tamari (sans gluten), mélange 2 min.',
     'Filet d\'huile de sésame.',
     ],
-    whyThisPhase: 'Le riz au curcuma est la base anti-inflammatoire. Les légumes sautés rapidement conservent leurs polyphénols. La sauce soja apporte des isoflavones fermentées.',
+    whyThisPhase: 'Le riz au curcuma est la base anti-inflammatoire. Les légumes sautés rapidement conservent leurs polyphénols. La sauce tamari (sans gluten) apporte des isoflavones fermentées.',
   },
 ],
 snack: [
@@ -2978,7 +2978,7 @@ snack: [
     cuisine: 'fusion',
     calories: 250,
     nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6', 'Glutathion'],
-    tags: ['vegetarien', 'sopk_friendly'],
+    tags: ['sans_lactose', 'vegetarien', 'sopk_friendly'],
     emoji: '🧁',
     ingredients: [
       '2 bananes mûres',
@@ -3005,7 +3005,7 @@ snack: [
     cuisine: 'francais',
     calories: 280,
     nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Protéines végétales'],
-    tags: ['sans_lactose'],
+    tags: ['vegetarien', 'sans_lactose'],
     emoji: '🥜',
     ingredients: [
       '1 tranche de pain complet',
@@ -3101,7 +3101,7 @@ snack: [
     cuisine: 'fusion',
     calories: 460,
     nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🧁',
     ingredients: [
       '100g Flocons d\'avoine',
@@ -3171,7 +3171,7 @@ snack: [
     cuisine: 'francais',
     calories: 181,
     nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
-    tags: ["vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
       '1 tranche Pain complet',
@@ -3315,7 +3315,7 @@ snack: [
     cuisine: 'francais',
     calories: 204,
     nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
-    tags: ["vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
       '1 tranche Pain complet',
@@ -3341,7 +3341,7 @@ snack: [
     emoji: '🍫',
     ingredients: [
       '100g Chocolat noir 70%',
-      '50g Flocons d\'avoine',
+      '50g Flocons d\'avoine sans gluten',
       '20g Noix de coco râpée',
       '20g Cranberries séchées',
       '1 pincée Sel de mer',
@@ -3365,7 +3365,7 @@ snack: [
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🥣',
     ingredients: [
-      '3 c. à soupe Flocons d\'avoine',
+      '3 c. à soupe Flocons d\'avoine sans gluten',
       '150ml Lait végétal',
       '1/2 Banane',
       '1 pincée Cannelle',
@@ -3515,7 +3515,7 @@ drink: [
     cuisine: 'fusion',
     calories: 5,
     nutrients: ['Antioxydants', 'Propriétés apaisantes'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍵',
     ingredients: [
       '1 c. à soupe de fleurs de camomille séchées',
@@ -3538,10 +3538,10 @@ drink: [
     cuisine: 'fusion',
     calories: 100,
     nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium', 'Zinc'],
-    tags: ['sans_gluten', 'sans_lactose'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥛',
     ingredients: [
-      '250 ml de lait d\'amande ou d\'avoine',
+      '250 ml de lait d\'amande',
       '1/2 c. à café de poudre d\'ashwagandha',
       '1/2 c. à café de curcuma',
       '1 pincée de cannelle',
@@ -3587,7 +3587,7 @@ drink: [
     cuisine: 'fusion',
     calories: 280,
     nutrients: ['Magnésium', 'Tryptophane', 'Vitamine B6', 'Potassium', 'Protéines', 'Zinc'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥤',
     ingredients: [
       '1 banane congelée',
@@ -3687,7 +3687,7 @@ drink: [
     cuisine: 'fusion',
     calories: 229,
     nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort", 'Zinc'],
-    tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
+    tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
       '250ml Lait d\'avoine',
@@ -3993,14 +3993,14 @@ drink: [
     '1 c. à café Camomille',
     '1 c. à café Mélisse',
     '250ml Eau bouillante',
-    '1 c. à café Miel',
+    '1 c. à café Sirop d\'agave',
     '1/4 Citron',
     ],
     steps: [
     'Fais bouillir l\'eau.',
     'Ajoute gingembre râpé, camomille et mélisse.',
     'Infuse 10 min, filtre.',
-    'Miel et citron. 2-3 tasses par jour en pré-menstruel.',
+    'Ajoute le sirop d\'agave et le citron. 2-3 tasses par jour en pré-menstruel.',
     ],
     whyThisPhase: 'Le gingembre inhibe COX-2 et les prostaglandines. La camomille apporte apigénine et bisabolol (anti-inflammatoires + calmants). La mélisse du rosmarinique. Le trio anti-SPM parfait.',
   },

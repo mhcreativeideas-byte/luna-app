@@ -109,7 +109,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 340,
     nutrients: ['Protéines', 'Fibres', 'Vitamine B9', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍳',
     ingredients: [
       '3 œufs',
@@ -168,7 +168,7 @@ breakfast: [
       '50g Fraises',
       '1 Kiwi',
       '1 c. à soupe Graines de courge',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
     ],
     steps: [
       'Mixe açaí, banane et lait en texture épaisse.',
@@ -184,7 +184,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 297,
     nutrients: ["Oméga-3", "Protéines", "Vitamine C", "Graisses saines", 'Glutathion', 'Zinc'],
-    tags: ["anti_fatigue", "spm_friendly"],
+    tags: ['sans_lactose', "anti_fatigue", "spm_friendly"],
     emoji: '🍞',
     ingredients: [
       '2 tranches Pain au levain',
@@ -307,7 +307,7 @@ breakfast: [
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
-      '40g Flocons d\'avoine',
+      '40g Flocons d\'avoine sans gluten',
       '1 c. à soupe Graines de chia',
       '200ml Lait végétal',
       '80g Fruits frais de saison',
@@ -358,7 +358,7 @@ breakfast: [
       '150g Mangue congelée',
       '2 Fruit de la passion',
       '50ml Lait de coco',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
       '1 c. à soupe Noix de coco râpée',
     ],
     steps: [
@@ -462,7 +462,7 @@ breakfast: [
     whyThisPhase: 'La ricotta est riche en protéines. La pêche apporte bêta-carotène et vitamine C. Le basilic aide la digestion. Frais et léger pour ta phase au sommet.',
   },
   {
-    name: 'Granola bowl au yaourt de coco et fruits tropicaux',
+    name: 'Granola sans gluten bowl au yaourt de coco et fruits tropicaux',
     description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase ovulatoire pour bien démarrer la journée.',
     prepTime: '5 min',
     difficulty: 'debutant',
@@ -473,7 +473,7 @@ breakfast: [
     emoji: '🍦',
     ingredients: [
       '150g Yaourt végétal de coco',
-      '3 c. à soupe Granola',
+      '3 c. à soupe Granola sans gluten',
       '1/4 Mangue',
       '50g Ananas',
       '1 Fruit de la passion',
@@ -523,7 +523,7 @@ breakfast: [
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
-      '40g Flocons d\'avoine',
+      '40g Flocons d\'avoine sans gluten',
       '1 c. à soupe Graines de chia',
       '200ml Lait végétal',
       '2 Kiwi',
@@ -544,7 +544,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 372,
     nutrients: ["Protéines", "Vitamines", "Fer", "Graisses saines", 'Glutathion'],
-    tags: ["vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sans_lactose', "vegetarien", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🌯',
     ingredients: [
       '1 Tortilla complète',
@@ -619,7 +619,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 456,
     nutrients: ["Calcium", "Protéines", "Potassium", "Digestion"],
-    tags: ["vegetarien", "anti_fatigue", "spm_friendly"],
+    tags: ['sans_gluten', "vegetarien", "anti_fatigue", "spm_friendly"],
     emoji: '🥞',
     ingredients: [
       '1 Courgette',
@@ -645,7 +645,7 @@ breakfast: [
     cuisine: 'francais',
     calories: 246,
     nutrients: ["Fer", "Antioxydants", "Enzymes vivantes", "Protéines"],
-    tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
     emoji: '🍞',
     ingredients: [
       '2 tranches Pain complet',
@@ -676,7 +676,7 @@ breakfast: [
       '200g Pastèque',
       '100g Framboises congelées',
       '4 feuilles Basilic',
-      '2 c. à soupe Granola',
+      '2 c. à soupe Granola sans gluten',
       '1 c. à café Graines de chia',
     ],
     steps: [
@@ -796,7 +796,7 @@ breakfast: [
     tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
-    '40g Flocons d\'avoine',
+    '40g Flocons d\'avoine sans gluten',
     '1 c. à soupe Graines de chia',
     '1 c. à soupe Graines de lin',
     '1 c. à soupe Graines de chanvre',
@@ -823,7 +823,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 460,
     nutrients: ['Fibres', 'Antioxydants', 'Zinc', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
       '150g de tofu ferme mariné (tamari, sésame)',
@@ -857,13 +857,13 @@ lunch: [
       '1/2 concombre',
       '1/2 mangue',
       '150g de riz vinaigré',
-      'Sauce soja, gingembre, sésame',
+      'Sauce tamari (sans gluten), gingembre, sésame',
       '1/2 avocat',
     ],
     steps: [
       'Prépare le riz vinaigré et laisse refroidir.',
       'Coupe saumon, concombre, mangue et avocat en cubes. Dispose sur le riz.',
-      'Ajoute les edamame, arrose de sauce soja-sésame.',
+      'Ajoute les edamame, arrose de sauce tamari (sans gluten)-sésame.',
     ],
     whyThisPhase: 'Le saumon frais est riche en antioxydants et les légumes apportent des fibres détoxifiantes pour l\'ovulation.',
   },
@@ -982,7 +982,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 467,
     nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Glutathion', 'Zinc'],
-    tags: ["sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sans_lactose', "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥣',
     ingredients: [
       '150g Riz à sushi',
@@ -991,7 +991,7 @@ lunch: [
       '1/2 Mangue',
       '1/2 Avocat',
       '1/2 Concombre',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à soupe Graines de sésame',
       '1 c. à soupe Vinaigre de riz',
     ],
@@ -1000,7 +1000,7 @@ lunch: [
       'Coupe le saumon en cubes de 2 cm.',
       'Tranche l\'avocat, la mangue et le concombre.',
       'Assemble dans un bol : riz, saumon, edamame, mangue, avocat, concombre.',
-      'Assaisonne de sauce soja et saupoudre de sésame.',
+      'Assaisonne de sauce tamari (sans gluten) et saupoudre de sésame.',
     ],
     whyThisPhase: 'Le saumon cru préserve 100% de ses oméga-3 et vitamine D. Les edamame apportent zinc et protéines. La mangue fournit vitamine C et enzymes digestives. Un bol frais et léger, parfait pour ta phase la plus énergique.',
   },
@@ -1107,7 +1107,7 @@ lunch: [
     ingredients: [
       '200g Thon frais sushi',
       '1 Avocat',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à soupe Huile de sésame',
       '1 c. à soupe Graines de sésame',
       '1 cm Gingembre frais',
@@ -1426,7 +1426,7 @@ lunch: [
     cuisine: 'asiatique',
     calories: 312,
     nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🍜',
     ingredients: [
       '200g Nouilles de riz',
@@ -1493,7 +1493,7 @@ lunch: [
       '1/2 Concombre',
       '1/2 Avocat',
       '1/4 Mangue',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à café Vinaigre de riz',
       '1 c. à soupe Graines de sésame',
     ],
@@ -1513,7 +1513,7 @@ lunch: [
     cuisine: 'mediterraneen',
     calories: 381,
     nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-    tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
     emoji: '🥗',
     ingredients: [
       '1 Pain pita',
@@ -1551,7 +1551,7 @@ lunch: [
       '1/2 Avocat',
       '1/4 Concombre',
       '1 c. à soupe Graines de sésame',
-      '1 c. à soupe Sauce soja',
+      '1 c. à soupe Sauce tamari (sans gluten)',
       '10g Gingembre mariné',
       '1 pointe Wasabi',
     ],
@@ -1626,7 +1626,7 @@ lunch: [
     cuisine: 'mediterraneen',
     calories: 454,
     nutrients: ["Antioxydants", "Protéines", "Vitamines", "Fibres"],
-    tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
     emoji: '🌯',
     ingredients: [
       '2 Tortilla complète',
@@ -1779,7 +1779,7 @@ lunch: [
     'Cuis le riz.',
     'Coupe le thon en cubes.',
     'Assemble riz, thon, edamame, avocat, concombre.',
-    'Sauce soja + sésame + gingembre râpé. Oignon vert.',
+    'Sauce tamari (sans gluten) + sésame + gingembre râpé. Oignon vert.',
     ],
     whyThisPhase: 'Le thon cru est riche en oméga-3 DHA (le plus anti-inflammatoire). Les edamame apportent des isoflavones. Le gingembre frais du gingérol.',
   },
@@ -1876,7 +1876,7 @@ dinner: [
     cuisine: 'mediterraneen',
     calories: 380,
     nutrients: ['Glutathion', 'Antioxydants', 'Fibres', 'Zinc'],
-    tags: ['vegetarien', 'sans_gluten', 'anti_inflammatoire'],
+    tags: ['sans_lactose', 'vegetarien', 'sans_gluten', 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
       '200g de pois chiches rôtis (paprika, cumin)',
@@ -2154,7 +2154,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 392,
     nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion', 'Zinc'],
-    tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
+    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🍜',
     ingredients: [
       '200g Nouilles soba',
@@ -2185,7 +2185,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 445,
     nutrients: ["Protéines", "Antioxydants", "Oméga-3", "Vitamines", 'Glutathion'],
-    tags: ["anti_fatigue", "spm_friendly"],
+    tags: ['sans_lactose', "anti_fatigue", "spm_friendly"],
     emoji: '🍴',
     ingredients: [
       '2 Filet de bar',
@@ -2346,7 +2346,7 @@ dinner: [
       '2 Carottes',
       '2 gousses Ail',
       '1 cm Gingembre',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 c. à soupe Huile de sésame',
       '1 c. à soupe Graines de sésame',
       '150g Riz',
@@ -2354,7 +2354,7 @@ dinner: [
     steps: [
       'Fais sauter les crevettes avec ail et gingembre 2 min.',
       'Ajoute les légumes en morceaux, cuis 3-4 min al dente.',
-      'Assaisonne de sauce soja et huile de sésame.',
+      'Assaisonne de sauce tamari (sans gluten) et huile de sésame.',
       'Sers sur du riz.',
       'Saupoudre de graines de sésame.',
     ],
@@ -2398,7 +2398,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 360,
     nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3", 'Glutathion'],
-    tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
+    tags: ["sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🦐',
     ingredients: [
       '250g Crevettes',
@@ -2425,7 +2425,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 200,
     nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-    tags: ["anti_fatigue", "spm_friendly"],
+    tags: ['sans_gluten', "anti_fatigue", "spm_friendly"],
     emoji: '🍴',
     ingredients: [
       '2 Filets de sole',
@@ -2596,7 +2596,7 @@ dinner: [
     ingredients: [
       '250g Thon frais',
       '3 c. à soupe Graines de sésame',
-      '2 c. à soupe Sauce soja',
+      '2 c. à soupe Sauce tamari (sans gluten)',
       '1 cm Gingembre',
       '1 c. à soupe Huile de sésame',
       '1 Citron vert',
@@ -2701,7 +2701,7 @@ dinner: [
     cuisine: 'mediterraneen',
     calories: 328,
     nutrients: ["Protéines", "Antioxydants", "Vitamines", "Oméga-3"],
-    tags: ["vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
+    tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
       '100g Boulgour',
@@ -3541,7 +3541,7 @@ drink: [
     cuisine: 'fusion',
     calories: 30,
     nutrients: ['Antioxydants', 'Détoxifiant', 'Hydratation'],
-    tags: ['sans_gluten', 'sans_lactose'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍵',
     ingredients: [
       '2 sachets de thé vert',
@@ -3565,7 +3565,7 @@ drink: [
     cuisine: 'fusion',
     calories: 150,
     nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Glutathion'],
-    tags: ['sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
+    tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
       '3 feuilles de chou kale (tiges retirées)',
