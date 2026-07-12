@@ -46,6 +46,17 @@ export default function AuroraHeader({ title, accent, intro, kicker, action }) {
           className="absolute top-[60px] -left-[70px] w-[150px] h-[150px] rounded-full"
           style={{ backgroundColor: phaseData.color, opacity: 0.1, filter: 'blur(38px)' }}
         />
+        {/* Grain très fin (bruit SVG) : enlève le côté « digital lisse » du
+            dégradé, rendu papier. Fondu avec le masque du bloc parent.
+            Validé « option A » le 2026-07-12. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            mixBlendMode: 'overlay',
+            opacity: 0.55,
+          }}
+        />
       </div>
 
       <motion.header variants={item} className="relative">

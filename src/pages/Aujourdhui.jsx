@@ -113,11 +113,25 @@ export default function Aujourdhui() {
           <p className="text-xs font-body text-luna-text-muted mb-4">
             sur {cycleLength} · {periodLabel}
           </p>
-          <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'rgba(255,255,255,0.85)' }}>
+          {/* Jauge d'énergie : 7 px, dégradé de la phase, point lumineux au
+              bout (option A affinée, validée 2026-07-12). */}
+          <div className="rounded-full relative" style={{ height: 7, backgroundColor: `${phaseData.color}29` }}>
             <div
-              className="h-full rounded-full transition-all duration-700"
-              style={{ width: `${energyLevel}%`, backgroundColor: phaseData.color }}
-            />
+              className="h-full rounded-full transition-all duration-700 relative"
+              style={{ width: `${energyLevel}%`, background: `linear-gradient(90deg, ${phaseData.color}66, ${phaseData.color})` }}
+            >
+              <span
+                className="absolute top-1/2 -translate-y-1/2 rounded-full"
+                style={{
+                  right: -5,
+                  width: 13,
+                  height: 13,
+                  backgroundColor: phaseData.color,
+                  border: '3px solid #FFFFFF',
+                  boxShadow: `0 0 10px 2px ${phaseData.color}8C`,
+                }}
+              />
+            </div>
           </div>
           <p className="text-[11px] font-body text-luna-text-muted mt-2">
             Énergie {energyLabel} · {energyLevel} %
