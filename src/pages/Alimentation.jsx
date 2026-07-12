@@ -5,6 +5,7 @@ import { X, Cookie, ChevronRight, Clock, Sparkles, Leaf, UtensilsCrossed, AlertT
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
+import { matchesRequiredTags } from '../data/recipeFilters';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import AddToListBanner from '../components/food/AddToListBanner';
@@ -222,7 +223,7 @@ export default function Alimentation() {
 
   const filterFoods = (foods) => {
     if (!requiredTags.length) return foods;
-    return foods.filter(f => requiredTags.every(tag => (f.tags || []).includes(tag)));
+    return foods.filter(f => matchesRequiredTags(f, requiredTags));
   };
 
   const isFiltering = requiredTags.length > 0;

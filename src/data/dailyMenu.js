@@ -1,5 +1,5 @@
 import { Sunrise, Sun, Cookie, Moon } from 'lucide-react';
-import { containsAllergen } from './recipeFilters';
+import { containsAllergen, matchesRequiredTags } from './recipeFilters';
 
 // Construction du menu du jour (4 repas adaptés à la phase + préférences).
 // Extrait de DailyMenu.jsx pour être partagé avec la page Mes courses
@@ -75,18 +75,31 @@ export const buildDailyMenu = (recipes, phaseData, { requiredTags = [], allergie
   }
   let drinkIndex = 0;
 
+  // Tags de régime : jamais relâchés (avec les allergies). Les tags santé
+  // (SOPK, SPM, anti-inflammatoire) sont des préférences : on ne les relâche
+  // qu'en dernier recours pour ne pas laisser un repas vide.
+  const DIET_TAGS = ['vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'];
+  const dietTags = requiredTags.filter((t) => DIET_TAGS.includes(t));
+
   return MEAL_SLOTS.map((slot) => {
     const pool = recipes[slot.key];
     if (!pool || pool.length === 0) return null;
-    const filtered = pool.filter((recipe) => {
-      if (requiredTags.length > 0 && !requiredTags.every((tag) => (recipe.tags || []).includes(tag))) return false;
-      if (containsAllergen(recipe, allergies)) return false;
+    const safe = pool.filter((recipe) => !containsAllergen(recipe, allergies));
+    const matchesPractical = (recipe) => {
       const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
       if (recipeLevel > maxLevel) return false;
       if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return false;
       return true;
-    });
-    const available = filtered.length > 0 ? filtered : pool;
+    };
+    // Paliers : filtres complets → sans temps/niveau → sans tags santé.
+    // On ne descend JAMAIS sous « régime + allergies ».
+    const available =
+      [
+        safe.filter((r) => matchesRequiredTags(r, requiredTags) && matchesPractical(r)),
+        safe.filter((r) => matchesRequiredTags(r, requiredTags)),
+        safe.filter((r) => matchesRequiredTags(r, dietTags)),
+      ].find((list) => list.length > 0) || [];
+    if (available.length === 0) return null;
     const idx = Math.floor(rand() * available.length);
     const recipe = available[idx];
     const drink = shuffledDrinks[drinkIndex % shuffledDrinks.length] || null;

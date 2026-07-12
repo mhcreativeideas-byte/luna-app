@@ -6,7 +6,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import { parseMinutes, containsAllergen } from '../data/recipeFilters';
+import { parseMinutes, containsAllergen, matchesRequiredTags } from '../data/recipeFilters';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
 
@@ -221,10 +221,7 @@ export default function MonFrigo() {
       if (!Array.isArray(items)) return;
       items.forEach((recipe) => {
         // Filtrer par tags alimentaires
-        if (requiredTags.length > 0) {
-          const recipeTags = recipe.tags || [];
-          if (!requiredTags.every(tag => recipeTags.includes(tag))) return;
-        }
+        if (!matchesRequiredTags(recipe, requiredTags)) return;
         // Filtrer par temps
         if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return;
         // Filtrer par allergies

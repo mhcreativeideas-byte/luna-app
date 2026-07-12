@@ -2,16 +2,21 @@
 // (qui n'a besoin que du compte) et la page « Toutes les recettes »
 // (filtres interactifs + grille). Source unique pour éviter toute divergence.
 
+// En cas de doute on préfère exclure une recette de trop qu'en laisser passer
+// une dangereuse. Attention aux sous-chaînes : « bar » est cherché avec une
+// espace (sinon il matcherait « barre de céréales »), « lotte » avec une espace
+// devant (sinon « échalotte »), « sole » avec une espace derrière (sinon
+// « casserole »).
 export const ALLERGEN_KEYWORDS = {
-  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin', 'fruits à coque'],
+  'Fruits à coque': ['amande', 'noix', 'noisette', 'pistache', 'cajou', 'pécan', 'macadamia', 'pralin', 'fruits à coque', 'pignon'],
   'Arachides': ['arachide', 'cacahuète', 'cacahouète', 'beurre de cacahuète', 'peanut'],
-  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari', 'protéine de soja'],
+  'Soja': ['soja', 'tofu', 'tempeh', 'edamame', 'miso', 'sauce soja', 'tamari', 'protéine de soja', 'hoisin'],
   'Œufs': ['œuf', 'oeuf', 'jaune d\'œuf', 'blanc d\'œuf', 'mayonnaise'],
-  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar', 'dorade', 'colin', 'merlu', 'poisson'],
-  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas'],
-  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'yogourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'emmental', 'comté', 'chèvre', 'feta', 'mascarpone', 'crème entière'],
-  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'fusilli', 'couscous', 'boulgour', 'semoule', 'croûton', 'chapelure', 'tortilla', 'wrap'],
-  'Sésame': ['sésame', 'tahini', 'tahin', 'gomasio'],
+  'Poisson': ['saumon', 'thon', 'cabillaud', 'sardine', 'maquereau', 'truite', 'anchois', 'bar ', 'dorade', 'daurade', 'colin', 'merlu', 'poisson', 'sole ', 'filets de sole', ' lotte', 'hareng', 'flétan', 'fletan', 'églefin', 'eglefin', 'rouget', 'lieu noir', 'lieu jaune'],
+  'Crustacés': ['crevette', 'crabe', 'homard', 'langoustine', 'crustacé', 'fruits de mer', 'gambas', 'moules', 'huître', 'huitre', 'calamar', 'poulpe', 'encornet', 'seiche', 'saint-jacques'],
+  'Lait': ['lait', 'fromage', 'beurre', 'crème fraîche', 'crème liquide', 'yaourt', 'yogourt', 'ricotta', 'parmesan', 'mozzarella', 'gruyère', 'emmental', 'comté', 'chèvre', 'feta', 'mascarpone', 'crème entière', 'crème épaisse', 'skyr', 'cottage', 'burrata', 'halloumi', 'labneh', 'faisselle', 'petit suisse', 'petit-suisse', 'ghee', 'kéfir de lait'],
+  'Blé': ['blé', 'farine', 'pain', 'pâtes', 'spaghetti', 'penne', 'fusilli', 'couscous', 'boulgour', 'semoule', 'croûton', 'chapelure', 'tortilla', 'wrap', 'brioche', 'orge', 'seigle', 'épeautre', 'gnocchi', 'nouille', 'lasagne', 'ravioli', 'biscotte', 'muesli', 'granola', 'biscuit', 'pita', 'naan', 'baguette', 'cracker', 'seitan', 'vermicelle', 'macaroni', 'tagliatelle', 'linguine', 'orzo', 'ramen', 'udon', 'hoisin'],
+  'Sésame': ['sésame', 'tahini', 'tahin', 'gomasio', 'houmous', 'hummus', 'halva'],
   'Céleri': ['céleri', 'celeri'],
   'Moutarde': ['moutarde'],
   'Sulfites': ['vin blanc', 'vin rouge', 'vin rosé', 'vinaigre balsamique', 'sulfite'],
@@ -33,6 +38,16 @@ export function parseMinutes(prepTime) {
     total = isNaN(num) ? 999 : num;
   }
   return total;
+}
+
+// Vérifie qu'une recette (ou un aliment) porte tous les tags requis.
+// Une recette végane est par définition végétarienne : le tag « vegan »
+// satisfait donc l'exigence « vegetarien » même si le tag n'est pas posé.
+export function matchesRequiredTags(item, requiredTags) {
+  const tags = (item && item.tags) || [];
+  return (requiredTags || []).every(
+    (tag) => tags.includes(tag) || (tag === 'vegetarien' && tags.includes('vegan'))
+  );
 }
 
 export function containsAllergen(recipe, allergyList) {
@@ -105,10 +120,7 @@ export function filterRecipes(recipes, {
     if (selectedMeal !== 'all' && selectedMeal !== 'favorites' && mealType !== selectedMeal) return;
     if (!Array.isArray(items)) return;
     items.forEach((recipe) => {
-      if (requiredTags.length > 0) {
-        const recipeTags = recipe.tags || [];
-        if (!requiredTags.every((tag) => recipeTags.includes(tag))) return;
-      }
+      if (!matchesRequiredTags(recipe, requiredTags)) return;
       if (maxTime && parseMinutes(recipe.prepTime) > maxTime) return;
       if (containsAllergen(recipe, allergies)) return;
       const recipeLevel = LEVEL_ORDER[recipe.difficulty] || 1;
