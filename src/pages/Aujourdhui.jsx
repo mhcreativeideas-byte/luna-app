@@ -60,12 +60,18 @@ export default function Aujourdhui() {
         )}
       />
 
-      {/* Carte de phase compacte — ouvre l'onglet Mon cycle */}
+      {/* Carte de phase compacte — ouvre l'onglet Mon cycle. Verre dépoli :
+          translucide + flou, elle laisse affleurer le dégradé aurore de la
+          phase derrière elle (validé maquettes 2026-07-12). */}
       <motion.div variants={item}>
         <button
           onClick={() => navigate('/dashboard')}
-          className="w-full text-left rounded-[28px] p-6 active:scale-[0.99] transition-transform"
-          style={{ backgroundColor: phaseData.bgColor, boxShadow: `0 10px 30px ${phaseData.color}22` }}
+          className="w-full text-left rounded-[28px] p-6 active:scale-[0.99] transition-transform backdrop-blur-[18px]"
+          style={{
+            backgroundColor: 'rgba(255,255,255,0.5)',
+            border: '1px solid rgba(255,255,255,0.75)',
+            boxShadow: '0 10px 30px rgba(45,34,38,0.05)',
+          }}
         >
           <div className="flex items-center justify-between mb-2">
             <span className="text-[11px] font-body font-bold uppercase tracking-widest" style={{ color: phaseData.colorDark }}>
@@ -79,7 +85,7 @@ export default function Aujourdhui() {
           <p className="text-xs font-body text-luna-text-muted mb-4">
             sur {cycleLength} · {periodLabel}
           </p>
-          <div className="h-1.5 rounded-full bg-white overflow-hidden">
+          <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'rgba(255,255,255,0.85)' }}>
             <div
               className="h-full rounded-full transition-all duration-700"
               style={{ width: `${energyLevel}%`, backgroundColor: phaseData.color }}
