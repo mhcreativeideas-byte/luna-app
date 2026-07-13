@@ -24,7 +24,7 @@ breakfast: [
       'Mixer la banane, les flocons d\'avoine, le lait d\'amande, les graines de lin, la levure et la cannelle jusqu\'à obtenir une pâte lisse.',
       'Faire chauffer un peu d\'huile de coco dans une poêle à feu moyen.',
       'Verser des petites louches de pâte et cuire 2-3 minutes de chaque côté jusqu\'à ce qu\'ils soient dorés.',
-      'Servir avec un filet de sirop d\'érable et des rondelles de banane.'
+      'Servir avec un filet de sirop d\'érable.'
     ],
     whyThisPhase: 'Les flocons d\'avoine apportent des glucides complexes qui stabilisent la glycémie et soutiennent la production de sérotonine. La banane est riche en magnésium et en vitamine B6, essentiels pour réduire les symptômes prémenstruels.'
   },
@@ -113,7 +113,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 380,
-    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes', 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Calcium', 'Protéines complètes', 'Zinc'],
     tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥣',
     ingredients: [
@@ -140,7 +140,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 420,
-    nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane', 'Glutathion'],
+    nutrients: ['Vitamine B6', 'Magnésium', 'Glucides complexes', 'Bonnes graisses', 'Tryptophane'],
     tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍳',
     ingredients: [
@@ -166,7 +166,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 291,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥞',
     ingredients: [
@@ -192,7 +192,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 239,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -219,7 +219,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 452,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥤',
     ingredients: [
@@ -239,12 +239,12 @@ breakfast: [
   },
   {
     name: 'Tartines beurre d\'amande, banane et miel',
-    description: 'Recette anti-SPM, 100% végétal, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
+    description: 'Recette anti-SPM, végétarienne, pour bien démarrer la journée. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'francais',
-    calories: 227,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    calories: 460,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍞',
     ingredients: [
@@ -263,13 +263,13 @@ breakfast: [
     whyThisPhase: 'Simple, rapide, réconfortant. Le magnésium du beurre d\'amande + le potassium de la banane = combo anti-crampes et anti-ballonnements.',
   },
   {
-    name: 'Granola sans gluten bowl au yaourt et compote',
+    name: 'Granola bowl au yaourt et compote',
     description: 'Les graines de chia apportent oméga-3 et fibres. Le miel apporte une énergie naturelle rapide. Idéal en phase lutéale pour bien démarrer la journée.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'francais',
-    calories: 180,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Probiotiques'],
+    calories: 300,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Probiotiques'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍦',
     ingredients: [
@@ -294,7 +294,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 335,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -320,7 +320,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 401,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧁',
     ingredients: [
@@ -343,12 +343,12 @@ breakfast: [
   },
   {
     name: 'Bol de riz au lait, cannelle et raisins secs',
-    description: 'La cannelle aide à réguler la glycémie. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase lutéale pour bien démarrer la journée.',
+    description: 'La cannelle aide à réguler la glycémie. Un bol tout doux, régressif et réconfortant. Idéal en phase lutéale pour bien démarrer la journée.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
-    calories: 195,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    calories: 520,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -374,7 +374,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 564,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🥞',
     ingredients: [
@@ -401,7 +401,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 261,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍫',
     ingredients: [
@@ -427,7 +427,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 449,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧇',
     ingredients: [
@@ -443,7 +443,7 @@ breakfast: [
       'Mélange farine, œuf, lait, sucre et levure.',
       'Ajoute les myrtilles délicatement.',
       'Cuis les gaufres dans un gaufrier beurré.',
-      'Sers avec du miel ou des fruits frais.',
+      'Sers avec quelques myrtilles fraîches.',
     ],
     whyThisPhase: 'Les myrtilles sont parmi les fruits les plus antioxydants. Les gaufres complètes apportent des glucides complexes et du magnésium.',
   },
@@ -454,7 +454,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 412,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥤',
     ingredients: [
@@ -481,7 +481,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 400,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -505,7 +505,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 413,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍞',
     ingredients: [
@@ -529,7 +529,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 264,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥤',
     ingredients: [
@@ -553,8 +553,8 @@ breakfast: [
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
-    calories: 663,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    calories: 430,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
   emoji: '🍎',
   ingredients: [
@@ -580,7 +580,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 320,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Probiotiques'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Probiotiques'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍦',
     ingredients: [
@@ -606,7 +606,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 286,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍫',
     ingredients: [
@@ -632,7 +632,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 501,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -656,8 +656,8 @@ breakfast: [
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
-    calories: 703,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    calories: 480,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍞',
     ingredients: [
@@ -684,7 +684,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 282,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Zinc'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -710,7 +710,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 472,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥤',
     ingredients: [
@@ -734,8 +734,8 @@ breakfast: [
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'francais',
-    calories: 685,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort"],
+    calories: 450,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍎',
     ingredients: [
@@ -756,12 +756,12 @@ breakfast: [
   },
   {
     name: 'Porridge de sarrasin aux poires et noix de pécan',
-    description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le sarrasin est sans gluten et riche en magnésium. Idéal en phase lutéale pour bien démarrer la journée.',
+    description: 'Les noix de pécan apportent de bonnes graisses et du manganèse. Le sarrasin est sans gluten et riche en magnésium. Idéal en phase lutéale pour bien démarrer la journée.',
     prepTime: '15 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 489,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides complexes", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -783,12 +783,12 @@ breakfast: [
 
   {
     name: 'Porridge réconfort au cacao cru et cerises anti-inflammatoires',
-    description: 'Le cacao cru contient 4x plus de flavonoïdes que le cacao torréfié. Les cerises des anthocyanines. L.',
+    description: 'Le cacao cru conserve davantage de flavanols que le cacao torréfié. Les cerises apportent des anthocyanines et l\'avoine du bêta-glucane. Un bol tout doux qui réconforte quand le SPM se fait sentir.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 390,
-    nutrients: ['Flavonoïdes x4', 'Anthocyanines', 'Bêta-glucane', 'Théobromine', 'Zinc'],
+    nutrients: ['Flavonoïdes', 'Anthocyanines', 'Bêta-glucane', 'Théobromine', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -810,7 +810,7 @@ breakfast: [
   },
   {
     name: 'Tartine de patate douce au beurre d\'amande, banane et curcuma',
-    description: 'Le beurre d\'amande apporte de la vitamine E (anti-inflammatoire). La banane du potassium anti-rétent.',
+    description: 'Le beurre d\'amande apporte de la vitamine E. La banane du potassium, pratique contre la rétention d\'eau et les ballonnements. Le curcuma sa curcumine. Un petit-déj réconfortant et gourmand pour la phase lutéale.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'francais',
@@ -832,16 +832,16 @@ breakfast: [
     'Ajoute banane en rondelles, curcuma et cannelle.',
     'Filet de miel.',
     ],
-    whyThisPhase: 'Le beurre d\'amande apporte de la vitamine E (anti-inflammatoire). La banane du potassium anti-rétention. Le curcuma sa curcumine. Un petit-déj réconfortant et thérapeutique.',
+    whyThisPhase: 'Le beurre d\'amande apporte de la vitamine E (anti-inflammatoire). La banane du potassium anti-rétention. Le curcuma sa curcumine. Un petit-déj réconfortant et malin.',
   },
   {
     name: 'Omelette aux champignons shiitake et sauge',
-    description: 'Les shiitake contiennent du lentinane anti-inflammatoire. La sauge de l\'acide rosmarinique. Les œufs.',
+    description: 'Les shiitake contiennent du lentinane anti-inflammatoire. La sauge de l\'acide rosmarinique. Les œufs de la choline et des protéines qui rassasient. Un petit-déj apaisant qui cale bien avant les fringales.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 310,
-    nutrients: ['Lentinane', 'Acide rosmarinique', 'Choline', 'Allicine', 'Glutathion'],
+    nutrients: ['Lentinane', 'Acide rosmarinique', 'Choline', 'Allicine'],
     tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍽️',
     ingredients: [
@@ -862,12 +862,12 @@ breakfast: [
   },
   {
     name: 'Galettes de sarrasin au saumon fumé et avocat',
-    description: 'Le sarrasin contient de la rutine anti-inflammatoire. Le saumon fumé des oméga-3. L\'avocat des oméga.',
+    description: 'Le sarrasin contient de la rutine anti-inflammatoire. Le saumon fumé des oméga-3. L\'avocat des oméga-9. Un petit-déj complet et réconfortant, parfait pour apaiser la phase lutéale.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 395,
-    nutrients: ['Rutine', 'Oméga-3', 'Oméga-9', 'Vitamine D', 'Glutathion'],
+    nutrients: ['Rutine', 'Oméga-3', 'Oméga-9', 'Vitamine D'],
     tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🐟',
     ingredients: [
@@ -897,7 +897,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'indien',
     calories: 420,
-    nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Glucides complexes', 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Glucides complexes', 'Zinc'],
     tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -908,7 +908,8 @@ lunch: [
       '1 c. à soupe de pâte de curry doux',
       '200 g de tomates concassées',
       '1 c. à café de curcuma',
-      'Riz basmati pour accompagner'
+      'Riz basmati pour accompagner',
+      'Quelques feuilles de coriandre fraîche'
     ],
     steps: [
       'Faire revenir l\'oignon émincé et l\'ail dans un peu d\'huile. Ajouter la pâte de curry et le curcuma, cuire 1 minute.',
@@ -924,7 +925,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'indien',
     calories: 400,
-    nutrients: ['Magnésium', 'Calcium', 'Protéines', 'Fer', 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Protéines', 'Fer', 'Probiotiques', 'Zinc'],
     tags: ['vegetarien', 'sans_gluten', 'sopk_friendly'],
     emoji: '🍛',
     ingredients: [
@@ -951,7 +952,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 450,
-    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales', 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Protéines végétales', 'Zinc'],
     tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍠',
     ingredients: [
@@ -1032,7 +1033,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 350,
-    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6', 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Fibres', 'Vitamine B6', 'Zinc'],
     tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
@@ -1059,7 +1060,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'indien',
     calories: 626,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -1088,7 +1089,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 401,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Calcium', 'Protéines', 'Antioxydants'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧀',
     ingredients: [
@@ -1117,7 +1118,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 498,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -1145,7 +1146,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 446,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍝',
     ingredients: [
@@ -1169,12 +1170,12 @@ lunch: [
   },
   {
     name: 'Bol de riz, poulet teriyaki et brocoli vapeur',
-    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
+    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli apporte fibres, vitamine C et sulforaphane. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
     prepTime: '45 min',
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 307,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍗',
     ingredients: [
@@ -1202,7 +1203,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 482,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥧',
     ingredients: [
@@ -1230,7 +1231,7 @@ lunch: [
     difficulty: 'avance',
     cuisine: 'indien',
     calories: 419,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -1260,7 +1261,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 442,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
    emoji: '🧀',
    ingredients: [
@@ -1288,7 +1289,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 305,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍚',
     ingredients: [
@@ -1316,7 +1317,7 @@ lunch: [
     difficulty: 'avance',
     cuisine: 'mexicain',
     calories: 350,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -1347,7 +1348,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 332,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -1375,7 +1376,7 @@ lunch: [
     difficulty: 'avance',
     cuisine: 'mediterraneen',
     calories: 523,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
@@ -1407,7 +1408,7 @@ lunch: [
     difficulty: 'avance',
     cuisine: 'italien',
     calories: 443,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍝',
     ingredients: [
@@ -1437,7 +1438,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'indien',
     calories: 269,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
@@ -1465,7 +1466,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 443,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍝',
     ingredients: [
@@ -1492,7 +1493,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 384,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍛',
     ingredients: [
@@ -1519,7 +1520,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'italien',
     calories: 370,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥪',
     ingredients: [
@@ -1544,7 +1545,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'indien',
     calories: 370,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -1569,12 +1570,12 @@ lunch: [
   },
   {
     name: 'Bol de nouilles aux légumes rôtis et sauce tahini',
-    description: 'La patate douce est riche en bêta-carotène et vitamines. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
+    description: 'La patate douce est riche en bêta-carotène et vitamines. Le brocoli apporte fibres, vitamine C et sulforaphane. Idéal en phase lutéale pour un déjeuner équilibré et nourrissant.',
     prepTime: '35 min',
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 484,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍜',
     ingredients: [
@@ -1602,7 +1603,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 231,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍲',
     ingredients: [
@@ -1630,7 +1631,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 453,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort"],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥪',
     ingredients: [
@@ -1656,7 +1657,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 288,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines', 'Probiotiques', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍳',
     ingredients: [
@@ -1683,7 +1684,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 283,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍝',
     ingredients: [
@@ -1713,7 +1714,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 206,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -1740,7 +1741,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 299,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -1763,12 +1764,12 @@ lunch: [
   },
   {
     name: 'Gratin de macaroni au fromage et brocoli',
-    description: 'Le brocoli aide à métaboliser les œstrogènes en excès. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
+    description: 'Le brocoli apporte fibres, vitamine C et sulforaphane. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
     prepTime: '35 min',
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 505,
-    nutrients: ["Magnésium", "Glucides complexes", "Protéines", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Protéines'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧀',
     ingredients: [
@@ -1792,12 +1793,12 @@ lunch: [
 
   {
     name: 'Soupe de lentilles au curcuma et gingembre',
-    description: 'En lutéale, l\'inflammation augmente naturellement avec la chute de progestérone. Les lentilles appor.',
+    description: 'Les lentilles apportent des protéines et des fibres qui stabilisent la glycémie, précieux contre les fringales de fin de cycle. Le duo curcuma-gingembre calme l\'inflammation et réchauffe en douceur.',
     prepTime: '30 min',
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 275,
-    nutrients: ['Curcumine', 'Gingérol', 'Polyphénols', 'Pipérine', 'Glutathion', 'Zinc'],
+    nutrients: ['Curcumine', 'Gingérol', 'Polyphénols', 'Pipérine', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -1821,12 +1822,12 @@ lunch: [
   },
   {
     name: 'Bol de riz au curry japonais anti-inflammatoire',
-    description: 'Le curry japonais contient curcuma, gingembre et ail : trois anti-inflammatoires puissants. Les caro.',
+    description: 'Le curry japonais contient curcuma, gingembre et ail : trois anti-inflammatoires reconnus. Les carottes du bêta-carotène. Un bol chaud et réconfortant, idéal quand le SPM pointe le bout de son nez.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 410,
-    nutrients: ['Curcumine', 'Gingérol', 'Allicine', 'Bêta-carotène', 'Glutathion'],
+    nutrients: ['Curcumine', 'Gingérol', 'Allicine', 'Bêta-carotène'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🍛',
     ingredients: [
@@ -1856,7 +1857,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 325,
-    nutrients: ['Polyphénols', 'Curcumine', 'Acide tartrique', 'Linalol', 'Glutathion', 'Zinc'],
+    nutrients: ['Polyphénols', 'Curcumine', 'Acide tartrique', 'Linalol', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍛',
     ingredients: [
@@ -1876,16 +1877,16 @@ lunch: [
     'Ajoute tomates et tamarin, mélange aux lentilles.',
     'Sers sur du riz avec la coriandre.',
     ],
-    whyThisPhase: 'Les lentilles jaunes contiennent des polyphénols. Le tamarin apporte de l\'acide tartrique anti-inflammatoire. La coriandre du linalol. Réconfortant et thérapeutique.',
+    whyThisPhase: 'Les lentilles jaunes contiennent des polyphénols. Le tamarin apporte de l\'acide tartrique anti-inflammatoire. La coriandre du linalol. Réconfortant et apaisant.',
   },
   {
     name: 'One pot nouilles de riz tomate-curcuma-basilic',
-    description: 'La tomate cuite = lycopène x3. Le curcuma s\'infuse dans la sauce. Le basilic apporte eugénol. Un pla.',
+    description: 'La tomate cuite libère davantage de lycopène que la tomate crue. Le curcuma s\'infuse dans la sauce et le basilic apporte son parfum. Un plat tout simple et réconfortant, prêt en une seule casserole.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 415,
-    nutrients: ['Lycopène x3', 'Curcumine', 'Eugénol', 'Allicine', 'Glutathion'],
+    nutrients: ['Lycopène', 'Curcumine', 'Eugénol', 'Allicine'],
     tags: ['sans_lactose', 'anti_inflammatoire', 'vegetarien', 'sans_gluten'],
     emoji: '🟡',
     ingredients: [
@@ -1909,12 +1910,12 @@ lunch: [
   },
   {
     name: 'Velouté de céleri-rave au curcuma et huile d\'olive',
-    description: 'Le céleri-rave contient de l\'apigénine et des polyacétylènes anti-inflammatoires. Le curcuma ajoute.',
+    description: 'Le céleri-rave contient de l\'apigénine et des polyacétylènes anti-inflammatoires. Le curcuma ajoute sa curcumine et l\'huile d\'olive son oléocanthal. Un velouté tout doux qui réchauffe et apaise.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 190,
-    nutrients: ['Apigénine', 'Polyacétylènes', 'Curcumine', 'Oléocanthal', 'Glutathion'],
+    nutrients: ['Apigénine', 'Polyacétylènes', 'Curcumine', 'Oléocanthal'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -1944,7 +1945,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'indien',
     calories: 400,
-    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Vitamine B6', 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Fer', 'Glucides complexes', 'Vitamine B6', 'Zinc'],
     tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -1971,7 +1972,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 430,
-    nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines', 'Glutathion'],
+    nutrients: ['Calcium', 'Magnésium', 'Glucides complexes', 'Vitamines'],
     tags: ['sopk_friendly', 'spm_friendly', 'sans_gluten', 'vegetarien'],
     emoji: '🧀',
     ingredients: [
@@ -1997,7 +1998,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'italien',
     calories: 450,
-    nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6', 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Glucides complexes', 'Fer', 'Vitamine B6'],
     tags: ['spm_friendly', 'vegetarien', 'sopk_friendly'],
     emoji: '🍝',
     ingredients: [
@@ -2024,7 +2025,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 470,
-    nutrients: ['Oméga-3', 'Tryptophane', 'Vitamine B6', 'Magnésium', 'Glucides complexes', 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Oméga-3', 'Tryptophane', 'Vitamine B6', 'Magnésium', 'Glucides complexes', 'Zinc'],
     tags: ['sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
     emoji: '🐟',
     ingredients: [
@@ -2050,7 +2051,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'indien',
     calories: 380,
-    nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres', 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Fer', 'Protéines végétales', 'Vitamine B6', 'Fibres', 'Zinc'],
     tags: ['vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -2077,7 +2078,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'italien',
     calories: 390,
-    nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Magnésium', 'Glucides complexes', 'Fer', 'Tryptophane', 'Vitamines B'],
     tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍄',
     ingredients: [
@@ -2099,12 +2100,12 @@ dinner: [
   },
   {
     name: 'Soupe veloutée de brocoli au fromage',
-    description: 'Le brocoli aide à métaboliser les œstrogènes en excès. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
+    description: 'Le brocoli apporte fibres, vitamine C et sulforaphane. Un choix parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
     prepTime: '40 min',
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 251,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -2131,7 +2132,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 488,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍝',
     ingredients: [
@@ -2158,7 +2159,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 633,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍗',
     ingredients: [
@@ -2185,7 +2186,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 615,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧀',
     ingredients: [
@@ -2212,7 +2213,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 282,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍳',
     ingredients: [
@@ -2241,7 +2242,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 404,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍕',
     ingredients: [
@@ -2268,7 +2269,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 400,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort"],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥪',
     ingredients: [
@@ -2295,7 +2296,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 291,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -2324,7 +2325,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 562,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍳',
     ingredients: [
@@ -2350,7 +2351,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 213,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Probiotiques'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6', 'Probiotiques'],
     tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍜',
     ingredients: [
@@ -2379,7 +2380,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 408,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍆',
     ingredients: [
@@ -2408,7 +2409,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 421,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🥣',
     ingredients: [
@@ -2437,7 +2438,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 499,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍝',
     ingredients: [
@@ -2465,7 +2466,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 656,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍗',
     ingredients: [
@@ -2494,7 +2495,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 296,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ['sans_lactose', "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -2522,7 +2523,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 336,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧀',
     ingredients: [
@@ -2549,7 +2550,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 584,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🎃',
     ingredients: [
@@ -2577,7 +2578,7 @@ dinner: [
     difficulty: 'avance',
     cuisine: 'fusion',
     calories: 598,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍗',
     ingredients: [
@@ -2606,7 +2607,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 362,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍚',
     ingredients: [
@@ -2634,7 +2635,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 346,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6', 'Zinc'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍲',
     ingredients: [
@@ -2665,7 +2666,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'mexicain',
     calories: 355,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes", 'anti_inflammatoire'],
     emoji: '🍠',
     ingredients: [
@@ -2692,7 +2693,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 345,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "sans_gluten", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍚',
     ingredients: [
@@ -2720,7 +2721,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 578,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["sans_gluten", "sans_lactose", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🍛',
     ingredients: [
@@ -2749,7 +2750,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 403,
-    nutrients: ["Magnésium", "Calcium", "Vitamine B6", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Calcium', 'Vitamine B6'],
     tags: ["vegetarien", "spm_friendly", "anti_fatigue", "anti_crampes"],
     emoji: '🧀',
     ingredients: [
@@ -2773,12 +2774,12 @@ dinner: [
 
   {
     name: 'Saumon grillé au miso et brocoli vapeur',
-    description: 'Le miso ajoute des enzymes anti-inflammatoires au saumon déjà riche en oméga-3. Le brocoli vapeur pr.',
+    description: 'Le miso apporte sa saveur umami au saumon déjà riche en oméga-3. Le brocoli vapeur préserve son sulforaphane. Un dîner savoureux et apaisant, parfait pour la phase lutéale.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 455,
-    nutrients: ['Oméga-3 EPA/DHA', 'Enzymes', 'Sulforaphane', 'Gingérol', 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Oméga-3 EPA/DHA', 'Sulforaphane', 'Gingérol', 'Probiotiques', 'Zinc'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -2805,7 +2806,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'indien',
     calories: 365,
-    nutrients: ['Bêta-carotène', 'Curcumine', 'Gingérol', 'Acide laurique', 'Glutathion'],
+    nutrients: ['Bêta-carotène', 'Curcumine', 'Gingérol'],
     tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍛',
     ingredients: [
@@ -2829,12 +2830,12 @@ dinner: [
   },
   {
     name: 'Gratin de patate douce au romarin et ail',
-    description: 'La patate douce est anti-inflammatoire grâce à ses anthocyanines (peau violette) et bêta-carotène. L.',
+    description: 'La patate douce apporte du bêta-carotène et des fibres douces. Le romarin et l\'ail parfument le tout de leurs composés protecteurs. Un gratin fondant et réconfortant pour le soir.',
     prepTime: '35 min',
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 280,
-    nutrients: ['Bêta-carotène', 'Acide rosmarinique', 'Acide carnosique', 'Allicine', 'Glutathion'],
+    nutrients: ['Bêta-carotène', 'Acide rosmarinique', 'Acide carnosique', 'Allicine'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍠',
     ingredients: [
@@ -2861,7 +2862,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 165,
-    nutrients: ['Lycopène x3', 'Allicine', 'Eugénol', 'Curcumine', 'Glutathion'],
+    nutrients: ['Lycopène', 'Allicine', 'Eugénol', 'Curcumine'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -2888,7 +2889,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 430,
-    nutrients: ['Oméga-3', 'Bêta-carotène', 'Curcumine', 'Acide rosmarinique', 'Glutathion'],
+    nutrients: ['Oméga-3', 'Bêta-carotène', 'Curcumine', 'Acide rosmarinique'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🐟',
     ingredients: [
@@ -2912,12 +2913,12 @@ dinner: [
   },
   {
     name: 'Bol de riz au tempeh grillé et sauce anti-inflammatoire',
-    description: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma-.',
+    description: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma, gingembre et citron réveille le tout. Un bol nourrissant et apaisant pour la phase lutéale.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 400,
-    nutrients: ['Isoflavones', 'Curcumine', 'Gingérol', 'Sulforaphane', 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Isoflavones', 'Curcumine', 'Gingérol', 'Sulforaphane', 'Probiotiques', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
@@ -2937,7 +2938,7 @@ dinner: [
     'Blanchis le brocoli.',
     'Prépare sauce : curcuma + citron + huile. Assemble avec sésame.',
     ],
-    whyThisPhase: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma-gingembre-citron est un concentré thérapeutique.',
+    whyThisPhase: 'Le tempeh fermenté contient des isoflavones biodisponibles anti-inflammatoires. La sauce au curcuma-gingembre-citron est un concentré de bienfaits.',
   },
   {
     name: 'Riz sauté anti-inflammatoire au curcuma et légumes',
@@ -2946,7 +2947,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 355,
-    nutrients: ['Curcumine', 'Sulforaphane', 'Gingérol', 'Bêta-carotène', 'Glutathion'],
+    nutrients: ['Curcumine', 'Sulforaphane', 'Gingérol', 'Bêta-carotène'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥘',
     ingredients: [
@@ -2977,7 +2978,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 250,
-    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6', 'Glutathion'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides complexes', 'Vitamine B6'],
     tags: ['sans_lactose', 'vegetarien', 'sopk_friendly'],
     emoji: '🧁',
     ingredients: [
@@ -3053,7 +3054,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 120,
-    nutrients: ['Fibres', 'Glucides complexes', 'Magnésium', 'Vitamine C'],
+    nutrients: ['Fibres', 'Pectine', 'Vitamine C'],
     tags: ['vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍎',
     ingredients: [
@@ -3077,7 +3078,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 277,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3099,8 +3100,8 @@ snack: [
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
-    calories: 460,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion', 'Zinc'],
+    calories: 260,
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🧁',
     ingredients: [
@@ -3127,7 +3128,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 196,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3147,7 +3148,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 260,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3165,12 +3166,12 @@ snack: [
   },
   {
     name: 'Tartine de beurre d\'amande au miel et cannelle',
-    description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
+    description: 'Recette anti-SPM, végétarienne, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 181,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ['sans_lactose', "vegetarien", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
@@ -3188,12 +3189,12 @@ snack: [
   },
   {
     name: 'Energy balls dattes-coco-beurre de cacahuète',
-    description: 'Le cacao est riche en magnésium, idéal contre les crampes. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase lutéale pour un encas sain et rassasiant.',
+    description: 'Le cacao est riche en magnésium, idéal contre les crampes. Le beurre de cacahuète apporte protéines et bonnes graisses. Idéal en phase lutéale pour un encas sain et rassasiant.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 180,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🟤',
     ingredients: [
@@ -3218,7 +3219,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 362,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🍮',
     ingredients: [
@@ -3242,7 +3243,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 237,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍎',
     ingredients: [
@@ -3267,7 +3268,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 369,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort"],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides'],
     tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍦',
     ingredients: [
@@ -3290,7 +3291,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 160,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🍫',
     ingredients: [
@@ -3314,7 +3315,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 204,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ['sans_lactose', "vegetarien", "vegan", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
@@ -3336,7 +3337,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 260,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Glutathion', 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3356,12 +3357,12 @@ snack: [
   },
   {
     name: 'Mug de porridge express au micro-ondes',
-    description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
+    description: 'Recette anti-SPM, végétarienne, pour un encas sain et rassasiant. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 292,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🥣',
     ingredients: [
@@ -3380,12 +3381,12 @@ snack: [
   },
   {
     name: 'Mousse au chocolat express à l\'aquafaba',
-    description: 'Les pois chiches apportent protéines végétales et fibres. Le lait de coco apporte des graisses saines et de l\'onctuosité. Idéal en phase lutéale pour un encas sain et rassasiant.',
+    description: 'Une mousse aérienne montée à l\'aquafaba, le jus des pois chiches, sans œufs ni crème. Le chocolat noir apporte du magnésium. Idéal en phase lutéale pour un encas sain et rassasiant.',
     prepTime: '15 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 150,
-    nutrients: ["Magnésium", "Sérotonine", "Glucides", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Tryptophane', 'Glucides', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🍫',
     ingredients: [
@@ -3405,12 +3406,12 @@ snack: [
 
   {
     name: 'Energy balls cacao cru et noix anti-inflammatoires',
-    description: 'Le cacao cru non torréfié conserve 4x plus de flavanols. Les noix apportent oméga-3 ALA. Les dattes.',
+    description: 'Le cacao cru conserve davantage de flavanols que le cacao torréfié. Les noix apportent des oméga-3 ALA. Les dattes du fer et une douceur naturelle. Des bouchées gourmandes qui apaisent les envies de sucre du SPM.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 135,
-    nutrients: ['Flavanols x4', 'Oméga-3 ALA', 'Gingérol', 'Cinnamaldéhyde', 'Glutathion'],
+    nutrients: ['Flavanols', 'Oméga-3 ALA', 'Gingérol', 'Cinnamaldéhyde'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍫',
     ingredients: [
@@ -3427,11 +3428,11 @@ snack: [
     'Forme des boules.',
     'Conserve au frigo.',
     ],
-    whyThisPhase: 'Le cacao cru non torréfié conserve 4x plus de flavanols. Les noix apportent oméga-3 ALA. Les dattes du fer. Le gingembre du gingérol. Des snacks thérapeutiques.',
+    whyThisPhase: 'Le cacao cru conserve davantage de flavanols que le cacao torréfié. Les noix apportent des oméga-3 ALA, les dattes une douceur naturelle et le gingembre son gingérol. Des snacks gourmands et apaisants.',
   },
   {
     name: 'Compote de fruits rouges au gingembre et cannelle',
-    description: 'Les fruits rouges cuits libèrent des anthocyanines et de l\'acide ellagique. Le gingembre et la canne.',
+    description: 'Les fruits rouges cuits libèrent des anthocyanines et de l\'acide ellagique. Le gingembre et la cannelle ajoutent leur chaleur réconfortante. Un dessert tout doux qui apaise les fringales de fin de cycle.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'francais',
@@ -3458,7 +3459,7 @@ snack: [
   },
   {
     name: 'Truffes au chocolat noir et gingembre',
-    description: 'Le chocolat noir 85%+ contient des flavanols anti-inflammatoires concentrés. Le gingembre ajoute du.',
+    description: 'Le chocolat noir bien corsé est riche en flavanols anti-inflammatoires. Le gingembre ajoute du gingérol et une pointe épicée. Des petites truffes gourmandes pour calmer l\'envie de chocolat du SPM.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -3514,7 +3515,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 5,
-    nutrients: ['Antioxydants', 'Propriétés apaisantes'],
+    nutrients: ['Apigénine', 'Linalol'],
     tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍵',
     ingredients: [
@@ -3537,7 +3538,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 100,
-    nutrients: ['Magnésium', 'Propriétés adaptogènes', 'Calcium', 'Zinc'],
+    nutrients: ['Magnésium', 'Calcium', 'Zinc'],
     tags: ['vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥛',
     ingredients: [
@@ -3562,12 +3563,12 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 130,
-    nutrients: ['Calcium', 'Antioxydants', 'Propriétés anti-inflammatoires'],
+    nutrients: ['Calcium', 'Antioxydants'],
     tags: ['vegetarien', 'sans_gluten'],
     emoji: '☕',
     ingredients: [
       '200 ml de lait entier',
-      '50 ml de café ou expresso',
+      '50 ml de déca ou de chicorée',
       '1 c. à café de cannelle en poudre',
       '1 c. à café de miel',
       '1 pincée de muscade'
@@ -3575,7 +3576,7 @@ drink: [
     steps: [
       'Faire chauffer le lait dans une casserole avec la cannelle et la muscade.',
       'Faire mousser le lait chaud avec un mousseur ou un fouet.',
-      'Verser le café dans une tasse, ajouter le lait mousseux à la cannelle, et sucrer avec le miel.'
+      'Verser le déca dans une tasse, ajouter le lait mousseux à la cannelle, et sucrer avec le miel.'
     ],
     whyThisPhase: 'Le lait apporte du calcium qui aide à réduire les crampes et l\'irritabilité en phase lutéale. La cannelle régule la glycémie et réduit les fringales. Le miel fournit une énergie douce. Cette boisson répond au besoin de réconfort de cette phase du cycle.'
   },
@@ -3611,7 +3612,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 113,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Curcumine', 'Pipérine'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '☕',
     ingredients: [
@@ -3637,7 +3638,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 18,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Apigénine', 'Flavonoïdes'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
@@ -3662,7 +3663,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 15,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Menthol', 'Anéthol'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
@@ -3681,12 +3682,12 @@ drink: [
   },
   {
     name: 'Chocolat chaud au lait d\'avoine et cannelle',
-    description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
+    description: 'Recette anti-SPM, végétarienne, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase lutéale pour stabiliser l\'humeur et prévenir les symptômes prémenstruels.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 229,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Zinc'],
     tags: ["vegetarien", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3711,7 +3712,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 15,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Polyphénols', 'Tanins'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
@@ -3734,7 +3735,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 144,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Linalol', 'Antioxydants'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🥛',
     ingredients: [
@@ -3760,7 +3761,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 177,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Magnésium', 'Théobromine'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3786,7 +3787,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 15,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Acide rosmarinique', 'Polyphénols'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
@@ -3810,7 +3811,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 310,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort", 'Zinc'],
+    nutrients: ['Magnésium', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍫',
     ingredients: [
@@ -3829,13 +3830,13 @@ drink: [
     whyThisPhase: 'En lutéale, évite le café après 14h. Ces boissons chaudes apportent magnésium, réconfort et aident le sommeil souvent fragile dans cette phase.',
   },
   {
-    name: 'Infusion de sauge et miel (régulatrice hormonale)',
+    name: 'Infusion de sauge et miel',
     description: 'Le miel apporte une énergie naturelle rapide. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase lutéale pour s\'hydrater avec des bienfaits ciblés.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 19,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Polyphénols', 'Antioxydants'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
@@ -3859,7 +3860,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 179,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Fibres', 'Polyphénols'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '☕',
     ingredients: [
@@ -3883,7 +3884,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 15,
-    nutrients: ["Magnésium", "Relaxation", "Sommeil", "Réconfort"],
+    nutrients: ['Apigénine', 'Flavonoïdes'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "spm_friendly", "anti_crampes", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
@@ -3903,7 +3904,7 @@ drink: [
 
   {
     name: 'Smoothie anti-SPM chocolat-cerise-gingembre',
-    description: 'Le cacao contient du magnésium (anti-SPM) et des flavanols anti-inflammatoires. Les cerises des anth.',
+    description: 'Le cacao contient du magnésium et des flavanols anti-inflammatoires. Les cerises des anthocyanines et le gingembre sa chaleur apaisante. Un smoothie onctueux qui répond aux envies de chocolat de la phase lutéale.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -3955,7 +3956,7 @@ drink: [
   },
   {
     name: 'Infusion de sauge et camomille anti-inflammatoire',
-    description: 'La sauge contient de l\'acide rosmarinique (anti-inflammatoire COX-2). La camomille de l\'apigénine et.',
+    description: 'La sauge contient de l\'acide rosmarinique. La camomille de l\'apigénine et du bisabolol apaisants. Une infusion douce pour se détendre quand le SPM tiraille.',
     prepTime: '3 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -3985,7 +3986,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 25,
-    nutrients: ['Gingérol (inhibiteur COX-2)', 'Apigénine', 'Bisabolol', 'Acide rosmarinique'],
+    nutrients: ['Gingérol', 'Apigénine', 'Bisabolol', 'Acide rosmarinique'],
     tags: ['sopk_friendly', 'anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥤',
     ingredients: [

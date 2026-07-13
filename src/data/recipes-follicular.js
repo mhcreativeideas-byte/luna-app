@@ -55,7 +55,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 390,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍳',
     ingredients: [
@@ -80,7 +80,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 370,
-    nutrients: ['Protéines', 'Vitamines B', 'Énergie', 'Zinc'],
+    nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
     tags: ['vegetarien', 'sans_lactose'],
     emoji: '🥞',
     ingredients: [
@@ -106,7 +106,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 360,
-    nutrients: ['Antioxydants', 'Vitamines B', 'Énergie'],
+    nutrients: ['Antioxydants', 'Vitamines B'],
     tags: ['vegan', 'sans_gluten', 'sans_lactose'],
     emoji: '🫐',
     ingredients: [
@@ -130,7 +130,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'italien',
     calories: 380,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['vegetarien'],
     emoji: '🍞',
     ingredients: [
@@ -155,7 +155,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 506,
-    nutrients: ["Protéines", "Zinc", "Magnésium", "Glucides complexes", 'Zinc'],
+    nutrients: ['Protéines', 'Zinc', 'Magnésium', 'Glucides complexes'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥤',
     ingredients: [
@@ -179,7 +179,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 483,
-    nutrients: ["Protéines complètes", "Vitamines B", "Antioxydants", "Fibres", 'Glutathion'],
+    nutrients: ['Protéines complètes', 'Vitamines B', 'Antioxydants', 'Fibres'],
     tags: ['sopk_friendly', 'sans_lactose', "vegetarien", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
@@ -206,7 +206,7 @@ breakfast: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 318,
-    nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine E", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Sélénium', 'Fibres prébiotiques', 'Vitamine E'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🥣',
     ingredients: [
@@ -233,7 +233,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 455,
-    nutrients: ["Antioxydants", "Zinc", "Vitamines", "Énergie", 'Zinc'],
+    nutrients: ['Antioxydants', 'Zinc', 'Vitamines'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -284,7 +284,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 443,
-    nutrients: ["Protéines", "Zinc", "Fibres", "Énergie durable", 'Zinc'],
+    nutrients: ['Protéines', 'Zinc', 'Fibres'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -310,7 +310,7 @@ breakfast: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 173,
-    nutrients: ["Antioxydants", "Vitamine C", "Probiotiques", "Énergie", 'Probiotiques'],
+    nutrients: ['Antioxydants', 'Vitamine C'],
     tags: ["vegetarien", "anti_fatigue"],
     emoji: '🧁',
     ingredients: [
@@ -338,7 +338,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 245,
-    nutrients: ["Vitamines B", "Zinc", "Enzymes vivantes", "Vitamine C"],
+    nutrients: ['Vitamines B', 'Zinc', 'Vitamine C'],
     tags: ["vegetarien", "sopk_friendly", "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
@@ -364,7 +364,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 203,
-    nutrients: ["Fer", "Acide folique", "Prébiotiques", "Anti-inflammatoires", 'Glutathion'],
+    nutrients: ['Fer', 'Acide folique', 'Prébiotiques', 'Anti-inflammatoires'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
@@ -384,12 +384,12 @@ breakfast: [
   },
   {
     name: 'Bol de fromage blanc, kiwi et graines de courge',
-    description: 'Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour bien démarrer la journée.',
+    description: 'Les graines de courge apportent du zinc et de bonnes graisses. Le miel apporte une énergie naturelle rapide. Idéal en phase folliculaire pour bien démarrer la journée.',
     prepTime: '3 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 351,
-    nutrients: ["Protéines", "Probiotiques", "Vitamine C", "Zinc", 'Glutathion', 'Zinc'],
+    nutrients: ['Protéines', 'Probiotiques', 'Vitamine C', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -414,7 +414,7 @@ breakfast: [
     difficulty: 'intermediaire',
     cuisine: 'mediterraneen',
     calories: 241,
-    nutrients: ["Vitamine C", "Protéines", "Fer", "Antioxydants", 'Glutathion'],
+    nutrients: ['Vitamine C', 'Protéines', 'Fer', 'Antioxydants'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
@@ -465,7 +465,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 495,
-    nutrients: ["Folates", "Protéines", "Calcium", "Prébiotiques", 'Glutathion'],
+    nutrients: ['Folates', 'Protéines', 'Calcium', 'Prébiotiques'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
@@ -491,7 +491,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 314,
-    nutrients: ["Protéines complètes", "Oméga-3", "Antioxydants", "Magnésium", 'Glutathion', 'Zinc'],
+    nutrients: ['Protéines complètes', 'Oméga-3', 'Antioxydants', 'Magnésium', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥣',
     ingredients: [
@@ -518,7 +518,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 628,
-    nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines", 'Glutathion'],
+    nutrients: ['Oméga-3', 'Vitamine D', 'Calcium', 'Protéines'],
     tags: ['sans_lactose', "anti_fatigue", "spm_friendly"],
     emoji: '🍞',
     ingredients: [
@@ -569,8 +569,8 @@ breakfast: [
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
-    calories: 656,
-    nutrients: ["Protéines complètes", "Vitamine C", "Fer", "Oméga-3", 'Glutathion'],
+    calories: 350,
+    nutrients: ['Protéines complètes', 'Vitamine C', 'Fer', 'Oméga-3'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
@@ -589,12 +589,12 @@ breakfast: [
   },
   {
     name: 'Muesli bircher aux pommes et graines de tournesol',
-    description: 'Recette adapté au SOPK, 100% végétal, pour bien démarrer la journée. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
+    description: 'Recette adapté au SOPK, végétarienne, pour bien démarrer la journée. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 466,
-    nutrients: ["Zinc", "Sélénium", "Fibres prébiotiques", "Vitamine C", 'Zinc'],
+    nutrients: ['Zinc', 'Sélénium', 'Fibres prébiotiques', 'Vitamine C'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -620,7 +620,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 235,
-    nutrients: ["Protéines", "Fer", "Calcium", "Anti-inflammatoires", 'Glutathion'],
+    nutrients: ['Protéines', 'Fer', 'Calcium', 'Anti-inflammatoires'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🫘',
     ingredients: [
@@ -674,7 +674,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 349,
-    nutrients: ["Protéines", "Calcium", "Énergie", "Vitamines B"],
+    nutrients: ['Protéines', 'Calcium', 'Vitamines B'],
     tags: ["anti_fatigue"],
     emoji: '🧇',
     ingredients: [
@@ -698,7 +698,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 503,
-    nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Fer', 'Vitamine C', 'Protéines'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥤',
     ingredients: [
@@ -722,8 +722,8 @@ breakfast: [
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'francais',
-    calories: 92,
-    nutrients: ["Protéines", "Fer", "Zinc", "Fibres", 'Glutathion', 'Zinc'],
+    calories: 290,
+    nutrients: ['Protéines', 'Fer', 'Zinc', 'Fibres'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥞',
     ingredients: [
@@ -775,7 +775,7 @@ breakfast: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 345,
-    nutrients: ['Sulforaphane x50', 'Oméga-9', 'Curcumine', 'Sésamine', 'Glutathion', 'Zinc'],
+    nutrients: ['Sulforaphane', 'Oméga-9', 'Curcumine', 'Sésamine', 'Zinc'],
     tags: ['sans_lactose', 'anti_inflammatoire', 'vegetarien', 'sans_gluten'],
     emoji: '🥑',
     ingredients: [
@@ -797,12 +797,12 @@ breakfast: [
   },
   {
     name: 'Porridge aux myrtilles, noix et graines de lin',
-    description: 'Les myrtilles sont parmi les fruits les plus anti-inflammatoires grâce à leurs ptérostilbènes et ant.',
+    description: 'Les myrtilles sont parmi les fruits les plus anti-inflammatoires grâce à leurs ptérostilbènes et anthocyanines. Les noix et les graines de lin ajoutent des oméga-3 végétaux pour bien démarrer la journée.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 380,
-    nutrients: ['Ptérostilbènes', 'Anthocyanines', 'Oméga-3 ALA', 'Lignanes', 'Glutathion', 'Zinc'],
+    nutrients: ['Ptérostilbènes', 'Anthocyanines', 'Oméga-3 ALA', 'Lignanes', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -831,7 +831,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 520,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🥦',
     ingredients: [
@@ -857,7 +857,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 550,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['spm_friendly', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🍗',
     ingredients: [
@@ -882,7 +882,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 420,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['sopk_friendly', 'spm_friendly', 'sans_gluten', 'sans_lactose'],
     emoji: '🦐',
     ingredients: [
@@ -909,7 +909,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'mexicain',
     calories: 480,
-    nutrients: ['Protéines', 'Zinc', 'Probiotiques', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc'],
     tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🌮',
     ingredients: [
@@ -963,7 +963,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 510,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['sans_gluten', 'sans_lactose'],
     emoji: '🍣',
     ingredients: [
@@ -985,12 +985,12 @@ lunch: [
   },
   {
     name: 'Salade quinoa, poulet grillé et brocoli',
-    description: 'Le quinoa fournit protéines complètes et fer végétal. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
+    description: 'Le quinoa fournit protéines complètes et fer végétal. Le brocoli apporte fibres, vitamine C et sulforaphane. Idéal en phase folliculaire pour un déjeuner équilibré et nourrissant.',
     prepTime: '30 min',
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 423,
-    nutrients: ["Protéines", "Zinc", "Vitamine C", "Fer", 'Glutathion', 'Zinc'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamine C', 'Fer'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
@@ -1017,7 +1017,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 342,
-    nutrients: ["Protéines", "Oméga-9", "Vitamine K", "Probiotiques", 'Glutathion', 'Probiotiques'],
+    nutrients: ['Protéines', 'Oméga-9', 'Vitamine K', 'Probiotiques'],
     tags: ['sopk_friendly', 'spm_friendly', "anti_fatigue"],
     emoji: '🌯',
     ingredients: [
@@ -1044,7 +1044,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 465,
-    nutrients: ["Oméga-3", "Zinc", "Vitamine D", "Vitamine C", 'Glutathion', 'Zinc'],
+    nutrients: ['Oméga-3', 'Zinc', 'Vitamine D', 'Vitamine C'],
     tags: ['sans_lactose', "sans_gluten", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥣',
     ingredients: [
@@ -1071,8 +1071,8 @@ lunch: [
     prepTime: '35 min',
     difficulty: 'intermediaire',
     cuisine: 'fusion',
-    calories: 115,
-    nutrients: ["Fer", "Zinc", "Protéines végétales", "Fibres", 'Zinc'],
+    calories: 380,
+    nutrients: ['Fer', 'Zinc', 'Protéines végétales', 'Fibres'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
     emoji: '🥗',
     ingredients: [
@@ -1094,12 +1094,12 @@ lunch: [
   },
   {
     name: 'Sauté de crevettes aux brocolis et noix de cajou',
-    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les noix sont riches en oméga-3 bénéfiques pour le cerveau.',
+    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les noix de cajou apportent du magnésium et de bonnes graisses.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 423,
-    nutrients: ["Zinc", "Sélénium", "Vitamine C", "Magnésium", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Sélénium', 'Vitamine C', 'Magnésium'],
     tags: ['spm_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🦐',
     ingredients: [
@@ -1127,7 +1127,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'mediterraneen',
     calories: 302,
-    nutrients: ["Zinc", "Fer", "Fibres prébiotiques", "Protéines", 'Zinc'],
+    nutrients: ['Zinc', 'Fer', 'Fibres prébiotiques', 'Protéines'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -1183,7 +1183,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 695,
-    nutrients: ["Oméga-3", "Vitamine D", "Calcium", "Protéines", 'Glutathion'],
+    nutrients: ['Oméga-3', 'Vitamine D', 'Calcium', 'Protéines'],
     tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
     emoji: '🥗',
     ingredients: [
@@ -1201,7 +1201,7 @@ lunch: [
       'Parsème d\'oignon rouge émincé.',
       'Assaisonne d\'huile d\'olive et vinaigre.',
     ],
-    whyThisPhase: 'Les sardines sont une mine d\'or nutritionnelle : oméga-3, vitamine D, calcium (dans les arêtes), et protéines. Le pamplemousse soutient le métabolisme des œstrogènes.',
+    whyThisPhase: 'Les sardines sont une mine d\'or nutritionnelle : oméga-3, vitamine D, calcium (dans les arêtes), et protéines. Le pamplemousse apporte de la vitamine C et de la fraîcheur.',
   },
   {
     name: 'Bol de riz complet, poulet teriyaki et légumes grillés',
@@ -1210,7 +1210,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 318,
-    nutrients: ["Protéines", "Vitamine B6", "Fibres", "Zinc", 'Zinc'],
+    nutrients: ['Protéines', 'Vitamine B6', 'Fibres', 'Zinc'],
     tags: ["sans_gluten", "sans_lactose", "anti_fatigue"],
     emoji: '🍗',
     ingredients: [
@@ -1233,12 +1233,12 @@ lunch: [
   },
   {
     name: 'Soupe de petits pois à la menthe fraîche',
-    description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
+    description: 'Recette 100% végétale, pour un déjeuner équilibré et nourrissant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 225,
-    nutrients: ["Protéines végétales", "Fer", "Zinc", "Vitamine C", 'Glutathion'],
+    nutrients: ['Protéines végétales', 'Fer', 'Zinc', 'Vitamine C'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍲',
     ingredients: [
@@ -1264,7 +1264,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'mexicain',
     calories: 530,
-    nutrients: ["Protéines", "Sélénium", "Vitamine C", "Oméga-3", 'Glutathion'],
+    nutrients: ['Protéines', 'Sélénium', 'Vitamine C'],
     tags: ['sopk_friendly', 'sans_lactose', 'sans_gluten', "anti_fatigue", "spm_friendly"],
     emoji: '🐟',
     ingredients: [
@@ -1291,7 +1291,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 553,
-    nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer", 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Protéines', 'Probiotiques', 'Zinc', 'Fer'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🥣',
     ingredients: [
@@ -1313,12 +1313,12 @@ lunch: [
   },
   {
     name: 'Wok de bœuf aux brocolis et sauce gingembre',
-    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès.',
+    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli apporte fibres, vitamine C et sulforaphane.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 383,
-    nutrients: ["Fer héminique", "Zinc", "Vitamine C", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
+    nutrients: ['Fer héminique', 'Zinc', 'Vitamine C', 'Anti-inflammatoires'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥩',
     ingredients: [
@@ -1345,7 +1345,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'mediterraneen',
     calories: 417,
-    nutrients: ["Protéines", "Calcium", "Polyphénols", "Zinc", 'Zinc'],
+    nutrients: ['Protéines', 'Calcium', 'Polyphénols', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🥗',
     ingredients: [
@@ -1368,12 +1368,12 @@ lunch: [
   },
   {
     name: 'Soupe de haricots blancs à l\'italienne',
-    description: 'Recette anti-SPM, 100% végétal, pour un déjeuner équilibré et nourrissant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
+    description: 'Recette 100% végétale, pour un déjeuner équilibré et nourrissant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
     prepTime: '35 min',
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 330,
-    nutrients: ["Zinc", "Fer", "Protéines végétales", "Fibres", 'Glutathion'],
+    nutrients: ['Zinc', 'Fer', 'Protéines végétales', 'Fibres'],
     tags: ['sopk_friendly', 'sans_lactose', "vegetarien", "vegan", "anti_fatigue", "spm_friendly"],
     emoji: '🍲',
     ingredients: [
@@ -1401,7 +1401,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 420,
-    nutrients: ["Fer héminique", "Zinc", "Protéines", "Vitamines variées", 'Glutathion', 'Zinc'],
+    nutrients: ['Fer héminique', 'Zinc', 'Protéines'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥩',
     ingredients: [
@@ -1426,12 +1426,12 @@ lunch: [
   },
   {
     name: 'Salade de chou kale massé aux cranberries et noix de cajou',
-    description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Les noix sont riches en oméga-3 bénéfiques pour le cerveau.',
+    description: 'L\'avocat apporte des graisses saines qui soutiennent les hormones. Les noix de cajou apportent du magnésium et de bonnes graisses.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 368,
-    nutrients: ["Vitamine K", "Vitamine C", "Zinc", "Calcium", 'Glutathion', 'Zinc'],
+    nutrients: ['Vitamine K', 'Vitamine C', 'Zinc', 'Calcium'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
@@ -1458,7 +1458,7 @@ lunch: [
     difficulty: 'avance',
     cuisine: 'indien',
     calories: 297,
-    nutrients: ["Zinc", "Fer", "Protéines", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Fer', 'Protéines', 'Anti-inflammatoires'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🍛',
     ingredients: [
@@ -1516,7 +1516,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 416,
-    nutrients: ["Probiotiques", "Protéines", "Choline", "Bonnes graisses", 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Probiotiques', 'Protéines', 'Choline', 'Bonnes graisses', 'Zinc'],
     tags: ['spm_friendly', "vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🍳',
     ingredients: [
@@ -1543,7 +1543,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 295,
-    nutrients: ["Oméga-3", "Fer", "Zinc", "Protéines", 'Zinc'],
+    nutrients: ['Oméga-3', 'Fer', 'Zinc', 'Protéines'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
@@ -1566,12 +1566,12 @@ lunch: [
   },
   {
     name: 'Bol de tempeh grillé et légumes rôtis',
-    description: 'La patate douce est riche en bêta-carotène et vitamines. Le brocoli aide à métaboliser les œstrogènes en excès.',
+    description: 'La patate douce est riche en bêta-carotène et vitamines. Le brocoli apporte fibres, vitamine C et sulforaphane.',
     prepTime: '40 min',
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 471,
-    nutrients: ["Protéines", "Probiotiques", "Zinc", "Fer", 'Glutathion', 'Probiotiques', 'Zinc'],
+    nutrients: ['Protéines', 'Probiotiques', 'Zinc', 'Fer'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🫘',
     ingredients: [
@@ -1599,7 +1599,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 221,
-    nutrients: ["Probiotiques", "Protéines", "Iode", "Enzymes", 'Glutathion', 'Probiotiques'],
+    nutrients: ['Probiotiques', 'Protéines', 'Iode'],
     tags: ['spm_friendly', 'sans_lactose', "vegetarien", "vegan", "anti_fatigue", "sopk_friendly"],
     emoji: '🍲',
     ingredients: [
@@ -1627,7 +1627,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 378,
-    nutrients: ["Zinc", "Fer", "Vitamine C", "Protéines", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Fer', 'Vitamine C', 'Protéines'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
@@ -1656,7 +1656,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 338,
-    nutrients: ["Zinc", "Sélénium", "Protéines", "Oméga-3", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Sélénium', 'Protéines'],
     tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🦐',
     ingredients: [
@@ -1685,7 +1685,7 @@ lunch: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 276,
-    nutrients: ["Prébiotiques", "Calcium", "Protéines", "Vitamines K"],
+    nutrients: ['Prébiotiques', 'Calcium', 'Protéines', 'Vitamine K'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🥧',
     ingredients: [
@@ -1708,12 +1708,12 @@ lunch: [
 
   {
     name: 'Salade arc-en-ciel aux 7 légumes et vinaigrette curcuma',
-    description: 'Chaque couleur = un type d\'antioxydant anti-inflammatoire différent. Rouge (lycopène), orange (bêta-.',
+    description: 'Chaque couleur = un type d\'antioxydant anti-inflammatoire différent. Rouge (lycopène), orange (bêta-carotène), vert (chlorophylle), violet (anthocyanines). La diversité dans l\'assiette, c\'est la clé.',
     prepTime: '15 min',
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 285,
-    nutrients: ['Lycopène', 'Bêta-carotène', 'Anthocyanines', 'Chlorophylle', 'Glutathion', 'Zinc'],
+    nutrients: ['Lycopène', 'Bêta-carotène', 'Anthocyanines', 'Chlorophylle', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
@@ -1744,7 +1744,7 @@ lunch: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 195,
-    nutrients: ['Sulforaphane', 'Vitamine E', 'Gingérol', 'Allicine', 'Glutathion', 'Zinc'],
+    nutrients: ['Sulforaphane', 'Vitamine E', 'Gingérol', 'Allicine', 'Zinc'],
     tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥣',
     ingredients: [
@@ -1767,12 +1767,12 @@ lunch: [
   },
   {
     name: 'Bol de riz noir aux edamame et avocat',
-    description: 'Le riz noir contient des anthocyanines, les mêmes pigments anti-inflammatoires que les myrtilles. L.',
+    description: 'Le riz noir contient des anthocyanines, les mêmes pigments anti-inflammatoires que les myrtilles. Les edamame apportent des protéines végétales et l\'avocat de bonnes graisses.',
     prepTime: '20 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 395,
-    nutrients: ['Anthocyanines', 'Isoflavones', 'Oméga-9', 'Sésamine', 'Glutathion', 'Zinc'],
+    nutrients: ['Anthocyanines', 'Isoflavones', 'Oméga-9', 'Sésamine', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
@@ -1795,12 +1795,12 @@ lunch: [
   },
   {
     name: 'Taboulé de chou-fleur cru au persil et grenade',
-    description: 'Le chou-fleur cru conserve tout son sulforaphane. Le persil est l\'une des herbes les plus riches en.',
+    description: 'Le chou-fleur cru conserve tout son sulforaphane. Le persil est l\'une des herbes les plus riches en apigénine, un antioxydant apaisant. La grenade ajoute sa touche fraîche et sucrée.',
     prepTime: '15 min',
     difficulty: 'debutant',
     cuisine: 'mediterraneen',
     calories: 195,
-    nutrients: ['Sulforaphane', 'Apigénine', 'Punicalagines', 'Vitamine C', 'Glutathion'],
+    nutrients: ['Sulforaphane', 'Apigénine', 'Punicalagines', 'Vitamine C'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍽️',
     ingredients: [
@@ -1851,12 +1851,12 @@ lunch: [
   },
   {
     name: 'Poke bowl au thon frais et légumes marinés',
-    description: 'Le thon frais est riche en oméga-3 DHA et en sélénium (cofacteur anti-inflammatoire). Le gingembre m.',
+    description: 'Le thon frais est riche en oméga-3 DHA et en sélénium (cofacteur anti-inflammatoire). Le gingembre mariné apporte sa note piquante et ses composés anti-inflammatoires.',
     prepTime: '15 min',
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 445,
-    nutrients: ['Oméga-3 DHA', 'Shogaol', 'Sélénium', 'Isoflavones', 'Glutathion', 'Zinc'],
+    nutrients: ['Oméga-3 DHA', 'Shogaol', 'Sélénium', 'Isoflavones', 'Zinc'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
@@ -1881,12 +1881,12 @@ lunch: [
   },
   {
     name: 'Salade de haricots blancs aux tomates cerises et basilic',
-    description: 'Les haricots blancs contiennent des saponines anti-inflammatoires. Les tomates du lycopène. Le basil.',
+    description: 'Les haricots blancs contiennent des saponines anti-inflammatoires et des protéines végétales. Les tomates apportent du lycopène et le basilic frais son parfum et son eugénol.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 265,
-    nutrients: ['Saponines', 'Lycopène', 'Eugénol', 'Allicine', 'Glutathion'],
+    nutrients: ['Saponines', 'Lycopène', 'Eugénol', 'Allicine'],
     tags: ['sopk_friendly', 'spm_friendly', 'anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
@@ -1904,7 +1904,7 @@ lunch: [
     'Assaisonne de citron et huile d\'olive.',
     'Parsème de basilic ciselé.',
     ],
-    whyThisPhase: 'Les haricots blancs contiennent des saponines anti-inflammatoires. Les tomates du lycopène. Le basilic de l\'eugénol, un anti-inflammatoire qui inhibe COX-2 comme l\'ibuprofène.',
+    whyThisPhase: 'Les haricots blancs contiennent des saponines anti-inflammatoires. Les tomates du lycopène. Le basilic apporte de l\'eugénol, un composé anti-inflammatoire.',
   },
 ],
 dinner: [
@@ -1915,7 +1915,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 440,
-    nutrients: ['Protéines', 'Probiotiques', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Probiotiques', 'Vitamines B'],
     tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥘',
     ingredients: [
@@ -1941,7 +1941,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 520,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['spm_friendly', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🍗',
     ingredients: [
@@ -1967,7 +1967,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 460,
-    nutrients: ['Protéines', 'Probiotiques', 'Zinc', 'Glutathion'],
+    nutrients: ['Protéines', 'Probiotiques', 'Zinc'],
     tags: ['sopk_friendly', 'spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'anti_inflammatoire'],
     emoji: '🥘',
     ingredients: [
@@ -1989,12 +1989,12 @@ dinner: [
   },
   {
     name: 'Filet de dorade, purée de brocoli',
-    description: 'Le brocoli aide à métaboliser les œstrogènes en excès. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un dîner léger et réparateur.',
+    description: 'Le brocoli apporte fibres, vitamine C et sulforaphane. Le citron stimule la digestion et apporte de la vitamine C. Idéal en phase folliculaire pour un dîner léger et réparateur.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 430,
-    nutrients: ['Protéines', 'Zinc', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamines B'],
     tags: ['spm_friendly', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🐟',
     ingredients: [
@@ -2020,7 +2020,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 510,
-    nutrients: ['Protéines', 'Vitamines B', 'Zinc', 'Glutathion'],
+    nutrients: ['Protéines', 'Vitamines B', 'Zinc'],
     tags: ['vegetarien'],
     emoji: '🍝',
     ingredients: [
@@ -2047,7 +2047,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 470,
-    nutrients: ['Protéines', 'Vitamines B', 'Énergie', 'Glutathion'],
+    nutrients: ['Protéines', 'Vitamines B'],
     tags: ['spm_friendly', 'vegan', 'sans_lactose', 'anti_inflammatoire'],
     emoji: '🍜',
     ingredients: [
@@ -2074,7 +2074,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 307,
-    nutrients: ["Protéines", "Zinc", "Phytoœstrogènes", "Vitamine C", 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Phytoœstrogènes', 'Vitamine C'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue", 'anti_inflammatoire'],
     emoji: '🫘',
     ingredients: [
@@ -2102,7 +2102,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 462,
-    nutrients: ["Protéines", "Vitamine B6", "Antioxydants", "Énergie", 'Glutathion'],
+    nutrients: ['Protéines', 'Vitamine B6', 'Antioxydants'],
     tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍗',
     ingredients: [
@@ -2130,7 +2130,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 397,
-    nutrients: ["Vitamines B", "Vitamine C", "Fibres", "Calcium", 'Glutathion'],
+    nutrients: ['Vitamines B', 'Vitamine C', 'Fibres', 'Calcium'],
     tags: ["vegetarien", "anti_fatigue"],
     emoji: '🍝',
     ingredients: [
@@ -2159,7 +2159,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 424,
-    nutrients: ["Oméga-3", "Zinc", "Sélénium", "Protéines", 'Zinc'],
+    nutrients: ['Oméga-3', 'Zinc', 'Sélénium', 'Protéines'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🐟',
     ingredients: [
@@ -2186,7 +2186,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'indien',
     calories: 361,
-    nutrients: ["Zinc", "Protéines", "Fer", "Anti-inflammatoires", 'Glutathion'],
+    nutrients: ['Zinc', 'Protéines', 'Fer', 'Anti-inflammatoires'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍛',
     ingredients: [
@@ -2213,7 +2213,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 200,
-    nutrients: ["Protéines", "Calcium", "Vitamines B", "Fibres", 'Glutathion'],
+    nutrients: ['Protéines', 'Calcium', 'Vitamines B', 'Fibres'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🥧',
     ingredients: [
@@ -2240,7 +2240,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 403,
-    nutrients: ["Protéines", "Zinc", "Vitamine C", "Oméga-9", 'Glutathion', 'Zinc'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamine C', 'Oméga-9'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🍣',
     ingredients: [
@@ -2269,7 +2269,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'francais',
     calories: 242,
-    nutrients: ["Protéines", "Fer", "Calcium", "Fibres", 'Glutathion', 'Zinc'],
+    nutrients: ['Protéines', 'Fer', 'Calcium', 'Fibres', 'Zinc'],
     tags: ['sopk_friendly', 'spm_friendly', "vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🧀',
     ingredients: [
@@ -2296,7 +2296,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 348,
-    nutrients: ["Oméga-3", "Protéines", "Sélénium", "Vitamine C", 'Glutathion'],
+    nutrients: ['Oméga-3', 'Protéines', 'Sélénium', 'Vitamine C'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥗',
     ingredients: [
@@ -2318,12 +2318,12 @@ dinner: [
   },
   {
     name: 'Soupe minestrone aux haricots blancs',
-    description: 'Recette anti-SPM, pour un dîner léger et réparateur. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
+    description: 'Recette idéale pour un dîner léger et réparateur. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
     prepTime: '45 min',
     difficulty: 'avance',
     cuisine: 'italien',
     calories: 203,
-    nutrients: ["Fer", "Zinc", "Protéines végétales", "Vitamines", 'Glutathion'],
+    nutrients: ['Fer', 'Zinc', 'Protéines végétales', 'Vitamines'],
     tags: ['sopk_friendly', "vegetarien", "anti_fatigue", "spm_friendly"],
     emoji: '🍲',
     ingredients: [
@@ -2379,7 +2379,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 380,
-    nutrients: ["Acide folique", "Prébiotiques", "Calcium", "Vitamine C", 'Glutathion'],
+    nutrients: ['Acide folique', 'Prébiotiques', 'Calcium', 'Vitamine C'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🍚',
     ingredients: [
@@ -2401,12 +2401,12 @@ dinner: [
   },
   {
     name: 'Sauté de poulet au gingembre et brocoli',
-    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli aide à métaboliser les œstrogènes en excès. Idéal en phase folliculaire pour un dîner léger et réparateur.',
+    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Le brocoli apporte fibres, vitamine C et sulforaphane. Idéal en phase folliculaire pour un dîner léger et réparateur.',
     prepTime: '22 min',
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 346,
-    nutrients: ["Protéines", "Zinc", "Vitamine C", "Anti-inflammatoires", 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Vitamine C', 'Anti-inflammatoires'],
     tags: ["sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🍗',
     ingredients: [
@@ -2460,7 +2460,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'mexicain',
     calories: 506,
-    nutrients: ["Protéines", "Sélénium", "Vitamine C", "Probiotiques", 'Glutathion', 'Probiotiques'],
+    nutrients: ['Protéines', 'Sélénium', 'Vitamine C', 'Probiotiques'],
     tags: ['sans_gluten', "anti_fatigue"],
     emoji: '🥗',
     ingredients: [
@@ -2487,8 +2487,8 @@ dinner: [
     prepTime: '35 min',
     difficulty: 'intermediaire',
     cuisine: 'francais',
-    calories: 192,
-    nutrients: ["Protéines complètes", "Calcium", "Fer", "Fibres", 'Glutathion', 'Zinc'],
+    calories: 380,
+    nutrients: ['Protéines complètes', 'Calcium', 'Fer', 'Fibres', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🧀',
     ingredients: [
@@ -2515,7 +2515,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 248,
-    nutrients: ["Vitamine D", "Vitamines B", "Zinc", "Protéines", 'Glutathion', 'Zinc'],
+    nutrients: ['Vitamine D', 'Vitamines B', 'Zinc', 'Protéines'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🥣',
     ingredients: [
@@ -2543,7 +2543,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 424,
-    nutrients: ["Fer", "Zinc", "Vitamine B12", "Bêta-carotène", 'Glutathion'],
+    nutrients: ['Fer', 'Zinc', 'Vitamine B12', 'Bêta-carotène'],
     tags: ['sopk_friendly', "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍠',
     ingredients: [
@@ -2566,12 +2566,12 @@ dinner: [
   },
   {
     name: 'Wok de tofu aux noix de cajou et légumes',
-    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase folliculaire pour un dîner léger et réparateur.',
+    description: 'Le gingembre aide à calmer les nausées et l\'inflammation. Les noix de cajou apportent du magnésium et de bonnes graisses. Idéal en phase folliculaire pour un dîner léger et réparateur.',
     prepTime: '20 min',
     difficulty: 'intermediaire',
     cuisine: 'asiatique',
     calories: 484,
-    nutrients: ["Zinc", "Magnésium", "Protéines", "Calcium", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Magnésium', 'Protéines', 'Calcium'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🫘',
     ingredients: [
@@ -2628,7 +2628,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'italien',
     calories: 243,
-    nutrients: ["Bêta-carotène", "Vitamine A", "Calcium", "Fibres", 'Glutathion'],
+    nutrients: ['Bêta-carotène', 'Vitamine A', 'Calcium', 'Fibres'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🍚',
     ingredients: [
@@ -2656,7 +2656,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 298,
-    nutrients: ["Folates", "Fer", "Protéines", "Anti-inflammatoires", 'Glutathion'],
+    nutrients: ['Folates', 'Fer', 'Protéines', 'Anti-inflammatoires'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
     emoji: '🍛',
     ingredients: [
@@ -2685,7 +2685,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 460,
-    nutrients: ["Oméga-3", "Calcium", "Vitamine D", "Protéines", 'Glutathion'],
+    nutrients: ['Oméga-3', 'Calcium', 'Vitamine D', 'Protéines'],
     tags: ["sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🐟',
     ingredients: [
@@ -2712,7 +2712,7 @@ dinner: [
     difficulty: 'intermediaire',
     cuisine: 'indien',
     calories: 386,
-    nutrients: ["Zinc", "Fer", "Vitamine C", "Anti-inflammatoires", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Fer', 'Vitamine C', 'Anti-inflammatoires'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
     emoji: '🍛',
     ingredients: [
@@ -2736,12 +2736,12 @@ dinner: [
 
   {
     name: 'Saumon en croûte de graines de lin et chia',
-    description: 'Triple oméga-3 : saumon (EPA/DHA) + lin (ALA) + chia (ALA). Les graines de lin contiennent aussi des.',
+    description: 'Triple oméga-3 : saumon (EPA/DHA) + lin (ALA) + chia (ALA). Les graines de lin contiennent aussi des lignanes, des composés végétaux qui soutiennent l\'équilibre hormonal.',
     prepTime: '30 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 430,
-    nutrients: ['Oméga-3 EPA/DHA/ALA', 'Lignanes', 'Fibres', 'Sélénium', 'Glutathion'],
+    nutrients: ['Oméga-3 EPA/DHA/ALA', 'Lignanes', 'Fibres', 'Sélénium'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🐟',
     ingredients: [
@@ -2769,7 +2769,7 @@ dinner: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 375,
-    nutrients: ['Acide laurique', 'Polyphénols', 'Sulforaphane', 'Eugénol', 'Glutathion'],
+    nutrients: ['Polyphénols', 'Sulforaphane', 'Eugénol'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍛',
     ingredients: [
@@ -2793,12 +2793,12 @@ dinner: [
   },
   {
     name: 'Poulet grillé au romarin et patate douce rôtie',
-    description: 'Le romarin contient de l\'acide rosmarinique et de l\'acide carnosique, deux anti-inflammatoires puiss.',
+    description: 'Le romarin contient de l\'acide rosmarinique et de l\'acide carnosique, deux anti-inflammatoires puissants. La patate douce rôtie apporte du bêta-carotène et une douceur réconfortante.',
     prepTime: '35 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 420,
-    nutrients: ['Acide rosmarinique', 'Acide carnosique', 'Bêta-carotène', 'Protéines', 'Glutathion'],
+    nutrients: ['Acide rosmarinique', 'Acide carnosique', 'Bêta-carotène', 'Protéines'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🍠',
     ingredients: [
@@ -2820,12 +2820,12 @@ dinner: [
   },
   {
     name: 'Dhal anti-inflammatoire aux épices indiennes',
-    description: 'Les épices indiennes sont un arsenal anti-inflammatoire : curcuma (curcumine), cumin (thymoquinone),.',
+    description: 'Les épices indiennes sont un arsenal anti-inflammatoire : curcuma (curcumine), cumin, coriandre et gingembre (gingérol). Ensemble, elles créent une belle synergie sur des lentilles corail toutes douces.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'indien',
     calories: 340,
-    nutrients: ['Curcumine', 'Thymoquinone', 'Linalol', 'Gingérol', 'Glutathion', 'Zinc'],
+    nutrients: ['Curcumine', 'Thymoquinone', 'Linalol', 'Gingérol', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍛',
     ingredients: [
@@ -2850,12 +2850,12 @@ dinner: [
   },
   {
     name: 'Wok de crevettes au curcuma et noix de cajou',
-    description: 'Les crevettes apportent de l\'astaxanthine (pigment rose anti-inflammatoire) et du sélénium. Les noix.',
+    description: 'Les crevettes apportent de l\'astaxanthine (pigment rose antioxydant) et du sélénium. Les noix de cajou ajoutent du magnésium et un délicieux croquant.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 435,
-    nutrients: ['Astaxanthine', 'Curcumine', 'Gingérol', 'Sélénium', 'Glutathion', 'Zinc'],
+    nutrients: ['Astaxanthine', 'Curcumine', 'Gingérol', 'Sélénium', 'Zinc'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🥘',
     ingredients: [
@@ -2880,7 +2880,7 @@ dinner: [
   },
   {
     name: 'Papillote de cabillaud au gingembre et citronnelle',
-    description: 'Le cabillaud apporte des protéines légères et du sélénium. La citronnelle contient du citral, un pui.',
+    description: 'Le cabillaud apporte des protéines légères et du sélénium. La citronnelle contient du citral, un puissant anti-inflammatoire naturel, et la papillote préserve tous les nutriments.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -2907,12 +2907,12 @@ dinner: [
   },
   {
     name: 'Bol de riz au poulet grillé, brocoli et sauce gingembre',
-    description: 'Le brocoli cuit al dente préserve le maximum de sulforaphane. La sauce au gingembre est anti-inflamm.',
+    description: 'Le brocoli cuit al dente préserve le maximum de sulforaphane. La sauce au gingembre est anti-inflammatoire et pleine de peps. Le poulet grillé apporte des protéines maigres et du zinc.',
     prepTime: '25 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 425,
-    nutrients: ['Sulforaphane', 'Gingérol', 'Zinc', 'Allicine', 'Glutathion'],
+    nutrients: ['Sulforaphane', 'Gingérol', 'Zinc', 'Allicine'],
     tags: ['anti_inflammatoire', 'sans_gluten', 'sans_lactose'],
     emoji: '🥗',
     ingredients: [
@@ -2943,7 +2943,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 200,
-    nutrients: ['Zinc', 'Protéines', 'Vitamines B', 'Glutathion'],
+    nutrients: ['Zinc', 'Protéines', 'Vitamines B'],
     tags: ['spm_friendly', 'sans_lactose', 'vegetarien', 'sopk_friendly'],
     emoji: '🥜',
     ingredients: [
@@ -3014,7 +3014,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'mediterraneen',
     calories: 220,
-    nutrients: ['Protéines', 'Zinc', 'Probiotiques', 'Glutathion'],
+    nutrients: ['Protéines', 'Zinc', 'Probiotiques'],
     tags: ['vegetarien', 'sans_gluten'],
     emoji: '🍯',
     ingredients: [
@@ -3059,7 +3059,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'mediterraneen',
     calories: 278,
-    nutrients: ["Zinc", "Calcium", "Protéines", "Fibres", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Calcium', 'Protéines', 'Fibres'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🫘',
     ingredients: [
@@ -3084,7 +3084,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'mediterraneen',
     calories: 388,
-    nutrients: ["Protéines", "Probiotiques", "Calcium", "Énergie", 'Probiotiques'],
+    nutrients: ['Protéines', 'Probiotiques', 'Calcium'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🍦',
     ingredients: [
@@ -3106,7 +3106,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 169,
-    nutrients: ["Protéines", "Zinc", "Magnésium", "Énergie rapide"],
+    nutrients: ['Protéines', 'Zinc', 'Magnésium'],
     tags: ['sans_lactose', "vegetarien", "vegan", "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
@@ -3123,12 +3123,12 @@ snack: [
   },
   {
     name: 'Mix trail énergétique',
-    description: 'Les amandes apportent magnésium et vitamine E. Les noix sont riches en oméga-3 bénéfiques pour le cerveau. Idéal en phase folliculaire pour un encas sain et rassasiant.',
+    description: 'Les amandes apportent magnésium et vitamine E. Les noix du Brésil sont championnes du sélénium, un antioxydant précieux. Idéal en phase folliculaire pour un encas sain et rassasiant.',
     prepTime: '2 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 123,
-    nutrients: ["Zinc", "Sélénium", "Protéines", "Bonnes graisses", 'Glutathion', 'Zinc'],
+    nutrients: ['Zinc', 'Sélénium', 'Protéines', 'Bonnes graisses'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥜',
     ingredients: [
@@ -3147,12 +3147,12 @@ snack: [
   },
   {
     name: 'Pomme au beurre d\'amande et cannelle',
-    description: 'Recette anti-SPM, 100% végétal, pour un encas sain et rassasiant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
+    description: 'Recette 100% végétale, pour un encas sain et rassasiant. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
     prepTime: '3 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 186,
-    nutrients: ["Fibres prébiotiques", "Magnésium", "Protéines", "Régulation glycémique", 'Zinc'],
+    nutrients: ['Fibres prébiotiques', 'Magnésium', 'Protéines', 'Glycémie stable', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍎',
     ingredients: [
@@ -3169,12 +3169,12 @@ snack: [
   },
   {
     name: 'Barres de céréales maison aux graines',
-    description: 'Recette anti-inflammatoire, adapté au SOPK, 100% végétal, pour un encas sain et rassasiant.',
+    description: 'Recette anti-inflammatoire, adapté au SOPK, végétarienne, pour un encas sain et rassasiant.',
     prepTime: '30 min',
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 201,
-    nutrients: ["Zinc", "Oméga-3", "Protéines", "Énergie durable", 'Zinc'],
+    nutrients: ['Zinc', 'Oméga-3', 'Protéines'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥜',
     ingredients: [
@@ -3253,7 +3253,7 @@ snack: [
     difficulty: 'intermediaire',
     cuisine: 'fusion',
     calories: 226,
-    nutrients: ["Zinc", "Sélénium", "Oméga-3", "Protéines", 'Zinc'],
+    nutrients: ['Zinc', 'Sélénium', 'Oméga-3', 'Protéines'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -3282,7 +3282,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 154,
-    nutrients: ["Zinc", "Fer", "Protéines", "Fibres", 'Zinc'],
+    nutrients: ['Zinc', 'Fer', 'Protéines', 'Fibres'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '🫘',
     ingredients: [
@@ -3307,7 +3307,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'francais',
     calories: 356,
-    nutrients: ["Protéines", "Sélénium", "Oméga-3", "Graisses saines", 'Glutathion'],
+    nutrients: ['Protéines', 'Sélénium', 'Oméga-3', 'Graisses saines'],
     tags: ['sopk_friendly', 'spm_friendly', 'sans_lactose', "anti_fatigue"],
     emoji: '🍞',
     ingredients: [
@@ -3352,7 +3352,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 267,
-    nutrients: ["Fer", "Calcium", "Oméga-3", "Protéines", 'Glutathion'],
+    nutrients: ['Fer', 'Calcium', 'Oméga-3', 'Protéines'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue"],
     emoji: '🫐',
     ingredients: [
@@ -3376,7 +3376,7 @@ snack: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 303,
-    nutrients: ["Vitamine K", "Zinc", "Protéines", "Fer", 'Glutathion'],
+    nutrients: ['Vitamine K', 'Zinc', 'Protéines', 'Fer'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
@@ -3396,12 +3396,12 @@ snack: [
 
   {
     name: 'Houmous au curcuma et bâtonnets de légumes',
-    description: 'Les pois chiches contiennent des saponines anti-inflammatoires. Le tahini apporte du sésame (sésamin.',
+    description: 'Les pois chiches contiennent des saponines anti-inflammatoires. Le tahini apporte du sésame (sésamine) et le curcuma sa curcumine. Un snack gourmand et anti-inflammatoire.',
     prepTime: '10 min',
     difficulty: 'debutant',
     cuisine: 'mediterraneen',
     calories: 195,
-    nutrients: ['Saponines', 'Sésamine', 'Curcumine', 'Allicine', 'Glutathion', 'Zinc'],
+    nutrients: ['Saponines', 'Sésamine', 'Curcumine', 'Allicine', 'Zinc'],
     tags: ['anti_inflammatoire', 'vegan', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🫘',
     ingredients: [
@@ -3460,7 +3460,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 80,
-    nutrients: ['Antioxydants', 'Vitamines B', 'Énergie', 'Zinc'],
+    nutrients: ['Antioxydants', 'Vitamines B', 'Zinc'],
     tags: ['vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🍵',
     ingredients: [
@@ -3482,7 +3482,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 50,
-    nutrients: ['Zinc', 'Énergie', 'Hydratation'],
+    nutrients: ['Potassium', 'Électrolytes'],
     tags: ['vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥥',
     ingredients: [
@@ -3528,7 +3528,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 90,
-    nutrients: ['Vitamines B', 'Zinc', 'Énergie'],
+    nutrients: ['Vitamines B', 'Zinc'],
     tags: ['spm_friendly', 'vegetarien', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥬',
     ingredients: [
@@ -3544,7 +3544,7 @@ drink: [
       'Passe le tout à l\'extracteur de jus ou mixe au blender avec l\'eau puis filtre.',
       'Ajoute le jus de citron, mélange et déguste immédiatement pour profiter des vitamines.',
     ],
-    whyThisPhase: 'Le céleri et le concombre soutiennent la détoxification hépatique des œstrogènes, essentielle en phase folliculaire, tandis que le gingembre booste l\'énergie.',
+    whyThisPhase: 'Le céleri et le concombre hydratent et apportent des antioxydants, tandis que le gingembre donne un coup de fouet.',
   },
   {
     name: 'Matcha latte au lait d\'amande',
@@ -3553,7 +3553,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 75,
-    nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable", 'Zinc'],
+    nutrients: ['Antioxydants', 'L-théanine', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly"],
     emoji: '☕',
     ingredients: [
@@ -3577,7 +3577,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 194,
-    nutrients: ["Fer", "Bêta-carotène", "Prébiotiques", "Énergie"],
+    nutrients: ['Fer', 'Bêta-carotène', 'Prébiotiques'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🧃',
     ingredients: [
@@ -3600,7 +3600,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 171,
-    nutrients: ["Fer", "Vitamine C", "Hydratation", "Chlorophylle", 'Glutathion'],
+    nutrients: ['Fer', 'Vitamine C', 'Chlorophylle'],
     tags: ['spm_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
@@ -3625,7 +3625,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 64,
-    nutrients: ["Électrolytes", "Potassium", "Hydratation", "Fraîcheur"],
+    nutrients: ['Électrolytes', 'Potassium'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue"],
     emoji: '💧',
     ingredients: [
@@ -3644,12 +3644,12 @@ drink: [
   },
   {
     name: 'Infusion ortie-menthe (boost de fer)',
-    description: 'Recette anti-SPM, 100% végétal, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
+    description: 'Recette végétarienne, pour s\'hydrater avec des bienfaits ciblés. Parfait en phase folliculaire pour accompagner le renouveau énergétique et soutenir les œstrogènes.',
     prepTime: '13 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 15,
-    nutrients: ["Fer", "Silice", "Minéraux", "Reconstruction"],
+    nutrients: ['Fer', 'Silice', 'Minéraux'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍵',
     ingredients: [
@@ -3673,7 +3673,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 140,
-    nutrients: ["Probiotiques", "Microbiote", "Digestion", "Détox œstrogènes", 'Probiotiques'],
+    nutrients: ['Probiotiques', 'Antioxydants'],
     tags: ['spm_friendly', "vegetarien", "sans_gluten", "sans_lactose", "sopk_friendly", "anti_fatigue"],
     emoji: '🫧',
     ingredients: [
@@ -3695,7 +3695,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'asiatique',
     calories: 240,
-    nutrients: ["Antioxydants", "L-théanine", "Concentration", "Énergie stable"],
+    nutrients: ['Antioxydants', 'L-théanine'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🍵',
     ingredients: [
@@ -3719,7 +3719,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 254,
-    nutrients: ["Vitamine C", "Bêta-carotène", "Anti-inflammatoires", "Énergie"],
+    nutrients: ['Vitamine C', 'Bêta-carotène', 'Anti-inflammatoires'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🧃',
     ingredients: [
@@ -3741,7 +3741,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 18,
-    nutrients: ["Hydratation", "Vitamine C", "Digestion", "Détox"],
+    nutrients: ['Vitamine C', 'Gingérol'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue"],
     emoji: '💧',
     ingredients: [
@@ -3766,7 +3766,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 241,
-    nutrients: ["Protéines", "Fer", "Vitamine B12", "Antioxydants", 'Glutathion'],
+    nutrients: ['Protéines', 'Fer', 'Fer', 'Antioxydants'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
@@ -3781,7 +3781,7 @@ drink: [
       'Mixe 30 secondes.',
       'Déguste immédiatement.',
     ],
-    whyThisPhase: 'La spiruline est un super-aliment : 60% de protéines, riche en fer, B12 et antioxydants. Avec banane et épinards, c\'est un boost nutritionnel complet.',
+    whyThisPhase: 'La spiruline est un super-aliment très riche en protéines, en fer et en antioxydants. Avec banane et épinards, c\'est un boost nutritionnel complet.',
   },
   {
     name: 'Tisane de fenouil et anis étoilé',
@@ -3790,7 +3790,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 15,
-    nutrients: ["Phytoœstrogènes", "Digestion", "Minéraux", "Apaisement"],
+    nutrients: ['Phytoœstrogènes', 'Minéraux'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", "sopk_friendly"],
     emoji: '🍵',
     ingredients: [
@@ -3814,7 +3814,7 @@ drink: [
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 143,
-    nutrients: ["Fer", "Nitrates", "Antioxydants", "Circulation", 'Zinc'],
+    nutrients: ['Fer', 'Nitrates', 'Antioxydants', 'Zinc'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '☕',
     ingredients: [
@@ -3878,16 +3878,16 @@ drink: [
     'Filtre.',
     'Ajoute citron, menthe et miel.',
     ],
-    whyThisPhase: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2, deux voies pro-inflammatoires majeures. Le citron booste l\'absorption des catéchines de 80%.',
+    whyThisPhase: 'Le thé vert contient des catéchines EGCG qui inhibent NF-kB et COX-2, deux voies pro-inflammatoires majeures. Le citron aide à préserver et mieux absorber les catéchines.',
   },
   {
     name: 'Smoothie anti-inflammatoire ananas-curcuma-poivre noir',
-    description: 'L\'ananas contient de la bromélaïne, une enzyme qui réduit l\'inflammation des tissus. Le curcuma + po.',
+    description: 'L\'ananas contient de la bromélaïne, une enzyme qui réduit l\'inflammation des tissus. Le curcuma associé au poivre noir est bien mieux absorbé grâce à la pipérine.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
     calories: 215,
-    nutrients: ['Bromélaïne', 'Curcumine x2000%', 'Pipérine', 'Gingérol'],
+    nutrients: ['Bromélaïne', 'Curcumine', 'Pipérine', 'Gingérol'],
     tags: ['anti_inflammatoire', 'vegetarien', 'sans_gluten', 'sans_lactose'],
     emoji: '🥤',
     ingredients: [
@@ -3907,7 +3907,7 @@ drink: [
   },
   {
     name: 'Eau infusée anti-inflammatoire concombre-curcuma-citron',
-    description: 'Le concombre contient des cucurbitacines anti-inflammatoires. Le curcuma frais infusé dans l\'eau lib.',
+    description: 'Le concombre contient des cucurbitacines anti-inflammatoires. Le curcuma frais infusé dans l\'eau libère doucement sa curcumine. Le citron et la menthe ajoutent fraîcheur et vitamine C.',
     prepTime: '5 min',
     difficulty: 'debutant',
     cuisine: 'fusion',
@@ -3929,7 +3929,7 @@ drink: [
     'Remplis d\'eau.',
     'Laisse infuser 2h au frigo. Bois toute la journée.',
     ],
-    whyThisPhase: 'Le concombre contient des cucurbitacines anti-inflammatoires. Le curcuma frais infusé dans l\'eau libère de la curcumine. Le citron booste l\'absorption. Hydratation thérapeutique.',
+    whyThisPhase: 'Le concombre contient des cucurbitacines anti-inflammatoires. Le curcuma frais infusé dans l\'eau libère de la curcumine. Le citron booste l\'absorption. Une hydratation fraîche et maligne.',
   },
 ],
 };
