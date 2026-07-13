@@ -9,6 +9,10 @@ export const SYMPTOM_FOOD_MAP = [
     match: ['crampe', 'douleurs musculaires', 'mal de dos'],
     title: 'Apaiser tes crampes',
     nutrient: 'Magnésium',
+    // Recettes marquées anti-crampes (uniquement posées en menstruelle et
+    // lutéale : hors de ces phases, on retombe sur le lien nutriment).
+    tag: 'anti_crampes',
+    tagPhases: ['menstrual', 'luteal'],
     foods: ['chocolat noir', 'amandes', 'banane'],
     why: 'Le magnésium détend les muscles et calme les crampes.',
   },
@@ -23,6 +27,7 @@ export const SYMPTOM_FOOD_MAP = [
     match: ['fatigue', 'batterie faible', 'faible motivation', 'épuisée'],
     title: 'Recharger ton énergie',
     nutrient: 'Fer',
+    tag: 'anti_fatigue', // posé sur ~100 recettes dans chaque phase
     foods: ['lentilles', 'épinards', 'œufs'],
     why: 'Le fer recharge ton énergie, surtout après les pertes menstruelles.',
   },

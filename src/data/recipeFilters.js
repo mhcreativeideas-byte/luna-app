@@ -22,6 +22,13 @@ export const ALLERGEN_KEYWORDS = {
   'Sulfites': ['vin blanc', 'vin rouge', 'vin rosé', 'vinaigre balsamique', 'sulfite'],
 };
 
+// Tags « bien-être » activables depuis le conseil symptôme → aliment
+// (lien /recettes-liste?tag=...). Sert aussi de liste blanche pour l'URL.
+export const WELLNESS_TAG_LABELS = {
+  anti_crampes: 'anti-crampes',
+  anti_fatigue: 'anti-fatigue',
+};
+
 const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
 
 // Extraire les minutes depuis le champ prepTime (ex: "10 min", "1h15", "45 min")

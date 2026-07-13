@@ -9,7 +9,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import { buildRequiredTags, buildDietLabel, filterRecipes, timeToMaxMinutes } from '../data/recipeFilters';
+import { buildRequiredTags, buildDietLabel, filterRecipes, timeToMaxMinutes, WELLNESS_TAG_LABELS } from '../data/recipeFilters';
 import AddToListBanner from '../components/food/AddToListBanner';
 
 const container = {
@@ -68,6 +68,9 @@ const mealLabels = {
 export default function RecipesList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const nutrientFilter = searchParams.get('nutrient') || '';
+  // Filtre bien-être (?tag=anti_crampes…) : liste blanche via WELLNESS_TAG_LABELS
+  const rawTag = searchParams.get('tag') || '';
+  const wellnessTag = WELLNESS_TAG_LABELS[rawTag] ? rawTag : '';
   const { cycleInfo, dietPreferences, healthIssues, cookingTime, cookingLevel, allergies, favorites, dispatch } = useCycle();
   const [selectedMeal, setSelectedMeal] = useState('all');
   const [selectedPhase, setSelectedPhase] = useState('current');
@@ -129,7 +132,9 @@ export default function RecipesList() {
   const maxTime = timeToMaxMinutes(selectedTime);
 
   const allRecipes = filterRecipes(recipes, {
-    selectedMeal, requiredTags, allergies, selectedLevel, selectedTime, selectedCuisines, nutrientFilter, maxCalories: selectedCalories,
+    selectedMeal,
+    requiredTags: wellnessTag ? [...requiredTags, wellnessTag] : requiredTags,
+    allergies, selectedLevel, selectedTime, selectedCuisines, nutrientFilter, maxCalories: selectedCalories,
   });
 
   const isFavMode = selectedMeal === 'favorites';
@@ -200,14 +205,16 @@ export default function RecipesList() {
         </div>
       </motion.div>
 
-      {/* Nutrient filter banner */}
-      {nutrientFilter && (
+      {/* Nutrient / wellness-tag filter banner */}
+      {(nutrientFilter || wellnessTag) && (
         <motion.div variants={item}>
           <div className="flex items-center justify-between rounded-[16px] px-4 py-3" style={{ backgroundColor: phaseData.bgColor }}>
             <div className="flex items-center gap-2">
               <Sparkles size={14} style={{ color: phaseData.color }} />
               <p className="text-[12px] font-body font-semibold" style={{ color: phaseData.colorDark }}>
-                Riches en <span className="lowercase">{nutrientFilter}</span>
+                {wellnessTag
+                  ? <>Sélection <span className="lowercase">{WELLNESS_TAG_LABELS[wellnessTag]}</span></>
+                  : <>Riches en <span className="lowercase">{nutrientFilter}</span></>}
               </p>
             </div>
             <button

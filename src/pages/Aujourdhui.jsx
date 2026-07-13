@@ -9,6 +9,7 @@ import DailyMenu from '../components/food/DailyMenu';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
 import { findSymptomFood } from '../data/symptomFoods';
+import { WELLNESS_TAG_LABELS } from '../data/recipeFilters';
 
 const container = {
   hidden: { opacity: 0 },
@@ -70,6 +71,11 @@ export default function Aujourdhui() {
   // Conseil symptôme → aliment, d'après le check-in du jour
   const symptoms = todayCheckIn?.symptoms ? Object.values(todayCheckIn.symptoms).flat() : [];
   const advice = findSymptomFood(symptoms);
+  // Le conseil pointe vers les recettes taguées (anti-crampes, anti-fatigue)
+  // quand la phase du jour en contient ; sinon, lien nutriment classique.
+  const adviceUsesTag = Boolean(
+    advice?.tag && (!advice.tagPhases || advice.tagPhases.includes(cycleInfo.phase))
+  );
 
   return (
     <motion.div variants={container} initial="hidden" animate="show" className="space-y-5 pb-6">
@@ -168,11 +174,15 @@ export default function Aujourdhui() {
               {advice.why} Pense à : <span className="font-semibold">{advice.foods.join(', ')}</span>.
             </p>
             <button
-              onClick={() => navigate(`/recettes-liste?nutrient=${encodeURIComponent(advice.nutrient)}`)}
+              onClick={() => navigate(adviceUsesTag
+                ? `/recettes-liste?tag=${advice.tag}`
+                : `/recettes-liste?nutrient=${encodeURIComponent(advice.nutrient)}`)}
               className="mt-3 w-full flex items-center justify-center gap-2 py-3 rounded-[14px] text-[13px] font-body font-bold text-white transition-all active:scale-[0.99]"
               style={{ backgroundColor: phaseData.color, boxShadow: `0 4px 14px ${phaseData.color}40` }}
             >
-              Voir les recettes riches en {advice.nutrient.toLowerCase()}
+              {adviceUsesTag
+                ? `Voir les recettes ${WELLNESS_TAG_LABELS[advice.tag]}`
+                : `Voir les recettes riches en ${advice.nutrient.toLowerCase()}`}
               <ChevronRight size={15} />
             </button>
           </div>
