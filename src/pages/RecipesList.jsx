@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search, Zap, Sprout, Leaf, ChefHat, Flame, UtensilsCrossed, Sunrise, Sun, Moon, Cookie, CupSoda } from 'lucide-react';
+import { Clock, X, Sparkles, Filter, Heart, RotateCcw, Search, Zap, Sprout, Leaf, ChefHat, Flame, UtensilsCrossed, Sunrise, Sun, Moon, Cookie, CupSoda, Users } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import PhaseIcon from '../components/ui/PhaseIcon';
@@ -9,7 +9,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import { buildRequiredTags, buildDietLabel, filterRecipes, timeToMaxMinutes, WELLNESS_TAG_LABELS } from '../data/recipeFilters';
+import { buildRequiredTags, buildDietLabel, filterRecipes, timeToMaxMinutes, WELLNESS_TAG_LABELS, servingText } from '../data/recipeFilters';
 import AddToListBanner from '../components/food/AddToListBanner';
 
 const container = {
@@ -577,6 +577,11 @@ export default function RecipesList() {
                   <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
                     <Clock size={12} /> {openRecipeData.prepTime}
                   </span>
+                  {servingText(openRecipeData) && (
+                    <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
+                      <Users size={12} /> {servingText(openRecipeData)}
+                    </span>
+                  )}
                   <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-pill bg-luna-cream text-luna-text">
                     {openRecipeData.calories} kcal
                   </span>

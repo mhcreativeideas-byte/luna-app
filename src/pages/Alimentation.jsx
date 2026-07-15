@@ -1,11 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Cookie, ChevronRight, Clock, Sparkles, Leaf, UtensilsCrossed, AlertTriangle, Heart, Star } from 'lucide-react';
+import { X, Cookie, ChevronRight, Clock, Sparkles, Leaf, UtensilsCrossed, AlertTriangle, Heart, Star, Users } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import { matchesRequiredTags } from '../data/recipeFilters';
+import { matchesRequiredTags, servingText } from '../data/recipeFilters';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import AddToListBanner from '../components/food/AddToListBanner';
@@ -663,6 +663,11 @@ export default function Alimentation() {
                   <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
                     <Clock size={12} /> {openDailyRecipe.prepTime}
                   </span>
+                  {servingText(openDailyRecipe) && (
+                    <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
+                      <Users size={12} /> {servingText(openDailyRecipe)}
+                    </span>
+                  )}
                   <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-full bg-luna-cream text-luna-text">
                     {openDailyRecipe.calories} kcal
                   </span>

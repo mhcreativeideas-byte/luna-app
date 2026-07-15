@@ -29,6 +29,17 @@ export const WELLNESS_TAG_LABELS = {
   anti_fatigue: 'anti-fatigue',
 };
 
+// Texte de portion d'une recette : « Pour 2 personnes », ou le libellé
+// spécifique des fournées (« 8 tranches », « 12 boules (3 par portion) »).
+// Les calories affichées correspondent toujours à UNE portion.
+export function servingText(recipe) {
+  if (!recipe) return '';
+  if (recipe.servingLabel) return recipe.servingLabel;
+  const n = recipe.servings;
+  if (!n) return '';
+  return n === 1 ? 'Pour 1 personne' : `Pour ${n} personnes`;
+}
+
 const LEVEL_ORDER = { debutant: 1, intermediaire: 2, avance: 3 };
 
 // Extraire les minutes depuis le champ prepTime (ex: "10 min", "1h15", "45 min")

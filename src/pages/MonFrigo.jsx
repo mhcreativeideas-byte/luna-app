@@ -1,12 +1,12 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart } from 'lucide-react';
+import { Plus, X, Search, Sparkles, Clock, ChefHat, Heart, Users } from 'lucide-react';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
 import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
-import { parseMinutes, containsAllergen, matchesRequiredTags } from '../data/recipeFilters';
+import { parseMinutes, containsAllergen, matchesRequiredTags, servingText } from '../data/recipeFilters';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
 
@@ -621,6 +621,11 @@ export default function MonFrigo() {
                         <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
                           <Clock size={12} /> {recipe.prepTime}
                         </span>
+                        {servingText(recipe) && (
+                          <span className="text-xs font-body flex items-center gap-1 text-luna-text-hint">
+                            <Users size={12} /> {servingText(recipe)}
+                          </span>
+                        )}
                         <span className="text-xs font-body font-semibold px-2.5 py-1 rounded-pill bg-luna-cream text-luna-text">
                           {recipe.calories} kcal
                         </span>
