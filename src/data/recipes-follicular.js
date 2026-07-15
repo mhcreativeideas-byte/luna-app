@@ -3924,7 +3924,7 @@ drink: [
     cuisine: 'fusion',
     calories: 241,
     servings: 1,
-    nutrients: ['Protéines', 'Fer', 'Fer', 'Antioxydants'],
+    nutrients: ['Protéines', 'Fer', 'Magnésium', 'Antioxydants'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", 'anti_inflammatoire'],
     emoji: '🥤',
     ingredients: [
