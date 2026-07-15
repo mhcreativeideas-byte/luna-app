@@ -129,14 +129,14 @@ function agreeNounPhrase(after, plural) {
 
   let firstDone = false;
   let stopped = false;
-  const agreed = head.replace(/[A-Za-zÀ-ÿ'œ]+/g, (w) => {
+  const agreed = head.replace(/[A-Za-zÀ-ÿŒœŸ']+/g, (w) => {
     if (stopped || w.includes("'")) return w;
     if (!firstDone) {
       firstDone = true;
       return agreeWord(w, plural); // le mot porté par le nombre s'accorde toujours
     }
     // mot suivant en Majuscule = nom d'aliment distinct → on n'y touche pas (ni à la suite)
-    if (/^[A-ZÀ-Þ]/.test(w)) {
+    if (/^[A-ZÀ-ÞŒŸ]/.test(w)) {
       stopped = true;
       return w;
     }
