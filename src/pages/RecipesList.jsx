@@ -68,6 +68,7 @@ const mealLabels = {
 export default function RecipesList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const nutrientFilter = searchParams.get('nutrient') || '';
+  const ingredientParam = searchParams.get('ingredient') || '';
   // Filtre bien-être (?tag=anti_crampes…) : liste blanche via WELLNESS_TAG_LABELS
   const rawTag = searchParams.get('tag') || '';
   const wellnessTag = WELLNESS_TAG_LABELS[rawTag] ? rawTag : '';
@@ -131,11 +132,20 @@ export default function RecipesList() {
   const dietLabel = buildDietLabel(dietPreferences, healthIssues);
   const maxTime = timeToMaxMinutes(selectedTime);
 
-  const allRecipes = filterRecipes(recipes, {
+  // Aliment → recettes : on cherche d'abord les recettes CONTENANT l'aliment
+  // (« recettes avec de l'edamame »). Si aucune (aliment générique/absent des
+  // recettes, ex. « Légumineuses »), on retombe sur « riches en [nutriment] »
+  // pour ne jamais afficher une liste vide.
+  const baseFilterOpts = {
     selectedMeal,
     requiredTags: wellnessTag ? [...requiredTags, wellnessTag] : requiredTags,
-    allergies, selectedLevel, selectedTime, selectedCuisines, nutrientFilter, maxCalories: selectedCalories,
-  });
+    allergies, selectedLevel, selectedTime, selectedCuisines, maxCalories: selectedCalories,
+  };
+  const byIngredient = ingredientParam ? filterRecipes(recipes, { ...baseFilterOpts, ingredientFilter: ingredientParam }) : null;
+  const useIngredient = !!byIngredient && byIngredient.length > 0;
+  const allRecipes = useIngredient
+    ? byIngredient
+    : filterRecipes(recipes, { ...baseFilterOpts, nutrientFilter });
 
   const isFavMode = selectedMeal === 'favorites';
   const recipesLoading = isFavMode ? !favRecipes : !recipes;
@@ -205,16 +215,18 @@ export default function RecipesList() {
         </div>
       </motion.div>
 
-      {/* Nutrient / wellness-tag filter banner */}
-      {(nutrientFilter || wellnessTag) && (
+      {/* Bannière filtre : aliment / nutriment / tag bien-être */}
+      {(nutrientFilter || wellnessTag || useIngredient) && (
         <motion.div variants={item}>
           <div className="flex items-center justify-between rounded-[16px] px-4 py-3" style={{ backgroundColor: phaseData.bgColor }}>
             <div className="flex items-center gap-2">
               <Sparkles size={14} style={{ color: phaseData.color }} />
               <p className="text-[12px] font-body font-semibold" style={{ color: phaseData.colorDark }}>
-                {wellnessTag
-                  ? <>Sélection <span className="lowercase">{WELLNESS_TAG_LABELS[wellnessTag]}</span></>
-                  : <>Riches en <span className="lowercase">{nutrientFilter}</span></>}
+                {useIngredient
+                  ? <>Recettes avec <span className="lowercase">{ingredientParam}</span></>
+                  : wellnessTag
+                    ? <>Sélection <span className="lowercase">{WELLNESS_TAG_LABELS[wellnessTag]}</span></>
+                    : <>Riches en <span className="lowercase">{nutrientFilter}</span></>}
               </p>
             </div>
             <button

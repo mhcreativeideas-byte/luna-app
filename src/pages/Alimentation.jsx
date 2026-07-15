@@ -450,10 +450,11 @@ export default function Alimentation() {
                     {food.why}
                   </p>
 
-                  {/* Lien recettes */}
+                  {/* Lien recettes : d'abord les recettes AVEC cet aliment,
+                      le nutriment sert de repli si l'aliment n'est dans aucune. */}
                   {food.nutrients.length > 0 && (
                     <Link
-                      to={`/recettes-liste?nutrient=${encodeURIComponent(food.nutrients[0])}`}
+                      to={`/recettes-liste?ingredient=${encodeURIComponent(food.name)}&nutrient=${encodeURIComponent(food.nutrients[0])}`}
                       className="flex items-center justify-center gap-2 py-3.5 rounded-[16px] transition-all active:scale-[0.98]"
                       style={{ backgroundColor: phaseData.bgColor }}
                     >

@@ -127,12 +127,17 @@ export function filterRecipes(recipes, {
   selectedTime = '',
   selectedCuisines = [],
   nutrientFilter = '',
+  ingredientFilter = '',
   maxCalories = null,
 } = {}) {
   const out = [];
   if (!recipes) return out;
   const maxTime = timeToMaxMinutes(selectedTime);
   const maxLevel = LEVEL_ORDER[selectedLevel] || 3;
+  // Recherche par ingrédient : clé normalisée (« s » final retiré) cherchée en
+  // MOT ENTIER pour éviter les sur-matchs (« ail » ne doit pas matcher « volaille »).
+  const ingKey = ingredientFilter ? foodKey(ingredientFilter) : '';
+  const ingRe = ingKey ? new RegExp('(^|[^a-z])' + ingKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^a-z]|$)') : null;
 
   Object.entries(recipes).forEach(([mealType, items]) => {
     if (selectedMeal !== 'all' && selectedMeal !== 'favorites' && mealType !== selectedMeal) return;
@@ -145,9 +150,21 @@ export function filterRecipes(recipes, {
       if (recipeLevel > maxLevel) return;
       if (selectedCuisines.length > 0 && !selectedCuisines.includes(recipe.cuisine)) return;
       if (nutrientFilter && !(recipe.nutrients || []).some((n) => n.toLowerCase().includes(nutrientFilter.toLowerCase()))) return;
+      if (ingRe && !ingRe.test(foodKey((recipe.ingredients || []).join(' | ')))) return;
       if (maxCalories && Number(recipe.calories) > maxCalories) return;
       out.push({ ...recipe, mealType });
     });
   });
   return out;
+}
+
+// Normalise un texte pour la recherche par aliment : minuscules, sans accents,
+// œ→oe, « s » final de chaque mot retiré (edamame/pois chiches, singulier/pluriel).
+export function foodKey(text) {
+  return (text || '')
+    .toLowerCase()
+    .replace(/œ/g, 'oe')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/s\b/g, '');
 }
