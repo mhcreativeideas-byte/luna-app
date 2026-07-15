@@ -82,6 +82,76 @@ function formatQuantity(num, den, measured) {
 // Détecte, juste après la quantité, une unité de mesure (à arrondir).
 const MEASURED_RE = /^\s*(g|kg|mg|ml|cl|dl|l|litres?|grammes?)\b/i;
 
+// Unités / abréviations à NE PAS traiter comme un aliment comptable
+// (pas d'accord de nombre dessus : « 2 c. à soupe », « 2 cm » sont corrects).
+// « c. à soupe », « c.à.s », « càs », « cuillère »… + unités métriques.
+// (le point de « c. » n'est pas une frontière de mot, d'où le \b seulement
+// sur les unités alphabétiques.)
+const UNIT_LEAD_RE = /^\s*(?:c\.|c\.à|càs|càc|cuils?|cuillères?|(?:g|kg|mg|ml|cl|dl|l|litres?|grammes?|cm|mm)\b)/i;
+
+// Mots invariables (ou dont le « s » final fait partie du radical) : jamais
+// de « s » ajouté, jamais retiré. Vérifié contre les ingrédients réels.
+const INVARIABLE = new Set([
+  'anis', 'radis', 'panais', 'ananas', 'jus', 'riz', 'cassis', 'gros',
+  'concombre', 'épais', 'epais', 'frais',
+]);
+
+// Pluriels en -oux (les 7 exceptions courantes en cuisine : chou, genou…).
+const OUX = new Set(['chou', 'genou', 'caillou', 'bijou', 'hibou', 'joujou', 'pou']);
+
+// Accord d'un mot au singulier/pluriel (français, cas réguliers + garde-fous).
+function agreeWord(word, plural) {
+  const low = word.toLowerCase();
+  if (INVARIABLE.has(low)) return word;
+  if (plural) {
+    if (/[sxz]$/i.test(word)) return word; // déjà pluriel ou invariable
+    if (OUX.has(low)) return word + 'x'; // chou→choux
+    if (/(eau|eu|au)$/i.test(word)) return word + 'x'; // morceau→morceaux
+    return word + 's';
+  }
+  // singulier
+  if (/eaux$/i.test(word)) return word.slice(0, -1); // morceaux→morceau
+  if (/s$/i.test(word) && word.length > 3) return word.slice(0, -1);
+  return word;
+}
+
+// Accorde le groupe nominal en tête (jusqu'à « de/d'/à/en/( , » ou un chiffre).
+// Ex. « tranche épaisse de pain » ×2 → « tranches épaisses de pain ».
+// On s'arrête au premier mot en Majuscule APRÈS le premier (dans ces données,
+// c'est le nom de l'aliment : « pincée Cannelle » → « pincées Cannelle », la
+// cannelle restant au singulier). Les adjectifs (minuscules) s'accordent.
+function agreeNounPhrase(after, plural) {
+  const lead = after.match(/^\s*/)[0];
+  const body = after.slice(lead.length);
+  const stop = body.search(/\b(de|d'|à|au|aux|en|pour|avec|sans|ou)\b|[,(%\d]/i);
+  const head = stop === -1 ? body : body.slice(0, stop);
+  const tail = stop === -1 ? '' : body.slice(stop);
+
+  let firstDone = false;
+  let stopped = false;
+  const agreed = head.replace(/[A-Za-zÀ-ÿ'œ]+/g, (w) => {
+    if (stopped || w.includes("'")) return w;
+    if (!firstDone) {
+      firstDone = true;
+      return agreeWord(w, plural); // le mot porté par le nombre s'accorde toujours
+    }
+    // mot suivant en Majuscule = nom d'aliment distinct → on n'y touche pas (ni à la suite)
+    if (/^[A-ZÀ-Þ]/.test(w)) {
+      stopped = true;
+      return w;
+    }
+    return agreeWord(w, plural); // adjectif en minuscule → accord
+  });
+  return lead + agreed + tail;
+}
+
+// Accorde le nom qui suit la quantité, sauf si c'est une unité de mesure
+// (« 2 c. à soupe », « 100 g » : rien à accorder). qty = quantité finale.
+function adjustAfter(after, qty, measured) {
+  if (measured || UNIT_LEAD_RE.test(after)) return after;
+  return agreeNounPhrase(after, qty >= 2);
+}
+
 /**
  * Multiplie la quantité en tête d'un ingrédient par `factor`.
  * @param {string} text   ex. "1/2 avocat mûr", "50g de flocons"
@@ -114,7 +184,8 @@ export function scaleIngredient(text, factor) {
     const after = rest.slice(m[0].length);
     const measured = MEASURED_RE.test(after);
     const out = formatQuantity(vN * fN, vD * fD, measured);
-    return trimmedStart + out + after;
+    const adjusted = adjustAfter(after, (vN * fN) / (vD * fD), measured);
+    return trimmedStart + out + adjusted;
   }
 
   // Entier ou décimal « 50 », « 1,5 »
@@ -134,7 +205,8 @@ export function scaleIngredient(text, factor) {
     const after = rest.slice(m[0].length);
     const measured = MEASURED_RE.test(after);
     const out = formatQuantity(vN * fN, vD * fD, measured);
-    return trimmedStart + out + after;
+    const adjusted = adjustAfter(after, (vN * fN) / (vD * fD), measured);
+    return trimmedStart + out + adjusted;
   }
 
   // Pas de quantité en tête (« Sel, poivre », « quelques feuilles… ») → inchangé.
