@@ -140,7 +140,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 370,
     servings: 1,
-    nutrients: ['Fibres', 'Antioxydants', 'Oméga-3', 'Zinc'],
+    nutrients: ['Fibres', 'Antioxydants', 'Oméga-3', 'Zinc', 'Magnésium'],
     tags: ['spm_friendly', 'vegetarien', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🫐',
     ingredients: [
@@ -165,7 +165,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 477,
     servings: 1,
-    nutrients: ['Antioxydants', 'Zinc', 'Vitamine C'],
+    nutrients: ['Antioxydants', 'Zinc', 'Vitamine C', 'Magnésium'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -620,7 +620,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 291,
     servings: 1,
-    nutrients: ["Protéines", "Antioxydants", "Zinc", "Calcium"],
+    nutrients: ["Protéines", "Antioxydants", "Zinc", "Calcium", 'Magnésium'],
     tags: ["vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🥣',
     ingredients: [
@@ -911,7 +911,7 @@ lunch: [
     cuisine: 'fusion',
     calories: 420,
     servings: 1,
-    nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Zinc'],
+    nutrients: ['Fibres', 'Antioxydants', 'Vitamine C', 'Zinc', 'Magnésium'],
     tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly', 'anti_inflammatoire'],
     emoji: '🥦',
     ingredients: [
@@ -1115,7 +1115,7 @@ lunch: [
     cuisine: 'mediterraneen',
     calories: 421,
     servings: 2,
-    nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Zinc'],
+    nutrients: ["Antioxydants", "Protéines", "Fibres", "Vitamines", 'Zinc', 'Magnésium'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly", 'anti_inflammatoire'],
     emoji: '🥣',
     ingredients: [
@@ -1950,7 +1950,7 @@ dinner: [
     cuisine: 'mediterraneen',
     calories: 380,
     servings: 2,
-    nutrients: ['Antioxydants', 'Fibres', 'Zinc'],
+    nutrients: ['Antioxydants', 'Fibres', 'Zinc', 'Magnésium'],
     tags: ['sopk_friendly', 'spm_friendly', 'sans_lactose', 'vegetarien', 'sans_gluten', 'anti_inflammatoire'],
     emoji: '🥗',
     ingredients: [
@@ -3175,7 +3175,7 @@ snack: [
     calories: 200,
     servings: 2,
     servingLabel: '80 g de mix (1 poignée par portion)',
-    nutrients: ['Antioxydants', 'Zinc', 'Oméga-3'],
+    nutrients: ['Antioxydants', 'Zinc', 'Oméga-3', 'Magnésium'],
     tags: ['spm_friendly', 'vegan', 'sans_gluten', 'sans_lactose', 'sopk_friendly'],
     emoji: '🥜',
     ingredients: [
@@ -3481,7 +3481,7 @@ snack: [
     calories: 200,
     servings: 4,
     servingLabel: '8 boules (2 par portion)',
-    nutrients: ['Antioxydants', 'Protéines', 'Vitamines', 'Zinc'],
+    nutrients: ['Antioxydants', 'Protéines', 'Vitamines', 'Zinc', 'Magnésium'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🟤',
     ingredients: [
