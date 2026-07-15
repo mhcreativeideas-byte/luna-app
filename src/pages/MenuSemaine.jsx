@@ -92,7 +92,7 @@ export default function MenuSemaine() {
           seen.add(m.recipe.name);
           dispatch({
             type: 'ADD_SHOPPING_RECIPE',
-            payload: { name: m.recipe.name, ingredients: m.recipe.ingredients, emoji: m.recipe.emoji, source: 'menu' },
+            payload: { name: m.recipe.name, ingredients: m.recipe.ingredients, emoji: m.recipe.emoji, source: 'menu', servings: m.recipe.servings, servingLabel: m.recipe.servingLabel },
           });
           added += 1;
         }

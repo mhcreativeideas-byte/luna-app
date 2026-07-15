@@ -53,6 +53,7 @@ const initialState = {
   favorites: [],
   fridgeItems: [],
   shoppingList: [],
+  shoppingPeople: 1, // nombre de personnes pour la mise à l'échelle des quantités
 };
 
 function cycleReducer(state, action) {
@@ -257,16 +258,24 @@ function cycleReducer(state, action) {
     // ——— Liste de courses (organisée par recette) ———
     // Bloc : { id, name, source: 'recette'|'menu'|'ajouts', items: [{ name, checked }] }
     case 'ADD_SHOPPING_RECIPE': {
-      const { name, ingredients, source, emoji } = action.payload;
+      const { name, ingredients, source, emoji, servings, servingLabel } = action.payload;
       if (state.shoppingList.some((b) => b.id !== 'ajouts' && b.name === name)) return state;
       const block = {
         id: `r-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         name,
         emoji: emoji || null,
         source: source || 'recette',
+        // servings = base des quantités stockées ; servingLabel présent = fournée
+        // (energy balls, granola…) qu'on ne met jamais à l'échelle par personne.
+        servings: servings || null,
+        servingLabel: servingLabel || null,
         items: (ingredients || []).map((ing) => ({ name: ing, checked: false })),
       };
       return { ...state, shoppingList: [...state.shoppingList, block] };
+    }
+    case 'SET_SHOPPING_PEOPLE': {
+      const n = Math.max(1, Math.min(8, parseInt(action.payload, 10) || 1));
+      return { ...state, shoppingPeople: n };
     }
     case 'REMOVE_SHOPPING_RECIPE':
       return { ...state, shoppingList: state.shoppingList.filter((b) => b.id !== action.payload && b.name !== action.payload) };
@@ -618,6 +627,7 @@ export function CycleProvider({ children }) {
               favorites: data.settings.favorites || [],
               fridgeItems: data.settings.fridgeItems || [],
               shoppingList: data.settings.shoppingList || [],
+              shoppingPeople: data.settings.shoppingPeople || 1,
             } : {}),
           },
         });
@@ -800,6 +810,7 @@ export function CycleProvider({ children }) {
           favorites: state.favorites,
           fridgeItems: state.fridgeItems,
           shoppingList: state.shoppingList,
+          shoppingPeople: state.shoppingPeople,
         },
         updated_at: new Date().toISOString(),
       }), { onConflict: 'auth_id' });
@@ -837,6 +848,7 @@ export function CycleProvider({ children }) {
     state.favorites,
     state.fridgeItems,
     state.shoppingList,
+    state.shoppingPeople,
   ]);
 
   // Flush pending saves immediately when the app is backgrounded or closed,

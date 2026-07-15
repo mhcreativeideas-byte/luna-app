@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Sparkles, X, Check, Plus, PencilLine, Trash2 } from 'lucide-react';
+import { ShoppingCart, Sparkles, X, Check, Plus, PencilLine, Trash2, Users } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import ConfirmDialog from '../components/ui/ConfirmDialog';
@@ -9,6 +9,7 @@ import { PHASES } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { buildDailyMenu } from '../data/dailyMenu';
 import { buildRequiredTags } from '../data/recipeFilters';
+import { scaleIngredient } from '../data/scaleIngredient';
 import { toast } from '../lib/toast';
 
 const container = {
@@ -25,7 +26,7 @@ const item = {
 // « Mes ajouts » accueille les articles libres ; « Générer depuis mon menu »
 // ajoute d'un coup les repas du menu du jour.
 export default function Courses() {
-  const { shoppingList, dispatch, cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
+  const { shoppingList, shoppingPeople, dispatch, cycleInfo, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime } = useCycle();
   const [newItem, setNewItem] = useState('');
   const [generating, setGenerating] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
@@ -41,6 +42,17 @@ export default function Courses() {
     ...shoppingList.filter((b) => b.id !== 'ajouts'),
     ...shoppingList.filter((b) => b.id === 'ajouts'),
   ];
+
+  // Facteur d'échelle d'un bloc : cible / portions de la recette.
+  // Jamais mis à l'échelle : les ajouts libres, et les fournées (servingLabel :
+  // energy balls, granola… qu'on prépare en une fois quoi qu'il arrive).
+  const people = shoppingPeople || 1;
+  const blockFactor = (block) => {
+    if (!block.servings || block.servingLabel || block.id === 'ajouts') return 1;
+    return people / block.servings;
+  };
+  // Le sélecteur n'apparaît que s'il y a au moins une recette « à la portion ».
+  const hasScalable = shoppingList.some((b) => b.servings && !b.servingLabel && b.id !== 'ajouts');
 
   const generateFromMenu = async () => {
     if (generating) return;
@@ -58,7 +70,7 @@ export default function Courses() {
         if (!shoppingList.some((b) => b.id !== 'ajouts' && b.name === m.recipe.name)) {
           dispatch({
             type: 'ADD_SHOPPING_RECIPE',
-            payload: { name: m.recipe.name, ingredients: m.recipe.ingredients, emoji: m.recipe.emoji, source: 'menu' },
+            payload: { name: m.recipe.name, ingredients: m.recipe.ingredients, emoji: m.recipe.emoji, source: 'menu', servings: m.recipe.servings, servingLabel: m.recipe.servingLabel },
           });
           added += 1;
         }
@@ -115,11 +127,43 @@ export default function Courses() {
         </motion.div>
       )}
 
+      {/* Sélecteur « pour combien de personnes » (recalcule les quantités) */}
+      {hasScalable && (
+        <motion.div variants={item} className="bg-white rounded-[20px] px-4 py-3.5" style={{ boxShadow: '0 6px 22px rgba(45,34,38,0.05)' }}>
+          <div className="flex items-center gap-2 mb-2.5">
+            <Users size={15} style={{ color: phaseData.colorDark }} />
+            <p className="text-[13px] font-body font-bold text-luna-text">Je fais mes courses pour</p>
+          </div>
+          <div className="flex gap-2">
+            {[1, 2, 3, 4].map((n) => {
+              const active = people === n;
+              return (
+                <button
+                  key={n}
+                  onClick={() => dispatch({ type: 'SET_SHOPPING_PEOPLE', payload: n })}
+                  className="flex-1 py-2.5 rounded-[14px] text-[14px] font-body font-bold transition-all active:scale-95"
+                  style={active
+                    ? { backgroundColor: phaseData.color, color: 'white', boxShadow: `0 4px 14px ${phaseData.color}40` }
+                    : { backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
+                >
+                  {n === 4 ? '4+' : n}
+                </button>
+              );
+            })}
+          </div>
+          <p className="text-[11px] font-body text-luna-text-hint mt-2 leading-snug">
+            {people === 1 ? 'Quantités pour toi. ' : `Quantités ajustées pour ${people} personnes. `}
+            Les petites préparations à conserver ne changent pas.
+          </p>
+        </motion.div>
+      )}
+
       {/* Blocs par recette */}
       <AnimatePresence>
         {blocks.map((block) => {
           const isCustom = block.id === 'ajouts';
           const left = block.items.filter((it) => !it.checked).length;
+          const factor = blockFactor(block);
           return (
             <motion.div
               key={block.id}
@@ -177,7 +221,7 @@ export default function Courses() {
                   <span
                     className={`flex-1 text-[13px] font-body ${it.checked ? 'line-through text-luna-text-hint' : 'text-luna-text-body'}`}
                   >
-                    {it.name}
+                    {factor === 1 ? it.name : scaleIngredient(it.name, factor)}
                   </span>
                 </button>
               ))}

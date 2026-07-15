@@ -16,7 +16,7 @@ export default function AddToListBanner({ recipe, source = 'recette' }) {
     tapLight();
     dispatch({
       type: 'ADD_SHOPPING_RECIPE',
-      payload: { name: recipe.name, ingredients: recipe.ingredients, emoji: recipe.emoji, source },
+      payload: { name: recipe.name, ingredients: recipe.ingredients, emoji: recipe.emoji, source, servings: recipe.servings, servingLabel: recipe.servingLabel },
     });
     toast('Ajoutée à ta liste de courses 🛒');
   };
