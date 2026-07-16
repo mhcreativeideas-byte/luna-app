@@ -4,6 +4,25 @@ import { Capacitor } from '@capacitor/core'
 import './index.css'
 import App from './App.jsx'
 
+// Suivi des erreurs en production (Sentry) — ne s'active QUE si la clé
+// VITE_SENTRY_DSN est renseignée (Vercel pour le web, .env pour les builds
+// iPhone), et jamais en développement. Réglé « zéro donnée personnelle » :
+// pas de profil utilisateur, pas de cookies, erreurs techniques uniquement.
+if (import.meta.env.PROD && import.meta.env.VITE_SENTRY_DSN) {
+  import('@sentry/react').then((Sentry) => {
+    Sentry.init({
+      dsn: import.meta.env.VITE_SENTRY_DSN,
+      sendDefaultPii: false,
+      tracesSampleRate: 0,
+      beforeSend(event) {
+        delete event.user;
+        if (event.request) delete event.request.cookies;
+        return event;
+      },
+    });
+  }).catch(() => {})
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />

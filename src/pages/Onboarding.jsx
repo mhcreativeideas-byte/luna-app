@@ -298,7 +298,12 @@ export default function Onboarding() {
   };
 
   const canNext = () => {
-    if (step === 0) return form.name.trim().length > 0;
+    // Prénom : au moins 2 caractères et il commence par une lettre
+    // (évite « 2 » ou un emoji seul → « Bonjour, 2. » sur l'accueil).
+    if (step === 0) {
+      const n = form.name.trim();
+      return n.length >= 2 && /^\p{L}/u.test(n);
+    }
     if (step === 1) return form.lastPeriodDate.length > 0;
     return true;
   };
@@ -307,8 +312,12 @@ export default function Onboarding() {
   // vit désormais AVANT la révélation (startAnalysis), pas après le paywall.
   const finish = async () => {
     // Set email from auth if available
+    // Prénom soigné : espaces superflus retirés, première lettre en majuscule
+    // (« marie » → « Marie », les Anne-Sophie restent intactes).
+    const cleanName = form.name.trim().replace(/^\p{L}/u, (c) => c.toUpperCase());
     const finalForm = {
       ...form,
+      name: cleanName,
       email: form.email || user?.email || '',
     };
 

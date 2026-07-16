@@ -176,12 +176,31 @@ function cycleReducer(state, action) {
       const newCycleLength = recent.length
         ? Math.round(recent.reduce((a, b) => a + b, 0) / recent.length)
         : state.cycleLength;
+      const newLastPeriod = prevStart && date < prevStart ? prevStart : date;
+      // Durée des règles apprise (même principe que la longueur du cycle) :
+      // une « série » = des jours de règles marqués consécutifs. On ne retient
+      // que les séries TERMINÉES (commencées avant le nouveau cycle) d'au
+      // moins 2 jours — un jour isolé signifie « seul le jour 1 a été noté »
+      // (le bouton de l'accueil), pas des règles d'un jour. Moyenne des 3
+      // dernières séries, bornée entre 2 et 10 jours.
+      const logSet = new Set(newLogs);
+      const runs = [];
+      for (const d of [...newLogs].sort()) {
+        if (logSet.has(dayBefore(d)) && runs.length) runs[runs.length - 1].len += 1;
+        else runs.push({ start: d, len: 1 });
+      }
+      const doneRuns = runs.filter((r) => r.len >= 2 && r.start < newLastPeriod);
+      const lens = doneRuns.slice(-3).map((r) => r.len);
+      const newPeriodLength = lens.length
+        ? Math.min(10, Math.max(2, Math.round(lens.reduce((a, b) => a + b, 0) / lens.length)))
+        : state.periodLength;
       // Marquer rétroactivement une date antérieure ne recule jamais
-      // lastPeriodDate (garde existante conservée ci-dessous).
+      // lastPeriodDate (garde ci-dessus, newLastPeriod).
       return {
         ...state,
-        lastPeriodDate: prevStart && date < prevStart ? prevStart : date,
+        lastPeriodDate: newLastPeriod,
         cycleLength: newCycleLength,
+        periodLength: newPeriodLength,
         periodLogs: newLogs,
       };
     }
