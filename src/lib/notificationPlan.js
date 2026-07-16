@@ -20,6 +20,7 @@ export const NOTIF_IDS = {
   phase: 1000, // +i
   rules: 2000,
   day1: 2100,
+  late: 2200, // +i — relances douces en cas de retard (J+3, J+7)
   menu: 3000, // +i
   checkin: 4000, // +i
   softweek: 5000,
@@ -132,14 +133,34 @@ export function buildNotificationPlan(profile, now = new Date()) {
   if (lastPeriodDate) {
     const lastPeriod = parseLocalDate(lastPeriodDate);
     const daysSince = Math.max(0, Math.round((today - lastPeriod) / 86400000));
-    const currentDay = (daysSince % cycleLength) + 1;
-    // Début du cycle en cours (minuit local).
-    const cycleStart = at(today, -(currentDay - 1), 0);
+    // Cohérent avec getCycleInfo : plus de modulo. Passé la date prévue,
+    // on est « en retard » — les rappels du cycle suivant n'ont pas de sens
+    // tant que les règles ne sont pas confirmées.
+    const isLate = daysSince >= cycleLength;
+    // Début du cycle en cours (minuit local) = la vraie date des dernières règles.
+    const cycleStart = at(today, -daysSince, 0);
     const ovulationDay = getOvulationDay(cycleLength, periodLength);
+
+    // 3bis · Relances douces de retard — J+3 et J+7 après la date prévue,
+    // 9 h 30 (textes validés 2026-07-16). Programmées à l'avance à CHAQUE
+    // synchronisation : si les règles sont confirmées à temps, le plan est
+    // reprogrammé avec la nouvelle date et elles ne partent jamais à tort.
+    if (prefs.day1) {
+      [2, 6].forEach((d, i) => {
+        push(
+          NOTIF_IDS.late + i,
+          'Ton cycle prend son temps 🌙',
+          'Les cycles varient, c\'est courant. Quand tes règles commencent, note-le sur l\'accueil : tout se recale.',
+          at(cycleStart, cycleLength + d, 9, 30),
+        );
+      });
+    }
 
     // Frontières de phase des 5 prochaines semaines (cycle courant + suivant).
     // La menstruelle est couverte par « Confirmation du jour 1 » (day1).
-    for (let k = 0; k < 2; k++) {
+    // En retard : on saute tout le bloc — ces rappels supposent un cycle
+    // suivant déjà commencé, ce qui est faux ; seules les relances partent.
+    for (let k = 0; k < (isLate ? 0 : 2); k++) {
       const base = k * cycleLength;
 
       // 3 · Confirmation du jour 1 — le jour prévu des règles, 9 h 30
@@ -199,7 +220,9 @@ export function buildNotificationPlan(profile, now = new Date()) {
       for (let i = 0; i < MENU_DAYS; i++) {
         const when = at(today, i, 10);
         if (!isFuture(when)) continue;
-        const dayOfCycle = ((daysSince + i) % cycleLength) + 1;
+        // En retard : pas de faux menu « menstruel » prédit — on reste en
+        // lutéale (phaseForDay renvoie lutéale au-delà de cycleLength).
+        const dayOfCycle = isLate ? daysSince + i + 1 : ((daysSince + i) % cycleLength) + 1;
         const phase = phaseForDay(dayOfCycle, cycleLength, periodLength);
         push(NOTIF_IDS.menu + i, 'Ton menu du jour est prêt 🍽️', MENU_TEXTS[phase], when);
       }
