@@ -54,13 +54,14 @@ const CUISINES = [
   { id: 'mediterraneen', label: 'Médit.' },
   { id: 'indien', label: 'Indien' },
   { id: 'mexicain', label: 'Mexicain' },
-  { id: 'fusion', label: 'Healthy' },
+  { id: 'fusion', label: 'Fusion' },
 ];
 
+// Mêmes libellés français que MonFrigo (cohérence entre les deux écrans).
 const mealLabels = {
-  breakfast: { tag: 'MORNING RITUAL' },
-  lunch: { tag: 'LUNCH' },
-  dinner: { tag: 'DINNER' },
+  breakfast: { tag: 'PETIT-DÉJ' },
+  lunch: { tag: 'DÉJEUNER' },
+  dinner: { tag: 'DÎNER' },
   snack: { tag: 'SNACK' },
   drink: { tag: 'BOISSON' },
 };
@@ -504,11 +505,14 @@ export default function RecipesList() {
                       {mealLabels[recipe.mealType]?.tag || recipe.mealType}
                     </span>
                   </div>
+                  {/* Zone de tap 44px (règle Apple) ; le cercle visible reste 28px, centré au même endroit qu'avant */}
                   <button
                     onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
-                    className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+                    className="absolute top-0 right-0 w-11 h-11 flex items-center justify-center transition-all active:scale-95"
                   >
-                    <Heart size={14} className={isFavorite(recipe.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-hint'} />
+                    <span className="w-7 h-7 rounded-full bg-white/90 flex items-center justify-center">
+                      <Heart size={14} className={isFavorite(recipe.name) ? 'fill-red-400 text-red-400' : 'text-luna-text-hint'} />
+                    </span>
                   </button>
                   <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between">
                     <span className="text-[9px] font-body flex items-center gap-1" style={{ color: phaseData.colorDark }}>
