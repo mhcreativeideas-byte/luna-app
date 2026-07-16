@@ -70,16 +70,18 @@ export default async function handler(req, res) {
 
   const url = new URL(req.url, `https://${req.headers['x-forwarded-host'] || req.headers.host}`);
 
-  // Protection : si META_SETUP_SECRET est définie dans Vercel, la page exige
-  // ?cle=<secret> (ou le « state » renvoyé par Instagram au retour OAuth).
-  // Sans la clé → 404, comme si la page n'existait pas. Si la variable n'est
-  // pas définie, le comportement reste inchangé.
+  // Protection : la page exige ?cle=<META_SETUP_SECRET> (ou le « state »
+  // renvoyé par Instagram au retour OAuth). Sans la clé → 404, comme si la
+  // page n'existait pas. Si la variable META_SETUP_SECRET manque dans Vercel,
+  // la page refuse de fonctionner (porte fermée par défaut).
   const setupSecret = process.env.META_SETUP_SECRET || '';
-  if (setupSecret) {
-    const provided = url.searchParams.get('cle') || url.searchParams.get('state') || '';
-    if (provided !== setupSecret) {
-      return res.status(404).send(page('<h1>Page introuvable</h1><p>Il n\'y a rien ici.</p>'));
-    }
+  if (!setupSecret) {
+    return res.status(500).send(page(`<h1>Configuration incomplète</h1>
+      <p class="err">Il manque <span class="k">META_SETUP_SECRET</span> dans Vercel. Ajoute-la (n'importe quelle longue valeur secrète), redéploie, puis rouvre cette page avec <b>?cle=&lt;ta valeur&gt;</b> au bout de l'adresse.</p>`));
+  }
+  const provided = url.searchParams.get('cle') || url.searchParams.get('state') || '';
+  if (provided !== setupSecret) {
+    return res.status(404).send(page('<h1>Page introuvable</h1><p>Il n\'y a rien ici.</p>'));
   }
 
   const code = url.searchParams.get('code');

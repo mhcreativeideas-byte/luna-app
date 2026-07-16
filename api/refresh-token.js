@@ -19,6 +19,15 @@ async function sb(path, options = {}) {
 }
 
 export default async function handler(req, res) {
+  // Protection : seul le cron Vercel peut déclencher cette fonction.
+  // Dès que la variable CRON_SECRET existe dans Vercel, ses appels de cron
+  // arrivent avec l'en-tête « Authorization: Bearer <CRON_SECRET> ».
+  // Sans le bon secret (ou si la variable manque) → 401, porte fermée.
+  const cronSecret = process.env.CRON_SECRET;
+  if (!cronSecret || req.headers.authorization !== `Bearer ${cronSecret}`) {
+    return res.status(401).json({ ok: false, reason: 'unauthorized' });
+  }
+
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY || !process.env.VITE_SUPABASE_URL) {
     return res.status(500).json({ ok: false, reason: 'not_configured' });
   }
