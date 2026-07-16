@@ -596,7 +596,7 @@ export default function Journal() {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5">
                                 {entryPhase && <PhaseIcon phase={entry.phase} size={12} />}
-                                <span className="text-xs font-body font-semibold text-luna-text">{entryPhase?.shortName || '—'}</span>
+                                <span className="text-xs font-body font-semibold text-luna-text">{entryPhase?.shortName || '·'}</span>
                                 {daySport && <span className="text-[9px] px-1.5 py-0.5 rounded-pill font-body font-semibold" style={{ backgroundColor: `${entryPhase?.color || '#C4727F'}20`, color: entryPhase?.colorDark || '#8A4550' }}>🏃 {daySport.type}</span>}
                               </div>
                               {!isExpanded && entry.text && (
