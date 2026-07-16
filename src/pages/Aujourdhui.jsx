@@ -10,6 +10,7 @@ import BottomSheet from '../components/ui/BottomSheet';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
 import { toast } from '../lib/toast';
+import { tapSuccess } from '../lib/haptics';
 import { findSymptomFood } from '../data/symptomFoods';
 import { WELLNESS_TAG_LABELS } from '../data/recipeFilters';
 
@@ -73,6 +74,9 @@ export default function Aujourdhui() {
   const showPeriodQuickAction = !isLate && daysUntilPeriod <= 2;
   const startPeriod = (dayStr) => {
     dispatch({ type: 'SET_PERIOD_START', payload: { date: dayStr } });
+    // Vibration « succès » (comme le check-in) : un « c'est noté » physique
+    // sur LE geste émotionnel de l'app, distinct du petit tap standard.
+    tapSuccess();
     toast('Début des règles enregistré 🌙');
     setOtherDayOpen(false);
   };
