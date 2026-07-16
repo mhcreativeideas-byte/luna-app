@@ -380,7 +380,16 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
   // Math.max(0, …) : une date future (donnée corrompue) affiche « jour 1 »
   // plutôt qu'une phase absurde calculée sur un nombre négatif.
   const daysSinceLastPeriod = Math.max(0, Math.round(diffTime / (1000 * 60 * 60 * 24)));
-  const currentDay = (daysSinceLastPeriod % cycleLength) + 1;
+  // Retard de règles (décision Margaux 2026-07-16) : passé la date prévue, on
+  // ne repart PLUS silencieusement à « jour 1 » (l'app affichait un faux
+  // « jour 6 folliculaire » à une utilisatrice en retard de 5 jours). On dit
+  // la vérité : « Jour 30 sur 28, règles attendues », phase lutéale maintenue
+  // (physiologiquement juste tant que les règles ne sont pas là), et l'accueil
+  // invite à confirmer le début des règles pour recaler le cycle.
+  const isLate = daysSinceLastPeriod >= cycleLength;
+  const lateDays = isLate ? daysSinceLastPeriod - cycleLength + 1 : 0;
+  // (Avant : modulo cycleLength — plus de repli, le jour réel est affiché.)
+  const currentDay = daysSinceLastPeriod + 1;
 
   const ovulationDay = getOvulationDay(cycleLength, periodLength);
   const ovulatoryStart = ovulationDay - 1;
@@ -409,7 +418,8 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
     phaseDuration = cycleLength - ovulatoryEnd;
   }
 
-  const daysUntilPeriod = cycleLength - currentDay;
+  // En retard : 0 (« prévues ») plutôt qu'un nombre négatif absurde.
+  const daysUntilPeriod = Math.max(0, cycleLength - currentDay);
   const energyLevel = phase === 'menstrual' ? 30
     : phase === 'follicular' ? 75
     : phase === 'ovulatory' ? 95
@@ -431,6 +441,8 @@ function getCycleInfo(lastPeriodDate, cycleLength, periodLength) {
     phaseDuration,
     phaseData: PHASES[phase],
     daysUntilPeriod,
+    isLate,
+    lateDays,
     energyLevel,
     hormones,
     ovulationDay,

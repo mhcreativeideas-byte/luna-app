@@ -101,7 +101,9 @@ export default function Dashboard() {
               ];
 
               const gap = 0.008;
-              const progressAngle = (currentDay / cycleLength) * 360;
+              // En retard de règles, currentDay dépasse cycleLength : le point
+              // s'arrête à la fin de l'anneau au lieu d'entamer un 2e tour.
+              const progressAngle = (Math.min(currentDay, cycleLength) / cycleLength) * 360;
 
               return (
                 <>
@@ -221,11 +223,13 @@ export default function Dashboard() {
             style={{ backgroundColor: phaseData.color, boxShadow: `0 0 6px ${phaseData.color}60` }}
           />
           <p className="text-[13px] font-body font-medium" style={{ color: phaseData.colorDark || '#2D2226' }}>
-            {daysUntilPeriod <= 0
-              ? 'Tes règles sont prévues aujourd\'hui'
-              : daysUntilPeriod === 1
-                ? 'Prochaines règles demain'
-                : `Prochaines règles dans ${daysUntilPeriod} jours`
+            {cycleInfo.isLate
+              ? `Règles attendues depuis ${cycleInfo.lateDays} jour${cycleInfo.lateDays > 1 ? 's' : ''} · confirme-les sur l'accueil`
+              : daysUntilPeriod <= 0
+                ? 'Tes règles sont prévues aujourd\'hui'
+                : daysUntilPeriod === 1
+                  ? 'Prochaines règles demain'
+                  : `Prochaines règles dans ${daysUntilPeriod} jours`
             }
           </p>
         </motion.div>
@@ -245,7 +249,7 @@ export default function Dashboard() {
             <div
               className="absolute top-1/2 w-4 h-4 rounded-full border-2 border-white transition-all duration-500"
               style={{
-                left: `${Math.round((currentDay / cycleLength) * 100)}%`,
+                left: `${Math.round((Math.min(currentDay, cycleLength) / cycleLength) * 100)}%`,
                 transform: 'translateX(-50%) translateY(-50%)',
                 backgroundColor: phaseData.color,
                 boxShadow: `0 0 0 3px ${phaseData.color}30`,

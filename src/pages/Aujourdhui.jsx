@@ -6,8 +6,10 @@ import TopMenu from '../components/ui/TopMenu';
 import PhaseIcon from '../components/ui/PhaseIcon';
 import AuroraHeader from '../components/ui/AuroraHeader';
 import DailyMenu from '../components/food/DailyMenu';
+import BottomSheet from '../components/ui/BottomSheet';
 import { DashboardSkeleton } from '../components/ui/SkeletonLoader';
 import { useCycle } from '../contexts/CycleContext';
+import { toast } from '../lib/toast';
 import { findSymptomFood } from '../data/symptomFoods';
 import { WELLNESS_TAG_LABELS } from '../data/recipeFilters';
 
@@ -48,14 +50,36 @@ function useCountUp(target, duration = 700) {
 // Écran d'accueil « Aujourd'hui » : où j'en suis dans mon cycle + que manger
 // aujourd'hui. Volontairement court (4 blocs) — le détail vit dans les onglets
 // Manger et Mon cycle.
+const dateKey = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
 export default function Aujourdhui() {
-  const { cycleInfo, name, cycleLength, todayCheckIn } = useCycle();
+  const { cycleInfo, name, cycleLength, todayCheckIn, dispatch } = useCycle();
   const navigate = useNavigate();
   const displayedDay = useCountUp(cycleInfo?.currentDay ?? 0);
+  const todayKey = dateKey(new Date());
+  // « Pas encore » : on range la question jusqu'au lendemain (local à
+  // l'appareil, volontairement pas synchronisé — simple confort d'affichage).
+  const [periodSnoozed, setPeriodSnoozed] = useState(() => {
+    try { return localStorage.getItem('luna-regles-plus-tard') === todayKey; } catch { return false; }
+  });
+  const [otherDayOpen, setOtherDayOpen] = useState(false);
 
   if (!cycleInfo) return <DashboardSkeleton />;
 
-  const { phaseData, energyLevel, daysUntilPeriod } = cycleInfo;
+  const { phaseData, energyLevel, daysUntilPeriod, isLate, lateDays } = cycleInfo;
+
+  // Séquence règles validée sur maquettes (2026-07-16) : ligne discrète de
+  // J-2 au jour J, carte transformée une fois la date passée.
+  const showPeriodQuickAction = !isLate && daysUntilPeriod <= 2;
+  const startPeriod = (dayStr) => {
+    dispatch({ type: 'SET_PERIOD_START', payload: { date: dayStr } });
+    toast('Début des règles enregistré 🌙');
+    setOtherDayOpen(false);
+  };
+  const snoozePeriodQuestion = () => {
+    try { localStorage.setItem('luna-regles-plus-tard', todayKey); } catch { /* stockage privé indisponible : la question restera visible */ }
+    setPeriodSnoozed(true);
+  };
 
   const hour = new Date().getHours();
   const timeGreeting = hour < 12 ? 'Bonjour' : hour < 18 ? 'Bon après-midi' : 'Bonsoir';
@@ -102,15 +126,75 @@ export default function Aujourdhui() {
           translucide + flou, elle laisse affleurer le dégradé aurore de la
           phase derrière elle (validé maquettes 2026-07-12). */}
       <motion.div variants={item}>
-        <button
+        {/* La carte contient désormais de vrais boutons (règles) : l'enveloppe
+            est un div cliquable, plus un <button> (pas de boutons imbriqués). */}
+        <div
           onClick={() => navigate('/dashboard')}
-          className="w-full text-left rounded-[28px] p-6 active:scale-[0.99] transition-transform backdrop-blur-[18px]"
-          style={{
+          className="w-full text-left rounded-[28px] p-6 active:scale-[0.99] transition-transform backdrop-blur-[18px] cursor-pointer"
+          style={isLate ? {
+            background: 'linear-gradient(180deg, rgba(253,232,235,0.9), rgba(255,255,255,0.55))',
+            border: '1px solid #F8D8DD',
+            boxShadow: '0 10px 30px rgba(45,34,38,0.05)',
+          } : {
             backgroundColor: 'rgba(255,255,255,0.5)',
             border: '1px solid rgba(255,255,255,0.75)',
             boxShadow: '0 10px 30px rgba(45,34,38,0.05)',
           }}
         >
+          {isLate ? (
+            <>
+              {/* État « règles attendues » (option C validée) : la carte dit la
+                  vérité au lieu d'un faux nouveau cycle, ton rassurant. */}
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-body font-bold uppercase tracking-widest" style={{ color: '#C4727F' }}>
+                  Fin de cycle
+                </span>
+                <PhaseIcon phase="menstrual" size={18} />
+              </div>
+              <p className="font-display font-bold leading-none mb-1.5" style={{ color: '#A85A66', fontSize: '1.9rem' }}>
+                Règles attendues
+              </p>
+              <p className="text-xs font-body mb-4" style={{ color: '#8A5A64' }}>
+                depuis {lateDays} jour{lateDays > 1 ? 's' : ''} · ton corps prend son temps
+              </p>
+              {periodSnoozed ? (
+                <button
+                  onClick={(e) => { e.stopPropagation(); startPeriod(todayKey); }}
+                  className="w-full rounded-pill py-3 text-[13px] font-body font-bold active:scale-[0.98] transition-transform"
+                  style={{ backgroundColor: '#FDE8EB', color: '#A85A66' }}
+                >
+                  🌙 Mes règles ont commencé
+                </button>
+              ) : (
+                <>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); startPeriod(todayKey); }}
+                    className="w-full rounded-pill py-3.5 text-sm font-body font-bold text-white active:scale-[0.98] transition-transform"
+                    style={{ backgroundColor: '#D4727F' }}
+                  >
+                    🌙 Elles ont commencé
+                  </button>
+                  <div className="flex gap-2 mt-2">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setOtherDayOpen(true); }}
+                      className="flex-1 rounded-pill py-2.5 text-[13px] font-body font-semibold bg-white active:scale-[0.98] transition-transform"
+                      style={{ color: '#A85A66', border: '1px solid #F0D5DA' }}
+                    >
+                      Un autre jour
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); snoozePeriodQuestion(); }}
+                      className="flex-1 rounded-pill py-2.5 text-[13px] font-body font-semibold active:scale-[0.98] transition-transform"
+                      style={{ color: '#A85A66' }}
+                    >
+                      Pas encore
+                    </button>
+                  </div>
+                </>
+              )}
+            </>
+          ) : (
+            <>
           <div className="flex items-center justify-between mb-2">
             <span className="text-[11px] font-body font-bold uppercase tracking-widest" style={{ color: phaseData.colorDark }}>
               {phaseData.shortName}
@@ -146,8 +230,45 @@ export default function Aujourdhui() {
           <p className="text-[11px] font-body text-luna-text-muted mt-2">
             {ownEnergy != null ? 'Ton énergie' : `Énergie ${energyLabel}`} · {displayedEnergy} %
           </p>
-        </button>
+          {showPeriodQuickAction && (
+            /* Ligne discrète (option A validée) : visible de J-2 au jour J. */
+            <div className="mt-4 pt-4" style={{ borderTop: '1px solid rgba(212,114,127,0.16)' }}>
+              <button
+                onClick={(e) => { e.stopPropagation(); startPeriod(todayKey); }}
+                className="w-full rounded-pill py-3 text-[13px] font-body font-bold active:scale-[0.98] transition-transform"
+                style={{ backgroundColor: '#FDE8EB', color: '#A85A66' }}
+              >
+                🌙 Mes règles ont commencé
+              </button>
+            </div>
+          )}
+            </>
+          )}
+        </div>
       </motion.div>
+
+      {/* « Un autre jour » : choisir le vrai premier jour des règles */}
+      <BottomSheet open={otherDayOpen} onClose={() => setOtherDayOpen(false)} title="Quel jour ont-elles commencé ?">
+        <div className="space-y-2 pb-2">
+          {[1, 2, 3, 4, 5, 6, 7].map((offset) => {
+            const d = new Date();
+            d.setDate(d.getDate() - offset);
+            const raw = offset === 1 ? 'hier' : offset === 2 ? 'avant-hier'
+              : d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+            const label = raw.charAt(0).toUpperCase() + raw.slice(1);
+            return (
+              <button
+                key={offset}
+                onClick={() => startPeriod(dateKey(d))}
+                className="w-full text-left rounded-[16px] px-4 py-3.5 text-sm font-body font-semibold active:scale-[0.98] transition-transform"
+                style={{ backgroundColor: '#FDE8EB', color: '#A85A66' }}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </BottomSheet>
 
       {/* Check-in du jour — l'action n°1 */}
       <motion.div variants={item}>

@@ -49,7 +49,10 @@ export default function MenuSemaine() {
       // Math.round : les deux dates sont à minuit local, mais un changement
       // d'heure été/hiver dans l'intervalle fausserait un Math.floor.
       const diffDays = Math.round((date - lastPeriod) / 86400000);
-      const cycleDay = ((diffDays % cycleLength) + cycleLength) % cycleLength + 1;
+      // Retard de règles : passé la date prévue, plus de retour silencieux à
+      // « jour 1 » — on reste en fin de cycle (lutéale), comme l'accueil.
+      // Le modulo ne sert plus qu'aux dates antérieures au dernier cycle.
+      const cycleDay = diffDays >= cycleLength ? diffDays + 1 : ((diffDays % cycleLength) + cycleLength) % cycleLength + 1;
       const phase = getPhaseForDay(cycleDay, cycleLength, periodLength);
       return { date, cycleDay, phase, i };
     });
