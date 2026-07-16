@@ -25,6 +25,7 @@ Sur https://developer.apple.com → **Certificates, Identifiers & Profiles** :
 1. **Identifiers** → ton App ID `app.lunawellness` → coche **Sign in with Apple** → **Save**.
 2. **Keys** → bouton **+** → nomme la clé (ex. « LUNA Apple Sign In ») → coche **Sign in with Apple** → **Configure** (choisis ton App ID principal) → **Continue** → **Register**.
    - **Télécharge le fichier `.p8`** (⚠️ téléchargeable UNE seule fois, garde-le précieusement).
+   - ✅ **Déjà fait** : la clé `AuthKey_Z87XM55395.p8` est rangée dans **`Documents/Cles-Apple/`** sur le Mac (déplacée hors du projet le 2026-07-16 par sécurité).
    - Note le **Key ID** (10 caractères) et ton **Team ID** (en haut à droite du compte).
 3. **Identifiers** → bouton **+** → **Services IDs** → crée un Services ID (ex. `app.lunawellness.signin`).
    - Coche **Sign in with Apple** → **Configure** → ajoute le domaine et l'URL de retour Supabase :
