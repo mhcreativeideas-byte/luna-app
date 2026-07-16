@@ -231,7 +231,7 @@ export const PHASES = {
 
   ovulatory: {
     name: 'Phase Ovulatoire',
-    shortName: 'Ovulation',
+    shortName: 'Ovulatoire',
     icon: '☀️',
     emoji: '☀️',
     color: '#E8A87C',

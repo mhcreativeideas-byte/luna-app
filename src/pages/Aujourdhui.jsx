@@ -61,7 +61,11 @@ export default function Aujourdhui() {
   const timeGreeting = hour < 12 ? 'Bonjour' : hour < 18 ? 'Bon après-midi' : 'Bonsoir';
   const rawDate = new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
   const dateLabel = rawDate.charAt(0).toUpperCase() + rawDate.slice(1);
-  const energyLabel = energyLevel >= 70 ? 'haute' : energyLevel >= 45 ? 'modérée' : 'douce';
+  // Après un check-in, la carte affiche l'énergie NOTÉE par l'utilisatrice
+  // (se sentir écoutée) ; sinon l'énergie typique de la phase.
+  const ownEnergy = todayCheckIn?.energy;
+  const displayedEnergy = ownEnergy != null ? ownEnergy : energyLevel;
+  const energyLabel = displayedEnergy >= 70 ? 'haute' : displayedEnergy >= 45 ? 'modérée' : 'douce';
   const periodLabel = daysUntilPeriod <= 0
     ? 'règles prévues aujourd\'hui'
     : daysUntilPeriod === 1
@@ -124,7 +128,7 @@ export default function Aujourdhui() {
           <div className="rounded-full relative" style={{ height: 7, backgroundColor: `${phaseData.color}29` }}>
             <div
               className="h-full rounded-full transition-all duration-700 relative"
-              style={{ width: `${energyLevel}%`, background: `linear-gradient(90deg, ${phaseData.color}66, ${phaseData.color})` }}
+              style={{ width: `${displayedEnergy}%`, background: `linear-gradient(90deg, ${phaseData.color}66, ${phaseData.color})` }}
             >
               <span
                 className="absolute top-1/2 -translate-y-1/2 rounded-full"
@@ -140,7 +144,7 @@ export default function Aujourdhui() {
             </div>
           </div>
           <p className="text-[11px] font-body text-luna-text-muted mt-2">
-            Énergie {energyLabel} · {energyLevel} %
+            {ownEnergy != null ? 'Ton énergie' : `Énergie ${energyLabel}`} · {displayedEnergy} %
           </p>
         </button>
       </motion.div>

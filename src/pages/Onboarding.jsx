@@ -1417,17 +1417,17 @@ export default function Onboarding() {
                       <p className="text-[11px] font-semibold font-body text-luna-text-hint uppercase tracking-wider mb-2">Ton menu du jour</p>
                       <div className="space-y-1">
                         <div className="flex justify-between items-center">
-                          <span className="text-[13px] font-body text-luna-text-body flex items-center gap-1.5"><Sunrise size={14} className="text-luna-text-hint" /> Matin</span>
+                          <span className="text-[13px] font-body text-luna-text-body flex items-center gap-1.5"><Sunrise size={14} className="text-luna-text-hint" /> Petit-déj</span>
                           <span className="text-[12px] font-body font-semibold" style={{ color: ph.colorDark }}>{menu[0]}</span>
                         </div>
                         <div className="h-px bg-luna-cream-card" />
                         <div className="flex justify-between items-center">
-                          <span className="text-[13px] font-body text-luna-text-body flex items-center gap-1.5"><Sun size={14} className="text-luna-text-hint" /> Midi</span>
+                          <span className="text-[13px] font-body text-luna-text-body flex items-center gap-1.5"><Sun size={14} className="text-luna-text-hint" /> Déjeuner</span>
                           <span className="text-[12px] font-body font-semibold" style={{ color: ph.colorDark }}>{menu[1]}</span>
                         </div>
                         <div className="h-px bg-luna-cream-card" />
                         <div className="flex justify-between items-center">
-                          <span className="text-[13px] font-body text-luna-text-body flex items-center gap-1.5"><Moon size={14} className="text-luna-text-hint" /> Soir</span>
+                          <span className="text-[13px] font-body text-luna-text-body flex items-center gap-1.5"><Moon size={14} className="text-luna-text-hint" /> Dîner</span>
                           <span className="text-[12px] font-body font-semibold" style={{ color: ph.colorDark }}>{menu[2]}</span>
                         </div>
                       </div>

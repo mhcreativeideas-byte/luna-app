@@ -17,11 +17,13 @@ const seededRandom = (seed) => {
 
 const getDaySeed = (d = new Date()) => d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
 
+// Libellés harmonisés avec les listes de recettes (décision Margaux 2026-07-16) :
+// on nomme le REPAS partout, pas le moment de la journée.
 export const MEAL_SLOTS = [
-  { key: 'breakfast', time: 'Matin', Icon: Sunrise },
-  { key: 'lunch', time: 'Midi', Icon: Sun },
+  { key: 'breakfast', time: 'Petit-déj', Icon: Sunrise },
+  { key: 'lunch', time: 'Déjeuner', Icon: Sun },
   { key: 'snack', time: 'Snack', Icon: Cookie },
-  { key: 'dinner', time: 'Soir', Icon: Moon },
+  { key: 'dinner', time: 'Dîner', Icon: Moon },
 ];
 
 const DRINK_ICONS = {

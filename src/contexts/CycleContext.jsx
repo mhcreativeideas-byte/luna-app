@@ -152,18 +152,32 @@ function cycleReducer(state, action) {
       const newLogs = state.periodLogs.includes(date)
         ? state.periodLogs
         : [...state.periodLogs, date].sort();
-      // Recalcule la longueur du cycle seulement si le nouveau départ est
-      // POSTÉRIEUR au précédent (comparaison de chaînes YYYY-MM-DD valide).
-      // Marquer rétroactivement une date antérieure ne doit ni reculer
-      // lastPeriodDate ni fausser cycleLength.
+      // Apprentissage du cycle réel (décision Margaux 2026-07-16) : la longueur
+      // du cycle devient la MOYENNE des 3 derniers cycles observés, comme chez
+      // Flo/Clue. Un cycle inhabituel isolé ne fausse plus la prédiction, et
+      // elle s'affine au fil des mois.
+      // Un « début de cycle » = un jour de règles marqué dont la veille ne
+      // l'est pas. On mesure les écarts entre débuts successifs et on ne garde
+      // que les plausibles (16 à 49 jours : au-delà, règles non enregistrées).
       const prevStart = state.lastPeriodDate;
-      let newCycleLength = state.cycleLength;
-      if (prevStart && date > prevStart) {
-        const diff = Math.round((parseLocalDate(date) - parseLocalDate(prevStart)) / (1000 * 60 * 60 * 24));
-        if (diff > 15 && diff < 50) {
-          newCycleLength = diff;
-        }
+      const dayBefore = (d) => {
+        const t = parseLocalDate(d);
+        t.setDate(t.getDate() - 1);
+        return `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`;
+      };
+      const allDays = new Set(prevStart ? [...newLogs, prevStart] : newLogs);
+      const starts = [...allDays].sort().filter((d) => !allDays.has(dayBefore(d)));
+      const gaps = [];
+      for (let i = 1; i < starts.length; i++) {
+        const diff = Math.round((parseLocalDate(starts[i]) - parseLocalDate(starts[i - 1])) / (1000 * 60 * 60 * 24));
+        if (diff > 15 && diff < 50) gaps.push(diff);
       }
+      const recent = gaps.slice(-3);
+      const newCycleLength = recent.length
+        ? Math.round(recent.reduce((a, b) => a + b, 0) / recent.length)
+        : state.cycleLength;
+      // Marquer rétroactivement une date antérieure ne recule jamais
+      // lastPeriodDate (garde existante conservée ci-dessous).
       return {
         ...state,
         lastPeriodDate: prevStart && date < prevStart ? prevStart : date,
