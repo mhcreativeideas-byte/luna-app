@@ -55,11 +55,11 @@ Le but est une **vraie app iPhone native**, emballée avec **Capacitor** — **P
 
 ## Navigation (barre du bas, mobile) — refonte 2026-07-05
 3 onglets : **Manger** (`/recettes`, `Recettes.jsx`) · **Aujourd'hui** (`/aujourdhui`, `Aujourdhui.jsx`, **accueil au centre**) · **Mon cycle** (`/dashboard`, `Dashboard.jsx`).
-- **Aujourd'hui** = accueil : salutation, carte de phase compacte, check-in, conseil symptôme→aliment (après check-in), menu du jour (aperçu ; « Tout voir » → `/menu`).
+- **Aujourd'hui** = accueil : salutation, carte de phase compacte, check-in, conseil symptôme→aliment (après check-in), menu du jour (aperçu ; « Tout voir » → `/menu-semaine`, page « Ma semaine »).
 - **Manger** = sommaire : Recettes en bandeau vedette (→ `/recettes-liste`) + grille 2×2 : Aliments (→ `/alimentation`), Mon frigo (→ `/mon-frigo`), Courses (→ `/courses`, pastille compteur), De saison (→ `/de-saison`).
 - **Mon cycle** = anneau signature + calendrier (→ `/calendrier`) + tuiles Mon bilan (→ `/bilan`) et Partenaire (carte à partager en fenêtre du bas).
 - **Liste de courses** (`Courses.jsx`) : organisée **par recette** ; bannière « Ajouter aux courses » (`AddToListBanner.jsx`) dans les fiches recette ; « Générer depuis mon menu » ; état `shoppingList` dans CycleContext, persisté dans `user_tracking.settings` (pas de migration).
-- ⚠️ Pages **cachées mais gardées** (accessibles par URL, rien n'est supprimé) : `/journal`, `/sport`, `/sommeil`, `/chat`, `/plus` (Extras). L'ancien onglet « Aliments » est devenu une entrée de Manger.
+- ⚠️ Pages **cachées mais gardées** (accessibles par URL, rien n'est supprimé) : `/journal`, `/sport`, `/sommeil`, `/chat`, `/plus` (Extras), `/menu` (ancien menu du jour, remplacé par `/menu-semaine`). L'ancien onglet « Aliments » est devenu une entrée de Manger.
 - ⚠️ **Mode aperçu web** : `lunawellness.app/apercu-mh26` débloque l'app dans le navigateur (test à distance) — **à retirer avant le lancement** (bloc « Mode aperçu » dans `App.jsx`).
 
 ## Structure

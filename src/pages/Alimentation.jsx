@@ -361,12 +361,14 @@ export default function Alimentation() {
                     className="text-[10px] font-body font-semibold mt-1 leading-tight"
                     style={{ color: phaseData.color }}
                   >
-                    {food.nutrients.join(' · ')}
+                    {(food.nutrients || []).join(' · ')}
                   </span>
 
-                  <p className="text-[10px] font-body text-luna-text-hint mt-1 leading-snug italic line-clamp-2">
-                    {food.why.split('.')[0]}.
-                  </p>
+                  {food.why && (
+                    <p className="text-[10px] font-body text-luna-text-hint mt-1 leading-snug italic line-clamp-2">
+                      {food.why.split('.')[0]}.
+                    </p>
+                  )}
                 </motion.button>
               );
             })}

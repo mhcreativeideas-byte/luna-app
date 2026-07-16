@@ -37,3 +37,6 @@ App-Store-LUNA/captures/
 # Apple Sign In private key
 *.p8
 ios/DerivedData-test/
+
+# Images générées (Nano Banana, matière première créa — pas dans l'app)
+generated-images/
