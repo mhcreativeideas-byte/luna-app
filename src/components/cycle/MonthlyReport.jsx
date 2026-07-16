@@ -159,7 +159,7 @@ export default function MonthlyReport() {
               <div className="grid grid-cols-2 gap-2">
                 <div className="text-center p-2 rounded-[12px] bg-gray-50">
                   <div className="flex items-center justify-center gap-1">
-                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgEnergy != null ? `${currentStats.avgEnergy}%` : '·'}</p>
+                    <p className="text-base font-display font-bold text-luna-text">{currentStats.avgEnergy != null ? `${currentStats.avgEnergy}%` : '—'}</p>
                     <TrendIcon current={currentStats.avgEnergy} previous={prevStats?.avgEnergy} />
                   </div>
                   <p className="text-[8px] font-body text-luna-text-hint uppercase">Énergie moy.</p>
