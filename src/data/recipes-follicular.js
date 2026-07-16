@@ -486,7 +486,7 @@ breakfast: [
     cuisine: 'fusion',
     calories: 495,
     servings: 1,
-    nutrients: ['Folates', 'Protéines', 'Calcium', 'Prébiotiques'],
+    nutrients: ['Vitamine B9', 'Protéines', 'Calcium', 'Prébiotiques'],
     tags: ['sopk_friendly', "vegetarien", "sans_gluten", "anti_fatigue", "spm_friendly"],
     emoji: '🍳',
     ingredients: [
@@ -2760,7 +2760,7 @@ dinner: [
     cuisine: 'fusion',
     calories: 298,
     servings: 3,
-    nutrients: ['Folates', 'Fer', 'Protéines', 'Anti-inflammatoires'],
+    nutrients: ['Vitamine B9', 'Fer', 'Protéines', 'Anti-inflammatoires'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
     emoji: '🍛',
     ingredients: [
@@ -3278,7 +3278,7 @@ snack: [
     cuisine: 'fusion',
     calories: 186,
     servings: 1,
-    nutrients: ['Fibres prébiotiques', 'Magnésium', 'Protéines', 'Glycémie stable', 'Zinc'],
+    nutrients: ['Fibres prébiotiques', 'Magnésium', 'Protéines', 'Vitamine E', 'Zinc'],
     tags: ['sopk_friendly', "vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "spm_friendly"],
     emoji: '🍎',
     ingredients: [

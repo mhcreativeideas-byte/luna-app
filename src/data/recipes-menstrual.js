@@ -2351,7 +2351,7 @@ dinner: [
     cuisine: 'asiatique',
     calories: 437,
     servings: 2,
-    nutrients: ['Fer', 'Calcium', 'Protéines végétales', 'Sésame', 'Zinc'],
+    nutrients: ['Fer', 'Calcium', 'Protéines végétales', 'Magnésium', 'Zinc'],
     tags: ["vegetarien", "vegan", "sans_gluten", "sans_lactose", "anti_fatigue", "sopk_friendly", "spm_friendly"],
     emoji: '🫘',
     ingredients: [
@@ -3741,7 +3741,7 @@ drink: [
     cuisine: 'fusion',
     calories: 15,
     servings: 1,
-    nutrients: ['Anti-spasmodique', 'Anti-inflammatoires'],
+    nutrients: ['Anti-spasmodiques', 'Anti-inflammatoires'],
     tags: ["vegetarien", "sans_gluten", "sans_lactose", "anti_crampes", "spm_friendly", "anti_fatigue"],
     emoji: '🍵',
     ingredients: [
