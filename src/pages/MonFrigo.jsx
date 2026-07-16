@@ -431,9 +431,10 @@ export default function MonFrigo() {
                   style={{ backgroundColor: phaseData.bgColor, color: phaseData.colorDark }}
                 >
                   {item}
+                  {/* after:-inset-3 : zone de tap ~40px autour du petit ×, sans grossir la pastille */}
                   <button
                     onClick={() => removeItem(item)}
-                    className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/50 active:bg-white/50 transition-colors"
+                    className="relative w-4 h-4 rounded-full flex items-center justify-center active:bg-white/50 transition-colors after:content-[''] after:absolute after:-inset-3"
                   >
                     <X size={10} />
                   </button>
@@ -498,9 +499,10 @@ export default function MonFrigo() {
                       <span className="text-[10px] font-body text-luna-text-hint flex items-center gap-1">
                         <Clock size={9} /> {recipe.prepTime}
                       </span>
+                      {/* Zone de tap élargie (~44×40px) autour du cœur, taille visuelle inchangée */}
                       <button
                         onClick={(e) => { e.stopPropagation(); toggleFavorite(recipe.name); }}
-                        className="ml-auto w-6 h-6 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+                        className="relative ml-auto w-6 h-6 rounded-full flex items-center justify-center transition-all active:scale-95 after:content-[''] after:absolute after:-inset-x-2.5 after:-inset-y-2"
                       >
                         <Heart
                           size={13}
@@ -661,7 +663,7 @@ export default function MonFrigo() {
                       <div>
                         <h4 className="text-sm font-body font-bold text-luna-text mb-2">Préparation</h4>
                         <ol className="space-y-3">
-                          {recipe.steps.map((step, i) => (
+                          {(recipe.steps || []).map((step, i) => (
                             <li key={i} className="flex gap-3 text-sm text-luna-text-body font-body leading-relaxed">
                               <span
                                 className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0 mt-0.5"

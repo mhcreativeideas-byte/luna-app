@@ -259,8 +259,9 @@ export default function CheckIn() {
                         }}
                       >
                         {label}
+                        {/* Zone de tap élargie autour du × (modérée : la puce elle-même sert à sélectionner) */}
                         <span
-                          className="ml-1 opacity-40 hover:opacity-100 active:opacity-100"
+                          className="relative ml-1 opacity-40 active:opacity-100 after:content-[''] after:absolute after:-inset-2"
                           onClick={(e) => { e.stopPropagation(); dispatch({ type: 'REMOVE_CUSTOM_SYMPTOM', payload: { label } }); }}
                         >
                           ×
