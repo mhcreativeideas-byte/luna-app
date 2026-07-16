@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingCart, Check, ChevronDown } from 'lucide-react';
 import BackButton from '../components/ui/BackButton';
 import PhaseIcon from '../components/ui/PhaseIcon';
-import { useCycle } from '../contexts/CycleContext';
+import { useCycle, parseLocalDate } from '../contexts/CycleContext';
 import { PHASES, getPhaseForDay } from '../data/phases';
 import { RECIPE_LOADERS } from '../data/recipeLoaders';
 import { buildDailyMenu } from '../data/dailyMenu';
@@ -40,11 +40,15 @@ export default function MenuSemaine() {
     if (!lastPeriodDate) return [];
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const lastPeriod = new Date(lastPeriodDate);
+    // parseLocalDate : minuit LOCAL (new Date('YYYY-MM-DD') parserait en UTC
+    // et décalerait le jour de cycle d'un jour en France).
+    const lastPeriod = parseLocalDate(lastPeriodDate);
     return Array.from({ length: 7 }, (_, i) => {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      const diffDays = Math.floor((date - lastPeriod) / 86400000);
+      // Math.round : les deux dates sont à minuit local, mais un changement
+      // d'heure été/hiver dans l'intervalle fausserait un Math.floor.
+      const diffDays = Math.round((date - lastPeriod) / 86400000);
       const cycleDay = ((diffDays % cycleLength) + cycleLength) % cycleLength + 1;
       const phase = getPhaseForDay(cycleDay, cycleLength, periodLength);
       return { date, cycleDay, phase, i };
