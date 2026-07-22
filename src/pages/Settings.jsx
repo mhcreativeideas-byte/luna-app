@@ -9,6 +9,7 @@ import { useCycle } from '../contexts/CycleContext';
 import { supabase } from '../lib/supabase';
 import { toast } from '../lib/toast';
 import { restorePurchases } from '../lib/purchases';
+import { NOTIF_TEXT_TYPES } from '../lib/notificationPlan';
 import BackButton from '../components/ui/BackButton';
 
 const goalOptions = [
@@ -117,9 +118,18 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user, lastPeriodDate, cravings, notifPrefs, todayCheckIn } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user, lastPeriodDate, cravings, notifPrefs, notifCustomTexts, todayCheckIn } = useCycle();
 
   const [confirm, setConfirm] = useState(null);
+  const [showCustomTexts, setShowCustomTexts] = useState(false);
+
+  // Message personnalisé d'un rappel : vide = retour au texte luna.
+  const setCustomText = (key, value) => {
+    const next = { ...(notifCustomTexts || {}) };
+    if (value.trim()) next[key] = value;
+    else delete next[key];
+    dispatch({ type: 'UPDATE_SETTINGS', payload: { notifCustomTexts: next } });
+  };
 
   // Gérer / résilier : Apple impose que ça se fasse dans les Réglages iOS.
   // On ouvre simplement la page « Abonnements » du compte Apple.
@@ -304,6 +314,9 @@ export default function Settings() {
             }
           }}
         />
+        {notifications && (
+          <SettingRow label="Personnaliser les messages" onClick={() => setShowCustomTexts(true)} />
+        )}
       </Section>
 
       <Section title="App">
@@ -714,6 +727,49 @@ export default function Settings() {
               >
                 Enregistrer
               </button>
+      </BottomSheet>
+
+      {/* Messages de rappels personnalisés (façon Clue) */}
+      <BottomSheet open={showCustomTexts} onClose={() => setShowCustomTexts(false)}>
+        <h3 className="font-display text-lg text-luna-text mb-2">Personnaliser les messages</h3>
+        <p className="text-[13px] font-body text-luna-text-muted mb-5">
+          Écris ton propre message pour un rappel : il s'affichera tel quel sur ton écran,
+          à la place du texte luna. Laisse vide pour garder le texte luna.
+        </p>
+        <div className="max-h-[55vh] overflow-y-auto -mx-1 px-1 pb-2">
+          {NOTIF_TEXT_TYPES.map((t) => {
+            const val = notifCustomTexts?.[t.key] || '';
+            return (
+              <div key={t.key} className="mb-4">
+                <div className="flex items-center justify-between mb-1.5 min-h-[24px]">
+                  <p className="text-[13px] font-body font-semibold text-luna-text">{t.label}</p>
+                  {val && (
+                    <button
+                      onClick={() => setCustomText(t.key, '')}
+                      className="text-xs font-body font-semibold text-luna-rose px-2 py-1 -my-1 active:scale-95 transition-transform"
+                    >
+                      Texte luna
+                    </button>
+                  )}
+                </div>
+                <input
+                  type="text"
+                  value={val}
+                  maxLength={110}
+                  onChange={(e) => setCustomText(t.key, e.target.value)}
+                  placeholder={t.sample}
+                  className="w-full min-h-[48px] px-4 py-3 rounded-[14px] bg-luna-cream text-base font-body text-luna-text placeholder:text-luna-text-hint outline-none focus:ring-2 focus:ring-luna-rose/40"
+                />
+              </div>
+            );
+          })}
+        </div>
+        <button
+          onClick={() => setShowCustomTexts(false)}
+          className="btn-luna w-full justify-center text-base py-3.5 mt-2"
+        >
+          C'est noté
+        </button>
       </BottomSheet>
     </div>
   );

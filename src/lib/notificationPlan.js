@@ -43,6 +43,23 @@ export const DEFAULT_NOTIF_PREFS = {
   allies: true, // aliments alliés de la phase
 };
 
+// Types de rappels personnalisables (écran Paramètres → « Personnaliser les
+// messages ») : clé = celle de notifCustomTexts, sample = le texte luna
+// affiché en exemple. Un message personnalisé remplace tout le texte.
+export const NOTIF_TEXT_TYPES = [
+  { key: 'rules', label: 'Règles qui approchent', sample: 'Tes règles approchent 🌙' },
+  { key: 'day1', label: 'Confirmation du jour 1', sample: 'Tes règles ont commencé ?' },
+  { key: 'late', label: 'Relance en cas de retard', sample: 'Ton cycle prend son temps 🌙' },
+  { key: 'phase', label: 'Changement de phase', sample: 'Nouvelle phase : folliculaire 🌿' },
+  { key: 'peak', label: 'Veille du pic de forme', sample: 'Demain, ton pic de forme ☀️' },
+  { key: 'menu', label: 'Menu du jour', sample: 'Ton menu du jour est prêt 🍽️' },
+  { key: 'checkin', label: 'Check-in du soir', sample: 'Comment tu te sens ce soir ?' },
+  { key: 'softweek', label: 'Semaine douceur', sample: 'Ta semaine douceur commence 💛' },
+  { key: 'comeback', label: 'Retrouvailles', sample: 'On garde ta place au chaud 🌙' },
+  { key: 'batch', label: 'Batch cooking du dimanche', sample: 'Envie de souffler cette semaine ? 🍳' },
+  { key: 'allies', label: 'Tes aliments alliés', sample: 'Tes aliments du moment 🥑' },
+];
+
 // Horizon de programmation : iOS limite à 64 notifications en attente.
 const MENU_DAYS = 10; // menus du jour programmés à l'avance
 const CHECKIN_DAYS = 10; // rappels de check-in programmés à l'avance
@@ -65,29 +82,36 @@ const PHASE_CHANGE_TEXTS = {
   },
 };
 
-// Menu du jour : 3 variantes par phase, en rotation jour après jour (l'usure
+// Menu du jour : 4 variantes par phase, en rotation jour après jour (l'usure
 // d'un texte répété est prouvée — étude Duolingo KDD 2020). Le prénom
-// n'apparaît que dans 1 variante sur 3 (le contexte prime sur le prénom).
+// n'apparaît que dans 1 variante sur 4 (le contexte prime sur le prénom).
+// La 4e est la « punchline » : très courte, complice, elle tranche avec les
+// autres (levier de la surprise, façon Stardust). En menstruelle elle reste
+// douce : jamais d'humour un jour de douleur.
 const MENU_VARIANTS = {
   menstrual: [
     () => 'Pas la force de réfléchir aux repas aujourd\'hui ? On a choisi pour toi : fer et réconfort au menu.',
     () => 'Les règles vident tes réserves de fer. Ton menu du jour les remplit, sans effort de ta part.',
     (name) => `Crampes et coup de mou ? Ton assiette peut les adoucir${name ? `, ${name}` : ''}. Ouvre ton menu du jour.`,
+    () => 'Ce soir : plaid, curry doux, zéro vaisselle compliquée.',
   ],
   follicular: [
     () => 'La question « on mange quoi ? » est déjà réglée pour aujourd\'hui : ton menu folliculaire est prêt.',
     () => 'Ton corps reconstruit ses réserves cette semaine : ton menu sait exactement quoi lui apporter.',
     (name) => `L'énergie revient${name ? `, ${name}` : ''}. Ton menu du jour est calé pour la faire monter encore.`,
+    () => 'Ça repart. Ton menu aussi. 🌿',
   ],
   ovulatory: [
     () => 'Un repas lourd gâcherait ta meilleure forme du mois. Ton menu léger et coloré t\'attend.',
     () => 'Journée chargée ? Ton menu du jour fait vite, bon et léger : rien à décider, tout est prêt.',
     (name) => `Énergie au sommet${name ? `, ${name}` : ''} : ton menu est calibré pour la garder jusqu'au soir.`,
+    () => 'Éclat maximal. Menu assorti. ☀️',
   ],
   luteal: [
     () => 'Les envies de sucre débarquent sans prévenir ces jours-ci. Ton menu les calme sans frustration.',
     () => 'Fatiguée dès le matin ? Ton assiette peut changer ta journée : ton menu lutéal est prêt.',
     (name) => `Du réconfort sans culpabilité${name ? `, ${name}` : ''} : ton menu du jour concilie les deux.`,
+    () => 'Chocolat ? Oui. Bien accompagné, c\'est encore mieux.',
   ],
 };
 
@@ -133,12 +157,21 @@ export function buildNotificationPlan(profile, now = new Date()) {
     cravings = [],
     notifications = true,
     notifPrefs = DEFAULT_NOTIF_PREFS,
+    notifCustomTexts = {},
     todayCheckInDone = false,
   } = profile;
 
   const plan = [];
   if (!notifications) return plan;
   const prefs = { ...DEFAULT_NOTIF_PREFS, ...notifPrefs };
+
+  // Message personnalisé (façon Clue) : si l'utilisatrice a écrit son propre
+  // texte pour un type de rappel, il remplace TOUT le message (affiché seul,
+  // sans corps) — c'est son mot à elle, il apparaît tel quel à l'écran.
+  const texts = (key, title, body) => {
+    const t = (notifCustomTexts[key] || '').trim();
+    return t ? [t, ''] : [title, body];
+  };
 
   const today = new Date(now);
   today.setHours(0, 0, 0, 0);
@@ -177,8 +210,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
       [2, 6].forEach((d, i) => {
         push(
           NOTIF_IDS.late + i,
-          'Ton cycle prend son temps 🌙',
-          'Les cycles varient, c\'est courant. Quand tes règles commencent, note-le sur l\'accueil : tout se recale.',
+          ...texts('late', 'Ton cycle prend son temps 🌙', 'Les cycles varient, c\'est courant. Quand tes règles commencent, note-le sur l\'accueil : tout se recale.'),
           at(cycleStart, cycleLength + d, 9, 30),
         );
       });
@@ -195,8 +227,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
       if (prefs.day1) {
         push(
           NOTIF_IDS.day1 + k,
-          'Tes règles ont commencé ?',
-          'Crampes, fatigue, envie de cocon ? Un tap sur l\'accueil et tes prochains jours passent en mode douceur.',
+          ...texts('day1', 'Tes règles ont commencé ?', 'Crampes, fatigue, envie de cocon ? Un tap sur l\'accueil et tes prochains jours passent en mode douceur.'),
           at(cycleStart, base + cycleLength, 9, 30),
         );
       }
@@ -205,8 +236,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
       if (prefs.rules) {
         push(
           NOTIF_IDS.rules + k,
-          'Tes règles approchent 🌙',
-          'Crampes, fatigue, fringales : cette fois tu ne les subis pas. Ton menu spécial règles t\'attend déjà.',
+          ...texts('rules', 'Tes règles approchent 🌙', 'Crampes, fatigue, fringales : cette fois tu ne les subis pas. Ton menu spécial règles t\'attend déjà.'),
           at(cycleStart, base + cycleLength - 2, 19),
         );
       }
@@ -223,7 +253,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
           // (ex. folliculaire quasi inexistante) — on ne l'annonce pas.
           if (phaseForDay(day, cycleLength, periodLength) !== phase) return;
           const t = PHASE_CHANGE_TEXTS[phase];
-          push(NOTIF_IDS.phase + k * 10 + i, t.title, t.body, at(cycleStart, base + day - 1, 9));
+          push(NOTIF_IDS.phase + k * 10 + i, ...texts('phase', t.title, t.body), at(cycleStart, base + day - 1, 9));
         });
       }
 
@@ -235,8 +265,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
         if (peakEve >= 2 && phaseForDay(peakEve + 1, cycleLength, periodLength) === 'ovulatory') {
           push(
             NOTIF_IDS.peak + k,
-            'Demain, ton pic de forme ☀️',
-            'Ta meilleure semaine du mois commence demain. Cette fois, tu le sais à l\'avance : prévois grand.',
+            ...texts('peak', 'Demain, ton pic de forme ☀️', 'Ta meilleure semaine du mois commence demain. Cette fois, tu le sais à l\'avance : prévois grand.'),
             at(cycleStart, base + peakEve - 1, 19),
           );
         }
@@ -250,8 +279,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
       if (prefs.softweek && hasSoftweekSignal) {
         push(
           NOTIF_IDS.softweek + k,
-          'Ta semaine douceur commence 💛',
-          'Irritabilité, fringales, moral en dents de scie ? Le SPM se joue aussi dans l\'assiette. Tes menus douceur sont prêts.',
+          ...texts('softweek', 'Ta semaine douceur commence 💛', 'Irritabilité, fringales, moral en dents de scie ? Le SPM se joue aussi dans l\'assiette. Tes menus douceur sont prêts.'),
           at(cycleStart, base + cycleLength - 5, 18),
         );
       }
@@ -266,8 +294,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
           if (d > cycleLength) return;
           push(
             NOTIF_IDS.allies + k * 10 + i,
-            'Tes aliments du moment 🥑',
-            'Ton corps n\'a plus les mêmes besoins qu\'il y a 10 jours. Voici ceux qui lui font le plus de bien en ce moment.',
+            ...texts('allies', 'Tes aliments du moment 🥑', 'Ton corps n\'a plus les mêmes besoins qu\'il y a 10 jours. Voici ceux qui lui font le plus de bien en ce moment.'),
             at(cycleStart, base + d - 1, 12),
           );
         });
@@ -283,8 +310,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
         if (d.getDay() !== 0) continue;
         push(
           NOTIF_IDS.batch + sundays,
-          'Envie de souffler cette semaine ? 🍳',
-          '2-3 plats préparés ce dimanche = tous tes midis réglés. On t\'a trouvé les recettes parfaites à faire en avance.',
+          ...texts('batch', 'Envie de souffler cette semaine ? 🍳', '2-3 plats préparés ce dimanche = tous tes midis réglés. On t\'a trouvé les recettes parfaites à faire en avance.'),
           d,
         );
         sundays += 1;
@@ -301,10 +327,10 @@ export function buildNotificationPlan(profile, now = new Date()) {
         // lutéale (phaseForDay renvoie lutéale au-delà de cycleLength).
         const dayOfCycle = isLate ? daysSince + i + 1 : ((daysSince + i) % cycleLength) + 1;
         const phase = phaseForDay(dayOfCycle, cycleLength, periodLength);
-        // Rotation des 3 variantes, stable pour une date donnée (daysSince
+        // Rotation des 4 variantes, stable pour une date donnée (daysSince
         // avance d'un cran par jour → jamais deux matins de suite pareils).
-        const variant = MENU_VARIANTS[phase][(daysSince + i) % 3];
-        push(NOTIF_IDS.menu + i, 'Ton menu du jour est prêt 🍽️', variant(name), when);
+        const variant = MENU_VARIANTS[phase][(daysSince + i) % 4];
+        push(NOTIF_IDS.menu + i, ...texts('menu', 'Ton menu du jour est prêt 🍽️', variant(name)), when);
       }
     }
   }
@@ -323,8 +349,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
       void todayCheckInDone; // couvert par la règle ci-dessus
       push(
         NOTIF_IDS.checkin + i,
-        'Comment tu te sens ce soir ?',
-        'Ton corps t\'a parlé toute la journée. 2 minutes pour l\'écouter, et tes conseils de demain seront encore plus justes.',
+        ...texts('checkin', 'Comment tu te sens ce soir ?', 'Ton corps t\'a parlé toute la journée. 2 minutes pour l\'écouter, et tes conseils de demain seront encore plus justes.'),
         at(today, i, 20, 30),
         { exclusiveDay: false },
       );
@@ -337,8 +362,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
   if (prefs.comeback) {
     push(
       NOTIF_IDS.comeback,
-      'On garde ta place au chaud 🌙',
-      'Tu es sûrement passée dans une nouvelle phase : tes besoins ont changé. On a déjà tout recalé pour toi.',
+      ...texts('comeback', 'On garde ta place au chaud 🌙', 'Tu es sûrement passée dans une nouvelle phase : tes besoins ont changé. On a déjà tout recalé pour toi.'),
       at(today, 7, 12, 30),
       { exclusiveDay: false },
     );

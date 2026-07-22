@@ -45,6 +45,7 @@ const initialState = {
   activeConversationId: null,
   notifications: true,
   notifPrefs: DEFAULT_NOTIF_PREFS,
+  notifCustomTexts: {}, // messages personnalisés par type de rappel (façon Clue)
   language: 'fr',
   smartTracking: false,
   calendarStartDay: 'monday',
@@ -666,6 +667,7 @@ export function CycleProvider({ children }) {
             ...(data.settings ? {
               notifications: data.settings.notifications ?? true,
               notifPrefs: { ...DEFAULT_NOTIF_PREFS, ...(data.settings.notifPrefs || {}) },
+              notifCustomTexts: data.settings.notifCustomTexts || {},
               language: data.settings.language || 'fr',
               smartTracking: data.settings.smartTracking ?? false,
               calendarStartDay: data.settings.calendarStartDay || 'monday',
@@ -849,6 +851,7 @@ export function CycleProvider({ children }) {
         settings: {
           notifications: state.notifications,
           notifPrefs: state.notifPrefs,
+          notifCustomTexts: state.notifCustomTexts,
           language: state.language,
           smartTracking: state.smartTracking,
           calendarStartDay: state.calendarStartDay,
@@ -887,6 +890,7 @@ export function CycleProvider({ children }) {
     state.partnerCode,
     state.notifications,
     state.notifPrefs,
+    state.notifCustomTexts,
     state.language,
     state.smartTracking,
     state.calendarStartDay,
@@ -944,6 +948,7 @@ export function CycleProvider({ children }) {
           cravings: state.cravings,
           notifications: state.notifications,
           notifPrefs: state.notifPrefs,
+          notifCustomTexts: state.notifCustomTexts,
           todayCheckInDone,
         })
       );
@@ -960,6 +965,7 @@ export function CycleProvider({ children }) {
     state.cravings,
     state.notifications,
     state.notifPrefs,
+    state.notifCustomTexts,
     todayCheckInDone,
   ]);
 
