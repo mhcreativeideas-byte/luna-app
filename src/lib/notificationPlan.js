@@ -21,46 +21,74 @@ export const NOTIF_IDS = {
   rules: 2000,
   day1: 2100,
   late: 2200, // +i — relances douces en cas de retard (J+3, J+7)
+  peak: 2300, // +k — veille du pic de forme (19 h, veille de l'ovulatoire)
   menu: 3000, // +i
   checkin: 4000, // +i
   softweek: 5000,
   comeback: 6000,
+  batch: 7000, // +i — batch cooking du dimanche
+  allies: 7100, // +i — aliments alliés (2 j après chaque changement de phase)
 };
 
 export const DEFAULT_NOTIF_PREFS = {
   phase: true, // changement de phase
   rules: true, // règles qui approchent (J-2)
   day1: true, // confirmation du jour 1
+  peak: true, // veille du pic de forme
   menu: true, // menu du jour
-  checkin: true, // check-in du soir
+  checkin: true, // check-in du soir (seulement si l'app n'a pas été ouverte)
   softweek: true, // semaine douceur (SPM/fringales)
   comeback: true, // retrouvailles (7 j sans ouvrir)
+  batch: true, // batch cooking du dimanche
+  allies: true, // aliments alliés de la phase
 };
 
 // Horizon de programmation : iOS limite à 64 notifications en attente.
 const MENU_DAYS = 10; // menus du jour programmés à l'avance
 const CHECKIN_DAYS = 10; // rappels de check-in programmés à l'avance
 
+// Textes v2 (validés par Margaux le 2026-07-22, après étude concurrentielle) :
+// émotion problème → solution, jamais culpabilisant, voix « on » (luna n'est
+// PAS une personne), corps ≤ ~115 caractères (troncature iOS).
 const PHASE_CHANGE_TEXTS = {
   follicular: {
     title: 'Nouvelle phase : folliculaire 🌿',
-    body: (name) => `Ton énergie remonte${name ? `, ${name}` : ''}. Découvre les aliments qui l'accompagnent.`,
+    body: 'Fini le mode survie des règles. Ton énergie revient : on te dit quoi manger pour la faire durer.',
   },
   ovulatory: {
     title: 'Nouvelle phase : ovulatoire ☀️',
-    body: (name) => `Tu entres dans ton pic de forme${name ? `, ${name}` : ''}. Des assiettes légères et colorées t'attendent.`,
+    body: 'Tes 3 meilleurs jours du mois : énergie au sommet, tête claire. Ton assiette suit le rythme.',
   },
   luteal: {
     title: 'Nouvelle phase : lutéale 🍂',
-    body: (name) => `Ton corps ralentit doucement${name ? `, ${name}` : ''}. Place au réconfort qui te fait du bien.`,
+    body: 'Fatigue qui tombe d\'un coup, envies de sucre, moral fragile ? C\'est la lutéale. On adoucit tout ça dans l\'assiette.',
   },
 };
 
-const MENU_TEXTS = {
-  menstrual: 'Pensé pour ta phase menstruelle : réconfortant et riche en fer.',
-  follicular: 'Pensé pour ta phase folliculaire : de l\'énergie dans l\'assiette.',
-  ovulatory: 'Pensé pour ta phase ovulatoire : léger et coloré, comme toi.',
-  luteal: 'Pensé pour ta phase lutéale : équilibré et réconfortant.',
+// Menu du jour : 3 variantes par phase, en rotation jour après jour (l'usure
+// d'un texte répété est prouvée — étude Duolingo KDD 2020). Le prénom
+// n'apparaît que dans 1 variante sur 3 (le contexte prime sur le prénom).
+const MENU_VARIANTS = {
+  menstrual: [
+    () => 'Pas la force de réfléchir aux repas aujourd\'hui ? On a choisi pour toi : fer et réconfort au menu.',
+    () => 'Les règles vident tes réserves de fer. Ton menu du jour les remplit, sans effort de ta part.',
+    (name) => `Crampes et coup de mou ? Ton assiette peut les adoucir${name ? `, ${name}` : ''}. Ouvre ton menu du jour.`,
+  ],
+  follicular: [
+    () => 'La question « on mange quoi ? » est déjà réglée pour aujourd\'hui : ton menu folliculaire est prêt.',
+    () => 'Ton corps reconstruit ses réserves cette semaine : ton menu sait exactement quoi lui apporter.',
+    (name) => `L'énergie revient${name ? `, ${name}` : ''}. Ton menu du jour est calé pour la faire monter encore.`,
+  ],
+  ovulatory: [
+    () => 'Un repas lourd gâcherait ta meilleure forme du mois. Ton menu léger et coloré t\'attend.',
+    () => 'Journée chargée ? Ton menu du jour fait vite, bon et léger : rien à décider, tout est prêt.',
+    (name) => `Énergie au sommet${name ? `, ${name}` : ''} : ton menu est calibré pour la garder jusqu'au soir.`,
+  ],
+  luteal: [
+    () => 'Les envies de sucre débarquent sans prévenir ces jours-ci. Ton menu les calme sans frustration.',
+    () => 'Fatiguée dès le matin ? Ton assiette peut changer ta journée : ton menu lutéal est prêt.',
+    (name) => `Du réconfort sans culpabilité${name ? `, ${name}` : ''} : ton menu du jour concilie les deux.`,
+  ],
 };
 
 function parseLocalDate(dateStr) {
@@ -167,8 +195,8 @@ export function buildNotificationPlan(profile, now = new Date()) {
       if (prefs.day1) {
         push(
           NOTIF_IDS.day1 + k,
-          'C\'est le jour 1 ?',
-          'Si tes règles ont commencé, note-le : ton cycle reste juste, tes conseils aussi.',
+          'Tes règles ont commencé ?',
+          'Crampes, fatigue, envie de cocon ? Un tap sur l\'accueil et tes prochains jours passent en mode douceur.',
           at(cycleStart, base + cycleLength, 9, 30),
         );
       }
@@ -178,7 +206,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
         push(
           NOTIF_IDS.rules + k,
           'Tes règles approchent 🌙',
-          'D\'ici 2 jours environ. Magnésium et douceur au menu, on t\'a tout préparé.',
+          'Crampes, fatigue, fringales : cette fois tu ne les subis pas. Ton menu spécial règles t\'attend déjà.',
           at(cycleStart, base + cycleLength - 2, 19),
         );
       }
@@ -195,8 +223,23 @@ export function buildNotificationPlan(profile, now = new Date()) {
           // (ex. folliculaire quasi inexistante) — on ne l'annonce pas.
           if (phaseForDay(day, cycleLength, periodLength) !== phase) return;
           const t = PHASE_CHANGE_TEXTS[phase];
-          push(NOTIF_IDS.phase + k * 10 + i, t.title, t.body(name), at(cycleStart, base + day - 1, 9));
+          push(NOTIF_IDS.phase + k * 10 + i, t.title, t.body, at(cycleStart, base + day - 1, 9));
         });
+      }
+
+      // 8 · Veille du pic de forme — la veille de l'entrée en ovulatoire,
+      // 19 h. Complète (et n'écrase pas) le changement de phase du
+      // lendemain matin : anticipation le soir, confirmation au réveil.
+      if (prefs.peak) {
+        const peakEve = ovulationDay - 2; // l'ovulatoire commence à ovulationDay - 1
+        if (peakEve >= 2 && phaseForDay(peakEve + 1, cycleLength, periodLength) === 'ovulatory') {
+          push(
+            NOTIF_IDS.peak + k,
+            'Demain, ton pic de forme ☀️',
+            'Ta meilleure semaine du mois commence demain. Cette fois, tu le sais à l\'avance : prévois grand.',
+            at(cycleStart, base + peakEve - 1, 19),
+          );
+        }
       }
 
       // 6 · Semaine douceur — ~5 jours avant les règles, 18 h,
@@ -208,9 +251,43 @@ export function buildNotificationPlan(profile, now = new Date()) {
         push(
           NOTIF_IDS.softweek + k,
           'Ta semaine douceur commence 💛',
-          'Le SPM pointe souvent ces jours-ci. Magnésium, B6 : tes alliés sont prêts dans l\'app.',
+          'Irritabilité, fringales, moral en dents de scie ? Le SPM se joue aussi dans l\'assiette. Tes menus douceur sont prêts.',
           at(cycleStart, base + cycleLength - 5, 18),
         );
+      }
+
+      // 9 · Aliments alliés — 2 jours après chaque changement de phase
+      // (pas le jour même, pour ne pas doubler le rappel de 9 h), 12 h.
+      // 4 fois par cycle : « voilà quoi mettre dans ton panier maintenant ».
+      if (prefs.allies) {
+        const phaseStarts = [1, periodLength + 1, ovulationDay - 1, ovulationDay + 2];
+        phaseStarts.forEach((startDay, i) => {
+          const d = startDay + 2;
+          if (d > cycleLength) return;
+          push(
+            NOTIF_IDS.allies + k * 10 + i,
+            'Tes aliments du moment 🥑',
+            'Ton corps n\'a plus les mêmes besoins qu\'il y a 10 jours. Voici ceux qui lui font le plus de bien en ce moment.',
+            at(cycleStart, base + d - 1, 12),
+          );
+        });
+      }
+    }
+
+    // 10 · Batch cooking — le dimanche 17 h (avant les menus : il prime
+    // sur le menu du jour ce jour-là, règle du 1 rappel proactif par jour).
+    if (prefs.batch) {
+      let sundays = 0;
+      for (let i = 0; i < 14 && sundays < 2; i++) {
+        const d = at(today, i, 17);
+        if (d.getDay() !== 0) continue;
+        push(
+          NOTIF_IDS.batch + sundays,
+          'Envie de souffler cette semaine ? 🍳',
+          '2-3 plats préparés ce dimanche = tous tes midis réglés. On t\'a trouvé les recettes parfaites à faire en avance.',
+          d,
+        );
+        sundays += 1;
       }
     }
 
@@ -224,7 +301,10 @@ export function buildNotificationPlan(profile, now = new Date()) {
         // lutéale (phaseForDay renvoie lutéale au-delà de cycleLength).
         const dayOfCycle = isLate ? daysSince + i + 1 : ((daysSince + i) % cycleLength) + 1;
         const phase = phaseForDay(dayOfCycle, cycleLength, periodLength);
-        push(NOTIF_IDS.menu + i, 'Ton menu du jour est prêt 🍽️', MENU_TEXTS[phase], when);
+        // Rotation des 3 variantes, stable pour une date donnée (daysSince
+        // avance d'un cran par jour → jamais deux matins de suite pareils).
+        const variant = MENU_VARIANTS[phase][(daysSince + i) % 3];
+        push(NOTIF_IDS.menu + i, 'Ton menu du jour est prêt 🍽️', variant(name), when);
       }
     }
   }
@@ -234,11 +314,17 @@ export function buildNotificationPlan(profile, now = new Date()) {
   // la resynchronisation quotidienne entretient la fenêtre glissante)
   if (prefs.checkin) {
     for (let i = 0; i < CHECKIN_DAYS; i++) {
-      if (i === 0 && todayCheckInDone) continue;
+      // i === 0 : ce plan se construit à l'OUVERTURE de l'app — elle est donc
+      // venue aujourd'hui, on ne la relance pas ce soir (standard Duolingo /
+      // Headspace : on ne relance jamais quelqu'un qui est déjà là). Le
+      // rappel ne part que les jours SANS ouverture : demain elle ouvre →
+      // le plan se reconstruit et le rappel du soir saute à nouveau.
+      if (i === 0) continue;
+      void todayCheckInDone; // couvert par la règle ci-dessus
       push(
         NOTIF_IDS.checkin + i,
         'Comment tu te sens ce soir ?',
-        '2 minutes pour écouter ton corps. Sans pression, promis.',
+        'Ton corps t\'a parlé toute la journée. 2 minutes pour l\'écouter, et tes conseils de demain seront encore plus justes.',
         at(today, i, 20, 30),
         { exclusiveDay: false },
       );
@@ -252,7 +338,7 @@ export function buildNotificationPlan(profile, now = new Date()) {
     push(
       NOTIF_IDS.comeback,
       'On garde ta place au chaud 🌙',
-      'Ton cycle a continué. Tout est prêt pour toi, quand tu veux.',
+      'Tu es sûrement passée dans une nouvelle phase : tes besoins ont changé. On a déjà tout recalé pour toi.',
       at(today, 7, 12, 30),
       { exclusiveDay: false },
     );
