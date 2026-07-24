@@ -46,6 +46,7 @@ const initialState = {
   notifications: true,
   notifPrefs: DEFAULT_NOTIF_PREFS,
   notifCustomTexts: {}, // messages personnalisés par type de rappel (façon Clue)
+  appLock: false, // verrouillage Face ID / code à l'ouverture (natif seulement)
   language: 'fr',
   smartTracking: false,
   calendarStartDay: 'monday',
@@ -668,6 +669,7 @@ export function CycleProvider({ children }) {
               notifications: data.settings.notifications ?? true,
               notifPrefs: { ...DEFAULT_NOTIF_PREFS, ...(data.settings.notifPrefs || {}) },
               notifCustomTexts: data.settings.notifCustomTexts || {},
+              appLock: data.settings.appLock ?? false,
               language: data.settings.language || 'fr',
               smartTracking: data.settings.smartTracking ?? false,
               calendarStartDay: data.settings.calendarStartDay || 'monday',
@@ -852,6 +854,7 @@ export function CycleProvider({ children }) {
           notifications: state.notifications,
           notifPrefs: state.notifPrefs,
           notifCustomTexts: state.notifCustomTexts,
+          appLock: state.appLock,
           language: state.language,
           smartTracking: state.smartTracking,
           calendarStartDay: state.calendarStartDay,
@@ -891,6 +894,7 @@ export function CycleProvider({ children }) {
     state.notifications,
     state.notifPrefs,
     state.notifCustomTexts,
+    state.appLock,
     state.language,
     state.smartTracking,
     state.calendarStartDay,

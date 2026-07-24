@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { CycleProvider, useCycle } from './contexts/CycleContext';
 import AppLayout from './components/layout/AppLayout';
+import AppLock from './components/ui/AppLock';
 import ErrorBoundary from './components/ErrorBoundary';
 import Toaster from './components/Toaster';
 import Landing from './pages/Landing';
@@ -167,6 +168,7 @@ function App() {
       <BrowserRouter>
         <CycleProvider>
           <Toaster />
+          <AppLock />
           <Suspense fallback={<PageLoader />}>
             {IS_NATIVE ? <NativeRoutes /> : <WebRoutes />}
           </Suspense>

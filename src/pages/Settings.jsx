@@ -118,7 +118,7 @@ function Section({ title, children }) {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user, lastPeriodDate, cravings, notifPrefs, notifCustomTexts, todayCheckIn } = useCycle();
+  const { name, cycleLength, periodLength, notifications, goals, dietPreferences, healthIssues, allergies, cookingLevel, cookingTime, dispatch, signOut, user, lastPeriodDate, cravings, notifPrefs, notifCustomTexts, appLock, todayCheckIn } = useCycle();
 
   const [confirm, setConfirm] = useState(null);
   const [showCustomTexts, setShowCustomTexts] = useState(false);
@@ -317,6 +317,36 @@ export default function Settings() {
         {notifications && (
           <SettingRow label="Personnaliser les messages" onClick={() => setShowCustomTexts(true)} />
         )}
+      </Section>
+
+      <Section title="Confidentialité">
+        <SettingToggle
+          label="Verrouiller avec Face ID"
+          checked={appLock}
+          onChange={async (val) => {
+            if (val && Capacitor.isNativePlatform()) {
+              // On confirme une fois avant d'activer : si Face ID/code n'est
+              // pas configuré sur l'iPhone, on ne piège pas l'utilisatrice
+              // dehors — le réglage reste éteint.
+              try {
+                const { BiometricAuth } = await import('@aparajita/capacitor-biometric-auth');
+                await BiometricAuth.authenticate({
+                  reason: 'Confirme pour activer le verrouillage de luna',
+                  cancelTitle: 'Annuler',
+                  allowDeviceCredential: true,
+                  iosFallbackTitle: 'Utiliser le code',
+                });
+                dispatch({ type: 'UPDATE_SETTINGS', payload: { appLock: true } });
+                toast('Verrouillage activé 🔒');
+              } catch {
+                toast('Configure Face ID ou un code sur ton iPhone pour verrouiller luna');
+              }
+            } else {
+              dispatch({ type: 'UPDATE_SETTINGS', payload: { appLock: val } });
+              if (!val) toast('Verrouillage désactivé');
+            }
+          }}
+        />
       </Section>
 
       <Section title="App">
